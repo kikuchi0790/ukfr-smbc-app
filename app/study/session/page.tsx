@@ -68,8 +68,10 @@ function StudySessionContent() {
       // Load all questions first
       const allQuestions = await fetchJSON<Question[]>('/data/all-questions.json');
 
-      const savedProgress = safeLocalStorage.getItem<UserProgress>('userProgress');
-      const progress: UserProgress = savedProgress || {
+      const savedProgress = safeLocalStorage.getItem<any>('userProgress');
+      
+      // デフォルトのUserProgressオブジェクト
+      const defaultProgress: UserProgress = {
         totalQuestionsAnswered: 0,
         correctAnswers: 0,
         categoryProgress: {} as Record<Category, CategoryProgress>,
@@ -82,9 +84,20 @@ function StudySessionContent() {
           showJapaneseInStudy: true,
           showJapaneseInMock: false,
           autoReviewIncorrect: true,
-          notificationEnabled: false
+          notificationEnabled: false,
+          categoryStudyMode: 'random'
         }
       };
+      
+      // savedProgressが存在し、必要なプロパティがある場合はマージ、そうでなければデフォルトを使用
+      const progress: UserProgress = savedProgress ? {
+        ...defaultProgress,
+        ...savedProgress,
+        preferences: {
+          ...defaultProgress.preferences,
+          ...(savedProgress.preferences || {})
+        }
+      } : defaultProgress;
 
       if (mode === "category" && categoryParam) {
         // カテゴリ別学習：10問
