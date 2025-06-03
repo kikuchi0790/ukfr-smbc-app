@@ -1,0 +1,3402 @@
+[
+  {
+    "id": 1,
+    "question": "Inside information could be which of the following?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000406",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Information which, if made public, could significantly affect the share price",
+        "textJa": ". 公開された場合、株価に重大な影響を及ぼす可能性のある情報"
+      },
+      {
+        "letter": "B",
+        "text": ". Specific information on a takeover which has been printed in a newspaper",
+        "textJa": ". 新聞に掲載された買収に関する特定の情報"
+      },
+      {
+        "letter": "C",
+        "text": ". General information that a company is doing well",
+        "textJa": ". 会社が好調であるという一般的な情報"
+      },
+      {
+        "letter": "D",
+        "text": ". Public information announced by a shareholder",
+        "textJa": ". 株主によって発表された公開情報"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Information which is not public, but would affect the share price if it was, would be classified as inside information.",
+    "globalId": 142,
+    "categoryId": 1,
+    "questionJa": "インサイダー情報に該当しうるものは、次のうちどれですか？",
+    "explanationJa": "公開されていないものの、もし公開されれば株価に影響を与えるであろう情報は、インサイダー情報として分類されます。"
+  },
+  {
+    "id": 2,
+    "question": "To whom must the Money Laundering Reporting Officer report suspicious activities?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000408",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Action Task Force",
+        "textJa": ". Financial Action Task Force"
+      },
+      {
+        "letter": "C",
+        "text": ". The board of directors",
+        "textJa": ". 取締役会"
+      },
+      {
+        "letter": "D",
+        "text": ". National Crime Agency",
+        "textJa": ". National Crime Agency"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Any suspicions must immediately be reported to the NCA. Any weakness in internal controls must be submitted to the firm's directors on an annual basis.",
+    "globalId": 143,
+    "categoryId": 2,
+    "questionJa": "マネーロンダリング報告担当者（Money Laundering Reporting Officer）は、疑わしい活動を誰に報告しなければなりませんか？",
+    "explanationJa": "いかなる疑いも、直ちにNCAに報告されなければなりません。内部統制におけるいかなる弱点も、年次ベースで企業の取締役に提出されなければなりません。"
+  },
+  {
+    "id": 3,
+    "question": "Which of the following is true regarding money laundering?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000410",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Placement and integration are the two stages in the process",
+        "textJa": ". プレースメントとインテグレーションが、そのプロセスの2つの段階です"
+      },
+      {
+        "letter": "B",
+        "text": ". All suspicions should be reported by employees to the MLRO",
+        "textJa": ". すべての疑いは、従業員からMLROに報告されるべきです"
+      },
+      {
+        "letter": "C",
+        "text": ". All suspicions must be reported by the MLRO to NCA",
+        "textJa": ". すべての疑いは、MLROからNCAに報告されなければなりません"
+      },
+      {
+        "letter": "D",
+        "text": ". The role of MLRO is a significant management function",
+        "textJa": ". MLROの役割は、重要な管理機能です"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The three stages include layering. The MLRO has discretion to decide which suspicions are reported by the firm to NCA. The MLRO is a senior management function.",
+    "globalId": 144,
+    "categoryId": 3,
+    "questionJa": "マネーロンダリングに関して、次のうち正しいものはどれですか？",
+    "explanationJa": "3つの段階にはレイヤリングが含まれます。MLROは、企業からNCAにどの疑いを報告するかを決定する裁量権を持っています。MLROは上級管理職の機能です。"
+  },
+  {
+    "id": 4,
+    "question": "Where can the law relating to insider dealing as a criminal offence be found?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000412",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Financial Services and Markets Act 2000",
+        "textJa": ". The Financial Services and Markets Act 2000"
+      },
+      {
+        "letter": "B",
+        "text": ". The Proceeds of Crime Act 2002",
+        "textJa": ". The Proceeds of Crime Act 2002"
+      },
+      {
+        "letter": "C",
+        "text": ". The Criminal Justice Act 1993",
+        "textJa": ". The Criminal Justice Act 1993"
+      },
+      {
+        "letter": "D",
+        "text": ". The Companies Act 2006",
+        "textJa": ". The Companies Act 2006"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The Proceeds of Crime Act 2002 outlines criminal money laundering offences, the Financial Services and Markets Act 2000 creates regulatory powers for the FCA and PRA, and the Companies Act 2006 allows companies to audit their shareholder register (amongst other things).",
+    "globalId": 145,
+    "categoryId": 4,
+    "questionJa": "刑事犯罪としてのインサイダー取引に関する法律は、どこで見つけることができますか？",
+    "explanationJa": "The Proceeds of Crime Act 2002はマネーロンダリングの刑事犯罪の概要を定めており、The Financial Services and Markets Act 2000はFCAおよびPRAの規制権限を創設し、The Companies Act 2006は企業が（とりわけ）株主名簿を監査することを認めています。"
+  },
+  {
+    "id": 5,
+    "question": "Which of the following is least likely to supply information as an insider?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000414",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A secretary",
+        "textJa": ". 秘書"
+      },
+      {
+        "letter": "B",
+        "text": ". A technician",
+        "textJa": ". 技術者"
+      },
+      {
+        "letter": "C",
+        "text": ". A director",
+        "textJa": ". 取締役"
+      },
+      {
+        "letter": "D",
+        "text": ". A small shareholder",
+        "textJa": ". 小口株主"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "All employees may be guilty of insider dealing. Major shareholders may also have access to inside, price-sensitive information, but small shareholders are unlikely to enjoy such access.",
+    "globalId": 146,
+    "categoryId": 5,
+    "questionJa": "次のうち、インサイダーとして情報を提供する可能性が最も低いのは誰ですか？",
+    "explanationJa": "全ての従業員がインサイダー取引の罪に問われる可能性があります。大株主も内部の価格感応性情報にアクセスできる場合がありますが、小口株主がそのようなアクセス権を持つことは稀です。"
+  },
+  {
+    "id": 6,
+    "question": "Which of the following is NOT true regarding the insider dealing legislation under the Criminal Justice Act?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000419",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Offences can be committed by individuals but not by companies",
+        "textJa": ". 犯罪は個人によって行われることはあっても、企業によって行われることはありません"
+      },
+      {
+        "letter": "B",
+        "text": ". Encouraging a third party to deal on the basis of inside information is an offence",
+        "textJa": ". インサイダー情報に基づいて第三者に取引を促すことは犯罪です"
+      },
+      {
+        "letter": "C",
+        "text": ". UK equities, gilts and related derivatives are all covered by the legislation",
+        "textJa": ". 英国株式、ギルト債および関連デリバティブはすべてこの法律の対象です"
+      },
+      {
+        "letter": "D",
+        "text": ". Disclosure of price sensitive information to a third party outside the company affected is not an offence",
+        "textJa": ". 影響を受ける会社外部の第三者への価格感応性情報の開示は犯罪ではありません"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Only individuals can be guilty of the offences. Any securities traded on exchange are covered. If the price sensitive information is disclosed to a third party from outside the company affected, it is still an offence and that third party becomes a secondary insider.",
+    "globalId": 147,
+    "categoryId": 6,
+    "questionJa": "Criminal Justice Actに基づくインサイダー取引法に関して、次のうち正しくないものはどれですか？",
+    "explanationJa": "個人だけが犯罪の罪に問われる可能性があります。取引所で取引されるいかなる証券も対象となります。価格感応性情報が影響を受ける会社外部の第三者に開示された場合、それは依然として犯罪であり、その第三者は二次的インサイダーとなります。"
+  },
+  {
+    "id": 7,
+    "question": "All of the following are covered by the UK insider dealing legislation except:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000421",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Options on shares",
+        "textJa": ". 株式オプション"
+      },
+      {
+        "letter": "B",
+        "text": ". ADRs",
+        "textJa": ". ADRs"
+      },
+      {
+        "letter": "C",
+        "text": ". Debentures",
+        "textJa": ". 社債"
+      },
+      {
+        "letter": "D",
+        "text": ". Forward foreign exchange contracts",
+        "textJa": ". 為替予約取引"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Insider dealing applies to MiFID instruments.",
+    "globalId": 148,
+    "categoryId": 7,
+    "questionJa": "英国のインサイダー取引法の対象とならないものは、次のうちどれですか？",
+    "explanationJa": "インサイダー取引はMiFID金融商品に適用されます。"
+  },
+  {
+    "id": 8,
+    "question": "Which of the following pieces of legislation cover money laundering?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000422",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Proceeds of Crime Act 2002",
+        "textJa": ". Proceeds of Crime Act 2002"
+      },
+      {
+        "letter": "B",
+        "text": ". Regulated Activities Order 2001",
+        "textJa": ". Regulated Activities Order 2001"
+      },
+      {
+        "letter": "C",
+        "text": ". Bank of England Act 1998",
+        "textJa": ". Bank of England Act 1998"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Services Act 2012",
+        "textJa": ". Financial Services Act 2012"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The Proceeds of Crime Act 2002 is the legislation that defines the money laundering offences which are all punishable by a fine and/or a term of imprisonment.",
+    "globalId": 149,
+    "categoryId": 8,
+    "questionJa": "次の法律のうち、マネーロンダリングを対象としているものはどれですか？",
+    "explanationJa": "The Proceeds of Crime Act 2002は、マネーロンダリング犯罪を定義する法律であり、これらはすべて罰金および／または懲役刑の対象となります。"
+  },
+  {
+    "id": 9,
+    "question": "Under the Money Laundering Regulations a firm must ensure that they have appropriate internal controls. One of these is the appointment of a money laundering reporting officer. Which of the following is not true of the MLRO?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000424",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". They fulfil a senior manager function within the firm",
+        "textJa": ". 企業内で上級管理職の機能を果たします"
+      },
+      {
+        "letter": "B",
+        "text": ". They are the internal and external point of contact for matters arising in relation to money laundering",
+        "textJa": ". マネーロンダリングに関連して発生する事項について、社内外の窓口となります"
+      },
+      {
+        "letter": "C",
+        "text": ". They are responsible for taking reasonable steps to establish and maintain adequate arrangements for awareness and training",
+        "textJa": ". 意識向上と研修のための適切な体制を確立し維持するために、合理的な措置を講じる責任があります"
+      },
+      {
+        "letter": "D",
+        "text": ". They are a member of the National Crime Agency",
+        "textJa": ". National Crime Agencyのメンバーです"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The MLRO is an employee of the firm, and although they pass on suspicions to NCA they are not members of this agency.",
+    "globalId": 150,
+    "categoryId": 9,
+    "questionJa": "マネーロンダリング規制に基づき、企業は適切な内部統制を確保しなければなりません。その一つがマネーロンダリング報告担当者（MLRO）の任命です。MLROに関して、次のうち正しくないものはどれですか？",
+    "explanationJa": "MLROは企業の従業員であり、NCAに疑いを報告しますが、この機関のメンバーではありません。"
+  },
+  {
+    "id": 10,
+    "question": "Which of the following is FALSE with regard to the money laundering regulations?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000426",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Failure to report suspicions is an offence under the regulations",
+        "textJa": ". 疑いを報告しないことは、規制に基づく犯罪です"
+      },
+      {
+        "letter": "B",
+        "text": ". A Money Laundering Reporting Officer is only required for large, complex organisations",
+        "textJa": ". マネーロンダリング報告担当者は、大規模で複雑な組織にのみ必要とされます"
+      },
+      {
+        "letter": "C",
+        "text": ". Inadequate education of staff is an offence even if no money laundering transactions take place",
+        "textJa": ". マネーロンダリング取引が行われなかったとしても、従業員への不十分な教育は犯罪です"
+      },
+      {
+        "letter": "D",
+        "text": ". Records of identification must be kept for five years after the termination of the relationship",
+        "textJa": ". 身元確認の記録は、関係終了後5年間保管しなければなりません"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "An MLRO is a required control function in all firms.",
+    "globalId": 151,
+    "categoryId": 10,
+    "questionJa": "マネーロンダリング規制に関して、次のうち誤っているものはどれですか？",
+    "explanationJa": "MLROは、すべての企業において必要な管理機能です。"
+  },
+  {
+    "id": 11,
+    "question": "A fund manager lets the market know that they are very keen to buy substantial quantities of shares in Benno plc, when actually they hold a smaller quantity of shares in Benno that they plan to sell. Which of the following criminal offences, under the Financial Services Act 2012, is the fund manager most likely to be guilty of?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000428",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Manipulating devices",
+        "textJa": ". 相場操縦行為"
+      },
+      {
+        "letter": "B",
+        "text": ". Misleading statements",
+        "textJa": ". 虚偽表示"
+      },
+      {
+        "letter": "C",
+        "text": ". Disclosing inside information",
+        "textJa": ". インサイダー情報の開示"
+      },
+      {
+        "letter": "D",
+        "text": ". Tipping off",
+        "textJa": ". 密告（タレコミ）"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The fund manager is giving a misleading statement. ss89 - 91 of the Financial Services Act 2012 covers misleading statements (s89) and impressions (s90) as well as misleading impressions in respect of benchmarks (s91). 'Manipulating devices' is a type of market abuse (a civil offence), which is covered by the Market Abuse Regulation (MAR). Insider dealing is covered under s52 of the Criminal Justice Act 1993. 'Tipping off' is a money laundering offence, covered under s333 of the Proceeds of Crime Act 2002.",
+    "globalId": 152,
+    "categoryId": 11,
+    "questionJa": "ファンドマネージャーが、実際には売却予定のBenno plcの少量の株式しか保有していないにもかかわらず、市場に対してBenno plcの株式を大量に購入する意欲が非常に高いと知らせました。このファンドマネージャーがFinancial Services Act 2012に基づき、有罪となる可能性が最も高い刑事犯罪は次のうちどれですか？",
+    "explanationJa": "ファンドマネージャーは虚偽の表示を行っています。Financial Services Act 2012の第89条から第91条は、虚偽表示（第89条）、誤解を招く印象（第90条）、およびベンチマークに関する誤解を招く印象（第91条）を対象としています。「相場操縦行為」は市場濫用（民事犯罪）の一種であり、Market Abuse Regulation (MAR)の対象です。インサイダー取引はCriminal Justice Act 1993の第52条の対象です。「密告（タレコミ）」はマネーロンダリング犯罪であり、Proceeds of Crime Act 2002の第333条の対象です。"
+  },
+  {
+    "id": 12,
+    "question": "Which of the following would be committing an offence under the Criminal Justice Act 1993 if they purchased shares in ABC plc?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000430",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A market maker who obtained price-sensitive information in the course of his business and the information is of a kind it would be reasonable to expect him to obtain",
+        "textJa": ". 業務の過程で価格感応性情報を入手し、その情報が入手することが合理的と期待される種類のものであるマーケットメーカー"
+      },
+      {
+        "letter": "B",
+        "text": ". A director of ABC plc with price-sensitive information who undertook the transaction without intending to make a profit or to avoid a loss",
+        "textJa": ". 利益を得る意図も損失を回避する意図もなく取引を行った、価格感応性情報を持つABC plcの取締役"
+      },
+      {
+        "letter": "C",
+        "text": ". A friend of a director of ABC plc who obtained information but was unaware that it was price sensitive",
+        "textJa": ". 情報を入手したが、それが価格感応性情報であるとは知らなかったABC plcの取締役の友人"
+      },
+      {
+        "letter": "D",
+        "text": ". None of the above",
+        "textJa": ". 上記のいずれでもない"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "An insider must knowingly have inside information (i.e. price sensitive and not public) from a known inside source. If there is no intent, then there is no offence. Being a market maker is an acceptable defence.",
+    "globalId": 153,
+    "categoryId": 12,
+    "questionJa": "次のうち、ABC plcの株式を購入した場合にCriminal Justice Act 1993に基づく犯罪を犯すことになるのは誰ですか？",
+    "explanationJa": "インサイダーは、既知の内部情報源からインサイダー情報（すなわち、価格感応性があり公開されていない情報）を故意に保有していなければなりません。意図がなければ、犯罪にはなりません。マーケットメーカーであることは、認められる抗弁事由です。"
+  },
+  {
+    "id": 13,
+    "question": "Which of the following would not be committing an offence under the Criminal Justice Act 1993 if they purchased shares in ABC plc?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000433",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An auditor to ABC who resigned three months ago who has confidential information on the company's results",
+        "textJa": ". 3ヶ月前に辞任したABCの監査人で、会社の業績に関する機密情報を持っている者"
+      },
+      {
+        "letter": "B",
+        "text": ". A secretary to the office services manager in ABC who has seen an advance copy of an announcement to repurchase shares",
+        "textJa": ". 株式買戻しの発表の事前コピーを見たABCのオフィスサービスマネージャーの秘書"
+      },
+      {
+        "letter": "C",
+        "text": ". A non-executive director of ABC who resigned seven months ago who expects profits to show an unexpected rise when published",
+        "textJa": ". 7ヶ月前に辞任したABCの非業務執行取締役で、公表時に利益が予想外の増加を示すと期待している者"
+      },
+      {
+        "letter": "D",
+        "text": ". A friend of the director of ABC who has obtained price-sensitive information from the director",
+        "textJa": ". ABCの取締役から価格感応性情報を入手した取締役の友人"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The non-executive director is not an insider since he does not have inside information from an inside source.",
+    "globalId": 154,
+    "categoryId": 13,
+    "questionJa": "次のうち、ABC plcの株式を購入してもCriminal Justice Act 1993に基づく犯罪を犯すことにならないのは誰ですか？",
+    "explanationJa": "その非業務執行取締役は、内部情報源からのインサイダー情報を持っていないため、インサイダーではありません。"
+  },
+  {
+    "id": 14,
+    "question": "In respect of Money Laundering Regulations which of the following is NOT true?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000434",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Once an employee has reported suspicions to their Money Laundering Reporting Officer they have a further duty of disclosure to the authorities",
+        "textJa": ". 従業員がマネーロンダリング報告担当者に疑いを報告した後、当局へのさらなる開示義務を負います"
+      },
+      {
+        "letter": "B",
+        "text": ". It is a criminal offence not to report suspicions of money laundering",
+        "textJa": ". マネーロンダリングの疑いを報告しないことは刑事犯罪です"
+      },
+      {
+        "letter": "C",
+        "text": ". It is a criminal offence not to have adequate monitoring and reporting systems to prevent money laundering",
+        "textJa": ". マネーロンダリングを防止するための適切な監視および報告システムを持たないことは刑事犯罪です"
+      },
+      {
+        "letter": "D",
+        "text": ". Money Laundering Regulations relate to all serious crimes such as drugs dealing, counterfeiting and extortion",
+        "textJa": ". マネーロンダリング規制は、麻薬取引、偽造、恐喝などのすべての重大犯罪に関連しています"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The money laundering officer, not the employee, has an obligation to report suspicions to the National Crime Agency.",
+    "globalId": 155,
+    "categoryId": 14,
+    "questionJa": "マネーロンダリング規制に関して、次のうち正しくないものはどれですか？",
+    "explanationJa": "従業員ではなく、マネーロンダリング担当者がNational Crime Agencyに疑いを報告する義務を負っています。"
+  },
+  {
+    "id": 15,
+    "question": "To which of the following must a Money Laundering Reporting Officer report money laundering suspicions?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000435",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Action Task Force",
+        "textJa": ". Financial Action Task Force"
+      },
+      {
+        "letter": "C",
+        "text": ". National Crime Agency",
+        "textJa": ". National Crime Agency"
+      },
+      {
+        "letter": "D",
+        "text": ". Joint Money Laundering Steering Group",
+        "textJa": ". Joint Money Laundering Steering Group"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "NCA stands for the National Crime Agency - a body that liaises with the police and customs in the investigation of money laundering and other criminal circumstances.",
+    "globalId": 156,
+    "categoryId": 15,
+    "questionJa": "マネーロンダリング報告担当者は、マネーロンダリングの疑いを次のうちどれに報告しなければなりませんか？",
+    "explanationJa": "NCAはNational Crime Agencyの略で、マネーロンダリングやその他の犯罪状況の捜査において警察や税関と連携する機関です。"
+  },
+  {
+    "id": 16,
+    "question": "Which of the following would not be considered a suspicious transaction under the Money Laundering Regulations?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000436",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Customer services are asked to take payment from a different account than the account history shows is usual",
+        "textJa": ". 顧客サービスが、口座履歴が通常示すものとは異なる口座からの支払いを求められる"
+      },
+      {
+        "letter": "B",
+        "text": ". Payment is from a debit card account with a different card holder name",
+        "textJa": ". 支払いが、異なるカード名義人のデビットカード口座から行われる"
+      },
+      {
+        "letter": "C",
+        "text": ". The customer initiates several small transactions totalling less than €7,500; it is an unusual size for the customer's transaction history",
+        "textJa": ". 顧客が合計7,500ユーロ未満の少額取引を複数開始する。これは顧客の取引履歴にとって異例の規模である"
+      },
+      {
+        "letter": "D",
+        "text": ". The customer is unable to prove his identity through the usual means, but is willing to offer other forms of identification",
+        "textJa": ". 顧客が通常の手段で身元を証明できないが、他の形式の身分証明書を提示する意思がある"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Any unusual behaviour exhibited by a customer that does not conform to their profile, characteristics or history may be deemed a suspicious transaction.",
+    "globalId": 157,
+    "categoryId": 16,
+    "questionJa": "次のうち、マネーロンダリング規制の下で疑わしい取引と見なされないものはどれですか？",
+    "explanationJa": "顧客のプロフィール、特性、または履歴に適合しない、顧客が示すいかなる異常な行動も、疑わしい取引と見なされる可能性があります。"
+  },
+  {
+    "id": 17,
+    "question": "Which of the following is untrue of the FCA rules and the legislation on money laundering?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000437",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". As part of the FCA's operational objective to protect and enhance market integrity, it must make sure that firms take adequate steps to prevent and detect money laundering",
+        "textJa": ". 市場の健全性を保護し強化するというFCAの運営目標の一環として、企業がマネーロンダリングを防止および検出するための適切な措置を講じることを確認しなければなりません"
+      },
+      {
+        "letter": "B",
+        "text": ". A firm does not have to identify a client if the transaction is one off and for €30,000",
+        "textJa": ". 取引が一度きりで30,000ユーロの場合、企業は顧客を特定する必要はありません"
+      },
+      {
+        "letter": "C",
+        "text": ". A firm must provide training for its staff to recognise suspicious transactions",
+        "textJa": ". 企業は、疑わしい取引を認識できるように従業員に研修を提供しなければなりません"
+      },
+      {
+        "letter": "D",
+        "text": ". A firm is required to retain documentation for a period of five years from the date that the client ceases to be a client of the firm",
+        "textJa": ". 企業は、顧客が企業の顧客でなくなった日から5年間、文書を保持する必要があります"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "B is false. One off transactions above €7500 require identification.",
+    "globalId": 158,
+    "categoryId": 17,
+    "questionJa": "FCAの規則およびマネーロンダリングに関する法律について、次のうち正しくないものはどれですか？",
+    "explanationJa": "Bは誤りです。7500ユーロを超える一度きりの取引には本人確認が必要です。"
+  },
+  {
+    "id": 18,
+    "question": "If an employee notices a suspicious transaction, which of the following is the correct first course of action?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000439",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Their line manager reports to the NCA",
+        "textJa": ". 直属の上司がNCAに報告する"
+      },
+      {
+        "letter": "B",
+        "text": ". The MLRO reports to the NCA",
+        "textJa": ". MLROがNCAに報告する"
+      },
+      {
+        "letter": "C",
+        "text": ". The employee reports to the MLRO",
+        "textJa": ". 従業員がMLROに報告する"
+      },
+      {
+        "letter": "D",
+        "text": ". The employee discusses the matter with the client",
+        "textJa": ". 従業員が顧客と問題を話し合う"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "You must report to the MLRO who then reports to the NCA.",
+    "globalId": 159,
+    "categoryId": 18,
+    "questionJa": "従業員が疑わしい取引に気付いた場合、最初にとるべき正しい行動は次のうちどれですか？",
+    "explanationJa": "MLROに報告しなければなりません。その後、MLROがNCAに報告します。"
+  },
+  {
+    "id": 19,
+    "question": "What is the aim of the money laundering regulations?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000440",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To set out the different money laundering offences",
+        "textJa": ". さまざまなマネーロンダリング犯罪を規定すること"
+      },
+      {
+        "letter": "B",
+        "text": ". To set out the different penalties for money laundering",
+        "textJa": ". マネーロンダリングに対するさまざまな罰則を規定すること"
+      },
+      {
+        "letter": "C",
+        "text": ". To prevent those with criminal records from opening bank accounts",
+        "textJa": ". 犯罪歴のある者が銀行口座を開設するのを防ぐこと"
+      },
+      {
+        "letter": "D",
+        "text": ". To prevent the proceeds of crime from entering the financial system",
+        "textJa": ". 犯罪収益が金融システムに入るのを防ぐこと"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Money laundering rules are part of the general fight against crime.",
+    "globalId": 160,
+    "categoryId": 19,
+    "questionJa": "マネーロンダリング規制の目的は何ですか？",
+    "explanationJa": "マネーロンダリング規則は、犯罪との一般的な戦いの一部です。"
+  },
+  {
+    "id": 20,
+    "question": "Which of the following is not covered by the insider dealing legislation?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000442",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Building society deposits",
+        "textJa": ". 住宅金融組合の預金"
+      },
+      {
+        "letter": "B",
+        "text": ". Gilts",
+        "textJa": ". ギルト債"
+      },
+      {
+        "letter": "C",
+        "text": ". Options on UK listed companies",
+        "textJa": ". 英国上場企業のオプション"
+      },
+      {
+        "letter": "D",
+        "text": ". Gilt futures",
+        "textJa": ". ギルト先物"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Insider dealing covers MiFID instruments.",
+    "globalId": 161,
+    "categoryId": 20,
+    "questionJa": "次のうち、インサイダー取引法の対象とならないものはどれですか？",
+    "explanationJa": "インサイダー取引はMiFID金融商品を対象としています。"
+  },
+  {
+    "id": 21,
+    "question": "Before conducting designated investment business for a new customer, the money laundering regulations require an authorised firm to evidence identity. Which of the following is not true?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000443",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Unless satisfactory evidence of identity is obtained in a timely manner, the business must not proceed",
+        "textJa": ". 満足のいく本人確認書類が適時に入手されない限り、業務を進めてはなりません"
+      },
+      {
+        "letter": "B",
+        "text": ". To identify someone, an official document bearing a photograph should always be obtained, whether the new business is opened face-to-face or through the post.",
+        "textJa": ". 本人確認のためには、新規業務が対面であろうと郵送であろうと、常に写真付きの公的書類を入手すべきです。"
+      },
+      {
+        "letter": "C",
+        "text": ". The register of electors, recent utility bills and bank statements are valid methods of verifying the address of a prospective customer",
+        "textJa": ". 選挙人名簿、最近の公共料金請求書、銀行取引明細書は、見込み客の住所を確認する有効な方法です"
+      },
+      {
+        "letter": "D",
+        "text": ". Records of identity must be kept for five years",
+        "textJa": ". 本人確認記録は5年間保管しなければなりません"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Although photographic identification is favourable, it is not always necessary. The Joint Money Laundering Steering Group states: \"a government-issued document (without a photograph) which incorporates the customer's full name, supported by a second document … which incorporates: - the customer's full name and - either his residential address - or his date of birth.\"",
+    "globalId": 162,
+    "categoryId": 21,
+    "questionJa": "新規顧客のために指定投資業務を行う前に、マネーロンダリング規制は、認可された企業に本人確認を義務付けています。次のうち、正しくないものはどれですか？",
+    "explanationJa": "写真付きの身分証明書が望ましいですが、常に必要というわけではありません。Joint Money Laundering Steering Groupは次のように述べています。「顧客の氏名が記載された政府発行の書類（写真なし）で、次のいずれかを含む第二の書類によって裏付けられるもの：顧客の氏名、および、その居住住所または生年月日。」"
+  },
+  {
+    "id": 22,
+    "question": "At which stage of the money laundering process are the proceeds of crime separated from their source?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000447",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Layering",
+        "textJa": ". レイヤリング"
+      },
+      {
+        "letter": "B",
+        "text": ". Integration",
+        "textJa": ". インテグレーション"
+      },
+      {
+        "letter": "C",
+        "text": ". Identification",
+        "textJa": ". 特定"
+      },
+      {
+        "letter": "D",
+        "text": ". Placement",
+        "textJa": ". プレースメント"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Placement is the physical disposal of cash, layering separates proceeds from their source and integration provides apparent legitimacy to criminally derived wealth.",
+    "globalId": 163,
+    "categoryId": 22,
+    "questionJa": "マネーロンダリングのどの段階で、犯罪収益はその源泉から分離されますか？",
+    "explanationJa": "プレースメントは現金の物理的な処分であり、レイヤリングは収益をその源泉から分離し、インテグレーションは犯罪によって得られた富に明白な正当性を与えます。"
+  },
+  {
+    "id": 23,
+    "question": "If a chair of the board in a listed company wanted to deal in the shares of her own company, she would inform:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000448",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The company",
+        "textJa": ". 会社"
+      },
+      {
+        "letter": "B",
+        "text": ". HM Treasury",
+        "textJa": ". HM Treasury"
+      },
+      {
+        "letter": "C",
+        "text": ". The PRA",
+        "textJa": ". The PRA"
+      },
+      {
+        "letter": "D",
+        "text": ". The ESMA",
+        "textJa": ". The ESMA"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "All directors must inform their company when they trade in their own company's shares. There is also a need to inform the FCA. This is a requirement of the MAR PDMR Regime.",
+    "globalId": 164,
+    "categoryId": 23,
+    "questionJa": "上場企業の取締役会議長が自社の株式を取引したい場合、誰に通知しますか？",
+    "explanationJa": "すべての取締役は、自社の株式を取引する際に会社に通知しなければなりません。また、FCAにも通知する必要があります。これはMAR PDMR制度の要件です。"
+  },
+  {
+    "id": 24,
+    "question": "For the purposes of money laundering if a client is acting on behalf of a third party, whose identity needs to be established?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000452",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client",
+        "textJa": ". 顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". The third party",
+        "textJa": ". 第三者"
+      },
+      {
+        "letter": "C",
+        "text": ". Both the client and the third party",
+        "textJa": ". 顧客と第三者の両方"
+      },
+      {
+        "letter": "D",
+        "text": ". Neither the client nor the third party",
+        "textJa": ". 顧客も第三者もどちらも不要"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "It will be the responsibility of the client/agent to establish the identity of their own client.",
+    "globalId": 165,
+    "categoryId": 24,
+    "questionJa": "マネーロンダリングの目的で、顧客が第三者の代理として行動している場合、誰の身元を確認する必要がありますか？",
+    "explanationJa": "自身の顧客の身元を確認するのは、顧客/代理人の責任となります。"
+  },
+  {
+    "id": 25,
+    "question": "Which of the following is a general defence to insider dealing?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000456",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Stabilisation",
+        "textJa": ". 価格安定操作"
+      },
+      {
+        "letter": "B",
+        "text": ". Market makers acting in the normal course of business",
+        "textJa": ". 通常の業務過程で行動するマーケットメーカー"
+      },
+      {
+        "letter": "C",
+        "text": ". Would have dealt anyway",
+        "textJa": ". いずれにしても取引したであろう"
+      },
+      {
+        "letter": "D",
+        "text": ". Recipients of market information",
+        "textJa": ". 市場情報の受領者"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The other three are specific or technical defences to insider dealing. These provide situations where individuals may legally possess price-sensitive non-public information. 'Would have dealt anyway' is a general defence (available to anyone).",
+    "globalId": 166,
+    "categoryId": 25,
+    "questionJa": "次のうち、インサイダー取引に対する一般的な抗弁事由はどれですか？",
+    "explanationJa": "他の3つは、インサイダー取引に対する特定または技術的な抗弁事由です。これらは、個人が価格感応性のある非公開情報を合法的に保有できる状況を提供します。「いずれにしても取引したであろう」は一般的な抗弁事由（誰でも利用可能）です。"
+  },
+  {
+    "id": 26,
+    "question": "Who would receive notification of a director trading shares in their own company?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000457",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Takeover Panel",
+        "textJa": ". The Takeover Panel"
+      },
+      {
+        "letter": "B",
+        "text": ". Their company",
+        "textJa": ". その会社"
+      },
+      {
+        "letter": "C",
+        "text": ". The Bank of England",
+        "textJa": ". The Bank of England"
+      },
+      {
+        "letter": "D",
+        "text": ". The Competition and Markets Authority",
+        "textJa": ". The Competition and Markets Authority"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Directors inform their company within three business days when they trade in their own company's shares.",
+    "globalId": 167,
+    "categoryId": 26,
+    "questionJa": "取締役が自社の株式を取引した場合、誰が通知を受け取りますか？",
+    "explanationJa": "取締役は、自社の株式を取引した場合、3営業日以内に会社に通知します。"
+  },
+  {
+    "id": 27,
+    "question": "Which of the following would not be classed as an act of terrorism?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000458",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Chaining yourself to the railings outside 10 Downing Street",
+        "textJa": ". ダウニング街10番地の外の柵に自分を鎖でつなぐこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Preparing an explosive device for public use",
+        "textJa": ". 公共使用のための爆発装置を準備すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Attacking Nelson's Column",
+        "textJa": ". ネルソン記念碑を攻撃すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Hacking into CREST",
+        "textJa": ". CRESTにハッキングすること"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Acts of terrorism can include endangering life, interfering with electronic systems or damaging property. Chaining yourself to the railings outside 10 Downing Street is none of these.",
+    "globalId": 168,
+    "categoryId": 27,
+    "questionJa": "次のうち、テロ行為として分類されないものはどれですか？",
+    "explanationJa": "テロ行為には、生命を危険にさらすこと、電子システムへの干渉、または財産の損壊が含まれる可能性があります。ダウニング街10番地の外の柵に自分を鎖でつなぐことは、これらのいずれにも該当しません。"
+  },
+  {
+    "id": 28,
+    "question": "Which of the following is an insider according to the Criminal Justice Act 1993?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000459",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A person who pays for inside information",
+        "textJa": ". インサイダー情報に対価を支払う者"
+      },
+      {
+        "letter": "B",
+        "text": ". An employee whose work involves inside information",
+        "textJa": ". 業務にインサイダー情報が含まれる従業員"
+      },
+      {
+        "letter": "C",
+        "text": ". A person who obtains inside information by observation",
+        "textJa": ". 観察によってインサイダー情報を入手する者"
+      },
+      {
+        "letter": "D",
+        "text": ". A person who obtains inside information by dealing in securities",
+        "textJa": ". 証券取引によってインサイダー情報を入手する者"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Answer D relates to a market maker in which there is a special defence. Answer C is not a breach of CJA 1993. Answer A is illegal but this does not make the buyer of the information an insider.",
+    "globalId": 169,
+    "categoryId": 28,
+    "questionJa": "Criminal Justice Act 1993によれば、次のうちインサイダーは誰ですか？",
+    "explanationJa": "回答Dは、特別な抗弁事由が存在するマーケットメーカーに関連しています。回答CはCJA 1993の違反ではありません。回答Aは違法ですが、これにより情報の購入者がインサイダーになるわけではありません。"
+  },
+  {
+    "id": 29,
+    "question": "A director of a company has recently informed a friend about a pending takeover of the company, telling them that since this information is not public, they can make a quick profit by buying the company's shares. The friend declines to trade on this information. Who has committed an offence under insider dealing legislation in the Criminal Justice Act?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000460",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The director",
+        "textJa": ". 取締役"
+      },
+      {
+        "letter": "B",
+        "text": ". The friend",
+        "textJa": ". 友人"
+      },
+      {
+        "letter": "C",
+        "text": ". Both",
+        "textJa": ". 両方"
+      },
+      {
+        "letter": "D",
+        "text": ". No one",
+        "textJa": ". 誰もいない"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The friend did not trade on the information. Assuming that she/he did not pass on this information further, she did not commit a crime. The director committed a crime by disclosing insider information and encouraging someone to deal on that information.",
+    "globalId": 170,
+    "categoryId": 29,
+    "questionJa": "ある会社の取締役が最近、友人に会社の買収が保留中であることを伝え、この情報は非公開なので会社の株を買えばすぐに利益を得られると話しました。友人はこの情報に基づいて取引することを断りました。Criminal Justice Actのインサイダー取引法に基づき、誰が犯罪を犯しましたか？",
+    "explanationJa": "友人はその情報に基づいて取引しませんでした。彼女/彼がこの情報をさらに伝えなかったと仮定すると、彼女は犯罪を犯していません。取締役はインサイダー情報を開示し、誰かにその情報に基づいて取引するよう促すことで犯罪を犯しました。"
+  },
+  {
+    "id": 30,
+    "question": "The MLRO must report to senior management at least:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000629",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Once every 6 months",
+        "textJa": ". 6ヶ月に1回"
+      },
+      {
+        "letter": "B",
+        "text": ". Once every 12 months",
+        "textJa": ". 12ヶ月に1回"
+      },
+      {
+        "letter": "C",
+        "text": ". Once every 18 months",
+        "textJa": ". 18ヶ月に1回"
+      },
+      {
+        "letter": "D",
+        "text": ". Once every 24 months",
+        "textJa": ". 24ヶ月に1回"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The MLRO must report to senior management at least once every calendar year.",
+    "globalId": 171,
+    "categoryId": 30,
+    "questionJa": "MLROは、少なくともどのくらいの頻度で上級管理職に報告しなければなりませんか？",
+    "explanationJa": "MLROは、少なくとも暦年ごとに1回、上級管理職に報告しなければなりません。"
+  },
+  {
+    "id": 31,
+    "question": "Which TWO of the following would constitute insider dealing? I . Dealing on unpublished, price-sensitive information II . A director dealing in company shares immediately after the annual report is published III . Encouraging another person to deal on unpublished, price-sensitive information IV . Buying shares on rumours of a takeover",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005014",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and IV",
+        "textJa": ". I と IV"
+      },
+      {
+        "letter": "B",
+        "text": ". II and III",
+        "textJa": ". II と III"
+      },
+      {
+        "letter": "C",
+        "text": ". II and IV",
+        "textJa": ". II と IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I and III",
+        "textJa": ". I と III"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Dealing on, or encouraging another person to deal on, unpublished, price-sensitive information can constitute insider dealing. Note: if the annual results have been published, the information would not be classed as 'unpublished' any more. Also, 'rumours' are unlikely to constitute specific or precise inside information.",
+    "globalId": 172,
+    "categoryId": 31,
+    "questionJa": "次のうち、インサイダー取引に該当するものはどれとどれですか？ I . 未公開の価格感応性情報に基づく取引 II . 年次報告書発行直後の取締役による自社株取引 III . 未公開の価格感応性情報に基づいて他者に取引を促すこと IV . 買収の噂に基づく株式購入",
+    "explanationJa": "未公開の価格感応性情報に基づいて取引を行うこと、または他者に取引を促すことは、インサイダー取引に該当する可能性があります。注意：年次決算が公表されていれば、その情報はもはや「未公開」とは分類されません。また、「噂」は特定の、あるいは正確なインサイダー情報を構成する可能性は低いです。"
+  },
+  {
+    "id": 32,
+    "question": "Which of the following prosecutes insider dealers?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005015",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". London Stock Exchange",
+        "textJa": ". London Stock Exchange"
+      },
+      {
+        "letter": "B",
+        "text": ". Department for Business and Trade",
+        "textJa": ". Department for Business and Trade"
+      },
+      {
+        "letter": "C",
+        "text": ". Treasury",
+        "textJa": ". Treasury"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The FCA can bring prosecutions for insider dealing. The London Stock Exchange has an obligation to monitor transactions to identify potential cases of insider dealing.",
+    "globalId": 173,
+    "categoryId": 32,
+    "questionJa": "次のうち、インサイダー取引者を起訴するのはどれですか？",
+    "explanationJa": "FCAはインサイダー取引の起訴を行うことができます。London Stock Exchangeは、インサイダー取引の潜在的なケースを特定するために取引を監視する義務があります。"
+  },
+  {
+    "id": 33,
+    "question": "In relation to money laundering, which of the following is FALSE?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005016",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Money laundering offences are defined by the Proceeds of Crime Act 2002",
+        "textJa": ". マネーロンダリング犯罪はProceeds of Crime Act 2002によって定義されています"
+      },
+      {
+        "letter": "B",
+        "text": ". Identification procedures are generally required for anyone wishing to engage in new business",
+        "textJa": ". 新規事業に従事したい人には、一般的に本人確認手続きが必要です"
+      },
+      {
+        "letter": "C",
+        "text": ". The offences are not confined to the financial services industry",
+        "textJa": ". 犯罪は金融サービス業界に限定されません"
+      },
+      {
+        "letter": "D",
+        "text": ". Firms have to report money laundering suspicions to the Financial Action Task Force (FATF)",
+        "textJa": ". 企業はマネーロンダリングの疑いをFinancial Action Task Force (FATF)に報告しなければなりません"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "FATF is an inter-governmental policy making body. In the UK, suspicions are reported to NCA.",
+    "globalId": 174,
+    "categoryId": 33,
+    "questionJa": "マネーロンダリングに関して、次のうち誤っているものはどれですか？",
+    "explanationJa": "FATFは政府間の政策決定機関です。英国では、疑いはNCAに報告されます。"
+  },
+  {
+    "id": 34,
+    "question": "Which of the following is NOT true of insider dealing as defined under the Criminal Justice Act?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005017",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It only covers UK regulated markets, UK MTFs and UK OTFs",
+        "textJa": ". 英国の規制市場、英国のMTF、英国のOTFのみを対象としています"
+      },
+      {
+        "letter": "B",
+        "text": ". Gilts and other government bonds are included in the law on insider dealing",
+        "textJa": ". ギルト債やその他の国債はインサイダー取引に関する法律に含まれています"
+      },
+      {
+        "letter": "C",
+        "text": ". The Financial Conduct Authority is responsible for prosecuting offences",
+        "textJa": ". Financial Conduct Authorityが犯罪の起訴を担当しています"
+      },
+      {
+        "letter": "D",
+        "text": ". A defence exists if the individual would have acted in the same way had they not had the information",
+        "textJa": ". 個人が情報を持っていなかったとしても同様に行動したであろう場合には、抗弁事由が存在します"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The legislation applies to MiFID instruments traded on UK/EEA/Gibraltar regulated markets, MTFs and OTFs, together with the NASDAQ, SIX and NYSE.",
+    "globalId": 175,
+    "categoryId": 34,
+    "questionJa": "Criminal Justice Actで定義されているインサイダー取引に関して、次のうち正しくないものはどれですか？",
+    "explanationJa": "この法律は、英国/EEA/ジブラルタルの規制市場、MTF、OTFで取引されるMiFID金融商品、ならびにNASDAQ、SIX、NYSEに適用されます。"
+  },
+  {
+    "id": 35,
+    "question": "Which two of the following are FALSE of the Money Laundering Regulations? I . Failure to report a suspicion is a criminal offence II . Firms must appoint a Money Laundering Reporting Officer III . Not reporting when there are 'reasonable grounds' to suspect money laundering exists is not an offence IV . The regulations only apply to drugs laundering operations",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005018",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II",
+        "textJa": ". I と II"
+      },
+      {
+        "letter": "B",
+        "text": ". I and III",
+        "textJa": ". I と III"
+      },
+      {
+        "letter": "C",
+        "text": ". III and IV",
+        "textJa": ". III と IV"
+      },
+      {
+        "letter": "D",
+        "text": ". II and IV",
+        "textJa": ". II と IV"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The requirement (under the Proceeds of Crime Act 2002) to report when 'reasonable grounds' exist places an objective test of suspicion on the financial services industry.",
+    "globalId": 176,
+    "categoryId": 35,
+    "questionJa": "マネーロンダリング規制について、次のうち誤っているものはどれとどれですか？ I . 疑いを報告しないことは刑事犯罪である II . 企業はマネーロンダリング報告担当者を任命しなければならない III . マネーロンダリングの疑いがある「合理的な根拠」がある場合に報告しないことは犯罪ではない IV . この規制は麻薬ロンダリング操作にのみ適用される",
+    "explanationJa": "「合理的な根拠」が存在する場合に報告する要件（Proceeds of Crime Act 2002に基づく）は、金融サービス業界に客観的な疑いのテストを課しています。"
+  },
+  {
+    "id": 36,
+    "question": "At which stages of the money laundering process are investment firms generally most vulnerable to being involved in money laundering activities?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005019",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Placement and layering",
+        "textJa": ". プレースメントとレイヤリング"
+      },
+      {
+        "letter": "B",
+        "text": ". Layering and integration",
+        "textJa": ". レイヤリングとインテグレーション"
+      },
+      {
+        "letter": "C",
+        "text": ". Placement and integration",
+        "textJa": ". プレースメントとインテグレーション"
+      },
+      {
+        "letter": "D",
+        "text": ". None of these stages",
+        "textJa": ". これらのどの段階でもない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "As a general rule, investment firms are most vulnerable to being involved in money laundering activities during the layering and integration stages of money laundering. Note: banks and building societies are most vulnerable at the placement stage.",
+    "globalId": 177,
+    "categoryId": 36,
+    "questionJa": "マネーロンダリングプロセスのどの段階で、投資会社は一般的にマネーロンダリング活動に関与する脆弱性が最も高くなりますか？",
+    "explanationJa": "一般的に、投資会社はマネーロンダリングのレイヤリングおよびインテグレーション段階でマネーロンダリング活動に関与する脆弱性が最も高くなります。注意：銀行や住宅金融組合はプレースメント段階で最も脆弱です。"
+  },
+  {
+    "id": 37,
+    "question": "Sue becomes suspicious of a 'high number of sales' by her client to an unknown party. Sue should report her fears to:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005020",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client",
+        "textJa": ". 顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA",
+        "textJa": ". The FCA"
+      },
+      {
+        "letter": "C",
+        "text": ". The NCA",
+        "textJa": ". The NCA"
+      },
+      {
+        "letter": "D",
+        "text": ". The MLRO",
+        "textJa": ". The MLRO"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The MLRO is the Money Laundering Reporting Officer. Every authorised firm must have one. They act as a conduit for information relating to money laundering from inside the firm to the relevant authorities.",
+    "globalId": 178,
+    "categoryId": 37,
+    "questionJa": "Sueは、顧客による未知の相手への「多数の売却」を疑っています。Sueはその懸念を誰に報告すべきですか？",
+    "explanationJa": "MLROはマネーロンダリング報告担当者です。すべての認可企業に1人いなければなりません。彼らは、企業内部から関連当局へのマネーロンダリングに関する情報の伝達役として機能します。"
+  },
+  {
+    "id": 38,
+    "question": "Which of the following would NOT be covered by the insider dealing legislation?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005021",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". FTSE index option",
+        "textJa": ". FTSE指数オプション"
+      },
+      {
+        "letter": "B",
+        "text": ". A foreign exchange forward",
+        "textJa": ". 外国為替フォワード"
+      },
+      {
+        "letter": "C",
+        "text": ". Debenture",
+        "textJa": ". 社債"
+      },
+      {
+        "letter": "D",
+        "text": ". FTSE futures contract",
+        "textJa": ". FTSE先物契約"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Insider dealing legislation (CJA 1993) does not cover foreign exchange forwards.",
+    "globalId": 179,
+    "categoryId": 38,
+    "questionJa": "次のうち、インサイダー取引法の対象とならないものはどれですか？",
+    "explanationJa": "インサイダー取引法（CJA 1993）は外国為替フォワードを対象としていません。"
+  },
+  {
+    "id": 39,
+    "question": "Which one of the following is NOT a money laundering offence, as defined in the Proceeds of Crime Act?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005022",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Tipping off",
+        "textJa": ". 密告（タレコミ）"
+      },
+      {
+        "letter": "B",
+        "text": ". Failure to report",
+        "textJa": ". 報告義務違反"
+      },
+      {
+        "letter": "C",
+        "text": ". Assistance",
+        "textJa": ". 幇助"
+      },
+      {
+        "letter": "D",
+        "text": ". Dealing on price sensitive information",
+        "textJa": ". 価格感応性情報に基づく取引"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The answer to 'dealing on price sensitive information' is an offence under the INSIDER DEALING legislation.",
+    "globalId": 180,
+    "categoryId": 39,
+    "questionJa": "Proceeds of Crime Actで定義されているマネーロンダリング犯罪ではないものは、次のうちどれですか？",
+    "explanationJa": "「価格感応性情報に基づく取引」は、インサイダー取引法に基づく犯罪です。"
+  },
+  {
+    "id": 40,
+    "question": "Which are TRUE of money laundering?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005023",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The JMLSG Guidance Notes have received Treasury approval",
+        "textJa": ". JMLSGガイダンスノートはTreasuryの承認を受けています"
+      },
+      {
+        "letter": "B",
+        "text": ". It is a criminal offence not to report a suspicion",
+        "textJa": ". 疑いを報告しないことは刑事犯罪です"
+      },
+      {
+        "letter": "C",
+        "text": ". It is a criminal offence not to have procedures in place",
+        "textJa": ". 手続きを整備していないことは刑事犯罪です"
+      },
+      {
+        "letter": "D",
+        "text": ". All are true",
+        "textJa": ". すべて正しい"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The courts are required to take account of guidance approved by the Treasury, such as the guidance notes. All are correct.",
+    "globalId": 181,
+    "categoryId": 40,
+    "questionJa": "マネーロンダリングについて正しいものはどれですか？",
+    "explanationJa": "裁判所は、ガイダンスノートなど、Treasuryによって承認されたガイダンスを考慮する必要があります。すべて正しいです。"
+  },
+  {
+    "id": 41,
+    "question": "Which of the following is NOT an offence under the insider dealing legislation?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005025",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Passing on price-sensitive information",
+        "textJa": ". 価格感応性情報を渡すこと"
+      },
+      {
+        "letter": "B",
+        "text": ". A director dealing in their own company's shares two months before announcement of results",
+        "textJa": ". 取締役が業績発表の2ヶ月前に自社株を取引すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Dealing on price-sensitive information",
+        "textJa": ". 価格感応性情報に基づいて取引すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Encouraging someone to deal on price-sensitive information",
+        "textJa": ". 価格感応性情報に基づいて誰かに取引を促すこと"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Directors are permitted to deal in their company's shares subject to: 1. Proper disclosure. 2. Not acting on inside information.",
+    "globalId": 182,
+    "categoryId": 41,
+    "questionJa": "次のうち、インサイダー取引法に基づく犯罪ではないものはどれですか？",
+    "explanationJa": "取締役は、次の条件の下で自社株を取引することが許可されています：1. 適切な開示。2. インサイダー情報に基づいて行動しないこと。"
+  },
+  {
+    "id": 42,
+    "question": "Which of the following are TRUE regarding insider dealing? I . Offences are committed by individuals, not corporations II . Encouraging a third party to deal is an offence III . UK equities and gilts and their derivatives are covered IV . Disclosure of inside information, other than in the normal course of business, is an offence",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005026",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      },
+      {
+        "letter": "B",
+        "text": ". I, II and IV",
+        "textJa": ". I, II および IV"
+      },
+      {
+        "letter": "C",
+        "text": ". II and IV",
+        "textJa": ". II および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I and III",
+        "textJa": ". I および III"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Insider dealing is a crime committed by INDIVIDUALS. Offences include dealing, encouraging and passing on information.",
+    "globalId": 183,
+    "categoryId": 42,
+    "questionJa": "インサイダー取引に関して正しいものはどれですか？ I . 犯罪は法人ではなく個人によって行われる II . 第三者に取引を促すことは犯罪である III . 英国株式、ギルト債およびそれらのデリバティブは対象となる IV . 通常の業務過程以外でのインサイダー情報の開示は犯罪である",
+    "explanationJa": "インサイダー取引は個人によって犯される犯罪です。犯罪には、取引、奨励、情報伝達が含まれます。"
+  },
+  {
+    "id": 43,
+    "question": "Which of the following are TRUE of money laundering? I . There are three stages: placement, layering and integration II . Assisting a money launderer, failure to report and tipping off are all offences III . The firm must appoint an appropriate person to handle suspected cases IV . Records must be maintained for five years under the Money Laundering Regulations",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005027",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I, II and III",
+        "textJa": ". I, II および III"
+      },
+      {
+        "letter": "B",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      },
+      {
+        "letter": "C",
+        "text": ". I and IV",
+        "textJa": ". I および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II and IV",
+        "textJa": ". I, II および IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Note: other procedures include internal controls and training of staff.",
+    "globalId": 184,
+    "categoryId": 43,
+    "questionJa": "マネーロンダリングについて正しいものはどれですか？ I . プレースメント、レイヤリング、インテグレーションの3つの段階がある II . マネーロンダラーの幇助、報告義務違反、密告（タレコミ）はすべて犯罪である III . 企業は疑わしいケースを処理するために適切な人物を任命しなければならない IV . マネーロンダリング規制に基づき、記録は5年間維持されなければならない",
+    "explanationJa": "注意：その他の手続きには、内部統制とスタッフの研修が含まれます。"
+  },
+  {
+    "id": 44,
+    "question": "Inside information could be which of the following?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005028",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Information which, if made public, could significantly affect the share price",
+        "textJa": ". 公開された場合、株価に重大な影響を及ぼす可能性のある情報"
+      },
+      {
+        "letter": "B",
+        "text": ". Specific information on a takeover which has been printed in a newspaper",
+        "textJa": ". 新聞に掲載された買収に関する特定の情報"
+      },
+      {
+        "letter": "C",
+        "text": ". General information that a company is doing well",
+        "textJa": ". 会社が好調であるという一般的な情報"
+      },
+      {
+        "letter": "D",
+        "text": ". Public information announced by a shareholder",
+        "textJa": ". 株主によって発表された公開情報"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Information which is not public, but would affect the share price if it was, would be classified as inside information.",
+    "globalId": 185,
+    "categoryId": 44,
+    "questionJa": "インサイダー情報に該当しうるものは、次のうちどれですか？",
+    "explanationJa": "公開されていないものの、もし公開されれば株価に影響を与えるであろう情報は、インサイダー情報として分類されます。"
+  },
+  {
+    "id": 45,
+    "question": "To whom must the Money Laundering Reporting Officer report suspicious activities?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005029",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Action Task Force",
+        "textJa": ". Financial Action Task Force"
+      },
+      {
+        "letter": "C",
+        "text": ". The Board of Directors",
+        "textJa": ". 取締役会"
+      },
+      {
+        "letter": "D",
+        "text": ". National Crime Agency",
+        "textJa": ". National Crime Agency"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Any suspicions must immediately be reported to the NCA. Any weakness in internal controls must be submitted to the firm's directors on an annual basis.",
+    "globalId": 186,
+    "categoryId": 45,
+    "questionJa": "マネーロンダリング報告担当者は、疑わしい活動を誰に報告しなければなりませんか？",
+    "explanationJa": "いかなる疑いも、直ちにNCAに報告されなければなりません。内部統制におけるいかなる弱点も、年次ベースで企業の取締役に提出されなければなりません。"
+  },
+  {
+    "id": 46,
+    "question": "A client requests an investment manager to carry out a trade in a listed security. Who is responsible for the transaction report?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1052075",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client",
+        "textJa": ". 顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". Investment manager",
+        "textJa": ". 投資マネージャー"
+      },
+      {
+        "letter": "C",
+        "text": ". London Stock Exchange",
+        "textJa": ". London Stock Exchange"
+      },
+      {
+        "letter": "D",
+        "text": ". UKLA",
+        "textJa": ". UKLA"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "As a member firm the investment manager is required to file a transaction report.",
+    "globalId": 187,
+    "categoryId": 46,
+    "questionJa": "顧客が投資マネージャーに上場証券の取引実行を依頼しました。取引報告書の責任者は誰ですか？",
+    "explanationJa": "会員企業として、投資マネージャーは取引報告書を提出する義務があります。"
+  },
+  {
+    "id": 47,
+    "question": "Post-trade transparency, reporting and publication requirements require the publication of the price and volume of completed trades which are undertaken. These rules apply to which one of the following?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014186",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Equity trades on a recognised exchange only",
+        "textJa": ". 認識された取引所での株式取引のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". Equity and non-equity trades on a recognised exchange only",
+        "textJa": ". 認識された取引所での株式および非株式取引のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Equity trades only on any regulated trading venue",
+        "textJa": ". 任意の規制された取引施設での株式取引のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". Equity and non-equity trades on any regulated trading venue",
+        "textJa": ". 任意の規制された取引施設での株式および非株式取引"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The post-trade transparency rules under MiFID cover not just equities, but also non-equity financial instruments that are admitted to trading on regulated trading venues (Regulated Markets, MTFs and/or OTFs).",
+    "globalId": 188,
+    "categoryId": 47,
+    "questionJa": "取引後の透明性、報告、公表の要件では、実行された完了済みの取引の価格と出来高の公表が求められます。これらの規則は、次のうちどれに適用されますか？",
+    "explanationJa": "MiFIDに基づく取引後の透明性規則は、株式だけでなく、規制された取引施設（規制市場、MTFおよび/またはOTF）での取引が認められている非株式金融商品も対象としています。"
+  },
+  {
+    "id": 48,
+    "question": "Which of the following gives the FCA the power to prosecute insider dealing offences?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005033",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Services and Markets Act 2000",
+        "textJa": ". Financial Services and Markets Act 2000"
+      },
+      {
+        "letter": "B",
+        "text": ". Criminal Justice Act 1993",
+        "textJa": ". Criminal Justice Act 1993"
+      },
+      {
+        "letter": "C",
+        "text": ". The Proceeds of Crime Act 2002",
+        "textJa": ". The Proceeds of Crime Act 2002"
+      },
+      {
+        "letter": "D",
+        "text": ". Companies Act 2006",
+        "textJa": ". Companies Act 2006"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The offence is contained within the CJA 1993, however the ability of the FCA to prosecute comes from ss 401-402 FSMA 2000.",
+    "globalId": 189,
+    "categoryId": 48,
+    "questionJa": "次のうち、FCAにインサイダー取引犯罪を起訴する権限を与えるものはどれですか？",
+    "explanationJa": "犯罪はCJA 1993に含まれていますが、FCAが起訴する能力はFSMA 2000の第401条から402条に由来します。"
+  },
+  {
+    "id": 49,
+    "question": "Under which of the following is insider dealing a criminal offence?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005034",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Services and Markets Act 2000",
+        "textJa": ". Financial Services and Markets Act 2000"
+      },
+      {
+        "letter": "B",
+        "text": ". Companies Act 2006",
+        "textJa": ". Companies Act 2006"
+      },
+      {
+        "letter": "C",
+        "text": ". The Proceeds of Crime Act 2002",
+        "textJa": ". The Proceeds of Crime Act 2002"
+      },
+      {
+        "letter": "D",
+        "text": ". Criminal Justice Act 1993",
+        "textJa": ". Criminal Justice Act 1993"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Note: FSMA 2000 gives the FCA the power to prosecute.",
+    "globalId": 190,
+    "categoryId": 49,
+    "questionJa": "次のうち、インサイダー取引が刑事犯罪となるのはどれに基づいていますか？",
+    "explanationJa": "注意：FSMA 2000はFCAに起訴する権限を与えています。"
+  },
+  {
+    "id": 50,
+    "question": "Primarily what kind of offence is insider dealing?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1005035",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Civil",
+        "textJa": ". 民事"
+      },
+      {
+        "letter": "B",
+        "text": ". Common law",
+        "textJa": ". コモンロー（判例法）"
+      },
+      {
+        "letter": "C",
+        "text": ". Criminal",
+        "textJa": ". 刑事"
+      },
+      {
+        "letter": "D",
+        "text": ". Tort",
+        "textJa": ". 不法行為"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Insider dealing is primarily a criminal offence as defined under the Criminal Justice Act. Where the regulator is unable to prove criminality, it has the ability to fall back on the civil offence of Market Abuse.",
+    "globalId": 191,
+    "categoryId": 50,
+    "questionJa": "インサイダー取引は、主にどのような種類の犯罪ですか？",
+    "explanationJa": "インサイダー取引は、主にCriminal Justice Actで定義されている刑事犯罪です。規制当局が犯罪性を証明できない場合、市場濫用の民事犯罪に頼ることができます。"
+  },
+  {
+    "id": 51,
+    "question": "The MLRO is an officer of the firm with what characteristics?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1013930",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The authority to carry out the responsibilities",
+        "textJa": ". 責任を遂行する権限"
+      },
+      {
+        "letter": "B",
+        "text": ". Complete independence from the company",
+        "textJa": ". 会社からの完全な独立性"
+      },
+      {
+        "letter": "C",
+        "text": ". Some information to allow a reasonable attempt at carrying out the relevant duties",
+        "textJa": ". 関連業務を合理的に遂行するためのいくつかの情報"
+      },
+      {
+        "letter": "D",
+        "text": ". The authority and sufficient independence within the firm to carry out the duty",
+        "textJa": ". 業務を遂行するための権限と企業内での十分な独立性"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "'The authority to carry out the responsibilities' is partially true. Complete independence is not necessary for the MLRO and some information is insufficient. 'The authority and sufficient independence within the firm to carry out the duty' is the best answer.",
+    "globalId": 192,
+    "categoryId": 51,
+    "questionJa": "MLROは、どのような特性を持つ企業の役員ですか？",
+    "explanationJa": "「責任を遂行する権限」は部分的に正しいです。MLROには完全な独立性は必要なく、いくつかの情報だけでは不十分です。「業務を遂行するための権限と企業内での十分な独立性」が最良の回答です。"
+  },
+  {
+    "id": 52,
+    "question": "Which of the following is NOT one of the specified types of market abuse?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1078728",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Insider dealing",
+        "textJa": ". インサイダー取引"
+      },
+      {
+        "letter": "B",
+        "text": ". Manipulating transactions",
+        "textJa": ". 取引操作"
+      },
+      {
+        "letter": "C",
+        "text": ". Processing proceeds of crime",
+        "textJa": ". 犯罪収益の処理"
+      },
+      {
+        "letter": "D",
+        "text": ". Dissemination",
+        "textJa": ". 情報の流布"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Processing proceeds of crime is the offence of money laundering.",
+    "globalId": 193,
+    "categoryId": 52,
+    "questionJa": "次のうち、指定された市場濫用の種類ではないものはどれですか？",
+    "explanationJa": "犯罪収益の処理はマネーロンダリングの犯罪です。"
+  },
+  {
+    "id": 53,
+    "question": "Which of the following statements is TRUE regarding market abuse?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014698",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Intention does not need to be proved",
+        "textJa": ". 意図を証明する必要はありません"
+      },
+      {
+        "letter": "B",
+        "text": ". The offence only relates to dealings in securities traded on a UK market",
+        "textJa": ". この犯罪は、英国市場で取引される証券の取引にのみ関連します"
+      },
+      {
+        "letter": "C",
+        "text": ". The maximum penalty is ten years in jail plus an unlimited fine",
+        "textJa": ". 最高刑は懲役10年と無制限の罰金です"
+      },
+      {
+        "letter": "D",
+        "text": ". It applies only to UK approved persons",
+        "textJa": ". 英国の承認された人物にのみ適用されます"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Market abuse is 'effects' based legislation and therefore intention does not need to be proved. It applies in relation to all qualifying investments traded on a prescribed market, i.e. RIE, ROIE and all EU regulated exchanges. Generally the FCA will normally only prosecute for offences in relation to UK markets. It is a civil offence and therefore does not carry a jail sentence. It applies to all persons, i.e. individuals and institutions, whether they are located in the UK or overseas.",
+    "globalId": 194,
+    "categoryId": 53,
+    "questionJa": "市場濫用に関して、次の記述のうち正しいものはどれですか？",
+    "explanationJa": "市場濫用は「効果」に基づく法律であり、したがって意図を証明する必要はありません。これは、指定された市場（すなわち、RIE、ROIE、およびすべてのEU規制取引所）で取引されるすべての適格な投資に関連して適用されます。一般的に、FCAは通常、英国市場に関連する犯罪についてのみ起訴します。これは民事犯罪であり、したがって懲役刑は伴いません。これは、英国または海外に所在するかどうかにかかわらず、すべての人（すなわち、個人および機関）に適用されます。"
+  },
+  {
+    "id": 54,
+    "question": "Which of the following is TRUE of the Money Laundering Regulations 2017?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1078729",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All firms subject to the regulations must appoint a Money Laundering Reporting Officer",
+        "textJa": ". 規制の対象となるすべての企業は、マネーロンダリング報告担当者を任命しなければなりません"
+      },
+      {
+        "letter": "B",
+        "text": ". A firm cannot be prosecuted under the regulations if a clear audit trail has been documented",
+        "textJa": ". 明確な監査証跡が文書化されていれば、企業は規制に基づいて起訴されることはありません"
+      },
+      {
+        "letter": "C",
+        "text": ". Records of customer identification must be kept for three years after the person ceases to be a customer",
+        "textJa": ". 顧客の本人確認記録は、その人が顧客でなくなってから3年間保管しなければなりません"
+      },
+      {
+        "letter": "D",
+        "text": ". Disciplinary sanctions under the regulations are determined by the FCA",
+        "textJa": ". 規制に基づく懲戒処分はFCAによって決定されます"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The legislation and sanctions were written by HMT. Records must be kept for five years.",
+    "globalId": 195,
+    "categoryId": 54,
+    "questionJa": "Money Laundering Regulations 2017について、次のうち正しいものはどれですか？",
+    "explanationJa": "法律と制裁はHMTによって作成されました。記録は5年間保管しなければなりません。"
+  },
+  {
+    "id": 55,
+    "question": "In relation to the insider dealing legislation, which of the following individuals would be considered to be an insider?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014780",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An employee who bought shares in the company after he heard that the chairman had purchased shares",
+        "textJa": ". 会長が株式を購入したと聞いた後、会社の株式を購入した従業員"
+      },
+      {
+        "letter": "B",
+        "text": ". A shareholder who purchased shares following receipt of published financial statements",
+        "textJa": ". 公表された財務諸表の受領後に株式を購入した株主"
+      },
+      {
+        "letter": "C",
+        "text": ". The human resources director who purchases shares after being appointed to the position",
+        "textJa": ". その役職に任命された後に株式を購入する人事部長"
+      },
+      {
+        "letter": "D",
+        "text": ". The audit partner who sells shares after reading the audit report prior to publication of the financial statements",
+        "textJa": ". 財務諸表の公表前に監査報告書を読んだ後、株式を売却する監査パートナー"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The audit partner would be deemed to be an insider, as he has access to information which is not publicly available.",
+    "globalId": 196,
+    "categoryId": 55,
+    "questionJa": "インサイダー取引法に関して、次の個人のうちインサイダーと見なされるのは誰ですか？",
+    "explanationJa": "監査パートナーは、公に利用可能でない情報にアクセスできるため、インサイダーと見なされます。"
+  },
+  {
+    "id": 56,
+    "question": "In relation to the insider dealing legislation which ONE of the following is a SPECIAL defence against insider dealing?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014782",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The information was publicly available",
+        "textJa": ". 情報は公に利用可能であった"
+      },
+      {
+        "letter": "B",
+        "text": ". The information was being passed on in the proper course of business",
+        "textJa": ". 情報は通常の業務過程で伝えられていた"
+      },
+      {
+        "letter": "C",
+        "text": ". The person would have dealt anyway",
+        "textJa": ". その人はとにかく取引したであろう"
+      },
+      {
+        "letter": "D",
+        "text": ". The individual acted in accordance with the stabilisation rules",
+        "textJa": ". 個人は価格安定操作規則に従って行動した"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The special defences are: 1. Stabilisation rules 2. Recipients of market information 3. Market makers",
+    "globalId": 197,
+    "categoryId": 56,
+    "questionJa": "インサイダー取引法に関して、次のうちインサイダー取引に対する特別な抗弁事由はどれですか？",
+    "explanationJa": "特別な抗弁事由は次のとおりです：1. 価格安定操作規則 2. 市場情報の受領者 3. マーケットメーカー"
+  },
+  {
+    "id": 57,
+    "question": "According to the Money Laundering Regulations, which of the following is FALSE?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014784",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Staff must be trained to recognise suspicious transactions",
+        "textJa": ". スタッフは疑わしい取引を認識できるように訓練されなければなりません"
+      },
+      {
+        "letter": "B",
+        "text": ". A firm must keep records for a minimum of three years",
+        "textJa": ". 企業は最低3年間記録を保管しなければなりません"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm must appoint a Money Laundering Reporting Officer",
+        "textJa": ". 企業はマネーロンダリング報告担当者を任命しなければなりません"
+      },
+      {
+        "letter": "D",
+        "text": ". The rules can apply to insurance companies",
+        "textJa": ". これらの規則は保険会社に適用されることがあります"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The firm must keep records for five years.",
+    "globalId": 198,
+    "categoryId": 57,
+    "questionJa": "マネーロンダリング規制によれば、次のうち誤っているものはどれですか？",
+    "explanationJa": "企業は5年間記録を保管しなければなりません。"
+  },
+  {
+    "id": 58,
+    "question": "Which of the following is a principle of the Takeover Code?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1046694",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The predator must announce a bid only after ensuring that it can partially fill any cash consideration",
+        "textJa": ". 買収者は、現金対価の一部を充足できることを確認した後にのみ買付けを公表しなければなりません"
+      },
+      {
+        "letter": "B",
+        "text": ". The target company directors must advise shareholders on its view about the impact of the bid",
+        "textJa": ". 対象会社の取締役は、買付けの影響に関する見解を株主に助言しなければなりません"
+      },
+      {
+        "letter": "C",
+        "text": ". A predator already having influence over 20% or more of the voting rights of a company must, if it acquires any further influence, make an offer for all the remaining shares",
+        "textJa": ". 既に会社の議決権の20%以上を支配している買収者は、さらに支配力を取得した場合、残りの全株式に対する公開買付けを行わなければなりません"
+      },
+      {
+        "letter": "D",
+        "text": ". Under the terms of a mandatory bid offers must be in cash or accompanied by a cash alternative at not less than the highest price paid by the predator during the offer period and within the three months prior to its commencement",
+        "textJa": ". 強制公開買付けの条件では、買付けは現金で行うか、または買付け期間中およびその開始前3ヶ月以内に買収者が支払った最高価格以上の現金代替手段を伴わなければなりません"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The predator must announce a bid only after ensuring that it can fulfil in FULL any cash consideration, if offered or required, and after taking reasonable steps to secure implementation of other types of consideration. A predator already having influence over 30% or more of the voting rights of a company must, if it acquires any further influence, make an offer for all the remaining shares. Offers must be in cash or accompanied by a cash alternative at not less than the highest price paid by the predator during the offer period and within the 12 months prior to its commencement.",
+    "globalId": 199,
+    "categoryId": 58,
+    "questionJa": "次のうち、Takeover Codeの原則はどれですか？",
+    "explanationJa": "買収者は、現金対価が提供されるか要求される場合、それを全額充足できることを確認し、他の種類の対価の実施を確保するための合理的な措置を講じた後にのみ、買付けを公表しなければなりません。既に会社の議決権の30%以上を支配している買収者は、さらに支配力を取得した場合、残りの全株式に対する公開買付けを行わなければなりません。買付けは現金で行うか、または買付け期間中およびその開始前12ヶ月以内に買収者が支払った最高価格以上の現金代替手段を伴わなければなりません。"
+  },
+  {
+    "id": 59,
+    "question": "Which organisation would a Money Laundering Reporting Officer normally report suspicions of money laundering to?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1015342",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". National Crime Agency",
+        "textJa": ". National Crime Agency"
+      },
+      {
+        "letter": "C",
+        "text": ". Joint Money Laundering Steering Group",
+        "textJa": ". Joint Money Laundering Steering Group"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Action Task Force",
+        "textJa": ". Financial Action Task Force"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The MLRO must report any suspicions to the National Crime Agency.",
+    "globalId": 200,
+    "categoryId": 59,
+    "questionJa": "マネーロンダリング報告担当者は、通常、マネーロンダリングの疑いをどの組織に報告しますか？",
+    "explanationJa": "MLROは、いかなる疑いもNational Crime Agencyに報告しなければなりません。"
+  },
+  {
+    "id": 60,
+    "question": "The purpose of the Joint Money Laundering Steering Group (JMLSG) is:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1015344",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To provide firms with guidance in respect of money laundering regulations",
+        "textJa": ". マネーロンダリング規制に関して企業にガイダンスを提供すること"
+      },
+      {
+        "letter": "B",
+        "text": ". To provide mandatory strategies on how to apply the money laundering regulations",
+        "textJa": ". マネーロンダリング規制の適用方法に関する強制的な戦略を提供すること"
+      },
+      {
+        "letter": "C",
+        "text": ". To specify to the courts the penalties for money laundering offences",
+        "textJa": ". マネーロンダリング犯罪の罰則を裁判所に指定すること"
+      },
+      {
+        "letter": "D",
+        "text": ". To instruct the FCA how to apply European money laundering legislation in the UK",
+        "textJa": ". 英国で欧州のマネーロンダリング法を適用する方法をFCAに指示すること"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The purpose of the committee is to provide guidance in respect of the money laundering regulation. It is not mandatory, but can be used as a safe harbour against prosecution.",
+    "globalId": 201,
+    "categoryId": 60,
+    "questionJa": "Joint Money Laundering Steering Group (JMLSG)の目的は何ですか？",
+    "explanationJa": "この委員会の目的は、マネーロンダリング規制に関するガイダンスを提供することです。これは必須ではありませんが、起訴に対するセーフハーバーとして使用できます。"
+  },
+  {
+    "id": 61,
+    "question": "Graham has been accused of giving a misleading impression to the markets in the course of his professional activities. Which of the following would give him a defence under FSA 2012?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1031107",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Takeover rules",
+        "textJa": ". 買収ルール"
+      },
+      {
+        "letter": "B",
+        "text": ". Price stabilisation rules",
+        "textJa": ". 価格安定操作ルール"
+      },
+      {
+        "letter": "C",
+        "text": ". Stock lending rules",
+        "textJa": ". 株式貸借ルール"
+      },
+      {
+        "letter": "D",
+        "text": ". Underwriting rules",
+        "textJa": ". 引受ルール"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This question is asking about the offence of misleading statements and impressions under FSA 2012. Price stabilisation (the artificial support of the share price) is a specific defence for these offences.",
+    "globalId": 202,
+    "categoryId": 61,
+    "questionJa": "Grahamは、職業活動の過程で市場に誤解を招く印象を与えたとして告発されました。FSA 2012の下で、次のうちどれが彼に抗弁事由を与えますか？",
+    "explanationJa": "この質問は、FSA 2012に基づく虚偽表示および誤解を招く印象の罪について尋ねています。価格安定操作（株価の人為的な支持）は、これらの犯罪に対する特定の抗弁事由です。"
+  },
+  {
+    "id": 62,
+    "question": "A chair of the board has access to price sensitive information about his company's shares. In which of the following circumstances could a director in the company trade?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1038394",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The director would follow the PDMR rules",
+        "textJa": ". 取締役はPDMR規則に従う"
+      },
+      {
+        "letter": "B",
+        "text": ". The director would need permission from the FCA",
+        "textJa": ". 取締役はFCAからの許可が必要となる"
+      },
+      {
+        "letter": "C",
+        "text": ". The director would not be permitted to trade",
+        "textJa": ". 取締役は取引を許可されない"
+      },
+      {
+        "letter": "D",
+        "text": ". Only if the director can prove they do not have any material price sensitive information",
+        "textJa": ". 取締役が重要な価格感応性情報を持っていないことを証明できる場合に限る"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "What the chair knows is irrelevant to the director's dealings. The director would go through the normal procedures.",
+    "globalId": 203,
+    "categoryId": 62,
+    "questionJa": "取締役会議長は自社の株式に関する価格感応性情報にアクセスできます。次のどの状況で、会社の取締役は取引できますか？",
+    "explanationJa": "議長が何を知っているかは、取締役の取引とは無関係です。取締役は通常の手続きを経ます。"
+  },
+  {
+    "id": 63,
+    "question": "Market making is a specific defence against insider trading if the market maker:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1078730",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Has the permission of the FCA to trade",
+        "textJa": ". 取引するFCAの許可を得ている"
+      },
+      {
+        "letter": "B",
+        "text": ". Acts in good faith",
+        "textJa": ". 誠実に行動する"
+      },
+      {
+        "letter": "C",
+        "text": ". Does not expect to make a profit",
+        "textJa": ". 利益を期待していない"
+      },
+      {
+        "letter": "D",
+        "text": ". Thought the information was publicly available",
+        "textJa": ". 情報が公に利用可能であると考えていた"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Market makers acting in good faith is a specific defence. Not expecting to make a profit or believing the information was public are general defences.",
+    "globalId": 204,
+    "categoryId": 63,
+    "questionJa": "マーケットメーカーが次の場合、マーケットメイキングはインサイダー取引に対する特定の抗弁事由となりますか？",
+    "explanationJa": "誠実に行動するマーケットメーカーは特定の抗弁事由です。利益を期待しないことや情報が公開されていると信じることは一般的な抗弁事由です。"
+  },
+  {
+    "id": 64,
+    "question": "Market abuse involving manipulating devices would cover:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1046016",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Life insurance",
+        "textJa": ". 生命保険"
+      },
+      {
+        "letter": "B",
+        "text": ". Private company shares",
+        "textJa": ". 未公開会社の株式"
+      },
+      {
+        "letter": "C",
+        "text": ". Unsecured personal loans",
+        "textJa": ". 無担保個人ローン"
+      },
+      {
+        "letter": "D",
+        "text": ". Shares in an investment trust",
+        "textJa": ". 投資信託の株式"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Investment trust shares are secondary market traded and are therefore covered.",
+    "globalId": 205,
+    "categoryId": 64,
+    "questionJa": "装置を用いた市場濫用行為が対象とするものは何ですか？",
+    "explanationJa": "投資信託の株式は流通市場で取引されるため、対象となります。"
+  },
+  {
+    "id": 65,
+    "question": "With regard to money laundering, all suspicions should be reported by employees to the MLRO, who in turn reports to?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1046678",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". FCA",
+        "textJa": ". FCA"
+      },
+      {
+        "letter": "B",
+        "text": ". NCA",
+        "textJa": ". NCA"
+      },
+      {
+        "letter": "C",
+        "text": ". FATF",
+        "textJa": ". FATF"
+      },
+      {
+        "letter": "D",
+        "text": ". JMLSG",
+        "textJa": ". JMLSG"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Each firm, no matter how small, must appoint a Money Laundering Reporting Officer (MLRO) to whom suspicions should be reported. The MLRO will then, if appropriate, speak to the relevant authority, which is the National Crime Agency (NCA). FATF stands for Financial Action Task Force. JMLSG stands for Joint Money Laundering Steering Group.",
+    "globalId": 206,
+    "categoryId": 65,
+    "questionJa": "マネーロンダリングに関して、すべての疑いは従業員からMLROに報告され、MLROは次に誰に報告しますか？",
+    "explanationJa": "規模の大小にかかわらず、各企業はマネーロンダリング報告担当者（MLRO）を任命し、疑わしい場合はMLROに報告しなければなりません。MLROはその後、必要に応じて関連当局であるNational Crime Agency（NCA）に連絡します。FATFはFinancial Action Task Forceの略です。JMLSGはJoint Money Laundering Steering Groupの略です。"
+  },
+  {
+    "id": 66,
+    "question": "Which ONE of the following is a defence against S89-91 of Financial Services Act 2012 - making misleading statements or impressions?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1078731",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Market maker acting in good faith",
+        "textJa": ". 誠実に行動するマーケットメーカー"
+      },
+      {
+        "letter": "B",
+        "text": ". Adherence to Stabilisation Rules",
+        "textJa": ". 価格安定操作規則の遵守"
+      },
+      {
+        "letter": "C",
+        "text": ". Adherence to conflicts of interest guidance",
+        "textJa": ". 利益相反ガイダンスの遵守"
+      },
+      {
+        "letter": "D",
+        "text": ". Adherence to Takeover Code",
+        "textJa": ". Takeover Codeの遵守"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "There is a defence available if the statement is made in conformity with the price stabilisation rules of the FCA. Acting in accordance with the Takeover Code would provide a defence against market abuse. There is a market maker defence for insider dealing, but not for misleading statements and impressions.",
+    "globalId": 207,
+    "categoryId": 66,
+    "questionJa": "Financial Services Act 2012の第89-91条（虚偽表示または誤解を招く印象を与える行為）に対する抗弁事由は、次のうちどれですか？",
+    "explanationJa": "FCAの価格安定操作規則に適合して声明がなされた場合、利用可能な抗弁事由があります。Takeover Codeに従って行動することは、市場濫用に対する抗弁事由となります。インサイダー取引にはマーケットメーカーの抗弁事由がありますが、虚偽表示や誤解を招く印象にはありません。"
+  },
+  {
+    "id": 67,
+    "question": "The purpose of a transaction report is:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1047495",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To prevent financial crime",
+        "textJa": ". 金融犯罪を防止するため"
+      },
+      {
+        "letter": "B",
+        "text": ". To allow the FCA to review transactions",
+        "textJa": ". FCAが取引を確認できるようにするため"
+      },
+      {
+        "letter": "C",
+        "text": ". To create transparency of prices and volumes",
+        "textJa": ". 価格と出来高の透明性を創出するため"
+      },
+      {
+        "letter": "D",
+        "text": ". To allow the Takeover Panel to monitor takeovers",
+        "textJa": ". Takeover Panelが買収を監視できるようにするため"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A transaction report is there for settlement and regulatory purposes. It allows the FCA, in retrospect, to investigate trades. Trade reports provide market transparency.",
+    "globalId": 208,
+    "categoryId": 67,
+    "questionJa": "取引報告書の目的は何ですか？",
+    "explanationJa": "取引報告書は、決済および規制目的のために存在します。これにより、FCAは事後的に取引を調査することができます。取引報告は市場の透明性を提供します。"
+  },
+  {
+    "id": 68,
+    "question": "Which of the following requires immediate notification by the firm to the PRA? I . When it has breached the financial resources requirement II . When it believes that it may shortly breach the financial resources requirement III . When it receives a complaint from a client IV . When a systems failure means that the firm is unable to produce accounting records which disclose the financial position of the company",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000461",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II",
+        "textJa": ". I と II"
+      },
+      {
+        "letter": "B",
+        "text": ". I and III",
+        "textJa": ". I と III"
+      },
+      {
+        "letter": "C",
+        "text": ". II and IV",
+        "textJa": ". II と IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II and IV",
+        "textJa": ". I, II および IV"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Complaints must be recorded by the firm but there is no requirement to notify the PRA of all complaints received.",
+    "globalId": 209,
+    "categoryId": 68,
+    "questionJa": "次のうち、企業がPRAに即時通知を必要とするものはどれですか？ I . 財務資源要件に違反した場合 II . 間もなく財務資源要件に違反する可能性があると信じる場合 III . 顧客から苦情を受け取った場合 IV . システム障害により、企業が会社の財務状況を開示する会計記録を作成できない場合",
+    "explanationJa": "苦情は企業によって記録されなければなりませんが、受け取ったすべての苦情をPRAに通知する要件はありません。"
+  },
+  {
+    "id": 69,
+    "question": "All of the following represent data protection principles under DPA 2018, except:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000462",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Must not be unlawfully processed",
+        "textJa": ". 不法に処理されてはならない"
+      },
+      {
+        "letter": "B",
+        "text": ". Adequate, relevant and not excessive in relation to the purpose for which it is processed",
+        "textJa": ". 処理される目的に関連して、適切、関連性があり、過度ではない"
+      },
+      {
+        "letter": "C",
+        "text": ". Processed in a manner which is clear, fair and not misleading",
+        "textJa": ". 明確、公正かつ誤解を招かない方法で処理される"
+      },
+      {
+        "letter": "D",
+        "text": ". Accurate and kept up to date",
+        "textJa": ". 正確かつ最新の状態に保たれる"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Clear, fair and not misleading is part of the communications rules.",
+    "globalId": 210,
+    "categoryId": 69,
+    "questionJa": "DPA 2018に基づくデータ保護原則を表すものは、次を除きすべて該当しますか？",
+    "explanationJa": "明確、公正かつ誤解を招かないというのは、コミュニケーション規則の一部です。"
+  },
+  {
+    "id": 70,
+    "question": "Under Data Protection Principle 1, information must be processed:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000463",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Accurately and timely",
+        "textJa": ". 正確かつ適時に"
+      },
+      {
+        "letter": "B",
+        "text": ". Accurately and lawfully",
+        "textJa": ". 正確かつ合法的に"
+      },
+      {
+        "letter": "C",
+        "text": ". Fairly and timely",
+        "textJa": ". 公正かつ適時に"
+      },
+      {
+        "letter": "D",
+        "text": ". Lawfully and fairly",
+        "textJa": ". 合法かつ公正に"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "There are a total of six enforceable principles of good practice contained in GDPR.",
+    "globalId": 211,
+    "categoryId": 70,
+    "questionJa": "データ保護原則1に基づき、情報はどのように処理されなければなりませんか？",
+    "explanationJa": "GDPRには、合計6つの実施可能なグッドプラクティスの原則が含まれています。"
+  },
+  {
+    "id": 71,
+    "question": "In relation to a breach of data protection, to whom does a data controller report?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000464",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Information Commissioner",
+        "textJa": ". The Information Commissioner"
+      },
+      {
+        "letter": "B",
+        "text": ". The Chief Compliance Officer",
+        "textJa": ". 最高コンプライアンス責任者"
+      },
+      {
+        "letter": "C",
+        "text": ". The Comptroller of Data",
+        "textJa": ". データ監査役"
+      },
+      {
+        "letter": "D",
+        "text": ". The Secretary of State for Trade and Industry",
+        "textJa": ". 貿易産業大臣"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The data controller is the firm responsible for controlling the personal data. Where a breach of data protection is detected or suspected they should report to the ICO.",
+    "globalId": 212,
+    "categoryId": 71,
+    "questionJa": "データ保護違反に関して、データ管理者は誰に報告しますか？",
+    "explanationJa": "データ管理者は、個人データの管理を担当する企業です。データ保護違反が検出または疑われる場合、ICOに報告する必要があります。"
+  },
+  {
+    "id": 72,
+    "question": "Which does the Capital Requirement Directive require? All firms:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1078725",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Should have regulatory capital at least equal to that specified",
+        "textJa": ". 指定された規制資本と少なくとも同等の規制資本を持つべきである"
+      },
+      {
+        "letter": "B",
+        "text": ". Falling under the scope of MiFID should have less than the regulatory capital specified",
+        "textJa": ". MiFIDの範囲に含まれる場合、指定された規制資本よりも少ない規制資本を持つべきである"
+      },
+      {
+        "letter": "C",
+        "text": ". Should have no more than the specified regulatory capital",
+        "textJa": ". 指定された規制資本を超えない規制資本を持つべきである"
+      },
+      {
+        "letter": "D",
+        "text": ". Under the scope of MiFID should have more than the amount of regulatory specified capital",
+        "textJa": ". MiFIDの範囲では、指定された規制資本額を超える規制資本を持つべきである"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "CRD requires all MiFID firms to exceed the capital resource requirement prescribed in their competent authority.",
+    "globalId": 213,
+    "categoryId": 72,
+    "questionJa": "資本要件指令（Capital Requirement Directive）は何を要求していますか？すべての企業は：",
+    "explanationJa": "CRDは、すべてのMiFID企業に対し、管轄当局が定める自己資本規制比率を超えることを要求しています。"
+  },
+  {
+    "id": 73,
+    "question": "Which of the following is the requirement concerning the holding of personal data under Principle 3 of the Data Protection Act 2018?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014715",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Extensive, relevant and adequate",
+        "textJa": ". 広範、関連性があり、適切"
+      },
+      {
+        "letter": "B",
+        "text": ". Comprehensive, not excessive and relevant",
+        "textJa": ". 包括的、過度でなく、関連性がある"
+      },
+      {
+        "letter": "C",
+        "text": ". Adequate, relevant and not excessive",
+        "textJa": ". 適切、関連性があり、過度ではない"
+      },
+      {
+        "letter": "D",
+        "text": ". Extensive, adequate and comprehensive",
+        "textJa": ". 広範、適切、包括的"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The correct words from Principle 3 of the Data Protection Act are 'adequate, relevant and not excessive'.",
+    "globalId": 214,
+    "categoryId": 73,
+    "questionJa": "Data Protection Act 2018の原則3に基づく個人データの保持に関する要件は、次のうちどれですか？",
+    "explanationJa": "Data Protection Actの原則3からの正しい言葉は「適切、関連性があり、過度ではない」です。"
+  },
+  {
+    "id": 74,
+    "question": "With whom must a processor of personal information register?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1014721",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Information Commissioner's Office",
+        "textJa": ". Information Commissioner's Office"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". Competition and Markets Authority",
+        "textJa": ". Competition and Markets Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". Department for Business Innovation and Skills",
+        "textJa": ". Department for Business Innovation and Skills"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The Data Protection Act requires registration with the information commissioner.",
+    "globalId": 215,
+    "categoryId": 74,
+    "questionJa": "個人情報の処理者は誰に登録しなければなりませんか？",
+    "explanationJa": "Data Protection Actは、情報コミッショナーへの登録を要求しています。"
+  },
+  {
+    "id": 75,
+    "question": "The Transparency Directive defines a notifiable interest as:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1047497",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 3%",
+        "textJa": ". 3%"
+      },
+      {
+        "letter": "B",
+        "text": ". 5%",
+        "textJa": ". 5%"
+      },
+      {
+        "letter": "C",
+        "text": ". 10%",
+        "textJa": ". 10%"
+      },
+      {
+        "letter": "D",
+        "text": ". 30%",
+        "textJa": ". 30%"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The 'Transparency Directive' refers to EU rules, and these set 5% as the level of notifiable interest. The equivalent UK rules are called 'Disclosure and Transparency Rules', and under the UK rules the level of notifiable interest would be 3%.",
+    "globalId": 216,
+    "categoryId": 75,
+    "questionJa": "透明性指令（Transparency Directive）は、届出義務のある持分をどのように定義していますか？",
+    "explanationJa": "「透明性指令」はEUの規則を指し、これらは届出義務のある持分のレベルを5%と定めています。同等の英国の規則は「開示および透明性規則」と呼ばれ、英国の規則の下では届出義務のある持分のレベルは3%となります。"
+  },
+  {
+    "id": 76,
+    "question": "Under the European Markets Infrastructure Regulation, which of the following is not a requirement on those that trade derivatives?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1067586",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Risk management procedures must be adopted for OTC derivatives",
+        "textJa": ". OTCデリバティブにはリスク管理手順を採用しなければなりません"
+      },
+      {
+        "letter": "B",
+        "text": ". Certain OTC derivatives must be cleared through a qualifying central counterparty",
+        "textJa": ". 特定のOTCデリバティブは、適格な中央清算機関を通じて清算されなければなりません"
+      },
+      {
+        "letter": "C",
+        "text": ". To report all OTC derivative transactions to a trade repository",
+        "textJa": ". すべてのOTCデリバティブ取引を取引情報蓄積機関に報告すること"
+      },
+      {
+        "letter": "D",
+        "text": ". To ensure the orderly functioning of markets",
+        "textJa": ". 市場の秩序ある機能を確保すること"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "To ensure the orderly functioning of markets is an objective of the regulator. EMIR focuses on the transparency and risk management of the OTC derivatives markets.",
+    "globalId": 217,
+    "categoryId": 76,
+    "questionJa": "欧州市場インフラ規則（EMIR）に基づき、デリバティブを取引する者に対する要件ではないものは、次のうちどれですか？",
+    "explanationJa": "市場の秩序ある機能を確保することは、規制当局の目的です。EMIRは、OTCデリバティブ市場の透明性とリスク管理に焦点を当てています。"
+  },
+  {
+    "id": 77,
+    "question": "Which European regulation relates to the transparency and risk management in the OTC derivative markets?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1069718",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Markets in financial instruments directive",
+        "textJa": ". 金融商品市場指令 (MiFID)"
+      },
+      {
+        "letter": "B",
+        "text": ". Capital requirements directive",
+        "textJa": ". 資本要件指令 (CRD)"
+      },
+      {
+        "letter": "C",
+        "text": ". Alternative investment fund manager directive",
+        "textJa": ". オルタナティブ投資ファンド運用者指令 (AIFMD)"
+      },
+      {
+        "letter": "D",
+        "text": ". European markets infrastructure regulation",
+        "textJa": ". 欧州市場インフラ規則 (EMIR)"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The European markets infrastructure regulation (EMIR) relates to the transparency and risk management in the OTC derivative markets. It requires trade reports to a trade repository, adequate risk management for trades, position management and collateral, and mandatory use of a central counterparty for some contracts.",
+    "globalId": 218,
+    "categoryId": 77,
+    "questionJa": "OTCデリバティブ市場における透明性とリスク管理に関連する欧州の規制はどれですか？",
+    "explanationJa": "欧州市場インフラ規則（EMIR）は、OTCデリバティブ市場における透明性とリスク管理に関連しています。これには、取引情報蓄積機関への取引報告、取引のための適切なリスク管理、ポジション管理と担保、および一部の契約に対する中央清算機関の強制的な使用が必要です。"
+  },
+  {
+    "id": 78,
+    "question": "EMIR sets out requirements for reporting and risk management in the OTC derivative markets. Which firms are covered by this regulation?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1069719",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All EEA-incorporated and established entities",
+        "textJa": ". すべてのEEA法人および設立された事業体"
+      },
+      {
+        "letter": "B",
+        "text": ". EEA fund management entities only",
+        "textJa": ". EEAのファンド運用事業体のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". EEA financial entities only",
+        "textJa": ". EEAの金融機関のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". EEA non-financial entities only",
+        "textJa": ". EEAの非金融事業体のみ"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The rules apply to all EEA-incorporated and established entities, catching for the first time non-financial corporate entities and not just financial entities, such as banks.",
+    "globalId": 219,
+    "categoryId": 78,
+    "questionJa": "EMIRは、OTCデリバティブ市場における報告およびリスク管理の要件を定めています。この規制の対象となる企業はどれですか？",
+    "explanationJa": "この規則は、すべてのEEA法人および設立された事業体に適用され、銀行などの金融機関だけでなく、初めて非金融法人も対象としています。"
+  },
+  {
+    "id": 79,
+    "question": "According to the takeover code, which of the following BEST defines 'dealings'?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1039444",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Buying or selling securities",
+        "textJa": ". 証券の売買"
+      },
+      {
+        "letter": "B",
+        "text": ". Buying or selling ordinary shares",
+        "textJa": ". 普通株式の売買"
+      },
+      {
+        "letter": "C",
+        "text": ". Buying or selling securities and derivatives",
+        "textJa": ". 証券およびデリバティブの売買"
+      },
+      {
+        "letter": "D",
+        "text": ". Buying or selling derivatives",
+        "textJa": ". デリバティブの売買"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The takeover code looks at the dealings of relevant persons that result in, or may result in, an increase or decrease of the securities a person is interested in. For this reason it is not only the securities that are considered, but also derivatives on those securities.",
+    "globalId": 220,
+    "categoryId": 79,
+    "questionJa": "Takeover Codeによれば、「取引（dealings）」を最もよく定義しているのは次のうちどれですか？",
+    "explanationJa": "Takeover Codeは、関係者が関心を持つ証券の増減につながる、またはつながる可能性のある関係者の取引を対象としています。このため、証券だけでなく、それらの証券に関するデリバティブも考慮されます。"
+  },
+  {
+    "id": 80,
+    "question": "The Takeover Code covers all of the following elements of a takeover EXCEPT:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1050815",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Ensuring that shareholders are treated equally",
+        "textJa": ". 株主が平等に扱われることを保証すること"
+      },
+      {
+        "letter": "B",
+        "text": ". Ensuring the financial and commercial advantage of the takeover",
+        "textJa": ". 買収の財務的および商業的利点を保証すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Ensuring the board of the offeree act in the interests of the company as a whole",
+        "textJa": ". 被買収企業の取締役会が会社全体の利益のために行動することを保証すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Ensuring the offeror can fulfil any cash consideration offered",
+        "textJa": ". 買収提案者が提示された現金対価を履行できることを保証すること"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The financial and commercial advantages of the takeover is a concern of the companies and the shareholders themselves. Wider questions about this area will be dealt with by the Competition and Markets Authority (CMA).",
+    "globalId": 221,
+    "categoryId": 80,
+    "questionJa": "Takeover Codeは、次を除き、買収のすべての要素を対象としています：",
+    "explanationJa": "買収の財務的および商業的利点は、企業および株主自身の関心事です。この分野に関するより広範な問題は、Competition and Markets Authority (CMA)によって処理されます。"
+  },
+  {
+    "id": 81,
+    "question": "Under the Money Laundering Regulations all of the following are considered high-risk factors EXCEPT:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "4055767",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Correspondent banking transactions",
+        "textJa": ". コルレス銀行取引"
+      },
+      {
+        "letter": "B",
+        "text": ". Transactions related to tobacco products",
+        "textJa": ". タバコ製品に関連する取引"
+      },
+      {
+        "letter": "C",
+        "text": ". Transaction related to items of archaeological significance",
+        "textJa": ". 考古学的に重要な品物に関連する取引"
+      },
+      {
+        "letter": "D",
+        "text": ". Transactions within a pooled client account",
+        "textJa": ". プールされた顧客口座内の取引"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Although transactions within a pooled account are no longer automatically afforded simplified due diligence (SDD), they are not, in themselves, a high risk factor. Correspondent banking transactions relates to large value transactions between international entities/banks (NOSTRO account transfers).",
+    "globalId": 222,
+    "categoryId": 81,
+    "questionJa": "マネーロンダリング規制に基づき、次を除き、すべてが高リスク要因と見なされます：",
+    "explanationJa": "プール口座内の取引は、もはや自動的に簡易デューデリジェンス（SDD）が適用されるわけではありませんが、それ自体が高リスク要因ではありません。コルレス銀行取引は、国際的な事業体/銀行間の大口取引（NOSTRO口座振替）に関連します。"
+  },
+  {
+    "id": 82,
+    "question": "Which of the following is an inter-governmental body which sets international standards that aim to prevent money laundering and terrorist financing activities and the harm they cause to society?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "4055769",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Federation of Regulators Against Criminal Activities",
+        "textJa": ". 犯罪活動に対抗する規制当局連盟"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Action Task Force",
+        "textJa": ". Financial Action Task Force"
+      },
+      {
+        "letter": "C",
+        "text": ". European Securities Markets Authority",
+        "textJa": ". European Securities Markets Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". International Anti-Money Laundering Commission",
+        "textJa": ". 国際マネーロンダリング対策委員会"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Financial Action Task Force (FATF) was established in 1989 to initially examine and develop measures to combat money laundering. The FATF is the global money laundering and terrorist financing watchdog. It is an inter-governmental body which sets international standards that aim to prevent these illegal activities and the harm they cause to society.",
+    "globalId": 223,
+    "categoryId": 82,
+    "questionJa": "マネーロンダリングやテロ資金供与活動、およびそれらが社会に引き起こす害を防ぐことを目的とした国際基準を設定する政府間機関は、次のうちどれですか？",
+    "explanationJa": "Financial Action Task Force (FATF)は、当初マネーロンダリング対策を検討し開発するために1989年に設立されました。FATFは、世界のマネーロンダリングおよびテロ資金供与の監視機関です。これらの違法行為およびそれらが社会に引き起こす害を防ぐことを目的とした国際基準を設定する政府間機関です。"
+  },
+  {
+    "id": 83,
+    "question": "How long after a transaction must a confirmation be sent to the client?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000600",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". T+3",
+        "textJa": ". T+3"
+      },
+      {
+        "letter": "B",
+        "text": ". Not sent unless client requests it",
+        "textJa": ". 顧客が要求しない限り送付されない"
+      },
+      {
+        "letter": "C",
+        "text": ". Within three minutes",
+        "textJa": ". 3分以内"
+      },
+      {
+        "letter": "D",
+        "text": ". By the next business day",
+        "textJa": ". 翌営業日までに"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Confirmations should be sent promptly (T+1).",
+    "globalId": 224,
+    "categoryId": 83,
+    "questionJa": "取引後、どのくらいの期間内に顧客に確認書を送付しなければなりませんか？",
+    "explanationJa": "確認書は速やかに（T+1）送付されるべきです。"
+  },
+  {
+    "id": 84,
+    "question": "Which of the following would not be considered market abuse?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000438",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An employee of a firm trades on price-sensitive information that has been disclosed through an RIS",
+        "textJa": ". 企業の従業員が、RISを通じて開示された価格感応性情報に基づいて取引する"
+      },
+      {
+        "letter": "B",
+        "text": ". A firm sells a large holding of bonds, a transaction that significantly reduces the market price, and then repurchases their holding at the lower price",
+        "textJa": ". 企業が大量の債券を売却し、その取引が市場価格を大幅に引き下げた後、より低い価格でその保有分を買い戻す"
+      },
+      {
+        "letter": "C",
+        "text": ". A firm unintentionally submits incorrect trade details, which leads to a significant move in the market",
+        "textJa": ". 企業が意図せずに誤った取引詳細を提出し、それが市場の大幅な変動を引き起こす"
+      },
+      {
+        "letter": "D",
+        "text": ". A firm controls a large percentage of a company's shares and takes out a large up-bet on those shares with a spread-betting firm",
+        "textJa": ". 企業が会社の株式の大部分を支配し、スプレッドベッティング会社とそれらの株式に関する大規模な買いポジションを取る"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Information disclosed through an RIS (regulatory information service), such as the LSE's Regulatory News Service, is considered to be public information. For B, the firm has engaged in a wash trade and D is an example of an abusive squeeze, both of which is a breach of the Market Abuse Directive. Market abuse does not need to prove intent, so C may also be a breach under the Market Abuse Regulation.",
+    "globalId": 225,
+    "categoryId": 84,
+    "questionJa": "次のうち、市場濫用と見なされないものはどれですか？",
+    "explanationJa": "LSEのRegulatory News ServiceなどのRIS（規制情報サービス）を通じて開示された情報は、公開情報と見なされます。Bの場合、企業は馴合売買（ウォッシュトレード）を行い、Dは濫用的買占め（アビューシブ・スクイーズ）の例であり、どちらも市場濫用指令の違反です。市場濫用は意図を証明する必要がないため、Cも市場濫用規則に基づく違反となる可能性があります。"
+  },
+  {
+    "id": 85,
+    "question": "Market abuse is different from the criminal offence of insider dealing in all of the following ways except:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000110",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Market abuse is based on the civil burden of proof, i.e. the balance of probabilities",
+        "textJa": ". 市場濫用は、民事上の証明責任、すなわち蓋然性の均衡に基づいています"
+      },
+      {
+        "letter": "B",
+        "text": ". It should be easier for the FCA to demonstrate abusive behaviour",
+        "textJa": ". FCAが濫用的行動を立証するのがより容易になるはずです"
+      },
+      {
+        "letter": "C",
+        "text": ". It should be easier for the FCA to impose a custodial sentence",
+        "textJa": ". FCAが禁固刑を科すのがより容易になるはずです"
+      },
+      {
+        "letter": "D",
+        "text": ". It can apply to commodities as well as commodity derivatives",
+        "textJa": ". 商品および商品デリバティブにも適用できます"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The burden of proof is less difficult to establish than beyond a reasonable doubt and hence it should be easier to demonstrate abusive behaviour. However, only fines can be imposed. Market abuse is applicable across the board.",
+    "globalId": 226,
+    "categoryId": 85,
+    "questionJa": "市場濫用は、インサイダー取引の刑事犯罪とは、次を除き、すべての点で異なります：",
+    "explanationJa": "証明責任は、合理的疑いを越えるよりも立証が難しくないため、濫用的行動を立証するのがより容易になるはずです。ただし、科すことができるのは罰金のみです。市場濫用は全面的に適用されます。"
+  },
+  {
+    "id": 86,
+    "question": "Which of the following penalties are NOT available to the FCA for cases of market abuse?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000445",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Restitution order",
+        "textJa": ". 損害賠償命令"
+      },
+      {
+        "letter": "B",
+        "text": ". Unlimited financial penalty",
+        "textJa": ". 無制限の罰金"
+      },
+      {
+        "letter": "C",
+        "text": ". A prison sentence",
+        "textJa": ". 禁固刑"
+      },
+      {
+        "letter": "D",
+        "text": ". Prohibition orders",
+        "textJa": ". 禁止命令"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "As market abuse is a civil offence, prison sentences are not applicable.",
+    "globalId": 227,
+    "categoryId": 86,
+    "questionJa": "市場濫用のケースに対して、FCAが利用できない罰則は次のうちどれですか？",
+    "explanationJa": "市場濫用は民事犯罪であるため、禁固刑は適用されません。"
+  },
+  {
+    "id": 87,
+    "question": "Who must a data controller be registered with under the Data Protection Act?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000679",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Treasury",
+        "textJa": ". Treasury"
+      },
+      {
+        "letter": "B",
+        "text": ". Information commissioner",
+        "textJa": ". Information commissioner"
+      },
+      {
+        "letter": "C",
+        "text": ". MLRO",
+        "textJa": ". MLRO"
+      },
+      {
+        "letter": "D",
+        "text": ". PRA",
+        "textJa": ". PRA"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Note: MLRO = Money Laundering Reporting Officer.",
+    "globalId": 228,
+    "categoryId": 87,
+    "questionJa": "Data Protection Actに基づき、データ管理者は誰に登録しなければなりませんか？",
+    "explanationJa": "注意：MLRO = マネーロンダリング報告担当者。"
+  },
+  {
+    "id": 88,
+    "question": "Which of the following statements is false with regards to whistleblowing?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000693",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The FCA encourages firms to consider adopting and communicating to workers appropriate internal procedures for handling workers' concerns",
+        "textJa": ". FCAは、企業が労働者の懸念に対処するための適切な内部手続きを採用し、労働者に伝達することを検討するよう奨励しています"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA would regard as a serious matter any evidence that a firm had acted to the detriment of a worker because he or she had made a protected disclosure",
+        "textJa": ". FCAは、労働者が保護された開示を行ったために企業が労働者に不利益な行動をとったという証拠があれば、それを深刻な問題と見なします"
+      },
+      {
+        "letter": "C",
+        "text": ". Evidence that the firm is acting to the detriment of an employee would call into question the fitness and propriety of the firm",
+        "textJa": ". 企業が従業員に不利益な行動をとっているという証拠は、企業の適格性および適正性に疑問を投げかけます"
+      },
+      {
+        "letter": "D",
+        "text": ". The rules allow an employee to breach rules on client confidentiality at all times",
+        "textJa": ". これらの規則は、従業員が常に顧客の機密保持に関する規則に違反することを許可しています"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The rules on whistleblowing are found in FCA Handbook Block 1: High Level Standards in the Senior Management Arrangements, Systems and Control (SYSC) sourcebook. Note that the FCA can withdraw the firm's authorisation if it breaches these rules.",
+    "globalId": 229,
+    "categoryId": 88,
+    "questionJa": "内部告発に関して、次の記述のうち誤っているものはどれですか？",
+    "explanationJa": "内部告発に関する規則は、FCAハンドブックのブロック1：高水準基準のシニアマネジメント体制、システムおよびコントロール（SYSC）ソースブックに記載されています。FCAは、企業がこれらの規則に違反した場合、企業の認可を取り消すことができることに注意してください。"
+  },
+  {
+    "id": 89,
+    "question": "If the criteria for a concert party are established under the Disclosure and Transparency Rules, an obligation to notify the company occurs at a collective holding of:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1001805",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 1%",
+        "textJa": ". 1%"
+      },
+      {
+        "letter": "B",
+        "text": ". 3%",
+        "textJa": ". 3%"
+      },
+      {
+        "letter": "C",
+        "text": ". 15%",
+        "textJa": ". 15%"
+      },
+      {
+        "letter": "D",
+        "text": ". 29%",
+        "textJa": ". 29%"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A holding of 3%, individually or in concert, is notifiable.",
+    "globalId": 230,
+    "categoryId": 89,
+    "questionJa": "開示および透明性規則に基づき共同行為者（concert party）の基準が確立された場合、会社への通知義務が発生するのは、集合的な保有比率がどの時点ですか？",
+    "explanationJa": "個人または共同で3%の保有は通知義務があります。"
+  },
+  {
+    "id": 90,
+    "question": "Which of the following are penalties available to the FCA for cases of market abuse? I . Restitution II . Unlimited financial penalty III . Withdrawal of approval IV . Issue a public statement",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1026435",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". II only",
+        "textJa": ". II のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". I and II",
+        "textJa": ". I および II"
+      },
+      {
+        "letter": "C",
+        "text": ". II, III and IV",
+        "textJa": ". II, III および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "As market abuse is a civil offence, prison sentences are not applicable, but all the regulatory actions mentioned are available to the FCA.",
+    "globalId": 231,
+    "categoryId": 90,
+    "questionJa": "市場濫用のケースに対してFCAが利用できる罰則は次のうちどれですか？ I . 損害賠償 II . 無制限の罰金 III . 承認の取り消し IV . 公的声明の発表",
+    "explanationJa": "市場濫用は民事犯罪であるため、禁固刑は適用されませんが、言及されているすべての規制措置はFCAが利用できます。"
+  },
+  {
+    "id": 91,
+    "question": "Which of the following are in the scope of the market abuse regime: I . Shares traded on AIM II . Copper futures traded on the LME III . Shares on the Official List of the LSE IV . Gas oil futures traded on ICE Futures",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000418",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". III",
+        "textJa": ". III"
+      },
+      {
+        "letter": "B",
+        "text": ". II, III and IV",
+        "textJa": ". II, III および IV"
+      },
+      {
+        "letter": "C",
+        "text": ". I and III",
+        "textJa": ". I および III"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Investments traded on recognised investment exchanges are covered under market abuse. LME, LSE and ICE are all recognised investment exchanges in the UK.",
+    "globalId": 232,
+    "categoryId": 91,
+    "questionJa": "次のうち、市場濫用制度の範囲内にあるものはどれですか？ I . AIMで取引される株式 II . LMEで取引される銅先物 III . LSEのオフィシャルリストにある株式 IV . ICE Futuresで取引されるガスオイル先物",
+    "explanationJa": "認識された投資取引所で取引される投資は、市場濫用の対象となります。LME、LSE、およびICEはすべて英国の認識された投資取引所です。"
+  },
+  {
+    "id": 92,
+    "question": "Which of the following statements is TRUE regarding market abuse?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000499",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Intention does not need to be proved to impose disciplinary action",
+        "textJa": ". 懲戒処分を科すために意図を証明する必要はありません"
+      },
+      {
+        "letter": "B",
+        "text": ". The offence only relates to dealings in securities traded on a UK market",
+        "textJa": ". この犯罪は、英国市場で取引される証券の取引にのみ関連します"
+      },
+      {
+        "letter": "C",
+        "text": ". The maximum penalty is ten years plus an unlimited fine",
+        "textJa": ". 最高刑は10年と無制限の罰金です"
+      },
+      {
+        "letter": "D",
+        "text": ". It applies only to UK approved persons",
+        "textJa": ". 英国の承認された人物にのみ適用されます"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "\"Market abuse is 'effects' based legislation and therefore intention does not need to be proved. It applies in relation to all qualifying investments traded on a prescribed market, i.e. RIE, ROIE, ISDX and all EEA regulated exchanges. Generally the FCA will normally only take action for offences in relation to UK markets. It is a civil offence and therefore does not carry a jail sentence. It applies to all persons, i.e. individuals and institutions whether they are located in the UK or overseas.\"",
+    "globalId": 233,
+    "categoryId": 92,
+    "questionJa": "市場濫用に関して、次の記述のうち正しいものはどれですか？",
+    "explanationJa": "「市場濫用は『効果』に基づく法律であり、したがって意図を証明する必要はありません。これは、指定された市場（すなわち、RIE、ROIE、ISDX、およびすべてのEEA規制取引所）で取引されるすべての適格な投資に関連して適用されます。一般的に、FCAは通常、英国市場に関連する犯罪についてのみ措置を講じます。これは民事犯罪であり、したがって懲役刑は伴いません。これは、英国または海外に所在するかどうかにかかわらず、すべての人（すなわち、個人および機関）に適用されます。」"
+  },
+  {
+    "id": 93,
+    "question": "The Criminal Justice Act regarding insider dealing contains a special defence providing the person was acting in good faith. This defence applies to:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000631",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Private investors",
+        "textJa": ". 個人投資家"
+      },
+      {
+        "letter": "B",
+        "text": ". Market makers",
+        "textJa": ". マーケットメーカー"
+      },
+      {
+        "letter": "C",
+        "text": ". Managers of unit trusts",
+        "textJa": ". ユニット・トラストの運用者"
+      },
+      {
+        "letter": "D",
+        "text": ". ICVCs",
+        "textJa": ". ICVCs"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "There is a defence for market makers, providing they are acting in good faith in the ordinary course of business.",
+    "globalId": 234,
+    "categoryId": 93,
+    "questionJa": "インサイダー取引に関するCriminal Justice Actには、その人が誠実に行動していた場合に提供される特別な抗弁事由が含まれています。この抗弁事由は誰に適用されますか？",
+    "explanationJa": "マーケットメーカーには、通常の業務過程で誠実に行動している場合に抗弁事由があります。"
+  },
+  {
+    "id": 94,
+    "question": "Which activity is the subject of the defence in relation to distorting market prices of 'acting in accordance with the rules of'?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000688",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Market making",
+        "textJa": ". マーケットメイキング"
+      },
+      {
+        "letter": "B",
+        "text": ". Price stabilisation",
+        "textJa": ". 価格安定操作"
+      },
+      {
+        "letter": "C",
+        "text": ". Underwriting",
+        "textJa": ". 引受"
+      },
+      {
+        "letter": "D",
+        "text": ". Stock lending",
+        "textJa": ". 株式貸借"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Behaviour which conforms to the share buy back and stabilisation regulations will not amount to market abuse. This is known as a 'safe harbour'.",
+    "globalId": 235,
+    "categoryId": 94,
+    "questionJa": "市場価格を歪める行為に関して、「～の規則に従って行動する」という抗弁事由の対象となる活動はどれですか？",
+    "explanationJa": "株式買戻しおよび価格安定操作規則に適合する行動は、市場濫用にはなりません。これは「セーフハーバー」として知られています。"
+  },
+  {
+    "id": 95,
+    "question": "What is MOST likely to be covered by the FCA rules on financial promotions?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000689",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". One-off financial promotions",
+        "textJa": ". 一度限りの金融プロモーション"
+      },
+      {
+        "letter": "B",
+        "text": ". Promotion to investment professionals",
+        "textJa": ". 投資専門家へのプロモーション"
+      },
+      {
+        "letter": "C",
+        "text": ". Promotion aimed at private investors",
+        "textJa": ". 個人投資家を対象としたプロモーション"
+      },
+      {
+        "letter": "D",
+        "text": ". Promotion to a sophisticated investor",
+        "textJa": ". 高度な知識を持つ投資家へのプロモーション"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Retail clients (of which 'private investors' are an example) are protected by the financial promotion rules contained within the COBS. One-off financial promotions, promotions to investment professionals, and sophisticated investors are normally exempt.",
+    "globalId": 236,
+    "categoryId": 95,
+    "questionJa": "FCAの金融プロモーションに関する規則の対象となる可能性が最も高いものは何ですか？",
+    "explanationJa": "リテール顧客（「個人投資家」はその一例）は、COBSに含まれる金融プロモーション規則によって保護されています。一度限りの金融プロモーション、投資専門家へのプロモーション、および高度な知識を持つ投資家は通常免除されます。"
+  },
+  {
+    "id": 96,
+    "question": "The FCA is pursuing an investigation into insider dealing. Which of the following would provide the accused with a special defence under the Criminal Justice Act against an accusation?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000743",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Did not expect the recipient to deal",
+        "textJa": ". 受領者が取引するとは思わなかった"
+      },
+      {
+        "letter": "B",
+        "text": ". Market maker acting in ordinary course of business",
+        "textJa": ". 通常の業務過程で行動するマーケットメーカー"
+      },
+      {
+        "letter": "C",
+        "text": ". Believed the information was published",
+        "textJa": ". 情報が公表されたと信じていた"
+      },
+      {
+        "letter": "D",
+        "text": ". Would have dealt anyway",
+        "textJa": ". いずれにしても取引したであろう"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The other three are defined as general defences against insider dealing.",
+    "globalId": 237,
+    "categoryId": 96,
+    "questionJa": "FCAはインサイダー取引の捜査を進めています。Criminal Justice Actに基づき、告発に対して被告に特別な抗弁事由を提供するものは次のうちどれですか？",
+    "explanationJa": "他の3つは、インサイダー取引に対する一般的な抗弁事由として定義されています。"
+  },
+  {
+    "id": 97,
+    "question": "Insider trading legislation does not cover which ONE of the following?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000762",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Bond derivatives",
+        "textJa": ". 債券デリバティブ"
+      },
+      {
+        "letter": "B",
+        "text": ". Contract for difference on equity",
+        "textJa": ". 株式に関する差金決済取引（CFD）"
+      },
+      {
+        "letter": "C",
+        "text": ". Debentures",
+        "textJa": ". 社債"
+      },
+      {
+        "letter": "D",
+        "text": ". Forward foreign exchange contracts",
+        "textJa": ". 為替予約取引"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Insider trading only covers equity, debt, related derivatives and contracts for difference.",
+    "globalId": 238,
+    "categoryId": 97,
+    "questionJa": "インサイダー取引法が対象としないものは、次のうちどれですか？",
+    "explanationJa": "インサイダー取引は、株式、債券、関連デリバティブ、および差金決済取引のみを対象としています。"
+  },
+  {
+    "id": 98,
+    "question": "According to the Terrorism Act 2000, by when must any suspicions of terrorist financing be reported?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000824",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Within 24 hours",
+        "textJa": ". 24時間以内"
+      },
+      {
+        "letter": "B",
+        "text": ". As soon as reasonably practicable",
+        "textJa": ". 合理的に実行可能な限り速やかに"
+      },
+      {
+        "letter": "C",
+        "text": ". Immediately",
+        "textJa": ". 直ちに"
+      },
+      {
+        "letter": "D",
+        "text": ". Within five days",
+        "textJa": ". 5日以内"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This requirement also applies to suspicions of money laundering activity.",
+    "globalId": 239,
+    "categoryId": 98,
+    "questionJa": "Terrorism Act 2000によれば、テロ資金供与の疑いはいつまでに報告されなければなりませんか？",
+    "explanationJa": "この要件は、マネーロンダリング活動の疑いにも適用されます。"
+  },
+  {
+    "id": 99,
+    "question": "According to the Capital Requirements Directive, what should a firm do if its financial resources fall below the financial resources requirement set by the PRA?",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1000839",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Borrow money from a bank to increase its financial resources",
+        "textJa": ". 銀行から資金を借り入れて財務資源を増やす"
+      },
+      {
+        "letter": "B",
+        "text": ". Change its financial resource requirement",
+        "textJa": ". 財務資源要件を変更する"
+      },
+      {
+        "letter": "C",
+        "text": ". Inform the PRA immediately",
+        "textJa": ". PRAに直ちに通知する"
+      },
+      {
+        "letter": "D",
+        "text": ". Cease trading immediately",
+        "textJa": ". 直ちに取引を停止する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A firm must notify the PRA immediately if it has breached or believes it may shortly breach the financial resources requirement.",
+    "globalId": 240,
+    "categoryId": 99,
+    "questionJa": "資本要件指令（Capital Requirements Directive）によれば、企業の財務資源がPRAによって設定された財務資源要件を下回った場合、企業は何をすべきですか？",
+    "explanationJa": "企業は、財務資源要件に違反した場合、または間もなく違反する可能性があると信じる場合、PRAに直ちに通知しなければなりません。"
+  },
+  {
+    "id": 100,
+    "question": "The UK Disclosure and Transparency Rules detail how to calculate an interest in company in order to discover if a notification is required. When the holdings of a married couple are automatically aggregated, this due to them being considered:",
+    "category": "Associated Legislation and Regulation",
+    "questionId": "1001492",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Connected parties",
+        "textJa": ". 関連当事者"
+      },
+      {
+        "letter": "B",
+        "text": ". A concert party",
+        "textJa": ". 共同行為者"
+      },
+      {
+        "letter": "C",
+        "text": ". Working parties",
+        "textJa": ". 作業部会"
+      },
+      {
+        "letter": "D",
+        "text": ". An occlusive group",
+        "textJa": ". 排他的グループ"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Connected parties are automatically joined because due to their relationship, they have an interest in each other's shares. Connected parties include spouses, children that are minors and family-owned businesses.",
+    "globalId": 241,
+    "categoryId": 100,
+    "questionJa": "英国の開示および透明性規則は、通知が必要かどうかを発見するために会社の持分を計算する方法を詳述しています。夫婦の保有分が自動的に合算される場合、これは彼らが何と見なされるためですか？",
+    "explanationJa": "関連当事者は、その関係性から互いの株式に関心を持つため、自動的に合算されます。関連当事者には、配偶者、未成年の子供、家族経営の事業などが含まれます。"
+  }
+]

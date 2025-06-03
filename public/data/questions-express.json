@@ -1,0 +1,1302 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following statements about the Financial Conduct Authority is FALSE?",
+    "category": "Regulatory Framework",
+    "questionId": "1000183",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Treasury appoints the board of the FCA"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA is a company"
+      },
+      {
+        "letter": "C",
+        "text": ". The board of the FCA can delegate its statutory objectives to another body"
+      },
+      {
+        "letter": "D",
+        "text": ". The FCA is the conduct regulator for the financial services industry"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Although answerable to the Treasury, the FCA is a company - it is limited by guarantee, directly by the UK government. Its board cannot delegate its statutory objectives to another body."
+  },
+  {
+    "id": 2,
+    "question": "Under the Financial Services Act 2012, which of the following is NOT a statutory objective of the Financial Conduct Authority?",
+    "category": "Regulatory Framework",
+    "questionId": "1000188",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Protecting the integrity of the UK financial system"
+      },
+      {
+        "letter": "B",
+        "text": ". Promoting effective competition in the interests of consumers"
+      },
+      {
+        "letter": "C",
+        "text": ". Securing an appropriate degree of protection for consumers"
+      },
+      {
+        "letter": "D",
+        "text": ". Reducing financial crime"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The need to reduce financial crime was a statutory objective of the FSA. The FCA is accountable for reducing financial crime - but this is now subsumed into the integrity objective."
+  },
+  {
+    "id": 3,
+    "question": "Under the Financial Services Act 2012, who is the prudential regulator for the UK insurance industry?",
+    "category": "Regulatory Framework",
+    "questionId": "1000191",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". His Majesty's Treasury"
+      },
+      {
+        "letter": "B",
+        "text": ". The Prudential Regulation Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". Parliament"
+      },
+      {
+        "letter": "D",
+        "text": ". The Department for Business, Innovation and Skills"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The PRA, or Prudential Regulation Authority, is the prudential regulator for the UK Insurance industry."
+  },
+  {
+    "id": 4,
+    "question": "Who regulates UK banks?",
+    "category": "Regulatory Framework",
+    "questionId": "1000203",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". His Majesty's Treasury"
+      },
+      {
+        "letter": "B",
+        "text": ". The Prudential Regulation Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". The London Stock Exchange"
+      },
+      {
+        "letter": "D",
+        "text": ". The European Central Bank"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The PRA is the regulator - it is part of The Bank of England."
+  },
+  {
+    "id": 5,
+    "question": "Which of the following concerning general guidance issued by the FCA is not true? Guidance notes:",
+    "category": "Regulatory Framework",
+    "questionId": "1078714",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Highlight and expand upon any issues surrounding the rules"
+      },
+      {
+        "letter": "B",
+        "text": ". Are binding on the firm"
+      },
+      {
+        "letter": "C",
+        "text": ". Allow firms to seek clarification on the rules thereby reducing the likelihood of a breach"
+      },
+      {
+        "letter": "D",
+        "text": ". Are contained within the FCA Handbook and are denoted by the letter G"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Guidance notes are not binding on the firm and need not necessarily be followed to achieve compliance with the associated rule."
+  },
+  {
+    "id": 6,
+    "question": "Which of the following is responsible for funding the FCA?",
+    "category": "Regulatory Framework",
+    "questionId": "1000207",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Authorised firms"
+      },
+      {
+        "letter": "B",
+        "text": ". Her Majesty's Treasury"
+      },
+      {
+        "letter": "C",
+        "text": ". The Bank of England"
+      },
+      {
+        "letter": "D",
+        "text": ". Her Majesty's Revenue and Customs"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA is a company limited by guarantee. The guarantor is the Treasury. However, on an ongoing basis, the FCA is funded by charging annual levies on its member firms."
+  },
+  {
+    "id": 7,
+    "question": "All of the following are true of the FCA, except:",
+    "category": "Regulatory Framework",
+    "questionId": "1078715",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The guarantor of the FCA is the Treasury"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA board is made up of executive and non-executive directors appointed by the Crown"
+      },
+      {
+        "letter": "C",
+        "text": ". It has statutory objectives set out in the Financial Services Act 2012"
+      },
+      {
+        "letter": "D",
+        "text": ". It is responsible for conduct regulation for all authorised firms"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA board is appointed by the Treasury, not by 'the Crown' (this would generally refer to the Monarch himself). The FCA has one strategic and three operational objectives. The FCA is the conduct regulator for all firms, whether single-regulated or dual-regulated."
+  },
+  {
+    "id": 8,
+    "question": "The FCA is granted the power to enforce their rules and sanction and discipline those who do not follow them. Which of the following would the FCA not seek disciplinary action for?",
+    "category": "Regulatory Framework",
+    "questionId": "1000209",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Failure to get a financial promotion approved"
+      },
+      {
+        "letter": "B",
+        "text": ". Not following FCA guidelines"
+      },
+      {
+        "letter": "C",
+        "text": ". Not following FCA rules"
+      },
+      {
+        "letter": "D",
+        "text": ". Not following FCA principles"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A firm may choose not to follow FCA guidelines (on cold calling hours for example) but failure to comply with rules and principles is an offence."
+  },
+  {
+    "id": 9,
+    "question": "The Financial Conduct Authority is funded by contributions from which of the following?",
+    "category": "Regulatory Framework",
+    "questionId": "1000251",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Treasury indirectly through taxes"
+      },
+      {
+        "letter": "B",
+        "text": ". The LSE through a levy charged on transactions"
+      },
+      {
+        "letter": "C",
+        "text": ". Regulated firms authorised under the Financial Services and Markets Act 2000"
+      },
+      {
+        "letter": "D",
+        "text": ". The FCA through its own activities on the market"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Although the FCA is answerable to the Treasury, it is in fact a limited liability company. It is also funded by the financial services industry - businesses authorised under the FSMA 2000."
+  },
+  {
+    "id": 10,
+    "question": "Which of the following is NOT true of the Fair Treatment of Customers (FTOC) regime implemented by the FCA?",
+    "category": "Regulatory Framework",
+    "questionId": "1014043",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is based on six outcomes for firms to achieve"
+      },
+      {
+        "letter": "B",
+        "text": ". Once implemented the firms have achieved their objectives"
+      },
+      {
+        "letter": "C",
+        "text": ". Firms should set reasonable expectations about the product performance"
+      },
+      {
+        "letter": "D",
+        "text": ". It looks to create a positive culture in the financial services industry"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "FTOC is seen as a continuous process where firms continually update their policies and behaviours to meet the objectives. The purpose is to embed a culture of fair treatment of customers in the financial services. N.B. Since the advent of the Consumer Duty, FTOC only applies to firms that are out-of-scope of the Duty."
+  },
+  {
+    "id": 11,
+    "question": "Which ONE of the following is a statutory objective of the FCA?",
+    "category": "Regulatory Framework",
+    "questionId": "1014738",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Ensuring the UK financial markets are competitive worldwide"
+      },
+      {
+        "letter": "B",
+        "text": ". Providing services that allow a firm to manage and control their risks"
+      },
+      {
+        "letter": "C",
+        "text": ". Implementing and monitoring financial legislation"
+      },
+      {
+        "letter": "D",
+        "text": ". Securing an appropriate degree of protection for consumers"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This is one of the statutory objectives of the FCA."
+  },
+  {
+    "id": 12,
+    "question": "According to the Financial Services Act 2012, which one of the following is a statutory objective of the FCA?",
+    "category": "Regulatory Framework",
+    "questionId": "1046682",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To balance the burdens and restrictions on firms with the benefits of regulation for consumers and the industry"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm to use its resources in the most economic and efficient way"
+      },
+      {
+        "letter": "C",
+        "text": ". That individuals involved in the management of authorised firms must take appropriate responsibility"
+      },
+      {
+        "letter": "D",
+        "text": ". Protecting and enhancing the integrity of the UK financial system"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The objectives are: Strategic objective: ensuring that the relevant markets function well Operational objectives are the following: securing an appropriate degree of protection for consumers, protecting and enhancing the integrity of the UK financial system, promoting effective competition in the interests of consumers. Page 53 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 54 ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 13,
+    "question": "Which of the following bodies oversees the macro-economic and financial issues that could cause instability in the UK?",
+    "category": "Regulatory Framework",
+    "questionId": "1057025",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Competition and Markets Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Prudential Regulation Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Policy Committee"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This is the role of the FPC. Its aim is to gain a bigger picture of the financial services and markets in order to better predict problems that may occur. It exists within the Bank of England."
+  },
+  {
+    "id": 14,
+    "question": "Who is responsible for the regulation of individual savings accounts (ISAs)?",
+    "category": "Regulatory Framework",
+    "questionId": "1000638",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Department of Business Innovation and Skills"
+      },
+      {
+        "letter": "B",
+        "text": ". HM Revenue and Customs"
+      },
+      {
+        "letter": "C",
+        "text": ". The Prudential Regulation Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". The Stock Exchange"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "HM Revenue and Customs is responsible for the regulation of Individual Savings Accounts (ISAs). ISAs are tax efficient savings and investments. Page 2 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 3 ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 15,
+    "question": "Who is responsible for reducing risks to the financial system as a whole?",
+    "category": "Regulatory Framework",
+    "questionId": "1058227",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Policy Committee"
+      },
+      {
+        "letter": "B",
+        "text": ". National Crime Agency"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". Her Majesty's Treasury"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FPC has responsibility for reducing risks to the financial system as a whole. The PRA takes instructions from the Financial Policy Committee (FPC) at the Bank of England."
+  },
+  {
+    "id": 16,
+    "question": "Which one of the following is the FCA's strategic objective?",
+    "category": "Regulatory Framework",
+    "questionId": "1058229",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Ensuring that the markets function well"
+      },
+      {
+        "letter": "B",
+        "text": ". Securing an appropriate degree of consumer protection"
+      },
+      {
+        "letter": "C",
+        "text": ". Promoting effective competition"
+      },
+      {
+        "letter": "D",
+        "text": ". Promoting the safety and soundness of authorised persons"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA has a single strategic objective, which is ensuring that the markets function well. In addition the FCA has 3 operational objectives: Securing an appropriate degree of consumer protection; Protecting the integrity of the UK financial system and Promoting effective competition The PRA has been given a single general objective of promoting the safety and soundness of PRA- authorised persons."
+  },
+  {
+    "id": 17,
+    "question": "To whom do the PRA's rule-making powers extend?",
+    "category": "Regulatory Framework",
+    "questionId": "1058231",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Only PRA-authorised persons"
+      },
+      {
+        "letter": "B",
+        "text": ". All authorised persons"
+      },
+      {
+        "letter": "C",
+        "text": ". All regulated activities"
+      },
+      {
+        "letter": "D",
+        "text": ". All regulated activities and also activities that are not regulated"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Part 9A of the the Financial Services and Markets Act 2000 empowers the FCA to make rules that are legally binding on authorised firms concerning regulated activity and also activity that is not regulated. The PRA has similar rule-making powers, however the powers only extend to PRA-authorised persons."
+  },
+  {
+    "id": 18,
+    "question": "The purpose of the Competition and Markets Authority is to ensure healthy competition between companies for the benefit of whom?",
+    "category": "Regulatory Framework",
+    "questionId": "1058232",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". UK Government"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA"
+      },
+      {
+        "letter": "C",
+        "text": ". Consumers and the economy"
+      },
+      {
+        "letter": "D",
+        "text": ". Companies"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The Competition and Markets Authority helps to ensure healthy competition between companies in the UK for the ultimate benefit of both consumers and of the economy."
+  },
+  {
+    "id": 19,
+    "question": "Which one of the following statements concerning the Financial Policy Committee (FPC) is correct? The FPC meets",
+    "category": "Regulatory Framework",
+    "questionId": "1058234",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Annually and produces an annual Financial Stability Report"
+      },
+      {
+        "letter": "B",
+        "text": ". Annually and produces a biannual Financial Stability Report"
+      },
+      {
+        "letter": "C",
+        "text": ". Quarterly and produces a biannual Financial Stability Report"
+      },
+      {
+        "letter": "D",
+        "text": ". Quarterly and produces an annual Financial Stability Report"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FPC meets at least four times a year and publishes a record of its formal meetings. It is also responsible for the Bank's biannual Financial Stability Report. Don't confuse the FPC with the Monetary Policy Committee (MPC), which meets monthly. Although the FPC does not meet 'quarterly', but 'at least 4 times a year', C is the best answer."
+  },
+  {
+    "id": 20,
+    "question": "According to the provisions under Senior Management Arrangements, Systems and Controls in the Regulator's Handbook, the responsibilities of directors must be:",
+    "category": "Regulatory Framework",
+    "questionId": "1000264",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Clearly and appropriately apportioned"
+      },
+      {
+        "letter": "B",
+        "text": ". Reviewed by external auditors on an annual basis"
+      },
+      {
+        "letter": "C",
+        "text": ". Recorded and the records kept for three years from when the responsibilities change"
+      },
+      {
+        "letter": "D",
+        "text": ". Clear, fair and not misleading"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A firm must take reasonable care to maintain a clear and appropriate apportionment of significant responsibilities among its directors and senior managers. The records must be kept for six years."
+  },
+  {
+    "id": 21,
+    "question": "Which ONE of the following is not one of the Principles for Businesses laid down for firms in the financial sector?",
+    "category": "Regulatory Framework",
+    "questionId": "1000215",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial prudence"
+      },
+      {
+        "letter": "B",
+        "text": ". Customers' interests"
+      },
+      {
+        "letter": "C",
+        "text": ". Conflicts of interests"
+      },
+      {
+        "letter": "D",
+        "text": ". Prevention of money laundering"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Prevention of money laundering is not one of the principles for businesses."
+  },
+  {
+    "id": 22,
+    "question": "Which of the following is not one of the Principles for Businesses?",
+    "category": "Regulatory Framework",
+    "questionId": "1078716",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Skill, care and diligence"
+      },
+      {
+        "letter": "B",
+        "text": ". Management and control"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial prudence"
+      },
+      {
+        "letter": "D",
+        "text": ". Senior management functions"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Senior management functions are regulated via the Accountability Regime (SM&CR), not the Principles for Businesses."
+  },
+  {
+    "id": 23,
+    "question": "According to the Financial Services Act 2012, which of the following bodies are the primary financial services regulators? I . Financial Services Authority II . Prudential Regulation Authority III . Financial Conduct Authority IV . Financial Policy Committee",
+    "category": "Regulatory Framework",
+    "questionId": "1078718",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II"
+      },
+      {
+        "letter": "B",
+        "text": ". II and III"
+      },
+      {
+        "letter": "C",
+        "text": ". III and IV"
+      },
+      {
+        "letter": "D",
+        "text": ". II and IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The PRA and the FCA are the primary regulators for firms in the financial services industry."
+  },
+  {
+    "id": 24,
+    "question": "Which of the following Principles for Businesses requires firms to have appropriate risk management controls in place?",
+    "category": "Regulatory Framework",
+    "questionId": "1000245",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Management and control"
+      },
+      {
+        "letter": "B",
+        "text": ". Integrity"
+      },
+      {
+        "letter": "C",
+        "text": ". Market conduct"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial prudence"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Principle for Businesses 3: Management and control requires firms to take reasonable care to organise and control its affairs responsibly and effectively, with adequate risk management systems."
+  },
+  {
+    "id": 25,
+    "question": "Which of the following statements are correct? I . The FCA is responsible for ensuring consumers get a fair deal II . The FCA is responsible for stability of the markets III . The PRA is responsible for ensuring consumers get a fair deal IV . The PRA is responsible for stability of the markets",
+    "category": "Regulatory Framework",
+    "questionId": "1058221",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and III"
+      },
+      {
+        "letter": "B",
+        "text": ". I and IV"
+      },
+      {
+        "letter": "C",
+        "text": ". II and III"
+      },
+      {
+        "letter": "D",
+        "text": ". II and IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA is responsible for ensuring that financial markets work well so that consumers get a fair deal, whilst the focus of the PRA is on stability - the safety and soundness of deposit taking firms, insurers and systematically important investment firms."
+  },
+  {
+    "id": 26,
+    "question": "Which of the following best describes the objective of conduct risk regulation?",
+    "category": "Regulatory Framework",
+    "questionId": "1069720",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Rules do matter, but outcomes for consumers and markets are the principal focus of regulatory concern"
+      },
+      {
+        "letter": "B",
+        "text": ". Prescriptive rules to manage the conduct of employees of financial firms are the only regulatory concern"
+      },
+      {
+        "letter": "C",
+        "text": ". Outcomes for consumers and markets do matter, but rules are the principal focus of regulatory concern"
+      },
+      {
+        "letter": "D",
+        "text": ". Outcomes for consumers and markets are the only regulatory concern"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA takes a balanced approach to the management of conduct risk. The rules do matter, but outcomes for consumers and markets are the principal focus of regulatory concern."
+  },
+  {
+    "id": 27,
+    "question": "Which of the following is true of the Takeover Panel?",
+    "category": "Regulatory Framework",
+    "questionId": "4055759",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It delivers effective enforcement to deter wrongdoing, protect consumers and educate businesses"
+      },
+      {
+        "letter": "B",
+        "text": ". It supervises and regulate takeovers in accordance with the rules set out in the Code"
+      },
+      {
+        "letter": "C",
+        "text": ". It extends competition frontiers by using the markets regime to improve the way competition works"
+      },
+      {
+        "letter": "D",
+        "text": ". It investigates mergers which could restrict competition"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Takeover Panel - also known as the Panel on Takeovers and Mergers - does not play a part in assessing the impact of the takeover or merger on competition or consumer detriment. The Panel focuses on the fair treatment of affected parties during the process of the takeover or merger. These fair processes are set out in the Takeover Code. Page 3 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 4 ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 28,
+    "question": "The Takeover Panel is:",
+    "category": "Regulatory Framework",
+    "questionId": "4055760",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A division of the Financial Conduct Authority that monitors market conduct"
+      },
+      {
+        "letter": "B",
+        "text": ". A division of the Prudential Regulation Authority that assesses capital structure"
+      },
+      {
+        "letter": "C",
+        "text": ". A division of the Bank of England that monitors systemic risk"
+      },
+      {
+        "letter": "D",
+        "text": ". An independent body that issues and administers the City Code"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Takeover Panel (the ‘Panel’) is an independent body, established in 1968, whose main functions are to issue and administer the City Code on Takeovers and Mergers (the Takeover Code) and to supervise and regulate takeovers and other matters to which the Code applies in accordance with the rules set out in the Code."
+  },
+  {
+    "id": 29,
+    "question": "What is the purpose of the Pension Protection Fund?",
+    "category": "Regulatory Framework",
+    "questionId": "4055763",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To ensure pension companies do not become insolvent"
+      },
+      {
+        "letter": "B",
+        "text": ". To invest funds for auto-enrolment into work-based schemes"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure annuities are seen as viable post-pension-freedom legislation"
+      },
+      {
+        "letter": "D",
+        "text": ". To compensate members of insolvent final salary pension schemes"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The PPF is there to compensate members of insolvent final salary (or defined beneifit) pension schemes. If their employers become insolvent, and their pension schemes cannot afford to pay people their promised pensions, the PPF will compensate them financially for the money they have lost."
+  },
+  {
+    "id": 30,
+    "question": "The Consumer Rights Act 2015 gives the FCA the power to do which of the following?",
+    "category": "Regulatory Framework",
+    "questionId": "4055765",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To enforce criminal legislation, such as the Criminal Justice Act"
+      },
+      {
+        "letter": "B",
+        "text": ". To challenge unfair terms in financial services consumer contracts"
+      },
+      {
+        "letter": "C",
+        "text": ". To enforce civil legislation, such as the Market Abuse Regulation"
+      },
+      {
+        "letter": "D",
+        "text": ". To challenge unauthorised firms conducting regulated activities"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Consumer Rights Act 2015 allows the FCA to challenge unfair terms in financial services consumer contracts. The Financial Services and Markets Act 2000 gives the FCA the power to do the other options."
+  },
+  {
+    "id": 31,
+    "question": "As a designated body under the Unfair Terms in Consumer Contracts Regulation 1999, the FCA has the power to:",
+    "category": "Regulatory Framework",
+    "questionId": "4055766",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Include unfair contract terms in its documentation aimed at consumers"
+      },
+      {
+        "letter": "B",
+        "text": ". Define unfair terms in all consumer contracts in the UK"
+      },
+      {
+        "letter": "C",
+        "text": ". Force financial services firm to amend or remove unfair contract terms"
+      },
+      {
+        "letter": "D",
+        "text": ". Provide compensation for those subject to unfair contract terms"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "As a designated body under the Unfair Terms in Consumer Contracts Regulation 1999, the FCA has the power to force financial services firm to amend or remove unfair contract terms."
+  },
+  {
+    "id": 32,
+    "question": "Which of the following statements is not true of the Principles for Businesses?",
+    "category": "Regulatory Framework",
+    "questionId": "1000227",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All authorised firms must comply with the PRIN"
+      },
+      {
+        "letter": "B",
+        "text": ". Failure to comply with the PRIN can result in regulatory enforcement action for FCA firms"
+      },
+      {
+        "letter": "C",
+        "text": ". They only apply to firms authorised by the FCA"
+      },
+      {
+        "letter": "D",
+        "text": ". They represent a set of fundamental objectives backed by the Financial Services and Markets Act 2000"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The PRIN are general statements of the fundamental obligations of FCA firms under FSMA 2000 and the regulatory system. They have been devised by, and are enforced by, the FCA. They apply to all authorised firms, PRA authorised firms also comply with the PRA's Fundamental Rules (FR)."
+  },
+  {
+    "id": 33,
+    "question": "Which of the following is NOT a type of work under the FCA supervision model?",
+    "category": "Regulatory Framework",
+    "questionId": "1058264",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Proactive Firm Supervision"
+      },
+      {
+        "letter": "B",
+        "text": ". Reactive Supervision"
+      },
+      {
+        "letter": "C",
+        "text": ". Thematic"
+      },
+      {
+        "letter": "D",
+        "text": ". Proactive Intervention Framework"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Proactive Intervention Framework is a supervisory approach adopted by PRA and not the FCA."
+  },
+  {
+    "id": 34,
+    "question": "The FCA has a range of supervisory tools available to it, classified under four headings. Which of the following best reflects these four headings?",
+    "category": "Regulatory Framework",
+    "questionId": "4078797",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Identify, Evaluate, Diagnose, Remedy"
+      },
+      {
+        "letter": "B",
+        "text": ". Diagnose, Evaluate, Monitor, Remedy"
+      },
+      {
+        "letter": "C",
+        "text": ". Identify, Monitor, Evaluate, Remedial"
+      },
+      {
+        "letter": "D",
+        "text": ". Diagnose, Monitor, Identify, Remedy"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The four tools of supervision are Identify, Evaluate, Diagnose, Remedy"
+  },
+  {
+    "id": 35,
+    "question": "Which one of the following is NOT one of the Regulator's supervisory tools?",
+    "category": "Regulatory Framework",
+    "questionId": "4078843",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Diagnose"
+      },
+      {
+        "letter": "B",
+        "text": ". Evaluate"
+      },
+      {
+        "letter": "C",
+        "text": ". React"
+      },
+      {
+        "letter": "D",
+        "text": ". Identify"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Tools of supervision: ​ Identify: identify where harm or potential harm is present ​ Diagnose: what is the cause, the extent and potential development of the harm ​ Remedy: through a range of FCA actions that can be taken ​ Evaluate: FCA assesses how effective these action were"
+  },
+  {
+    "id": 36,
+    "question": "The FCA has the right to demand that firms maintain a higher capital requirement than that stated in their prudential standards. In terms of the tools of supervision this would be an example of what tool?",
+    "category": "Regulatory Framework",
+    "questionId": "4078844",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Identify"
+      },
+      {
+        "letter": "B",
+        "text": ". Diagnose"
+      },
+      {
+        "letter": "C",
+        "text": ". Remedy"
+      },
+      {
+        "letter": "D",
+        "text": ". Evaluate"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This would be an example of the FCA remedying the situation through their action."
+  },
+  {
+    "id": 37,
+    "question": "Which statement is the correct aim of the FCA's Consumer Duty?",
+    "category": "Regulatory Framework",
+    "questionId": "4160172",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To ensure that professional clients receive good outcomes when they purchase products or services"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure that retail customers receive good outcomes when they purchase products or services"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure that eligible counterparties receive good outcomes when they purchase products or services"
+      },
+      {
+        "letter": "D",
+        "text": ". To ensure that financial services firms receive good outcomes when they purchase products or services."
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The aim of the FCA's Consumer Duty is to ensure that retail customers receive good outcomes when they purchase products or services."
+  },
+  {
+    "id": 38,
+    "question": "Which of the following activities would be 'out of scope' under the FCA's Consumer Duty initiative?",
+    "category": "Regulatory Framework",
+    "questionId": "4160173",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Giving advice on listed shares to a retail customer"
+      },
+      {
+        "letter": "B",
+        "text": ". A fund management firm managing a regulated collective investment scheme for a range of customers"
+      },
+      {
+        "letter": "C",
+        "text": ". Providing group life assurance products to employees of a company"
+      },
+      {
+        "letter": "D",
+        "text": ". A retail bank providing deposit-taking activities to its customers"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Providing group life assurance products is specifically excluded under the Consumer Duty, whether to employees of a company or to anybody else. The other three activities are all, either directly or indirectly, provided to retail customers."
+  },
+  {
+    "id": 39,
+    "question": "Which of the following is a statutory objective of the FCA?",
+    "category": "Regulatory Framework",
+    "questionId": "1000708",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To levy specific fines in the case of money laundering activities"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure financial promotions issued by authorised firms are not misleading"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure that the relevant markets function well"
+      },
+      {
+        "letter": "D",
+        "text": ". To promote guidelines as to the conduct of authorised firms"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FCA has four objectives. Strategic objective: ensuring that the relevant markets function well Operational objectives: securing an appropriate degree of protection for consumers, protecting and enhancing the integrity of the UK financial system, promoting effective competition in the interests of consumers. Page 4 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 5 ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 40,
+    "question": "All of the following are specified by the FCA as a certification function except:",
+    "category": "Regulatory Framework",
+    "questionId": "1000242",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Material risk takers"
+      },
+      {
+        "letter": "B",
+        "text": ". Dealing directly with clients"
+      },
+      {
+        "letter": "C",
+        "text": ". Supervisors of Certification Functions"
+      },
+      {
+        "letter": "D",
+        "text": ". Information providers"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Certification functions are: CASS oversight, proprietary trader, significant management, functions requiring qualifications, managers of certification functions, material risk takers and client dealing."
+  },
+  {
+    "id": 41,
+    "question": "Which of the following does not reflect the range of sanctions that the PRA can impose on a firm breaching PRA rules?",
+    "category": "Regulatory Framework",
+    "questionId": "1000795",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Maximum fine of £250,000"
+      },
+      {
+        "letter": "B",
+        "text": ". Varying Part 4A permission"
+      },
+      {
+        "letter": "C",
+        "text": ". Cancelling permission"
+      },
+      {
+        "letter": "D",
+        "text": ". Public censure"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The maximum fine is unlimited."
+  },
+  {
+    "id": 42,
+    "question": "The FCA guidance on electronic communication with a client states that a firm should do all of the following, except:",
+    "category": "Regulatory Framework",
+    "questionId": "1000594",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Be able to demonstrate that the client wishes to communicate using this type of media"
+      },
+      {
+        "letter": "B",
+        "text": ". If entering an agreement, make it clear to the client that a contractual relationship has legal consequences"
+      },
+      {
+        "letter": "C",
+        "text": ". Have in place arrangements to ensure secure transmission and receipt of the communication"
+      },
+      {
+        "letter": "D",
+        "text": ". Be able to demonstrate that it made it clear to the client that instructions communicated in this manner may not be acted upon immediately"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The firm should also be able to verify the authenticity and integrity of the communication, together with the date and time sent and received. Page 5 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 6 ──────────────────────────────────────────────────────────── The Financial Services and Markets Act 2000 and Financial Services Act 2012"
+  },
+  {
+    "id": 1,
+    "question": "Which of the following are specified investments, as defined by the Regulated Activities Order? I . Options on the FTSE 100 index II . Currencies III . Options on gold IV . Gold",
+    "category": "Regulatory Framework",
+    "questionId": "1000010",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". III only"
+      },
+      {
+        "letter": "B",
+        "text": ". I and III"
+      },
+      {
+        "letter": "C",
+        "text": ". I, II and III"
+      },
+      {
+        "letter": "D",
+        "text": ". I, III and IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Neither tangible assets (including precious metals such as gold or silver), nor currencies are specified investments within the meaning of the RAO and FSMA 2000. Options are classified as specified investments under FSMA 2000 if the underlying asset of the option is itself a specified investment (such as an option on a future), or is a precious metal (i.e. gold, silver, platinum or palladium)."
+  },
+  {
+    "id": 2,
+    "question": "Which of the following does not require FCA/PRA authorisation?",
+    "category": "Regulatory Framework",
+    "questionId": "1000184",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Sending dematerialised instructions in investments"
+      },
+      {
+        "letter": "B",
+        "text": ". Running a collective investment scheme"
+      },
+      {
+        "letter": "C",
+        "text": ". Dealing on behalf of others"
+      },
+      {
+        "letter": "D",
+        "text": ". Writing a newspaper column advising on investments"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Newspapers have a specific exemption."
+  },
+  {
+    "id": 3,
+    "question": "Which of the following is a specified investment under the Regulated Activities Order?",
+    "category": "Regulatory Framework",
+    "questionId": "1000186",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Options on crude oil"
+      },
+      {
+        "letter": "B",
+        "text": ". Shares in an unincorporated business"
+      },
+      {
+        "letter": "C",
+        "text": ". US dollars"
+      },
+      {
+        "letter": "D",
+        "text": ". Premium bonds"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Currencies and premium bonds are not classed as specified investments under the FSMA 2000, nor are options on commodities (other than options on precious metals). Shares in any business would be a specified investment."
+  },
+  {
+    "id": 4,
+    "question": "Which of the following is NOT a regulated activity under the Financial Services and Markets Act 2000 ?",
+    "category": "Regulatory Framework",
+    "questionId": "1000187",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Managing a futures fund"
+      },
+      {
+        "letter": "B",
+        "text": ". Advising on share portfolios"
+      },
+      {
+        "letter": "C",
+        "text": ". Dealing in US dollars"
+      },
+      {
+        "letter": "D",
+        "text": ". Administering mortgages"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Dealing in currencies, including US dollars, is not a regulated activity under the FSMA 2000."
+  },
+  {
+    "id": 5,
+    "question": "A firm wishes to provide services in investments. According to the Regulated Activities Order, which of the following investments would NOT require the firm to seek authorisation from the FCA/PRA?",
+    "category": "Regulatory Framework",
+    "questionId": "1000189",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Forward rate agreements"
+      },
+      {
+        "letter": "B",
+        "text": ". Commercial paper"
+      },
+      {
+        "letter": "C",
+        "text": ". Floating rate notes"
+      },
+      {
+        "letter": "D",
+        "text": ". Foreign exchange"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Foreign exchange (currencies) is not specified by the RAO."
+  },
+  {
+    "id": 6,
+    "question": "The Financial Services and Markets Act 2000 does NOT require businesses carrying out which of the following to be authorised?",
+    "category": "Regulatory Framework",
+    "questionId": "1000190",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Managing a bond fund"
+      },
+      {
+        "letter": "B",
+        "text": ". Advising on currencies"
+      },
+      {
+        "letter": "C",
+        "text": ". Establishing a collective investment scheme"
+      },
+      {
+        "letter": "D",
+        "text": ". Arranging deals in investments"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Currencies are not specified investments."
+  },
+  {
+    "id": 7,
+    "question": "According to Section 19 of the Financial Services and Markets Act 2000 (the 'General Prohibition'), which of the following activities would require a firm to gain authorisation by the FCA/PRA?",
+    "category": "Regulatory Framework",
+    "questionId": "1000194",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Investment advice in newspapers and magazine articles"
+      },
+      {
+        "letter": "B",
+        "text": ". Television, radio and cable broadcasts about investments"
+      },
+      {
+        "letter": "C",
+        "text": ". Professional bodies providing advice in the normal course of business where the advice is separately remunerated"
+      },
+      {
+        "letter": "D",
+        "text": ". Trustees who are not being separately remunerated"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The following activities are not regarded as regulated activities: Investment advice in newspapers (providing a tip sheet however is a regulated activity) Television broadcasts and similar activities Trustees, nominees and personal representatives (not separately remunerated) Members of designated professional bodies (accountants, solicitors or actuaries) carrying on certain incidental regulated activities. However, if they are separately remunerated for those activities they do need authorisation."
+  },
+  {
+    "id": 8,
+    "question": "Who authorises market makers in the wholesale money markets in the UK?",
+    "category": "Regulatory Framework",
+    "questionId": "1000196",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". PRA"
+      },
+      {
+        "letter": "B",
+        "text": ". DMO"
+      },
+      {
+        "letter": "C",
+        "text": ". PoTaM"
+      },
+      {
+        "letter": "D",
+        "text": ". ESMA"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Market making is covered by specified activities and money markets are specified investments. These firms, are typically significant investment firms and would be authorised by the PRA. ESMA is the European Securities and Markets Authority and PoTaM is the Panel on Takeovers and Mergers or Takeover Panel. The DMO is the Debt Management Office and is a department of the Treasury"
+  }
+]

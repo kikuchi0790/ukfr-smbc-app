@@ -1,0 +1,393 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { 
+  ArrowLeft,
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Check,
+  X,
+  AlertCircle,
+  BookOpen
+} from "lucide-react";
+import { Question, Category, UserProgress } from "@/types";
+import { fetchJSON } from "@/utils/fetch-utils";
+import { safeLocalStorage } from "@/utils/storage-utils";
+
+export default function QuestionsListPage() {
+  const router = useRouter();
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [filteredQuestions, setFilteredQuestions] = useState<Question[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<Category | "all">("all");
+  const [selectedStatus, setSelectedStatus] = useState<"all" | "unanswered" | "correct" | "incorrect" | "overcome">("all");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState<UserProgress | null>(null);
+
+  const categories: { value: Category | "all"; label: string }[] = [
+    { value: "all", label: "すべてのカテゴリ" },
+    { value: "The Regulatory Environment", label: "The Regulatory Environment" },
+    { value: "The Financial Services and Markets Act 2000 and Financial Services Act 2012", label: "Financial Services Acts" },
+    { value: "Associated Legislation and Regulation", label: "Associated Legislation" },
+    { value: "The FCA Conduct of Business Sourcebook/Client Assets", label: "FCA Conduct/Client Assets" },
+    { value: "Complaints and Redress", label: "Complaints and Redress" },
+    { value: "Regulations: Final Study Questions", label: "Final Study Questions" }
+  ];
+
+  // カテゴリごとの問題数を計算
+  const getCategoryCount = (categoryValue: Category | "all") => {
+    if (categoryValue === "all") return questions.length;
+    return questions.filter(q => q.category === categoryValue).length;
+  };
+
+  // ステータスごとの問題数を計算
+  const getStatusCount = (status: "all" | "unanswered" | "correct" | "incorrect" | "overcome") => {
+    if (!progress || status === "all") return questions.length;
+    
+    return questions.filter(q => {
+      const questionStatus = getQuestionStatus(q.questionId);
+      
+      if (status === "unanswered") {
+        return !questionStatus;
+      } else if (status === "overcome") {
+        return questionStatus?.overcome;
+      } else if (status === "correct") {
+        return questionStatus?.correct && !questionStatus?.overcome;
+      } else if (status === "incorrect") {
+        return questionStatus?.answered && !questionStatus?.correct;
+      }
+      return true;
+    }).length;
+  };
+
+  useEffect(() => {
+    loadQuestions();
+    loadProgress();
+  }, []);
+
+  useEffect(() => {
+    filterQuestions();
+  }, [selectedCategory, selectedStatus, searchTerm, questions, progress]);
+
+  const loadQuestions = async () => {
+    try {
+      const allQuestions = await fetchJSON<Question[]>('/data/all-questions.json');
+      // Mock試験を除外
+      const studyQuestions = allQuestions.filter(q => !q.category.includes("Mock"));
+      setQuestions(studyQuestions);
+      setFilteredQuestions(studyQuestions);
+    } catch (error) {
+      console.error('Failed to load questions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadProgress = () => {
+    const userProgress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    setProgress(userProgress);
+  };
+
+  const filterQuestions = () => {
+    let filtered = questions;
+
+    // カテゴリフィルター
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(q => q.category === selectedCategory);
+    }
+
+    // ステータスフィルター
+    if (selectedStatus !== "all" && progress) {
+      filtered = filtered.filter(q => {
+        const status = getQuestionStatus(q.questionId);
+        
+        if (selectedStatus === "unanswered") {
+          return !status;
+        } else if (selectedStatus === "overcome") {
+          return status?.overcome;
+        } else if (selectedStatus === "correct") {
+          return status?.correct && !status?.overcome;
+        } else if (selectedStatus === "incorrect") {
+          return status?.answered && !status?.correct;
+        }
+        return true;
+      });
+    }
+
+    // 検索フィルター
+    if (searchTerm) {
+      const lowerSearchTerm = searchTerm.toLowerCase();
+      filtered = filtered.filter(q => 
+        q.question.toLowerCase().includes(lowerSearchTerm) ||
+        q.questionJa?.toLowerCase().includes(lowerSearchTerm) ||
+        q.explanation.toLowerCase().includes(lowerSearchTerm) ||
+        q.explanationJa?.toLowerCase().includes(lowerSearchTerm)
+      );
+    }
+
+    setFilteredQuestions(filtered);
+  };
+
+  const getQuestionStatus = (questionId: string) => {
+    if (!progress) return null;
+
+    // 回答済みかチェック
+    const answered = progress.studySessions?.some(session => 
+      session.answers?.some(answer => answer.questionId === questionId)
+    );
+
+    if (!answered) return null;
+
+    // 正解したかチェック
+    const correct = progress.studySessions?.some(session => 
+      session.answers?.some(answer => 
+        answer.questionId === questionId && answer.isCorrect
+      )
+    );
+
+    // 克服済みかチェック
+    const overcome = progress.overcomeQuestions?.some(q => q.questionId === questionId);
+
+    return { answered, correct, overcome };
+  };
+
+  const toggleQuestion = (questionId: string) => {
+    setExpandedQuestion(expandedQuestion === questionId ? null : questionId);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+          <p className="mt-4 text-gray-600">問題を読み込んでいます...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm sticky top-0 z-10">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-4">
+            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
+              <ArrowLeft className="w-6 h-6" />
+            </Link>
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold text-gray-900">問題リスト</h1>
+              <p className="text-gray-600">カテゴリ別の問題一覧</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="container mx-auto px-4 py-8">
+        {/* Filters */}
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Category Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                カテゴリ
+              </label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value as Category | "all")}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                {categories.map(cat => (
+                  <option key={cat.value} value={cat.value}>
+                    {cat.label} ({getCategoryCount(cat.value)}問)
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Status Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                ステータス
+              </label>
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value as "all" | "unanswered" | "correct" | "incorrect" | "overcome")}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="all">すべて ({getStatusCount("all")}問)</option>
+                <option value="unanswered">未学習 ({getStatusCount("unanswered")}問)</option>
+                <option value="correct">正解済み ({getStatusCount("correct")}問)</option>
+                <option value="incorrect">不正解 ({getStatusCount("incorrect")}問)</option>
+                <option value="overcome">克服済み ({getStatusCount("overcome")}問)</option>
+              </select>
+            </div>
+
+            {/* Search */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                検索
+              </label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="問題文や解説を検索..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Results count */}
+          <div className="mt-4 text-sm text-gray-600">
+            {filteredQuestions.length}問が見つかりました
+          </div>
+        </div>
+
+        {/* Questions List */}
+        <div className="space-y-4">
+          {filteredQuestions.map((question) => {
+            const status = getQuestionStatus(question.questionId);
+            const isExpanded = expandedQuestion === question.questionId;
+
+            return (
+              <div key={question.questionId} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <button
+                  onClick={() => toggleQuestion(question.questionId)}
+                  className="w-full px-6 py-4 text-left hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 pr-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded">
+                          {question.category}
+                        </span>
+                        {status ? (
+                          <div className="flex items-center gap-2">
+                            {status.overcome ? (
+                              <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded flex items-center gap-1">
+                                <Check className="w-3 h-3" />
+                                克服済み
+                              </span>
+                            ) : status.correct ? (
+                              <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded flex items-center gap-1">
+                                <Check className="w-3 h-3" />
+                                正解済み
+                              </span>
+                            ) : status.answered ? (
+                              <span className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded flex items-center gap-1">
+                                <X className="w-3 h-3" />
+                                不正解
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : (
+                          <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">
+                            未学習
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-medium text-gray-900">
+                        Q{question.id}. {question.question}
+                      </h3>
+                      {question.questionJa && (
+                        <p className="text-sm text-gray-600 mt-1">
+                          {question.questionJa}
+                        </p>
+                      )}
+                    </div>
+                    <div className="text-gray-400">
+                      {isExpanded ? (
+                        <ChevronUp className="w-5 h-5" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5" />
+                      )}
+                    </div>
+                  </div>
+                </button>
+
+                {/* Expanded Content */}
+                {isExpanded && (
+                  <div className="px-6 pb-4 border-t">
+                    {/* Options */}
+                    <div className="mt-4 space-y-2">
+                      {question.options.map((option) => {
+                        const isCorrect = option.letter === question.correctAnswer;
+                        return (
+                          <div
+                            key={option.letter}
+                            className={`p-3 rounded-lg ${
+                              isCorrect ? 'bg-green-50 border border-green-200' : 'bg-gray-50'
+                            }`}
+                          >
+                            <div className="flex items-start gap-2">
+                              <span className={`font-medium ${isCorrect ? 'text-green-700' : 'text-gray-700'}`}>
+                                {option.letter}.
+                              </span>
+                              <div className="flex-1">
+                                <p className={isCorrect ? 'text-green-700' : 'text-gray-700'}>
+                                  {option.text}
+                                </p>
+                                {option.textJa && (
+                                  <p className={`text-sm mt-1 ${isCorrect ? 'text-green-600' : 'text-gray-600'}`}>
+                                    {option.textJa}
+                                  </p>
+                                )}
+                              </div>
+                              {isCorrect && <Check className="w-5 h-5 text-green-600 flex-shrink-0" />}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Explanation */}
+                    <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-medium text-blue-900 mb-1">解説</p>
+                          <p className="text-blue-800">{question.explanation}</p>
+                          {question.explanationJa && (
+                            <p className="text-blue-700 text-sm mt-2">
+                              {question.explanationJa}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Study Button */}
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        onClick={() => router.push(`/study/session?mode=category&category=${encodeURIComponent(question.category)}&questionId=${question.questionId}`)}
+                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                      >
+                        <BookOpen className="w-4 h-4" />
+                        この問題を学習
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* No results */}
+        {filteredQuestions.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500">該当する問題が見つかりませんでした</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

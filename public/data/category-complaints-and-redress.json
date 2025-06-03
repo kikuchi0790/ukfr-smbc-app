@@ -1,0 +1,1090 @@
+[
+  {
+    "id": 1,
+    "question": "Which statement about the Financial Ombudsman Service is false?",
+    "category": "Complaints and Redress",
+    "questionId": "1000387",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is operationally independent of the FCA",
+        "textJa": "FCAから運営上独立しています。"
+      },
+      {
+        "letter": "B",
+        "text": ". It arbitrates in situations whereby the authorised firm's complaints procedures have already been used",
+        "textJa": "認可会社が定めた苦情処理手続きが既に利用された状況において、仲裁を行います。"
+      },
+      {
+        "letter": "C",
+        "text": ". It is for authorised corporate clients as well as individuals",
+        "textJa": "個人だけでなく、認可された法人顧客も対象としています。"
+      },
+      {
+        "letter": "D",
+        "text": ". It can consider complaints and make awards",
+        "textJa": "苦情を審議し、裁定を下すことができます。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The Financial Ombudsman Scheme is for 'eligible complainants' - retail clients that are also individuals, and certain small businesses, small charities and small trusts. Authorised firms are never eligible complainants.",
+    "globalId": 367,
+    "categoryId": 1,
+    "questionJa": "Financial Ombudsman Serviceに関する記述のうち、誤っているものはどれですか？",
+    "explanationJa": "Financial Ombudsman Schemeは「適格な苦情申立人」、つまり個人であるリテール顧客、特定の小規模事業者、小規模慈善団体、小規模信託を対象としています。認可会社は決して適格な苦情申立人にはなりません。"
+  },
+  {
+    "id": 2,
+    "question": "What is the maximum payout that will be made for deposits under the FSCS?",
+    "category": "Complaints and Redress",
+    "questionId": "1078763",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". £48,000",
+        "textJa": "£48,000"
+      },
+      {
+        "letter": "B",
+        "text": ". £37,000",
+        "textJa": "£37,000"
+      },
+      {
+        "letter": "C",
+        "text": ". £50,000",
+        "textJa": "£50,000"
+      },
+      {
+        "letter": "D",
+        "text": ". £85,000",
+        "textJa": "£85,000"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The FSCS currently pay out up to £85,000 for deposits.",
+    "globalId": 368,
+    "categoryId": 2,
+    "questionJa": "FSCSに基づき、預金に対して行われる最大の支払額はいくらですか？",
+    "explanationJa": "FSCSは現在、預金に対して最大£85,000を支払います。"
+  },
+  {
+    "id": 3,
+    "question": "Harold has lost £70,000 through a failed investment scheme. How much will be paid if his claim to the compensation scheme is successful?",
+    "category": "Complaints and Redress",
+    "questionId": "1078764",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". £70,000",
+        "textJa": "£70,000"
+      },
+      {
+        "letter": "B",
+        "text": ". £63,000",
+        "textJa": "£63,000"
+      },
+      {
+        "letter": "C",
+        "text": ". £50,000",
+        "textJa": "£50,000"
+      },
+      {
+        "letter": "D",
+        "text": ". £35,000",
+        "textJa": "£35,000"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Investors can claim for up to £85,000 of losses with regard to investments and will receive a payout of 100% of that claim.",
+    "globalId": 369,
+    "categoryId": 3,
+    "questionJa": "Haroldは失敗した投資スキームで£70,000を失いました。補償制度への請求が認められた場合、いくら支払われますか？",
+    "explanationJa": "投資家は投資に関して最大£85,000の損失を請求でき、その請求額の100%が支払われます。"
+  },
+  {
+    "id": 4,
+    "question": "To whom, in the first instance, should a consumer make a complaint?",
+    "category": "Complaints and Redress",
+    "questionId": "1000390",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Financial Ombudsman Service",
+        "textJa": "Financial Ombudsman Service"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA",
+        "textJa": "FCA"
+      },
+      {
+        "letter": "C",
+        "text": ". A magistrate",
+        "textJa": "治安判事 (A magistrate)"
+      },
+      {
+        "letter": "D",
+        "text": ". The firm itself",
+        "textJa": "当該企業自体"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Complaints should, in the first instance, be referred to the firm. If the dispute is not resolved, it may then be referred to the Financial Ombudsman Service.",
+    "globalId": 370,
+    "categoryId": 4,
+    "questionJa": "消費者は、まず誰に苦情を申し立てるべきですか？",
+    "explanationJa": "苦情は、まず当該企業に申し立てるべきです。紛争が解決しない場合は、Financial Ombudsman Serviceに付託されることがあります。"
+  },
+  {
+    "id": 5,
+    "question": "If the Financial Ombudsman Service makes an award it can be for: I . Actual financial loss II . Pain and suffering III . Damage to reputation IV . Distress or inconvenience",
+    "category": "Complaints and Redress",
+    "questionId": "1000391",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I, and II",
+        "textJa": "I および II"
+      },
+      {
+        "letter": "B",
+        "text": ". I and III",
+        "textJa": "I および III"
+      },
+      {
+        "letter": "C",
+        "text": ". I, II, III and IV",
+        "textJa": "I, II, III および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". II, III and IV",
+        "textJa": "II, III および IV"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FOS can make awards for a range of reasons including financial loss, pain and suffering, damage to reputation and distress or inconvenience.",
+    "globalId": 371,
+    "categoryId": 5,
+    "questionJa": "Financial Ombudsman Serviceが裁定を下す場合、その対象となり得るのはどれですか？ I . 実際の金銭的損失 II . 精神的苦痛 III . 評判への損害 IV . 苦悩または不便",
+    "explanationJa": "FOSは、金銭的損失、精神的苦痛、評判への損害、苦悩または不便など、様々な理由で裁定を下すことができます。"
+  },
+  {
+    "id": 6,
+    "question": "Which of the following statements about a firm's internal complaints procedure is FALSE?",
+    "category": "Complaints and Redress",
+    "questionId": "1000392",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The procedure must detail the method of response to complaints",
+        "textJa": "手続きには、苦情への対応方法を詳述しなければなりません。"
+      },
+      {
+        "letter": "B",
+        "text": ". It must cover how complaints will be investigated",
+        "textJa": "苦情の調査方法を網羅しなければなりません。"
+      },
+      {
+        "letter": "C",
+        "text": ". Complaints must be dealt with by someone involved in the subject matter of the complaint",
+        "textJa": "苦情は、その苦情の対象事項に関与した者が処理しなければなりません。"
+      },
+      {
+        "letter": "D",
+        "text": ". The complaints procedure must be in writing",
+        "textJa": "苦情処理手続きは書面でなければなりません。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "It is important that complaints are dealt with by someone impartial and not involved in the same area.",
+    "globalId": 372,
+    "categoryId": 6,
+    "questionJa": "企業の内部苦情処理手続きに関する記述のうち、誤っているものはどれですか？",
+    "explanationJa": "苦情は、公平で、その分野に関与していない者が処理することが重要です。"
+  },
+  {
+    "id": 7,
+    "question": "If a complaint has not been resolved by a firm who should the complainant turn to next?",
+    "category": "Complaints and Redress",
+    "questionId": "1000393",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". FCA",
+        "textJa": "FCA"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Ombudsman",
+        "textJa": "Financial Ombudsman"
+      },
+      {
+        "letter": "C",
+        "text": ". FSCS",
+        "textJa": "FSCS"
+      },
+      {
+        "letter": "D",
+        "text": ". The Treasury",
+        "textJa": "The Treasury (財務省)"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Ombudsman is approached only if the firm has not resolved the complaint.",
+    "globalId": 373,
+    "categoryId": 7,
+    "questionJa": "企業によって苦情が解決されなかった場合、苦情申立人は次に誰に相談すべきですか？",
+    "explanationJa": "Ombudsmanへの相談は、企業が苦情を解決しなかった場合にのみ行われます。"
+  },
+  {
+    "id": 8,
+    "question": "To whom is the Financial Service Compensation Scheme (FSCS) PRIMARILY accountable?",
+    "category": "Complaints and Redress",
+    "questionId": "1000394",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Treasury",
+        "textJa": "The Treasury (財務省)"
+      },
+      {
+        "letter": "B",
+        "text": ". FCA and PRA",
+        "textJa": "FCA および PRA"
+      },
+      {
+        "letter": "C",
+        "text": ". Lord Chancellor",
+        "textJa": "Lord Chancellor (大法官)"
+      },
+      {
+        "letter": "D",
+        "text": ". The First Lord of the Treasury",
+        "textJa": "The First Lord of the Treasury (第一大蔵卿)"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FSCS is accountable to the FCA and PRA primarily and to the Treasury indirectly through the regulators.",
+    "globalId": 374,
+    "categoryId": 8,
+    "questionJa": "Financial Service Compensation Scheme (FSCS) は、主に誰に対して責任を負いますか？",
+    "explanationJa": "FSCSは、主にFCAとPRAに対して責任を負い、規制当局を通じて間接的にThe Treasury (財務省)にも責任を負います。"
+  },
+  {
+    "id": 9,
+    "question": "In what circumstances could a claim on the Financial Services Compensation Scheme be made?",
+    "category": "Complaints and Redress",
+    "questionId": "1000395",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". When an authorised firm becomes insolvent",
+        "textJa": "認可会社が支払不能になったとき。"
+      },
+      {
+        "letter": "B",
+        "text": ". Exclusively in response to claims by retail clients",
+        "textJa": "リテール顧客による請求に限定される場合。"
+      },
+      {
+        "letter": "C",
+        "text": ". Breach of principles of business",
+        "textJa": "事業原則の違反があった場合。"
+      },
+      {
+        "letter": "D",
+        "text": ". As an alternative to mediation by the Financial Ombudsman Scheme",
+        "textJa": "Financial Ombudsman Schemeによる調停の代替として。"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The Financial Services Compensation Scheme was established to provide compensation where authorised persons and appointed representatives are unable to satisfy claims against them. Although the scheme mainly applies to retail clients, it can also apply to professional clients and eligible counterparties.",
+    "globalId": 375,
+    "categoryId": 9,
+    "questionJa": "どのような状況でFinancial Services Compensation Schemeへの請求が可能になりますか？",
+    "explanationJa": "Financial Services Compensation Schemeは、認可された者や任命された代理人が彼らに対する請求を満たせない場合に補償を提供するために設立されました。この制度は主にリテール顧客に適用されますが、プロフェッショナル顧客や適格なカウンターパーティーにも適用されることがあります。"
+  },
+  {
+    "id": 10,
+    "question": "Which of the following is UNTRUE in respect of the procedures of an authorised firm for dealing with client complaints?",
+    "category": "Complaints and Redress",
+    "questionId": "1000396",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Firms must have adequate internal controls put in place",
+        "textJa": "企業は適切な内部統制を整備しなければなりません。"
+      },
+      {
+        "letter": "B",
+        "text": ". Firms must refer all complaints to the regulator",
+        "textJa": "企業は全ての苦情を規制当局に報告しなければなりません。"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm must remedy legitimate grievances",
+        "textJa": "企業は正当な苦情を是正しなければなりません。"
+      },
+      {
+        "letter": "D",
+        "text": ". The firm has a duty to inform clients of other avenues of complaint",
+        "textJa": "企業は顧客に対し、他の苦情申し立て手段について知らせる義務があります。"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Although it is a requirement for relevant firms to 'report' data and statistics regarding numbers of complaints to the FCA, it is not a requirement to 'refer' complaints to the FCA. Internal complaints procedures must be in writing and cover the receipt of complaints, methods of response and how they will be investigated. Complaints should be handled by a member of staff with sufficient experience and authority, and who was not involved in the matter. If a complaint cannot be resolved, the firm must inform the client about their rights to complain to the Financial Ombudsman and provide the client with the explanatory leaflet about the Financial Ombudsman Service.",
+    "globalId": 376,
+    "categoryId": 10,
+    "questionJa": "認可会社が顧客の苦情に対応するための手続きに関して、事実に反するものはどれですか？",
+    "explanationJa": "関連企業は苦情件数に関するデータや統計をFCAに「報告」する義務がありますが、苦情をFCAに「付託」する義務はありません。内部苦情処理手続きは書面でなければならず、苦情の受付、対応方法、調査方法を網羅する必要があります。苦情は、十分な経験と権限を持ち、かつその問題に関与していなかったスタッフが処理すべきです。苦情が解決できない場合、企業は顧客に対し、Financial Ombudsmanに苦情を申し立てる権利について通知し、Financial Ombudsman Serviceに関する説明リーフレットを提供しなければなりません。"
+  },
+  {
+    "id": 11,
+    "question": "How is the Financial Services Compensation Scheme funded?",
+    "category": "Complaints and Redress",
+    "questionId": "1000397",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". By investment businesses authorised under the Financial Services and Markets Act 2000",
+        "textJa": "Financial Services and Markets Act 2000に基づき認可された投資事業会社によって。"
+      },
+      {
+        "letter": "B",
+        "text": ". By contributions from the European Central Bank",
+        "textJa": "European Central Bankからの拠出金によって。"
+      },
+      {
+        "letter": "C",
+        "text": ". By the Treasury",
+        "textJa": "The Treasury (財務省)によって。"
+      },
+      {
+        "letter": "D",
+        "text": ". By a small levy on all stock market transactions",
+        "textJa": "全ての株式市場取引に対する少額の課徴金によって。"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The Compensation Scheme is funded by authorised investment business in the UK.",
+    "globalId": 377,
+    "categoryId": 11,
+    "questionJa": "Financial Services Compensation Schemeの資金はどのように調達されていますか？",
+    "explanationJa": "Compensation Schemeの資金は、英国の認可された投資事業会社によって調達されています。"
+  },
+  {
+    "id": 12,
+    "question": "All of the following are true of the Financial Services Compensation Scheme in relation to investments, except:",
+    "category": "Complaints and Redress",
+    "questionId": "1078765",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It applies to the appointed representative of an FCA firm",
+        "textJa": "FCA認可会社の任命代理人にも適用されます。"
+      },
+      {
+        "letter": "B",
+        "text": ". For the scheme as a whole, the total payout for compensation in any one year is unlimited",
+        "textJa": "制度全体として、1年間の補償金の総支払額に上限はありません。"
+      },
+      {
+        "letter": "C",
+        "text": ". The scheme is funded partly by government funds and partly by levies charged on FCA members",
+        "textJa": "制度の資金は、一部政府資金と一部FCAメンバーに課される賦課金によって賄われています。"
+      },
+      {
+        "letter": "D",
+        "text": ". Each claim has a maximum payout of £85,000",
+        "textJa": "各請求の最大支払額は£85,000です。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The Financial Services Compensation Scheme is funded by levies on the authorised community only. The maximum claim for investments is now £85,000.",
+    "globalId": 378,
+    "categoryId": 12,
+    "questionJa": "投資に関するFinancial Services Compensation Schemeについて、以下の記述のうち誤っているものはどれですか？",
+    "explanationJa": "Financial Services Compensation Schemeの資金は、認可されたコミュニティからの賦課金のみによって賄われています。投資に関する最大請求額は現在£85,000です。"
+  },
+  {
+    "id": 13,
+    "question": "Which of the following is not an obligation on a regulated firm when ensuring complaints receive a proper response?",
+    "category": "Complaints and Redress",
+    "questionId": "1000399",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Establish an internal procedure to handle complaints",
+        "textJa": "苦情処理のための内部手続きを確立する。"
+      },
+      {
+        "letter": "B",
+        "text": ". Send a copy of all complaints to the FCA",
+        "textJa": "全ての苦情のコピーをFCAに送付する。"
+      },
+      {
+        "letter": "C",
+        "text": ". Remedy any legitimate grievances",
+        "textJa": "正当な苦情を是正する。"
+      },
+      {
+        "letter": "D",
+        "text": ". Inform the client of the Financial Ombudsman Service",
+        "textJa": "顧客にFinancial Ombudsman Serviceについて通知する。"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The regulator does not need to receive copies of all complaints. However, a summary report on how complaints were handled does need to be sent.",
+    "globalId": 379,
+    "categoryId": 13,
+    "questionJa": "規制対象企業が苦情に対して適切な対応を確保する際の義務ではないものはどれですか？",
+    "explanationJa": "規制当局は全ての苦情のコピーを受け取る必要はありません。ただし、苦情処理状況の要約報告書は送付する必要があります。"
+  },
+  {
+    "id": 14,
+    "question": "The FCA requires that firms maintain records of complaints for a period of three years from the date of the receipt of the complaint for non-MiFID business. These records need not include details of:",
+    "category": "Complaints and Redress",
+    "questionId": "1000400",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Any correspondence between the firm and the complainant, including details of any redress offered by the firm",
+        "textJa": "企業と苦情申立人との間のすべてのやり取り（企業が提示した是正措置の詳細を含む）。"
+      },
+      {
+        "letter": "B",
+        "text": ". The number of phone calls taken place in an attempt to resolve the complaint",
+        "textJa": "苦情解決のために行われた電話の回数。"
+      },
+      {
+        "letter": "C",
+        "text": ". The substance of the complaint",
+        "textJa": "苦情の実質的な内容。"
+      },
+      {
+        "letter": "D",
+        "text": ". The name of the complainant",
+        "textJa": "苦情申立人の氏名。"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "These records are required for the purposes of monitoring by the FCA. Page 33 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 34 ────────────────────────────────────────────────────────────",
+    "globalId": 380,
+    "categoryId": 14,
+    "questionJa": "FCAは、非MiFID事業に関する苦情について、苦情受領日から3年間記録を保管するよう企業に義務付けています。これらの記録に含める必要がない詳細情報はどれですか？",
+    "explanationJa": "これらの記録は、FCAによる監視の目的で必要とされます。"
+  },
+  {
+    "id": 15,
+    "question": "If a claimant puts in a claim with respect to a protected investment with the FSCS for £37,000 what would be the maximum payout?",
+    "category": "Complaints and Redress",
+    "questionId": "1078767",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". £85,000",
+        "textJa": "£85,000"
+      },
+      {
+        "letter": "B",
+        "text": ". £37,000",
+        "textJa": "£37,000"
+      },
+      {
+        "letter": "C",
+        "text": ". £33,500",
+        "textJa": "£33,500"
+      },
+      {
+        "letter": "D",
+        "text": ". £0",
+        "textJa": "£0"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Investors can claim for up to £85,000 of losses with regard to investments and will receive a payout of 100% of that claim.",
+    "globalId": 381,
+    "categoryId": 15,
+    "questionJa": "申立人がFSCSに対し、保護された投資に関して£37,000の請求を行った場合、最大の支払額はいくらになりますか？",
+    "explanationJa": "投資家は投資に関して最大£85,000の損失を請求でき、その請求額の100%が支払われます。"
+  },
+  {
+    "id": 16,
+    "question": "Which of the following is true in relation to the FCA's power to seek redress for consumers?",
+    "category": "Complaints and Redress",
+    "questionId": "1000403",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Does not apply to breaches by market counterparties",
+        "textJa": "市場のカウンターパーティーによる違反には適用されません。"
+      },
+      {
+        "letter": "B",
+        "text": ". Does not apply to transactions below £5,000",
+        "textJa": "£5,000未満の取引には適用されません。"
+      },
+      {
+        "letter": "C",
+        "text": ". Is subject to a 28 day limit for the FCA to assess a claim",
+        "textJa": "FCAが請求を査定するための28日間の期限があります。"
+      },
+      {
+        "letter": "D",
+        "text": ". Includes breaches by unauthorised persons",
+        "textJa": "無認可の者による違反も含まれます。"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "In areas such as market abuse and money laundering the FCA have the power to seek redress from both authorised and unauthorised persons if their behaviour has an impact on consumers.",
+    "globalId": 382,
+    "categoryId": 16,
+    "questionJa": "消費者のための救済を求めるFCAの権限に関して、正しいものはどれですか？",
+    "explanationJa": "市場濫用やマネーロンダリングなどの分野では、FCAは、その行動が消費者に影響を与える場合、認可された者と無認可の者の両方から救済を求める権限を持っています。"
+  },
+  {
+    "id": 17,
+    "question": "Firm A is not required to subscribe to the Financial Ombudsman Service (FOS), but decides to submit to the 'voluntary jurisdiction'. Which of the following is then true?",
+    "category": "Complaints and Redress",
+    "questionId": "1000404",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Firm A decides which complaints to send to the FOS",
+        "textJa": "Firm AはFOSに送付する苦情を決定します。"
+      },
+      {
+        "letter": "B",
+        "text": ". The FOS decides which complaints about Firm A to investigate",
+        "textJa": "FOSはFirm Aに関するどの苦情を調査するかを決定します。"
+      },
+      {
+        "letter": "C",
+        "text": ". Firm A is not forced to comply with decisions made by the FOS",
+        "textJa": "Firm AはFOSが下した決定に従うことを強制されません。"
+      },
+      {
+        "letter": "D",
+        "text": ". Appeals about complaints selected by the FOS to investigate can be made to the Tribunal",
+        "textJa": "FOSが調査対象として選択した苦情に関する不服申し立ては、Tribunalに対して行うことができます。"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Activities that are covered by the voluntary jurisdiction are listed in the FCA Handbook and have been set by the Ombudsman Service.",
+    "globalId": 383,
+    "categoryId": 17,
+    "questionJa": "Firm AはFinancial Ombudsman Service (FOS)への加入義務はありませんが、「任意管轄権」に従うことを決定しました。この場合、正しい記述はどれですか？",
+    "explanationJa": "任意管轄権の対象となる活動は、FCA Handbookに記載されており、Ombudsman Serviceによって設定されています。"
+  },
+  {
+    "id": 18,
+    "question": "How often must an authorised firm report details concerning complaints received, closed and outstanding to the FCA?",
+    "category": "Complaints and Redress",
+    "questionId": "1000657",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Every eight weeks",
+        "textJa": "8週間ごと"
+      },
+      {
+        "letter": "B",
+        "text": ". Every 25 business days",
+        "textJa": "25営業日ごと"
+      },
+      {
+        "letter": "C",
+        "text": ". Every six months",
+        "textJa": "6ヶ月ごと"
+      },
+      {
+        "letter": "D",
+        "text": ". Annually",
+        "textJa": "毎年"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This report must be filed even if the firm has received no complaints against it.",
+    "globalId": 384,
+    "categoryId": 18,
+    "questionJa": "認可会社は、受領した苦情、解決済みの苦情、未解決の苦情に関する詳細を、どのくらいの頻度でFCAに報告しなければなりませんか？",
+    "explanationJa": "この報告書は、会社が苦情を一切受けていない場合でも提出しなければなりません。"
+  },
+  {
+    "id": 19,
+    "question": "If a retail client wishes to ensure that they do not lose any money in a deposit, which of the following is the most suitable deposit or investment?",
+    "category": "Complaints and Redress",
+    "questionId": "1078768",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Any amount in a UK account",
+        "textJa": "英国の口座にある任意の金額"
+      },
+      {
+        "letter": "B",
+        "text": ". Up to £150,000 in a UK account",
+        "textJa": "英国の口座にある最大£150,000"
+      },
+      {
+        "letter": "C",
+        "text": ". Up to £85,000 in a UK bank account",
+        "textJa": "英国の銀行口座にある最大£85,000"
+      },
+      {
+        "letter": "D",
+        "text": ". Up to £50,000 in a UK bank account",
+        "textJa": "英国の銀行口座にある最大£50,000"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "£85,000 is the amount is guaranteed by the FSCS.",
+    "globalId": 385,
+    "categoryId": 19,
+    "questionJa": "リテール顧客が預金で損失を出さないようにしたい場合、以下のうち最も適切な預金または投資はどれですか？",
+    "explanationJa": "£85,000はFSCSによって保証される金額です。"
+  },
+  {
+    "id": 20,
+    "question": "Which of the following is an eligible complainant under the FCA regulations?",
+    "category": "Complaints and Redress",
+    "questionId": "1013964",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A company that was considered to be a professional client at the time of problem",
+        "textJa": "問題発生時にプロフェッショナル顧客と見なされていた会社。"
+      },
+      {
+        "letter": "B",
+        "text": ". A private individual who has never worked in the financial sector",
+        "textJa": "金融セクターで働いたことのない個人。"
+      },
+      {
+        "letter": "C",
+        "text": ". A FTSE 100 company with group turnover of more than £102.5 million",
+        "textJa": "グループ売上高が£102.5百万を超えるFTSE 100企業。"
+      },
+      {
+        "letter": "D",
+        "text": ". A CIS with balance sheet totals of more than €20 million and net turnover of €42 million",
+        "textJa": "貸借対照表合計が€20百万超、純売上高が€42百万超のCIS。"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The others are not considered eligible complainants. An eligible complainant is a small retail customer.",
+    "globalId": 386,
+    "categoryId": 20,
+    "questionJa": "FCAの規制に基づき、適格な苦情申立人に該当するのは次のうちどれですか？",
+    "explanationJa": "その他は適格な苦情申立人とは見なされません。適格な苦情申立人は小規模なリテール顧客です。"
+  },
+  {
+    "id": 21,
+    "question": "If an insurer becomes insolvent, who would a small partnership apply to for compensation in light of a general insurance contract?",
+    "category": "Complaints and Redress",
+    "questionId": "1013965",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". FOS",
+        "textJa": "FOS"
+      },
+      {
+        "letter": "B",
+        "text": ". FSCS",
+        "textJa": "FSCS"
+      },
+      {
+        "letter": "C",
+        "text": ". FCA",
+        "textJa": "FCA"
+      },
+      {
+        "letter": "D",
+        "text": ". Bank of England",
+        "textJa": "Bank of England"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Small partnerships can claim off the FSCS.",
+    "globalId": 387,
+    "categoryId": 21,
+    "questionJa": "保険会社が支払不能になった場合、小規模なパートナーシップは一般保険契約に関して、どこに補償を申請しますか？",
+    "explanationJa": "小規模なパートナーシップはFSCSに請求することができます。"
+  },
+  {
+    "id": 22,
+    "question": "If an eligible claimant wins a claim against a deposit placed in a UK based credit institution, what is the maximum payout that can be made?",
+    "category": "Complaints and Redress",
+    "questionId": "1078766",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". £48,000",
+        "textJa": "£48,000"
+      },
+      {
+        "letter": "B",
+        "text": ". €48,000",
+        "textJa": "€48,000"
+      },
+      {
+        "letter": "C",
+        "text": ". £85,000",
+        "textJa": "£85,000"
+      },
+      {
+        "letter": "D",
+        "text": ". € 85,000",
+        "textJa": "€ 85,000"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The question is testing your knowledge of the Financial Services Compensation Scheme: Who can pay out on losses suffered by eligible claimants with regard to deposits, investments and insurance - subject to limits. The maximum payout for deposits is now £85,000.",
+    "globalId": 388,
+    "categoryId": 22,
+    "questionJa": "適格な申立人が英国の信用機関に預けた預金に対する請求で勝訴した場合、支払われる可能性のある最大の金額はいくらですか？",
+    "explanationJa": "この質問はFinancial Services Compensation Schemeに関するあなたの知識を試すものです。預金、投資、保険に関して適格な申立人が被った損失について、誰が（上限付きで）支払いを行うことができるか。預金の最大支払額は現在£85,000です。"
+  },
+  {
+    "id": 23,
+    "question": "Which of the following is true in relation to the Financial Services Compensation Scheme (FSCS)?",
+    "category": "Complaints and Redress",
+    "questionId": "1078770",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Deposits are not covered by the scheme",
+        "textJa": "預金はこの制度の対象外です。"
+      },
+      {
+        "letter": "B",
+        "text": ". The maximum payout for investment business is £350,000",
+        "textJa": "投資事業に関する最大の支払額は£350,000です。"
+      },
+      {
+        "letter": "C",
+        "text": ". Claims must be made within a set time limit",
+        "textJa": "請求は定められた期限内に行わなければなりません。"
+      },
+      {
+        "letter": "D",
+        "text": ". All eligible counterparties are covered",
+        "textJa": "全ての適格なカウンターパーティーが対象となります。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A claim must be brought to the FSCS within a set time (normally within six years of the date on which the event giving rise to the claim occurred). The maximum payout for a claim against an investment firm (i.e. in relation to protected investment business) is £85,000. Separate FSCS arrangements exist to protect deposit accounts at UK authorised banks and policy holders of UK authorised insurers.",
+    "globalId": 389,
+    "categoryId": 23,
+    "questionJa": "Financial Services Compensation Scheme (FSCS)に関して、正しいものはどれですか？",
+    "explanationJa": "請求は、FSCSに対して定められた期間内（通常、請求の原因となった事象が発生した日から6年以内）に行われなければなりません。投資会社に対する請求（すなわち、保護された投資事業に関連する請求）の最大支払額は£85,000です。英国の認可銀行の預金口座や英国の認可保険会社の保険契約者を保護するために、別途FSCSの取り決めが存在します。"
+  },
+  {
+    "id": 24,
+    "question": "If a firm receives a complaint with respect to MiFID business and deals with it within two weeks, how long is it necessary to keep the record of the complaint?",
+    "category": "Complaints and Redress",
+    "questionId": "1014012",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Five years from the date of the resolution of the complaint",
+        "textJa": "苦情解決日から5年間。"
+      },
+      {
+        "letter": "B",
+        "text": ". Three years from the date of the receipt of the complaint",
+        "textJa": "苦情受領日から3年間。"
+      },
+      {
+        "letter": "C",
+        "text": ". Five years from the date of the receipt of the complaint",
+        "textJa": "苦情受領日から5年間。"
+      },
+      {
+        "letter": "D",
+        "text": ". Three years from the date of the resolution of the complaint",
+        "textJa": "苦情解決日から3年間。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "With MiFID business, the records must be kept for at least five years.",
+    "globalId": 390,
+    "categoryId": 24,
+    "questionJa": "企業がMiFID事業に関する苦情を受理し、2週間以内に処理した場合、その苦情の記録をどのくらいの期間保管する必要がありますか？",
+    "explanationJa": "MiFID事業に関しては、記録を少なくとも5年間保管しなければなりません。"
+  },
+  {
+    "id": 25,
+    "question": "If a firm receives and deals with a complaint with respect to non-MiFID business, how long is it necessary to keep the records of the complaint?",
+    "category": "Complaints and Redress",
+    "questionId": "1014013",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Five years from the date of the resolution of the complaint",
+        "textJa": "苦情解決日から5年間。"
+      },
+      {
+        "letter": "B",
+        "text": ". Three years from the receipt of the complaint",
+        "textJa": "苦情受領日から3年間。"
+      },
+      {
+        "letter": "C",
+        "text": ". Five years from the date of the complaint",
+        "textJa": "苦情発生日から5年間。"
+      },
+      {
+        "letter": "D",
+        "text": ". Three years from the date of the resolution of the complaint",
+        "textJa": "苦情解決日から3年間。"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "For non-MiFID business, the records are kept for at least three years.",
+    "globalId": 391,
+    "categoryId": 25,
+    "questionJa": "企業が非MiFID事業に関する苦情を受理し処理した場合、その苦情の記録をどのくらいの期間保管する必要がありますか？",
+    "explanationJa": "非MiFID事業の場合、記録は少なくとも3年間保管されます。"
+  },
+  {
+    "id": 26,
+    "question": "Which of the following does not have any rights under the Financial Services Compensation Scheme?",
+    "category": "Complaints and Redress",
+    "questionId": "1014059",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A retail client with an ISA",
+        "textJa": "ISAを保有するリテール顧客。"
+      },
+      {
+        "letter": "B",
+        "text": ". Trustee of a scheme with assets of less than £1 million",
+        "textJa": "資産が£1百万未満の制度の受託者。"
+      },
+      {
+        "letter": "C",
+        "text": ". A small business with regard to a general insurance contract",
+        "textJa": "一般保険契約に関する小規模事業者。"
+      },
+      {
+        "letter": "D",
+        "text": ". An authorised firm with respect to general insurance",
+        "textJa": "一般保険に関する認可会社。"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Authorised companies are not able to claim for general insurance contracts under FSCS.",
+    "globalId": 392,
+    "categoryId": 26,
+    "questionJa": "Financial Services Compensation Schemeに基づく権利を持たないのは、次のうちどれですか？",
+    "explanationJa": "認可会社はFSCSに基づき一般保険契約の請求を行うことはできません。"
+  },
+  {
+    "id": 27,
+    "question": "When must a firm normally send a final response to a complainant?",
+    "category": "Complaints and Redress",
+    "questionId": "1014718",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Four weeks",
+        "textJa": "4週間"
+      },
+      {
+        "letter": "B",
+        "text": ". Five weeks",
+        "textJa": "5週間"
+      },
+      {
+        "letter": "C",
+        "text": ". Six weeks",
+        "textJa": "6週間"
+      },
+      {
+        "letter": "D",
+        "text": ". Eight weeks",
+        "textJa": "8週間"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "An acknowledgement letter must be sent promptly, and a final letter within eight weeks.",
+    "globalId": 393,
+    "categoryId": 27,
+    "questionJa": "企業は通常、いつ苦情申立人に最終回答を送付しなければなりませんか？",
+    "explanationJa": "受領確認書は速やかに送付し、最終回答書は8週間以内に送付しなければなりません。"
+  },
+  {
+    "id": 28,
+    "question": "Per the complaints procedures, how often are firms required to file a summary report of complaints received?",
+    "category": "Complaints and Redress",
+    "questionId": "1024586",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Monthly",
+        "textJa": "毎月"
+      },
+      {
+        "letter": "B",
+        "text": ". Quarterly",
+        "textJa": "四半期ごと"
+      },
+      {
+        "letter": "C",
+        "text": ". Semi-annually",
+        "textJa": "半年ごと"
+      },
+      {
+        "letter": "D",
+        "text": ". Annually",
+        "textJa": "毎年"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A firm is required to file a report with the FCA every six months, where a firm receives 500 or more complaints during a reporting period.",
+    "globalId": 394,
+    "categoryId": 28,
+    "questionJa": "苦情処理手続きに基づき、企業は受領した苦情の要約報告書をどのくらいの頻度で提出する必要がありますか？",
+    "explanationJa": "報告期間中に500件以上の苦情を受領した場合、企業はFCAに6ヶ月ごとに報告書を提出する必要があります。"
+  },
+  {
+    "id": 29,
+    "question": "If an individual is awarded money in respect of restitution, to whom is it paid first?",
+    "category": "Complaints and Redress",
+    "questionId": "1047688",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Conduct Authority",
+        "textJa": "Financial Conduct Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Services Compensation Scheme",
+        "textJa": "Financial Services Compensation Scheme"
+      },
+      {
+        "letter": "C",
+        "text": ". Her Majesty's Treasury",
+        "textJa": "Her Majesty's Treasury (英国財務省)"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Ombudsman Service",
+        "textJa": "Financial Ombudsman Service"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The money will be paid to the FCA first and then passed on to the individual concerned. If the money had been in respect of compensation following a liquidation it would be paid out by the FSCS.",
+    "globalId": 395,
+    "categoryId": 29,
+    "questionJa": "個人が原状回復に関して金銭を裁定された場合、それはまず誰に支払われますか？",
+    "explanationJa": "その金銭はまずFCAに支払われ、その後関係する個人に渡されます。もしその金銭が清算後の補償に関するものであれば、FSCSによって支払われます。"
+  },
+  {
+    "id": 30,
+    "question": "Gina and Tobias open a joint deposit account in the UK. If they wish to ensure that they do not lose any money on the deposit, which of the following is the maximum deposit they could make and still ensure this?",
+    "category": "Complaints and Redress",
+    "questionId": "1078769",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Up to £350,000",
+        "textJa": "最大£350,000"
+      },
+      {
+        "letter": "B",
+        "text": ". Up to £170,000",
+        "textJa": "最大£170,000"
+      },
+      {
+        "letter": "C",
+        "text": ". Up to £150,000",
+        "textJa": "最大£150,000"
+      },
+      {
+        "letter": "D",
+        "text": ". Up to £85,000",
+        "textJa": "最大£85,000"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "£85,000 is the amount is guaranteed by the FSCS per person. A joint account held by two people will receive protection on twice that. Page 34 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 35 ────────────────────────────────────────────────────────────",
+    "globalId": 396,
+    "categoryId": 30,
+    "questionJa": "GinaとTobiasは英国で共同預金口座を開設しました。彼らが預金で損失を出さないようにしたい場合、これを保証しつつ預けられる最大の預金額は次のうちどれですか？",
+    "explanationJa": "£85,000はFSCSによって1人あたり保証される金額です。2人が保有する共同口座は、その2倍の保護を受けられます。"
+  },
+  {
+    "id": 31,
+    "question": "Which of the following is not true regarding the Financial Services Compensation Scheme?",
+    "category": "Complaints and Redress",
+    "questionId": "1000645",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Retail clients may claim in respect of all losses (subject to a maximum claim)",
+        "textJa": "リテール顧客は、すべての損失に関して請求することができます（最大請求額を上限とする）。"
+      },
+      {
+        "letter": "B",
+        "text": ". In certain circumstances professional clients may make a claim on the scheme",
+        "textJa": "特定の状況下では、プロフェッショナル顧客もこの制度に請求することができます。"
+      },
+      {
+        "letter": "C",
+        "text": ". Eligible counterparties may never make a claim on the scheme",
+        "textJa": "適格なカウンターパーティーは、この制度に決して請求することはできません。"
+      },
+      {
+        "letter": "D",
+        "text": ". The scheme is funded by levies on authorised firms",
+        "textJa": "この制度は、認可会社からの賦課金によって資金調達されています。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Retail clients are 'eligible claimants', and so may claim on the scheme in respect of all losses (subject to a maximum claim). Any client of an insurance firm (including some professional clients and some eligible counterparties, but not other insurance firms) may also claim in respect of insurance only.",
+    "globalId": 397,
+    "categoryId": 31,
+    "questionJa": "Financial Services Compensation Schemeに関して、正しくないものはどれですか？",
+    "explanationJa": "リテール顧客は「適格な申立人」であるため、すべての損失に関して（最大請求額を上限として）この制度に請求することができます。保険会社の顧客（一部のプロフェッショナル顧客や一部の適格なカウンターパーティーを含むが、他の保険会社は含まない）も、保険に関してのみ請求することができます。"
+  },
+  {
+    "id": 32,
+    "question": "For how many years must a firm keep information on a complaint for MiFID business?",
+    "category": "Complaints and Redress",
+    "questionId": "1000653",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Three years from the date it receives the complaint",
+        "textJa": "苦情を受領した日から3年間。"
+      },
+      {
+        "letter": "B",
+        "text": ". Three years from the date it resolves the complaint",
+        "textJa": "苦情を解決した日から3年間。"
+      },
+      {
+        "letter": "C",
+        "text": ". Five years from the date it receives the complaint",
+        "textJa": "苦情を受領した日から5年間。"
+      },
+      {
+        "letter": "D",
+        "text": ". Five years from the date it resolves the complaint",
+        "textJa": "苦情を解決した日から5年間。"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The firm must make and retain records for a minimum of five years from the date of its receipt of the complaint with regard to MiFID business. Page 35 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 36 ──────────────────────────────────────────────────────────── Regulations: Mock 1",
+    "globalId": 398,
+    "categoryId": 32,
+    "questionJa": "MiFID事業に関する苦情について、企業は情報を何年間保管しなければなりませんか？",
+    "explanationJa": "MiFID事業に関しては、企業は苦情を受領した日から最低5年間、記録を作成し保管しなければなりません。"
+  }
+]

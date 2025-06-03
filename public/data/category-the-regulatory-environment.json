@@ -1,0 +1,1430 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following statements about the Financial Conduct Authority is FALSE?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000183",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Treasury appoints the board of the FCA",
+        "textJa": "財務省がFCAの理事会を任命する"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA is a company",
+        "textJa": "FCAは会社である"
+      },
+      {
+        "letter": "C",
+        "text": ". The board of the FCA can delegate its statutory objectives to another body",
+        "textJa": "FCAの理事会は法定目的を他の機関に委任できる"
+      },
+      {
+        "letter": "D",
+        "text": ". The FCA is the conduct regulator for the financial services industry",
+        "textJa": "FCAは金融サービス業界の行為規制機関である"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Although answerable to the Treasury, the FCA is a company - it is limited by guarantee, directly by the UK government. Its board cannot delegate its statutory objectives to another body.",
+    "globalId": 1,
+    "categoryId": 1,
+    "questionJa": "金融行為規制機構（FCA）に関する以下の記述のうち、誤っているものはどれですか？",
+    "explanationJa": "FCAは財務省に対して責任を負いますが、会社組織です - 英国政府による保証有限責任会社です。その理事会は法定目的を他の機関に委任することはできません。"
+  },
+  {
+    "id": 2,
+    "question": "Under the Financial Services Act 2012, which of the following is NOT a statutory objective of the Financial Conduct Authority?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000188",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Protecting the integrity of the UK financial system",
+        "textJa": "英国金融システムの健全性を保護する"
+      },
+      {
+        "letter": "B",
+        "text": ". Promoting effective competition in the interests of consumers",
+        "textJa": "消費者の利益のために効果的な競争を促進する"
+      },
+      {
+        "letter": "C",
+        "text": ". Securing an appropriate degree of protection for consumers",
+        "textJa": "消費者に適切な程度の保護を確保する"
+      },
+      {
+        "letter": "D",
+        "text": ". Reducing financial crime",
+        "textJa": "金融犯罪を削減する"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The need to reduce financial crime was a statutory objective of the FSA. The FCA is accountable for reducing financial crime - but this is now subsumed into the integrity objective.",
+    "globalId": 2,
+    "categoryId": 2,
+    "questionJa": "2012年金融サービス法の下で、以下のうち金融行為規制機構（FCA）の法定目的でないものはどれですか？",
+    "explanationJa": "金融犯罪の削減はFSAの法定目的でした。FCAは金融犯罪の削減に責任を負いますが、これは現在、健全性目的に含まれています。"
+  },
+  {
+    "id": 3,
+    "question": "Under the Financial Services Act 2012, who is the prudential regulator for the UK insurance industry?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000191",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". His Majesty's Treasury",
+        "textJa": "英国財務省"
+      },
+      {
+        "letter": "B",
+        "text": ". The Prudential Regulation Authority",
+        "textJa": "健全性規制機構（PRA）"
+      },
+      {
+        "letter": "C",
+        "text": ". Parliament",
+        "textJa": "議会"
+      },
+      {
+        "letter": "D",
+        "text": ". The Department for Business, Innovation and Skills",
+        "textJa": "ビジネス・イノベーション・技能省"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The PRA, or Prudential Regulation Authority, is the prudential regulator for the UK Insurance industry.",
+    "globalId": 3,
+    "categoryId": 3,
+    "questionJa": "2012年金融サービス法の下で、英国保険業界の健全性規制機関はどこですか？",
+    "explanationJa": "PRA（健全性規制機構）は、英国保険業界の健全性規制機関です。"
+  },
+  {
+    "id": 4,
+    "question": "Who regulates UK banks?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000203",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". His Majesty's Treasury",
+        "textJa": "英国財務省"
+      },
+      {
+        "letter": "B",
+        "text": ". The Prudential Regulation Authority",
+        "textJa": "健全性規制機構（PRA）"
+      },
+      {
+        "letter": "C",
+        "text": ". The London Stock Exchange",
+        "textJa": "ロンドン証券取引所"
+      },
+      {
+        "letter": "D",
+        "text": ". The European Central Bank",
+        "textJa": "欧州中央銀行"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The PRA is the regulator - it is part of The Bank of England.",
+    "globalId": 4,
+    "categoryId": 4,
+    "questionJa": "英国の銀行を規制するのはどこですか？",
+    "explanationJa": "PRAが規制機関です - これはイングランド銀行の一部です。"
+  },
+  {
+    "id": 5,
+    "question": "Which of the following concerning general guidance issued by the FCA is not true? Guidance notes:",
+    "category": "The Regulatory Environment",
+    "questionId": "1078714",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Highlight and expand upon any issues surrounding the rules",
+        "textJa": "規則に関連するあらゆる問題を強調し、詳述する"
+      },
+      {
+        "letter": "B",
+        "text": ". Are binding on the firm",
+        "textJa": "企業を拘束する"
+      },
+      {
+        "letter": "C",
+        "text": ". Allow firms to seek clarification on the rules thereby reducing the likelihood of a breach",
+        "textJa": "企業が規則に関する明確化を求めることを可能にし、それによって違反の可能性を減らす"
+      },
+      {
+        "letter": "D",
+        "text": ". Are contained within the FCA Handbook and are denoted by the letter G",
+        "textJa": "FCA Handbookに含まれており、Gの文字で示される"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Guidance notes are not binding on the firm and need not necessarily be followed to achieve compliance with the associated rule.",
+    "globalId": 5,
+    "categoryId": 5,
+    "questionJa": "FCAが発行する一般ガイダンスに関して、以下の記述のうち正しくないものはどれですか？ガイダンスノートは：",
+    "explanationJa": "ガイダンスノートは企業を拘束するものではなく、関連する規則を遵守するために必ずしも従う必要はありません。"
+  },
+  {
+    "id": 6,
+    "question": "Which of the following is responsible for funding the FCA?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000207",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Authorised firms",
+        "textJa": "認可された企業"
+      },
+      {
+        "letter": "B",
+        "text": ". Her Majesty's Treasury",
+        "textJa": "Her Majesty's Treasury"
+      },
+      {
+        "letter": "C",
+        "text": ". The Bank of England",
+        "textJa": "The Bank of England"
+      },
+      {
+        "letter": "D",
+        "text": ". Her Majesty's Revenue and Customs",
+        "textJa": "Her Majesty's Revenue and Customs"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA is a company limited by guarantee. The guarantor is the Treasury. However, on an ongoing basis, the FCA is funded by charging annual levies on its member firms.",
+    "globalId": 6,
+    "categoryId": 6,
+    "questionJa": "FCAの資金調達を担当しているのは次のうちどれですか？",
+    "explanationJa": "FCAは保証有限責任会社です。保証人はTreasuryです。しかし、継続的な運営においては、FCAはその会員企業に年間賦課金を課すことによって資金を調達しています。"
+  },
+  {
+    "id": 7,
+    "question": "All of the following are true of the FCA, except:",
+    "category": "The Regulatory Environment",
+    "questionId": "1078715",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The guarantor of the FCA is the Treasury",
+        "textJa": "FCAの保証人はTreasuryである"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA board is made up of executive and non-executive directors appointed by the Crown",
+        "textJa": "FCAの理事会は、国王によって任命された執行役員および非執行役員で構成される"
+      },
+      {
+        "letter": "C",
+        "text": ". It has statutory objectives set out in the Financial Services Act 2012",
+        "textJa": "Financial Services Act 2012に定められた法定目的を有する"
+      },
+      {
+        "letter": "D",
+        "text": ". It is responsible for conduct regulation for all authorised firms",
+        "textJa": "すべての認可された企業の行為規制を担当する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA board is appointed by the Treasury, not by 'the Crown' (this would generally refer to the Monarch himself). The FCA has one strategic and three operational objectives. The FCA is the conduct regulator for all firms, whether single-regulated or dual-regulated.",
+    "globalId": 7,
+    "categoryId": 7,
+    "questionJa": "FCAに関する以下の記述のうち、誤っているものはどれですか？",
+    "explanationJa": "FCAの理事会はTreasuryによって任命され、「国王」（これは通常、君主自身を指します）によって任命されるわけではありません。FCAは1つの戦略的目的と3つの運営目的を持っています。FCAは、単一規制か二重規制かにかかわらず、すべての企業の行為規制機関です。"
+  },
+  {
+    "id": 8,
+    "question": "The FCA is granted the power to enforce their rules and sanction and discipline those who do not follow them. Which of the following would the FCA not seek disciplinary action for?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000209",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Failure to get a financial promotion approved",
+        "textJa": "金融プロモーションの承認を得られなかった場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Not following FCA guidelines",
+        "textJa": "FCAのガイドラインに従わなかった場合"
+      },
+      {
+        "letter": "C",
+        "text": ". Not following FCA rules",
+        "textJa": "FCAの規則に従わなかった場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Not following FCA principles",
+        "textJa": "FCAの原則に従わなかった場合"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A firm may choose not to follow FCA guidelines (on cold calling hours for example) but failure to comply with rules and principles is an offence.",
+    "globalId": 8,
+    "categoryId": 8,
+    "questionJa": "FCAは、その規則を執行し、従わない者を制裁し懲戒する権限を与えられています。FCAが懲戒処分を求めないのは、次のうちどれですか？",
+    "explanationJa": "企業はFCAのガイドライン（例えば、コールドコール時間に関するもの）に従わないことを選択できますが、規則や原則の不遵守は違反行為です。"
+  },
+  {
+    "id": 9,
+    "question": "The Financial Conduct Authority is funded by contributions from which of the following?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000251",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Treasury indirectly through taxes",
+        "textJa": "税金を通じて間接的にTreasuryから"
+      },
+      {
+        "letter": "B",
+        "text": ". The LSE through a levy charged on transactions",
+        "textJa": "取引に課される賦課金を通じてLSEから"
+      },
+      {
+        "letter": "C",
+        "text": ". Regulated firms authorised under the Financial Services and Markets Act 2000",
+        "textJa": "Financial Services and Markets Act 2000に基づいて認可された規制対象企業から"
+      },
+      {
+        "letter": "D",
+        "text": ". The FCA through its own activities on the market",
+        "textJa": "市場におけるFCA自身の活動を通じてFCAから"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Although the FCA is answerable to the Treasury, it is in fact a limited liability company. It is also funded by the financial services industry - businesses authorised under the FSMA 2000.",
+    "globalId": 9,
+    "categoryId": 9,
+    "questionJa": "Financial Conduct Authorityは、次のうちどれからの拠出金によって資金調達されていますか？",
+    "explanationJa": "FCAはTreasuryに対して責任を負いますが、実際には有限責任会社です。また、FSMA 2000に基づいて認可された企業である金融サービス業界によって資金提供されています。"
+  },
+  {
+    "id": 10,
+    "question": "Which of the following is NOT true of the Fair Treatment of Customers (FTOC) regime implemented by the FCA?",
+    "category": "The Regulatory Environment",
+    "questionId": "1014043",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is based on six outcomes for firms to achieve",
+        "textJa": "企業が達成すべき6つの成果に基づいている"
+      },
+      {
+        "letter": "B",
+        "text": ". Once implemented the firms have achieved their objectives",
+        "textJa": "一度実施されれば、企業は目的を達成したことになる"
+      },
+      {
+        "letter": "C",
+        "text": ". Firms should set reasonable expectations about the product performance",
+        "textJa": "企業は製品のパフォーマンスについて合理的な期待値を設定すべきである"
+      },
+      {
+        "letter": "D",
+        "text": ". It looks to create a positive culture in the financial services industry",
+        "textJa": "金融サービス業界に肯定的な文化を創造することを目指している"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "FTOC is seen as a continuous process where firms continually update their policies and behaviours to meet the objectives. The purpose is to embed a culture of fair treatment of customers in the financial services. N.B. Since the advent of the Consumer Duty, FTOC only applies to firms that are out-of-scope of the Duty.",
+    "globalId": 10,
+    "categoryId": 10,
+    "questionJa": "FCAによって実施されている顧客の公正な取り扱い（FTOC）制度に関して、以下の記述のうち正しくないものはどれですか？",
+    "explanationJa": "FTOCは、企業が目的を達成するために方針や行動を継続的に更新する継続的なプロセスと見なされています。その目的は、金融サービスにおける顧客の公正な取り扱いの文化を根付かせることです。注意：Consumer Dutyの出現以来、FTOCはConsumer Dutyの適用範囲外の企業にのみ適用されます。"
+  },
+  {
+    "id": 11,
+    "question": "Which ONE of the following is a statutory objective of the FCA?",
+    "category": "The Regulatory Environment",
+    "questionId": "1014738",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Ensuring the UK financial markets are competitive worldwide",
+        "textJa": "英国の金融市場が世界的に競争力を持つことを保証する"
+      },
+      {
+        "letter": "B",
+        "text": ". Providing services that allow a firm to manage and control their risks",
+        "textJa": "企業がリスクを管理・制御するためのサービスを提供する"
+      },
+      {
+        "letter": "C",
+        "text": ". Implementing and monitoring financial legislation",
+        "textJa": "金融法規を実施し、監視する"
+      },
+      {
+        "letter": "D",
+        "text": ". Securing an appropriate degree of protection for consumers",
+        "textJa": "消費者に適切な程度の保護を確保する"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This is one of the statutory objectives of the FCA.",
+    "globalId": 11,
+    "categoryId": 11,
+    "questionJa": "以下のうち、FCAの法定目的であるものはどれですか？",
+    "explanationJa": "これはFCAの法定目的の1つです。"
+  },
+  {
+    "id": 12,
+    "question": "According to the Financial Services Act 2012, which one of the following is a statutory objective of the FCA?",
+    "category": "The Regulatory Environment",
+    "questionId": "1046682",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To balance the burdens and restrictions on firms with the benefits of regulation for consumers and the industry",
+        "textJa": "企業への負担と制限を、消費者と業界にとっての規制の利益とバランスさせること"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm to use its resources in the most economic and efficient way",
+        "textJa": "企業がその資源を最も経済的かつ効率的な方法で使用すること"
+      },
+      {
+        "letter": "C",
+        "text": ". That individuals involved in the management of authorised firms must take appropriate responsibility",
+        "textJa": "認可された企業の経営に関与する個人が適切な責任を負うこと"
+      },
+      {
+        "letter": "D",
+        "text": ". Protecting and enhancing the integrity of the UK financial system",
+        "textJa": "英国金融システムの完全性を保護し強化すること"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The objectives are: Strategic objective: ensuring that the relevant markets function well Operational objectives are the following: securing an appropriate degree of protection for consumers, protecting and enhancing the integrity of the UK financial system, promoting effective competition in the interests of consumers. Page 53 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 54 ────────────────────────────────────────────────────────────",
+    "globalId": 12,
+    "categoryId": 12,
+    "questionJa": "Financial Services Act 2012によると、以下のうちFCAの法定目的であるものはどれですか？",
+    "explanationJa": "目的は以下の通りです：戦略的目的：関連市場が十分に機能することを保証すること。運営目的は以下の通りです：消費者に適切な程度の保護を確保すること、英国金融システムの完全性を保護し強化すること、消費者の利益のために効果的な競争を促進すること。CISI Unit 1 Regulations 79ページ中53ページ ──────────────────────────────────────────────────────────── 54ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 13,
+    "question": "Which of the following bodies oversees the macro-economic and financial issues that could cause instability in the UK?",
+    "category": "The Regulatory Environment",
+    "questionId": "1057025",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Competition and Markets Authority",
+        "textJa": "Competition and Markets Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Prudential Regulation Authority",
+        "textJa": "Prudential Regulation Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial Conduct Authority",
+        "textJa": "Financial Conduct Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Policy Committee",
+        "textJa": "Financial Policy Committee"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This is the role of the FPC. Its aim is to gain a bigger picture of the financial services and markets in order to better predict problems that may occur. It exists within the Bank of England.",
+    "globalId": 13,
+    "categoryId": 13,
+    "questionJa": "英国で不安定性を引き起こす可能性のあるマクロ経済および金融問題を監督する機関は次のうちどれですか？",
+    "explanationJa": "これはFPCの役割です。その目的は、発生しうる問題をより良く予測するために、金融サービスと市場の全体像を把握することです。これはBank of England内に存在します。"
+  },
+  {
+    "id": 14,
+    "question": "Who is responsible for the regulation of individual savings accounts (ISAs)?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000638",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Department of Business Innovation and Skills",
+        "textJa": "Department of Business Innovation and Skills"
+      },
+      {
+        "letter": "B",
+        "text": ". HM Revenue and Customs",
+        "textJa": "HM Revenue and Customs"
+      },
+      {
+        "letter": "C",
+        "text": ". The Prudential Regulation Authority",
+        "textJa": "The Prudential Regulation Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". The Stock Exchange",
+        "textJa": "The Stock Exchange"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "HM Revenue and Customs is responsible for the regulation of Individual Savings Accounts (ISAs). ISAs are tax efficient savings and investments. Page 2 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 3 ────────────────────────────────────────────────────────────",
+    "globalId": 14,
+    "categoryId": 14,
+    "questionJa": "個人貯蓄口座（ISAs）の規制を担当しているのは誰ですか？",
+    "explanationJa": "HM Revenue and Customsは、個人貯蓄口座（ISAs）の規制を担当しています。ISAsは税制優遇のある貯蓄および投資です。CISI Unit 1 Regulations 79ページ中2ページ ──────────────────────────────────────────────────────────── 3ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 15,
+    "question": "Who is responsible for reducing risks to the financial system as a whole?",
+    "category": "The Regulatory Environment",
+    "questionId": "1058227",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Policy Committee",
+        "textJa": "Financial Policy Committee"
+      },
+      {
+        "letter": "B",
+        "text": ". National Crime Agency",
+        "textJa": "National Crime Agency"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial Conduct Authority",
+        "textJa": "Financial Conduct Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". Her Majesty's Treasury",
+        "textJa": "Her Majesty's Treasury"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FPC has responsibility for reducing risks to the financial system as a whole. The PRA takes instructions from the Financial Policy Committee (FPC) at the Bank of England.",
+    "globalId": 15,
+    "categoryId": 15,
+    "questionJa": "金融システム全体のリスクを低減する責任を負うのは誰ですか？",
+    "explanationJa": "FPCは金融システム全体のリスクを低減する責任を負っています。PRAはBank of EnglandのFinancial Policy Committee (FPC)から指示を受けます。"
+  },
+  {
+    "id": 16,
+    "question": "Which one of the following is the FCA's strategic objective?",
+    "category": "The Regulatory Environment",
+    "questionId": "1058229",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Ensuring that the markets function well",
+        "textJa": "市場が十分に機能することを保証する"
+      },
+      {
+        "letter": "B",
+        "text": ". Securing an appropriate degree of consumer protection",
+        "textJa": "適切な程度の消費者保護を確保する"
+      },
+      {
+        "letter": "C",
+        "text": ". Promoting effective competition",
+        "textJa": "効果的な競争を促進する"
+      },
+      {
+        "letter": "D",
+        "text": ". Promoting the safety and soundness of authorised persons",
+        "textJa": "認可された者の安全性と健全性を促進する"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA has a single strategic objective, which is ensuring that the markets function well. In addition the FCA has 3 operational objectives: Securing an appropriate degree of consumer protection; Protecting the integrity of the UK financial system and Promoting effective competition The PRA has been given a single general objective of promoting the safety and soundness of PRA- authorised persons.",
+    "globalId": 16,
+    "categoryId": 16,
+    "questionJa": "以下のうち、FCAの戦略的目的はどれですか？",
+    "explanationJa": "FCAには、市場が十分に機能することを保証するという単一の戦略的目的があります。加えて、FCAには3つの運営目的があります：適切な程度の消費者保護を確保すること、英国金融システムの完全性を保護すること、効果的な競争を促進すること。PRAには、PRA認可者の安全性と健全性を促進するという単一の一般的目的が与えられています。"
+  },
+  {
+    "id": 17,
+    "question": "To whom do the PRA's rule-making powers extend?",
+    "category": "The Regulatory Environment",
+    "questionId": "1058231",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Only PRA-authorised persons",
+        "textJa": "PRA認可者のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". All authorised persons",
+        "textJa": "すべての認可者"
+      },
+      {
+        "letter": "C",
+        "text": ". All regulated activities",
+        "textJa": "すべての規制対象活動"
+      },
+      {
+        "letter": "D",
+        "text": ". All regulated activities and also activities that are not regulated",
+        "textJa": "すべての規制対象活動および規制されていない活動"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Part 9A of the the Financial Services and Markets Act 2000 empowers the FCA to make rules that are legally binding on authorised firms concerning regulated activity and also activity that is not regulated. The PRA has similar rule-making powers, however the powers only extend to PRA-authorised persons.",
+    "globalId": 17,
+    "categoryId": 17,
+    "questionJa": "PRAの規則制定権限は誰に及びますか？",
+    "explanationJa": "Financial Services and Markets Act 2000のPart 9Aは、FCAに対し、規制対象活動および規制されていない活動に関して、認可企業に法的拘束力のある規則を作成する権限を与えています。PRAも同様の規則制定権限を持っていますが、その権限はPRA認可者にのみ及びます。"
+  },
+  {
+    "id": 18,
+    "question": "The purpose of the Competition and Markets Authority is to ensure healthy competition between companies for the benefit of whom?",
+    "category": "The Regulatory Environment",
+    "questionId": "1058232",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". UK Government",
+        "textJa": "英国政府"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA",
+        "textJa": "The FCA"
+      },
+      {
+        "letter": "C",
+        "text": ". Consumers and the economy",
+        "textJa": "消費者と経済"
+      },
+      {
+        "letter": "D",
+        "text": ". Companies",
+        "textJa": "企業"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The Competition and Markets Authority helps to ensure healthy competition between companies in the UK for the ultimate benefit of both consumers and of the economy.",
+    "globalId": 18,
+    "categoryId": 18,
+    "questionJa": "Competition and Markets Authorityの目的は、誰の利益のために企業間の健全な競争を確保することですか？",
+    "explanationJa": "Competition and Markets Authorityは、最終的に消費者と経済の両方の利益のために、英国の企業間の健全な競争を確保するのに役立ちます。"
+  },
+  {
+    "id": 19,
+    "question": "Which one of the following statements concerning the Financial Policy Committee (FPC) is correct? The FPC meets",
+    "category": "The Regulatory Environment",
+    "questionId": "1058234",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Annually and produces an annual Financial Stability Report",
+        "textJa": "年に一度、そして年次金融安定報告書を作成する"
+      },
+      {
+        "letter": "B",
+        "text": ". Annually and produces a biannual Financial Stability Report",
+        "textJa": "年に一度、そして年2回の金融安定報告書を作成する"
+      },
+      {
+        "letter": "C",
+        "text": ". Quarterly and produces a biannual Financial Stability Report",
+        "textJa": "四半期ごと、そして年2回の金融安定報告書を作成する"
+      },
+      {
+        "letter": "D",
+        "text": ". Quarterly and produces an annual Financial Stability Report",
+        "textJa": "四半期ごと、そして年次金融安定報告書を作成する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FPC meets at least four times a year and publishes a record of its formal meetings. It is also responsible for the Bank's biannual Financial Stability Report. Don't confuse the FPC with the Monetary Policy Committee (MPC), which meets monthly. Although the FPC does not meet 'quarterly', but 'at least 4 times a year', C is the best answer.",
+    "globalId": 19,
+    "categoryId": 19,
+    "questionJa": "Financial Policy Committee (FPC)に関する以下の記述のうち、正しいものはどれですか？FPCは会合を開きます",
+    "explanationJa": "FPCは少なくとも年に4回会合を開き、その公式会合の記録を公表します。また、Bank of Englandの年2回の金融安定報告書にも責任を負っています。月例で会合を開くMonetary Policy Committee (MPC)と混同しないでください。FPCは「四半期ごと」ではなく「少なくとも年に4回」会合を開きますが、Cが最も適切な回答です。"
+  },
+  {
+    "id": 20,
+    "question": "According to the provisions under Senior Management Arrangements, Systems and Controls in the Regulator's Handbook, the responsibilities of directors must be:",
+    "category": "The Regulatory Environment",
+    "questionId": "1000264",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Clearly and appropriately apportioned",
+        "textJa": "明確かつ適切に分担されている"
+      },
+      {
+        "letter": "B",
+        "text": ". Reviewed by external auditors on an annual basis",
+        "textJa": "外部監査人によって年次ベースで見直される"
+      },
+      {
+        "letter": "C",
+        "text": ". Recorded and the records kept for three years from when the responsibilities change",
+        "textJa": "記録され、その記録は責任が変更された時から3年間保管される"
+      },
+      {
+        "letter": "D",
+        "text": ". Clear, fair and not misleading",
+        "textJa": "明確、公正かつ誤解を招かない"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A firm must take reasonable care to maintain a clear and appropriate apportionment of significant responsibilities among its directors and senior managers. The records must be kept for six years.",
+    "globalId": 20,
+    "categoryId": 20,
+    "questionJa": "規制当局のハンドブックにあるSenior Management Arrangements, Systems and Controlsの規定によると、取締役の責任はどのようであるべきですか？",
+    "explanationJa": "企業は、取締役と上級管理職の間で重要な責任を明確かつ適切に分担するために、合理的な注意を払わなければなりません。記録は6年間保管されなければなりません。"
+  },
+  {
+    "id": 21,
+    "question": "Which ONE of the following is not one of the Principles for Businesses laid down for firms in the financial sector?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000215",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial prudence",
+        "textJa": "財務上の慎重性"
+      },
+      {
+        "letter": "B",
+        "text": ". Customers' interests",
+        "textJa": "顧客の利益"
+      },
+      {
+        "letter": "C",
+        "text": ". Conflicts of interests",
+        "textJa": "利益相反"
+      },
+      {
+        "letter": "D",
+        "text": ". Prevention of money laundering",
+        "textJa": "マネーロンダリングの防止"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Prevention of money laundering is not one of the principles for businesses.",
+    "globalId": 21,
+    "categoryId": 21,
+    "questionJa": "以下のうち、金融セクターの企業のために定められた「事業者のための原則」の1つではないものはどれですか？",
+    "explanationJa": "マネーロンダリングの防止は、「事業者のための原則」の1つではありません。"
+  },
+  {
+    "id": 22,
+    "question": "Which of the following is not one of the Principles for Businesses?",
+    "category": "The Regulatory Environment",
+    "questionId": "1078716",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Skill, care and diligence",
+        "textJa": "技能、注意および勤勉"
+      },
+      {
+        "letter": "B",
+        "text": ". Management and control",
+        "textJa": "管理および統制"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial prudence",
+        "textJa": "財務上の慎重性"
+      },
+      {
+        "letter": "D",
+        "text": ". Senior management functions",
+        "textJa": "上級管理職の機能"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Senior management functions are regulated via the Accountability Regime (SM&CR), not the Principles for Businesses.",
+    "globalId": 22,
+    "categoryId": 22,
+    "questionJa": "以下のうち、「事業者のための原則」の1つではないものはどれですか？",
+    "explanationJa": "上級管理職の機能は、「事業者のための原則」ではなく、Accountability Regime (SM&CR)を通じて規制されています。"
+  },
+  {
+    "id": 23,
+    "question": "According to the Financial Services Act 2012, which of the following bodies are the primary financial services regulators? I . Financial Services Authority II . Prudential Regulation Authority III . Financial Conduct Authority IV . Financial Policy Committee",
+    "category": "The Regulatory Environment",
+    "questionId": "1078718",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II",
+        "textJa": "I と II"
+      },
+      {
+        "letter": "B",
+        "text": ". II and III",
+        "textJa": "II と III"
+      },
+      {
+        "letter": "C",
+        "text": ". III and IV",
+        "textJa": "III と IV"
+      },
+      {
+        "letter": "D",
+        "text": ". II and IV",
+        "textJa": "II と IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The PRA and the FCA are the primary regulators for firms in the financial services industry.",
+    "globalId": 23,
+    "categoryId": 23,
+    "questionJa": "Financial Services Act 2012によると、以下の機関のうち、主要な金融サービス規制機関はどれですか？ I . Financial Services Authority II . Prudential Regulation Authority III . Financial Conduct Authority IV . Financial Policy Committee",
+    "explanationJa": "PRAとFCAは、金融サービス業界の企業の主要な規制機関です。"
+  },
+  {
+    "id": 24,
+    "question": "Which of the following Principles for Businesses requires firms to have appropriate risk management controls in place?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000245",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Management and control",
+        "textJa": "管理および統制"
+      },
+      {
+        "letter": "B",
+        "text": ". Integrity",
+        "textJa": "誠実性"
+      },
+      {
+        "letter": "C",
+        "text": ". Market conduct",
+        "textJa": "市場行動"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial prudence",
+        "textJa": "財務上の慎重性"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Principle for Businesses 3: Management and control requires firms to take reasonable care to organise and control its affairs responsibly and effectively, with adequate risk management systems.",
+    "globalId": 24,
+    "categoryId": 24,
+    "questionJa": "以下の「事業者のための原則」のうち、企業が適切なリスク管理体制を整備することを要求しているものはどれですか？",
+    "explanationJa": "事業者のための原則3：管理および統制は、企業が十分なリスク管理システムを備え、責任を持って効果的に業務を組織し統制するために合理的な注意を払うことを要求しています。"
+  },
+  {
+    "id": 25,
+    "question": "Which of the following statements are correct? I . The FCA is responsible for ensuring consumers get a fair deal II . The FCA is responsible for stability of the markets III . The PRA is responsible for ensuring consumers get a fair deal IV . The PRA is responsible for stability of the markets",
+    "category": "The Regulatory Environment",
+    "questionId": "1058221",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and III",
+        "textJa": "I と III"
+      },
+      {
+        "letter": "B",
+        "text": ". I and IV",
+        "textJa": "I と IV"
+      },
+      {
+        "letter": "C",
+        "text": ". II and III",
+        "textJa": "II と III"
+      },
+      {
+        "letter": "D",
+        "text": ". II and IV",
+        "textJa": "II と IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA is responsible for ensuring that financial markets work well so that consumers get a fair deal, whilst the focus of the PRA is on stability - the safety and soundness of deposit taking firms, insurers and systematically important investment firms.",
+    "globalId": 25,
+    "categoryId": 25,
+    "questionJa": "以下の記述のうち、正しいものはどれですか？ I . FCAは消費者が公正な取引を得ることを保証する責任がある II . FCAは市場の安定性に責任がある III . PRAは消費者が公正な取引を得ることを保証する責任がある IV . PRAは市場の安定性に責任がある",
+    "explanationJa": "FCAは、金融市場が十分に機能し、消費者が公正な取引を得られるようにする責任を負っていますが、PRAの焦点は安定性、つまり預金取扱金融機関、保険会社、およびシステム上重要な投資会社の安全性と健全性にあります。"
+  },
+  {
+    "id": 26,
+    "question": "Which of the following best describes the objective of conduct risk regulation?",
+    "category": "The Regulatory Environment",
+    "questionId": "1069720",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Rules do matter, but outcomes for consumers and markets are the principal focus of regulatory concern",
+        "textJa": "規則は重要であるが、消費者と市場にとっての成果が規制上の懸念の主要な焦点である"
+      },
+      {
+        "letter": "B",
+        "text": ". Prescriptive rules to manage the conduct of employees of financial firms are the only regulatory concern",
+        "textJa": "金融機関の従業員の行動を管理するための規範的な規則が唯一の規制上の懸念である"
+      },
+      {
+        "letter": "C",
+        "text": ". Outcomes for consumers and markets do matter, but rules are the principal focus of regulatory concern",
+        "textJa": "消費者と市場にとっての成果は重要であるが、規則が規制上の懸念の主要な焦点である"
+      },
+      {
+        "letter": "D",
+        "text": ". Outcomes for consumers and markets are the only regulatory concern",
+        "textJa": "消費者と市場にとっての成果が唯一の規制上の懸念である"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA takes a balanced approach to the management of conduct risk. The rules do matter, but outcomes for consumers and markets are the principal focus of regulatory concern.",
+    "globalId": 26,
+    "categoryId": 26,
+    "questionJa": "行為リスク規制の目的を最もよく説明しているのは次のうちどれですか？",
+    "explanationJa": "FCAは、行為リスクの管理に対してバランスの取れたアプローチを取っています。規則は重要ですが、消費者と市場にとっての成果が規制上の懸念の主要な焦点です。"
+  },
+  {
+    "id": 27,
+    "question": "Which of the following is true of the Takeover Panel?",
+    "category": "The Regulatory Environment",
+    "questionId": "4055759",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It delivers effective enforcement to deter wrongdoing, protect consumers and educate businesses",
+        "textJa": "不正行為を抑止し、消費者を保護し、企業を教育するために効果的な執行を行う"
+      },
+      {
+        "letter": "B",
+        "text": ". It supervises and regulate takeovers in accordance with the rules set out in the Code",
+        "textJa": "Codeに定められた規則に従って買収を監督および規制する"
+      },
+      {
+        "letter": "C",
+        "text": ". It extends competition frontiers by using the markets regime to improve the way competition works",
+        "textJa": "市場制度を利用して競争の仕組みを改善することにより、競争のフロンティアを拡大する"
+      },
+      {
+        "letter": "D",
+        "text": ". It investigates mergers which could restrict competition",
+        "textJa": "競争を制限する可能性のある合併を調査する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Takeover Panel - also known as the Panel on Takeovers and Mergers - does not play a part in assessing the impact of the takeover or merger on competition or consumer detriment. The Panel focuses on the fair treatment of affected parties during the process of the takeover or merger. These fair processes are set out in the Takeover Code. Page 3 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 4 ────────────────────────────────────────────────────────────",
+    "globalId": 27,
+    "categoryId": 27,
+    "questionJa": "Takeover Panelに関して正しいのは次のうちどれですか？",
+    "explanationJa": "Takeover Panel（Panel on Takeovers and Mergersとしても知られる）は、買収や合併が競争や消費者の不利益に与える影響を評価する役割は果たしません。Panelは、買収や合併のプロセスにおいて影響を受ける当事者の公正な取り扱いに焦点を当てています。これらの公正なプロセスはTakeover Codeに定められています。CISI Unit 1 Regulations 79ページ中3ページ ──────────────────────────────────────────────────────────── 4ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 28,
+    "question": "The Takeover Panel is:",
+    "category": "The Regulatory Environment",
+    "questionId": "4055760",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A division of the Financial Conduct Authority that monitors market conduct",
+        "textJa": "市場行動を監視するFinancial Conduct Authorityの一部門"
+      },
+      {
+        "letter": "B",
+        "text": ". A division of the Prudential Regulation Authority that assesses capital structure",
+        "textJa": "資本構造を評価するPrudential Regulation Authorityの一部門"
+      },
+      {
+        "letter": "C",
+        "text": ". A division of the Bank of England that monitors systemic risk",
+        "textJa": "システミックリスクを監視するBank of Englandの一部門"
+      },
+      {
+        "letter": "D",
+        "text": ". An independent body that issues and administers the City Code",
+        "textJa": "City Codeを発行し管理する独立機関"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Takeover Panel (the ‘Panel’) is an independent body, established in 1968, whose main functions are to issue and administer the City Code on Takeovers and Mergers (the Takeover Code) and to supervise and regulate takeovers and other matters to which the Code applies in accordance with the rules set out in the Code.",
+    "globalId": 28,
+    "categoryId": 28,
+    "questionJa": "Takeover Panelは：",
+    "explanationJa": "Takeover Panel（「Panel」）は、1968年に設立された独立機関であり、その主な機能は、City Code on Takeovers and Mergers（Takeover Code）を発行し管理すること、およびCodeに定められた規則に従って買収およびCodeが適用されるその他の事項を監督し規制することです。"
+  },
+  {
+    "id": 29,
+    "question": "What is the purpose of the Pension Protection Fund?",
+    "category": "The Regulatory Environment",
+    "questionId": "4055763",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To ensure pension companies do not become insolvent",
+        "textJa": "年金会社が破綻しないようにする"
+      },
+      {
+        "letter": "B",
+        "text": ". To invest funds for auto-enrolment into work-based schemes",
+        "textJa": "職場ベースの制度への自動加入のための資金を投資する"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure annuities are seen as viable post-pension-freedom legislation",
+        "textJa": "年金自由化法制後も年金が実行可能なものと見なされるようにする"
+      },
+      {
+        "letter": "D",
+        "text": ". To compensate members of insolvent final salary pension schemes",
+        "textJa": "破綻した確定給付年金制度の加入者に補償を行う"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The PPF is there to compensate members of insolvent final salary (or defined beneifit) pension schemes. If their employers become insolvent, and their pension schemes cannot afford to pay people their promised pensions, the PPF will compensate them financially for the money they have lost.",
+    "globalId": 29,
+    "categoryId": 29,
+    "questionJa": "Pension Protection Fundの目的は何ですか？",
+    "explanationJa": "PPFは、破綻した確定給付年金制度の加入者に補償を行うために存在します。雇用主が破綻し、その年金制度が約束された年金を支払う余裕がない場合、PPFは失われたお金について財政的に補償します。"
+  },
+  {
+    "id": 30,
+    "question": "The Consumer Rights Act 2015 gives the FCA the power to do which of the following?",
+    "category": "The Regulatory Environment",
+    "questionId": "4055765",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To enforce criminal legislation, such as the Criminal Justice Act",
+        "textJa": "Criminal Justice Actなどの刑法を執行する"
+      },
+      {
+        "letter": "B",
+        "text": ". To challenge unfair terms in financial services consumer contracts",
+        "textJa": "金融サービスの消費者契約における不公正な条項に異議を唱える"
+      },
+      {
+        "letter": "C",
+        "text": ". To enforce civil legislation, such as the Market Abuse Regulation",
+        "textJa": "Market Abuse Regulationなどの民法を執行する"
+      },
+      {
+        "letter": "D",
+        "text": ". To challenge unauthorised firms conducting regulated activities",
+        "textJa": "規制対象活動を行う無許可の企業に異議を唱える"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Consumer Rights Act 2015 allows the FCA to challenge unfair terms in financial services consumer contracts. The Financial Services and Markets Act 2000 gives the FCA the power to do the other options.",
+    "globalId": 30,
+    "categoryId": 30,
+    "questionJa": "Consumer Rights Act 2015は、FCAに次のうちどれを行う権限を与えていますか？",
+    "explanationJa": "Consumer Rights Act 2015は、FCAが金融サービスの消費者契約における不公正な条項に異議を唱えることを許可しています。Financial Services and Markets Act 2000は、FCAに他の選択肢を行う権限を与えています。"
+  },
+  {
+    "id": 31,
+    "question": "As a designated body under the Unfair Terms in Consumer Contracts Regulation 1999, the FCA has the power to:",
+    "category": "The Regulatory Environment",
+    "questionId": "4055766",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Include unfair contract terms in its documentation aimed at consumers",
+        "textJa": "消費者を対象とした文書に不公正な契約条項を含める"
+      },
+      {
+        "letter": "B",
+        "text": ". Define unfair terms in all consumer contracts in the UK",
+        "textJa": "英国のすべての消費者契約における不公正な条項を定義する"
+      },
+      {
+        "letter": "C",
+        "text": ". Force financial services firm to amend or remove unfair contract terms",
+        "textJa": "金融サービス会社に不公正な契約条項を修正または削除させる"
+      },
+      {
+        "letter": "D",
+        "text": ". Provide compensation for those subject to unfair contract terms",
+        "textJa": "不公正な契約条項の対象となった者に補償を提供する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "As a designated body under the Unfair Terms in Consumer Contracts Regulation 1999, the FCA has the power to force financial services firm to amend or remove unfair contract terms.",
+    "globalId": 31,
+    "categoryId": 31,
+    "questionJa": "Unfair Terms in Consumer Contracts Regulation 1999の下で指定された機関として、FCAは以下の権限を持っています：",
+    "explanationJa": "Unfair Terms in Consumer Contracts Regulation 1999の下で指定された機関として、FCAは金融サービス会社に不公正な契約条項を修正または削除させる権限を持っています。"
+  },
+  {
+    "id": 32,
+    "question": "Which of the following statements is not true of the Principles for Businesses?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000227",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All authorised firms must comply with the PRIN",
+        "textJa": "すべての認可企業はPRINを遵守しなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". Failure to comply with the PRIN can result in regulatory enforcement action for FCA firms",
+        "textJa": "PRINの不遵守は、FCAの企業に対する規制執行措置につながる可能性がある"
+      },
+      {
+        "letter": "C",
+        "text": ". They only apply to firms authorised by the FCA",
+        "textJa": "これらはFCAによって認可された企業にのみ適用される"
+      },
+      {
+        "letter": "D",
+        "text": ". They represent a set of fundamental objectives backed by the Financial Services and Markets Act 2000",
+        "textJa": "これらはFinancial Services and Markets Act 2000によって裏付けられた一連の基本的目的を表している"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The PRIN are general statements of the fundamental obligations of FCA firms under FSMA 2000 and the regulatory system. They have been devised by, and are enforced by, the FCA. They apply to all authorised firms, PRA authorised firms also comply with the PRA's Fundamental Rules (FR).",
+    "globalId": 32,
+    "categoryId": 32,
+    "questionJa": "「事業者のための原則」に関して、以下の記述のうち正しくないものはどれですか？",
+    "explanationJa": "PRINは、FSMA 2000および規制システムの下でのFCA企業の基本的義務に関する一般的な記述です。これらはFCAによって考案され、執行されています。これらはすべての認可企業に適用され、PRA認可企業もPRAのFundamental Rules (FR)を遵守します。"
+  },
+  {
+    "id": 33,
+    "question": "Which of the following is NOT a type of work under the FCA supervision model?",
+    "category": "The Regulatory Environment",
+    "questionId": "1058264",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Proactive Firm Supervision",
+        "textJa": "Proactive Firm Supervision（積極的企業監督）"
+      },
+      {
+        "letter": "B",
+        "text": ". Reactive Supervision",
+        "textJa": "Reactive Supervision（事後的監督）"
+      },
+      {
+        "letter": "C",
+        "text": ". Thematic",
+        "textJa": "Thematic（テーマ別）"
+      },
+      {
+        "letter": "D",
+        "text": ". Proactive Intervention Framework",
+        "textJa": "Proactive Intervention Framework（積極的介入フレームワーク）"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Proactive Intervention Framework is a supervisory approach adopted by PRA and not the FCA.",
+    "globalId": 33,
+    "categoryId": 33,
+    "questionJa": "以下のうち、FCAの監督モデルにおける業務の種類ではないものはどれですか？",
+    "explanationJa": "Proactive Intervention Frameworkは、FCAではなくPRAによって採用された監督アプローチです。"
+  },
+  {
+    "id": 34,
+    "question": "The FCA has a range of supervisory tools available to it, classified under four headings. Which of the following best reflects these four headings?",
+    "category": "The Regulatory Environment",
+    "questionId": "4078797",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Identify, Evaluate, Diagnose, Remedy",
+        "textJa": "特定、評価、診断、是正 (Identify, Evaluate, Diagnose, Remedy)"
+      },
+      {
+        "letter": "B",
+        "text": ". Diagnose, Evaluate, Monitor, Remedy",
+        "textJa": "診断、評価、監視、是正 (Diagnose, Evaluate, Monitor, Remedy)"
+      },
+      {
+        "letter": "C",
+        "text": ". Identify, Monitor, Evaluate, Remedial",
+        "textJa": "特定、監視、評価、是正的 (Identify, Monitor, Evaluate, Remedial)"
+      },
+      {
+        "letter": "D",
+        "text": ". Diagnose, Monitor, Identify, Remedy",
+        "textJa": "診断、監視、特定、是正 (Diagnose, Monitor, Identify, Remedy)"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The four tools of supervision are Identify, Evaluate, Diagnose, Remedy",
+    "globalId": 34,
+    "categoryId": 34,
+    "questionJa": "FCAは、4つの見出しに分類されるさまざまな監督ツールを利用できます。これらの4つの見出しを最もよく反映しているのは次のうちどれですか？",
+    "explanationJa": "監督の4つのツールは、特定 (Identify)、評価 (Evaluate)、診断 (Diagnose)、是正 (Remedy) です。"
+  },
+  {
+    "id": 35,
+    "question": "Which one of the following is NOT one of the Regulator's supervisory tools?",
+    "category": "The Regulatory Environment",
+    "questionId": "4078843",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Diagnose",
+        "textJa": "診断 (Diagnose)"
+      },
+      {
+        "letter": "B",
+        "text": ". Evaluate",
+        "textJa": "評価 (Evaluate)"
+      },
+      {
+        "letter": "C",
+        "text": ". React",
+        "textJa": "対応 (React)"
+      },
+      {
+        "letter": "D",
+        "text": ". Identify",
+        "textJa": "特定 (Identify)"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Tools of supervision: ​ Identify: identify where harm or potential harm is present ​ Diagnose: what is the cause, the extent and potential development of the harm ​ Remedy: through a range of FCA actions that can be taken ​ Evaluate: FCA assesses how effective these action were",
+    "globalId": 35,
+    "categoryId": 35,
+    "questionJa": "以下のうち、規制当局の監督ツールの1つではないものはどれですか？",
+    "explanationJa": "監督ツール： 特定 (Identify)：害または潜在的な害が存在する場所を特定する。診断 (Diagnose)：害の原因、範囲、および潜在的な進展は何か。是正 (Remedy)：実行可能なさまざまなFCAの措置を通じて。評価 (Evaluate)：FCAはこれらの措置がどれほど効果的であったかを評価する。"
+  },
+  {
+    "id": 36,
+    "question": "The FCA has the right to demand that firms maintain a higher capital requirement than that stated in their prudential standards. In terms of the tools of supervision this would be an example of what tool?",
+    "category": "The Regulatory Environment",
+    "questionId": "4078844",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Identify",
+        "textJa": "特定 (Identify)"
+      },
+      {
+        "letter": "B",
+        "text": ". Diagnose",
+        "textJa": "診断 (Diagnose)"
+      },
+      {
+        "letter": "C",
+        "text": ". Remedy",
+        "textJa": "是正 (Remedy)"
+      },
+      {
+        "letter": "D",
+        "text": ". Evaluate",
+        "textJa": "評価 (Evaluate)"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This would be an example of the FCA remedying the situation through their action.",
+    "globalId": 36,
+    "categoryId": 36,
+    "questionJa": "FCAは、企業に対し、健全性基準に記載されているよりも高い自己資本要件を維持するよう要求する権利を有しています。監督ツールの観点から、これはどのツールの例となりますか？",
+    "explanationJa": "これは、FCAがその行動を通じて状況を是正 (Remedy) している例となります。"
+  },
+  {
+    "id": 37,
+    "question": "Which statement is the correct aim of the FCA's Consumer Duty?",
+    "category": "The Regulatory Environment",
+    "questionId": "4160172",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To ensure that professional clients receive good outcomes when they purchase products or services",
+        "textJa": "プロフェッショナル顧客が製品やサービスを購入する際に良い結果を得られるようにする"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure that retail customers receive good outcomes when they purchase products or services",
+        "textJa": "リテール顧客が製品やサービスを購入する際に良い結果を得られるようにする"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure that eligible counterparties receive good outcomes when they purchase products or services",
+        "textJa": "適格取引先が製品やサービスを購入する際に良い結果を得られるようにする"
+      },
+      {
+        "letter": "D",
+        "text": ". To ensure that financial services firms receive good outcomes when they purchase products or services.",
+        "textJa": "金融サービス会社が製品やサービスを購入する際に良い結果を得られるようにする"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The aim of the FCA's Consumer Duty is to ensure that retail customers receive good outcomes when they purchase products or services.",
+    "globalId": 37,
+    "categoryId": 37,
+    "questionJa": "FCAのConsumer Dutyの正しい目的はどの記述ですか？",
+    "explanationJa": "FCAのConsumer Dutyの目的は、リテール顧客が製品やサービスを購入する際に良い結果を得られるようにすることです。"
+  },
+  {
+    "id": 38,
+    "question": "Which of the following activities would be 'out of scope' under the FCA's Consumer Duty initiative?",
+    "category": "The Regulatory Environment",
+    "questionId": "4160173",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Giving advice on listed shares to a retail customer",
+        "textJa": "リテール顧客への上場株式に関するアドバイスの提供"
+      },
+      {
+        "letter": "B",
+        "text": ". A fund management firm managing a regulated collective investment scheme for a range of customers",
+        "textJa": "さまざまな顧客向けの規制された集団投資スキームを管理するファンドマネジメント会社"
+      },
+      {
+        "letter": "C",
+        "text": ". Providing group life assurance products to employees of a company",
+        "textJa": "企業の従業員への団体生命保険商品の提供"
+      },
+      {
+        "letter": "D",
+        "text": ". A retail bank providing deposit-taking activities to its customers",
+        "textJa": "顧客への預金受入活動を提供するリテールバンク"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Providing group life assurance products is specifically excluded under the Consumer Duty, whether to employees of a company or to anybody else. The other three activities are all, either directly or indirectly, provided to retail customers.",
+    "globalId": 38,
+    "categoryId": 38,
+    "questionJa": "FCAのConsumer Dutyイニシアチブの下で、「適用範囲外」となる活動は次のうちどれですか？",
+    "explanationJa": "団体生命保険商品の提供は、企業の従業員であろうと他の誰であろうと、Consumer Dutyの下では特に除外されています。他の3つの活動はすべて、直接的または間接的にリテール顧客に提供されるものです。"
+  },
+  {
+    "id": 39,
+    "question": "Which of the following is a statutory objective of the FCA?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000708",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To levy specific fines in the case of money laundering activities",
+        "textJa": "マネーロンダリング活動の場合に特定の罰金を課すこと"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure financial promotions issued by authorised firms are not misleading",
+        "textJa": "認可された企業が発行する金融プロモーションが誤解を招かないようにすること"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure that the relevant markets function well",
+        "textJa": "関連市場が十分に機能することを保証すること"
+      },
+      {
+        "letter": "D",
+        "text": ". To promote guidelines as to the conduct of authorised firms",
+        "textJa": "認可された企業の行動に関するガイドラインを推進すること"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FCA has four objectives. Strategic objective: ensuring that the relevant markets function well Operational objectives: securing an appropriate degree of protection for consumers, protecting and enhancing the integrity of the UK financial system, promoting effective competition in the interests of consumers. Page 4 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 5 ────────────────────────────────────────────────────────────",
+    "globalId": 39,
+    "categoryId": 39,
+    "questionJa": "以下のうち、FCAの法定目的であるものはどれですか？",
+    "explanationJa": "FCAには4つの目的があります。戦略的目的：関連市場が十分に機能することを保証すること。運営目的：消費者に適切な程度の保護を確保すること、英国金融システムの完全性を保護し強化すること、消費者の利益のために効果的な競争を促進すること。CISI Unit 1 Regulations 79ページ中4ページ ──────────────────────────────────────────────────────────── 5ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 40,
+    "question": "All of the following are specified by the FCA as a certification function except:",
+    "category": "The Regulatory Environment",
+    "questionId": "1000242",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Material risk takers",
+        "textJa": "重要なリスクテイカー"
+      },
+      {
+        "letter": "B",
+        "text": ". Dealing directly with clients",
+        "textJa": "顧客との直接取引"
+      },
+      {
+        "letter": "C",
+        "text": ". Supervisors of Certification Functions",
+        "textJa": "認証機能の監督者"
+      },
+      {
+        "letter": "D",
+        "text": ". Information providers",
+        "textJa": "情報提供者"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Certification functions are: CASS oversight, proprietary trader, significant management, functions requiring qualifications, managers of certification functions, material risk takers and client dealing.",
+    "globalId": 40,
+    "categoryId": 40,
+    "questionJa": "以下のすべてがFCAによって認証機能として指定されていますが、例外はどれですか？",
+    "explanationJa": "認証機能は次のとおりです：CASS監督、自己勘定トレーダー、重要な管理、資格を必要とする機能、認証機能の管理者、重要なリスクテイカー、および顧客対応。"
+  },
+  {
+    "id": 41,
+    "question": "Which of the following does not reflect the range of sanctions that the PRA can impose on a firm breaching PRA rules?",
+    "category": "The Regulatory Environment",
+    "questionId": "1000795",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Maximum fine of £250,000",
+        "textJa": "最大25万ポンドの罰金"
+      },
+      {
+        "letter": "B",
+        "text": ". Varying Part 4A permission",
+        "textJa": "Part 4A許可の変更"
+      },
+      {
+        "letter": "C",
+        "text": ". Cancelling permission",
+        "textJa": "許可の取り消し"
+      },
+      {
+        "letter": "D",
+        "text": ". Public censure",
+        "textJa": "公的非難"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The maximum fine is unlimited.",
+    "globalId": 41,
+    "categoryId": 41,
+    "questionJa": "PRA規則に違反した企業に対してPRAが課すことができる制裁の範囲を反映していないものは次のうちどれですか？",
+    "explanationJa": "罰金の上限はありません。"
+  },
+  {
+    "id": 42,
+    "question": "The FCA guidance on electronic communication with a client states that a firm should do all of the following, except:",
+    "category": "The Regulatory Environment",
+    "questionId": "1000594",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Be able to demonstrate that the client wishes to communicate using this type of media",
+        "textJa": "クライアントがこの種のメディアを使用して通信することを希望していることを実証できる"
+      },
+      {
+        "letter": "B",
+        "text": ". If entering an agreement, make it clear to the client that a contractual relationship has legal consequences",
+        "textJa": "契約を締結する場合、契約関係には法的結果が伴うことをクライアントに明確にする"
+      },
+      {
+        "letter": "C",
+        "text": ". Have in place arrangements to ensure secure transmission and receipt of the communication",
+        "textJa": "通信の安全な送信と受信を保証するための体制を整備している"
+      },
+      {
+        "letter": "D",
+        "text": ". Be able to demonstrate that it made it clear to the client that instructions communicated in this manner may not be acted upon immediately",
+        "textJa": "この方法で伝えられた指示が直ちに実行されない可能性があることをクライアントに明確にしたことを実証できる"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The firm should also be able to verify the authenticity and integrity of the communication, together with the date and time sent and received. Page 5 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 6 ──────────────────────────────────────────────────────────── The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "globalId": 42,
+    "categoryId": 42,
+    "questionJa": "顧客との電子通信に関するFCAのガイダンスでは、企業は以下のすべてを行うべきであるとされていますが、例外はどれですか？",
+    "explanationJa": "企業はまた、送受信された日時とともに、通信の真正性と完全性を検証できる必要があります。CISI Unit 1 Regulations 79ページ中5ページ ──────────────────────────────────────────────────────────── 6ページ ──────────────────────────────────────────────────────────── The Financial Services and Markets Act 2000 and Financial Services Act 2012"
+  }
+]

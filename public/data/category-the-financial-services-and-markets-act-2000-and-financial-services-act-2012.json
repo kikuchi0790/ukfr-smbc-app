@@ -1,0 +1,3368 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following are specified investments, as defined by the Regulated Activities Order? I . Options on the FTSE 100 index II . Currencies III . Options on gold IV . Gold",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000010",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". III only",
+        "textJa": ". III のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". I and III",
+        "textJa": ". I および III"
+      },
+      {
+        "letter": "C",
+        "text": ". I, II and III",
+        "textJa": ". I、II および III"
+      },
+      {
+        "letter": "D",
+        "text": ". I, III and IV",
+        "textJa": ". I、III および IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Neither tangible assets (including precious metals such as gold or silver), nor currencies are specified investments within the meaning of the RAO and FSMA 2000. Options are classified as specified investments under FSMA 2000 if the underlying asset of the option is itself a specified investment (such as an option on a future), or is a precious metal (i.e. gold, silver, platinum or palladium).",
+    "globalId": 43,
+    "categoryId": 1,
+    "questionJa": "Regulated Activities Orderで定義されている特定投資に該当するものは次のうちどれですか？ I. FTSE 100指数のオプション II. 通貨 III. 金のオプション IV. 金",
+    "explanationJa": "有形資産（金や銀などの貴金属を含む）も通貨も、RAOおよびFSMA 2000の意味における特定投資ではありません。オプションについては、その原資産自体が特定投資（先物オプションなど）である場合、または貴金属（金、銀、プラチナ、パラジウムなど）である場合に、FSMA 2000に基づき特定投資として分類されます。"
+  },
+  {
+    "id": 2,
+    "question": "Which of the following does not require FCA/PRA authorisation?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000184",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Sending dematerialised instructions in investments",
+        "textJa": ". 投資における非物質化された指示の送信"
+      },
+      {
+        "letter": "B",
+        "text": ". Running a collective investment scheme",
+        "textJa": ". 共同投資スキームの運営"
+      },
+      {
+        "letter": "C",
+        "text": ". Dealing on behalf of others",
+        "textJa": ". 他者のための取引"
+      },
+      {
+        "letter": "D",
+        "text": ". Writing a newspaper column advising on investments",
+        "textJa": ". 投資に関する助言を行う新聞コラムの執筆"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Newspapers have a specific exemption.",
+    "globalId": 44,
+    "categoryId": 2,
+    "questionJa": "次のうち、FCA/PRAの認可を必要としないものはどれですか？",
+    "explanationJa": "新聞には特定の免除規定があります。"
+  },
+  {
+    "id": 3,
+    "question": "Which of the following is a specified investment under the Regulated Activities Order?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000186",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Options on crude oil",
+        "textJa": ". 原油オプション"
+      },
+      {
+        "letter": "B",
+        "text": ". Shares in an unincorporated business",
+        "textJa": ". 非法人企業の株式"
+      },
+      {
+        "letter": "C",
+        "text": ". US dollars",
+        "textJa": ". US dollars"
+      },
+      {
+        "letter": "D",
+        "text": ". Premium bonds",
+        "textJa": ". Premium bonds"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Currencies and premium bonds are not classed as specified investments under the FSMA 2000, nor are options on commodities (other than options on precious metals). Shares in any business would be a specified investment.",
+    "globalId": 45,
+    "categoryId": 3,
+    "questionJa": "Regulated Activities Orderに基づく特定投資は次のうちどれですか？",
+    "explanationJa": "通貨およびPremium bondsはFSMA 2000に基づく特定投資として分類されておらず、コモディティオプション（貴金属オプションを除く）も同様です。いかなる事業の株式も特定投資となります。"
+  },
+  {
+    "id": 4,
+    "question": "Which of the following is NOT a regulated activity under the Financial Services and Markets Act 2000 ?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000187",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Managing a futures fund",
+        "textJa": ". 先物ファンドの運用"
+      },
+      {
+        "letter": "B",
+        "text": ". Advising on share portfolios",
+        "textJa": ". 株式ポートフォリオに関する助言"
+      },
+      {
+        "letter": "C",
+        "text": ". Dealing in US dollars",
+        "textJa": ". US dollarsの取引"
+      },
+      {
+        "letter": "D",
+        "text": ". Administering mortgages",
+        "textJa": ". 住宅ローンの管理"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Dealing in currencies, including US dollars, is not a regulated activity under the FSMA 2000.",
+    "globalId": 46,
+    "categoryId": 4,
+    "questionJa": "Financial Services and Markets Act 2000に基づき、規制対象活動に該当しないものは次のうちどれですか？",
+    "explanationJa": "US dollarsを含む通貨の取引は、FSMA 2000に基づく規制対象活動ではありません。"
+  },
+  {
+    "id": 5,
+    "question": "A firm wishes to provide services in investments. According to the Regulated Activities Order, which of the following investments would NOT require the firm to seek authorisation from the FCA/PRA?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000189",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Forward rate agreements",
+        "textJa": ". 金利先渡契約"
+      },
+      {
+        "letter": "B",
+        "text": ". Commercial paper",
+        "textJa": ". コマーシャルペーパー"
+      },
+      {
+        "letter": "C",
+        "text": ". Floating rate notes",
+        "textJa": ". 変動金利債"
+      },
+      {
+        "letter": "D",
+        "text": ". Foreign exchange",
+        "textJa": ". 外国為替"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Foreign exchange (currencies) is not specified by the RAO.",
+    "globalId": 47,
+    "categoryId": 5,
+    "questionJa": "ある企業が投資サービスを提供したいと考えています。Regulated Activities Orderによると、次のどの投資について、企業はFCA/PRAからの認可を求める必要がありませんか？",
+    "explanationJa": "外国為替（通貨）はRAOによって特定されていません。"
+  },
+  {
+    "id": 6,
+    "question": "The Financial Services and Markets Act 2000 does NOT require businesses carrying out which of the following to be authorised?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000190",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Managing a bond fund",
+        "textJa": ". 債券ファンドの運用"
+      },
+      {
+        "letter": "B",
+        "text": ". Advising on currencies",
+        "textJa": ". 通貨に関する助言"
+      },
+      {
+        "letter": "C",
+        "text": ". Establishing a collective investment scheme",
+        "textJa": ". 共同投資スキームの設立"
+      },
+      {
+        "letter": "D",
+        "text": ". Arranging deals in investments",
+        "textJa": ". 投資取引の仲介"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Currencies are not specified investments.",
+    "globalId": 48,
+    "categoryId": 6,
+    "questionJa": "Financial Services and Markets Act 2000は、次のうちどの業務を行う事業に対して認可を要求していませんか？",
+    "explanationJa": "通貨は特定投資ではありません。"
+  },
+  {
+    "id": 7,
+    "question": "According to Section 19 of the Financial Services and Markets Act 2000 (the 'General Prohibition'), which of the following activities would require a firm to gain authorisation by the FCA/PRA?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000194",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Investment advice in newspapers and magazine articles",
+        "textJa": ". 新聞や雑誌記事における投資助言"
+      },
+      {
+        "letter": "B",
+        "text": ". Television, radio and cable broadcasts about investments",
+        "textJa": ". 投資に関するテレビ、ラジオ、ケーブル放送"
+      },
+      {
+        "letter": "C",
+        "text": ". Professional bodies providing advice in the normal course of business where the advice is separately remunerated",
+        "textJa": ". 専門家団体が通常の業務過程で助言を提供し、その助言に対して別途報酬が支払われる場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Trustees who are not being separately remunerated",
+        "textJa": ". 別途報酬を受け取っていない受託者"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The following activities are not regarded as regulated activities: Investment advice in newspapers (providing a tip sheet however is a regulated activity) Television broadcasts and similar activities Trustees, nominees and personal representatives (not separately remunerated) Members of designated professional bodies (accountants, solicitors or actuaries) carrying on certain incidental regulated activities. However, if they are separately remunerated for those activities they do need authorisation.",
+    "globalId": 49,
+    "categoryId": 7,
+    "questionJa": "Financial Services and Markets Act 2000の第19条（「一般禁止」）によると、次のどの活動について、企業はFCA/PRAによる認可を得る必要がありますか？",
+    "explanationJa": "以下の活動は規制対象活動とは見なされません：新聞における投資助言（ただし、情報提供シートの提供は規制対象活動です）、テレビ放送および類似の活動、受託者、名義人、および人格代表者（別途報酬を受け取っていない場合）、特定の付随的な規制対象活動を行う指定専門家団体（会計士、弁護士、またはアクチュアリー）のメンバー。ただし、これらの活動に対して別途報酬が支払われる場合は、認可が必要です。"
+  },
+  {
+    "id": 8,
+    "question": "Who authorises market makers in the wholesale money markets in the UK?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000196",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". PRA",
+        "textJa": ". PRA"
+      },
+      {
+        "letter": "B",
+        "text": ". DMO",
+        "textJa": ". DMO"
+      },
+      {
+        "letter": "C",
+        "text": ". PoTaM",
+        "textJa": ". PoTaM"
+      },
+      {
+        "letter": "D",
+        "text": ". ESMA",
+        "textJa": ". ESMA"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Market making is covered by specified activities and money markets are specified investments. These firms, are typically significant investment firms and would be authorised by the PRA. ESMA is the European Securities and Markets Authority and PoTaM is the Panel on Takeovers and Mergers or Takeover Panel. The DMO is the Debt Management Office and is a department of the Treasury",
+    "globalId": 50,
+    "categoryId": 8,
+    "questionJa": "英国のホールセール短期金融市場におけるマーケットメーカーを認可するのは誰ですか？",
+    "explanationJa": "マーケットメイキングは特定活動に該当し、短期金融市場は特定投資です。これらの企業は通常、重要な投資会社であり、PRAによって認可されます。ESMAはEuropean Securities and Markets Authorityであり、PoTaMはPanel on Takeovers and MergersまたはTakeover Panelです。DMOはDebt Management Officeであり、Treasuryの一部門です。"
+  },
+  {
+    "id": 9,
+    "question": "Which of the following is NOT a specified activity?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000197",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Acting as principal and end user when dealing in shares",
+        "textJa": ". 株式取引においてプリンシパルかつ最終利用者として行動すること"
+      },
+      {
+        "letter": "B",
+        "text": ". Acting in relation to a collective investment scheme",
+        "textJa": ". 共同投資スキームに関連する行為"
+      },
+      {
+        "letter": "C",
+        "text": ". Providing safe custody services in investments",
+        "textJa": ". 投資における保護預りサービスの提供"
+      },
+      {
+        "letter": "D",
+        "text": ". Managing investments on behalf of others",
+        "textJa": ". 他者のための投資運用"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Transactions are not regulated if the investor is also the end user and no service is offered to others.",
+    "globalId": 51,
+    "categoryId": 9,
+    "questionJa": "次のうち、特定活動に該当しないものはどれですか？",
+    "explanationJa": "投資家が最終利用者でもあり、他者にサービスが提供されない場合、取引は規制されません。"
+  },
+  {
+    "id": 10,
+    "question": "Which of the following is NOT a specified investment under the Financial Services and Markets Act 2000 ?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000199",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Gilt repo",
+        "textJa": ". Gilt repo（英国債レポ取引）"
+      },
+      {
+        "letter": "B",
+        "text": ". Funeral plan",
+        "textJa": ". 葬儀プラン"
+      },
+      {
+        "letter": "C",
+        "text": ". Residential property",
+        "textJa": ". 居住用不動産"
+      },
+      {
+        "letter": "D",
+        "text": ". Spread bet",
+        "textJa": ". スプレッドベット"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Property is not specified under FSMA 2000.",
+    "globalId": 52,
+    "categoryId": 10,
+    "questionJa": "Financial Services and Markets Act 2000に基づく特定投資に該当しないものは次のうちどれですか？",
+    "explanationJa": "不動産はFSMA 2000では特定されていません。"
+  },
+  {
+    "id": 11,
+    "question": "Which of the following investments is regulated by the Financial Services and Markets Act 2000?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000200",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Debentures",
+        "textJa": ". 社債"
+      },
+      {
+        "letter": "B",
+        "text": ". Property",
+        "textJa": ". 不動産"
+      },
+      {
+        "letter": "C",
+        "text": ". Metals",
+        "textJa": ". 金属"
+      },
+      {
+        "letter": "D",
+        "text": ". Gambling",
+        "textJa": ". ギャンブル"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Tangible assets and gambles are not regulated (unless in the form of a CFD).",
+    "globalId": 53,
+    "categoryId": 11,
+    "questionJa": "次のどの投資がFinancial Services and Markets Act 2000によって規制されていますか？",
+    "explanationJa": "有形資産およびギャンブルは規制されていません（CFDの形式である場合を除く）。"
+  },
+  {
+    "id": 12,
+    "question": "Under the Financial Services and Markets Act 2000, a person will not be carrying on specified activities if (s)he does which of the following?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000204",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Establishes a collective investment scheme",
+        "textJa": ". 共同投資スキームの設立"
+      },
+      {
+        "letter": "B",
+        "text": ". Advises on foreign currency",
+        "textJa": ". 外国通貨に関する助言"
+      },
+      {
+        "letter": "C",
+        "text": ". Publishes a tip sheet",
+        "textJa": ". 情報提供シートの発行"
+      },
+      {
+        "letter": "D",
+        "text": ". Arranges deals in shares",
+        "textJa": ". 株式取引の仲介"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Foreign currency is not a specified investment.",
+    "globalId": 54,
+    "categoryId": 12,
+    "questionJa": "Financial Services and Markets Act 2000に基づき、個人が次のどの行為を行う場合、特定活動を行っているとは見なされませんか？",
+    "explanationJa": "外国通貨は特定投資ではありません。"
+  },
+  {
+    "id": 13,
+    "question": "Which of the following are not specified investments as defined by the Regulated Activities Order?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000205",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". ADRs and deep discounted bonds",
+        "textJa": ". ADRsおよびディープディスカウント債"
+      },
+      {
+        "letter": "B",
+        "text": ". Life assurance policies and certificates of deposit",
+        "textJa": ". 生命保険証券および譲渡性預金証書"
+      },
+      {
+        "letter": "C",
+        "text": ". Premium bonds and currencies",
+        "textJa": ". Premium bondsおよび通貨"
+      },
+      {
+        "letter": "D",
+        "text": ". Bank deposits and exchange traded futures",
+        "textJa": ". 銀行預金および取引所取引先物"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "ADR is an American Depository Receipt. Premium bonds and currencies are not regulated investments.",
+    "globalId": 55,
+    "categoryId": 13,
+    "questionJa": "Regulated Activities Orderで定義されている特定投資に該当しないものは次のうちどれですか？",
+    "explanationJa": "ADRはAmerican Depository Receiptです。Premium bondsおよび通貨は規制対象投資ではありません。"
+  },
+  {
+    "id": 14,
+    "question": "Which of the following is NOT regulated under the Financial Services and Markets Act 2000 ?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000210",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Managing a Lloyd's of London syndicate",
+        "textJa": ". Lloyd's of Londonシンジケートの運営"
+      },
+      {
+        "letter": "B",
+        "text": ". Producing tip sheets",
+        "textJa": ". 情報提供シートの作成"
+      },
+      {
+        "letter": "C",
+        "text": ". Share advice in a newspaper column",
+        "textJa": ". 新聞コラムにおける株式助言"
+      },
+      {
+        "letter": "D",
+        "text": ". Managing a unit trust invested in property",
+        "textJa": ". 不動産に投資するユニット・トラストの運用"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Investment advice in newspapers is not a specified investment according to the Regulated Activities Order. Page 6 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 7 ────────────────────────────────────────────────────────────",
+    "globalId": 56,
+    "categoryId": 14,
+    "questionJa": "Financial Services and Markets Act 2000に基づき、規制対象でないものは次のうちどれですか？",
+    "explanationJa": "Regulated Activities Orderによると、新聞における投資助言は特定投資ではありません。"
+  },
+  {
+    "id": 15,
+    "question": "A Multilateral Trading Facility (MTF) is best described as:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1013987",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A system that brings together multiple parties that are interested in buying and selling financial instruments and which allows them to do so",
+        "textJa": ". 金融商品の売買に関心のある複数の当事者を引き合わせ、取引を可能にするシステム"
+      },
+      {
+        "letter": "B",
+        "text": ". A market place for eligible buyers and sellers who trade on a firm commitment basis but do not meet the minimum EU standards set out in MiFID",
+        "textJa": ". MiFIDに定められたEUの最低基準を満たさないが、確約ベースで取引を行う適格な買い手と売り手のための市場"
+      },
+      {
+        "letter": "C",
+        "text": ". An exchange which is given a recognition order by the local competent authority to conduct its activities in a Pan-European forum",
+        "textJa": ". 汎欧州のフォーラムで活動を行うために、現地の管轄当局から承認命令を受けた取引所"
+      },
+      {
+        "letter": "D",
+        "text": ". An account that meets the requirements set out by Her Majesty's Revenue and Customs for a Minor's Trust Fund",
+        "textJa": ". Her Majesty's Revenue and CustomsがMinor's Trust Fundに対して定めた要件を満たす口座"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "'an exchange which is given a recognition order' is a recognised investment exchange and 'an account that meets the requirements of a Minors Trust Fund' is a distracter that refers to a child trust fund. 'A system that brings together multiple parties that are interested in buying and selling financial instruments and which allows them to do so' is the correct answer.",
+    "globalId": 57,
+    "categoryId": 15,
+    "questionJa": "Multilateral Trading Facility (MTF)を最もよく表しているのは次のどれですか？",
+    "explanationJa": "「承認命令を受けた取引所」は、Recognised Investment Exchange（承認投資取引所）です。「Minor's Trust Fundの要件を満たす口座」は、Child Trust Fund（児童信託基金）を指す誤答選択肢です。「金融商品の売買に関心のある複数の当事者を引き合わせ、取引を可能にするシステム」が正解です。"
+  },
+  {
+    "id": 16,
+    "question": "Which of the following are not regulated investments, as defined by the Regulated Activities Order?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014015",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". ADRs and deep discounted bonds",
+        "textJa": ". ADRsおよびディープディスカウント債"
+      },
+      {
+        "letter": "B",
+        "text": ". Life assurance policies and certificates of deposit",
+        "textJa": ". 生命保険証券および譲渡性預金証書"
+      },
+      {
+        "letter": "C",
+        "text": ". Premium bonds and currencies",
+        "textJa": ". Premium bondsおよび通貨"
+      },
+      {
+        "letter": "D",
+        "text": ". Bank deposits and exchange traded futures",
+        "textJa": ". 銀行預金および取引所取引先物"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Premium bonds and currencies are not regulated investments. ADRs are American Depository Receipts and are specified investments.",
+    "globalId": 58,
+    "categoryId": 16,
+    "questionJa": "Regulated Activities Orderで定義されている規制対象投資に該当しないものは次のうちどれですか？",
+    "explanationJa": "Premium bondsおよび通貨は規制対象投資ではありません。ADRsはAmerican Depository Receiptsであり、特定投資です。"
+  },
+  {
+    "id": 17,
+    "question": "Which is not a specified investment?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014058",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A short term bank deposit",
+        "textJa": ". 短期銀行預金"
+      },
+      {
+        "letter": "B",
+        "text": ". An option on physically delivered gas oil",
+        "textJa": ". 現物受渡の軽油オプション"
+      },
+      {
+        "letter": "C",
+        "text": ". A gilt repo",
+        "textJa": ". Gilt repo（英国債レポ取引）"
+      },
+      {
+        "letter": "D",
+        "text": ". A forward rate agreement",
+        "textJa": ". 金利先渡契約"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "As gas oil options are physically delivered, they are not a financial instrument.",
+    "globalId": 59,
+    "categoryId": 17,
+    "questionJa": "特定投資でないものはどれですか？",
+    "explanationJa": "軽油オプションは現物受渡であるため、金融商品ではありません。"
+  },
+  {
+    "id": 18,
+    "question": "When providing services to a professional client, for which of the following investments would a firm not need to gain Part 4A Permission?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014077",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Options on a copper future",
+        "textJa": ". 銅先物オプション"
+      },
+      {
+        "letter": "B",
+        "text": ". Gold",
+        "textJa": ". 金"
+      },
+      {
+        "letter": "C",
+        "text": ". Regulated mortgages",
+        "textJa": ". 規制対象住宅ローン"
+      },
+      {
+        "letter": "D",
+        "text": ". Gilts",
+        "textJa": ". Gilts（英国債）"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "All are specified investments except gold.",
+    "globalId": 60,
+    "categoryId": 18,
+    "questionJa": "プロフェッショナル顧客にサービスを提供する際、次のどの投資について、企業はPart 4A Permissionを取得する必要がありませんか？",
+    "explanationJa": "金を除き、すべて特定投資です。"
+  },
+  {
+    "id": 19,
+    "question": "Which of the following is NOT a specified investment?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014726",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Floating rate note",
+        "textJa": ". 変動金利債"
+      },
+      {
+        "letter": "B",
+        "text": ". Forward rate agreement",
+        "textJa": ". 金利先渡契約"
+      },
+      {
+        "letter": "C",
+        "text": ". National savings certificates",
+        "textJa": ". National savings certificates（国債貯蓄証券）"
+      },
+      {
+        "letter": "D",
+        "text": ". Contract for differences",
+        "textJa": ". 差金決済取引（CFD）"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "National Savings Certificates are not tradable financial instruments and therefore are not specified investments.",
+    "globalId": 61,
+    "categoryId": 19,
+    "questionJa": "次のうち、特定投資に該当しないものはどれですか？",
+    "explanationJa": "National Savings Certificatesは取引可能な金融商品ではないため、特定投資ではありません。"
+  },
+  {
+    "id": 20,
+    "question": "From which point in time must senior managers and certification functions comply with the Conduct Rules under the FCA's Accountability Regime?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078723",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Once their firm processes their annual appraisal",
+        "textJa": ". 所属企業が年次評価を処理した後"
+      },
+      {
+        "letter": "B",
+        "text": ". From the moment a firm files a certificate with the regulator",
+        "textJa": ". 企業が規制当局に証明書を提出した瞬間から"
+      },
+      {
+        "letter": "C",
+        "text": ". All relevant staff must comply with the Conduct Rules from appointment",
+        "textJa": ". すべての関連スタッフは任命時からConduct Rulesを遵守しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". From the moment an affected employee is certificated/approved as a fit and proper person",
+        "textJa": ". 対象となる従業員が適格かつ適切な人物として認証/承認された瞬間から"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "All relevant staff must comply with the Conduct Rules from appointment.",
+    "globalId": 62,
+    "categoryId": 20,
+    "questionJa": "FCAのAccountability Regime（責任体制）のもと、シニアマネージャーおよび認証機能担当者は、どの時点からConduct Rules（行動規範）を遵守しなければなりませんか？",
+    "explanationJa": "すべての関連スタッフは任命時からConduct Rulesを遵守しなければなりません。"
+  },
+  {
+    "id": 21,
+    "question": "Which of the following is a regulated activity?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014737",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Dealing in currencies",
+        "textJa": ". 通貨の取引"
+      },
+      {
+        "letter": "B",
+        "text": ". Administering the estate of a deceased person",
+        "textJa": ". 故人の遺産管理"
+      },
+      {
+        "letter": "C",
+        "text": ". Establishing a stakeholder pension",
+        "textJa": ". ステークホルダー年金の設立"
+      },
+      {
+        "letter": "D",
+        "text": ". Advising on secondary mortgages",
+        "textJa": ". セカンダリーモーゲージに関する助言"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Currencies are not a specified investment, personal representatives and executors of a will are excluded activities, and advising on secondary mortgages are not regulated mortgage products.",
+    "globalId": 63,
+    "categoryId": 21,
+    "questionJa": "次のうち、規制対象活動はどれですか？",
+    "explanationJa": "通貨は特定投資ではなく、遺言執行者や人格代表者は除外される活動であり、セカンダリーモーゲージに関する助言は規制対象の住宅ローン商品ではありません。"
+  },
+  {
+    "id": 22,
+    "question": "Which ONE of the following is CORRECT concerning a multi-lateral trading facility?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1024591",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is a facility where a firm engages in multiple core investment services",
+        "textJa": ". 企業が複数の主要な投資サービスに従事する施設である"
+      },
+      {
+        "letter": "B",
+        "text": ". It is a system where a firm provides similar services to those offered by exchanges",
+        "textJa": ". 企業が取引所が提供するものと同様のサービスを提供するシステムである"
+      },
+      {
+        "letter": "C",
+        "text": ". It is a system where a firm takes proprietary positions with a client",
+        "textJa": ". 企業が顧客との間で自己勘定取引を行うシステムである"
+      },
+      {
+        "letter": "D",
+        "text": ". It is a facility where a firm operates in more than one location",
+        "textJa": ". 企業が複数の場所で運営する施設である"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "An MTF is a system which provides an alternative order matching system to an exchange. The client orders match with other clients so that the firm operating the MTF does not take proprietary positions.",
+    "globalId": 64,
+    "categoryId": 22,
+    "questionJa": "Multilateral Trading Facility（多角的取引システム）に関する次の記述のうち、正しいものはどれですか？",
+    "explanationJa": "MTFは、取引所に代わる注文照合システムを提供するシステムです。顧客の注文は他の顧客と照合されるため、MTFを運営する企業は自己勘定取引を行いません。"
+  },
+  {
+    "id": 23,
+    "question": "When the UK regulator allows a firm to undertake regulated activities, it grants which of the following?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000212",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Authorisation",
+        "textJa": ". 認可"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Services and Markets Act 2000 prohibition",
+        "textJa": ". Financial Services and Markets Act 2000に基づく禁止"
+      },
+      {
+        "letter": "C",
+        "text": ". Regulatory exemption",
+        "textJa": ". 規制免除"
+      },
+      {
+        "letter": "D",
+        "text": ". Part 4A Permission",
+        "textJa": ". Part 4A Permission"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Authorisation confers status, but activities must be permitted by Part 4A of the Act (Part 4A permissions).",
+    "globalId": 65,
+    "categoryId": 23,
+    "questionJa": "英国の規制当局が企業に規制対象活動の実施を許可する際、次のうちどれを付与しますか？",
+    "explanationJa": "認可は地位を付与しますが、活動は法律のPart 4A（Part 4A Permission）によって許可されなければなりません。"
+  },
+  {
+    "id": 24,
+    "question": "Under the Individual Accountability Regime a firm must take reasonable care to ensure that individuals undertaking significant harm functions are:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000218",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Appointed representatives",
+        "textJa": ". 任命代理人"
+      },
+      {
+        "letter": "B",
+        "text": ". Approved persons",
+        "textJa": ". 承認者"
+      },
+      {
+        "letter": "C",
+        "text": ". Certified persons",
+        "textJa": ". 認証者"
+      },
+      {
+        "letter": "D",
+        "text": ". Authorised persons",
+        "textJa": ". 認可者"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Individuals undertaking such functions are known as certified persons.",
+    "globalId": 66,
+    "categoryId": 24,
+    "questionJa": "Individual Accountability Regime（個人責任体制）のもと、企業は重大な損害をもたらす可能性のある職務（significant harm functions）を遂行する個人が次のどれであることを確保するために、合理的な注意を払わなければなりませんか？",
+    "explanationJa": "そのような職務を遂行する個人は、認証者（certified persons）として知られています。"
+  },
+  {
+    "id": 25,
+    "question": "S56 of the Financial Services and Markets Act 2000 allows the FCA to prohibit individuals from carrying out specified functions in relation to regulated activities, i.e. a 'prohibition order'. What penalty can the FCA impose on an individual in breach of S56 FSMA 2000?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000450",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 6 months in jail",
+        "textJa": ". 6ヶ月の禁固刑"
+      },
+      {
+        "letter": "B",
+        "text": ". 2 years in jail",
+        "textJa": ". 2年の禁固刑"
+      },
+      {
+        "letter": "C",
+        "text": ". A fine",
+        "textJa": ". 罰金"
+      },
+      {
+        "letter": "D",
+        "text": ". A jail term the regulator considers appropriate",
+        "textJa": ". 規制当局が適切と判断する期間の禁固刑"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "S56 FSMA allows the FCA and/or the PRA to prohibit individuals from carrying out specified functions in relation to regulated activities, i.e. a 'prohibition order'. A prohibition order may be issued to anyone - whether they are approved or not. To issue a prohibition order, the regulator must first issue a warning notice followed by a decision notice. The individual may appeal to the Tax and Chancery Chamber of the Upper Tribunal. A breach of a prohibition order is a criminal matter, but is not an imprisonable offence.",
+    "globalId": 67,
+    "categoryId": 25,
+    "questionJa": "Financial Services and Markets Act 2000の第56条は、FCAが個人に対し、規制対象活動に関連する特定の職務の遂行を禁止すること（すなわち「禁止命令」）を認めています。FSMA 2000の第56条に違反した個人に対し、FCAはどのような罰則を科すことができますか？",
+    "explanationJa": "FSMA第56条により、FCAおよび/またはPRAは、個人が規制対象活動に関連する特定の職務を行うことを禁止する命令（「禁止命令」）を出すことができます。禁止命令は、承認されているか否かにかかわらず、誰に対しても発行される可能性があります。禁止命令を発行するためには、規制当局はまず警告通知を発行し、次に決定通知を発行しなければなりません。個人はTax and Chancery Chamber of the Upper Tribunalに不服を申し立てることができます。禁止命令の違反は刑事事件ですが、禁固刑の対象となる犯罪ではありません。"
+  },
+  {
+    "id": 26,
+    "question": "Jo Wood has twice failed a key regulatory exam and the bailiffs have repossessed most of his belongings. He might not be considered fit and proper for which of the following reasons?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000220",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financially unsound and incapable",
+        "textJa": ". 財政的に不健全かつ無能力"
+      },
+      {
+        "letter": "B",
+        "text": ". Incapable and dishonest",
+        "textJa": ". 無能力かつ不誠実"
+      },
+      {
+        "letter": "C",
+        "text": ". Dishonest and criminal",
+        "textJa": ". 不誠実かつ犯罪歴あり"
+      },
+      {
+        "letter": "D",
+        "text": ". Criminal and financially unsound",
+        "textJa": ". 犯罪歴ありかつ財政的に不健全"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "He has no criminal convictions or dishonesty, but he is financially unsound and not competent or incapable because he has failed two key exams.",
+    "globalId": 68,
+    "categoryId": 26,
+    "questionJa": "Jo Woodは重要な規制関連試験に2度不合格となり、執行官によって持ち物のほとんどが差し押さえられました。彼は次のどの理由により、適格かつ適切（fit and proper）と見なされない可能性がありますか？",
+    "explanationJa": "彼には犯罪歴や不誠実さはありませんが、重要な試験に2度不合格となったため、財政的に不健全であり、能力がない、または無能力と見なされます。"
+  },
+  {
+    "id": 27,
+    "question": "Which of the following is/are considered in assessing the fitness and propriety of a firm?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000225",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The competence and experience of the board",
+        "textJa": ". 取締役会の能力と経験"
+      },
+      {
+        "letter": "B",
+        "text": ". The ability to comply with the financial resources requirement regulations on an on-going basis",
+        "textJa": ". 財務資源要件規制を継続的に遵守する能力"
+      },
+      {
+        "letter": "C",
+        "text": ". The specific activities to be performed",
+        "textJa": ". 実施される特定の活動"
+      },
+      {
+        "letter": "D",
+        "text": ". All are considered",
+        "textJa": ". すべて考慮される"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Firms must apply to the Regulator for authorisation under Part 4A of the FSMA 2000 and demonstrate that they are 'fit and proper'. In other words, the FCA has to satisfy itself that the firm has sufficient financial resources and management skills to undertake the relevant functions.",
+    "globalId": 69,
+    "categoryId": 27,
+    "questionJa": "企業の適格性および適切性（fitness and propriety）を評価する際に考慮されるのは、次のうちどれですか？",
+    "explanationJa": "企業はFSMA 2000のPart 4Aに基づき規制当局に認可を申請し、「適格かつ適切」であることを証明しなければなりません。言い換えれば、FCAは企業が関連する機能を遂行するのに十分な財務資源と経営スキルを有していることを確認する必要があります。"
+  },
+  {
+    "id": 28,
+    "question": "Which of the following may cause an individual not to be 'fit and proper'?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000226",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Undischarged bankruptcy",
+        "textJa": ". 未復権の破産"
+      },
+      {
+        "letter": "B",
+        "text": ". Conviction for tax evasion",
+        "textJa": ". 脱税による有罪判決"
+      },
+      {
+        "letter": "C",
+        "text": ". Refusal of entry into a trade association associated within financial services",
+        "textJa": ". 金融サービスに関連する業界団体への加入拒否"
+      },
+      {
+        "letter": "D",
+        "text": ". All may cause an individual to fail the test",
+        "textJa": ". すべてが個人がテストに不合格となる原因となり得る"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "All would be considered in assessing if an individual is 'fit and proper'.",
+    "globalId": 70,
+    "categoryId": 28,
+    "questionJa": "次のうち、個人が「適格かつ適切（fit and proper）」でないと見なされる原因となる可能性があるものはどれですか？",
+    "explanationJa": "個人が「適格かつ適切」であるかどうかを評価する際に、すべてが考慮されます。"
+  },
+  {
+    "id": 29,
+    "question": "The Financial Services and Markets Act 2000 states that a Recognised Investment Exchange (RIE) is exempt from the need for authorisation in respect of S19 - the General Prohibition. Which of the following bodies recognises these investment exchanges?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000228",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Department for Business, Energy and Industrial Strategy",
+        "textJa": ". ビジネス・エネルギー・産業戦略省"
+      },
+      {
+        "letter": "B",
+        "text": ". Her Majesty's Treasury",
+        "textJa": ". Her Majesty's Treasury"
+      },
+      {
+        "letter": "C",
+        "text": ". The Home Office",
+        "textJa": ". 内務省"
+      },
+      {
+        "letter": "D",
+        "text": ". The Financial Conduct Authority",
+        "textJa": ". The Financial Conduct Authority"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The status of RIE is granted by the Financial Conduct Authority.",
+    "globalId": 71,
+    "categoryId": 29,
+    "questionJa": "Financial Services and Markets Act 2000は、Recognised Investment Exchange (RIE) が第19条（一般禁止）に関する認可の必要性から免除されると定めています。これらの投資取引所を承認するのは次のどの機関ですか？",
+    "explanationJa": "RIEのステータスはFinancial Conduct Authorityによって付与されます。"
+  },
+  {
+    "id": 30,
+    "question": "An authorised firm must ensure that only certificated persons perform certification functions. Which of the following is most likely to be an example of a certification function?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078719",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". External auditor",
+        "textJa": ". 外部監査人"
+      },
+      {
+        "letter": "B",
+        "text": ". Compliance oversight function",
+        "textJa": ". コンプライアンス監督機能"
+      },
+      {
+        "letter": "C",
+        "text": ". Money laundering reporting officer",
+        "textJa": ". マネーロンダリング報告責任者"
+      },
+      {
+        "letter": "D",
+        "text": ". Retail customer adviser",
+        "textJa": ". 個人顧客アドバイザー"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Retail customer advisers are certification functions. Compliance oversight and MLRO are senior manager functions.",
+    "globalId": 72,
+    "categoryId": 30,
+    "questionJa": "認可企業は、認証機能（certification functions）を認証者（certificated persons）のみが実行することを保証しなければなりません。次のうち、認証機能の例として最も可能性が高いものはどれですか？",
+    "explanationJa": "個人顧客アドバイザーは認証機能です。コンプライアンス監督およびMLROはシニアマネージャー機能です。"
+  },
+  {
+    "id": 31,
+    "question": "Which of the following is true of designated professional bodies (DPB)?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000230",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All UK professional bodies have DPB status under FSMA 2000, giving members the opportunity to conduct a range of regulated activities",
+        "textJa": ". FSMA 2000に基づき、すべての英国の専門家団体はDPBステータスを有し、メンバーに広範な規制対象活動を行う機会を与えている"
+      },
+      {
+        "letter": "B",
+        "text": ". Membership of a DPB gives authorisation to conduct the regulated activities prescribed in the Regulated Activities Order",
+        "textJa": ". DPBのメンバーシップは、Regulated Activities Orderに規定された規制対象活動を行うための認可を与える"
+      },
+      {
+        "letter": "C",
+        "text": ". Exemption via membership of a DPB is only allowable where the activities are incidental to the main business of the professional",
+        "textJa": ". DPBのメンバーシップによる免除は、活動が専門家の主たる業務に付随する場合にのみ許容される"
+      },
+      {
+        "letter": "D",
+        "text": ". DPBs, having exempt status, do not need to follow the FCA rules when conducting regulated activities",
+        "textJa": ". DPBは免除ステータスを有するため、規制対象活動を行う際にFCAの規則に従う必要はない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "If the regulated activities are incidental and the professionals do not receive separate remuneration, they are exempt from the need for authorisation. Only lawyers, accountants, actuaries, conveyancers and chartered surveyors may receive an exemption when they are are members of a DPB. Membership of a DPB does not give authorisation for regulated activities and does not exclude them from the rules.",
+    "globalId": 73,
+    "categoryId": 31,
+    "questionJa": "指定専門家団体（DPB）に関して正しいものは次のうちどれですか？",
+    "explanationJa": "規制対象活動が付随的であり、専門家が別途報酬を受け取らない場合、彼らは認可の必要性から免除されます。DPBのメンバーである場合に免除を受けられるのは、弁護士、会計士、アクチュアリー、不動産譲渡手続き代行者、および勅許鑑定士のみです。DPBのメンバーシップは規制対象活動の認可を与えるものではなく、規則からの除外も意味しません。"
+  },
+  {
+    "id": 32,
+    "question": "Which of the following is true with regard to the Training and Competence Sourcebook?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000231",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Authorised firms are only required to ensure that their certified persons are competent for their role in the firm",
+        "textJa": ". 認可企業は、その認証者が企業内での役割に対して有能であることを保証することのみが求められる"
+      },
+      {
+        "letter": "B",
+        "text": ". ​​​​​​ FCA firm employees must have their competency reviewed regularly ​",
+        "textJa": ". ​​​​​​ FCA登録企業の従業員は、定期的に能力評価を受けなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". Appropriate examinations must be obtained for relevant roles within three years of working in investment banking",
+        "textJa": ". 投資銀行業務に従事してから3年以内に、関連する役割に適した試験に合格しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". All employees must take appropriate examinations",
+        "textJa": ". すべての従業員が適切な試験を受けなければならない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Under FCA Principle for Businesses 3, management and control, all employees must be competent. The approved examinations must generally be passed within 30 months. Appropriate examinations are only a requirement for employees undertaking certain specific functions.",
+    "globalId": 74,
+    "categoryId": 32,
+    "questionJa": "Training and Competence Sourcebookに関して正しいものは次のうちどれですか？",
+    "explanationJa": "FCAの事業原則3（経営管理と統制）に基づき、すべての従業員は有能でなければなりません。承認された試験は通常30ヶ月以内に合格する必要があります。適切な試験は、特定の職務を遂行する従業員に対してのみ要件となります。"
+  },
+  {
+    "id": 33,
+    "question": "All of the following are true of recognised investment exchanges, except:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000232",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Membership does not confer authorisation as an investment business",
+        "textJa": ". メンバーシップは投資事業としての認可を付与しない"
+      },
+      {
+        "letter": "B",
+        "text": ". It guarantees a market place where investors can always deal at fair prices",
+        "textJa": ". 投資家が常に公正な価格で取引できる市場を保証する"
+      },
+      {
+        "letter": "C",
+        "text": ". It provides an organised market framework within which transactions in investments can be effected",
+        "textJa": ". 投資取引が行える組織化された市場の枠組みを提供する"
+      },
+      {
+        "letter": "D",
+        "text": ". It will monitor the conduct of the market so as to prevent manipulation",
+        "textJa": ". 市場操作を防ぐために市場の行動を監視する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Fair prices are not guaranteed, although they should be likely.",
+    "globalId": 75,
+    "categoryId": 33,
+    "questionJa": "Recognised Investment Exchange（承認投資取引所）に関する次の記述のうち、誤っているものはどれですか？",
+    "explanationJa": "公正な価格は保証されていませんが、そうなる可能性は高いはずです。"
+  },
+  {
+    "id": 34,
+    "question": "Which of the following is not taken into account when the FCA assesses a firm's fitness and propriety?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000241",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The ability of senior management to direct the business effectively and establish internal controls",
+        "textJa": ". 上級管理職が事業を効果的に指揮し、内部統制を確立する能力"
+      },
+      {
+        "letter": "B",
+        "text": ". Whether those seeking approval have suffered bankruptcy or defaulted on personal loans",
+        "textJa": ". 承認を求める者が破産を経験したか、または個人ローンの不履行を起こしたかどうか"
+      },
+      {
+        "letter": "C",
+        "text": ". The ability of the firm to meet its financial obligations on an ongoing basis",
+        "textJa": ". 企業が継続的に財務上の義務を果たす能力"
+      },
+      {
+        "letter": "D",
+        "text": ". The market share the firm has within its sector of the financial services industry",
+        "textJa": ". 企業が金融サービス業界の自社セクター内で持つ市場シェア"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The fitness and propriety of a firm is rooted in the threshold conditions. The ability of the senior management to control their firm is part of the suitability test. The ability for an employee to pay their debts is part of the approved person fit and proper test, but it also plays a part in the adequate resources of a firm - employees are part of a firm's resources. This condition also links with the firm's ability to meet its financial obligations. It does not matter what market share the firm has.",
+    "globalId": 76,
+    "categoryId": 34,
+    "questionJa": "FCAが企業の適格性および適切性（fitness and propriety）を評価する際に考慮されないものは次のうちどれですか？",
+    "explanationJa": "企業の適格性および適切性は、閾値条件に根ざしています。上級管理職が自社を管理する能力は、適合性テストの一部です。従業員が債務を支払う能力は、承認者の適格性および適切性テストの一部ですが、企業の適切な資源の一部でもあります。従業員は企業の資源の一部です。この条件は、企業が財務上の義務を果たす能力にも関連しています。企業が持つ市場シェアは問題ではありません。"
+  },
+  {
+    "id": 35,
+    "question": "All of the following are specified by the FCA as SM&CR functions except:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078720",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Executive director function",
+        "textJa": ". 取締役（執行役員）機能"
+      },
+      {
+        "letter": "B",
+        "text": ". Compliance oversight function",
+        "textJa": ". コンプライアンス監督機能"
+      },
+      {
+        "letter": "C",
+        "text": ". Supervisor of certification functions",
+        "textJa": ". 認証機能の監督者"
+      },
+      {
+        "letter": "D",
+        "text": ". Health and safety function",
+        "textJa": ". 安全衛生機能"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The list of senior manaers is long and includes compliance oversight and directors. Certification functions also include supervisors of certification functions. health and safety is likely to be conduct staff or even ancillary staff.",
+    "globalId": 77,
+    "categoryId": 35,
+    "questionJa": "次のうち、FCAがSM&CR（シニアマネージャーおよび認証レジーム）機能として指定しているものに該当しないのはどれですか？",
+    "explanationJa": "シニアマネージャーのリストは長く、コンプライアンス監督や取締役が含まれます。認証機能には、認証機能の監督者も含まれます。安全衛生は、コンダクトスタッフまたは付随的なスタッフである可能性が高いです。"
+  },
+  {
+    "id": 36,
+    "question": "Where a firm submits a request for approval and becomes aware of any changes to the personal details of the senior manager seeking fit and proper status, the firm must notify the Regulator:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000247",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Immediately",
+        "textJa": ". 直ちに"
+      },
+      {
+        "letter": "B",
+        "text": ". Within five business days",
+        "textJa": ". 5営業日以内"
+      },
+      {
+        "letter": "C",
+        "text": ". Within seven business days",
+        "textJa": ". 7営業日以内"
+      },
+      {
+        "letter": "D",
+        "text": ". Within 14 business days",
+        "textJa": ". 14営業日以内"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A firm must submit its request in order to register senior managers as approved persons with the Regulator. If the firm becomes aware of any changes to the personal details of the senior manager seeking fit and proper status, the firm must notify the Regulator immediately.",
+    "globalId": 78,
+    "categoryId": 36,
+    "questionJa": "企業が承認申請を提出し、適格かつ適切（fit and proper）な地位を求めるシニアマネージャーの個人情報に変更があったことを認識した場合、企業は規制当局にいつ通知しなければなりませんか？",
+    "explanationJa": "企業は、シニアマネージャーを規制当局に承認者として登録するために申請書を提出しなければなりません。企業が、適格かつ適切な地位を求めるシニアマネージャーの個人情報に変更があったことを認識した場合、企業は直ちに規制当局に通知しなければなりません。"
+  },
+  {
+    "id": 37,
+    "question": "In the Supervision sourcebook (SUP) the FCA sets out the roles within a firm that require approval. Which of the following is not included as a senior manager function?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000254",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Director",
+        "textJa": ". 取締役"
+      },
+      {
+        "letter": "B",
+        "text": ". Partner",
+        "textJa": ". パートナー"
+      },
+      {
+        "letter": "C",
+        "text": ". Non executive director",
+        "textJa": ". 社外取締役"
+      },
+      {
+        "letter": "D",
+        "text": ". Investment adviser",
+        "textJa": ". 投資アドバイザー"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "An investment adviser is performing a certification function.",
+    "globalId": 79,
+    "categoryId": 37,
+    "questionJa": "FCAのSupervision sourcebook (SUP) では、承認が必要な企業内の役割が定められています。次のうち、シニアマネージャー機能として含まれていないものはどれですか？",
+    "explanationJa": "投資アドバイザーは認証機能を実行しています。"
+  },
+  {
+    "id": 38,
+    "question": "Under the FCA's SM&CR, which of the following is most likely to be a senior management function for a UK bank?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000255",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Compliance officer",
+        "textJa": ". コンプライアンス・オフィサー"
+      },
+      {
+        "letter": "B",
+        "text": ". Money laundering reporting officer",
+        "textJa": ". マネーロンダリング報告責任者"
+      },
+      {
+        "letter": "C",
+        "text": ". Customer advisor",
+        "textJa": ". カスタマーアドバイザー"
+      },
+      {
+        "letter": "D",
+        "text": ". Investment manager",
+        "textJa": ". 投資マネージャー"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "MLRO is always a senior manager function. All others are more likely to be certified functions.",
+    "globalId": 80,
+    "categoryId": 38,
+    "questionJa": "FCAのSM&CR（シニアマネージャーおよび認証レジーム）に基づき、英国の銀行にとってシニアマネジメント機能である可能性が最も高いのは次のうちどれですか？",
+    "explanationJa": "MLRO（マネーロンダリング報告責任者）は常にシニアマネージャー機能です。その他はすべて認証機能である可能性が高いです。"
+  },
+  {
+    "id": 39,
+    "question": "Where a firm operates under the Senior Manager and Certification Regime, which ONE of the following roles always requires approval from the Regulator? Somebody:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078721",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Recruiting staff",
+        "textJa": ". スタッフの採用担当者"
+      },
+      {
+        "letter": "B",
+        "text": ". Working in compliance",
+        "textJa": ". コンプライアンス部門の勤務者"
+      },
+      {
+        "letter": "C",
+        "text": ". Acting as a non-executive director",
+        "textJa": ". 社外取締役としての職務遂行者"
+      },
+      {
+        "letter": "D",
+        "text": ". With staff supervisory responsibilities",
+        "textJa": ". スタッフ監督責任者"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "All four could potentially require the regulator's approval as a Senior Manager Function, but only non- execs would always require such status.",
+    "globalId": 81,
+    "categoryId": 39,
+    "questionJa": "企業がSenior Manager and Certification Regime（シニアマネージャーおよび認証レジーム）の下で運営されている場合、次のどの役割が常に規制当局からの承認を必要としますか？",
+    "explanationJa": "4つすべてがシニアマネージャー機能として規制当局の承認を必要とする可能性がありますが、常にそのようなステータスを必要とするのは社外取締役のみです。"
+  },
+  {
+    "id": 40,
+    "question": "When the Regulator receives an application for a senior manager to become an approved person and finds some problems, they will return the application:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078722",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To the individual and stop the process",
+        "textJa": ". 個人に返却し、プロセスを停止する"
+      },
+      {
+        "letter": "B",
+        "text": ". To the individual and wait for clarification or amendments before considering their decision",
+        "textJa": ". 個人に返却し、決定を検討する前に明確化または修正を待つ"
+      },
+      {
+        "letter": "C",
+        "text": ". To the firm and stop the process",
+        "textJa": ". 企業に返却し、プロセスを停止する"
+      },
+      {
+        "letter": "D",
+        "text": ". To the firm and wait for clarification or amendments before considering their decision",
+        "textJa": ". 企業に返却し、決定を検討する前に明確化または修正を待つ"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Applications for senior manager status involve the firm applying to the Regulator.",
+    "globalId": 82,
+    "categoryId": 40,
+    "questionJa": "規制当局がシニアマネージャーを承認者とするための申請を受け取り、何らかの問題を発見した場合、申請書をどのように扱いますか？",
+    "explanationJa": "シニアマネージャーのステータス申請には、企業が規制当局に申請することが含まれます。"
+  },
+  {
+    "id": 41,
+    "question": "How would you describe a firm which has gained Part 4A permission?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000261",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Authorised",
+        "textJa": ". 認可された"
+      },
+      {
+        "letter": "B",
+        "text": ". Registered",
+        "textJa": ". 登録された"
+      },
+      {
+        "letter": "C",
+        "text": ". Permitted",
+        "textJa": ". 許可された"
+      },
+      {
+        "letter": "D",
+        "text": ". Regulated",
+        "textJa": ". 規制された"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Part 4A permission authorises a firm to carry on regulated activities.",
+    "globalId": 83,
+    "categoryId": 41,
+    "questionJa": "Part 4A Permissionを取得した企業をどのように表現しますか？",
+    "explanationJa": "Part 4A Permissionは、企業が規制対象活動を行うことを認可します。"
+  },
+  {
+    "id": 42,
+    "question": "Which of the following is MOST LIKELY to be a certified function?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000262",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Head of internal audit",
+        "textJa": ". 内部監査部長"
+      },
+      {
+        "letter": "B",
+        "text": ". Head of financial reporting",
+        "textJa": ". 財務報告部長"
+      },
+      {
+        "letter": "C",
+        "text": ". Money laundering reporting officer",
+        "textJa": ". マネーロンダリング報告責任者"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial planner",
+        "textJa": ". ファイナンシャルプランナー"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A financial planner is a significant harm function, as if they fail to perform their job correctly this causes conduct risk for the consumer using their services. As such, they are always a certified function. MLROs and heads of functional areas in firms (such as the Head of Internal Audit and the Financial Controller (a.k.a. 'Head of financial reporting', this is the chief accountant reporting into the Chief Financial Officer, who is a director)) are ALWAYS Senior Manager Functions.",
+    "globalId": 84,
+    "categoryId": 42,
+    "questionJa": "次のうち、認証機能（certified function）である可能性が最も高いものはどれですか？",
+    "explanationJa": "ファイナンシャルプランナーは、職務を正しく遂行しない場合、サービスを利用する消費者にコンダクトリスクを引き起こすため、重大な損害をもたらす機能と見なされます。そのため、常に認証機能となります。MLRO（マネーロンダリング報告責任者）や企業の機能部門の責任者（内部監査部長や財務コントローラー（別名「財務報告責任者」、これは取締役である最高財務責任者に報告する会計主任）など）は、常にシニアマネージャー機能です。"
+  },
+  {
+    "id": 43,
+    "question": "Under the FCA's Senior Managers regime which of the following is ALWAYS performing a senior management function?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000723",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Audit manager",
+        "textJa": ". 監査マネージャー"
+      },
+      {
+        "letter": "B",
+        "text": ". Chairman of the Board of Directors",
+        "textJa": ". 取締役会会長"
+      },
+      {
+        "letter": "C",
+        "text": ". Compliance manager",
+        "textJa": ". コンプライアンスマネージャー"
+      },
+      {
+        "letter": "D",
+        "text": ". Administration manager",
+        "textJa": ". 管理マネージャー"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Any director is, by definition, ALWAYS a senior manager under the Senior Managers Regime. The other three roles mentioned may, or may not, be Senior Managers.",
+    "globalId": 85,
+    "categoryId": 43,
+    "questionJa": "FCAのSenior Managers regime（シニアマネージャー制度）において、次のうち常にシニアマネジメント機能を果たしているのはどれですか？",
+    "explanationJa": "いかなる取締役も、定義上、Senior Managers Regimeの下では常にシニアマネージャーです。言及されている他の3つの役割は、シニアマネージャーである場合もあれば、そうでない場合もあります。"
+  },
+  {
+    "id": 44,
+    "question": "When a firm is found in breach of the regulations, place the following in the order that procedures would occur: I . Regulatory Decision Committee sends a decision notice II . Disciplinary action III . FCA sends a preliminary findings letter IV . FCA launches an investigation",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000367",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". III, IV, I, and II",
+        "textJa": ". III、IV、I、II"
+      },
+      {
+        "letter": "B",
+        "text": ". II, IV, I, and III",
+        "textJa": ". II、IV、I、III"
+      },
+      {
+        "letter": "C",
+        "text": ". IV, III, I, and II",
+        "textJa": ". IV、III、I、II"
+      },
+      {
+        "letter": "D",
+        "text": ". IV, I, III, and II",
+        "textJa": ". IV、I、III、II"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The first stage is to launch an investigation, followed by sending a preliminary findings letter. Having considered representations from the firm, the Regulatory Decision Committee sends a decision notice to the firm.",
+    "globalId": 86,
+    "categoryId": 44,
+    "questionJa": "企業が規制違反を犯したことが判明した場合、次の手続きを発生順に並べてください： I. Regulatory Decision Committeeが決定通知を送付する II. 懲戒処分 III. FCAが予備調査結果通知書を送付する IV. FCAが調査を開始する",
+    "explanationJa": "最初の段階は調査の開始であり、次に予備調査結果通知書の送付が続きます。企業からの申し立てを検討した後、Regulatory Decision Committeeは企業に決定通知を送付します。"
+  },
+  {
+    "id": 45,
+    "question": "Which of the following is true in relation to the Upper Tribunal (Tax and Chancery Chamber)?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000627",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Upper Tribunal is a division of the FCA",
+        "textJa": ". Upper TribunalはFCAの一部門である"
+      },
+      {
+        "letter": "B",
+        "text": ". All decision notices must be referred to the Tribunal for adjudication",
+        "textJa": ". すべての決定通知は裁定のためにTribunalに付託されなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". A recipient of a decision notice may refer the matter to the Tribunal within 28 days",
+        "textJa": ". 決定通知の受領者は28日以内に問題をTribunalに付託することができる"
+      },
+      {
+        "letter": "D",
+        "text": ". The Tribunal may not take account of new evidence not available at earlier hearings",
+        "textJa": ". Tribunalは以前の審理で利用できなかった新しい証拠を考慮することはできない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The Tax and Chancery Chamber of the Upper Tribunal is part of the Ministry of Justice. Any person receiving a statutory notice from the RDC has 28 days to appeal to the Tribunal.",
+    "globalId": 87,
+    "categoryId": 45,
+    "questionJa": "Upper Tribunal (Tax and Chancery Chamber)に関して正しいものは次のうちどれですか？",
+    "explanationJa": "Tax and Chancery Chamber of the Upper TribunalはMinistry of Justice（司法省）の一部です。RDCから法定通知を受け取った者は誰でも、28日以内にTribunalに不服を申し立てることができます。"
+  },
+  {
+    "id": 46,
+    "question": "The FCA enforcement officers are investigating a breach of regulation by an authorised firm. They have the power to do all of the following except:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000370",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Enter the premises once they have given notice that is deemed to be appropriate",
+        "textJa": ". 適切と見なされる通知を行った後、敷地内に立ち入ること"
+      },
+      {
+        "letter": "B",
+        "text": ". Demand printouts of computer data",
+        "textJa": ". コンピュータデータの印刷を要求すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Remove original documentation for further inspection",
+        "textJa": ". さらなる検査のために元の文書を持ち去ること"
+      },
+      {
+        "letter": "D",
+        "text": ". Interview employees whether they are approved or otherwise",
+        "textJa": ". 承認されているか否かにかかわらず、従業員に聞き取り調査を行うこと"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "FCA officers can demand the production of documents, tapes, files, computer data or any other information required by the FCA, they can only take away copies not the originals. Although, reasonable notice is normally given by the FCA, officers can have access without notice during business hours. They can also demand that any employees make themselves available for interview.",
+    "globalId": 88,
+    "categoryId": 46,
+    "questionJa": "FCAの執行官は、認可企業による規制違反を調査しています。彼らは次のうち、どれを行う権限を持っていませんか？",
+    "explanationJa": "FCAの職員は、FCAが必要とする文書、テープ、ファイル、コンピュータデータ、その他の情報の提出を要求できますが、持ち帰ることができるのはコピーのみで、原本ではありません。通常、FCAから合理的な通知がありますが、職員は営業時間中であれば通知なしにアクセスできます。また、いかなる従業員に対しても聞き取り調査に応じるよう要求できます。"
+  },
+  {
+    "id": 47,
+    "question": "Which of the following is NOT a direct power available for the FCA to use where it considers appropriate?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000371",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Prohibit the carrying out of specified functions",
+        "textJa": ". 特定の職務の遂行を禁止すること"
+      },
+      {
+        "letter": "B",
+        "text": ". Issuance of public censures for misconduct",
+        "textJa": ". 不正行為に対する公的譴責の発行"
+      },
+      {
+        "letter": "C",
+        "text": ". Require an attestation from a senior manager",
+        "textJa": ". シニアマネージャーからの証明書を要求すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Impose custodial sentences",
+        "textJa": ". 禁固刑を科すこと"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The FCA's powers are wide ranging, but it does not have the direct power to impose a custodial sentence. It must take these matters to the court and persuade them to do so.",
+    "globalId": 89,
+    "categoryId": 47,
+    "questionJa": "次のうち、FCAが適切と判断した場合に行使できる直接的な権限でないものはどれですか？",
+    "explanationJa": "FCAの権限は広範囲に及びますが、直接禁固刑を科す権限はありません。これらの問題については裁判所に持ち込み、裁判所を説得する必要があります。"
+  },
+  {
+    "id": 48,
+    "question": "Representatives of the FCA and PRA can do all of the following except:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000372",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Enter a firm's premises without notice",
+        "textJa": ". 通知なしに企業の敷地内に立ち入ること"
+      },
+      {
+        "letter": "B",
+        "text": ". Interview any director, partner or employee of the firm, whether they are an approved person or not",
+        "textJa": ". 承認者であるか否かにかかわらず、企業の取締役、パートナー、または従業員に聞き取り調査を行うこと"
+      },
+      {
+        "letter": "C",
+        "text": ". Remove any documents from the firm's business premises",
+        "textJa": ". 企業の事業所からいかなる文書も持ち去ること"
+      },
+      {
+        "letter": "D",
+        "text": ". Monitor any firm on a periodic basis",
+        "textJa": ". 定期的にあらゆる企業を監視すること"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This requirement applies only to information and documents reasonably required in connection with the exercise by the regulator of functions conferred on it by or under this Act. These will typically be copies rather than originals.",
+    "globalId": 90,
+    "categoryId": 48,
+    "questionJa": "FCAおよびPRAの代表者は、次のうちどれを除いてすべて行うことができますか？",
+    "explanationJa": "この要件は、本法または本法に基づき規制当局に付与された機能の行使に関連して合理的に必要とされる情報および文書にのみ適用されます。これらは通常、原本ではなくコピーとなります。"
+  },
+  {
+    "id": 49,
+    "question": "Which of the following is not true of the penalties the FCA can impose on an approved individual?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000373",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Fines on individuals are limited to a maximum of £250,000",
+        "textJa": ". 個人に対する罰金は最大25万ポンドに制限される"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA may publish a statement of misconduct",
+        "textJa": ". FCAは不正行為に関する声明を公表することができる"
+      },
+      {
+        "letter": "C",
+        "text": ". Temporary suspension of approval can be imposed on individuals",
+        "textJa": ". 個人に対して承認の一時停止を課すことができる"
+      },
+      {
+        "letter": "D",
+        "text": ". Permanent removal of approval can be imposed on individuals",
+        "textJa": ". 個人に対して承認の永久的な取り消しを課すことができる"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FCA may impose fines. There is no maximum limit.",
+    "globalId": 91,
+    "categoryId": 49,
+    "questionJa": "FCAが承認された個人に科すことができる罰則に関して、正しくないものは次のうちどれですか？",
+    "explanationJa": "FCAは罰金を科すことができます。上限はありません。"
+  },
+  {
+    "id": 50,
+    "question": "All of the following are true with regards to FCA investigations except:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000374",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Notices can be served on either an authorised firm or an approved individual",
+        "textJa": ". 通知は認可企業または承認された個人のいずれかに対して送達できる"
+      },
+      {
+        "letter": "B",
+        "text": ". Surveillance staff may take copies of any document or record relevant to the investigation",
+        "textJa": ". 監視スタッフは調査に関連するいかなる文書または記録のコピーも取ることができる"
+      },
+      {
+        "letter": "C",
+        "text": ". An investigation may be started as a result of an allegation of a breach of the rules",
+        "textJa": ". 規則違反の申し立ての結果として調査が開始されることがある"
+      },
+      {
+        "letter": "D",
+        "text": ". A person, once given notice of an investigation, must cease all regulated activities immediately",
+        "textJa": ". 調査の通知を受けた者は、直ちにすべての規制対象活動を中止しなければならない"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A person does not need to cease activities when given notice of an investigation. A notice of investigation merely informs the person that their activities are being investigated. It does not of itself consist of disciplinary action.",
+    "globalId": 92,
+    "categoryId": 50,
+    "questionJa": "FCAの調査に関して、次の記述のうち誤っているものはどれですか？",
+    "explanationJa": "調査の通知を受けても、活動を中止する必要はありません。調査通知は、その者の活動が調査されていることを通知するものであり、それ自体が懲戒処分を構成するものではありません。"
+  },
+  {
+    "id": 51,
+    "question": "Which of the following is not categorised as a disciplinary measure of the FCA?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000375",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Public statement",
+        "textJa": ". 公的声明"
+      },
+      {
+        "letter": "B",
+        "text": ". Public censure",
+        "textJa": ". 公的譴責"
+      },
+      {
+        "letter": "C",
+        "text": ". Fine",
+        "textJa": ". 罰金"
+      },
+      {
+        "letter": "D",
+        "text": ". Private warning",
+        "textJa": ". 私的警告"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A private warning is not a disciplinary measure. It will however remain on file and be considered in future if further breaches occur.",
+    "globalId": 93,
+    "categoryId": 51,
+    "questionJa": "次のうち、FCAの懲戒処分として分類されないものはどれですか？",
+    "explanationJa": "私的警告は懲戒処分ではありません。ただし、記録に残り、将来さらなる違反が発生した場合には考慮されます。"
+  },
+  {
+    "id": 52,
+    "question": "Which of the following would the FCA not consider acts of misconduct subject to disciplinary proceedings?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000376",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An employee failing to comply with the firm's own policy of independence",
+        "textJa": ". 従業員が企業の独立性に関する独自の方針に従わないこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Providing false or misleading information to the FCA outside of an FCA investigation",
+        "textJa": ". FCAの調査外でFCAに虚偽または誤解を招く情報を提供すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Acting in such a way as to cause another approved person to be in breach of the FCA rules",
+        "textJa": ". 他の承認者がFCAの規則に違反するような方法で行動すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Dealing ahead of the firm's research where the research is intended for the firm's use only",
+        "textJa": ". 調査が企業内利用のみを目的としている場合に、企業の調査に先立って取引を行うこと"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Research that is not intended for the clients of a firm is not covered by the FCA rules so would not be a breach.",
+    "globalId": 94,
+    "categoryId": 52,
+    "questionJa": "次のうち、FCAが懲戒手続きの対象となる不正行為と見なさないものはどれですか？",
+    "explanationJa": "企業の顧客向けではない調査はFCAの規則の対象外であるため、違反とはなりません。"
+  },
+  {
+    "id": 53,
+    "question": "Significant decisions on appropriate disciplinary measures are made by:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000377",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The FSCS",
+        "textJa": ". FSCS"
+      },
+      {
+        "letter": "B",
+        "text": ". The RDC",
+        "textJa": ". RDC"
+      },
+      {
+        "letter": "C",
+        "text": ". The Treasury",
+        "textJa": ". Treasury"
+      },
+      {
+        "letter": "D",
+        "text": ". The FOS",
+        "textJa": ". FOS"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA takes decisions on lesser regulatory matters. For significant decisions the FCA passes the case to the Regulatory Decisions Committee (RDC).",
+    "globalId": 95,
+    "categoryId": 53,
+    "questionJa": "適切な懲戒処分に関する重要な決定は、誰によって行われますか？",
+    "explanationJa": "FCAは軽微な規制事項に関する決定を下します。重要な決定については、FCAは事案をRegulatory Decisions Committee (RDC) に付託します。"
+  },
+  {
+    "id": 54,
+    "question": "Which of the following notices can be published in accordance with disciplinary process and measures without the consent of the receiving party? I . Notice of discontinuance II . Decision notice III . Final decision notice IV . Final supervisory notice",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000378",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II",
+        "textJa": ". I および II"
+      },
+      {
+        "letter": "B",
+        "text": ". II and III",
+        "textJa": ". II および III"
+      },
+      {
+        "letter": "C",
+        "text": ". III and IV",
+        "textJa": ". III および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I and IV",
+        "textJa": ". I および IV"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Note also that the information about matters to which a discontinuance notice relates may also be published but only with the consent of the party to whom it was issued.",
+    "globalId": 96,
+    "categoryId": 54,
+    "questionJa": "次のどの通知が、懲戒手続きおよび措置に従い、受領者の同意なしに公表される可能性がありますか？ I. 中止通知 II. 決定通知 III. 最終決定通知 IV. 最終監督通知",
+    "explanationJa": "中止通知に関連する事項に関する情報も公表される可能性がありますが、それは通知が発行された当事者の同意がある場合に限られることに注意してください。"
+  },
+  {
+    "id": 55,
+    "question": "Which of the following notices specifies a date from which it will be effective?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000379",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Warning notice",
+        "textJa": ". 警告通知"
+      },
+      {
+        "letter": "B",
+        "text": ". Decision notice",
+        "textJa": ". 決定通知"
+      },
+      {
+        "letter": "C",
+        "text": ". Final notice",
+        "textJa": ". 最終通知"
+      },
+      {
+        "letter": "D",
+        "text": ". Supervisory notice",
+        "textJa": ". 監督通知"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A final notice sets out the terms of the action the RDC has decided to take and the date from which it takes effect.",
+    "globalId": 97,
+    "categoryId": 55,
+    "questionJa": "次のどの通知が、それが有効になる日付を特定していますか？",
+    "explanationJa": "最終通知は、RDCが決定した措置の条件と、それが有効になる日付を定めています。"
+  },
+  {
+    "id": 56,
+    "question": "If an authorised firm is unhappy with the results of an FCA investigation, they may go to the Tax and Chancery Chamber of the Upper Tribunal under which of the following notices?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000380",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Supervisory notice and warning notice",
+        "textJa": ". 監督通知および警告通知"
+      },
+      {
+        "letter": "B",
+        "text": ". Warning notice and decision notice",
+        "textJa": ". 警告通知および決定通知"
+      },
+      {
+        "letter": "C",
+        "text": ". Decision notice only",
+        "textJa": ". 決定通知のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". Supervisory notice and decision notice",
+        "textJa": ". 監督通知および決定通知"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "If a firm receives a decision notice, supervisory notice or is refused authorisation, it may refer this to the Tax and Chancery Chamber of the Upper Tribunal. A final decision by the Tribunal can be appealed in the Court of Appeal and then the Supreme Court, but only if it relates to a point of law.",
+    "globalId": 98,
+    "categoryId": 56,
+    "questionJa": "認可企業がFCAの調査結果に不満がある場合、次のどの通知に基づいてTax and Chancery Chamber of the Upper Tribunalに申し立てを行うことができますか？",
+    "explanationJa": "企業が決定通知、監督通知を受け取った場合、または認可を拒否された場合、これをTax and Chancery Chamber of the Upper Tribunalに付託することができます。Tribunalによる最終決定は、Court of Appeal、そしてSupreme Courtに上訴することができますが、それは法律問題に関連する場合に限られます。"
+  },
+  {
+    "id": 57,
+    "question": "Which of the following is true regarding the Regulatory Decisions Committee?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000381",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is an agency of the Treasury",
+        "textJa": ". Treasuryの機関である"
+      },
+      {
+        "letter": "B",
+        "text": ". It may issue a Final Notice",
+        "textJa": ". 最終通知を発行することがある"
+      },
+      {
+        "letter": "C",
+        "text": ". There is no right to appeal following a notice from the RDC",
+        "textJa": ". RDCからの通知後には不服申し立ての権利はない"
+      },
+      {
+        "letter": "D",
+        "text": ". It is used to pay compensation to clients following the insolvency of an authorised firm",
+        "textJa": ". 認可企業の破産後、顧客への補償金の支払いに使用される"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Following a notice from the RDC, there is still the right to appeal to the Tax and Chancery Chamber of the Upper Tribunal.",
+    "globalId": 99,
+    "categoryId": 57,
+    "questionJa": "Regulatory Decisions Committeeに関して正しいものは次のうちどれですか？",
+    "explanationJa": "RDCからの通知後も、Tax and Chancery Chamber of the Upper Tribunalに不服を申し立てる権利があります。"
+  },
+  {
+    "id": 58,
+    "question": "Which of the following comes immediately after the issue of a warning?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000383",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Final decision",
+        "textJa": ". 最終決定"
+      },
+      {
+        "letter": "B",
+        "text": ". Settlement and mediation",
+        "textJa": ". 和解および調停"
+      },
+      {
+        "letter": "C",
+        "text": ". Response and right to hearing",
+        "textJa": ". 回答および聴聞を受ける権利"
+      },
+      {
+        "letter": "D",
+        "text": ". Appeal to the tribunal",
+        "textJa": ". 審判所への上訴"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "After a warning the firm has the right to put their case to the Regulator before an attempt to settle or mediate. After this the Regulator makes a decision and the firm may then appeal to the Tax and Chancery Chamber of the Upper Tribunal.",
+    "globalId": 100,
+    "categoryId": 58,
+    "questionJa": "警告の発行直後に来るのは次のうちどれですか？",
+    "explanationJa": "警告の後、企業は和解または調停を試みる前に、規制当局に自社の主張を述べる権利を有します。その後、規制当局が決定を下し、企業はTax and Chancery Chamber of the Upper Tribunalに上訴することができます。"
+  },
+  {
+    "id": 59,
+    "question": "Which of the following is responsible for hearing appeals from firms who are subject to FCA disciplinary action?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000385",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Ombudsman",
+        "textJa": ". Ombudsman（オンブズマン）"
+      },
+      {
+        "letter": "B",
+        "text": ". The FCA",
+        "textJa": ". FCA"
+      },
+      {
+        "letter": "C",
+        "text": ". The Tax and Chancery Chamber of the Upper Tribunal",
+        "textJa": ". The Tax and Chancery Chamber of the Upper Tribunal"
+      },
+      {
+        "letter": "D",
+        "text": ". The Treasury",
+        "textJa": ". Treasury"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Once firms have put a case to the FCA they then appeal to the external TCCUT operated by the Ministry of Justice.",
+    "globalId": 101,
+    "categoryId": 59,
+    "questionJa": "FCAの懲戒処分の対象となった企業からの不服申し立てを審理する責任を負うのは次のうちどれですか？",
+    "explanationJa": "企業がFCAに事案を提示した後、Ministry of Justice（司法省）が運営する外部のTCCUTに不服を申し立てます。"
+  },
+  {
+    "id": 60,
+    "question": "Which of the following could be a reason for the FCA to not publish a final notice?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000386",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". If the person is an approved person and would consequently find future employment difficult to obtain",
+        "textJa": ". その人が承認者であり、結果として将来の雇用を見つけるのが困難になる場合"
+      },
+      {
+        "letter": "B",
+        "text": ". If publishing would be prejudicial to the interests of consumers",
+        "textJa": ". 公表が消費者の利益を害する場合"
+      },
+      {
+        "letter": "C",
+        "text": ". More than 60 days has elapsed since the start of the investigation",
+        "textJa": ". 調査開始から60日以上経過した場合"
+      },
+      {
+        "letter": "D",
+        "text": ". If publication will lead to confidence in the firm being damaged",
+        "textJa": ". 公表が企業の信頼を損なうことにつながる場合"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA may not publish information relating to a final notice, supervisory notice that has taken effect or notice of discontinuance if publication would, in the FCA's opinion, be unfair to the person with respect to whom the action was taken or prejudicial to the interests of clients.",
+    "globalId": 102,
+    "categoryId": 60,
+    "questionJa": "FCAが最終通知を公表しない理由となり得るものは次のうちどれですか？",
+    "explanationJa": "FCAは、最終通知、発効した監督通知、または中止通知に関連する情報を、公表が措置の対象となった人物にとって不公平であるか、または顧客の利益を害するとFCAが判断した場合、公表しないことがあります。"
+  },
+  {
+    "id": 61,
+    "question": "On receipt of a decision notice issued by the Regulatory Decisions Committee the recipient will be given the right to appeal to the Upper Tribunal within a time period of:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000621",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 7 days",
+        "textJa": ". 7日間"
+      },
+      {
+        "letter": "B",
+        "text": ". 14 days",
+        "textJa": ". 14日間"
+      },
+      {
+        "letter": "C",
+        "text": ". 21 days",
+        "textJa": ". 21日間"
+      },
+      {
+        "letter": "D",
+        "text": ". 28 days",
+        "textJa": ". 28日間"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "RDC - Regulatory Decisions Committee. If the recipient believes the RDC has failed to apply the disciplinary process correctly in generating the Decision Notice, the recipient has 28 days to lodge an appeal with the Upper Tribunal.",
+    "globalId": 103,
+    "categoryId": 61,
+    "questionJa": "Regulatory Decisions Committeeが発行した決定通知を受領した際、受領者はどの期間内にUpper Tribunalに不服を申し立てる権利を与えられますか？",
+    "explanationJa": "RDC - Regulatory Decisions Committee。受領者が、RDCが決定通知の作成において懲戒手続きを正しく適用しなかったと考える場合、受領者は28日以内にUpper Tribunalに不服を申し立てることができます。"
+  },
+  {
+    "id": 62,
+    "question": "Which of the following are true with respect to decision notices?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000674",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". They may be issued to firms and individuals",
+        "textJa": ". 企業および個人に発行されることがある"
+      },
+      {
+        "letter": "B",
+        "text": ". They may be written or oral",
+        "textJa": ". 書面または口頭で発行されることがある"
+      },
+      {
+        "letter": "C",
+        "text": ". They need the approval of the courts before they become effective",
+        "textJa": ". 有効になる前に裁判所の承認が必要である"
+      },
+      {
+        "letter": "D",
+        "text": ". They set out a time limit for remedial action",
+        "textJa": ". 是正措置の期限を定めている"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A decision notice must be in writing, it may be issued to individuals or firms. On receiving a decision notice, the recipient has 28 days to appeal to the Tax and Chancery Chamber of the Upper Tribunal (formerly known as the FSMT), and therefore a decision notice does not set a time limit which would be affected by the timing of any appeal. The RDC does not need court approval to issue notices.",
+    "globalId": 104,
+    "categoryId": 62,
+    "questionJa": "決定通知に関して正しいものは次のうちどれですか？",
+    "explanationJa": "決定通知は書面でなければならず、個人または企業に発行されることがあります。決定通知を受領すると、受領者は28日以内にTax and Chancery Chamber of the Upper Tribunal（旧FSMT）に不服を申し立てることができ、したがって決定通知は、いかなる不服申し立てのタイミングにも影響される期限を設定しません。RDCは通知を発行するのに裁判所の承認を必要としません。"
+  },
+  {
+    "id": 63,
+    "question": "Which of the following does the Financial Services and Markets Act 2000 make responsible for ensuring a firm complies with the appropriate regulations?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000675",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". FCA",
+        "textJa": ". FCA"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm itself",
+        "textJa": ". 企業自身"
+      },
+      {
+        "letter": "C",
+        "text": ". The Treasury",
+        "textJa": ". Treasury"
+      },
+      {
+        "letter": "D",
+        "text": ". The RDC",
+        "textJa": ". RDC"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "It is the responsibility of the firm to ensure it complies with the appropriate regulations.",
+    "globalId": 105,
+    "categoryId": 63,
+    "questionJa": "Financial Services and Markets Act 2000は、企業が適切な規制を遵守することを保証する責任を次のうち誰に負わせていますか？",
+    "explanationJa": "適切な規制を遵守することを保証するのは、企業の責任です。"
+  },
+  {
+    "id": 64,
+    "question": "When does the FCA issue a final notice?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000727",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Immediately after a warning notice",
+        "textJa": ". 警告通知の直後"
+      },
+      {
+        "letter": "B",
+        "text": ". Instead of a decision notice",
+        "textJa": ". 決定通知の代わりに"
+      },
+      {
+        "letter": "C",
+        "text": ". No sooner than 28 days after a decision notice",
+        "textJa": ". 決定通知後28日以降"
+      },
+      {
+        "letter": "D",
+        "text": ". No later than 28 days after a warning notice",
+        "textJa": ". 警告通知後28日以内"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Under Section 390 of FSMA, the FCA must give a final notice to the person to whom it has given a decision notice: - if the matter was not referred to the Tribunal within the period of 28 days of the date when the decision notice was given, or; - if the matter was referred to the Tribunal within the period of 28 days of the date when the decision notice was given, the FCA will give a final notice at the same time as it takes action in accordance with any directions given by the Tribunal.",
+    "globalId": 106,
+    "categoryId": 64,
+    "questionJa": "FCAはいつ最終通知を発行しますか？",
+    "explanationJa": "FSMAの第390条に基づき、FCAは決定通知を発行した人物に対して最終通知を発行しなければなりません： - 決定通知が発行された日から28日以内に問題がTribunalに付託されなかった場合、または； - 決定通知が発行された日から28日以内に問題がTribunalに付託された場合、FCAはTribunalから与えられたいかなる指示に従って措置を講じると同時に最終通知を発行します。"
+  },
+  {
+    "id": 65,
+    "question": "If the FCA is asked to pursue 'redress' it will:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014710",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Consider the different methods of redress available to it",
+        "textJa": ". 利用可能なさまざまな救済方法を検討する"
+      },
+      {
+        "letter": "B",
+        "text": ". Impose a maximum penalty of £100,000",
+        "textJa": ". 最大10万ポンドの罰金を科す"
+      },
+      {
+        "letter": "C",
+        "text": ". Refer the case to the FSCS",
+        "textJa": ". 事案をFSCSに付託する"
+      },
+      {
+        "letter": "D",
+        "text": ". Follow the thresholds set out in the Claims Level Guidance",
+        "textJa": ". Claims Level Guidanceに定められた閾値に従う"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A is the best possible answer as the FCA could seek a restitution order or require an investor to contact the FSCS/FOS.",
+    "globalId": 107,
+    "categoryId": 65,
+    "questionJa": "FCAが「救済（redress）」を追求するよう求められた場合、FCAは何をしますか？",
+    "explanationJa": "FCAが原状回復命令を求めたり、投資家にFSCS/FOSへの連絡を要求したりする可能性があるため、Aが最も適切な回答です。"
+  },
+  {
+    "id": 66,
+    "question": "Which of the following is NOT a disciplinary sanction of the Regulatory Decisions Committee?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014725",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Public statement of misconduct",
+        "textJa": ". 不正行為の公的声明"
+      },
+      {
+        "letter": "B",
+        "text": ". Private warning",
+        "textJa": ". 私的警告"
+      },
+      {
+        "letter": "C",
+        "text": ". Withdrawal of approval",
+        "textJa": ". 承認の取り消し"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial penalty",
+        "textJa": ". 金銭的罰則"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This is a difficult question as all four of the above can be issued by the FCA. However a private warning is not issued by the RDC and therefore is not considered to be an official disciplinary sanction of the RDC.",
+    "globalId": 108,
+    "categoryId": 66,
+    "questionJa": "次のうち、Regulatory Decisions Committeeの懲戒処分でないものはどれですか？",
+    "explanationJa": "これは難しい問題です。上記の4つすべてがFCAによって発行される可能性があるからです。しかし、私的警告はRDCによって発行されず、したがってRDCの公式な懲戒処分とは見なされません。"
+  },
+  {
+    "id": 67,
+    "question": "When a regulated person receives a warning notice from the FCA, which of the following best reflects the next steps that person can take?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014729",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The regulated person can do nothing except wait for a decision notice to be issued",
+        "textJa": ". 規制対象者は決定通知が発行されるのを待つ以外に何もできない"
+      },
+      {
+        "letter": "B",
+        "text": ". They are able to make representations to the Regulatory Decision Committee",
+        "textJa": ". Regulatory Decision Committeeに申し立てを行うことができる"
+      },
+      {
+        "letter": "C",
+        "text": ". They must issue a press release to publicly indicate the response they wish to make",
+        "textJa": ". 希望する対応を公に示すためにプレスリリースを発行しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". They may appeal to the Tax and Chancery Chamber of the Upper Tribunal in a formal re-hearing",
+        "textJa": ". 正式な再審理においてTax and Chancery Chamber of the Upper Tribunalに不服を申し立てることができる"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The warning notice would be sent out as soon as the FCA investigation has been passed to the Regulatory Decisions Committee. The next step in the process is for the accused to make their own representations to the RDC.",
+    "globalId": 109,
+    "categoryId": 67,
+    "questionJa": "規制対象者がFCAから警告通知を受け取った場合、その人が次に取ることができる措置を最もよく反映しているのは次のうちどれですか？",
+    "explanationJa": "警告通知は、FCAの調査がRegulatory Decisions Committeeに付託されるとすぐに送付されます。プロセスの次のステップは、被告がRDCに独自の申し立てを行うことです。"
+  },
+  {
+    "id": 68,
+    "question": "Can an authorised firm appeal a decision notice?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014730",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Yes, through the Upper Tribunal",
+        "textJa": ". はい、Upper Tribunalを通じて"
+      },
+      {
+        "letter": "B",
+        "text": ". Only if approved by the FCA",
+        "textJa": ". FCAによって承認された場合のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Only within 60 days of a decision notice",
+        "textJa": ". 決定通知から60日以内のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". No. Decision notices are final",
+        "textJa": ". いいえ。決定通知は最終的なものです"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A firm may appeal against a decision or supervisory notice.",
+    "globalId": 110,
+    "categoryId": 68,
+    "questionJa": "認可企業は決定通知に不服を申し立てることができますか？",
+    "explanationJa": "企業は決定通知または監督通知に対して上訴することができます。"
+  },
+  {
+    "id": 69,
+    "question": "The Regulatory Decisions Committee is required to issue a statutory notice in respect of which of the following?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014775",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Granting of part 4A permission to a financial institution",
+        "textJa": ". 金融機関へのPart 4A Permissionの付与"
+      },
+      {
+        "letter": "B",
+        "text": ". Imposition of a financial penalty on a regulated person",
+        "textJa": ". 規制対象者への金銭的罰則の賦課"
+      },
+      {
+        "letter": "C",
+        "text": ". When an authorised person or approved individual is given a private warning",
+        "textJa": ". 認可者または承認された個人に私的警告が与えられたとき"
+      },
+      {
+        "letter": "D",
+        "text": ". At the beginning of an investigation of an authorised firm or certified person",
+        "textJa": ". 認可企業または認証者の調査開始時"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The imposition of a financial penalty on a firm or individual would require the issue of a decision notice (which is a statutory notice) by the RDC prior to the issue of a final notice. Statutory notices are warning notices, decision notices, final notices and supervisory notices.",
+    "globalId": 111,
+    "categoryId": 69,
+    "questionJa": "Regulatory Decisions Committeeは、次のうちどれに関して法定通知を発行する必要がありますか？",
+    "explanationJa": "企業または個人に対する金銭的罰則の賦課は、最終通知の発行前にRDCによる決定通知（法定通知）の発行を必要とします。法定通知には、警告通知、決定通知、最終通知、および監督通知があります。"
+  },
+  {
+    "id": 70,
+    "question": "What is the territorial scope of the Tax and Chancery Chamber of the Upper Tribunal?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014792",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". European Economic Area",
+        "textJa": ". 欧州経済領域"
+      },
+      {
+        "letter": "B",
+        "text": ". Worldwide",
+        "textJa": ". 全世界"
+      },
+      {
+        "letter": "C",
+        "text": ". United Kingdom and United States",
+        "textJa": ". 英国および米国"
+      },
+      {
+        "letter": "D",
+        "text": ". United Kingdom only",
+        "textJa": ". 英国のみ"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The TCCUT is part of the UK judiciary system and only covers incidents in the UK.",
+    "globalId": 112,
+    "categoryId": 70,
+    "questionJa": "Tax and Chancery Chamber of the Upper Tribunalの地理的管轄範囲は何ですか？",
+    "explanationJa": "TCCUTは英国の司法制度の一部であり、英国での事件のみを扱います。"
+  },
+  {
+    "id": 71,
+    "question": "Who is the Tax and Chancery Chamber of the Upper Tribunal set up by?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1016031",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Ombudsman Service",
+        "textJa": ". Financial Ombudsman Service"
+      },
+      {
+        "letter": "B",
+        "text": ". His Majesty's Treasury",
+        "textJa": ". His Majesty's Treasury"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial Services Compensation Scheme",
+        "textJa": ". Financial Services Compensation Scheme"
+      },
+      {
+        "letter": "D",
+        "text": ". The Ministry of Justice",
+        "textJa": ". The Ministry of Justice"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Ministry of Justice sets-up and runs the TCCUT.",
+    "globalId": 113,
+    "categoryId": 71,
+    "questionJa": "Tax and Chancery Chamber of the Upper Tribunalは誰によって設立されましたか？",
+    "explanationJa": "Ministry of Justice（司法省）がTCCUTを設立し、運営しています。"
+  },
+  {
+    "id": 72,
+    "question": "S71 of the Financial Services and Markets Act 2000 allows private persons to claim damages for losses caused by which of the following?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000596",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An authorised firm",
+        "textJa": ". 認可企業"
+      },
+      {
+        "letter": "B",
+        "text": ". Any firm, whether authorised or not",
+        "textJa": ". 認可されているか否かにかかわらず、あらゆる企業"
+      },
+      {
+        "letter": "C",
+        "text": ". Authorised firms and approved individuals",
+        "textJa": ". 認可企業および承認された個人"
+      },
+      {
+        "letter": "D",
+        "text": ". Approved individuals",
+        "textJa": ". 承認された個人"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Under s71, a private person can sue an authorised firm for loss resulting from the employment of a prohibited individual or allowing an unapproved person to undertake a controlled function.",
+    "globalId": 114,
+    "categoryId": 72,
+    "questionJa": "Financial Services and Markets Act 2000の第71条は、個人が次のうちどれによって引き起こされた損失に対する損害賠償を請求することを認めていますか？",
+    "explanationJa": "第71条に基づき、個人は、禁止された個人の雇用、または未承認の人物に管理機能を遂行させたことに起因する損失について、認可企業を訴えることができます。"
+  },
+  {
+    "id": 73,
+    "question": "What is the maximum penalty for those operating an unauthorised firm carrying out regulated activities in the UK as stated in the Financial Services Markets Act 2000?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1014746",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Six months imprisonment and a £5,000 fine",
+        "textJa": ". 6ヶ月の禁固刑および5,000ポンドの罰金"
+      },
+      {
+        "letter": "B",
+        "text": ". Six months imprisonment and an unlimited fine",
+        "textJa": ". 6ヶ月の禁固刑および無制限の罰金"
+      },
+      {
+        "letter": "C",
+        "text": ". Two years imprisonment and a £5,000 fine",
+        "textJa": ". 2年の禁固刑および5,000ポンドの罰金"
+      },
+      {
+        "letter": "D",
+        "text": ". Two years imprisonment and an unlimited fine",
+        "textJa": ". 2年の禁固刑および無制限の罰金"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "If you are convicted of a breach of the General Prohibition (s19 FSMA 2000) in a Crown Court the maximum sentence is two years in jail and/ or an unlimited fine. The maximum sentence for cases heard in a magistrates court is six months and/ or a £5,000 fine.",
+    "globalId": 115,
+    "categoryId": 73,
+    "questionJa": "Financial Services Markets Act 2000に記載されている、英国で規制対象活動を行う無認可企業を運営する者に対する最高刑罰は何ですか？",
+    "explanationJa": "Crown Court（刑事法院）で一般禁止（FSMA 2000第19条）の違反で有罪判決を受けた場合、最高刑は2年の禁固刑および/または無制限の罰金です。magistrates court（治安判事裁判所）で審理される事件の最高刑は6ヶ月および/または5,000ポンドの罰金です。"
+  },
+  {
+    "id": 74,
+    "question": "If an advisor carries on regulated activities without having sought Part 4A permission from the FCA, what is the effect on any contract with a client?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000192",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is void as from day one",
+        "textJa": ". 初日から無効となる"
+      },
+      {
+        "letter": "B",
+        "text": ". It is void as from the date of the conviction of the advisor",
+        "textJa": ". アドバイザーの有罪判決の日から無効となる"
+      },
+      {
+        "letter": "C",
+        "text": ". It is voidable at the option of the client",
+        "textJa": ". 顧客の選択により取り消し可能となる"
+      },
+      {
+        "letter": "D",
+        "text": ". It is voidable at the option of the firm",
+        "textJa": ". 企業の選択により取り消し可能となる"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Any agreements made by a person in contravention of the general prohibition are unenforceable by that person against the other party to the agreement. A consequence of a breach of the general prohibition is that certain agreements or contracts can be voidable, at the option of the client.",
+    "globalId": 116,
+    "categoryId": 74,
+    "questionJa": "アドバイザーがFCAからPart 4A Permissionを求めずに規制対象活動を行った場合、顧客との契約にはどのような影響がありますか？",
+    "explanationJa": "一般禁止に違反して個人が締結したいかなる契約も、その個人は契約の相手方に対してその契約を執行できません。一般禁止の違反の結果、特定の契約または契約は、顧客の選択により取り消し可能となることがあります。"
+  },
+  {
+    "id": 75,
+    "question": "According to the general prohibition (S19 of the Financial Services and Markets Act 2000), which of the following activities would NOT require a firm to gain authorisation by the Regulator?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000193",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Purchasing ADRs on behalf of a private client",
+        "textJa": ". 個人顧客のためにADRsを購入すること"
+      },
+      {
+        "letter": "B",
+        "text": ". Advising on the purchase of Indian rupees",
+        "textJa": ". インドルピーの購入に関する助言"
+      },
+      {
+        "letter": "C",
+        "text": ". Managing a futures portfolio for a discretionary client",
+        "textJa": ". 裁量顧客のために先物ポートフォリオを運用すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Broking shares for an execution only private client",
+        "textJa": ". 執行のみの個人顧客のために株式を仲介すること"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Advising on currencies, such as rupees, is not an authorised activity under FSMA 2000 as detailed in the Treasury Regulated Activities Order 2001.",
+    "globalId": 117,
+    "categoryId": 75,
+    "questionJa": "一般禁止（Financial Services and Markets Act 2000の第19条）によると、次のどの活動について、企業は規制当局による認可を得る必要がありませんか？",
+    "explanationJa": "Treasury Regulated Activities Order 2001に詳述されているように、ルピーなどの通貨に関する助言は、FSMA 2000に基づく認可活動ではありません。"
+  },
+  {
+    "id": 76,
+    "question": "Personal responsibility for senior manager functions is enforced by:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000214",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A set of Conduct Rules backed by a duty of responsibility",
+        "textJa": ". 責任義務によって裏付けられた一連のConduct Rules（行動規範）"
+      },
+      {
+        "letter": "B",
+        "text": ". Four general principles supplemented by a code of ethics",
+        "textJa": ". 倫理規定によって補完された4つの一般原則"
+      },
+      {
+        "letter": "C",
+        "text": ". A code of practice which incorporates a range of principles",
+        "textJa": ". 広範な原則を組み込んだ行動規範"
+      },
+      {
+        "letter": "D",
+        "text": ". Seven principles and a code of conduct",
+        "textJa": ". 7つの原則と行動規範"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "There are ten conduct rules that apply to senior managers. In addition, prescribed responsibilities are laid out for each senior manager in a Statement of Responsibility, which is legally enforceable. This imposes a duty of responsibility.",
+    "globalId": 118,
+    "categoryId": 76,
+    "questionJa": "シニアマネージャー機能に対する個人的責任は、何によって執行されますか？",
+    "explanationJa": "シニアマネージャーに適用される10のConduct Rules（行動規範）があります。さらに、各シニアマネージャーの所定の責任が、法的拘束力のある責任声明書に記載されています。これにより責任義務が課されます。"
+  },
+  {
+    "id": 77,
+    "question": "What is the maximum number of employees permitted to work in an authorised firm's compliance department?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000246",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 10",
+        "textJa": ". 10人"
+      },
+      {
+        "letter": "B",
+        "text": ". 20",
+        "textJa": ". 20人"
+      },
+      {
+        "letter": "C",
+        "text": ". 50",
+        "textJa": ". 50人"
+      },
+      {
+        "letter": "D",
+        "text": ". No maximum",
+        "textJa": ". 上限なし"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "There is no maximum (or minimum) limit to the number of employees permitted to work in a firm's compliance department.",
+    "globalId": 119,
+    "categoryId": 77,
+    "questionJa": "認可企業のコンプライアンス部門で働くことが許可されている従業員の最大数は何人ですか？",
+    "explanationJa": "企業のコンプライアンス部門で働くことが許可されている従業員の数に上限（または下限）はありません。"
+  },
+  {
+    "id": 78,
+    "question": "Which of the following Conduct Rules apply to all SMCR functions?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000257",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Observe proper standards of market conduct",
+        "textJa": ". 市場行動の適切な基準を遵守する"
+      },
+      {
+        "letter": "B",
+        "text": ". Disclose appropriately any information of which the FCA or PRA would reasonably expect notice",
+        "textJa": ". FCAまたはPRAが合理的に通知を期待する情報を適切に開示する"
+      },
+      {
+        "letter": "C",
+        "text": ". Take reasonable steps to ensure the business is organised so that it can be controlled",
+        "textJa": ". 事業が管理できるように組織されていることを保証するために合理的な措置を講じる"
+      },
+      {
+        "letter": "D",
+        "text": ". Take reasonable steps to ensure the firm complies with relevant requirements and standards of the regulatory system",
+        "textJa": ". 企業が規制システムの関連要件および基準を遵守することを保証するために合理的な措置を講じる"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "'Observe proper standards of market conduct' is the correct answer. The other options apply to senior manager functions only.",
+    "globalId": 120,
+    "categoryId": 78,
+    "questionJa": "次のConduct Rules（行動規範）のうち、すべてのSMCR機能に適用されるものはどれですか？",
+    "explanationJa": "「市場行動の適切な基準を遵守する」が正解です。他の選択肢はシニアマネージャー機能にのみ適用されます。"
+  },
+  {
+    "id": 79,
+    "question": "Under the product intervention rules for how long can products be banned by the FCA without consultation with the product provider?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1058265",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 5 years",
+        "textJa": ". 5年間"
+      },
+      {
+        "letter": "B",
+        "text": ". 3 years",
+        "textJa": ". 3年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Indefinitely",
+        "textJa": ". 無期限に"
+      },
+      {
+        "letter": "D",
+        "text": ". 12 months",
+        "textJa": ". 12ヶ月間"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "FSA2012 gives the FCA powers to ban products but this is normally subject to consultation. Without consultation the maximum time limit is 12 months",
+    "globalId": 121,
+    "categoryId": 79,
+    "questionJa": "製品介入規則に基づき、FCAは製品提供者との協議なしに、どのくらいの期間製品を禁止できますか？",
+    "explanationJa": "FSA2012はFCAに製品を禁止する権限を与えていますが、これは通常協議の対象となります。協議なしの場合の最大期間は12ヶ月です。"
+  },
+  {
+    "id": 80,
+    "question": "Which of the following is not a PRA Senior Manager Function for a UK bank?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000219",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Chief risk function",
+        "textJa": ". 最高リスク管理機能"
+      },
+      {
+        "letter": "B",
+        "text": ". Executive director function",
+        "textJa": ". 取締役（執行役員）機能"
+      },
+      {
+        "letter": "C",
+        "text": ". Head of internal audit function",
+        "textJa": ". 内部監査部長機能"
+      },
+      {
+        "letter": "D",
+        "text": ". Chief finance function",
+        "textJa": ". 最高財務機能"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Executive director function is an FCA function, not a PRA function.",
+    "globalId": 122,
+    "categoryId": 80,
+    "questionJa": "次のうち、英国の銀行におけるPRAのシニアマネージャー機能でないものはどれですか？",
+    "explanationJa": "取締役（執行役員）機能はFCAの機能であり、PRAの機能ではありません。"
+  },
+  {
+    "id": 81,
+    "question": "Which of the following is not a conduct rule which must be followed by ALL accountability regime persons?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078717",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". You must act with integrity",
+        "textJa": ". 誠実に行動しなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". You must observe proper standards of market conduct",
+        "textJa": ". 市場行動の適切な基準を遵守しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". You must act to deliver good outcomes for retail customers",
+        "textJa": ". 個人顧客にとって良い結果をもたらすように行動しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". You must act with due skill, care and diligence",
+        "textJa": ". 十分なスキル、注意、および勤勉さをもって行動しなければならない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This conduct rule (COCON Rule 6) is only applicable to SMCR roles at firms within scope of the Consumer Duty. Employees of out-of-scope firms would follow COCON Rule 4 instead - 'You must pay due regard to the interests of customers and treat them fairly'.",
+    "globalId": 123,
+    "categoryId": 81,
+    "questionJa": "次のうち、すべてのAccountability Regime（責任体制）の対象者が従わなければならない行動規範でないものはどれですか？",
+    "explanationJa": "この行動規範（COCON Rule 6）は、Consumer Dutyの対象となる企業のSMCRの役割にのみ適用されます。対象外の企業の従業員は、代わりにCOCON Rule 4（「顧客の利益に十分な配慮を払い、公正に扱わなければならない」）に従います。"
+  },
+  {
+    "id": 82,
+    "question": "Which of the following would not be considered acts of misconduct by a firm in the financial industry?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1078724",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A breach of the Financial Services and Markets Act",
+        "textJa": ". Financial Services and Markets Actの違反"
+      },
+      {
+        "letter": "B",
+        "text": ". A breach of a Principle for Businesses",
+        "textJa": ". 事業原則の違反"
+      },
+      {
+        "letter": "C",
+        "text": ". Failure to comply with instructions from an FCA inspector",
+        "textJa": ". FCA検査官からの指示に従わないこと"
+      },
+      {
+        "letter": "D",
+        "text": ". Not immediately producing adequate information for an FCA inspection",
+        "textJa": ". FCA検査のために適切な情報を直ちに作成しないこと"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Failure to comply with an FCA statement of principle is an act of misconduct. This is also true for breaches of FSMA 2000, provision of false information and not complying with the instructions of an FCA inspector. Firms are permitted 'a reasonable time period' (generally taken to mean 48 hours, unless instructed otherwise) to produce adequate information for an FCA inspection.",
+    "globalId": 124,
+    "categoryId": 82,
+    "questionJa": "次のうち、金融業界の企業による不正行為と見なされないものはどれですか？",
+    "explanationJa": "FCAの原則声明に従わないことは不正行為です。これは、FSMA 2000の違反、虚偽情報の提供、FCA検査官の指示に従わないことについても同様です。企業は、FCAの検査のために適切な情報を作成するために「合理的な期間」（特に指示がない限り、通常48時間と解釈される）が認められています。"
+  },
+  {
+    "id": 83,
+    "question": "Under which piece of legislation is the requirement for a firm to be authorised set out?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000195",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Services and Markets Act 2000",
+        "textJa": ". Financial Services and Markets Act 2000"
+      },
+      {
+        "letter": "B",
+        "text": ". Proceeds of Crime Act 2002",
+        "textJa": ". Proceeds of Crime Act 2002"
+      },
+      {
+        "letter": "C",
+        "text": ". Companies Act 2006",
+        "textJa": ". Companies Act 2006"
+      },
+      {
+        "letter": "D",
+        "text": ". Criminal Justice Act 1993",
+        "textJa": ". Criminal Justice Act 1993"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "In order to be authorised, a person applies to the Regulator under Part 4A of the Financial Services and Markets Act 2000.",
+    "globalId": 125,
+    "categoryId": 83,
+    "questionJa": "企業が認可される要件は、どの法律に定められていますか？",
+    "explanationJa": "認可されるためには、Financial Services and Markets Act 2000のPart 4Aに基づき、規制当局に申請します。"
+  },
+  {
+    "id": 84,
+    "question": "Under the SM&CR, a firm must take all reasonable steps to obtain a ‘regulatory reference’ from a candidate’s current employer and anyone who has been a candidate’s employer in how many past years?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000263",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Three years",
+        "textJa": ". 3年間"
+      },
+      {
+        "letter": "B",
+        "text": ". Five years",
+        "textJa": ". 5年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Six years",
+        "textJa": ". 6年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Seven years",
+        "textJa": ". 7年間"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Prior the application being submitted to the regulators a firm must, under the SM&CR, take all reasonable steps to obtain a ‘regulatory reference’ from a candidate’s current employer and anyone who has been a candidate’s employer for the past six years.",
+    "globalId": 126,
+    "categoryId": 84,
+    "questionJa": "SM&CR（シニアマネージャーおよび認証レジーム）に基づき、企業は候補者の現在の雇用主および過去何年間の雇用主であった者から「規制上の照会（regulatory reference）」を取得するために、すべての合理的な措置を講じなければなりませんか？",
+    "explanationJa": "申請書が規制当局に提出される前に、企業はSM&CRに基づき、候補者の現在の雇用主および過去6年間の雇用主であった者から「規制上の照会」を取得するために、すべての合理的な措置を講じなければなりません。"
+  },
+  {
+    "id": 85,
+    "question": "When the FCA grants an exchange with recognised status, it:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000822",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Confers authorisation to do investment business",
+        "textJa": ". 投資事業を行うための認可を付与する"
+      },
+      {
+        "letter": "B",
+        "text": ". Requires cooperation from the exchange with overseas regulators",
+        "textJa": ". 取引所に対し海外規制当局との協力を要求する"
+      },
+      {
+        "letter": "C",
+        "text": ". Requires that the exchange must be fit and proper",
+        "textJa": ". 取引所が適格かつ適切であることを要求する"
+      },
+      {
+        "letter": "D",
+        "text": ". Implies that all transactions will be settled in a timely manner",
+        "textJa": ". すべての取引が適時に決済されることを意味する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "In order to be recognised by the FCA, these exchanges and clearing houses need to be fit and proper for their purpose. Once recognised, the exchanges are referred to as recognised investment exchanges (RIEs), and the clearing houses are referred to as recognised clearing houses (RCHs). RIEs and RCHs are exempt persons in that they do not need to seek authorisation from the FCA to carry out regulated activities – they are, instead, recognised.",
+    "globalId": 127,
+    "categoryId": 85,
+    "questionJa": "FCAが取引所に承認ステータスを付与する場合、それは何を意味しますか？",
+    "explanationJa": "FCAによって承認されるためには、これらの取引所および清算機関はその目的に対して適格かつ適切である必要があります。承認されると、取引所はRecognised Investment Exchange (RIE) と呼ばれ、清算機関はRecognised Clearing House (RCH) と呼ばれます。RIEおよびRCHは、規制対象活動を行うためにFCAから認可を求める必要がない免除者です。代わりに、彼らは承認されています。"
+  },
+  {
+    "id": 86,
+    "question": "Which of the following is not true regarding the types of notices that can be issued by the Regulatory Decisions Committee (RDC)?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000667",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A warning notice sets out the action the regulator is intending to take",
+        "textJa": ". 警告通知は規制当局が取ろうとしている措置を定める"
+      },
+      {
+        "letter": "B",
+        "text": ". A notice of discontinuance is issued where proceedings set out in a warning notice or a decision notice are being discontinued",
+        "textJa": ". 中止通知は、警告通知または決定通知に定められた手続きが中止される場合に発行される"
+      },
+      {
+        "letter": "C",
+        "text": ". On the issuance of a decision notice the recipient has the right to appeal to the Upper Tribunal within 36 days",
+        "textJa": ". 決定通知の発行後、受領者は36日以内にUpper Tribunalに不服を申し立てる権利を有する"
+      },
+      {
+        "letter": "D",
+        "text": ". A final notice sets out the action the regulator has decided to take and the date from which it takes effect",
+        "textJa": ". 最終通知は規制当局が決定した措置とそれが有効になる日付を定める"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The recipient of a supervisory notice or decision notice has 28 days to appeal to the Upper Tribunal.",
+    "globalId": 128,
+    "categoryId": 86,
+    "questionJa": "Regulatory Decisions Committee (RDC) が発行できる通知の種類に関して、正しくないものは次のうちどれですか？",
+    "explanationJa": "監督通知または決定通知の受領者は、28日以内にUpper Tribunalに不服を申し立てることができます。"
+  },
+  {
+    "id": 87,
+    "question": "Which of the following is true of the training and competence rules?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000702",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Authorised firms are required to ensure their employees are competent for their role in the firm under Principle for Businesses 3, Management and Control",
+        "textJa": ". 認可企業は、事業原則3（経営管理と統制）に基づき、従業員が企業内での役割に対して有能であることを保証する必要がある"
+      },
+      {
+        "letter": "B",
+        "text": ". Approved examinations must be obtained within one year of working for an authorised firm",
+        "textJa": ". 認可企業で働き始めてから1年以内に承認された試験に合格しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". An employee must have passed the regulatory module before dealing with professional clients",
+        "textJa": ". 従業員はプロフェッショナル顧客と取引する前に規制モジュールに合格していなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". An overseas individual may be allowed to sit just the regulatory module if they have at least four years relevant experience outside the UK",
+        "textJa": ". 海外の個人は、英国外で少なくとも4年間の関連経験があれば、規制モジュールのみを受験することが許可される場合がある"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Approved examinations must usually be obtained within 30 months of working for an authorised firm. An employee must have passed the regulatory module before dealing with retail clients. An overseas individual may be allowed to sit just the regulatory module if they have at least three years' relevant experience outside the UK. Note that a firm must regularly review the competence of its employees.",
+    "globalId": 129,
+    "categoryId": 87,
+    "questionJa": "研修および能力に関する規則について正しいものは次のうちどれですか？",
+    "explanationJa": "承認された試験は通常、認可企業で働き始めてから30ヶ月以内に合格しなければなりません。従業員は個人顧客と取引する前に規制モジュールに合格していなければなりません。海外の個人は、英国外で少なくとも3年間の関連経験があれば、規制モジュールのみを受験することが許可される場合があります。企業は従業員の能力を定期的に見直さなければならないことに注意してください。"
+  },
+  {
+    "id": 88,
+    "question": "Which one of the following notices would give the recipient no further right of recourse against the FCA?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000775",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Decision notice",
+        "textJa": ". 決定通知"
+      },
+      {
+        "letter": "B",
+        "text": ". Further decision notice",
+        "textJa": ". 追加決定通知"
+      },
+      {
+        "letter": "C",
+        "text": ". Final notice",
+        "textJa": ". 最終通知"
+      },
+      {
+        "letter": "D",
+        "text": ". Supervisory notice",
+        "textJa": ". 監督通知"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A final notice will be issued following any potential appeal to the tribunal.",
+    "globalId": 130,
+    "categoryId": 88,
+    "questionJa": "次のどの通知が、受領者にFCAに対するさらなる不服申し立ての権利を与えませんか？",
+    "explanationJa": "最終通知は、審判所へのいかなる潜在的な不服申し立ての後にも発行されます。"
+  },
+  {
+    "id": 89,
+    "question": "Following an FCA investigation, the Regulatory Decisions Committee can issue a range of statutory notices. What is the best description of a warning notice?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000786",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Sent by the RDC when the RDC believes no wrongdoing has been done but proper procedures have not been followed",
+        "textJa": ". RDCが不正行為はなかったが適切な手続きが守られなかったと判断した場合にRDCから送付される"
+      },
+      {
+        "letter": "B",
+        "text": ". Sent by the FOS when a customer complaint has not been resolved",
+        "textJa": ". 顧客の苦情が解決されなかった場合にFOSから送付される"
+      },
+      {
+        "letter": "C",
+        "text": ". Sent by the FSCS if a firm is in danger of becoming insolvent",
+        "textJa": ". 企業が破産する危険がある場合にFSCSから送付される"
+      },
+      {
+        "letter": "D",
+        "text": ". Sent when the FCA believes that there is sufficient evidence to suggest wrongdoing has taken place and it intends to discipline",
+        "textJa": ". FCAが不正行為が行われたことを示唆する十分な証拠があり、懲戒処分を下す意向であると判断した場合に送付される"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The warning notice is sent after the FCA investigation. A firm can make a representation to the RDC based on this notice.",
+    "globalId": 131,
+    "categoryId": 89,
+    "questionJa": "FCAの調査後、Regulatory Decisions Committeeはさまざまな法定通知を発行できます。警告通知の最も適切な説明はどれですか？",
+    "explanationJa": "警告通知はFCAの調査後に送付されます。企業はこの通知に基づいてRDCに申し立てを行うことができます。"
+  },
+  {
+    "id": 90,
+    "question": "After the initial investigation by the FCA officers, the information is typically handed over to the Regulatory Decisions Committee who would decide what action is necessary. Any proposed action would be stated in a warning or supervisory notice. Which of the following could be issued by the RDC instead of these notices?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000808",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Decision notice",
+        "textJa": ". 決定通知"
+      },
+      {
+        "letter": "B",
+        "text": ". Final decision notice",
+        "textJa": ". 最終決定通知"
+      },
+      {
+        "letter": "C",
+        "text": ". Disciplinary notice",
+        "textJa": ". 懲戒通知"
+      },
+      {
+        "letter": "D",
+        "text": ". Notice of discontinuance",
+        "textJa": ". 中止通知"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A notice of discontinuance will be issued when the RDC decides that no further action is required.",
+    "globalId": 132,
+    "categoryId": 90,
+    "questionJa": "FCA職員による初期調査の後、情報は通常Regulatory Decisions Committeeに引き渡され、必要な措置が決定されます。提案された措置は警告通知または監督通知に記載されます。これらの通知の代わりにRDCが発行できるものは次のうちどれですか？",
+    "explanationJa": "RDCがさらなる措置は不要と判断した場合、中止通知が発行されます。"
+  },
+  {
+    "id": 91,
+    "question": "On which of the following trading platforms is an exchange trade reported automatically and published immediately?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1001964",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". CREST",
+        "textJa": ". CREST"
+      },
+      {
+        "letter": "B",
+        "text": ". SEAQ",
+        "textJa": ". SEAQ"
+      },
+      {
+        "letter": "C",
+        "text": ". NEX",
+        "textJa": ". NEX"
+      },
+      {
+        "letter": "D",
+        "text": ". SETS",
+        "textJa": ". SETS"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Reporting and publication are automatic and immediate respectively on SETS.",
+    "globalId": 133,
+    "categoryId": 91,
+    "questionJa": "次のどの取引プラットフォームで、取引所取引が自動的に報告され、即座に公表されますか？",
+    "explanationJa": "SETSでは、報告と公表がそれぞれ自動的かつ即時に行われます。"
+  },
+  {
+    "id": 92,
+    "question": "Which of the following is not a sanction available to the FCA in relation to a breach of the conduct of business rules?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000626",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Public censure",
+        "textJa": ". 公的譴責"
+      },
+      {
+        "letter": "B",
+        "text": ". Fine",
+        "textJa": ". 罰金"
+      },
+      {
+        "letter": "C",
+        "text": ". Prohibition order",
+        "textJa": ". 禁止命令"
+      },
+      {
+        "letter": "D",
+        "text": ". Disqualification of directors",
+        "textJa": ". 取締役の資格剥奪"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Directors may only be disqualified through a court order.",
+    "globalId": 134,
+    "categoryId": 92,
+    "questionJa": "次のうち、業務遂行規則違反に関してFCAが利用できる制裁でないものはどれですか？",
+    "explanationJa": "取締役は裁判所の命令によってのみ資格を剥奪されることがあります。"
+  },
+  {
+    "id": 93,
+    "question": "Once the FCA has issued a warning notice under the powers granted under s387 of the Financial Services and Markets Act 2000, in which of the following circumstances can the FCA decide to discontinue any further action?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000673",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Never",
+        "textJa": ". 決してない"
+      },
+      {
+        "letter": "B",
+        "text": ". Only on intervention by the Treasury",
+        "textJa": ". Treasuryの介入があった場合のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". At any time by issuing an oral notice of discontinuance",
+        "textJa": ". 口頭による中止通知を発行することによりいつでも"
+      },
+      {
+        "letter": "D",
+        "text": ". At any time by issuing a written notice of discontinuance",
+        "textJa": ". 書面による中止通知を発行することによりいつでも"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A notice of discontinuance must be written. Such a notice can be issued at any time should the Regulator wish to discontinue proceedings set out in either a decision notice or a warning notice.",
+    "globalId": 135,
+    "categoryId": 93,
+    "questionJa": "FCAがFinancial Services and Markets Act 2000の第387条に基づき付与された権限の下で警告通知を発行した後、FCAは次のどの状況でさらなる措置の中止を決定できますか？",
+    "explanationJa": "中止通知は書面でなければなりません。このような通知は、規制当局が決定通知または警告通知に定められた手続きを中止したい場合、いつでも発行できます。"
+  },
+  {
+    "id": 94,
+    "question": "Which of the following is NOT an objective of the FCA Handbook, Senior Management Arrangements Systems and Control Sourcebook?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000681",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To encourage directors and senior management of authorised firms to take appropriate responsibility for the apportionment of responsibilities",
+        "textJa": ". 認可企業の取締役および上級管理職が責任の分担に対して適切な責任を負うことを奨励する"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure that the firm takes reasonable care to establish and maintain systems and controls that are appropriate to the business",
+        "textJa": ". 企業が事業に適したシステムおよび管理体制を確立し維持するために合理的な注意を払うことを保証する"
+      },
+      {
+        "letter": "C",
+        "text": ". To ensure that directors and senior management spend more time trying to detect money laundering",
+        "textJa": ". 取締役および上級管理職がマネーロンダリングの検出により多くの時間を費やすことを保証する"
+      },
+      {
+        "letter": "D",
+        "text": ". To encourage firms to consider adopting and communicating to workers appropriate internal procedures for handling workers' concerns",
+        "textJa": ". 企業が従業員の懸念事項を処理するための適切な内部手続きを採用し、従業員に伝達することを検討するよう奨励する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FCA Handbook, Senior Management Arrangements Systems and Control Sourcebook, is aimed at giving guidance on Principles for Businesses 3.",
+    "globalId": 136,
+    "categoryId": 94,
+    "questionJa": "次のうち、FCAハンドブックのSenior Management Arrangements Systems and Control Sourcebookの目的でないものはどれですか？",
+    "explanationJa": "FCAハンドブックのSenior Management Arrangements Systems and Control Sourcebookは、事業原則3に関するガイダンスを提供することを目的としています。"
+  },
+  {
+    "id": 95,
+    "question": "Which of the following roles should be performed by a Senior Manager Function according to SUP 10C and SYSC 24 of the FCA handbook?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000712",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Working in compliance",
+        "textJa": ". コンプライアンス業務"
+      },
+      {
+        "letter": "B",
+        "text": ". Supervising other employees",
+        "textJa": ". 他の従業員の監督"
+      },
+      {
+        "letter": "C",
+        "text": ". Recruitment and training",
+        "textJa": ". 採用および研修"
+      },
+      {
+        "letter": "D",
+        "text": ". Chair of the nominations committee",
+        "textJa": ". 指名委員会の委員長"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Most chairperson functions are classified as senior manager functions and would require the individual to be approved. Note 1: Working in compliance is not necessarily a controlled function unless it is the compliance oversight function. Note 2: Only individuals supervising approved persons would need to be approved themselves. In addition, do not be thrown by the use of specific Handbook references. Most questions that do this can still be answered without the Handbook reference: \"Which of the following roles should be performed by a senior manager function?\"",
+    "globalId": 137,
+    "categoryId": 95,
+    "questionJa": "FCAハンドブックのSUP 10CおよびSYSC 24によると、次のどの役割がシニアマネージャー機能によって実行されるべきですか？",
+    "explanationJa": "ほとんどの委員長機能はシニアマネージャー機能として分類され、個人の承認が必要となります。注1：コンプライアンス業務は、コンプライアンス監督機能でない限り、必ずしも管理機能ではありません。注2：承認者を監督する個人自身も承認される必要があります。さらに、特定のハンドブック参照の使用に惑わされないでください。これを行うほとんどの質問は、ハンドブック参照なしでも回答できます：「次のどの役割がシニアマネージャー機能によって実行されるべきですか？」"
+  },
+  {
+    "id": 96,
+    "question": "When the Regulations Decision Committee issues a final notice to a firm at the end of the investigation procedure, which of the following is not included on a final notice?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000722",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Any sanctions the regulators wish to impose",
+        "textJa": ". 規制当局が課したいと考えるいかなる制裁"
+      },
+      {
+        "letter": "B",
+        "text": ". The date the notice comes into effect",
+        "textJa": ". 通知が有効になる日付"
+      },
+      {
+        "letter": "C",
+        "text": ". The disciplinary action taken by the firm",
+        "textJa": ". 企業が取った懲戒処分"
+      },
+      {
+        "letter": "D",
+        "text": ". Any other information deemed to be relevant",
+        "textJa": ". 関連すると見なされるその他の情報"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A final decision notice is issued by the RDC and will not include information on any disciplinary action the firm has taken against its employees.",
+    "globalId": 138,
+    "categoryId": 96,
+    "questionJa": "Regulations Decision Committeeが調査手続きの最後に企業に最終通知を発行する際、最終通知に含まれないものは次のうちどれですか？",
+    "explanationJa": "最終決定通知はRDCによって発行され、企業が従業員に対して取ったいかなる懲戒処分に関する情報も含まれません。"
+  },
+  {
+    "id": 97,
+    "question": "If an applicant for approved person status has a criminal history covered by the Rehabilitation of Offenders Act 1974 which of the following describes the right of the FCA to take this into account?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000809",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It will not be taken into account",
+        "textJa": ". 考慮されない"
+      },
+      {
+        "letter": "B",
+        "text": ". It might be taken into account if relevant",
+        "textJa": ". 関連性があれば考慮される可能性がある"
+      },
+      {
+        "letter": "C",
+        "text": ". It would be taken into account if the offence occurred within five years",
+        "textJa": ". 犯罪が5年以内に発生した場合に考慮される"
+      },
+      {
+        "letter": "D",
+        "text": ". It would be taken into account if the offence occurred within ten years",
+        "textJa": ". 犯罪が10年以内に発生した場合に考慮される"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "There is no specified time limit here. The FCA reserves the right to consider any conviction.",
+    "globalId": 139,
+    "categoryId": 97,
+    "questionJa": "承認者ステータスの申請者がRehabilitation of Offenders Act 1974の対象となる犯罪歴を有する場合、FCAがこれを考慮する権利について説明しているのは次のうちどれですか？",
+    "explanationJa": "ここには特定の期間制限はありません。FCAはいかなる有罪判決も考慮する権利を留保します。"
+  },
+  {
+    "id": 98,
+    "question": "Which of the following would not be exempt from requiring authorisation?",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1000821",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Recognised investment exchange",
+        "textJa": ". 承認投資取引所"
+      },
+      {
+        "letter": "B",
+        "text": ". Appointed representative",
+        "textJa": ". 任命代理人"
+      },
+      {
+        "letter": "C",
+        "text": ". Lloyd's of London",
+        "textJa": ". Lloyd's of London"
+      },
+      {
+        "letter": "D",
+        "text": ". Members of certain professions",
+        "textJa": ". 特定の専門職のメンバー"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Lloyds of London is not exempt. It is only the members of Lloyds' syndicates that are exempt.",
+    "globalId": 140,
+    "categoryId": 98,
+    "questionJa": "次のうち、認可を必要とすることから免除されないものはどれですか？",
+    "explanationJa": "Lloyds of Londonは免除されません。免除されるのはLloydsのシンジケートのメンバーのみです。"
+  },
+  {
+    "id": 99,
+    "question": "Section 168 of the Financial Services and Markets Act 2000 permits the FCA to appoint competent persons to carry out investigations on its behalf if:",
+    "category": "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+    "questionId": "1045983",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An offence has been committed",
+        "textJa": ". 犯罪が行われた場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Too many complaints have been received",
+        "textJa": ". 苦情が多すぎる場合"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm is being liquidated",
+        "textJa": ". 企業が清算中の場合"
+      },
+      {
+        "letter": "D",
+        "text": ". The Ombudsman insists that this is the case",
+        "textJa": ". Ombudsmanがそう主張する場合"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "S168 permits the FCA to do this if an offence has been committed. This could be for a wide range of offences including, but not exclusively, market abuse.",
+    "globalId": 141,
+    "categoryId": 99,
+    "questionJa": "Financial Services and Markets Act 2000の第168条は、次の場合にFCAがその代理として調査を行う有能な人物を任命することを許可しています：",
+    "explanationJa": "S168は、犯罪が行われた場合にFCAがこれを行うことを許可しています。これには、市場濫用を含むがこれに限定されない広範な犯罪が含まれる可能性があります。"
+  }
+]

@@ -1,0 +1,2552 @@
+[
+  {
+    "id": 1,
+    "question": "Under Senior Management Arrangements, Systems and Controls (SYSC), when a firm apportions its responsibilities amongst its directors and senior management it must ensure all of the following, except:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078607",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". That it is clear who has which responsibility",
+        "textJa": ". 誰がどの責任を負うのかが明確であること"
+      },
+      {
+        "letter": "B",
+        "text": ". That the firm can be adequately monitored and controlled by directors, senior management and the firm's governing body",
+        "textJa": ". 取締役、上級管理職、および企業の統治機関によって企業が適切に監視および管理できること"
+      },
+      {
+        "letter": "C",
+        "text": ". That details of apportionment and allocation of responsibilities are recorded and kept updated",
+        "textJa": ". 責任の分担と配分の詳細が記録され、最新の状態に保たれること"
+      },
+      {
+        "letter": "D",
+        "text": ". That records of responsibilities are publicly available and sent to all clients before conducting designated business",
+        "textJa": ". 責任の記録が公開され、指定された事業を行う前にすべての顧客に送付されること"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A firm must apportion responsibilities amongst its directors to ensure that each director is clear about their job functions and responsibilities. Apportionment of these responsibilities must be recorded and each version must be retained for six years after it has been replaced by a new version. However, there is no need to send copies of these to clients.",
+    "globalId": 474,
+    "categoryId": 1,
+    "questionJa": "Senior Management Arrangements, Systems and Controls (SYSC)に基づき、企業が取締役および上級管理職の間で責任を分担する場合、次の事項をすべて確保しなければなりませんが、例外はどれですか。",
+    "explanationJa": "企業は、各取締役が自身の職務と責任を明確に理解できるように、取締役間で責任を分担しなければなりません。これらの責任の分担は記録され、各バージョンは新しいバージョンに置き換えられた後6年間保持されなければなりません。ただし、これらのコピーを顧客に送付する必要はありません。"
+  },
+  {
+    "id": 2,
+    "question": "Which of the following is least likely to give rise to a conflict of interest?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078608",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Advising a client to sell when the firm has a client wanting to buy",
+        "textJa": ". 企業に買いを希望する顧客がいる場合に、別の顧客に売りを助言すること"
+      },
+      {
+        "letter": "B",
+        "text": ". Encouraging a client to buy when a firm has gone short",
+        "textJa": ". 企業が空売りをしている場合に、顧客に買いを推奨すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Advising a client to buy when the firm has a long over-exposure",
+        "textJa": ". 企業が長期的に過剰なエクスポージャーを抱えている場合に、顧客に買いを助言すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Encouraging a client to sell when the firm's analyst rated the stock highly",
+        "textJa": ". 企業のアナリストが株式を高く評価している場合に、顧客に売りを推奨すること"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A firm that had gone short would be hoping for prices to fall. Encouraging a client to buy would not assist the firm in any way; it suggests that the firm has properly ignored its own position in giving advice.",
+    "globalId": 475,
+    "categoryId": 2,
+    "questionJa": "次のうち、利益相反が生じる可能性が最も低いのはどれですか。",
+    "explanationJa": "空売りを行った企業は価格の下落を期待します。顧客に買いを推奨することは、企業にとって何ら助けにはなりません。これは、企業が助言を行う際に自身の立場を適切に無視したことを示唆しています。"
+  },
+  {
+    "id": 3,
+    "question": "If a retail client wishes to ensure that they do not lose any money in a deposit, which of the following is the most suitable deposit?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078629",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Up to £85,000 in a UK bank account",
+        "textJa": ". UKの銀行口座に最大85,000ポンドまで"
+      },
+      {
+        "letter": "B",
+        "text": ". Any amount in a UK account",
+        "textJa": ". UKの口座に任意の金額"
+      },
+      {
+        "letter": "C",
+        "text": ". Up to £35,000 in a UK account",
+        "textJa": ". UKの口座に最大35,000ポンドまで"
+      },
+      {
+        "letter": "D",
+        "text": ". Up to £50,000 in a UK bank account",
+        "textJa": ". UKの銀行口座に最大50,000ポンドまで"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "£85,000 is the amount is guaranteed by the FSCS for deposits.",
+    "globalId": 476,
+    "categoryId": 3,
+    "questionJa": "個人顧客が預金で損失を出さないようにしたい場合、次のうち最も適切な預金はどれですか。",
+    "explanationJa": "85,000ポンドは、FSCSによって預金に対して保証される金額です。"
+  },
+  {
+    "id": 4,
+    "question": "When comparing conduct risk regulation with compliance with rules, which of the following is true?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1069722",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The conduct risk approach is retrospective, compliance with rules is forward looking",
+        "textJa": ". コンダクトリスク・アプローチは過去を振り返るものであり、規則遵守は将来を見据えたものである"
+      },
+      {
+        "letter": "B",
+        "text": ". Compliance with rules is retrospective, the conduct risk approach is forward looking",
+        "textJa": ". 規則遵守は過去を振り返るものであり、コンダクトリスク・アプローチは将来を見据えたものである"
+      },
+      {
+        "letter": "C",
+        "text": ". Both the conduct risk approach and compliance with rules is retrospective only",
+        "textJa": ". コンダクトリスク・アプローチと規則遵守はいずれも過去を振り返るもののみである"
+      },
+      {
+        "letter": "D",
+        "text": ". Both the conduct risk approach and compliance with rules is forward looking only",
+        "textJa": ". コンダクトリスク・アプローチと規則遵守はいずれも将来を見据えたもののみである"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Compliance with rules is generally a backward-looking philosophy. The question tends to be 'Did the firm comply?' The conduct risk approach, on the other hand, has a more forward-looking emphasis. 'Will the actions of the firm lead to poor outcomes for consumers or not?'",
+    "globalId": 477,
+    "categoryId": 4,
+    "questionJa": "コンダクトリスク規制と規則遵守を比較した場合、次のうち正しいものはどれですか。",
+    "explanationJa": "規則遵守は一般的に過去志向の考え方です。「企業は遵守したか？」という問いになりがちです。一方、コンダクトリスク・アプローチはより将来を見据えた重点を置いています。「企業の行動が消費者に不利益な結果をもたらすか否か？」"
+  },
+  {
+    "id": 5,
+    "question": "If a firm is providing investment research for dissemination to its clients in particular financial investments, when would the firm be permitted to deal on that information?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078619",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm would never be able to deal on that information",
+        "textJa": ". 企業はその情報に基づいて取引を行うことは決してできない"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm would always be allowed to deal on that information",
+        "textJa": ". 企業はその情報に基づいて常に取引を行うことが許可される"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm would be permitted to deal on the information if they submitted all confirmations of transactions to the firm's compliance",
+        "textJa": ". 企業は、取引のすべての確認書を企業のコンプライアンス部門に提出すれば、その情報に基づいて取引を行うことが許可される"
+      },
+      {
+        "letter": "D",
+        "text": ". The firm would be permitted to deal on the information if granted approval by the firm's compliance",
+        "textJa": ". 企業は、企業のコンプライアンス部門から承認を得れば、その情報に基づいて取引を行うことが許可される"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Although the firm would be permitted to deal in this circumstance, it would be an exceptional circumstance for the firm's compliance to grant approval.",
+    "globalId": 478,
+    "categoryId": 5,
+    "questionJa": "企業が特定の金融投資に関する投資リサーチを顧客に配布するために提供している場合、企業はその情報に基づいて取引を行うことが許可されるのはいつですか。",
+    "explanationJa": "この状況では企業が取引を行うことは許可されますが、企業のコンプライアンス部門が承認を与えるのは例外的な状況です。"
+  },
+  {
+    "id": 6,
+    "question": "When a decision notice is referred to the Tax and Chancery Chamber of the Upper Tribunal, a full re- hearing is given to the matter that gave rise to the referral. What evidence may be considered at the re- hearing?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1000655",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Only evidence available to the FCA at the time the FCA took its decision",
+        "textJa": ". FCAが決定を下した時点でFCAが入手可能であった証拠のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". Any evidence relating to the decision whether or not it was available to the FCA at the time of the decision",
+        "textJa": ". FCAが決定を下した時点で入手可能であったかどうかにかかわらず、その決定に関連するあらゆる証拠"
+      },
+      {
+        "letter": "C",
+        "text": ". Only evidence relating to a breach of the FCA's conduct of business rules",
+        "textJa": ". FCAの業務遂行規則違反に関連する証拠のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". Any evidence relating to the breach of the Financial Services and Markets Act 2000 or the FCA's conduct of business rules",
+        "textJa": ". Financial Services and Markets Act 2000またはFCAの業務遂行規則違反に関連するあらゆる証拠"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A reference to the Tribunal will be a full re-hearing of the matter that gave rise to the decision referred to the Tribunal. On a reference the Tribunal: (1) must determine what (if any) is the appropriate action for the FCA to take in relation to the matter referred and (2) may consider any evidence relating to the subject matter of the reference, whether or not it was available to the FCA at the time the FCA took its decision.",
+    "globalId": 479,
+    "categoryId": 6,
+    "questionJa": "決定通知がUpper TribunalのTax and Chancery Chamberに付託された場合、付託の原因となった事項について完全な再審理が行われます。再審理ではどのような証拠が考慮される可能性がありますか。",
+    "explanationJa": "Tribunalへの付託は、Tribunalに付託された決定の原因となった事項の完全な再審理となります。付託に際し、Tribunalは、(1) 付託された事項に関してFCAが取るべき適切な措置（もしあれば）を決定しなければならず、(2) FCAが決定を下した時点でFCAが入手可能であったかどうかにかかわらず、付託の対象事項に関連するあらゆる証拠を考慮することができます。"
+  },
+  {
+    "id": 7,
+    "question": "Which of the following bodies is responsible for promoting stable and prudent operation of the financial system through the effective regulation of deposit taking institutions, insurers and investment banks?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078631",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Services Authority",
+        "textJa": ". Financial Services Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Prudential Regulation Authority",
+        "textJa": ". Prudential Regulation Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "D",
+        "text": ". Financial Policy Committee",
+        "textJa": ". Financial Policy Committee"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This is the role of the PRA. Its aim is to take on the prudential supervision of investment firms and banks. The PRA is the Bank of England.",
+    "globalId": 480,
+    "categoryId": 7,
+    "questionJa": "次のうち、預金取扱機関、保険会社、投資銀行の効果的な規制を通じて、金融システムの安定的かつ健全な運営を促進する責任を負う機関はどれですか。",
+    "explanationJa": "これはPRAの役割です。その目的は、投資会社と銀行の健全性監督を引き受けることです。PRAはBank of Englandです。"
+  },
+  {
+    "id": 8,
+    "question": "Which of the following applies to a UK firm dealing in shares with an eligible counterparty?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1000662",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is a fully regulated activity and must comply with all conduct of business rules",
+        "textJa": ". それは完全に規制された活動であり、すべての業務遂行規則を遵守しなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". It is an eligible counterparty business and therefore has limited exposure to the conduct of business rules",
+        "textJa": ". それは適格カウンターパーティー業務であるため、業務遂行規則へのエクスポージャーは限定的である"
+      },
+      {
+        "letter": "C",
+        "text": ". Although the firm is UK based, the location of the client will affect whether the conduct of business rules apply",
+        "textJa": ". 企業はUKに拠点を置いているが、顧客の所在地が業務遂行規則が適用されるかどうかに影響する"
+      },
+      {
+        "letter": "D",
+        "text": ". Share dealing is an exempt activity under the conduct of business rules",
+        "textJa": ". 株式取引は業務遂行規則の下で免除される活動である"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "When a UK firm deals with an eligible counterparty it is regarded as eligible counterparty business.",
+    "globalId": 481,
+    "categoryId": 8,
+    "questionJa": "適格なカウンターパーティーと株式取引を行うUKの企業に適用されるのは、次のうちどれですか。",
+    "explanationJa": "UKの企業が適格カウンターパーティーと取引する場合、それは適格カウンターパーティー業務と見なされます。"
+  },
+  {
+    "id": 9,
+    "question": "Which of the following is a provision of the Money Laundering Regulations?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1047516",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Employees should report all suspicions to the National Crime Agency",
+        "textJa": ". 従業員はすべての疑いをNational Crime Agencyに報告すべきである"
+      },
+      {
+        "letter": "B",
+        "text": ". There is no need to identify new business",
+        "textJa": ". 新規事業を特定する必要はない"
+      },
+      {
+        "letter": "C",
+        "text": ". The regulations are considered guidance and are not legally binding",
+        "textJa": ". 規則はガイダンスと見なされ、法的拘束力はない"
+      },
+      {
+        "letter": "D",
+        "text": ". Training must be given to employees in relation to money laundering prevention",
+        "textJa": ". マネーロンダリング防止に関して従業員に研修を実施しなければならない"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Employees report to the MLRO. There is a need to identify new business or customers. The regulations are a legal obligation.",
+    "globalId": 482,
+    "categoryId": 9,
+    "questionJa": "次のうち、マネーロンダリング規則の規定はどれですか。",
+    "explanationJa": "従業員はMLROに報告します。新規事業や顧客を特定する必要があります。この規則は法的義務です。"
+  },
+  {
+    "id": 10,
+    "question": "In which of the following circumstances would identification be required on establishing new business?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078609",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Certain one-off transactions less than €7,500",
+        "textJa": ". 7,500ユーロ未満の特定の一回限りの取引"
+      },
+      {
+        "letter": "B",
+        "text": ". A transaction with an EEA financial institution",
+        "textJa": ". EEAの金融機関との取引"
+      },
+      {
+        "letter": "C",
+        "text": ". A member of the Financial Action Task Force",
+        "textJa": ". Financial Action Task Forceのメンバー"
+      },
+      {
+        "letter": "D",
+        "text": ". A potential new client resident in the UK",
+        "textJa": ". UK在住の潜在的な新規顧客"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Identification procedures would not need to be put in place for most of these circumstances. Identification would, however, be necessary for a UK resident as described in the correct option. Client verification records must be kept for five years. Note that the limit for one-off transactions has recently been amended by the Fourth Money Laundering Directive.",
+    "globalId": 483,
+    "categoryId": 10,
+    "questionJa": "次のうち、新規事業設立時に本人確認が必要となるのはどのような状況ですか。",
+    "explanationJa": "これらの状況のほとんどでは、本人確認手続きを実施する必要はありません。しかし、正しい選択肢で説明されているように、UK居住者については本人確認が必要となります。顧客確認記録は5年間保管しなければなりません。なお、一回限りの取引の上限額は、第4次マネーロンダリング指令により最近改正された点に注意してください。"
+  },
+  {
+    "id": 11,
+    "question": "Under which of the following circumstances do the conduct of business rules not require a firm to enter into a client agreement?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078620",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client is habitually resident outside the UK",
+        "textJa": ". 顧客がUK国外に常居所を有している"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm has established, by taking reasonable steps, that the client does not want to enter into such an agreement",
+        "textJa": ". 企業が、合理的な手段を講じることにより、顧客がそのような契約を締結したくないと判断した場合"
+      },
+      {
+        "letter": "C",
+        "text": ". The client is habitually resident outside the UK and the firm has established, by taking reasonable steps, that the client does not want to enter into such an agreement",
+        "textJa": ". 顧客がUK国外に常居所を有しており、かつ企業が合理的な手段を講じることにより、顧客がそのような契約を締結したくないと判断した場合"
+      },
+      {
+        "letter": "D",
+        "text": ". The client enters into an insurance contract with the firm as principal",
+        "textJa": ". 顧客が企業を主たる相手方として保険契約を締結する場合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The COBS are explicit in saying that MiFID business requires a client agreement for all customers, unless the firm acts as principal with an insurance contract.",
+    "globalId": 484,
+    "categoryId": 11,
+    "questionJa": "次のうち、業務遂行規則が企業に顧客契約の締結を要求しないのはどのような状況ですか。",
+    "explanationJa": "COBSは、企業が保険契約の主たる相手方として行動する場合を除き、MiFID業務ではすべての顧客に対して顧客契約が必要であると明示しています。"
+  },
+  {
+    "id": 12,
+    "question": "The sourcebook 'Senior Management Arrangements, Systems and Controls' requires records to be retained by the firm regarding the apportionment of senior management responsibilities. For how long must these records be retained?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078610",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Three years from the appointment of a new director",
+        "textJa": ". 新しい取締役の任命から3年間"
+      },
+      {
+        "letter": "B",
+        "text": ". Six years from the appointment of a new director",
+        "textJa": ". 新しい取締役の任命から6年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Three years from any change in senior management responsibilities",
+        "textJa": ". 上級管理職の責任変更から3年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Six years from any change in senior management responsibilities",
+        "textJa": ". 上級管理職の責任変更から6年間"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This rule is covered by the SYSCs - the Senior Management Arrangements, Systems and Controls sourcebook. Page 44 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 45 ────────────────────────────────────────────────────────────",
+    "globalId": 485,
+    "categoryId": 12,
+    "questionJa": "「Senior Management Arrangements, Systems and Controls」というハンドブックは、上級管理職の責任分担に関する記録を企業が保持することを要求しています。これらの記録はどのくらいの期間保持されなければなりませんか。",
+    "explanationJa": "この規則はSYSCs - Senior Management Arrangements, Systems and Controlsハンドブックによってカバーされています。CISI Unit 1 Regulations 79ページ中44ページ ──────────────────────────────────────────────────────────── 45ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 13,
+    "question": "In respect of the Criminal Justice Act 1993, which of the following is most likely to be an insider?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078624",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Someone who receives price sensitive information through a paid for subscription service",
+        "textJa": ". 有料の購読サービスを通じて価格に影響を与える情報を受け取る者"
+      },
+      {
+        "letter": "B",
+        "text": ". An employee who received price sensitive information in the normal course of business",
+        "textJa": ". 通常の業務過程で価格に影響を与える情報を受け取った従業員"
+      },
+      {
+        "letter": "C",
+        "text": ". Someone who acquires price sensitive information from a primary information provider",
+        "textJa": ". 主要な情報提供者から価格に影響を与える情報を取得する者"
+      },
+      {
+        "letter": "D",
+        "text": ". Someone who observes events that could have an impact on the price of a relevant security",
+        "textJa": ". 関連する証券の価格に影響を与える可能性のある出来事を観察する者"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "An employee who receives price sensitive information as part of his normal business is most likely to be an insider and would typically be held on an insider list. Paying for price sensitive information, for example research, through a subscription service would not make you an insider. Information received via a primary information provider or obtained through observation is not inside information, so the person receiving it is not an insider. Information that can be gained through general observation is not considered inside information.",
+    "globalId": 486,
+    "categoryId": 13,
+    "questionJa": "Criminal Justice Act 1993に関して、次のうちインサイダーである可能性が最も高いのは誰ですか。",
+    "explanationJa": "通常の業務の一環として価格に影響を与える情報を受け取る従業員は、インサイダーである可能性が最も高く、通常はインサイダーリストに記載されます。例えばリサーチなどの価格に影響を与える情報を購読サービスを通じて有料で入手しても、インサイダーにはなりません。主要な情報提供者を通じて受け取った情報や観察によって得られた情報はインサイダー情報ではないため、それを受け取った人はインサイダーではありません。一般的な観察によって得られる情報はインサイダー情報とは見なされません。"
+  },
+  {
+    "id": 14,
+    "question": "How much notice does the FCA need to give before entering a firm's premises during an investigation?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078611",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". One business day",
+        "textJa": ". 1営業日"
+      },
+      {
+        "letter": "B",
+        "text": ". Two business days",
+        "textJa": ". 2営業日"
+      },
+      {
+        "letter": "C",
+        "text": ". Five business days",
+        "textJa": ". 5営業日"
+      },
+      {
+        "letter": "D",
+        "text": ". A reasonable period",
+        "textJa": ". 合理的な期間"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The FCA do not need to give notice before an investigation, but they usually will within a reasonable period.",
+    "globalId": 487,
+    "categoryId": 14,
+    "questionJa": "FCAが調査中に企業の敷地内に立ち入る前に、どのくらいの事前通知が必要ですか。",
+    "explanationJa": "FCAは調査前に通知する必要はありませんが、通常は合理的な期間内に行います。"
+  },
+  {
+    "id": 15,
+    "question": "Where a firm becomes aware of a conflict of interest that may damage a particular client's interests, which of the following procedures must the firm follow?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1018139",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Disclose relevant details in a durable medium to the client, allowing the client to decide",
+        "textJa": ". 関連する詳細を耐久性のある媒体で顧客に開示し、顧客に決定を委ねる"
+      },
+      {
+        "letter": "B",
+        "text": ". Disclose relevant details orally to the client, allowing the client to decide",
+        "textJa": ". 関連する詳細を口頭で顧客に開示し、顧客に決定を委ねる"
+      },
+      {
+        "letter": "C",
+        "text": ". Manage the conflict and continue to deal",
+        "textJa": ". 利益相反を管理し、取引を継続する"
+      },
+      {
+        "letter": "D",
+        "text": ". Refuse to deal for the client",
+        "textJa": ". 顧客のための取引を拒否する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Where a firm identifies a conflict of interest they must manage it. Only if they are unable to manage the conflict are they required to disclose it.",
+    "globalId": 488,
+    "categoryId": 15,
+    "questionJa": "企業が特定の顧客の利益を損なう可能性のある利益相反を認識した場合、企業は次のどの手続きに従わなければなりませんか。",
+    "explanationJa": "企業が利益相反を特定した場合、それを管理しなければなりません。利益相反を管理できない場合にのみ、それを開示する必要があります。"
+  },
+  {
+    "id": 16,
+    "question": "Any firm providing execution services for a client must produce an order execution policy. Which of the follow is not true with regard to a firm's order execution policy? It must:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078621",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Contain an account of the relative importance the firm assigns to execution factors",
+        "textJa": ". 企業が執行要因に割り当てる相対的な重要性の説明を含むこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Contain a list of the main execution venues used by the firm",
+        "textJa": ". 企業が使用する主要な執行場所のリストを含むこと"
+      },
+      {
+        "letter": "C",
+        "text": ". Be assessed by a third party firm before being shown to clients",
+        "textJa": ". 顧客に提示される前に第三者の企業によって評価されること"
+      },
+      {
+        "letter": "D",
+        "text": ". Be reviewed annually and regularly monitored for its effectiveness",
+        "textJa": ". 毎年見直され、その有効性が定期的に監視されること"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "There is no requirement for a third party firm to assess the policy. However, a firm must receive prior consent to this policy from its clients.",
+    "globalId": 489,
+    "categoryId": 16,
+    "questionJa": "顧客のために執行サービスを提供する企業は、注文執行方針を作成しなければなりません。企業の注文執行方針に関して、次のうち正しくないものはどれですか。それは：",
+    "explanationJa": "第三者の企業が方針を評価するという要件はありません。ただし、企業はこの方針について顧客から事前の同意を得なければなりません。"
+  },
+  {
+    "id": 17,
+    "question": "According to the inducement provisions stated by the FCA, which of the following is not an appropriate payment by the firm?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078625",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Custody fees paid by the firm to a third party on behalf of the client",
+        "textJa": ". 顧客に代わって企業が第三者に支払う保管手数料"
+      },
+      {
+        "letter": "B",
+        "text": ". Non-monetary benefits paid to a third party that do not impair compliance with the firm's duty to the client, enhance the quality of service and are properly disclosed",
+        "textJa": ". 企業の顧客に対する義務の遵守を損なわず、サービスの質を向上させ、適切に開示されている、第三者に支払われる非金銭的利益"
+      },
+      {
+        "letter": "C",
+        "text": ". A third party providing general office equipment used for word processing and accountancy in the normal running of the firm's activities",
+        "textJa": ". 企業の活動の通常の運営において、ワープロや会計に使用される一般的な事務機器を第三者が提供すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Participation in conferences, seminars and other training events on the benefits and features of a specific financial instrument or an investment service",
+        "textJa": ". 特定の金融商品または投資サービスの利点と特徴に関する会議、セミナー、その他の研修イベントへの参加"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "General office equipment is specifically prohibited by FCA regulations.",
+    "globalId": 490,
+    "categoryId": 17,
+    "questionJa": "FCAが定めるインセンティブ規定によれば、次のうち企業による不適切な支払いはどれですか。",
+    "explanationJa": "一般的な事務機器は、FCAの規則によって具体的に禁止されています。"
+  },
+  {
+    "id": 18,
+    "question": "What is the maximum claim on the Financial Services Compensation Scheme in the event of an insolvency of a firm where the investor has lost money through protected investment business?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078612",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". £85,000",
+        "textJa": ". £85,000"
+      },
+      {
+        "letter": "B",
+        "text": ". £50,000",
+        "textJa": ". £50,000"
+      },
+      {
+        "letter": "C",
+        "text": ". £37,500",
+        "textJa": ". £37,500"
+      },
+      {
+        "letter": "D",
+        "text": ". £35,000",
+        "textJa": ". £35,000"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "An investor can claim up to £85,000 from the FSCS for investments.",
+    "globalId": 491,
+    "categoryId": 18,
+    "questionJa": "投資家が保護された投資業務を通じて損失を被った企業の破産の場合、Financial Services Compensation Schemeへの最大請求額はいくらですか。",
+    "explanationJa": "投資家は、投資に対してFSCSから最大85,000ポンドを請求できます。"
+  },
+  {
+    "id": 19,
+    "question": "In respect of the responsibilities of an authorised firm which of the following is TRUE?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1014753",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A firm does not have to adopt and communicate to workers' appropriate internal procedures for handling workers' concerns",
+        "textJa": ". 企業は、従業員の懸念事項を処理するための適切な内部手続きを採択し、従業員に周知する必要はない"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm is not required to perform identity checks for money laundering purposes where the firm does not see fit to apply them",
+        "textJa": ". 企業は、マネーロンダリング目的の本人確認を行う必要がないと判断した場合、本人確認を行う必要はない"
+      },
+      {
+        "letter": "C",
+        "text": ". A firm does not have to provide appropriate training in respect of money laundering",
+        "textJa": ". 企業は、マネーロンダリングに関する適切な研修を提供する必要はない"
+      },
+      {
+        "letter": "D",
+        "text": ". A firm must take reasonable care to establish and maintain systems and controls that are appropriate to the business",
+        "textJa": ". 企業は、事業に適したシステムと管理体制を確立し維持するために、合理的な注意を払わなければならない"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A firm is required to do all of the above according the Senior Management Arrangements, Systems and Controls (SYSC) Handbook.",
+    "globalId": 492,
+    "categoryId": 19,
+    "questionJa": "認可された企業の責任に関して、次のうち正しいものはどれですか。",
+    "explanationJa": "Senior Management Arrangements, Systems and Controls (SYSC) Handbookによると、企業は上記のすべてを行う必要があります。"
+  },
+  {
+    "id": 20,
+    "question": "What best describes the guidance notes from the Money Laundering Steering Group?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1000685",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Breaching them carries a penalty of six months imprisonment and an unlimited fine",
+        "textJa": ". それらに違反すると、6ヶ月の禁固刑と無制限の罰金が科される"
+      },
+      {
+        "letter": "B",
+        "text": ". They must be implemented by authorised firms",
+        "textJa": ". それらは認可された企業によって実施されなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". They provide an indication of how firms should interpret the laws on money laundering",
+        "textJa": ". それらは、企業がマネーロンダリングに関する法律をどのように解釈すべきかについての指針を提供する"
+      },
+      {
+        "letter": "D",
+        "text": ". Breaching them carries a penalty of an unlimited fine",
+        "textJa": ". それらに違反すると、無制限の罰金が科される"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "As the name suggests, these are guidance notes. Therefore, answer C is the correct answer.",
+    "globalId": 493,
+    "categoryId": 20,
+    "questionJa": "Money Laundering Steering Groupのガイダンスノートを最もよく説明しているのはどれですか。",
+    "explanationJa": "名前が示すように、これらはガイダンスノートです。したがって、Cが正解です。"
+  },
+  {
+    "id": 21,
+    "question": "With which of the following are all staff bound by the Conduct Rules required to comply?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1014754",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". You must take reasonable steps to ensure that the business of the firm for which you are responsible complies with relevant requirements and standards of the regulatory system",
+        "textJa": ". あなたが責任を負う会社の業務が、規制システムの関連要件および基準に準拠していることを確認するために、合理的な措置を講じなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". You must observe proper standards of market conduct",
+        "textJa": ". 市場行動の適切な基準を遵守しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". You must take reasonable steps to ensure that any delegation of your responsibilities is to an appropriate person and that you oversee the discharge of the delegated responsibility effectively",
+        "textJa": ". あなたの責任の委任が適切な人物に対して行われ、委任された責任の遂行を効果的に監督することを確実にするために、合理的な措置を講じなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". You must take reasonable steps to ensure that the business of the firm for which you are responsible is controlled effectively",
+        "textJa": ". あなたが責任を負う会社の業務が効果的に管理されていることを確認するために、合理的な措置を講じなければならない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Conduct rule 5 (observe proper standards of market conduct) applies to both certified and senior manager functions. The other three options provided are senior manager conduct rules.",
+    "globalId": 494,
+    "categoryId": 21,
+    "questionJa": "Conduct Rulesに拘束されるすべてのスタッフが遵守しなければならないのは、次のうちどれですか。",
+    "explanationJa": "行動規範5（適切な市場行動基準の遵守）は、認定および上級管理職の機能の両方に適用されます。提供されている他の3つの選択肢は、上級管理職の行動規範です。"
+  },
+  {
+    "id": 22,
+    "question": "Which of the following is a general defence for insider dealing?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1014826",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A market maker acting in good faith",
+        "textJa": ". 誠実に行動するマーケットメーカー"
+      },
+      {
+        "letter": "B",
+        "text": ". An authorised firm performing price stabilisation",
+        "textJa": ". 価格安定化操作を行う認可された企業"
+      },
+      {
+        "letter": "C",
+        "text": ". A broker engaged in bid facilitation regarding a takeover",
+        "textJa": ". 買収に関する入札促進に従事するブローカー"
+      },
+      {
+        "letter": "D",
+        "text": ". An individual who would have dealt anyway",
+        "textJa": ". いずれにしても取引していただろう個人"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "\"Would have dealt anyway\" is a general defence. The other three answers are 'special' defences.",
+    "globalId": 495,
+    "categoryId": 22,
+    "questionJa": "次のうち、インサイダー取引に対する一般的な抗弁事由はどれですか。",
+    "explanationJa": "「いずれにしても取引していただろう」は一般的な抗弁事由です。他の3つの回答は「特別な」抗弁事由です。"
+  },
+  {
+    "id": 23,
+    "question": "Which of the following is a breach of the 'Integrity' Conduct Rule?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1000690",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Failure to explain the risks of a derivative to a retail client, due to lack of understanding",
+        "textJa": ". 理解不足のため、個人顧客にデリバティブのリスクを説明しなかったこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Deliberately misleading a client about a transaction",
+        "textJa": ". 取引について顧客を意図的に誤解させたこと"
+      },
+      {
+        "letter": "C",
+        "text": ". Not sending out a client agreement to an eligible counterparty",
+        "textJa": ". 適格カウンターパーティーに顧客契約を送付しなかったこと"
+      },
+      {
+        "letter": "D",
+        "text": ". Unknowingly, trading on inside information",
+        "textJa": ". 知らずにインサイダー情報で取引したこと"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The first breach (Failure to explain the risks of a derivative) would be of skill, care and diligence. The second breach (Misleading a client about a transaction) would be a breach of integrity. Not sending out a client agreement to an eligible counterparty is not a breach, and trading on inside information is a breach of the Market Conduct rule.",
+    "globalId": 496,
+    "categoryId": 23,
+    "questionJa": "次のうち、「誠実性」に関する行動規範の違反はどれですか。",
+    "explanationJa": "最初の違反（デリバティブのリスクの説明を怠ったこと）は、技量、注意、および勤勉さの違反となります。2番目の違反（取引について顧客を誤解させたこと）は、誠実性の違反となります。適格カウンターパーティーに顧客契約を送付しないことは違反ではなく、インサイダー情報で取引することは市場行動規範の違反です。"
+  },
+  {
+    "id": 24,
+    "question": "Which of the following is TRUE of the Money Laundering Regulations 2017?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078613",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All firms subject to the regulations must appoint a Money Laundering Reporting Officer",
+        "textJa": ". 規制の対象となるすべての企業は、マネーロンダリング報告責任者を任命しなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". A firm cannot be prosecuted under the regulations if a clear audit trail has been documented",
+        "textJa": ". 明確な監査証跡が文書化されていれば、企業は規制に基づいて起訴されることはない"
+      },
+      {
+        "letter": "C",
+        "text": ". Records of customer identification must be kept for three years after the person ceases to be a customer",
+        "textJa": ". 顧客の本人確認記録は、その人が顧客でなくなってから3年間保管しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". Disciplinary sanctions under the regulations are determined by the FCA",
+        "textJa": ". 規制に基づく懲戒処分はFCAによって決定される"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The legislation and sanctions were written by HMT. Records must be kept for five years.",
+    "globalId": 497,
+    "categoryId": 24,
+    "questionJa": "Money Laundering Regulations 2017に関して、次のうち正しいものはどれですか。",
+    "explanationJa": "法律と制裁はHMTによって作成されました。記録は5年間保管しなければなりません。"
+  },
+  {
+    "id": 25,
+    "question": "If a retail client has not advised the firm differently, how often must firms send periodic statements?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078622",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Every month",
+        "textJa": ". 毎月"
+      },
+      {
+        "letter": "B",
+        "text": ". Quarterly",
+        "textJa": ". 四半期ごと"
+      },
+      {
+        "letter": "C",
+        "text": ". Semi-annually",
+        "textJa": ". 半期ごと"
+      },
+      {
+        "letter": "D",
+        "text": ". Annually",
+        "textJa": ". 毎年"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Periodic statements should be sent every three months.",
+    "globalId": 498,
+    "categoryId": 25,
+    "questionJa": "個人顧客が企業に別途指示していない場合、企業はどのくらいの頻度で定期報告書を送付しなければなりませんか。",
+    "explanationJa": "定期報告書は3ヶ月ごとに送付すべきです。"
+  },
+  {
+    "id": 26,
+    "question": "Which one of the following is NOT true about the information that must be disclosed by a firm to a client before providing services?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078614",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The rules apply to business done for eligible counterparties",
+        "textJa": ". この規則は適格カウンターパーティーのために行われる業務に適用される"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm must disclose its proposed investment strategies",
+        "textJa": ". 企業は提案された投資戦略を開示しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". The information must be in a format that is specific to each client",
+        "textJa": ". 情報は各顧客に特有の形式でなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". Execution venues must be disclosed",
+        "textJa": ". 執行場所は開示されなければならない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The information may be provided in a standardised format.",
+    "globalId": 499,
+    "categoryId": 26,
+    "questionJa": "企業がサービスを提供する前に顧客に開示しなければならない情報について、次のうち正しくないものはどれですか。",
+    "explanationJa": "情報は標準化された形式で提供される場合があります。"
+  },
+  {
+    "id": 27,
+    "question": "Which one of the following is NOT regarded by the FCA as a reasonable inducement to be paid by a product provider to a firm in relation to the sale of packaged products?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078615",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Key information documents",
+        "textJa": ". キーインフォメーション・ドキュメント"
+      },
+      {
+        "letter": "B",
+        "text": ". Office rent",
+        "textJa": ". オフィス賃料"
+      },
+      {
+        "letter": "C",
+        "text": ". Relevant legal expenses",
+        "textJa": ". 関連する訴訟費用"
+      },
+      {
+        "letter": "D",
+        "text": ". Tea, coffee and biscuits at a meeting",
+        "textJa": ". 会議でのお茶、コーヒー、ビスケット"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The inducement must be for the client and it must not be something that the firm would normally expect to pay, such as office rent. 'Minor non-monetary benefits', such as tea and coffee and biscuits at a meeting, are also allowed. Page 45 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 46 ────────────────────────────────────────────────────────────",
+    "globalId": 500,
+    "categoryId": 27,
+    "questionJa": "次のうち、FCAがパッケージ商品の販売に関連して商品提供者から企業への合理的なインセンティブと見なさないものはどれですか。",
+    "explanationJa": "インセンティブは顧客のためのものでなければならず、オフィス賃料のように企業が通常支払うと予想されるものであってはなりません。会議でのお茶、コーヒー、ビスケットのような「軽微な非金銭的便益」も許可されています。CISI Unit 1 Regulations 79ページ中45ページ ──────────────────────────────────────────────────────────── 46ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 28,
+    "question": "In relation to MiFID business, the client's best interests rule applies to:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078616",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Retail clients only",
+        "textJa": ". 個人顧客のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". All clients",
+        "textJa": ". すべての顧客"
+      },
+      {
+        "letter": "C",
+        "text": ". Eligible counterparty business only",
+        "textJa": ". 適格カウンターパーティー業務のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". All customers",
+        "textJa": ". すべてのカスタマー"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA handbook states: (1) A firm must act honestly, fairly and professionally in accordance with the best interests of its client (the client's best interests rule). (2) This rule applies in relation to designated investment business carried on: (a) for a retail client; and (b) in relation to MiFID or equivalent third country business, for any other client. The Conduct of business rules provisions outlined above now apply to all clients, following the advent of MiFID II.",
+    "globalId": 501,
+    "categoryId": 28,
+    "questionJa": "MiFID業務に関して、顧客の最善の利益ルールは以下に適用されます。",
+    "explanationJa": "FCAハンドブックには次のように記載されています。(1) 企業は、顧客の最善の利益に従って、誠実、公正かつ専門的に行動しなければならない（顧客の最善の利益ルール）。(2) このルールは、(a) 個人顧客のために、および (b) MiFIDまたは同等の第三国事業に関連して、その他の顧客のために行われる指定投資業務に適用される。上記の業務遂行規則の規定は、MiFID IIの登場後、すべての顧客に適用されるようになりました。"
+  },
+  {
+    "id": 29,
+    "question": "If a client is considered an eligible counterparty for the execution of orders, which of the following is true?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1013825",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client receives regulatory protection for the execution of orders",
+        "textJa": ". 顧客は注文執行に関する規制上の保護を受ける"
+      },
+      {
+        "letter": "B",
+        "text": ". The client will be classified as a per se professional client for advisory services",
+        "textJa": ". 顧客はアドバイザリーサービスに関して当然のプロフェッショナル顧客として分類される"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm must assess the client against large undertaking criteria",
+        "textJa": ". 企業は大規模事業体の基準に照らして顧客を評価しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". Neither firm nor counterparty may transact due to potential conflicts of interest",
+        "textJa": ". 潜在的な利益相反のため、企業もカウンターパーティーも取引できない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Eligible counterparty (ECP) status only applies to eligible counterparty business, i.e. dealing activities. ECP status does not apply to advisory services. Any client considered an ECP for dealing will be a per se PC for advisory services.",
+    "globalId": 502,
+    "categoryId": 29,
+    "questionJa": "顧客が注文執行の適格カウンターパーティーと見なされる場合、次のうち正しいものはどれですか。",
+    "explanationJa": "適格カウンターパーティー（ECP）のステータスは、ディーリング活動などの適格カウンターパーティー業務にのみ適用されます。ECPステータスはアドバイザリーサービスには適用されません。ディーリングに関してECPと見なされる顧客は、アドバイザリーサービスに関しては当然のプロフェッショナル顧客（PC）となります。"
+  },
+  {
+    "id": 30,
+    "question": "Which one of the following is not defined as the client of a firm?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1013827",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A client of an appointed representative of the firm",
+        "textJa": ". 企業の任命された代表者の顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". A person acting through an agent",
+        "textJa": ". 代理人を通じて行動する人"
+      },
+      {
+        "letter": "C",
+        "text": ". A person to whom a financial promotion is communicated by the firm",
+        "textJa": ". 企業から金融プロモーションが伝えられる人"
+      },
+      {
+        "letter": "D",
+        "text": ". A potential client",
+        "textJa": ". 潜在的な顧客"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The agent is considered to be the client of the firm unless agreed otherwise.",
+    "globalId": 503,
+    "categoryId": 30,
+    "questionJa": "次のうち、企業の顧客として定義されないのはどれですか。",
+    "explanationJa": "別途合意がない限り、代理人は企業の顧客と見なされます。"
+  },
+  {
+    "id": 31,
+    "question": "Which of the following does NOT require a key information document?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078623",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Cash deposit individual savings account",
+        "textJa": ". 現金預金型個人貯蓄口座"
+      },
+      {
+        "letter": "B",
+        "text": ". A unit-linked life assurance product",
+        "textJa": ". ユニットリンク型生命保険商品"
+      },
+      {
+        "letter": "C",
+        "text": ". Retail structured securities",
+        "textJa": ". リテール向け仕組債"
+      },
+      {
+        "letter": "D",
+        "text": ". Structured term deposit",
+        "textJa": ". 仕組定期預金"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Under PRIIPs, investment funds, insurance-based investment products, retail structured securities and structured term deposits all require KIDs.",
+    "globalId": 504,
+    "categoryId": 31,
+    "questionJa": "次のうち、キーインフォメーション・ドキュメントを必要としないのはどれですか。",
+    "explanationJa": "PRIIPsの下では、投資ファンド、保険ベースの投資商品、リテール向け仕組債、仕組定期預金はすべてKIDが必要です。"
+  },
+  {
+    "id": 32,
+    "question": "What must a firm do if it considers, on the basis of information received, that a particular product is not appropriate for a client?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078617",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Refuse to proceed with the transaction",
+        "textJa": ". 取引の続行を拒否する"
+      },
+      {
+        "letter": "B",
+        "text": ". Advise the client of an alternative product (if any) that is appropriate",
+        "textJa": ". 適切な代替製品（もしあれば）を顧客に助言する"
+      },
+      {
+        "letter": "C",
+        "text": ". Obtain an indemnity from the client before proceeding with the transaction",
+        "textJa": ". 取引を進める前に顧客から免責を得る"
+      },
+      {
+        "letter": "D",
+        "text": ". Warn the client that, in its view, the product is not appropriate",
+        "textJa": ". その製品は適切ではないという自社の見解を顧客に警告する"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The firm must provide a warning to the client. The client can then decide whether to go ahead or not.",
+    "globalId": 505,
+    "categoryId": 32,
+    "questionJa": "企業が受け取った情報に基づいて、特定の製品が顧客に適していないと判断した場合、企業は何をしなければなりませんか。",
+    "explanationJa": "企業は顧客に警告を提供しなければなりません。その後、顧客は続行するかどうかを決定できます。"
+  },
+  {
+    "id": 33,
+    "question": "For which one of these financial instruments is a firm required to assess appropriateness when performing execution only services?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078618",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Money market instruments",
+        "textJa": ". マネーマーケット商品"
+      },
+      {
+        "letter": "B",
+        "text": ". Shares traded on a regulated market",
+        "textJa": ". 規制市場で取引される株式"
+      },
+      {
+        "letter": "C",
+        "text": ". Securitised debt embedding a derivative",
+        "textJa": ". デリバティブを組み込んだ証券化債務"
+      },
+      {
+        "letter": "D",
+        "text": ". Units in a UCITS scheme",
+        "textJa": ". UCITSスキームのユニット"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The other instruments are considered to be simpler financial instruments and therefore the appropriateness test is not required.",
+    "globalId": 506,
+    "categoryId": 33,
+    "questionJa": "執行のみのサービスを実行する際に、企業が適合性を評価する必要があるのは、これらの金融商品のうちどれですか。",
+    "explanationJa": "他の商品はより単純な金融商品と見なされるため、適合性テストは必要ありません。"
+  },
+  {
+    "id": 34,
+    "question": "Which ONE of the following is LEAST LIKELY to be a professional client?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1015151",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Bank of England",
+        "textJa": ". Bank of England"
+      },
+      {
+        "letter": "B",
+        "text": ". IMF",
+        "textJa": ". IMF"
+      },
+      {
+        "letter": "C",
+        "text": ". Pension fund",
+        "textJa": ". 年金基金"
+      },
+      {
+        "letter": "D",
+        "text": ". Local authority",
+        "textJa": ". 地方自治体"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Bank of England, IMF and pension providers are all examples of 'per se' professional clients. Under MiFID II local authorities and municipalities are to be treated as retail clients.",
+    "globalId": 507,
+    "categoryId": 34,
+    "questionJa": "次のうち、プロフェッショナル顧客である可能性が最も低いのはどれですか。",
+    "explanationJa": "Bank of England、IMF、年金基金はすべて「当然の」プロフェッショナル顧客の例です。MiFID IIの下では、地方自治体および市町村は個人顧客として扱われます。"
+  },
+  {
+    "id": 35,
+    "question": "Which of the following BEST describes the protections offered to 'whistle-blowers' as applied under the Public Interests Disclosure Act (PIDA)?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1039354",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It outlines the obligations on relevant persons to disclose information that is of public interest",
+        "textJa": ". 公益性のある情報を開示する関係者の義務を概説している"
+      },
+      {
+        "letter": "B",
+        "text": ". It protects persons from retaliation where they inform the regulatory authorities of concerns that might come to their attention at their place of work",
+        "textJa": ". 勤務先で気付いた懸念事項を規制当局に通知した場合に、報復から個人を保護する"
+      },
+      {
+        "letter": "C",
+        "text": ". It protects persons from retaliation where they inform the press of any concerns that might come to their attention at their place of work",
+        "textJa": ". 勤務先で気付いた懸念事項を報道機関に通知した場合に、報復から個人を保護する"
+      },
+      {
+        "letter": "D",
+        "text": ". It outlines the obligations on relevant persons to disclose suspicions regarding money laundering",
+        "textJa": ". マネーロンダリングに関する疑いを開示する関係者の義務を概説している"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "PIDA protects employees of the financial industry who reveal to a regulatory body that they have concerns over the way their company is organised and controlled. SYSC 18 reinforces the coverage of PIDA for financial services firms.",
+    "globalId": 508,
+    "categoryId": 35,
+    "questionJa": "Public Interests Disclosure Act (PIDA) に基づいて適用される「内部告発者」に提供される保護について、最もよく説明しているのは次のうちどれですか。",
+    "explanationJa": "PIDAは、自社の組織運営や管理方法に懸念があることを規制機関に明らかにした金融業界の従業員を保護します。SYSC 18は、金融サービス会社に対するPIDAの適用範囲を強化しています。"
+  },
+  {
+    "id": 36,
+    "question": "Where money is held in connection with a delivery vs. payment transaction, the client money rules will not apply for:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1046010",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". One business day only",
+        "textJa": ". 1営業日のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". Up to two business days",
+        "textJa": ". 最大2営業日"
+      },
+      {
+        "letter": "C",
+        "text": ". Up to three business days",
+        "textJa": ". 最大3営業日"
+      },
+      {
+        "letter": "D",
+        "text": ". Up to four business days",
+        "textJa": ". 最大4営業日"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The rules will apply if DvP does not occur by close of business on the third business day.",
+    "globalId": 509,
+    "categoryId": 36,
+    "questionJa": "DVP取引（受渡し対価支払い）に関連して資金が保有される場合、顧客資金ルールはどのくらいの期間適用されませんか。",
+    "explanationJa": "3営業日の営業終了までにDVPが行われない場合、ルールが適用されます。"
+  },
+  {
+    "id": 37,
+    "question": "Money laundering relates to:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1046017",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Cash that has come from a criminal source",
+        "textJa": ". 犯罪組織から出た現金"
+      },
+      {
+        "letter": "B",
+        "text": ". Cash and assets from a criminal source",
+        "textJa": ". 犯罪組織から出た現金と資産"
+      },
+      {
+        "letter": "C",
+        "text": ". Cash from a criminal source in the UK",
+        "textJa": ". UK国内の犯罪組織から出た現金"
+      },
+      {
+        "letter": "D",
+        "text": ". Cash and assets from a criminal source in the UK",
+        "textJa": ". UK国内の犯罪組織から出た現金と資産"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The cash or assets could have come from a global location provided the action is considered a criminal action under UK law.",
+    "globalId": 510,
+    "categoryId": 37,
+    "questionJa": "マネーロンダリングとは何に関連しますか。",
+    "explanationJa": "その行為がUK法の下で犯罪行為とみなされる限り、現金や資産は世界のどこからでもたらされた可能性があります。"
+  },
+  {
+    "id": 38,
+    "question": "If a company prepares semi-annual financial reports how long is the close period under the 'Persons Discharging Managerial Responsibility' (PDMR) regime of directors' dealings?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078626",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". One month",
+        "textJa": ". 1ヶ月"
+      },
+      {
+        "letter": "B",
+        "text": ". Two months",
+        "textJa": ". 2ヶ月"
+      },
+      {
+        "letter": "C",
+        "text": ". Three months",
+        "textJa": ". 3ヶ月"
+      },
+      {
+        "letter": "D",
+        "text": ". Four months",
+        "textJa": ". 4ヶ月"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "No trades being undertaken in the CLOSE PERIOD prior to the release of results. The close period is the 30 days prior to the announcement of the year-end, half-yearly (i.e. interim) results, or the announcement of quarterly results.",
+    "globalId": 511,
+    "categoryId": 38,
+    "questionJa": "会社が半期財務報告書を作成する場合、「経営責任者（PDMR）」制度における取締役の取引に関するクローズド期間はどのくらいですか。",
+    "explanationJa": "決算発表前のクローズド期間中は取引を行いません。クローズド期間は、年末決算、半期（中間）決算、または四半期決算の発表前の30日間です。"
+  },
+  {
+    "id": 39,
+    "question": "For what time period would a firm keep records on confirmation of trades for MiFID business?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1046680",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Three years from the date of trade",
+        "textJa": ". 取引日から3年間"
+      },
+      {
+        "letter": "B",
+        "text": ". Three years from dispatch",
+        "textJa": ". 送付日から3年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Five years from the date of trade",
+        "textJa": ". 取引日から5年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Five years from dispatch",
+        "textJa": ". 送付日から5年間"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A firm must retain a copy of any confirmation dispatched to a client for the following periods from the date of dispatch: - Five years - MiFID business - Three years - non-MiFID business",
+    "globalId": 512,
+    "categoryId": 39,
+    "questionJa": "MiFID業務に関する取引確認の記録を、企業はどのくらいの期間保管しますか。",
+    "explanationJa": "企業は、顧客に送付したいかなる確認書のコピーも、送付日から以下の期間保管しなければなりません。 - MiFID業務の場合：5年間 - 非MiFID業務の場合：3年間"
+  },
+  {
+    "id": 40,
+    "question": "Thomas works at a small bank. Over the last few months he has been accepting deposits from an individual who visits the UK regularly. This is most likely to be which stage in the process of money laundering?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1047693",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Placement",
+        "textJa": ". プレイスメント（資金の投入）"
+      },
+      {
+        "letter": "B",
+        "text": ". Layering",
+        "textJa": ". レイヤリング（資金の偽装）"
+      },
+      {
+        "letter": "C",
+        "text": ". Scheme",
+        "textJa": ". スキーム（計画）"
+      },
+      {
+        "letter": "D",
+        "text": ". Integration",
+        "textJa": ". インテグレーション（資金の合法化）"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Accepting deposits is most likely to be the introduction of money into the financial system, which is part of the placement stage. The other two stages are layering and integration. Scheme is a made-up answer. Page 46 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 47 ────────────────────────────────────────────────────────────",
+    "globalId": 513,
+    "categoryId": 40,
+    "questionJa": "Thomasは小さな銀行で働いています。ここ数ヶ月、彼は定期的にUKを訪れる個人から預金を受け入れています。これはマネーロンダリングのプロセスのどの段階である可能性が最も高いですか。",
+    "explanationJa": "預金の受け入れは、金融システムへの資金の導入である可能性が最も高く、これはプレイスメント段階の一部です。他の2つの段階はレイヤリングとインテグレーションです。「スキーム」は架空の回答です。CISI Unit 1 Regulations 79ページ中46ページ ──────────────────────────────────────────────────────────── 47ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 41,
+    "question": "\"An employee has noticed that one of his clients has started settling transactions in Australian dollars. There is nothing in the 'Know Your Customer' information that would suggest this is to be expected. Which of the following is the best description of the action that the employee should take?\"",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078627",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Contact the customer to discuss it",
+        "textJa": ". 顧客に連絡して話し合う"
+      },
+      {
+        "letter": "B",
+        "text": ". Report the client to their Money Laundering Reporting Officer",
+        "textJa": ". 顧客を自社のマネーロンダリング報告担当者に報告する"
+      },
+      {
+        "letter": "C",
+        "text": ". Contact the National Crime Agency immediately",
+        "textJa": ". 直ちにNational Crime Agencyに連絡する"
+      },
+      {
+        "letter": "D",
+        "text": ". Report the client to the Financial Conduct Authority",
+        "textJa": ". 顧客をFinancial Conduct Authorityに報告する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The best course of action would be for the employee to report these transactions to their MLRO. They should not contact the client as this may alert them that they are being investigated for money laundering.",
+    "globalId": 514,
+    "categoryId": 41,
+    "questionJa": "ある従業員が、顧客の一人がオーストラリアドルで取引の決済を始めたことに気づきました。「Know Your Customer」情報には、これが予想されることを示唆するものは何もありません。従業員が取るべき行動について、最も適切な説明は次のうちどれですか。",
+    "explanationJa": "最善の行動は、従業員がこれらの取引を自社のMLROに報告することです。マネーロンダリングの調査対象であることを顧客に警告する可能性があるため、顧客に連絡すべきではありません。"
+  },
+  {
+    "id": 42,
+    "question": "Which of the following best reflects the reactive supervision work of the FCA?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1069724",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is preventative work through structured conduct assessment of firms",
+        "textJa": ". 企業の構造化された行動評価を通じた予防的な業務である"
+      },
+      {
+        "letter": "B",
+        "text": ". It is remedial work to deal with problems that are emerging or have happened",
+        "textJa": ". 発生しつつある、または発生した問題に対処するための是正業務である"
+      },
+      {
+        "letter": "C",
+        "text": ". It is intensive campaigns on sectors of the market or products posing risk to consumers",
+        "textJa": ". 消費者にリスクをもたらす市場のセクターまたは製品に関する集中的なキャンペーンである"
+      },
+      {
+        "letter": "D",
+        "text": ". It is the system through which regulatory reports are made electronically to the FCA",
+        "textJa": ". 規制報告書がFCAに電子的に提出されるシステムである"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "It is remedial work to deal with problems that are emerging or have happened - this reflects \"reactive supervision work\". It is preventative work through structured conduct assessment of firms - this reflects the \"firm systematic framework\". It is intensive campaigns on sectors of the market or products posing risk to consumers - this reflects \"issues and products\".",
+    "globalId": 515,
+    "categoryId": 42,
+    "questionJa": "FCAの事後対応的な監督業務を最もよく反映しているのは次のうちどれですか。",
+    "explanationJa": "発生しつつある、または発生した問題に対処するための是正業務である - これは「事後対応的な監督業務」を反映しています。企業の構造化された行動評価を通じた予防的な業務である - これは「企業体系的枠組み」を反映しています。消費者にリスクをもたらす市場のセクターまたは製品に関する集中的なキャンペーンである - これは「課題と製品」を反映しています。"
+  },
+  {
+    "id": 43,
+    "question": "Which of the following is TRUE in respect of the conflicts of interest policy?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078628",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The rules protect retail clients alone from the conflicts that could arise between clients of the same firm",
+        "textJa": ". この規則は、同じ企業の顧客間で生じる可能性のある利益相反から、個人顧客のみを保護する"
+      },
+      {
+        "letter": "B",
+        "text": ". It requires firms to maintain effective and administrative arrangements",
+        "textJa": ". 企業に効果的な管理体制を維持することを要求する"
+      },
+      {
+        "letter": "C",
+        "text": ". Where a firm is part of a group, the policy should take account any potential conflicts arising from that group",
+        "textJa": ". 企業がグループの一員である場合、ポリシーはそのグループから生じる潜在的な利益相反を考慮に入れるべきである"
+      },
+      {
+        "letter": "D",
+        "text": ". The conflicts policy should be provided in full to retail clients",
+        "textJa": ". 利益相反ポリシーは、個人顧客に完全に提供されるべきである"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This is a tricky question. The rules protect ALL types of client. A description of the policy should be provided to retail clients and potential retail clients. The policy itself does not require firms to maintain effective and administrative arrangements, but shows how they will identify and manage conflicts.",
+    "globalId": 516,
+    "categoryId": 43,
+    "questionJa": "利益相反ポリシーに関して、次のうち正しいものはどれですか。",
+    "explanationJa": "これはトリッキーな質問です。この規則はすべての種類の顧客を保護します。ポリシーの説明は、個人顧客および潜在的な個人顧客に提供されるべきです。ポリシー自体は企業に効果的な管理体制を維持することを要求するものではなく、利益相反を特定し管理する方法を示しています。"
+  },
+  {
+    "id": 44,
+    "question": "Which of the below would ensure you offer best execution where you have no client specific instructions?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1051815",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Trade at the price offered on the SETS trading system",
+        "textJa": ". SETS取引システムで提示された価格で取引する"
+      },
+      {
+        "letter": "B",
+        "text": ". Act in accordance with the order execution policy",
+        "textJa": ". 注文執行方針に従って行動する"
+      },
+      {
+        "letter": "C",
+        "text": ". You cannot continue with the trade without specific client instructions on how to execute",
+        "textJa": ". 執行方法に関する顧客からの具体的な指示なしに取引を継続することはできない"
+      },
+      {
+        "letter": "D",
+        "text": ". Best execution is not owed where no specific client instructions are made",
+        "textJa": ". 顧客からの具体的な指示がない場合、最良執行は義務付けられない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The order execution policy sets out how a firm will achieve the best possible result for the client. Following this will ensure best execution.",
+    "globalId": 517,
+    "categoryId": 44,
+    "questionJa": "顧客からの具体的な指示がない場合、最良執行を提供することを保証するのは次のうちどれですか。",
+    "explanationJa": "注文執行方針は、企業が顧客にとって最良の結果を達成する方法を定めています。これに従うことで最良執行が保証されます。"
+  },
+  {
+    "id": 45,
+    "question": "Which of the following are eligible to claim financial loss from the Financial Ombudsman Service?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078630",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A private individual who was deemed professional client when they put in a claim",
+        "textJa": ". 請求時にプロフェッショナル顧客と見なされた個人"
+      },
+      {
+        "letter": "B",
+        "text": ". A charity with income of £250,000",
+        "textJa": ". 収入が25万ポンドの慈善団体"
+      },
+      {
+        "letter": "C",
+        "text": ". A corporate client with assets of £19m",
+        "textJa": ". 資産が1900万ポンドの法人顧客"
+      },
+      {
+        "letter": "D",
+        "text": ". A trust with assets of £7m",
+        "textJa": ". 資産が700万ポンドの信託"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Eligible complainants are: - consumers - any person using or contemplating using the services of an authorised firm or an appointed representative; - micro-enterprises - any person engaged in economic activity, irrespective of legal form, employing fewer than ten persons and having a turnover or balance sheet not exceeding €2 million at the time the complaint is raised; - charities with an annual income of less than £6.5 million at the time the complaint is raised; - a trustee of a trust with a net asset value of less than £5 million at the time the complaint is raised.",
+    "globalId": 518,
+    "categoryId": 45,
+    "questionJa": "次のうち、Financial Ombudsman Serviceから金銭的損失の請求をする資格があるのは誰ですか。",
+    "explanationJa": "適格な申立人は次のとおりです。 - 消費者 - 認可された企業または任命された代表者のサービスを利用している、または利用を検討しているすべての人。 - マイクロエンタープライズ - 苦情申し立て時に従業員数が10人未満で、売上高または貸借対照表が200万ユーロを超えない、法的形態にかかわらず経済活動に従事するすべての人。 - 苦情申し立て時に年間収入が650万ポンド未満の慈善団体。 - 苦情申し立て時に純資産価値が500万ポンド未満の信託の受託者。"
+  },
+  {
+    "id": 46,
+    "question": "The Tax and Chancery Chamber of the Upper Tribunal's responsibilities include:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1055368",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Settling disputes between authorised firms",
+        "textJa": ". 認可された企業間の紛争解決"
+      },
+      {
+        "letter": "B",
+        "text": ". Hear complaints from customers about authorised firms and then set appropriate compensation",
+        "textJa": ". 認可された企業に関する顧客からの苦情を聞き、適切な補償を設定する"
+      },
+      {
+        "letter": "C",
+        "text": ". Hear appeals from authorised firms facing disciplinary action from the FCA",
+        "textJa": ". FCAからの懲戒処分に直面している認可された企業からの上訴を聞く"
+      },
+      {
+        "letter": "D",
+        "text": ". Set the amount that an authorised firm will be fined for a rule breach",
+        "textJa": ". 規則違反に対して認可された企業が科される罰金の額を設定する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "An authorised firm that has received a decision notice can appeal to the TCCUT. The FOS would hear complaints from customers of firms.",
+    "globalId": 519,
+    "categoryId": 46,
+    "questionJa": "Upper TribunalのTax and Chancery Chamberの責任には何が含まれますか。",
+    "explanationJa": "決定通知を受けた認可された企業はTCCUTに上訴することができます。FOSは企業の顧客からの苦情を聞きます。"
+  },
+  {
+    "id": 47,
+    "question": "Which European regulation relates to the transparency and risk management in the OTC derivative markets?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1069718",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Markets in financial instruments directive",
+        "textJa": ". 金融商品市場指令 (MiFID)"
+      },
+      {
+        "letter": "B",
+        "text": ". Capital requirements directive",
+        "textJa": ". 資本要件指令 (CRD)"
+      },
+      {
+        "letter": "C",
+        "text": ". Alternative investment fund manager directive",
+        "textJa": ". オルタナティブ投資ファンド運用者指令 (AIFMD)"
+      },
+      {
+        "letter": "D",
+        "text": ". European markets infrastructure regulation",
+        "textJa": ". 欧州市場インフラ規制 (EMIR)"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The European markets infrastructure regulation (EMIR) relates to the transparency and risk management in the OTC derivative markets. It requires trade reports to a trade repository, adequate risk management for trades, position management and collateral, and mandatory use of a central counterparty for some contracts.",
+    "globalId": 520,
+    "categoryId": 47,
+    "questionJa": "OTCデリバティブ市場における透明性とリスク管理に関連する欧州の規制はどれですか。",
+    "explanationJa": "欧州市場インフラ規制 (EMIR) は、OTCデリバティブ市場における透明性とリスク管理に関連しています。取引報告書を取引レポジトリに提出すること、取引に関する適切なリスク管理、ポジション管理と担保、および一部の契約については中央清算機関の強制的な使用を要求しています。"
+  },
+  {
+    "id": 48,
+    "question": "Which of the following is true of trail commissions?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078632",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Trail commissions of any sort are not allowed",
+        "textJa": ". いかなる種類のトレイルコミッションも許可されない"
+      },
+      {
+        "letter": "B",
+        "text": ". Trail commission must continue if further advice is given",
+        "textJa": ". 追加の助言が与えられた場合、トレイルコミッションは継続しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". If the advice leads to a switch of life policy, any trail commission must continue",
+        "textJa": ". 助言が生命保険契約の切り替えにつながる場合、いかなるトレイルコミッションも継続しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". If the advice leads to a reduction in the amount invested, the trail commission can continue",
+        "textJa": ". 助言が投資額の減少につながる場合、トレイルコミッションは継続できる"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Trail commission of any sort has been banned under the RDR regulations since 2016.",
+    "globalId": 521,
+    "categoryId": 48,
+    "questionJa": "トレイルコミッションに関して、次のうち正しいものはどれですか。",
+    "explanationJa": "いかなる種類のトレイルコミッションも、2016年以降、RDR規制の下で禁止されています。"
+  },
+  {
+    "id": 49,
+    "question": "Which of these is true in relation to COBS for a MiFID firm?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1057259",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". They must follow COBS",
+        "textJa": ". COBSに従わなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". They only need to follow COBS for non-MiFID business",
+        "textJa": ". 非MiFID業務についてのみCOBSに従う必要がある"
+      },
+      {
+        "letter": "C",
+        "text": ". They only need to follow COBS for MiFID business",
+        "textJa": ". MiFID業務についてのみCOBSに従う必要がある"
+      },
+      {
+        "letter": "D",
+        "text": ". COBS is amended for MiFID firms",
+        "textJa": ". MiFID企業についてはCOBSが修正されている"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The general application rule states that firms are subject to the COBS Sourcebook if they carry on designated investment business, long-term insurance business in relation to life policies and activities relating to the above. This definition includes both MiFID and non-MiFID business.",
+    "globalId": 522,
+    "categoryId": 49,
+    "questionJa": "MiFID企業に関するCOBSについて、これらのうち正しいものはどれですか。",
+    "explanationJa": "一般適用規則では、指定された投資業務、生命保険契約に関連する長期保険業務、および上記に関連する活動を行う場合、企業はCOBSソースブックの対象となると規定されています。この定義には、MiFID業務と非MiFID業務の両方が含まれます。"
+  },
+  {
+    "id": 50,
+    "question": "Under the Financial Services Act 2012 who is responsible for the soundness of 'significant investment firms'?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078633",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". HMRC",
+        "textJa": ". HMRC"
+      },
+      {
+        "letter": "B",
+        "text": ". FCA",
+        "textJa": ". FCA"
+      },
+      {
+        "letter": "C",
+        "text": ". PRA",
+        "textJa": ". PRA"
+      },
+      {
+        "letter": "D",
+        "text": ". FSA",
+        "textJa": ". FSA"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The focus of the PRA is stability - the safety and soundness of deposit taking firms, insurers and systematically important investment firms.",
+    "globalId": 523,
+    "categoryId": 50,
+    "questionJa": "Financial Services Act 2012に基づき、「重要な投資会社」の健全性について責任を負うのは誰ですか。",
+    "explanationJa": "PRAの焦点は安定性です。つまり、預金取扱機関、保険会社、およびシステミックに重要な投資会社の安全性と健全性です。"
+  },
+  {
+    "id": 51,
+    "question": "To whom is the FCA directly accountable?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078634",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". HM Treasury",
+        "textJa": ". HM Treasury"
+      },
+      {
+        "letter": "B",
+        "text": ". Bank of England",
+        "textJa": ". Bank of England"
+      },
+      {
+        "letter": "C",
+        "text": ". UK Government",
+        "textJa": ". UK Government"
+      },
+      {
+        "letter": "D",
+        "text": ". Its shareholders",
+        "textJa": ". その株主"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Although the FCA is ultimately accountable to the UK government on how it carries out its functions, it does so via HM Treasury. The FCA has no shareholders. Page 47 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 48 ────────────────────────────────────────────────────────────",
+    "globalId": 524,
+    "categoryId": 51,
+    "questionJa": "FCAは誰に直接説明責任を負っていますか。",
+    "explanationJa": "FCAは最終的にはその機能の遂行方法についてUK政府に説明責任を負っていますが、それはHM Treasuryを通じて行われます。FCAには株主はいません。CISI Unit 1 Regulations 79ページ中47ページ ──────────────────────────────────────────────────────────── 48ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 52,
+    "question": "Who implements and administers the Freedom of Information Act 2000?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1058259",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Data Protection Office",
+        "textJa": ". Data Protection Office"
+      },
+      {
+        "letter": "B",
+        "text": ". The Information Commissioner's Office",
+        "textJa": ". The Information Commissioner's Office"
+      },
+      {
+        "letter": "C",
+        "text": ". Ministry of Justice",
+        "textJa": ". Ministry of Justice"
+      },
+      {
+        "letter": "D",
+        "text": ". Department of Business, Information and Skills",
+        "textJa": ". Department of Business, Information and Skills"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The ICO is responsible for both the Data Protection Act 1998 and its extension for public bodies, the Freedom of Information Act 2000",
+    "globalId": 525,
+    "categoryId": 52,
+    "questionJa": "Freedom of Information Act 2000を実施し、管理するのは誰ですか。",
+    "explanationJa": "ICOは、Data Protection Act 1998とその公的機関向けの拡張であるFreedom of Information Act 2000の両方に責任を負っています。"
+  },
+  {
+    "id": 53,
+    "question": "Which regulatory body safeguards the members of defined benefit pension schemes?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1058260",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      },
+      {
+        "letter": "B",
+        "text": ". Prudential Regulation Authority",
+        "textJa": ". Prudential Regulation Authority"
+      },
+      {
+        "letter": "C",
+        "text": ". Takeover Panel",
+        "textJa": ". Takeover Panel"
+      },
+      {
+        "letter": "D",
+        "text": ". The Pensions Regulator",
+        "textJa": ". The Pensions Regulator"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The Pensions Regulator was formed in 2005 to safeguard members of work based pension schemes. The FCA is responsible for the activities of advisers and providers of personal pension plans.",
+    "globalId": 526,
+    "categoryId": 53,
+    "questionJa": "確定給付年金制度の加入者を保護する規制機関はどれですか。",
+    "explanationJa": "The Pensions Regulatorは、職域年金制度の加入者を保護するために2005年に設立されました。FCAは、個人年金プランのアドバイザーおよびプロバイダーの活動に責任を負っています。"
+  },
+  {
+    "id": 54,
+    "question": "A defence against a charge of carrying out a regulated activity without authorisation could be:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1057256",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Managing own portfolio",
+        "textJa": ". 自身のポートフォリオを管理すること"
+      },
+      {
+        "letter": "B",
+        "text": ". They did not believe that it was a regulated activity",
+        "textJa": ". それが規制対象活動であるとは信じていなかったこと"
+      },
+      {
+        "letter": "C",
+        "text": ". They had applied and were awaiting confirmation",
+        "textJa": ". 申請済みで確認待ちであったこと"
+      },
+      {
+        "letter": "D",
+        "text": ". They dealt on their own account and held themselves out to others",
+        "textJa": ". 自己勘定で取引し、他者にそのように見せていたこと"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Dealing for yourself where no service is offered to others is an excluded activity.",
+    "globalId": 527,
+    "categoryId": 54,
+    "questionJa": "無許可で規制対象活動を行ったという告発に対する抗弁事由となり得るのはどれですか。",
+    "explanationJa": "他者にサービスを提供せずに自己のために取引することは、除外される活動です。"
+  },
+  {
+    "id": 55,
+    "question": "When may a senior manager, having applied for approval from the FCA, perform a senior manager function?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1052161",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". As soon as the application is completed and sent out to the FCA",
+        "textJa": ". 申請書が完成し、FCAに送付され次第すぐに"
+      },
+      {
+        "letter": "B",
+        "text": ". On receipt of confirmation that the FCA has received the application",
+        "textJa": ". FCAが申請書を受領したことの確認書を受け取り次第"
+      },
+      {
+        "letter": "C",
+        "text": ". As soon as the FCA grants approved status the manager may perform the function",
+        "textJa": ". FCAが承認ステータスを付与し次第すぐに、管理職はその機能を行うことができる"
+      },
+      {
+        "letter": "D",
+        "text": ". After acknowledgement of approval and six months' grace under constant supervision",
+        "textJa": ". 承認の通知後、常時監督の下で6ヶ月の猶予期間を経て"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "As soon as the FCA grants approved status the manager may perform the function.",
+    "globalId": 528,
+    "categoryId": 55,
+    "questionJa": "FCAに承認を申請した上級管理職は、いつ上級管理職機能を行うことができますか。",
+    "explanationJa": "FCAが承認ステータスを付与し次第すぐに、管理職はその機能を行うことができます。"
+  },
+  {
+    "id": 56,
+    "question": "Which of these are specified investments?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1057257",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Warrants",
+        "textJa": ". ワラント"
+      },
+      {
+        "letter": "B",
+        "text": ". A building society accepting deposits",
+        "textJa": ". 預金を受け入れる住宅金融組合"
+      },
+      {
+        "letter": "C",
+        "text": ". Property",
+        "textJa": ". 不動産"
+      },
+      {
+        "letter": "D",
+        "text": ". Commodities",
+        "textJa": ". コモディティ"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "This is a tricky question. Property and commodities are tangible assets, so are not specified investments. Although deposits are specified investments, the full phrase is 'a building society accepting deposits' - this is a specified activity. Warrants are specified investments.",
+    "globalId": 529,
+    "categoryId": 56,
+    "questionJa": "これらの中で指定された投資はどれですか。",
+    "explanationJa": "これはトリッキーな質問です。不動産とコモディティは有形資産なので、指定された投資ではありません。預金は指定された投資ですが、「預金を受け入れる住宅金融組合」というフレーズ全体は指定された活動です。ワラントは指定された投資です。"
+  },
+  {
+    "id": 57,
+    "question": "A broker receives an order from a professional client to sell 1,000 shares at a limit price of 100p via a firm-provided mobile phone. How long should the broker keep a record of this phone call?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1065089",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 1 month",
+        "textJa": ". 1ヶ月"
+      },
+      {
+        "letter": "B",
+        "text": ". 6 months",
+        "textJa": ". 6ヶ月"
+      },
+      {
+        "letter": "C",
+        "text": ". 5 years",
+        "textJa": ". 5年"
+      },
+      {
+        "letter": "D",
+        "text": ". As long as necessary",
+        "textJa": ". 必要な期間"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The COBS require good quality recordings regarding receiving, executing and arranging client orders to be made and kept for 5 years. This includes communication via fax, email, instant messaging, and firm-provided mobile phones. This applies to communication with any client.",
+    "globalId": 530,
+    "categoryId": 57,
+    "questionJa": "ブローカーは、プロの顧客から、会社支給の携帯電話経由で1,000株を100ペンスの指値で売るという注文を受けました。ブローカーはこの電話の記録をどのくらいの期間保管すべきですか。",
+    "explanationJa": "COBSは、顧客の注文の受領、執行、および手配に関する良質な記録を作成し、5年間保管することを要求しています。これには、ファックス、電子メール、インスタントメッセージング、および会社支給の携帯電話による通信が含まれます。これは、あらゆる顧客との通信に適用されます。"
+  },
+  {
+    "id": 58,
+    "question": "When disclosing past performance regarding a seven year old equity fund to retail clients, which of the following is required according to the COBS?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1065090",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Performance data for the life of the fund must be presented in the least prominent manner",
+        "textJa": ". ファンドの存続期間全体のパフォーマンスデータは、最も目立たない方法で提示されなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". Five years of performance data must be presented in the most prominent manner",
+        "textJa": ". 5年間のパフォーマンスデータは、最も目立つ方法で提示されなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". The performance data must be presented gross of any fees and commissions",
+        "textJa": ". パフォーマンスデータは、手数料およびコミッションを差し引く前のグロスで提示されなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". The reference periods for any performance data must be shown",
+        "textJa": ". パフォーマンスデータの参照期間は表示されなければならない"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The past performance should not be the most prominent feature. The firm should aim to cover AT LEAST five years or the life of the investment - whichever is shorter. The data should not be the most prominent element and any reference periods must be clearly stated. Therefore, this fund should disclose at least five years of data, disclose the effects of fees and commissions.",
+    "globalId": 531,
+    "categoryId": 58,
+    "questionJa": "7年物の株式ファンドに関する過去のパフォーマンスを個人顧客に開示する場合、COBSによれば次のうちどれが必要ですか。",
+    "explanationJa": "過去のパフォーマンスは最も目立つ特徴であってはなりません。企業は少なくとも5年間、または投資の存続期間のいずれか短い方をカバーすることを目指すべきです。データは最も目立つ要素であってはならず、参照期間は明確に記載されなければなりません。したがって、このファンドは少なくとも5年間のデータを公表し、手数料とコミッションの影響を公表すべきです。"
+  },
+  {
+    "id": 59,
+    "question": "After completing the sale of a personal pension to a retail client, the advisory firm must follow up with which of the following?",
+    "category": "Regulations: Mock 2",
+    "questionId": "1065091",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A suitability report within 14 calendar days",
+        "textJa": ". 14暦日以内の適合性報告書"
+      },
+      {
+        "letter": "B",
+        "text": ". Cancellation rights after 14 calendar days",
+        "textJa": ". 14暦日後の解約権"
+      },
+      {
+        "letter": "C",
+        "text": ". A suitability report within 7 calendar days",
+        "textJa": ". 7暦日以内の適合性報告書"
+      },
+      {
+        "letter": "D",
+        "text": ". Cancellation rights after 30 calendar days",
+        "textJa": ". 30暦日後の解約権"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "When a personal pension is sold to retail clients, the advisory firm must provide cancellation rights at the point of sale. After this point, the firm should follow up with a suitability report within 14 calendar days, to confirm why the firm believes the pension is suitable.",
+    "globalId": 532,
+    "categoryId": 59,
+    "questionJa": "個人年金を個人顧客に販売した後、アドバイザリー会社は次のうちどれをフォローアップしなければなりませんか。",
+    "explanationJa": "個人年金が個人顧客に販売された場合、アドバイザリー会社は販売時点で解約権を提供しなければなりません。この時点の後、会社は年金が適合すると考える理由を確認するために、14暦日以内に適合性報告書でフォローアップすべきです。"
+  },
+  {
+    "id": 60,
+    "question": "A broker is unable to execute a client order due to a trading halt on the exchange. This has led to the client order being postponed. In which of the following situations would the broker have to notify the client? If the order:",
+    "category": "Regulations: Mock 2",
+    "questionId": "1078708",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Was based on a specific client instruction",
+        "textJa": ". 顧客の具体的な指示に基づいていた場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Came from an eligible counterparty",
+        "textJa": ". 適格カウンターパーティーからのものであった場合"
+      },
+      {
+        "letter": "C",
+        "text": ". Was based on a specific order execution policy",
+        "textJa": ". 特定の注文執行方針に基づいていた場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Came from a retail client",
+        "textJa": ". 個人顧客からのものであった場合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A firm may promote or postpone a client order in certain situations. Those situations could include market conditions, like a trading halt. In these cases, the retail client must be notified.",
+    "globalId": 533,
+    "categoryId": 60,
+    "questionJa": "ブローカーは、取引所の取引停止により顧客の注文を執行できません。これにより、顧客の注文は延期されました。次の場合のうち、ブローカーが顧客に通知しなければならないのはどれですか。注文が：",
+    "explanationJa": "企業は特定の状況で顧客の注文を促進または延期することができます。これらの状況には、取引停止のような市場の状況が含まれる可能性があります。このような場合、個人顧客に通知しなければなりません。"
+  },
+  {
+    "id": 61,
+    "question": "Which ONE of the following supervisory tools is designed to discover the cause, the extent and the potential development of harm?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4078842",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Identify",
+        "textJa": ". 特定する"
+      },
+      {
+        "letter": "B",
+        "text": ". Diagnose",
+        "textJa": ". 診断する"
+      },
+      {
+        "letter": "C",
+        "text": ". Remedy",
+        "textJa": ". 救済する"
+      },
+      {
+        "letter": "D",
+        "text": ". Evaluate",
+        "textJa": ". 評価する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Tools of supervision: ​ Identify: identify where harm or potential harm is present ​ Diagnose: what is the cause, the extent and potential development of the harm ​ Remedy: through a range of FCA actions that can be taken ​ Evaluate: FCA assesses how effective these action were",
+    "globalId": 534,
+    "categoryId": 61,
+    "questionJa": "次の監督ツールのうち、害の原因、範囲、および潜在的な進展を発見するために設計されたものはどれですか。",
+    "explanationJa": "監督ツール： 特定する：害または潜在的な害が存在する場所を特定する。 診断する：害の原因、範囲、および潜在的な進展は何か。 救済する：FCAが取ることができるさまざまな措置を通じて。 評価する：FCAはこれらの措置がどの程度効果的であったかを評価する。"
+  },
+  {
+    "id": 62,
+    "question": "A firm wishes to apply for Part 4A permission to gain authorisation to conduct regulated activities. Due to the size and nature of a firm, it needs to become a dual-regulated firm. Which of the following is true?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4078847",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm will apply to the PRA who will take sole responsibility for granting Part 4A permission",
+        "textJa": ". 企業はPRAに申請し、PRAがPart 4A許可の付与について単独で責任を負う"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm will apply to the PRA who will consult with the FCA before granting Part 4A permission",
+        "textJa": ". 企業はPRAに申請し、PRAはFCAと協議した上でPart 4A許可を付与する"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm will apply jointly to the PRA and the FCA who will take joint responsibility for granting Part 4A permission",
+        "textJa": ". 企業はPRAとFCAに共同で申請し、両者がPart 4A許可の付与について共同で責任を負う"
+      },
+      {
+        "letter": "D",
+        "text": ". The firm will apply jointly to the PRA and the FCA but the PRA takes responsibility for granting Part 4A permission",
+        "textJa": ". 企業はPRAとFCAに共同で申請するが、PRAがPart 4A許可の付与について責任を負う"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "If the firm is likely to be dual-regulated (ie, it is to be subject to both PRA and FCA supervision) and it wants to become authorised, the firm will make a single application to the PRA as its lead regulator. Although the PRA will make the final decision on the firm’s application, the PRA can only authorise the firm once the FCA has also consented to the firm’s authorisation. Page 48 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 49 ────────────────────────────────────────────────────────────",
+    "globalId": 535,
+    "categoryId": 62,
+    "questionJa": "ある企業が、規制対象活動を行うための認可を得るためにPart 4A許可を申請したいと考えています。企業の規模と性質上、二重規制企業になる必要があります。次のうち正しいものはどれですか。",
+    "explanationJa": "企業が二重規制（つまり、PRAとFCAの両方の監督対象となる）を受ける可能性があり、認可を受けたい場合、企業は主導的規制当局としてPRAに単独で申請します。PRAが企業の申請に関する最終決定を下しますが、PRAはFCAも企業の認可に同意した場合にのみ企業を認可できます。CISI Unit 1 Regulations 79ページ中48ページ ──────────────────────────────────────────────────────────── 49ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 63,
+    "question": "When complying with fair, clear and not misleading communications in respect of financial promotions, which of the following is true?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4078852",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Products or services that expose the client's capital to risk are not permitted",
+        "textJa": ". 顧客の元本をリスクにさらす商品やサービスは許可されない"
+      },
+      {
+        "letter": "B",
+        "text": ". Promotions quoting yields should focus only on the long-term prospects of the investment",
+        "textJa": ". 利回りを提示するプロモーションは、投資の長期的な見通しのみに焦点を当てるべきである"
+      },
+      {
+        "letter": "C",
+        "text": ". The FCA must not be named as the regulator in any promotion of financial services or products",
+        "textJa": ". FCAは、金融サービスや商品のいかなるプロモーションにおいても規制当局として名指しされてはならない"
+      },
+      {
+        "letter": "D",
+        "text": ". Where the firm does not produce the product itself, it must give an impression of the producer",
+        "textJa": ". 企業が製品を自ら製造しない場合、製造者の印象を与えるべきである"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Fair, clear and non-misleading promotions should be just that. This means: Those which deal with products or services where a client’s capital may be at risk should make this clear Those quoting yields give a balanced impression of short-, medium- and long-term prospects for the investment If an investment product is, or services charges, are complex, or if the firm may receive more than one element of remuneration, this is communicated fairly, clearly and in a manner which is not misleading and which takes into account the information needs of the recipients If the FCA is named as the firm’s regulator but the communication also includes matters not regulated by the FCA, that it is made clear that some aspects of the business relationship are not regulated by the FCA, and Those relating to packaged or stakeholder products not produced by the firm itself, give a fair, clear and non-misleading impression of the producer or manager of the product.",
+    "globalId": 536,
+    "categoryId": 63,
+    "questionJa": "金融プロモーションに関して、公正、明確かつ誤解を招かないコミュニケーションを遵守する場合、次のうち正しいものはどれですか。",
+    "explanationJa": "公正、明確かつ誤解を招かないプロモーションは、まさにそうあるべきです。これは次のことを意味します。顧客の元本がリスクにさらされる可能性のある商品やサービスを扱うものは、これを明確にすべきである。利回りを提示するものは、投資の短期、中期、長期の見通しについてバランスの取れた印象を与えるべきである。投資商品やサービス料金が複雑である場合、または企業が複数の報酬要素を受け取る可能性がある場合、これは公正、明確かつ誤解を招かない方法で、かつ受領者の情報ニーズを考慮して伝えられるべきである。FCAが企業の規制当局として名指しされているが、コミュニケーションにFCAによって規制されていない事項も含まれている場合、事業関係の一部はFCAによって規制されていないことが明確にされるべきである。そして、企業自身が製造していないパッケージ商品またはステークホルダー商品に関するものは、その商品の製造者または管理者の公正、明確かつ誤解を招かない印象を与えるべきである。"
+  },
+  {
+    "id": 64,
+    "question": "When a retail client has sought out advice in connection to a personal pension plan and cancellation rights apply, within which of the following number of days must a suitability report be provided to the client?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167579",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". At the date of inception",
+        "textJa": ". 開始日において"
+      },
+      {
+        "letter": "B",
+        "text": ". 7",
+        "textJa": ". 7日"
+      },
+      {
+        "letter": "C",
+        "text": ". 14",
+        "textJa": ". 14日"
+      },
+      {
+        "letter": "D",
+        "text": ". 30",
+        "textJa": ". 30日"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "In terms of timing, a suitability report must be provided in connection with a personal pension scheme or a stakeholder pension, if the cancellation rules apply, within 14 days of concluding the contract.",
+    "globalId": 537,
+    "categoryId": 64,
+    "questionJa": "個人顧客が個人年金プランに関連して助言を求め、解約権が適用される場合、顧客に適合性報告書を提供しなければならないのは、次の日数のうちどれですか。",
+    "explanationJa": "タイミングに関しては、個人年金制度またはステークホルダー年金に関連して、解約規則が適用される場合、契約締結後14日以内に適合性報告書を提供しなければなりません。"
+  },
+  {
+    "id": 65,
+    "question": "In which of the following situations would the Financial Services Compensation Scheme (FSCS) be called upon the make a compensation payment?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167587",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Where the firm is unable to pay out to claimants",
+        "textJa": ". 企業が請求者への支払いができない場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Where an official who is representing a customer’s complaint finds in favour of the client",
+        "textJa": ". 顧客の苦情を代表する担当者が顧客に有利な判断を下した場合"
+      },
+      {
+        "letter": "C",
+        "text": ". Where the payment needs to be made to resolve a client’s pension dispute",
+        "textJa": ". 顧客の年金紛争を解決するために支払いが必要な場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Where the courts award a restitution order and there are insufficient funds to pay",
+        "textJa": ". 裁判所が原状回復命令を出し、支払うための資金が不足している場合"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The FSCS will pay out compensation when an eligible claimant sees their financial institution become insolvent or the firm itself is in default. Since none of these words is available, the definition of default is the inability of the firm to pay due the bankruptcy, therefore the best answer.",
+    "globalId": 538,
+    "categoryId": 65,
+    "questionJa": "次のうち、Financial Services Compensation Scheme (FSCS) が補償金の支払いを行うよう求められるのはどのような状況ですか。",
+    "explanationJa": "FSCSは、適格な請求者が金融機関の破綻を経験した場合、または企業自体が債務不履行に陥った場合に補償金を支払います。これらの言葉のいずれも利用できないため、債務不履行の定義は破産による企業の支払い不能であり、したがってこれが最良の回答となります。"
+  },
+  {
+    "id": 66,
+    "question": "Cancellation rights and the right to withdraw was offered and subsequently taken up in relation to a personal pension by a retail client on the 25th day. For how much longer must the firm keep a record of the pension contract drawn up in relation to this business?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167583",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 5 days",
+        "textJa": ". 5日間"
+      },
+      {
+        "letter": "B",
+        "text": ". 3 years",
+        "textJa": ". 3年間"
+      },
+      {
+        "letter": "C",
+        "text": ". 5 years",
+        "textJa": ". 5年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Indefinitely",
+        "textJa": ". 無期限に"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The record-keeping retention period is at least five years in relation to a life policy, pension contract, personal pension scheme or stakeholder pension schemes.",
+    "globalId": 539,
+    "categoryId": 66,
+    "questionJa": "個人年金に関する解約権および撤回権が提供され、その後25日目に個人顧客によって行使されました。この業務に関連して作成された年金契約の記録を、企業はあとどのくらいの期間保管しなければなりませんか。",
+    "explanationJa": "生命保険契約、年金契約、個人年金制度、またはステークホルダー年金制度に関する記録保持期間は、少なくとも5年間です。"
+  },
+  {
+    "id": 67,
+    "question": "The Pensions Act 2008, enforced by The Pensions Regulator, requires all UK employers to put certain staff into a workplace pension scheme and contribute towards it. Any employer with at least how many employees has a legal duty to comply with automatic enrolment?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167571",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 1",
+        "textJa": ". 1人"
+      },
+      {
+        "letter": "B",
+        "text": ". 5",
+        "textJa": ". 5人"
+      },
+      {
+        "letter": "C",
+        "text": ". 50",
+        "textJa": ". 50人"
+      },
+      {
+        "letter": "D",
+        "text": ". 100",
+        "textJa": ". 100人"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The Pensions Act 2008 requires all UK employers to put certain staff into a workplace pension scheme and contribute towards it. Any employer with at least one employee has a legal duty to comply with automatic enrolment.",
+    "globalId": 540,
+    "categoryId": 67,
+    "questionJa": "The Pensions Regulatorによって施行されるPensions Act 2008は、すべてのUKの雇用主に対し、特定の従業員を職場年金制度に加入させ、それに拠出することを義務付けています。少なくとも何人の従業員を抱える雇用主が、自動登録を遵守する法的義務を負いますか。",
+    "explanationJa": "Pensions Act 2008は、すべてのUKの雇用主に対し、特定の従業員を職場年金制度に加入させ、それに拠出することを義務付けています。少なくとも1人の従業員を抱える雇用主は、自動登録を遵守する法的義務を負います。"
+  },
+  {
+    "id": 68,
+    "question": "Where the regulator has seen fit to issue a section 56 prohibition order to an individual, which of the following observations is MOST correct? The prohibition order can relate to:",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167561",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". a particular regulated activity or regulated activities generally. If the individual breaches the order, their authorisation is withdrawn under a civil action",
+        "textJa": ". 特定の規制対象活動または規制対象活動全般。個人が命令に違反した場合、民事訴訟によりその認可は取り消される"
+      },
+      {
+        "letter": "B",
+        "text": ". a particular regulated activity or regulated activities generally. If the individual breaches the order, they are guilty of a criminal offence and liable to a fine",
+        "textJa": ". 特定の規制対象活動または規制対象活動全般。個人が命令に違反した場合、刑事犯罪で有罪となり、罰金が科される"
+      },
+      {
+        "letter": "C",
+        "text": ". a particular regulated activity only. If the individual breaches the order, they are guilty of a civil offence and liable to a fine",
+        "textJa": ". 特定の規制対象活動のみ。個人が命令に違反した場合、民事違反で有罪となり、罰金が科される"
+      },
+      {
+        "letter": "D",
+        "text": ". a particular regulated activity only. If the individual breaches the order, they are guilty of a criminal offence and liable to a fine and a two year jail sentence",
+        "textJa": ". 特定の規制対象活動のみ。個人が命令に違反した場合、刑事犯罪で有罪となり、罰金および2年の懲役刑が科される"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The prohibition order can relate to a particular regulated activity or regulated activities generally. If the individual breaches the order, they are guilty of a criminal offence and liable to a fine",
+    "globalId": 541,
+    "categoryId": 68,
+    "questionJa": "規制当局が個人に対してセクション56に基づく禁止命令を発するのが妥当と判断した場合、次のうち最も正しい見解はどれですか。禁止命令は以下に関連する可能性があります。",
+    "explanationJa": "禁止命令は、特定の規制対象活動または規制対象活動全般に関連する可能性があります。個人が命令に違反した場合、刑事犯罪で有罪となり、罰金が科されます。"
+  },
+  {
+    "id": 69,
+    "question": "New legislation relevant to the Information Commissioner’s Office (ICO) has changed the approach and understanding of data protection. It brought in the ability for the ICO to bring in tougher enforcement penalties through fines. Along with these, what other powers does the ICO have? The power to:",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167568",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". prevent firms from processing personal data",
+        "textJa": ". 企業が個人データを処理することを妨げる"
+      },
+      {
+        "letter": "B",
+        "text": ". serve an enforcement notice",
+        "textJa": ". 執行通知を発する"
+      },
+      {
+        "letter": "C",
+        "text": ". impose a custodial sentence of four years",
+        "textJa": ". 4年の懲役刑を科す"
+      },
+      {
+        "letter": "D",
+        "text": ". to prohibit individuals the right to erasure",
+        "textJa": ". 個人に消去権を禁止する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The ICO along with fines may still serve an enforcement notice if it is satisfied that a data controller has contravened or is contravening any of the data protection principles. The right to erasure is the right to be forgotten and the ICO promotes this not prohibits.",
+    "globalId": 542,
+    "categoryId": 69,
+    "questionJa": "Information Commissioner’s Office (ICO) に関連する新しい法律は、データ保護のアプローチと理解を変えました。これにより、ICOは罰金を通じてより厳しい執行罰を科すことができるようになりました。これらに加えて、ICOは他にどのような権限を持っていますか。以下の権限です。",
+    "explanationJa": "ICOは罰金に加えて、データ管理者がデータ保護原則のいずれかに違反した、または違反していると判断した場合、執行通知を発することができます。消去権は忘れられる権利であり、ICOはこれを禁止するのではなく促進します。"
+  },
+  {
+    "id": 70,
+    "question": "A prospectus is required under Section 85 of FSMA and the issuer has decided to raise public awareness by issuing a prospectus advertisement. In relation, specifically, to this advert which of the following pieces of information needs to be clearly stated?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167576",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is clearly recognisable as image advertising and that past performance is not a determinant of future prospects",
+        "textJa": ". それがイメージ広告として明確に認識可能であり、過去のパフォーマンスが将来の見通しを決定するものではないこと"
+      },
+      {
+        "letter": "B",
+        "text": ". The prospectus has been (or will be) published, and where the investors can obtain it",
+        "textJa": ". 目論見書が公表された（またはされる予定である）こと、および投資家がそれをどこで入手できるか"
+      },
+      {
+        "letter": "C",
+        "text": ". That this advert holds all relevant information to allow the investor to make an informed decision on whether to subscribe",
+        "textJa": ". この広告が、投資家が応募するかどうかについて情報に基づいた決定を下すことを可能にするすべての関連情報を含んでいること"
+      },
+      {
+        "letter": "D",
+        "text": ". The name and address of the competent regulatory authority",
+        "textJa": ". 管轄規制当局の名称と住所"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Image advertising is not a prospectus advertisement and is not subject to COBs. Where a prospectus is required under Section 85, where it relates to offers, admission to trading, of transferable securities. A prospectus advertisement may be used and is any type of communication (eg, TV, press, email, letter, text and brochure) which specifically promotes the offer to subscribe or acquire securities. An advertisement relating to such offers or admissions to trading must not be issued, unless: 1. it states that a prospectus has been (or will be) published, and where investors can obtain it 2. it is clearly recognisable as an advertisement 3. the information in it is not inaccurate, or misleading, and 4. it is consistent with the information that is, or is required to be, in the prospectus. Any written advertisement falling under these rules must also contain a bold and prominent statement to the effect that it is not itself a prospectus, but an advertisement, and that investors should not subscribe to any transferable securities which it refers to, except based on information in the prospectus. Page 49 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 50 ────────────────────────────────────────────────────────────",
+    "globalId": 543,
+    "categoryId": 70,
+    "questionJa": "FSMA第85条に基づき目論見書が必要であり、発行者は目論見書広告を発行して一般の認知度を高めることを決定しました。この広告に関して、特に、次の情報のうちどれを明確に記載する必要がありますか。",
+    "explanationJa": "イメージ広告は目論見書広告ではなく、COBの対象ではありません。第85条に基づき目論見書が必要な場合、それは譲渡可能証券の募集、取引への上場に関連します。目論見書広告は使用でき、証券の応募または取得を具体的に促進するあらゆる種類のコミュニケーション（例：テレビ、新聞、電子メール、手紙、テキスト、パンフレット）です。そのような募集または取引への上場に関する広告は、以下の場合を除き、発行してはなりません。1. 目論見書が公表された（またはされる予定である）こと、および投資家がそれをどこで入手できるかを記載していること。2. それが広告として明確に認識可能であること。3. その中の情報が不正確または誤解を招くものではないこと。および4. それが目論見書に含まれている、または含まれるべき情報と一致していること。これらの規則に該当する書面による広告はまた、それ自体が目論見書ではなく広告であり、投資家はそれが言及する譲渡可能証券に、目論見書の情報に基づいてのみ応募すべきであるという趣旨の、太字で目立つ声明を含まなければなりません。CISI Unit 1 Regulations 79ページ中49ページ ──────────────────────────────────────────────────────────── 50ページ ────────────────────────────────────────────────────────────"
+  },
+  {
+    "id": 71,
+    "question": "Rita is a trader at an investment firm, and she knows that research relating to one of the stocks she covers is about to be published by her firm. According to UK MAR, when is it permissible for Rita to trade on this research on her firm’s account?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167719",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". There is no requirement for Rita to wait for any particular length of time; she should trade as soon as possible",
+        "textJa": ". Ritaが特定の期間待つ必要はなく、できるだけ早く取引すべきである"
+      },
+      {
+        "letter": "B",
+        "text": ". It is never permissible for Rita to trade in stocks covered by her firm’s research department on her firm’s account",
+        "textJa": ". Ritaが彼女の会社のリサーチ部門がカバーする株式を彼女の会社の口座で取引することは決して許されない"
+      },
+      {
+        "letter": "C",
+        "text": ". There is a minimum time period of three business days following publication of research before trading on her firm’s account for any stock covered by her firm’s research department",
+        "textJa": ". 彼女の会社のリサーチ部門がカバーする株式については、リサーチ公表後、彼女の会社の口座で取引する前に最低3営業日の期間がある"
+      },
+      {
+        "letter": "D",
+        "text": ". Rita must wait until clients affected by the publication of the research have had a reasonable time to react to the publication",
+        "textJa": ". Ritaは、リサーチの公表の影響を受ける顧客がその公表に合理的な時間反応するまで待たなければならない"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "UK MAR 20(1) states that, following the issue of investment research to a client, a firm must wait until its clients have had a reasonable time to react before conducting trades for the firm’s own account.",
+    "globalId": 544,
+    "categoryId": 71,
+    "questionJa": "Ritaは投資会社でトレーダーをしており、彼女が担当する株式の1つに関するリサーチが彼女の会社によってまもなく公表されることを知っています。UK MARによれば、Ritaがこのリサーチに基づいて彼女の会社の口座で取引することが許されるのはいつですか。",
+    "explanationJa": "UK MAR 20(1)は、顧客への投資リサーチの発行後、企業が自社の口座で取引を行う前に、顧客が合理的な時間反応するまで待たなければならないと規定しています。"
+  },
+  {
+    "id": 72,
+    "question": "Ebony is discussing the importance of mitigating the impact of conduct risk with her staff. How should Ebony best describe the FCA’s approach on this topic?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167721",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Prescriptive rules to manage conduct risk are the sole concern of the FCA",
+        "textJa": ". コンダクトリスクを管理するための規範的な規則がFCAの唯一の関心事である"
+      },
+      {
+        "letter": "B",
+        "text": ". Outcomes for consumers and markets do matter, but prescriptive rules are the principal focus of the FCA’s concern",
+        "textJa": ". 消費者と市場にとっての結果は重要であるが、規範的な規則がFCAの関心の主眼である"
+      },
+      {
+        "letter": "C",
+        "text": ". Prescriptive rules do matter, but outcomes for consumers and markets are the principal focus of the FCA’s concern",
+        "textJa": ". 規範的な規則は重要であるが、消費者と市場にとっての結果がFCAの関心の主眼である"
+      },
+      {
+        "letter": "D",
+        "text": ". Outcomes for consumers and markets are the sole concern of the FCA",
+        "textJa": ". 消費者と市場にとっての結果がFCAの唯一の関心事である"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FCA is more concerned with the spirit than the details of the rules. The FCA takes a balanced approach, while the rules do matter, fair outcomes for consumers and market integrity is the main regulatory focus, although in reality, many of the detailed rules are aimed at the conduct of firms.",
+    "globalId": 545,
+    "categoryId": 72,
+    "questionJa": "Ebonyは、コンダクトリスクの影響を軽減することの重要性についてスタッフと話し合っています。Ebonyは、このトピックに関するFCAのアプローチをどのように最もよく説明すべきですか。",
+    "explanationJa": "FCAは規則の詳細よりも精神に関心があります。FCAはバランスの取れたアプローチを取り、規則は重要ですが、消費者にとっての公正な結果と市場の完全性が主な規制の焦点であり、実際には、詳細な規則の多くは企業の行動を対象としています。"
+  },
+  {
+    "id": 73,
+    "question": "Jemima’s dual-regulated firm has been found by the RDC to have committed a regulatory breach. Jemima has suggested a change in the punishment outlined in the original decision notice. If the FCA agrees to accept Jemima’s suggestion, what will the next step be?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167727",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The PRA will need to give its consent to any changes before the FCA can take the matter any further",
+        "textJa": ". FCAが問題をさらに進める前に、PRAが変更に同意する必要がある"
+      },
+      {
+        "letter": "B",
+        "text": ". It is never possible to negotiate changes in decision notices issued for regulatory breaches",
+        "textJa": ". 規制違反に対して発行された決定通知の変更を交渉することは決してできない"
+      },
+      {
+        "letter": "C",
+        "text": ". The FCA will issue a further decision notice",
+        "textJa": ". FCAは追加の決定通知を発行する"
+      },
+      {
+        "letter": "D",
+        "text": ". The FCA will suspend all disciplinary action against Jemima’s firm and refer the matter to the Upper Tribunal for resolution",
+        "textJa": ". FCAはJemimaの企業に対するすべての懲戒処分を一時停止し、問題を解決のためにUpper Tribunalに付託する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A further decision notice follows the issue of a decision notice when the FCA has agreed with the recipient to take a different course of action from that proposed in the original decision notice. The FCA can issue a further decision notice only with the consent of the recipient.",
+    "globalId": 546,
+    "categoryId": 73,
+    "questionJa": "Jemimaの二重規制企業は、RDCによって規制違反を犯したと認定されました。Jemimaは、元の決定通知に記載された罰則の変更を提案しました。FCAがJemimaの提案を受け入れることに同意した場合、次のステップは何になりますか。",
+    "explanationJa": "FCAが元の決定通知で提案されたものとは異なる行動方針をとることに受領者と合意した場合、決定通知の発行に続いて追加の決定通知が発行されます。FCAは、受領者の同意がある場合にのみ追加の決定通知を発行できます。"
+  },
+  {
+    "id": 74,
+    "question": "Liberty is pulling together a training course on UK MAR for traders at her stockbroking firm. Liberty should tell her staff that which of the following products or investments are OUT OF SCOPE of the UK MAR?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167733",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Shares traded on AIM",
+        "textJa": ". AIMで取引される株式"
+      },
+      {
+        "letter": "B",
+        "text": ". Traded endowment policies (TEPs)",
+        "textJa": ". 中古養老保険証券 (TEP)"
+      },
+      {
+        "letter": "C",
+        "text": ". Copper futures traded on the LME",
+        "textJa": ". LMEで取引される銅先物"
+      },
+      {
+        "letter": "D",
+        "text": ". Auctioned products based on emissions allowances",
+        "textJa": ". 排出量割り当てに基づくオークション商品"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "UK MAR covers financial instruments, commodity derivatives and auctioned products based on emissions allowances (MAR 1). It does not cover life assurance products such as endowments, whether secondary market traded or not.",
+    "globalId": 547,
+    "categoryId": 74,
+    "questionJa": "Libertyは、彼女の証券会社のトレーダー向けにUK MARに関する研修コースをまとめています。Libertyは、次のどの商品または投資がUK MARの範囲外であるとスタッフに伝えるべきですか。",
+    "explanationJa": "UK MARは、金融商品、商品デリバティブ、および排出量割り当てに基づくオークション商品（MAR 1）を対象としています。養老保険のような生命保険商品は、流通市場で取引されるかどうかにかかわらず、対象外です。"
+  },
+  {
+    "id": 75,
+    "question": "What is the primary goal of the FCA's new Consumer Duty?",
+    "category": "Regulations: Mock 2",
+    "questionId": "4167735",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". To increase the profits of financial services firms",
+        "textJa": ". 金融サービス会社の利益を増やすこと"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure that good outcomes for consumers are at the heart of firms' business models and culture",
+        "textJa": ". 消費者にとっての良い結果が、企業のビジネスモデルと文化の中心にあることを保証すること"
+      },
+      {
+        "letter": "C",
+        "text": ". To decrease the regulatory burden on financial services firms",
+        "textJa": ". 金融サービス会社に対する規制負担を軽減すること"
+      },
+      {
+        "letter": "D",
+        "text": ". To increase the number of financial products in the market",
+        "textJa": ". 市場の金融商品の数を増やすこと"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA's new Consumer Duty is designed to ensure that financial services firms put the interests of consumers at the forefront of their business decisions. This includes ensuring that products and services are designed to meet the needs of consumers, that the firm acts in the best interests of consumers, and that communications are clear, fair, and not misleading. Page 50 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 51 ──────────────────────────────────────────────────────────── Regulations: Mock 3",
+    "globalId": 548,
+    "categoryId": 75,
+    "questionJa": "FCAの新しい消費者義務の主な目標は何ですか。",
+    "explanationJa": "FCAの新しい消費者義務は、金融サービス会社が消費者の利益を事業決定の最前線に置くことを保証するように設計されています。これには、商品やサービスが消費者のニーズを満たすように設計されていること、企業が消費者の最善の利益のために行動すること、コミュニケーションが明確、公正、かつ誤解を招かないものであることが含まれます。CISI Unit 1 Regulations 79ページ中50ページ ──────────────────────────────────────────────────────────── 51ページ ──────────────────────────────────────────────────────────── Regulations: Mock 3"
+  }
+]

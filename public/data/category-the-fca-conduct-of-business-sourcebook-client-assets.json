@@ -1,0 +1,4250 @@
+[
+  {
+    "id": 1,
+    "question": "Financial advisers acting for retail clients must not accept commission for their services, but a fee instead. Which piece of regulation stipulates this rule?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078761",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The Financial Promotions rules",
+        "textJa": ". The Financial Promotions rules"
+      },
+      {
+        "letter": "B",
+        "text": ". The Consumer Duty",
+        "textJa": ". The Consumer Duty"
+      },
+      {
+        "letter": "C",
+        "text": ". The Retail Distribution Review",
+        "textJa": ". The Retail Distribution Review"
+      },
+      {
+        "letter": "D",
+        "text": ". The Disclosure of Inducements rules",
+        "textJa": ". The Disclosure of Inducements rules"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Financial advisers acting for retail clients must be paid by a fee agreed with their client in advance.",
+    "globalId": 242,
+    "categoryId": 1,
+    "questionJa": "個人顧客を担当するファイナンシャルアドバイザーは、役務提供に対するコミッションを受け取ってはならず、代わりに手数料を受け取る必要があります。この規則を定めている規制はどれですか？",
+    "explanationJa": "個人顧客を担当するファイナンシャルアドバイザーは、事前に顧客と合意した手数料によって報酬を受け取らなければなりません。"
+  },
+  {
+    "id": 2,
+    "question": "How do the FCA regulations apply to an appointed representative of a firm?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000243",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Directly",
+        "textJa": ". 直接的に"
+      },
+      {
+        "letter": "B",
+        "text": ". Indirectly",
+        "textJa": ". 間接的に"
+      },
+      {
+        "letter": "C",
+        "text": ". Not at all",
+        "textJa": ". 全く適用されない"
+      },
+      {
+        "letter": "D",
+        "text": ". Only regarding the financial promotion rules",
+        "textJa": ". 金融プロモーション規則に関してのみ"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA cannot impose the COBs on appointed representatives directly, but obliges the firm whom they represent (their principal) to ensure that they behave appropriately.",
+    "globalId": 243,
+    "categoryId": 2,
+    "questionJa": "FCAの規制は、企業の選任代理人にどのように適用されますか？",
+    "explanationJa": "FCAは選任代理人に直接COBsを課すことはできませんが、彼らが代表する企業（プリンシパル）に対し、選任代理人が適切に行動することを保証するよう義務付けています。"
+  },
+  {
+    "id": 3,
+    "question": "Which one of the following, if unsolicited, would NOT be regarded as a cold call under the financial promotion rules?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013840",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An email",
+        "textJa": ". Eメール"
+      },
+      {
+        "letter": "B",
+        "text": ". A phone call",
+        "textJa": ". 電話"
+      },
+      {
+        "letter": "C",
+        "text": ". A personal visit",
+        "textJa": ". 個人的な訪問"
+      },
+      {
+        "letter": "D",
+        "text": ". A conversation in the street",
+        "textJa": ". 街頭での会話"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A cold call is an unsolicited unwritten financial promotion. Emails are written communications - so cannot fall in the category of 'cold call'.",
+    "globalId": 244,
+    "categoryId": 3,
+    "questionJa": "以下のうち、未承諾の場合、金融プロモーション規則におけるコールドコールとはみなされないものはどれですか？",
+    "explanationJa": "コールドコールとは、未承諾の書面によらない金融プロモーションです。Eメールは書面によるコミュニケーションであるため、「コールドコール」のカテゴリーには該当しません。"
+  },
+  {
+    "id": 4,
+    "question": "Where a communication by a firm contains information about past performance, assuming an existing product that has been in existence for 25 years, this must cover a minimum period of:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013844",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". One year",
+        "textJa": ". 1年間"
+      },
+      {
+        "letter": "B",
+        "text": ". Two years",
+        "textJa": ". 2年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Five years",
+        "textJa": ". 5年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Ten years",
+        "textJa": ". 10年間"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Any performance figures used in a financial promotions must cover at least the immediately preceding five years (or the whole period for which the investment has been offered, and/or the financial index has been established, and/or the service has been provided if this is less than five years). For a product that is 25 years old, the minimum performance data that needs to be shown is 5 years.",
+    "globalId": 245,
+    "categoryId": 4,
+    "questionJa": "企業によるコミュニケーションが過去のパフォーマンスに関する情報を含む場合、25年間存在している既存の商品を想定すると、これは最低どのくらいの期間をカバーしなければなりませんか？",
+    "explanationJa": "金融プロモーションで使用されるパフォーマンス数値は、少なくとも直近5年間（または、投資が提供された全期間、金融インデックスが設定された全期間、サービスが提供された全期間が5年未満の場合はその期間）をカバーしなければなりません。25年前からある商品の場合、表示する必要のある最低限のパフォーマンスデータは5年間です。"
+  },
+  {
+    "id": 5,
+    "question": "A firm is approached by an authorised collective investment scheme (CIS) in relation to designated investment business. Which of the following best represents the conditions under which the CIS will get classified as a professional client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013879",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Turnover of €40 million and own funds of €2 million",
+        "textJa": ". 売上高4,000万ユーロおよび自己資本200万ユーロ"
+      },
+      {
+        "letter": "B",
+        "text": ". Turnover of €40 million and a balance sheet of €15 million",
+        "textJa": ". 売上高4,000万ユーロおよび貸借対照表1,500万ユーロ"
+      },
+      {
+        "letter": "C",
+        "text": ". It is always classified as a professional client",
+        "textJa": ". 常にプロフェッショナル顧客として分類される"
+      },
+      {
+        "letter": "D",
+        "text": ". It can never be classified as a professional client",
+        "textJa": ". プロフェッショナル顧客として分類されることはない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Authorised collective investment schemes are per se professional clients.",
+    "globalId": 246,
+    "categoryId": 5,
+    "questionJa": "ある企業が、指定投資業務に関連して、認可された集団投資スキーム（CIS）からアプローチを受けました。このCISがプロフェッショナル顧客として分類されるための条件として、最も適切なものは次のうちどれですか？",
+    "explanationJa": "認可された集団投資スキーム（CIS）は、それ自体がプロフェッショナル顧客です。"
+  },
+  {
+    "id": 6,
+    "question": "Under FCA rules on client categorisation, which of the following would ALWAYS be considered a per se professional client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013880",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Special purpose vehicle",
+        "textJa": ". Special purpose vehicle"
+      },
+      {
+        "letter": "B",
+        "text": ". A public company",
+        "textJa": ". 公開会社"
+      },
+      {
+        "letter": "C",
+        "text": ". A public body",
+        "textJa": ". 公的機関"
+      },
+      {
+        "letter": "D",
+        "text": ". An overseas individual",
+        "textJa": ". 海外の個人"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Special purpose vehicles come under the definition of 'any other institutional investor'. The other choices would need to fulfil certain criteria before qualifying as a per se professional client.",
+    "globalId": 247,
+    "categoryId": 6,
+    "questionJa": "顧客分類に関するFCA規則のもとでは、以下のうちどれが常に当然のプロフェッショナル顧客とみなされますか？",
+    "explanationJa": "Special purpose vehicleは「その他の機関投資家」の定義に該当します。他の選択肢は、当然のプロフェッショナル顧客として認定される前に、特定の基準を満たす必要があります。"
+  },
+  {
+    "id": 7,
+    "question": "Which of the following are true with relation to a firm providing designated investment business to a retail client? I . The firm must pay due regard to the information needs of clients when communicating with them II . The information should be sufficient to enable the client to understand the nature and risk of the service and investment III . The information communicated must be fair, clear and not misleading IV . The firm must provide appropriate information about itself to retail clients",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014056",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II",
+        "textJa": ". I および II"
+      },
+      {
+        "letter": "B",
+        "text": ". II and III",
+        "textJa": ". II および III"
+      },
+      {
+        "letter": "C",
+        "text": ". I, II and III",
+        "textJa": ". I, II および III"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II, III, and IV",
+        "textJa": ". I, II, III および IV"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Note: the rules on information about the firm are an application of Principle of Business 7, 'Communications with Clients'.",
+    "globalId": 248,
+    "categoryId": 7,
+    "questionJa": "個人顧客に指定投資業務を提供する企業に関して、以下の記述のうち正しいものはどれですか？\nI . 企業は顧客とコミュニケーションをとる際、顧客の情報ニーズに十分配慮しなければならない\nII . 提供される情報は、顧客がサービスおよび投資の性質とリスクを理解するのに十分でなければならない\nIII . 伝達される情報は、公正、明確かつ誤解を招くものであってはならない\nIV . 企業は個人顧客に対し、自身に関する適切な情報を提供しなければならない",
+    "explanationJa": "注：企業に関する情報の規則は、Principle of Business 7「顧客とのコミュニケーション」の適用です。"
+  },
+  {
+    "id": 8,
+    "question": "To be treated as an elective eligible counterparty for MiFID business, a company must satisfy which conditions using the net turnover and/or funds criteria?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078732",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Net turnover of at least €20 million",
+        "textJa": ". 純売上高が少なくとも2,000万ユーロ"
+      },
+      {
+        "letter": "B",
+        "text": ". Company funds of at least €40 million",
+        "textJa": ". 企業資本が少なくとも4,000万ユーロ"
+      },
+      {
+        "letter": "C",
+        "text": ". Net turnover of at least €20 million and company funds of at least €2 million",
+        "textJa": ". 純売上高が少なくとも2,000万ユーロかつ企業資本が少なくとも200万ユーロ"
+      },
+      {
+        "letter": "D",
+        "text": ". Net turnover of at least €40 million and company funds of at least €2 million",
+        "textJa": ". 純売上高が少なくとも4,000万ユーロかつ企業資本が少なくとも200万ユーロ"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "These are two of the quantitative requirements that must be met by a company to be an 'elective eligible counterparty'.",
+    "globalId": 249,
+    "categoryId": 8,
+    "questionJa": "MiFID事業における選択的適格取引先として扱われるためには、企業は純売上高および／または自己資本基準を用いてどの条件を満たす必要がありますか？",
+    "explanationJa": "これらは、企業が「選択的適格取引先」となるために満たさなければならない定量的要件のうちの2つです。"
+  },
+  {
+    "id": 9,
+    "question": "All of the following could be considered a professional client. Which of them is MOST LIKELY to have reached that status through election?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013892",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Local authority",
+        "textJa": ". 地方自治体"
+      },
+      {
+        "letter": "B",
+        "text": ". National body that manages public debt",
+        "textJa": ". 公的債務を管理する国家機関"
+      },
+      {
+        "letter": "C",
+        "text": ". Limited liability partnership",
+        "textJa": ". Limited liability partnership"
+      },
+      {
+        "letter": "D",
+        "text": ". Designated investment exchange",
+        "textJa": ". Designated investment exchange"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The others would all be considered per se professional clients. Local authorities are per se retail clients.",
+    "globalId": 250,
+    "categoryId": 9,
+    "questionJa": "以下のすべてがプロフェッショナル顧客とみなされる可能性があります。その中で、選択によってその地位に達した可能性が最も高いのはどれですか？",
+    "explanationJa": "その他はすべて当然のプロフェッショナル顧客とみなされます。地方自治体は当然の個人顧客です。"
+  },
+  {
+    "id": 10,
+    "question": "Which of the following is NOT a requirement for an elective professional client status according to the Conduct of Business rules?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013894",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client has carried out relevant trades at least ten times per quarter for the last four quarters",
+        "textJa": ". 顧客が過去4四半期において、関連取引を四半期ごとに少なくとも10回行っていること"
+      },
+      {
+        "letter": "B",
+        "text": ". The value of the client's portfolio, including all financial assets, exceeds 500,000 euros",
+        "textJa": ". 顧客のポートフォリオ（すべての金融資産を含む）の価値が50万ユーロを超えていること"
+      },
+      {
+        "letter": "C",
+        "text": ". The client has been working in the financial sector in a professional capacity for at least one year",
+        "textJa": ". 顧客が金融セクターで専門職として少なくとも1年間勤務していること"
+      },
+      {
+        "letter": "D",
+        "text": ". The client's cash deposits are in excess of 20,000 euros",
+        "textJa": ". 顧客の現金預金が2万ユーロを超えていること"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "There is no explicit requirement on the size of the client's cash deposits. The requirement is that the portfolio, including cash deposits must be greater than 500,000 euros.",
+    "globalId": 251,
+    "categoryId": 10,
+    "questionJa": "Conduct of Business rules によれば、以下のうちどれが選択的プロフェッショナル顧客の地位を得るための要件ではありませんか？",
+    "explanationJa": "顧客の現金預金の規模に関する明確な要件はありません。要件は、現金預金を含むポートフォリオが50万ユーロを超えることです。"
+  },
+  {
+    "id": 11,
+    "question": "Which of the following is NOT true of an eligible counterparty?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013895",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". They are only categorised as such for certain business",
+        "textJa": ". 特定の事業についてのみ、そのように分類される"
+      },
+      {
+        "letter": "B",
+        "text": ". They can be individuals who have opted up from an elective professional client",
+        "textJa": ". 選択的プロフェッショナル顧客から格上げされた個人である場合がある"
+      },
+      {
+        "letter": "C",
+        "text": ". They can be offered the same protection under COBS as a retail client",
+        "textJa": ". 個人顧客と同様の保護をCOBSのもとで受けることができる"
+      },
+      {
+        "letter": "D",
+        "text": ". Many of the COBS rules are disapplied for eligible counterparties",
+        "textJa": ". 適格取引先については、多くのCOBS規則が適用除外となる"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Only large undertakings can opt up from professional clients. Eligible counterparties are only considered as such for eligible counterparty business. It is possible for an eligible counterparty to request the same protection under COBS as a retail client.",
+    "globalId": 252,
+    "categoryId": 11,
+    "questionJa": "適格取引先について、以下の記述のうち正しくないものはどれですか？",
+    "explanationJa": "プロフェッショナル顧客から格上げできるのは大企業のみです。適格取引先は、適格取引先業務についてのみそのようにみなされます。適格取引先が、個人顧客と同様の保護をCOBSのもとで要求することは可能です。"
+  },
+  {
+    "id": 12,
+    "question": "The requirements for record keeping in respect of a firm conducting MiFID business is:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013896",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Six years",
+        "textJa": ". 6年間"
+      },
+      {
+        "letter": "B",
+        "text": ". Five years",
+        "textJa": ". 5年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Three years",
+        "textJa": ". 3年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Indefinitely",
+        "textJa": ". 無期限"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "MiFID explicitly states that firms must keep records for a period of five years. If the record sets out rights and obligations of the investment firm and the client, it should be kept for the duration of the relationship with the client. Competent authorities may require firms to keep these records for up to five years after that relationship ceases.",
+    "globalId": 253,
+    "categoryId": 12,
+    "questionJa": "MiFID事業を行う企業に関する記録保持の要件は次のうちどれですか？",
+    "explanationJa": "MiFIDは、企業が5年間記録を保持しなければならないと明示的に定めています。記録が投資会社と顧客の権利と義務を定めるものである場合、顧客との関係が継続する期間保持されるべきです。管轄当局は、その関係が終了した後、最大5年間これらの記録を保持するよう企業に要求することができます。"
+  },
+  {
+    "id": 13,
+    "question": "Eligible counterparty status is not available to:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013899",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An insurance company",
+        "textJa": ". 保険会社"
+      },
+      {
+        "letter": "B",
+        "text": ". A supranational organisation",
+        "textJa": ". 超国家機関"
+      },
+      {
+        "letter": "C",
+        "text": ". A credit institution",
+        "textJa": ". 信用機関"
+      },
+      {
+        "letter": "D",
+        "text": ". An expert individual client",
+        "textJa": ". 専門知識のある個人顧客"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The others are per se eligible counterparties. Individuals cannot become eligible counterparties, no matter what their knowledge and experience.",
+    "globalId": 254,
+    "categoryId": 13,
+    "questionJa": "適格取引先の地位は、以下のうち誰には適用されませんか？",
+    "explanationJa": "その他は当然の適格取引先です。個人は、その知識や経験にかかわらず、適格取引先になることはできません。"
+  },
+  {
+    "id": 14,
+    "question": "A firm has searched through its client list, looking for those that have been inactive for some time. They plan to cold call these clients. If these clients are retail clients, which of the following products are permitted to be sold on the cold call?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013900",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A generally marketable low volatility packaged product",
+        "textJa": ". 一般的に市場性のある低ボラティリティのパッケージ商品"
+      },
+      {
+        "letter": "B",
+        "text": ". A life policy linked to high volatility funds",
+        "textJa": ". 高ボラティリティのファンドに連動する生命保険"
+      },
+      {
+        "letter": "C",
+        "text": ". A firm cannot sell any product on a cold call to a retail client",
+        "textJa": ". 企業は個人顧客へのコールドコールでいかなる商品も販売できない"
+      },
+      {
+        "letter": "D",
+        "text": ". Shares in an inverse leveraged exchange traded fund",
+        "textJa": ". インバース型レバレッジ上場投資信託の株式"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The others are prohibited - either due to the increased risk through volatility or gearing, or the derivative aspects of the products. Where it comes to shares, they must be readily realisable. It is also worth noting that it is only the services relating to these shares that can be sold on the cold call, not the shares themselves.",
+    "globalId": 255,
+    "categoryId": 14,
+    "questionJa": "ある企業が、しばらくの間取引のない顧客をリストから探し出しました。これらの顧客にコールドコールを行う予定です。これらの顧客が個人顧客である場合、コールドコールで販売することが許可されている商品は次のうちどれですか？",
+    "explanationJa": "その他は、ボラティリティやギアリングによるリスクの増大、または商品のデリバティブ的側面のため禁止されています。株式に関しては、容易に換金可能でなければなりません。また、コールドコールで販売できるのはこれらの株式に関連するサービスのみであり、株式自体ではないことにも留意する価値があります。"
+  },
+  {
+    "id": 15,
+    "question": "Which of the following could be classified as communicating a financial promotion? I . Internet website II . Mailshot III . Call centre making calls IV . Sales aid",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000711",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I, II and III",
+        "textJa": ". I, II および III"
+      },
+      {
+        "letter": "B",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      },
+      {
+        "letter": "C",
+        "text": ". II and IV",
+        "textJa": ". II および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". II, III and IV",
+        "textJa": ". II, III および IV"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "All could be used for communicating financial promotions.",
+    "globalId": 256,
+    "categoryId": 15,
+    "questionJa": "以下のうち、金融プロモーションの伝達として分類されうるものはどれですか？\nI . インターネットウェブサイト\nII . ダイレクトメール\nIII . コールセンターによる電話\nIV . 販売支援資料",
+    "explanationJa": "すべて金融プロモーションの伝達に使用できます。"
+  },
+  {
+    "id": 16,
+    "question": "Under the COBS, a professional client or an eligible counterparty can ask for a re-categorisation in which of the following cases? I . It is permitted on a trade by trade basis II . It is permitted in general for all trades III . It is permitted on individual instrument classes IV . It is only available for complex financial instruments",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013906",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". IV only",
+        "textJa": ". IV のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". I, II, III",
+        "textJa": ". I, II, III"
+      },
+      {
+        "letter": "C",
+        "text": ". I and III",
+        "textJa": ". I および III"
+      },
+      {
+        "letter": "D",
+        "text": ". I and II",
+        "textJa": ". I および II"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The counterparty could ask or be offered the treatment in IV, but it is not limited to only complex financial instruments; it may be given for any product or service on either a trade by trade or general basis.",
+    "globalId": 257,
+    "categoryId": 16,
+    "questionJa": "COBSのもとでは、プロフェッショナル顧客または適格取引先は、以下の場合に再分類を要求できますか？\nI . 取引ごとに行うことが許可されている\nII . すべての取引について一般的に許可されている\nIII . 個々の金融商品クラスについて許可されている\nIV . 複雑な金融商品に対してのみ利用可能である",
+    "explanationJa": "取引先はIVの扱いを要求したり提案されたりする可能性がありますが、これは複雑な金融商品に限定されません。いかなる商品やサービスに対しても、取引ごとまたは一般的な基準で提供される場合があります。"
+  },
+  {
+    "id": 17,
+    "question": "A firm receives an order from a retail client, but there are problems in carrying out the instruction. When must a firm inform the client about this problem?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013911",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Immediately",
+        "textJa": ". 直ちに"
+      },
+      {
+        "letter": "B",
+        "text": ". Within one business day",
+        "textJa": ". 1営業日以内に"
+      },
+      {
+        "letter": "C",
+        "text": ". Within the expected settlement period",
+        "textJa": ". 予想される決済期間内に"
+      },
+      {
+        "letter": "D",
+        "text": ". With the trade confirmation",
+        "textJa": ". 取引確認書とともに"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The COBS specifies that retail clients must be informed of any material difficulty in the prompt execution of their order, immediately on the firm becoming aware of this.",
+    "globalId": 258,
+    "categoryId": 17,
+    "questionJa": "企業が個人顧客から注文を受けましたが、その指示の実行に問題が発生しました。企業はいつ顧客にこの問題を通知しなければなりませんか？",
+    "explanationJa": "COBSは、企業が注文の迅速な実行における重大な困難に気づき次第、直ちに個人顧客に通知しなければならないと規定しています。"
+  },
+  {
+    "id": 18,
+    "question": "An investor opens a cash ISA with an authorised bank to benefit from the tax advantages offered. What is the minimum cancellation period the bank must offer?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013912",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 5 business days",
+        "textJa": ". 5営業日"
+      },
+      {
+        "letter": "B",
+        "text": ". 10 business days",
+        "textJa": ". 10営業日"
+      },
+      {
+        "letter": "C",
+        "text": ". 7 calendar days",
+        "textJa": ". 7暦日"
+      },
+      {
+        "letter": "D",
+        "text": ". 14 calendar days",
+        "textJa": ". 14暦日"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The cancellation period for cancellable contracts is generally 14 days. However, for life policies and some pensions it is 30 days.",
+    "globalId": 259,
+    "categoryId": 18,
+    "questionJa": "投資家が、提供される税制上の優遇措置を受けるために、認可銀行で現金ISA口座を開設しました。銀行が提供しなければならない最低解約期間はどれくらいですか？",
+    "explanationJa": "解約可能な契約の解約期間は一般的に14日間です。ただし、生命保険および一部の年金については30日間です。"
+  },
+  {
+    "id": 19,
+    "question": "If the firm wishes to communicate electronically with clients, which of the following conditions must be met? I . There is evidence that the client has means to communicate this way II . The client has consented to that form of communication III . The website must be made known to the client IV . The website must be updated monthly",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013915",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I only",
+        "textJa": ". I のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". I and IV",
+        "textJa": ". I および IV"
+      },
+      {
+        "letter": "C",
+        "text": ". I, II and III",
+        "textJa": ". I, II および III"
+      },
+      {
+        "letter": "D",
+        "text": ". II, III and IV",
+        "textJa": ". II, III および IV"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The website must be kept up to date. There is no specified regular updating times.",
+    "globalId": 260,
+    "categoryId": 19,
+    "questionJa": "企業が顧客と電子的にコミュニケーションを取りたい場合、以下のどの条件を満たす必要がありますか？\nI . 顧客がこの方法でコミュニケーションをとる手段を持っている証拠があること\nII . 顧客がそのコミュニケーション形式に同意していること\nIII . ウェブサイトを顧客に知らせなければならないこと\nIV . ウェブサイトは毎月更新されなければならないこと",
+    "explanationJa": "ウェブサイトは最新の状態に保たれなければなりません。定期的な更新時期の指定はありません。"
+  },
+  {
+    "id": 20,
+    "question": "When providing which of the following activities must a retail client be assessed for appropriate levels of knowledge by the firm?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013917",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An execution only share transaction",
+        "textJa": ". 株式の執行のみの取引"
+      },
+      {
+        "letter": "B",
+        "text": ". Executing a deal on an equity warrant",
+        "textJa": ". 株式ワラントの取引執行"
+      },
+      {
+        "letter": "C",
+        "text": ". Recommending a foreign exchange spot transaction",
+        "textJa": ". 外国為替スポット取引の推奨"
+      },
+      {
+        "letter": "D",
+        "text": ". Arranging a transaction on a corporate bond",
+        "textJa": ". 社債取引の手配"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Appropriateness needs to be assessed and risks need to be highlighted for non-advised services in complex products. Non-advised services include execution only and arranging. Complex products include derivatives and warrants.",
+    "globalId": 261,
+    "categoryId": 20,
+    "questionJa": "以下のどの活動を提供する際に、企業は個人顧客の適切な知識レベルを評価する必要がありますか？",
+    "explanationJa": "複雑な商品における非助言サービスについては、適切性を評価し、リスクを明確にする必要があります。非助言サービスには、執行のみや手配が含まれます。複雑な商品には、デリバティブやワラントが含まれます。"
+  },
+  {
+    "id": 21,
+    "question": "The FCA Conduct of Business rules apply to all the following firms EXCEPT:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013919",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An adviser recommending life policies",
+        "textJa": ". 生命保険を推奨するアドバイザー"
+      },
+      {
+        "letter": "B",
+        "text": ". A company operating a stakeholder pension scheme",
+        "textJa": ". ステークホルダー年金制度を運営する会社"
+      },
+      {
+        "letter": "C",
+        "text": ". A bank providing retail broker services",
+        "textJa": ". 個人向け仲介サービスを提供する銀行"
+      },
+      {
+        "letter": "D",
+        "text": ". A building society offering FX transactions",
+        "textJa": ". FX取引を提供する住宅金融組合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "FX transactions are not regulated activities and are not covered under the conduct of business rules.",
+    "globalId": 262,
+    "categoryId": 21,
+    "questionJa": "FCAのConduct of Business rulesは、以下のどの企業を除き、すべてに適用されますか？",
+    "explanationJa": "FX取引は規制対象活動ではなく、Conduct of Business rulesの対象外です。"
+  },
+  {
+    "id": 22,
+    "question": "What information must always be included in a firm's order execution policy for retail clients?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013921",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The process the firm uses to specify relative importance of the execution factors",
+        "textJa": ". 企業が執行要因の相対的重要性を特定するために使用するプロセス"
+      },
+      {
+        "letter": "B",
+        "text": ". The exchange that the transaction will definitely be traded on",
+        "textJa": ". 取引が確実に執行される取引所"
+      },
+      {
+        "letter": "C",
+        "text": ". The price that the firm will get for the transaction",
+        "textJa": ". 企業がその取引で得る価格"
+      },
+      {
+        "letter": "D",
+        "text": ". The foreign exchange rate that will be used in the transaction",
+        "textJa": ". 取引で使用される外国為替レート"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The firm will include a list of POSSIBLE venues... not necessarily the specific exchange. It will not have to specify the price nor the FX rate in the execution policy details.",
+    "globalId": 263,
+    "categoryId": 22,
+    "questionJa": "個人顧客向けの企業の注文執行方針には、常にどのような情報が含まれなければなりませんか？",
+    "explanationJa": "企業は可能性のある執行場所のリストを含めますが、必ずしも特定の取引所である必要はありません。執行方針の詳細において、価格やFXレートを特定する必要はありません。"
+  },
+  {
+    "id": 23,
+    "question": "According to COBS 4, the financial promotion rules always apply to a firm in relation to the communication of a financial promotion:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078733",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Regarding a home purchase plan",
+        "textJa": ". 住宅購入プランに関して"
+      },
+      {
+        "letter": "B",
+        "text": ". Directed to an eligible counterparty only",
+        "textJa": ". 適格取引先にのみ向けられた場合"
+      },
+      {
+        "letter": "C",
+        "text": ". In respect of designated investment business",
+        "textJa": ". 指定投資業務に関して"
+      },
+      {
+        "letter": "D",
+        "text": ". Promoting a non-investment insurance contract",
+        "textJa": ". 非投資型保険契約を宣伝する場合"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The rules in COBS Chapter 4 apply to firms communicating with clients regarding their designated investment business and communicating or approving a financial promotion exemptions apply: • for qualifying credit, a home purchase plan or a home reversion plan • a promotion for a non-investment insurance contract, or • the promotion of an unregulated CIS which it is not permitted to approve. The majority of the financial promotion rules do not apply to eligible counterparties.",
+    "globalId": 264,
+    "categoryId": 23,
+    "questionJa": "COBS 4によれば、金融プロモーションの伝達に関して、金融プロモーション規則は常に企業に適用されますが、それはどのような場合ですか？",
+    "explanationJa": "COBS第4章の規則は、指定投資業務に関して顧客とコミュニケーションをとる企業、および金融プロモーションを伝達または承認する企業に適用されます。ただし、以下の場合は免除されます：• 適格なクレジット、住宅購入プランまたは住宅リバージョン・プラン • 非投資型保険契約のプロモーション、または • 承認が許可されていない未規制CISのプロモーション。金融プロモーション規則の大部分は、適格取引先には適用されません。"
+  },
+  {
+    "id": 24,
+    "question": "A member of the compliance team is confirming the compliance of a financial promotion with FCA rules. Which of the following must be included in the promotion?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013923",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Capital at risk products are clearly referred to as such",
+        "textJa": ". 元本割れリスクのある商品は、その旨が明確に記載されていること"
+      },
+      {
+        "letter": "B",
+        "text": ". It labels the regulator as MiFID",
+        "textJa": ". 規制当局をMiFIDと表示していること"
+      },
+      {
+        "letter": "C",
+        "text": ". It quotes a variety of expected returns",
+        "textJa": ". 様々な期待リターンを提示していること"
+      },
+      {
+        "letter": "D",
+        "text": ". Reference to the British Bankers' Association Code of Conduct",
+        "textJa": ". British Bankers' Associationの行動規範への言及"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "MiFID is a directive, not a regulator. The expected returns figure should give a balanced view of the long and short term prospects of the investment instrument, but it is not something that must be included in the promotion.",
+    "globalId": 265,
+    "categoryId": 24,
+    "questionJa": "コンプライアンスチームのメンバーが、金融プロモーションのFCA規則への準拠を確認しています。プロモーションには以下のどれが含まれなければなりませんか？",
+    "explanationJa": "MiFIDは指令であり、規制当局ではありません。期待リターンの数値は、投資商品の長期的および短期的な見通しについてバランスの取れた見解を示すべきですが、プロモーションに含めなければならないものではありません。"
+  },
+  {
+    "id": 25,
+    "question": "In relation to MiFID business, which of the following is permissible for the presentation of past, simulated past or future performance of a UK investment?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013924",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The information must be a prominent part of the information presented to the client",
+        "textJa": ". その情報は顧客に提示される情報の主要な部分でなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". The gross performance is presented",
+        "textJa": ". グロス・パフォーマンスが提示される"
+      },
+      {
+        "letter": "C",
+        "text": ". The figures are also stated in euros",
+        "textJa": ". 数値はユーロでも表示される"
+      },
+      {
+        "letter": "D",
+        "text": ". The reference period and source of information are clearly stated",
+        "textJa": ". 参照期間と情報源が明確に記載されている"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The information may not be the most prominent feature of communication. If the performance is presented as gross, the commissions etc. must be disclosed. If the currency is in a non-home currency it must be stated that there is a possible currency impact.",
+    "globalId": 266,
+    "categoryId": 25,
+    "questionJa": "MiFID事業に関連して、英国の投資の過去、シミュレーションされた過去、または将来のパフォーマンスの表示について、以下のうち許容されるものはどれですか？",
+    "explanationJa": "その情報はコミュニケーションの最も目立つ特徴であってはなりません。パフォーマンスがグロスで表示される場合、手数料などを開示しなければなりません。通貨が自国通貨以外である場合、為替変動の影響がある可能性があることを記載しなければなりません。"
+  },
+  {
+    "id": 26,
+    "question": "If the information presented by a firm contains an indication of simulated past performance, then which of the following is appropriate?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013925",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The simulated past performance must relate to a derivatives index that can react quickly to any movement in the underlying asset",
+        "textJa": ". シミュレーションされた過去のパフォーマンスは、原資産のいかなる動きにも迅速に反応できるデリバティブ指数に関連していなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". The actual past performance of the investment should be ignored in order to avoid misleading the client",
+        "textJa": ". 顧客を誤解させないために、投資の実際の過去のパフォーマンスは無視されるべきである"
+      },
+      {
+        "letter": "C",
+        "text": ". Simulated past performance is based on actual past performance of investments the same as the investments being simulated",
+        "textJa": ". シミュレーションされた過去のパフォーマンスは、シミュレーション対象の投資と同じ投資の実際の過去のパフォーマンスに基づいている"
+      },
+      {
+        "letter": "D",
+        "text": ". A statement that the simulated past performance is a reliable indicator of the future performance of the instrument",
+        "textJa": ". シミュレーションされた過去のパフォーマンスが、その商品の将来のパフォーマンスの信頼できる指標であるという記述"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "When firms give figures based on simulated (ie, notional, not having taken place in reality) past performance because the product or service does not have a track record, a firm must ensure that the simulated past performance figures: • relate to an investment or financial index (not necessarily a derivatives index) • are based on the actual past performance of one or more investments and/or indices which are the same as, or underlie, the investments being simulated • meet the rules set out in relation to past performance (except for the statement that they relate to that investment’s past performance, since they do not) • contain a prominent warning that they relate to simulated past performance and that past performance is not a reliable indicator of future performance.",
+    "globalId": 267,
+    "categoryId": 26,
+    "questionJa": "企業が提示する情報に、シミュレーションされた過去のパフォーマンスの表示が含まれる場合、以下のうち適切なものはどれですか？",
+    "explanationJa": "企業が、商品やサービスに実績がないためにシミュレーションされた（つまり、名目上のものであり、実際には発生していない）過去のパフォーマンスに基づく数値を提供する際、企業はシミュレーションされた過去のパフォーマンス数値が以下の条件を満たすことを保証しなければなりません：\n• 投資または金融指数（必ずしもデリバティブ指数である必要はない）に関連していること\n• シミュレーション対象の投資と同じか、またはその基礎となる1つ以上の投資および／または指数の実際の過去のパフォーマンスに基づいていること\n• 過去のパフォーマンスに関する規則（それがその投資の過去のパフォーマンスに関連するという記述を除く。実際にはそうではないため）を満たしていること\n• それらがシミュレーションされた過去のパフォーマンスに関連すること、および過去のパフォーマンスは将来のパフォーマンスの信頼できる指標ではないという目立つ警告を含んでいること。"
+  },
+  {
+    "id": 27,
+    "question": "If a person associated with the firm wishes to make a cold call, they must:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013926",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Call between 9am and 5pm",
+        "textJa": ". 午前9時から午後5時の間に電話する"
+      },
+      {
+        "letter": "B",
+        "text": ". Intend to discuss geared packaged products",
+        "textJa": ". ギアリングされたパッケージ商品について話し合うことを意図する"
+      },
+      {
+        "letter": "C",
+        "text": ". Give a contact point for the client during the call",
+        "textJa": ". 通話中に顧客の連絡先を伝える"
+      },
+      {
+        "letter": "D",
+        "text": ". Not contact an existing client",
+        "textJa": ". 既存の顧客には連絡しない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The calls must be made at an appropriate time of day. Geared products are not considered appropriate of cold calls and existing clients can be called if they envisage a call. The client must be given a contact point, the identity of the individual and the firm and be allowed to terminate the conversation at their request.",
+    "globalId": 268,
+    "categoryId": 27,
+    "questionJa": "企業の関係者がコールドコールを行いたい場合、彼らは何をしなければなりませんか？",
+    "explanationJa": "電話は適切な時間帯に行われなければなりません。ギアリングされた商品はコールドコールの対象として適切とは見なされず、既存の顧客が電話を予期している場合は連絡できます。顧客には連絡先、個人の身元、企業名を伝え、顧客の要求に応じて会話を終了できるようにしなければなりません。"
+  },
+  {
+    "id": 28,
+    "question": "When is it allowable for an unauthorised person to communicate a financial promotion?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013928",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". After the unauthorised person has fulfilled the compliance requirements under the relevant COBS rules",
+        "textJa": ". 未承認者が関連するCOBS規則に基づくコンプライアンス要件を満たした後"
+      },
+      {
+        "letter": "B",
+        "text": ". At any time as long as the promotion is in relation to designated investment business",
+        "textJa": ". プロモーションが指定投資業務に関連する限りいつでも"
+      },
+      {
+        "letter": "C",
+        "text": ". Takes reasonable care that it communicates it to any type of recipient regardless of was intended at the time of the confirmation",
+        "textJa": ". 確認時に意図された受取人の種類に関わらず、あらゆる種類の受取人に伝達することに合理的な注意を払う場合"
+      },
+      {
+        "letter": "D",
+        "text": ". After reasonable care has been made to establish that an authorised firm has confirmed that it complies with the rules",
+        "textJa": ". 認可された企業が規則に準拠していることを確認したと合理的な注意を払って確認した後"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "An unauthorised firm is not in breach of the rules if it communicates a financial promotion that has been produced by another party and: • takes reasonable care to establish that another authorised firm has confirmed that the promotion complies with the rules • takes reasonable care that it communicates it only to the type of recipient that was intended at the time of the confirmation • as far as it is (or should be) aware, the promotion is still fair, clear and not misleading, and has not been withdrawn by the other party.",
+    "globalId": 269,
+    "categoryId": 28,
+    "questionJa": "未承認者が金融プロモーションを伝達することが許容されるのはいつですか？",
+    "explanationJa": "未承認企業が、他の当事者によって作成された金融プロモーションを伝達する場合、以下の条件を満たせば規則に違反しません：\n• 他の認可企業がそのプロモーションが規則に準拠していることを確認したと合理的な注意を払って確認すること\n• 確認時に意図された種類の受取人にのみ伝達することに合理的な注意を払うこと\n• 把握している（または把握すべきである）限りにおいて、そのプロモーションが依然として公正、明確かつ誤解を招くものではなく、他の当事者によって撤回されていないこと。"
+  },
+  {
+    "id": 29,
+    "question": "As an employee of an authorised firm, you are just about to make a personal recommendation to a client. Before doing so you must ensure that the investment:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013931",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Has no risk",
+        "textJa": ". リスクがないこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Is compatible with the client's level of experience and understanding of the risks involved",
+        "textJa": ". 顧客の経験レベルと関連リスクの理解度と適合していること"
+      },
+      {
+        "letter": "C",
+        "text": ". Contains only packaged products in the case of retail clients",
+        "textJa": ". 個人顧客の場合、パッケージ商品のみを含んでいること"
+      },
+      {
+        "letter": "D",
+        "text": ". Allows the client to take advantage of gearing opportunities whenever available",
+        "textJa": ". 顧客が利用可能な場合はいつでもギアリングの機会を活用できること"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Clearly portfolios may have risk. The opportunity of gearing opportunities is too strong in this statement. Retail clients are able to invest in more than only packaged products.",
+    "globalId": 270,
+    "categoryId": 29,
+    "questionJa": "認可企業の従業員として、あなたは顧客に個人的な推奨を行おうとしています。そうする前に、その投資が以下の条件を満たしていることを確認しなければなりません。",
+    "explanationJa": "明らかにポートフォリオにはリスクが伴う可能性があります。この記述におけるギアリング機会の提供は強すぎます。個人顧客はパッケージ商品以外にも投資することができます。"
+  },
+  {
+    "id": 30,
+    "question": "A firm provides personal recommendations to a retail client. After ensuring suitability, in which of the following situations would the firm need to provide the client with a suitability report?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078734",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". When a firm manages assets in a regulated CIS",
+        "textJa": ". 企業が規制されたCISで資産を運用する場合"
+      },
+      {
+        "letter": "B",
+        "text": ". When the firm recommends the investor increases their regular premiums to an existing pension policy",
+        "textJa": ". 企業が投資家に対し、既存の年金保険の定期保険料を増額するよう推奨する場合"
+      },
+      {
+        "letter": "C",
+        "text": ". When the firm recommends the investor to invest in an ISA wrapped investment trust",
+        "textJa": ". 企業が投資家に対し、ISAでラップされた投資信託に投資するよう推奨する場合"
+      },
+      {
+        "letter": "D",
+        "text": ". When an investor purchases a \"small-life policy\" sold by friendly society with a premium no more than £50",
+        "textJa": ". 投資家が共済組合から保険料50ポンド以下の「小口生命保険」を購入する場合"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Suitability reports are needed for recommendations to deal in regulated collective investment schemes - unless the firm is acting as investment manager for the client - investment trusts (whether held in an ISA or not) and pensions.",
+    "globalId": 271,
+    "categoryId": 30,
+    "questionJa": "ある企業が個人顧客に個人的な推奨を行っています。適合性を確認した後、以下のどの状況で、企業は顧客に適合性報告書を提供する必要がありますか？",
+    "explanationJa": "適合性報告書は、規制された集団投資スキーム（CIS）（企業が顧客の投資運用者として行動している場合を除く）、投資信託（ISAで保有されているか否かにかかわらず）、および年金に関する取引の推奨に必要です。"
+  },
+  {
+    "id": 31,
+    "question": "If a firm communicates with a client solely by telephone, when must information on any agreement be provided?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013934",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". In good time before the consumer is bound by a distance offer or contract",
+        "textJa": ". 消費者が遠隔販売の申込みまたは契約に拘束される前に、十分な時間的余裕をもって"
+      },
+      {
+        "letter": "B",
+        "text": ". Within seven calendar days after the conclusion of the contract",
+        "textJa": ". 契約締結後7暦日以内に"
+      },
+      {
+        "letter": "C",
+        "text": ". Within five business days after the conclusion of the contract",
+        "textJa": ". 契約締結後5営業日以内に"
+      },
+      {
+        "letter": "D",
+        "text": ". There would be no need to provide documentation for this type of communication",
+        "textJa": ". この種のコミュニケーションでは文書を提供する必要はない"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "In addition it must comply with the distance marketing rules and be in a durable medium.",
+    "globalId": 272,
+    "categoryId": 31,
+    "questionJa": "企業が顧客と電話のみでコミュニケーションをとる場合、契約に関する情報はいつ提供されなければなりませんか？",
+    "explanationJa": "加えて、遠隔販売規則に準拠し、耐久性のある媒体で提供されなければなりません。"
+  },
+  {
+    "id": 32,
+    "question": "If a client can be considered as a professional client, then the firm may assume that they have sufficient knowledge of which risks?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013938",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All designated investments offered by an authorised firm",
+        "textJa": ". 認可企業が提供するすべての指定投資"
+      },
+      {
+        "letter": "B",
+        "text": ". Options on non-complex underlying assets",
+        "textJa": ". 非複雑な原資産に関するオプション"
+      },
+      {
+        "letter": "C",
+        "text": ". Designated investments for which they are classed as professional",
+        "textJa": ". プロフェッショナルとして分類される指定投資"
+      },
+      {
+        "letter": "D",
+        "text": ". Generally marketable packaged products",
+        "textJa": ". 一般的に市場性のあるパッケージ商品"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Professional client status can be for particular investment services or transactions, so this would be the best answer. There is no requirement that all designated investments are understood and the status does not specifically refer to options or packaged products (generally marketable or not).",
+    "globalId": 273,
+    "categoryId": 32,
+    "questionJa": "顧客がプロフェッショナル顧客とみなされる場合、企業はその顧客がどのリスクについて十分な知識を持っていると想定できますか？",
+    "explanationJa": "プロフェッショナル顧客の地位は、特定の投資サービスまたは取引に対して設定できるため、これが最良の回答となります。すべての指定投資が理解されているという要件はなく、その地位はオプションやパッケージ商品（一般的に市場性があるか否かにかかわらず）を具体的に指すものではありません。"
+  },
+  {
+    "id": 33,
+    "question": "A firm needs to assess the appropriateness of an investment or service for a retail client when the service is:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078735",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Based on shares that trade on a regulated market",
+        "textJa": ". 規制市場で取引される株式に基づいている"
+      },
+      {
+        "letter": "B",
+        "text": ". Only the reception and transmission of the client's orders of a bond",
+        "textJa": ". 債券に関する顧客の注文の受領および伝達のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Provided at the initiative of the client",
+        "textJa": ". 顧客の発意により提供される"
+      },
+      {
+        "letter": "D",
+        "text": ". To arrange the purchase of a contingent liability instrument",
+        "textJa": ". 条件付負債商品の購入を手配する"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Assessing appropriateness is generally needed when the firm provides services other than recommendations and managing investments, such as introducing a client to an investment opportunity. However, it does not apply simply to execution only trades. It is also required for arranging deals in derivatives and warrants for retail clients and assessing appropriateness for another MiFID firm. Although services on regulated markets that fall under the above requirements are covered, it is not only those markets that are covered.",
+    "globalId": 274,
+    "categoryId": 33,
+    "questionJa": "企業は、以下のどのサービスを個人顧客に提供する際に、投資またはサービスの適切性を評価する必要がありますか？",
+    "explanationJa": "適切性の評価は、企業が推奨や投資運用以外のサービス（例えば、顧客に投資機会を紹介するなど）を提供する場合に一般的に必要です。ただし、単なる執行のみの取引には適用されません。また、個人顧客向けのデリバティブやワラントの取引手配、および他のMiFID企業に対する適切性の評価にも必要です。上記の要件に該当する規制市場でのサービスは対象となりますが、対象となるのはそれらの市場だけではありません。"
+  },
+  {
+    "id": 34,
+    "question": "A firm provides services to retail clients in many products. In which of the following situations would it need to prepare a key information document (KID)?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078736",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The client has previously received a KID on the same product",
+        "textJa": ". 顧客が以前に同じ商品に関するKIDを受け取っている場合"
+      },
+      {
+        "letter": "B",
+        "text": ". The service relates to a shares in a UCITS",
+        "textJa": ". サービスがUCITSの株式に関連する場合"
+      },
+      {
+        "letter": "C",
+        "text": ". The service involves advice for a readily realisable share",
+        "textJa": ". サービスが容易に換金可能な株式に関するアドバイスを含む場合"
+      },
+      {
+        "letter": "D",
+        "text": ". The client wishes to receive advice on purchasing a structured product",
+        "textJa": ". 顧客が仕組商品の購入に関するアドバイスを受けたいと希望する場合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The KID is required for (amongst other things) advice on structured products, funds and derivatives. If the client has a copy of the KID which has already been prepared, there is no need for another to be sent out. A UCITS receives a Key Investor Information Document (KIID) instead of a KID.",
+    "globalId": 275,
+    "categoryId": 34,
+    "questionJa": "ある企業が多くの商品で個人顧客にサービスを提供しています。以下のどの状況で、主要情報文書（KID）を作成する必要がありますか？",
+    "explanationJa": "KIDは、（とりわけ）仕組商品、ファンド、デリバティブに関するアドバイスに必要です。顧客が既に作成されたKIDのコピーを持っている場合、別のものを送付する必要はありません。UCITSはKIDの代わりに主要投資家情報文書（KIID）を受け取ります。"
+  },
+  {
+    "id": 35,
+    "question": "During the provision of a service to a professional client, a firm discovers a conflict of interest that it is unable to manage. What should the firm disclose?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078737",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Nothing to the client, so as to respect client confidentiality",
+        "textJa": ". 顧客の機密保持を尊重するため、顧客には何も開示しない"
+      },
+      {
+        "letter": "B",
+        "text": ". The general nature of any possible conflicts after the transactions were carried out",
+        "textJa": ". 取引実行後、考えられる利益相反の一般的な性質"
+      },
+      {
+        "letter": "C",
+        "text": ". The general nature of the conflicts after the transactions, in a durable medium",
+        "textJa": ". 取引後、利益相反の一般的な性質を、耐久性のある媒体で"
+      },
+      {
+        "letter": "D",
+        "text": ". The sources of the conflicts before any transactions proceed, in a durable medium",
+        "textJa": ". 取引が進む前に、利益相反の原因を、耐久性のある媒体で"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The disclosure must also use sufficient detail to allow the client to make an informed decision with respect to the services provided.",
+    "globalId": 276,
+    "categoryId": 35,
+    "questionJa": "プロフェッショナル顧客へのサービス提供中に、企業が管理できない利益相反を発見しました。企業は何を開示すべきですか？",
+    "explanationJa": "開示はまた、顧客が提供されるサービスに関して情報に基づいた決定を下せるよう、十分な詳細情報を含まなければなりません。"
+  },
+  {
+    "id": 36,
+    "question": "What must the firm's conflict of interest policy ensure?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013944",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All groups within the firm are unable to discuss investment business with each other",
+        "textJa": ". 企業内のすべてのグループが互いに投資業務について議論できないこと"
+      },
+      {
+        "letter": "B",
+        "text": ". All groups have sufficient guards on the information flow between each other",
+        "textJa": ". すべてのグループが互いの情報フローに対して十分な防御策を講じていること"
+      },
+      {
+        "letter": "C",
+        "text": ". Measures to ensure that the relevant persons cannot find themselves on the wrong side of a Chinese wall",
+        "textJa": ". 関係者がチャイニーズウォールの不適切な側に立たされることがないようにするための措置"
+      },
+      {
+        "letter": "D",
+        "text": ". Chinese walls exist",
+        "textJa": ". チャイニーズウォールが存在すること"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Clearly wall crossing is possible, but once it occurs it must be dealt with. Chinese walls are not a necessity: the FCA has them as a recommendation. The first choice (A) is suggesting that all information flows are impossible without conflicts of interest and this is excessive.",
+    "globalId": 277,
+    "categoryId": 36,
+    "questionJa": "企業の利益相反方針は何を保証しなければなりませんか？",
+    "explanationJa": "明らかにウォールクロッシングは可能ですが、一度発生すれば対処しなければなりません。チャイニーズウォールは必須ではありません。FCAはそれを推奨事項としています。最初の選択肢（A）は、すべての情報フローが利益相反なしには不可能であることを示唆しており、これは過度です。"
+  },
+  {
+    "id": 37,
+    "question": "A firm produces research with the sole intent of making this the focus of a recommendation to clients. When presenting such research recommendations, the firm must be considered as being bound by:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078738",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Financial Promotion Rules",
+        "textJa": ". Financial Promotion Rules"
+      },
+      {
+        "letter": "B",
+        "text": ". Distance Promotions Directives",
+        "textJa": ". Distance Promotions Directives"
+      },
+      {
+        "letter": "C",
+        "text": ". Product Disclosure Rules",
+        "textJa": ". Product Disclosure Rules"
+      },
+      {
+        "letter": "D",
+        "text": ". Client Asset Rules",
+        "textJa": ". Client Asset Rules"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "All research recommendations are considered as being non-independent; research is to be considered as a marketing tool and so as a financial promotion.",
+    "globalId": 278,
+    "categoryId": 37,
+    "questionJa": "ある企業が、顧客への推奨の中心とすることを唯一の目的としてリサーチを作成しました。そのようなリサーチ推奨を提示する際、企業は何によって拘束されるとみなされなければなりませんか？",
+    "explanationJa": "すべてのリサーチ推奨は非独立的であるとみなされます。リサーチはマーケティングツールであり、したがって金融プロモーションとみなされるべきです。"
+  },
+  {
+    "id": 38,
+    "question": "If a financial analyst (a relevant person) is providing investment research for dissemination to its clients in particular financial investments, when would the analyst be permitted to deal on that information?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078739",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". They would never be able to deal on that information",
+        "textJa": ". その情報に基づいて取引することは決してできない"
+      },
+      {
+        "letter": "B",
+        "text": ". They would always be allowed to deal on that information",
+        "textJa": ". その情報に基づいて常に取引することが許可される"
+      },
+      {
+        "letter": "C",
+        "text": ". They would be permitted to deal on the information if they submitted all confirmations of transactions to the firm's compliance",
+        "textJa": ". すべての取引確認書を企業のコンプライアンス部門に提出すれば、その情報に基づいて取引することが許可される"
+      },
+      {
+        "letter": "D",
+        "text": ". They would be permitted to deal on the information if granted approval by the firm's compliance",
+        "textJa": ". 企業のコンプライアンス部門の承認を得れば、その情報に基づいて取引することが許可される"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Although the analyst would be permitted to deal in this circumstance, it would be an exceptional circumstance for the firm's compliance to grant approval.",
+    "globalId": 279,
+    "categoryId": 38,
+    "questionJa": "フィナンシャルアナリスト（関係者）が、特定の金融投資に関する投資リサーチを顧客に配布するために提供している場合、アナリストはその情報に基づいて取引を行うことが許可されるのはどのような場合ですか？",
+    "explanationJa": "アナリストはこの状況で取引を許可されますが、企業のコンプライアンス部門が承認を与えるのは例外的な状況でしょう。"
+  },
+  {
+    "id": 39,
+    "question": "The requirement for the firm to deliver the best possible result when executing client orders is expected for:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078740",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Readily realisable instruments only",
+        "textJa": ". 容易に換金可能な商品のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". Money market instruments only",
+        "textJa": ". マネーマーケット商品のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Securities, financial options and financial futures only",
+        "textJa": ". 証券、金融オプション、金融先物のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". All types of financial instruments",
+        "textJa": ". すべての種類の金融商品"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Best execution according to COBS applies to all types of financial instruments.",
+    "globalId": 280,
+    "categoryId": 39,
+    "questionJa": "企業が顧客の注文を執行する際に最良の結果を提供することが求められるのは、どの金融商品に対してですか？",
+    "explanationJa": "COBSに基づく最良執行は、すべての種類の金融商品に適用されます。"
+  },
+  {
+    "id": 40,
+    "question": "A firm wishes to execute a client order outside a regulated market or multilateral trading facility. When would this be permitted under the FCA conduct of business rules?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078741",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". This would never be permitted",
+        "textJa": ". これは決して許可されない"
+      },
+      {
+        "letter": "B",
+        "text": ". It is always permitted",
+        "textJa": ". 常に許可される"
+      },
+      {
+        "letter": "C",
+        "text": ". If there is a written notification sent to the client",
+        "textJa": ". 顧客に書面による通知が送付された場合"
+      },
+      {
+        "letter": "D",
+        "text": ". If there is prior consent from the client",
+        "textJa": ". 顧客からの事前の同意がある場合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "In order for there to be an extra-regulated market transaction, the firm must get the prior consent from its client.",
+    "globalId": 281,
+    "categoryId": 40,
+    "questionJa": "ある企業が、規制市場または多角的取引システム（MTF）以外で顧客の注文を執行したいと考えています。FCAのConduct of Business rulesのもとでは、これはどのような場合に許可されますか？",
+    "explanationJa": "規制市場外の取引を行うためには、企業は顧客から事前の同意を得なければなりません。"
+  },
+  {
+    "id": 41,
+    "question": "In order to gain favourable terms for its clients, a firm aggregates several client orders with its own order. During execution, only part of the order is filled. How must the order be allocated?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013950",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". In a pro rata fashion",
+        "textJa": ". 比例配分で"
+      },
+      {
+        "letter": "B",
+        "text": ". On a first in, first out fashion",
+        "textJa": ". 先入れ先出し方式で"
+      },
+      {
+        "letter": "C",
+        "text": ". Based on the relative size of order",
+        "textJa": ". 注文の相対的な規模に基づいて"
+      },
+      {
+        "letter": "D",
+        "text": ". In line with the allocation policy",
+        "textJa": ". 配分方針に従って"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The pro rata etc. might be part of the allocation policy.",
+    "globalId": 282,
+    "categoryId": 41,
+    "questionJa": "顧客に有利な条件を得るため、企業は複数の顧客注文を自社の注文と集約しました。執行中、注文の一部のみが約定しました。注文はどのように配分されなければなりませんか？",
+    "explanationJa": "比例配分などは、配分方針の一部である可能性があります。"
+  },
+  {
+    "id": 42,
+    "question": "If the firm aggregates a client's order with a transaction for its own account, which of the following is true of the allocation policy?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013951",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm's allocation of the order, if the order is partially allocated, must take priority",
+        "textJa": ". 注文が部分的に配分された場合、企業の注文配分が優先されなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". The client's allocation of the order, if the order is partially allocated, must take priority",
+        "textJa": ". 注文が部分的に配分された場合、顧客の注文配分が優先されなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". The allocation of the orders must be in proportion with the order size",
+        "textJa": ". 注文の配分は注文規模に比例しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". A retail client's allocation of the order, if the order is partially allocated, must take priority over a professional client's order",
+        "textJa": ". 注文が部分的に配分された場合、個人顧客の注文配分がプロフェッショナル顧客の注文よりも優先されなければならない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "COBS states that the client must take priority on an aggregated order allocation. There is no stipulation as to whether the client needs to be a retail or professional client.",
+    "globalId": 283,
+    "categoryId": 42,
+    "questionJa": "企業が顧客の注文を自社勘定の取引と集約する場合、配分方針に関して以下の記述のうち正しいものはどれですか？",
+    "explanationJa": "COBSは、集約された注文の配分において顧客が優先されなければならないと規定しています。顧客が個人顧客であるかプロフェッショナル顧客であるかの規定はありません。"
+  },
+  {
+    "id": 43,
+    "question": "Martin gives an instruction to a stockbroking firm to sell a holding of shares at a limit price much higher than the firm is willing to buy. Assuming that there have been no specific instructions beyond the order itself, which of the following best reflects what the firm should do next?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078742",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Wait for the market to move to the limit price and then execute",
+        "textJa": ". 市場が指値に達するのを待ってから執行する"
+      },
+      {
+        "letter": "B",
+        "text": ". Report Martin to the Regulator for market abuse",
+        "textJa": ". 市場濫用の疑いでMartinを規制当局に報告する"
+      },
+      {
+        "letter": "C",
+        "text": ". Execute immediately at the price it is willing to trade",
+        "textJa": ". 会社が取引を望む価格で直ちに執行する"
+      },
+      {
+        "letter": "D",
+        "text": ". Place the order on a regulated market",
+        "textJa": ". 注文を規制市場に出す"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This question looks at the limit orders rule. Limit orders must be executed immediately or made public. As the firm is unwilling to execute the trade, they must place the order on a regulated market such as the LSE. The comment about \"assuming that there were no specific instructions\" is a reference to an exemption to this rule if the client has expressly stated that they do not want the orders to be made public: This exemption has not been triggered in this question.",
+    "globalId": 284,
+    "categoryId": 43,
+    "questionJa": "Martinは、証券会社に対し、保有株式を会社が買い取りたい価格よりもはるかに高い指値で売却するよう指示しました。注文自体以外に特定の指示がなかったと仮定した場合、会社が次に取るべき行動として最も適切なものはどれですか？",
+    "explanationJa": "この質問は指値注文のルールに関するものです。指値注文は直ちに執行されるか、公開されなければなりません。会社が取引を執行する意思がないため、LSEなどの規制市場に注文を出さなければなりません。「特定の指示がなかったと仮定して」というコメントは、顧客が注文を公開したくないと明示的に述べている場合にこのルールの免除があることへの言及です。この質問では、この免除は適用されていません。"
+  },
+  {
+    "id": 44,
+    "question": "An analyst at an authorised firm makes a trade for their personal account in the units of a UCITS collective investment scheme. According to the FCA rules, how soon should they contact their compliance team to inform them of any increase in the number of units they hold?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013953",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Immediately irrespective of the analyst's relationship with the CIS",
+        "textJa": ". アナリストとCISの関係に関わらず直ちに"
+      },
+      {
+        "letter": "B",
+        "text": ". Within one business day if the analyst has no relationship with the CIS",
+        "textJa": ". アナリストがCISと関係がない場合、1営業日以内に"
+      },
+      {
+        "letter": "C",
+        "text": ". Immediately if the analyst has no relationship with the CIS",
+        "textJa": ". アナリストがCISと関係がない場合、直ちに"
+      },
+      {
+        "letter": "D",
+        "text": ". There is no need if the analyst has no management relationship with the CIS",
+        "textJa": ". アナリストがCISと運用上の関係がない場合は不要"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "So long as the person is not involved with the management of the UCITS CIS undertaking then the personal account dealing rules do not apply.",
+    "globalId": 285,
+    "categoryId": 44,
+    "questionJa": "認可企業のアナリストが、UCITS集団投資スキームのユニットを自己勘定で取引しました。FCA規則によれば、保有ユニット数の増加について、どれくらいの期間内にコンプライアンスチームに連絡すべきですか？",
+    "explanationJa": "その人物がUCITS CIS事業の運用に関与していない限り、自己勘定取引ルールは適用されません。"
+  },
+  {
+    "id": 45,
+    "question": "When would an employee of an authorised firm MOST LIKELY be permitted to enter into a personal account transaction? If the transaction:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078743",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It involves the use of confidential information acquired through the employees work",
+        "textJa": ". 従業員の業務を通じて取得した機密情報を使用する場合"
+      },
+      {
+        "letter": "B",
+        "text": ". It might lead to a potential conflict of interest with the firm's clients",
+        "textJa": ". 企業の顧客との潜在的な利益相反につながる可能性がある場合"
+      },
+      {
+        "letter": "C",
+        "text": ". It involves the use of information about the transactions of one of the firm's clients",
+        "textJa": ". 企業の顧客の一人の取引に関する情報を使用する場合"
+      },
+      {
+        "letter": "D",
+        "text": ". The employee is neither involved in a higher control function nor the provision of designated investment business",
+        "textJa": ". 従業員が上位の管理機能にも指定投資業務の提供にも関与していない場合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "In the three incorrect answers, there are obviously conflicts of interest or problems with client interests. The correct answer allows the person to not be considered as a relevant person in these circumstances.",
+    "globalId": 286,
+    "categoryId": 45,
+    "questionJa": "認可企業の従業員が自己勘定取引を行うことが最も許可される可能性が高いのは、どのような場合ですか？ 取引が以下のような場合：",
+    "explanationJa": "3つの誤った回答では、明らかに利益相反または顧客の利益に関する問題があります。正解は、これらの状況でその人物が関係者とみなされないことを可能にします。"
+  },
+  {
+    "id": 46,
+    "question": "A retail client would normally expect to get a periodic statement of their non-leveraged security based account at least:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078744",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Annually",
+        "textJa": ". 年に一度"
+      },
+      {
+        "letter": "B",
+        "text": ". Every six months",
+        "textJa": ". 6ヶ月ごと"
+      },
+      {
+        "letter": "C",
+        "text": ". Every three months",
+        "textJa": ". 3ヶ月ごと"
+      },
+      {
+        "letter": "D",
+        "text": ". Whenever a transaction is executed",
+        "textJa": ". 取引が執行される都度"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "MiFID II has amended this rule. A retail client will generally get a periodic statement every three months. If the portfolio is leveraged then the periodic statement is at least monthly.",
+    "globalId": 287,
+    "categoryId": 46,
+    "questionJa": "個人顧客は通常、レバレッジのかかっていない証券ベースの口座の定期報告書を、少なくともどのくらいの頻度で受け取ることを期待できますか？",
+    "explanationJa": "MiFID IIはこの規則を修正しました。個人顧客は通常、3ヶ月ごとに定期報告書を受け取ります。ポートフォリオにレバレッジがかかっている場合、定期報告書は少なくとも毎月発行されます。"
+  },
+  {
+    "id": 47,
+    "question": "In the case of MiFID business, a firm must keep a copy of the periodic reports for:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013957",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". At least three years from the beginning of the relevant year",
+        "textJa": ". 関連する年の初めから少なくとも3年間"
+      },
+      {
+        "letter": "B",
+        "text": ". A period of five years from the date of dispatch",
+        "textJa": ". 送付日から5年間"
+      },
+      {
+        "letter": "C",
+        "text": ". A period of three years from the date of dispatch",
+        "textJa": ". 送付日から3年間"
+      },
+      {
+        "letter": "D",
+        "text": ". At least five years from the beginning of the relevant year",
+        "textJa": ". 関連する年の初めから少なくとも5年間"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "MiFID generally requires records be kept for five years from the date of dispatch to the client.",
+    "globalId": 288,
+    "categoryId": 47,
+    "questionJa": "MiFID事業の場合、企業は定期報告書のコピーをどのくらいの期間保管しなければなりませんか？",
+    "explanationJa": "MiFIDは一般的に、顧客への送付日から5年間記録を保管することを要求しています。"
+  },
+  {
+    "id": 48,
+    "question": "According to client asset rules (CASS), a firm may deposit client money in which of the following?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013959",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A central bank",
+        "textJa": ". 中央銀行"
+      },
+      {
+        "letter": "B",
+        "text": ". A credit granting institution unauthorised by the BCD",
+        "textJa": ". BCDによって認可されていない信用供与機関"
+      },
+      {
+        "letter": "C",
+        "text": ". A non-EEA registered credit granting institution",
+        "textJa": ". EEA域外で登録された信用供与機関"
+      },
+      {
+        "letter": "D",
+        "text": ". A money market instrument",
+        "textJa": ". マネーマーケット商品"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Under the Client Asset Rules, client money can be deposited in a central bank, a BCD credit institution (one that is authorised through the Banking Consolidation Directive), a qualifying money market fund or a bank authorised in a third country.",
+    "globalId": 289,
+    "categoryId": 48,
+    "questionJa": "顧客資産規則（CASS）によれば、企業は顧客の資金を以下のどれに預託することができますか？",
+    "explanationJa": "顧客資産規則（CASS）のもとでは、顧客の資金は中央銀行、BCD信用機関（Banking Consolidation Directiveを通じて認可された機関）、適格なマネーマーケットファンド、または第三国で認可された銀行に預託することができます。"
+  },
+  {
+    "id": 49,
+    "question": "In which of the following situations would the firm need to apply the client money rules? If the money:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078745",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Is paid by the client as part of a transaction due for settlement within one business day",
+        "textJa": ". 1営業日以内に決済予定の取引の一部として顧客によって支払われた場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Paid by the client is due to the firm for the firm's own account",
+        "textJa": ". 顧客によって支払われ、企業の自己勘定に帰属する場合"
+      },
+      {
+        "letter": "C",
+        "text": ". Is interest paid on any holdings of client money",
+        "textJa": ". 顧客資金の保有に対して支払われる利息である場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Has been paid to the client or authorised representative of the client",
+        "textJa": ". 顧客または顧客の認可された代理人に支払われた場合"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Client money rules govern money held by an authorised firm that belongs to a client, held in a client account. Money held by a firm is either 'client money' or 'firm's money'. Within a delivery versus payment, if the money is due within three business days it is not necessary to count the money as client money. Once it is paid to a client then the money ceases to be client money. Although there is no obligation to pay interest on client money, if interest is paid, it needs to be treated as client money. If money has been paid to a client, then it has left the firm's control and is now no longer client money",
+    "globalId": 290,
+    "categoryId": 49,
+    "questionJa": "以下のどの状況で、企業は顧客資金規則を適用する必要がありますか？ その資金が：",
+    "explanationJa": "顧客資金規則は、認可企業が保有する、顧客に帰属し顧客口座に保管されている資金を規定します。企業が保有する資金は、「顧客資金」または「企業資金」のいずれかです。DVP（受渡対価支払）取引において、資金が3営業日以内に支払われる予定の場合、その資金を顧客資金として扱う必要はありません。顧客に支払われると、その資金は顧客資金ではなくなります。顧客資金に利息を支払う義務はありませんが、利息が支払われる場合、それは顧客資金として扱われる必要があります。資金が顧客に支払われた場合、それは企業の管理下を離れ、もはや顧客資金ではありません。"
+  },
+  {
+    "id": 50,
+    "question": "The firm is holding money belonging to clients. When would it NOT need to comply with the client money rules? If the money is:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078746",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Coins held for the value of their metal",
+        "textJa": ". 金属としての価値で保有される硬貨"
+      },
+      {
+        "letter": "B",
+        "text": ". Held in a central bank",
+        "textJa": ". 中央銀行に保有されている"
+      },
+      {
+        "letter": "C",
+        "text": ". Interest paid by a Financial Conduct Authority authorised firm",
+        "textJa": ". Financial Conduct Authority認可企業によって支払われる利息"
+      },
+      {
+        "letter": "D",
+        "text": ". Being held in a money market deposit account",
+        "textJa": ". マネーマーケット預金口座に保有されている"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A firm does not need to apply the client money rules to coins held for the value of their metal on behalf of clients.",
+    "globalId": 291,
+    "categoryId": 50,
+    "questionJa": "企業が顧客に帰属する資金を保有しています。どの状況で、顧客資金規則を遵守する必要がありませんか？ その資金が：",
+    "explanationJa": "企業は、顧客のために金属としての価値で保有される硬貨に対して、顧客資金規則を適用する必要はありません。"
+  },
+  {
+    "id": 51,
+    "question": "The custody rules do not apply to delivery versus payment transactions if which of the following are met?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013962",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Delivery occurs within three business days",
+        "textJa": ". 受渡が3営業日以内に行われる"
+      },
+      {
+        "letter": "B",
+        "text": ". Delivery is due within five days of payment",
+        "textJa": ". 受渡が支払後5日以内に行われる予定である"
+      },
+      {
+        "letter": "C",
+        "text": ". Delivery must occur simultaneously with payment",
+        "textJa": ". 受渡は支払と同時に行われなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". Custody rules always apply to DVP transactions",
+        "textJa": ". カストディ規則は常にDVP取引に適用される"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "If the firm is holding money on behalf of a client in order to provide settlement and expects to hold the money for only one day, the custody rules will not apply. If settlement is delayed, the rules state that money relating to DvP transactions can be held by a firm for up to 3 business days before having to apply the custody rules. Likewise if the firm is dealing in principal with the client, then the firm can receive the money up to three business days before making delivery, during which period the custody rules would not apply.",
+    "globalId": 292,
+    "categoryId": 51,
+    "questionJa": "DVP（受渡対価支払）取引において、以下のどの条件が満たされればカストディ規則は適用されませんか？",
+    "explanationJa": "企業が決済を提供するために顧客の資金を保有し、その資金を1日だけ保有すると予想している場合、カストディ規則は適用されません。決済が遅延した場合、規則ではDVP取引に関連する資金は、カストディ規則を適用する前に最大3営業日間企業によって保有できるとされています。同様に、企業が顧客と自己勘定で取引している場合、企業は受渡を行う前に最大3営業日間資金を受け取ることができ、その期間中はカストディ規則は適用されません。"
+  },
+  {
+    "id": 52,
+    "question": "According to the FCA Conduct of Business Rules Sourcebook, which of the following is the best definition of durable media?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078747",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Media that can be readily accessed by a client and is available for at least three years",
+        "textJa": ". 顧客が容易にアクセスでき、少なくとも3年間利用可能な媒体"
+      },
+      {
+        "letter": "B",
+        "text": ". Media that can be accessed by clients and allows unchanged reproduction of the information",
+        "textJa": ". 顧客がアクセスでき、情報の変更不可能な複製を可能にする媒体"
+      },
+      {
+        "letter": "C",
+        "text": ". Media provided for the use of the client in their investment analysis",
+        "textJa": ". 顧客が投資分析に使用するために提供される媒体"
+      },
+      {
+        "letter": "D",
+        "text": ". A generally available and publicly accessible website operated by the firm",
+        "textJa": ". 企業が運営する、一般に利用可能で公的にアクセス可能なウェブサイト"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "There is no specification of the durability of the medium in terms of years. The reference is to the fact that it must be durable for sufficient time that is adequate for the information contained within the medium. It may be offered to the client, though there is no necessity of provision unless specified by a rule. Websites are not considered durable media.",
+    "globalId": 293,
+    "categoryId": 52,
+    "questionJa": "FCAのConduct of Business Rules Sourcebookによれば、耐久性のある媒体の最良の定義は以下のどれですか？",
+    "explanationJa": "媒体の耐久性について年数での規定はありません。言及されているのは、媒体に含まれる情報にとって適切な十分な期間、耐久性がなければならないという事実です。規則で指定されていない限り提供の必要性はありませんが、顧客に提供されることもあります。ウェブサイトは耐久性のある媒体とはみなされません。"
+  },
+  {
+    "id": 53,
+    "question": "If an eligible counterparty requests to be dealt with for certain transactions as a professional client, what may the firm do?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078748",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Ignore the request as an eligible counterparty is always treated as such",
+        "textJa": ". 適格取引先は常にそのように扱われるため、要求を無視する"
+      },
+      {
+        "letter": "B",
+        "text": ". Treat them as a retail client for all the relevant transactions",
+        "textJa": ". 関連するすべての取引について、個人顧客として扱う"
+      },
+      {
+        "letter": "C",
+        "text": ". Treat them as a professional client",
+        "textJa": ". プロフェッショナル顧客として扱う"
+      },
+      {
+        "letter": "D",
+        "text": ". Refer the eligible counterparty to the FCA for suspected market abuse",
+        "textJa": ". 市場濫用の疑いで適格取引先をFCAに照会する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This is made explicit in COBS. The eligible counterparty is 'opting down' to professional client.",
+    "globalId": 294,
+    "categoryId": 53,
+    "questionJa": "適格取引先が、特定の取引についてプロフェッショナル顧客として扱われることを要求した場合、企業は何をすることができますか？",
+    "explanationJa": "これはCOBSで明示されています。適格取引先はプロフェッショナル顧客に「格下げ」されます。"
+  },
+  {
+    "id": 54,
+    "question": "Which of the following communications would not have to follow the COBS promotions rules?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013980",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A telephone communication requested by an existing client to promote readily realisable securities",
+        "textJa": ". 既存顧客からの要求による、容易に換金可能な証券を宣伝するための電話コミュニケーション"
+      },
+      {
+        "letter": "B",
+        "text": ". An advert in a national newspaper communicating the logo of the firm, a contact point and the regulated activities provided",
+        "textJa": ". 全国紙の広告で、企業のロゴ、連絡先、提供される規制対象活動を伝えるもの"
+      },
+      {
+        "letter": "C",
+        "text": ". A video presentation sent out to potential clients promoting investments in UK government gilts",
+        "textJa": ". 潜在顧客に送付される、英国国債への投資を宣伝するビデオプレゼンテーション"
+      },
+      {
+        "letter": "D",
+        "text": ". A direct offer communication to promote investment in derivatives",
+        "textJa": ". デリバティブへの投資を宣伝するための直接的な勧誘コミュニケーション"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "All would need to follow the communications rules except the one simply showing the firm and its services. These general types of promotions are often referred to as image advertising.",
+    "globalId": 295,
+    "categoryId": 54,
+    "questionJa": "以下のどのコミュニケーションが、COBSのプロモーション規則に従う必要がありませんか？",
+    "explanationJa": "企業とそのサービスを単に示すものを除き、すべてコミュニケーション規則に従う必要があります。これらの一般的な種類のプロモーションは、しばしばイメージ広告と呼ばれます。"
+  },
+  {
+    "id": 55,
+    "question": "In the description of an investment within a financial promotion, in light of the 'fair, clear and not misleading' rule, the firm should always include which of the following?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013981",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A clear representation of the long term yield figure of the investment alone",
+        "textJa": ". 投資の長期利回り数値のみの明確な表示"
+      },
+      {
+        "letter": "B",
+        "text": ". A clear representation of the short term yield figure of the investment alone",
+        "textJa": ". 投資の短期利回り数値のみの明確な表示"
+      },
+      {
+        "letter": "C",
+        "text": ". A single figure for the charges of the firm irrespective of their source",
+        "textJa": ". その源泉に関わらず、企業の料金に関する単一の数値"
+      },
+      {
+        "letter": "D",
+        "text": ". If fees cannot be specifically given, the basis on which these fees are assessed should be presented",
+        "textJa": ". 料金を具体的に示すことができない場合、これらの料金が査定される基準が提示されるべきである"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The firm should provide a yield figure that gives a balanced impression of both long and short term prospects. If the charging structure is complex then the fees should be explained in such a manner as to be fair, clear and not misleading to the recipient.",
+    "globalId": 296,
+    "categoryId": 55,
+    "questionJa": "金融プロモーションにおける投資の説明において、「公正、明確かつ誤解を招かない」という規則に照らして、企業は常に以下のどれを含めるべきですか？",
+    "explanationJa": "企業は、長期的および短期的な見通しの両方についてバランスの取れた印象を与える利回り数値を提供すべきです。料金体系が複雑な場合、料金は受取人にとって公正、明確かつ誤解を招かない方法で説明されるべきです。"
+  },
+  {
+    "id": 56,
+    "question": "Which of the following is not defined as a packaged product according to COBS?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013982",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A regulated CIS",
+        "textJa": ". 規制されたCIS"
+      },
+      {
+        "letter": "B",
+        "text": ". A personal pension scheme",
+        "textJa": ". 個人年金制度"
+      },
+      {
+        "letter": "C",
+        "text": ". An interest in an investment trust savings scheme",
+        "textJa": ". 投資信託積立制度の持分"
+      },
+      {
+        "letter": "D",
+        "text": ". A government or public security",
+        "textJa": ". 政府証券または公的証券"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A government or public security would be considered a readily realisable security, according to COBS.",
+    "globalId": 297,
+    "categoryId": 56,
+    "questionJa": "COBSによれば、以下のうちどれがパッケージ商品として定義されていませんか？",
+    "explanationJa": "政府証券または公的証券は、COBSによれば、容易に換金可能な証券とみなされます。"
+  },
+  {
+    "id": 57,
+    "question": "When communicating with retail clients, a firm producing information must ensure that: I . The name of the firm is included II . The information does not emphasise any potential benefits of relevant business without risks being related III . It is presented in a manner that is likely to be understood by the average member of the target group IV . It does not obscure important items",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078749",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". II only",
+        "textJa": ". II のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". I, II and III",
+        "textJa": ". I, II および III"
+      },
+      {
+        "letter": "C",
+        "text": ". I, III and IV",
+        "textJa": ". I, III および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "All of these are included in the General Rule of COBS.",
+    "globalId": 298,
+    "categoryId": 57,
+    "questionJa": "個人顧客とコミュニケーションをとる際、情報を作成する企業は以下を保証しなければなりません：\nI . 企業名が含まれていること\nII . 関連する事業の潜在的な利益を強調する際、関連するリスクが示されていないことがないようにすること\nIII . 対象グループの平均的なメンバーが理解できるような方法で提示されていること\nIV . 重要な項目を不明瞭にしないこと",
+    "explanationJa": "これらはすべてCOBSの一般規則に含まれています。"
+  },
+  {
+    "id": 58,
+    "question": "A firm may treat a client as an elective professional client for non-MiFID business if:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013993",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The qualitative test alone is passed",
+        "textJa": ". 定性的テストのみに合格している"
+      },
+      {
+        "letter": "B",
+        "text": ". The quantitative test alone is passed",
+        "textJa": ". 定量的テストのみに合格している"
+      },
+      {
+        "letter": "C",
+        "text": ". Both the quantitative and qualitative tests are passed",
+        "textJa": ". 定性的テストと定量的テストの両方に合格している"
+      },
+      {
+        "letter": "D",
+        "text": ". The qualitative test is passed and there is a statement that protection will be lost",
+        "textJa": ". 定性的テストに合格し、保護が失われる旨の記述がある"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The quantitative test is only used for MiFID business. The qualitative test and a statement of protection loss are always required. The client must state that it wishes to be treated as a professional client, the firm must warn the client that the loss of protection might occur and the client has to state, in writing, separate to any contracts, that it is aware of this loss of protection.",
+    "globalId": 299,
+    "categoryId": 58,
+    "questionJa": "企業は、非MiFID事業において、以下の条件を満たせば顧客を選択的プロフェッショナル顧客として扱うことができます。",
+    "explanationJa": "定量的テストはMiFID事業にのみ使用されます。定性的テストと保護喪失に関する記述は常に必要です。顧客はプロフェッショナル顧客として扱われることを希望すると述べなければならず、企業は顧客に保護が失われる可能性があることを警告し、顧客はいかなる契約とも別に、書面でこの保護喪失を認識していると述べなければなりません。"
+  },
+  {
+    "id": 59,
+    "question": "If a firm is aware that Bob is acting as an agent for Bill, then Bill will be the firm's client if:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013995",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Bob and the firm have agreed in writing to treat Bill as the client",
+        "textJa": ". Bobと企業が、Billを顧客として扱うことに書面で合意した場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Bill and the firm have agreed in writing to treat Bill as the client",
+        "textJa": ". Billと企業が、Billを顧客として扱うことに書面で合意した場合"
+      },
+      {
+        "letter": "C",
+        "text": ". Bill and Bob have agreed in writing that Bill will be treated as a client",
+        "textJa": ". BillとBobが、Billが顧客として扱われることに書面で合意した場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Only if all three agree in writing",
+        "textJa": ". 3者すべてが書面で合意した場合のみ"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "This is given in COBS. It would also be the case if Bob were not a firm or overseas financial institution and the main purpose were to avoid the firm's responsibilities to Bill.",
+    "globalId": 300,
+    "categoryId": 59,
+    "questionJa": "企業が、BobがBillの代理人として行動していることを認識している場合、Billが企業の顧客となるのはどのような場合ですか？",
+    "explanationJa": "これはCOBSに記載されています。Bobが企業または海外の金融機関ではなく、主な目的がBillに対する企業の責任を回避することであった場合も同様です。"
+  },
+  {
+    "id": 60,
+    "question": "To whom should a firm produce a document about compensation claims when carrying on MiFID business?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078750",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Professional clients only",
+        "textJa": ". プロフェッショナル顧客のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". Retail and professional clients only",
+        "textJa": ". 個人顧客およびプロフェッショナル顧客のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Retail clients only",
+        "textJa": ". 個人顧客のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". All clients",
+        "textJa": ". すべての顧客"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A firm which carries on MiFID business must make available to any client who has used or intends to use those services, the information necessary for the identification of the compensation scheme or any other investor compensation scheme of which the firm is a member or any alternative arrangement provided for in accordance with the investor compensation scheme.",
+    "globalId": 301,
+    "categoryId": 60,
+    "questionJa": "MiFID事業を行う際、企業は誰に対して補償請求に関する文書を作成すべきですか？",
+    "explanationJa": "MiFID事業を行う企業は、そのサービスを利用した、または利用する予定のすべての顧客に対し、企業がメンバーである補償制度またはその他の投資家補償制度、あるいは投資家補償制度に従って提供される代替措置を特定するために必要な情報を提供しなければなりません。"
+  },
+  {
+    "id": 61,
+    "question": "According to COBS, which of the following is not considered an execution venue?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078751",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Systematic internalisers",
+        "textJa": ". Systematic internalisers"
+      },
+      {
+        "letter": "B",
+        "text": ". Retail broker",
+        "textJa": ". 個人向けブローカー"
+      },
+      {
+        "letter": "C",
+        "text": ". Multilateral trading facility",
+        "textJa": ". Multilateral trading facility"
+      },
+      {
+        "letter": "D",
+        "text": ". Regulated market",
+        "textJa": ". 規制市場"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "For the purposes of the provisions relating to best execution in COBS and in COLL, execution venue means a regulated market, an MTF or OTF, a systematic internaliser, or a market maker or other liquidity provider or an entity that performs a similar function in a third country to the functions performed by any of the foregoing.",
+    "globalId": 302,
+    "categoryId": 61,
+    "questionJa": "COBSによれば、以下のうちどれが執行場所とみなされませんか？",
+    "explanationJa": "COBSおよびCOLLにおける最良執行に関する規定の目的において、執行場所とは、規制市場、MTFまたはOTF、Systematic internaliser、マーケットメーカーまたはその他の流動性供給者、あるいは第三国で上記のいずれかの機能と同様の機能を果たす事業体を意味します。"
+  },
+  {
+    "id": 62,
+    "question": "Which of the following is NOT true of the order execution policy?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013998",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A firm must be able to demonstrate on request that it has followed the policy",
+        "textJa": ". 企業は要求に応じて、方針に従ったことを証明できなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". A firm must notify clients about any material changes to their order execution arrangements",
+        "textJa": ". 企業は注文執行手配に関する重大な変更について顧客に通知しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". A firm must monitor the effectiveness of the policy on a transaction by transaction basis",
+        "textJa": ". 企業は方針の有効性を取引ごとに監視しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". The clients of the firm must consent to the order execution policy before the firm can deal for them",
+        "textJa": ". 企業の顧客は、企業が彼らのために取引を行う前に、注文執行方針に同意しなければならない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "It is true that the firm must monitor the effectiveness of the policy, but not on a trade by trade basis. The COBS states that it must be done 'regularly' and that the policy as a whole must be reviewed annually.",
+    "globalId": 303,
+    "categoryId": 62,
+    "questionJa": "注文執行方針について、以下の記述のうち正しくないものはどれですか？",
+    "explanationJa": "企業が方針の有効性を監視しなければならないのは事実ですが、取引ごとではありません。COBSは、「定期的」に行われなければならず、方針全体は毎年見直されなければならないと述べています。"
+  },
+  {
+    "id": 63,
+    "question": "When carrying out client orders the firm must ensure:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013999",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". That professional clients must be informed of any material difficulties in executing the order",
+        "textJa": ". プロフェッショナル顧客が注文執行における重大な困難について通知されなければならないこと"
+      },
+      {
+        "letter": "B",
+        "text": ". The order of execution is based on an ad-hoc policy",
+        "textJa": ". 執行順序がアドホックな方針に基づいていること"
+      },
+      {
+        "letter": "C",
+        "text": ". The order must be recorded within one business day",
+        "textJa": ". 注文が1営業日以内に記録されなければならないこと"
+      },
+      {
+        "letter": "D",
+        "text": ". Comparable orders must be carried out sequentially except in specific conditions",
+        "textJa": ". 特定の条件を除き、比較可能な注文は順次実行されなければならないこと"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Retail clients must be informed of problems. The execution policy must not be generated 'on the fly'. Orders must be promptly and accurately recorded - there is no specific timeframe given.",
+    "globalId": 304,
+    "categoryId": 63,
+    "questionJa": "顧客の注文を執行する際、企業は何を保証しなければなりませんか？",
+    "explanationJa": "個人顧客は問題について通知されなければなりません。執行方針は「その場限り」で作成されてはなりません。注文は迅速かつ正確に記録されなければなりません。具体的な時間枠は定められていません。"
+  },
+  {
+    "id": 64,
+    "question": "All of the following may be considered \"proper fees\" under the FCA inducements rules EXCEPT:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078752",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Costs for safekeeping and administration",
+        "textJa": ". 保管および管理費用"
+      },
+      {
+        "letter": "B",
+        "text": ". Legal fees",
+        "textJa": ". 弁護士費用"
+      },
+      {
+        "letter": "C",
+        "text": ". Charges for the settlement of transactions",
+        "textJa": ". 取引決済手数料"
+      },
+      {
+        "letter": "D",
+        "text": ". The cost of general office software",
+        "textJa": ". 一般的なオフィスソフトウェアの費用"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Proper fees necessary for the provision of the business (e.g. custody costs, settlement fees and legal fees) are permissible under the MiFID II inducement rules.",
+    "globalId": 305,
+    "categoryId": 64,
+    "questionJa": "FCAのインデュースメント規則のもとで、「適切な手数料」とみなされる可能性があるものは、以下のどれを除きますか？",
+    "explanationJa": "事業提供に必要な適切な手数料（例：カストディ費用、決済手数料、弁護士費用）は、MiFID IIのインデュースメント規則のもとで許容されます。"
+  },
+  {
+    "id": 65,
+    "question": "A firm has just executed an order for a retail client. Within what period of time must the confirmation of trade be sent?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014001",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Immediately",
+        "textJa": ". 直ちに"
+      },
+      {
+        "letter": "B",
+        "text": ". Within one business day",
+        "textJa": ". 1営業日以内に"
+      },
+      {
+        "letter": "C",
+        "text": ". Within five business days",
+        "textJa": ". 5営業日以内に"
+      },
+      {
+        "letter": "D",
+        "text": ". Within seven calendar days",
+        "textJa": ". 7暦日以内に"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The notice must be given as soon as possible and not later than one business day as specified in COBS.",
+    "globalId": 306,
+    "categoryId": 65,
+    "questionJa": "ある企業が個人顧客の注文を執行しました。取引確認書はどのくらいの期間内に送付されなければなりませんか？",
+    "explanationJa": "通知は、COBSで規定されている通り、できるだけ早く、遅くとも1営業日以内に送付されなければなりません。"
+  },
+  {
+    "id": 66,
+    "question": "Which of the following will be included in a trade confirmation notice? I . The date on which the trade took place II . The time at which the trade took place III . The total consideration paid/received in the transaction IV . Execution venue",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014002",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II only",
+        "textJa": ". I および II のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". III only",
+        "textJa": ". III のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". I and IV",
+        "textJa": ". I および IV"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II, III and IV",
+        "textJa": ". I, II, III および IV"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "All of these are necessary.",
+    "globalId": 307,
+    "categoryId": 66,
+    "questionJa": "取引確認通知には以下のどれが含まれますか？\nI . 取引が行われた日付\nII . 取引が行われた時刻\nIII . 取引で支払われた／受け取った総対価\nIV . 執行場所",
+    "explanationJa": "これらはすべて必要です。"
+  },
+  {
+    "id": 67,
+    "question": "A firm discovers that an elective professional client's portfolio has reduced in size to less than €150,000 and the number of trades has been reduced to an average of four per quarter over the last 12 months. What actions should the firm take?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014006",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". None. The individual is a professional client and can be dealt with as such",
+        "textJa": ". 何もしない。その個人はプロフェッショナル顧客であり、そのように扱われることができる"
+      },
+      {
+        "letter": "B",
+        "text": ". Reclassify the individual as a retail client and notify the client of the action",
+        "textJa": ". その個人を個人顧客として再分類し、その措置を顧客に通知する"
+      },
+      {
+        "letter": "C",
+        "text": ". Discuss the rationale for the change in behaviour and hold off reclassification for one quarter",
+        "textJa": ". 行動の変化の理由を話し合い、1四半期間再分類を保留する"
+      },
+      {
+        "letter": "D",
+        "text": ". Suggest that client increases their trading frequency or asks to be reclassified",
+        "textJa": ". 顧客に取引頻度を増やすか、再分類を要求するよう提案する"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FCA states that the firm must take appropriate action if the client no longer meets the tests set down for opting up. The firm must, however, notify the client of this change in categorisation.",
+    "globalId": 308,
+    "categoryId": 67,
+    "questionJa": "ある企業が、選択的プロフェッショナル顧客のポートフォリオ規模が15万ユーロ未満に減少し、過去12ヶ月間の取引回数が四半期平均4回に減少したことを発見しました。企業はどのような措置を講じるべきですか？",
+    "explanationJa": "FCAは、顧客が格上げのためのテストをもはや満たさなくなった場合、企業は適切な措置を講じなければならないと述べています。ただし、企業はこの分類変更を顧客に通知しなければなりません。"
+  },
+  {
+    "id": 68,
+    "question": "A website is a permissible method of communication with clients if which of the following criteria are met?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014007",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm has instructed the clients that this is the only method of communication",
+        "textJa": ". 企業がこれが唯一のコミュニケーション方法であると顧客に指示した場合"
+      },
+      {
+        "letter": "B",
+        "text": ". To ensure data protection the information must only be available for a limited period",
+        "textJa": ". データ保護を確保するため、情報は限られた期間のみ利用可能でなければならない場合"
+      },
+      {
+        "letter": "C",
+        "text": ". The client has been notified in writing of the relevant website address",
+        "textJa": ". 顧客に関連ウェブサイトアドレスが書面で通知された場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Providing the information in that medium is appropriate to the investment, service and client",
+        "textJa": ". その媒体で情報を提供することが、投資、サービス、顧客にとって適切である場合"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This comes from the website conditions. It should be noted that the client has to give specific consent, rather than be informed, to have information provided via a website. Hard copies must always be made available on request. The information has to be accessible continuously for such a period of time that the client might need to inspect it. The client must be notified electronically rather than in writing of the website address.",
+    "globalId": 309,
+    "categoryId": 68,
+    "questionJa": "ウェブサイトが顧客との許容されるコミュニケーション方法となるのは、以下のどの基準が満たされた場合ですか？",
+    "explanationJa": "これはウェブサイトの条件に基づいています。ウェブサイト経由で情報を提供されるためには、顧客は通知されるのではなく、具体的な同意を与えなければならないことに留意すべきです。ハードコピーは常に要求に応じて利用可能でなければなりません。情報は、顧客がそれを検査する必要があるかもしれない期間、継続的にアクセス可能でなければなりません。顧客にはウェブサイトアドレスが書面ではなく電子的に通知されなければなりません。"
+  },
+  {
+    "id": 69,
+    "question": "A firm that manages a client's investments must ensure that which of the following occurs?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014008",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The portfolio must be benchmarked against the FTSE All Shares Index",
+        "textJa": ". ポートフォリオはFTSE All Shares Indexに対してベンチマークされなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". They benchmark portfolio performance at least monthly",
+        "textJa": ". ポートフォリオのパフォーマンスを少なくとも毎月ベンチマークする"
+      },
+      {
+        "letter": "C",
+        "text": ". They specify any index against which performance will be compared",
+        "textJa": ". パフォーマンスが比較される任意のインデックスを指定する"
+      },
+      {
+        "letter": "D",
+        "text": ". They outline only the types of designated investments in the portfolio",
+        "textJa": ". ポートフォリオ内の指定投資の種類のみを概説する"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The first benchmark (FTSE All Shares) might be comparable in some cases but not all and so is not the best answer here. The timing of performance benchmarking is not specified in the COBS. The firm should also include an outline of any designated investments that may be included in the portfolio, not just those in which it is currently invested.",
+    "globalId": 310,
+    "categoryId": 69,
+    "questionJa": "顧客の投資を運用する企業は、以下のどれが行われることを保証しなければなりませんか？",
+    "explanationJa": "最初のベンチマーク（FTSE All Shares Index）は、一部のケースでは比較可能かもしれませんが、すべてではないため、ここでは最良の回答ではありません。パフォーマンスベンチマーキングのタイミングはCOBSで指定されていません。企業はまた、現在投資されているものだけでなく、ポートフォリオに含まれる可能性のある任意の指定投資の概要も含めるべきです。"
+  },
+  {
+    "id": 70,
+    "question": "Which of the following is a 'personal recommendation' under MiFID?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014011",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Advising a client how to fill in an application form",
+        "textJa": ". 顧客に申請書の記入方法を助言すること"
+      },
+      {
+        "letter": "B",
+        "text": ". Discussing company news or announcements",
+        "textJa": ". 会社のニュースや発表について話し合うこと"
+      },
+      {
+        "letter": "C",
+        "text": ". Explaining the risks of a particular investment instrument",
+        "textJa": ". 特定の投資商品のリスクを説明すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Suggesting the purchase of a particular investment instrument",
+        "textJa": ". 特定の投資商品の購入を提案すること"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The others are not 'personal recommendations'. They are general advice and, as far as MiFID is concerned, not business.",
+    "globalId": 311,
+    "categoryId": 70,
+    "questionJa": "MiFIDにおける「個人的な推奨」とは、以下のどれですか？",
+    "explanationJa": "その他は「個人的な推奨」ではありません。それらは一般的なアドバイスであり、MiFIDに関する限り、事業ではありません。"
+  },
+  {
+    "id": 71,
+    "question": "Which of the following is not a requirement for recategorisation as a professional client according to conduct of business rules in relation to MiFID business?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014024",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm has ascertained that the client has sufficient experience and understanding and passes the quantitative tests",
+        "textJa": ". 企業が、顧客が十分な経験と理解を持ち、定量的テストに合格していることを確認したこと"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm has given a written warning of protections that will be lost",
+        "textJa": ". 企業が失われる保護について書面で警告したこと"
+      },
+      {
+        "letter": "C",
+        "text": ". The client has given written consent to the protections that will be lost",
+        "textJa": ". 顧客が失われる保護について書面で同意したこと"
+      },
+      {
+        "letter": "D",
+        "text": ". The client has stated they are of sufficient experience, have sufficient understanding and pass the quantitative tests",
+        "textJa": ". 顧客が十分な経験と理解を持ち、定量的テストに合格していると述べたこと"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The customer must give written consent after it has received a written warning from the firm about lost protection, which the firm will only send if it believes the customer has sufficient experience and understanding. The onus is on the firm to assess.",
+    "globalId": 312,
+    "categoryId": 71,
+    "questionJa": "MiFID事業に関するConduct of Business rulesによれば、プロフェッショナル顧客への再分類の要件ではないものは、以下のどれですか？",
+    "explanationJa": "顧客は、企業から保護喪失に関する書面による警告を受けた後、書面で同意しなければなりません。企業は、顧客が十分な経験と理解を持っていると判断した場合にのみ、この警告を送付します。評価の責任は企業にあります。"
+  },
+  {
+    "id": 72,
+    "question": "What must be disclosed in all written communication with a retail client? I . The name and business address of the firm II . The status of the individual sending the communication III . The regulatory authority over the firm's business IV . Disciplinary actions against the firm in the last 12 months",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014025",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". I and II",
+        "textJa": ". I および II"
+      },
+      {
+        "letter": "B",
+        "text": ". II and III",
+        "textJa": ". II および III"
+      },
+      {
+        "letter": "C",
+        "text": ". I, II, III",
+        "textJa": ". I, II, III"
+      },
+      {
+        "letter": "D",
+        "text": ". I, II, III, IV",
+        "textJa": ". I, II, III, IV"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Written communications with a retail client do not need to disclose disciplinary actions against the firm in the last twelve months.",
+    "globalId": 313,
+    "categoryId": 72,
+    "questionJa": "個人顧客とのすべての書面によるコミュニケーションで開示されなければならないものは何ですか？\nI . 企業名および事業所住所\nII . コミュニケーションを送付する個人の地位\nIII . 企業の事業に対する規制当局\nIV . 過去12ヶ月間の企業に対する懲戒処分",
+    "explanationJa": "個人顧客との書面によるコミュニケーションでは、過去12ヶ月間の企業に対する懲戒処分を開示する必要はありません。"
+  },
+  {
+    "id": 73,
+    "question": "Which of the following would not be automatically given retail client protection by an FCA member firm under client categorisation?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014027",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An independent person not authorised by the FCA",
+        "textJa": ". FCAの認可を受けていない独立した個人"
+      },
+      {
+        "letter": "B",
+        "text": ". A trustee of a trust with assets of €5 million and funds of €1 million",
+        "textJa": ". 資産500万ユーロ、資金100万ユーロの信託の受託者"
+      },
+      {
+        "letter": "C",
+        "text": ". A listed company with funds of €2 million and assets of €25 million",
+        "textJa": ". 資金200万ユーロ、資産2500万ユーロの上場企業"
+      },
+      {
+        "letter": "D",
+        "text": ". A body corporate with net turnover of €30 million and assets of €1 million",
+        "textJa": ". 純売上高3000万ユーロ、資産100万ユーロの法人"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A listed company with funds of €2 million or more and assets of €20 million or more would be considered a professional client. All of the others fail to meet the criteria required for professional categorisation and would be treated as retail clients.",
+    "globalId": 314,
+    "categoryId": 73,
+    "questionJa": "顧客分類において、FCA加盟企業から自動的にリテール顧客としての保護を受けられないのは、次のうちどれですか？",
+    "explanationJa": "資金200万ユーロ以上、資産2000万ユーロ以上の上場企業は、プロフェッショナル顧客とみなされます。その他はすべて、プロフェッショナル顧客として分類されるための基準を満たしておらず、リテール顧客として扱われます。"
+  },
+  {
+    "id": 74,
+    "question": "When must a firm disclose charges to a retail client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014028",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Before providing the service",
+        "textJa": ". サービス提供前"
+      },
+      {
+        "letter": "B",
+        "text": ". Along with the first contract note",
+        "textJa": ". 最初の取引報告書と共に"
+      },
+      {
+        "letter": "C",
+        "text": ". After completion of the first deal",
+        "textJa": ". 最初の取引完了後"
+      },
+      {
+        "letter": "D",
+        "text": ". At the discretion of the customer",
+        "textJa": ". 顧客の裁量により"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A firm must notify RETAIL CLIENTS of the amount or basis of charges IN WRITING, BEFORE any work is done. The FCA is comfortable with professional clients agreeing the basis of charges in arrears of any dealings, but this arrangement is not appropriate for retail clients.",
+    "globalId": 315,
+    "categoryId": 74,
+    "questionJa": "企業はいつリテール顧客に手数料を開示しなければなりませんか？",
+    "explanationJa": "企業は、いかなる業務を行う前にも、リテール顧客に対し、手数料の金額または算定根拠を書面で通知しなければなりません。FCAは、プロフェッショナル顧客が取引後に手数料の算定根拠に合意することを容認していますが、この取り決めはリテール顧客には適切ではありません。"
+  },
+  {
+    "id": 75,
+    "question": "Which of the following is NOT taken into account when reclassifying a retail client as a professional client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014032",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Knowledge and understanding",
+        "textJa": ". 知識と理解"
+      },
+      {
+        "letter": "B",
+        "text": ". Frequency of previous deals",
+        "textJa": ". 過去の取引頻度"
+      },
+      {
+        "letter": "C",
+        "text": ". Financial standing",
+        "textJa": ". 財政状態"
+      },
+      {
+        "letter": "D",
+        "text": ". Integrity and reputation",
+        "textJa": ". 誠実性と評判"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "When determining if a retail client can be classified as a professional client (an 'expert' customer) a firm has to consider the following factors: The client's knowledge and understanding of the relevant designated investments and markets, and the inherent risks. How long the client has been active in these markets. How frequently the client has been dealing in the markets. The extent to which a client has relied on advice on investments. The size and nature of the transactions undertaken by the client.",
+    "globalId": 316,
+    "categoryId": 75,
+    "questionJa": "リテール顧客をプロフェッショナル顧客に再分類する際に考慮されないのは、次のうちどれですか？",
+    "explanationJa": "リテール顧客をプロフェッショナル顧客（「専門家」顧客）として分類できるかどうかを判断する際、企業は次の要素を考慮しなければなりません。関連する指定投資商品および市場、ならびに内在するリスクに関する顧客の知識と理解。顧客がこれらの市場で活動してきた期間。顧客が市場で取引してきた頻度。顧客が投資に関するアドバイスにどの程度依存してきたか。顧客が行った取引の規模と性質。"
+  },
+  {
+    "id": 76,
+    "question": "If, during the reconciliation process, discrepancies are noticed, which of the following must the firm do?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014033",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Make up for the shortfall itself",
+        "textJa": ". 不足分を自社で補填する"
+      },
+      {
+        "letter": "B",
+        "text": ". Notify the FCA by the end of the next business day",
+        "textJa": ". 翌営業日の終わりまでにFCAに通知する"
+      },
+      {
+        "letter": "C",
+        "text": ". Inform the client that they should seek compensation through the courts",
+        "textJa": ". 顧客に対し、裁判所を通じて補償を求めるよう通知する"
+      },
+      {
+        "letter": "D",
+        "text": ". Adjust the periodic statement so that it looks like a loss in the value of the investments",
+        "textJa": ". 投資価値の損失に見えるように定期報告書を調整する"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Adjusting the statement is obviously unethical and would lead to prosecution of the firm. If the reconciliation shows a discrepancy, the firm must make good any shortfall for which it is responsible. If another person is responsible, the firm should take reasonable steps to resolve the position with that person.",
+    "globalId": 317,
+    "categoryId": 76,
+    "questionJa": "照合プロセス中に不一致が発見された場合、企業は次のうちどれを行わなければなりませんか？",
+    "explanationJa": "報告書の調整は明らかに非倫理的であり、企業の訴追につながります。照合の結果、不一致が判明した場合、企業は責任を負う不足分を補填しなければなりません。他の者が責任を負う場合は、企業はその者との間で状況を解決するために合理的な措置を講じるべきです。"
+  },
+  {
+    "id": 77,
+    "question": "All are true in respect of churning and switching except:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014038",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The objective is to earn commission income",
+        "textJa": ". 目的は手数料収入を得ることである"
+      },
+      {
+        "letter": "B",
+        "text": ". Neither are generally considered in the interests of the client",
+        "textJa": ". どちらも一般的に顧客の利益になるとは考えられていない"
+      },
+      {
+        "letter": "C",
+        "text": ". The rules on churning and switching apply to retail clients only for advisory services and any client for discretionary services",
+        "textJa": ". チャーニングとスイッチングに関する規則は、アドバイザリーサービスについてはリテール顧客のみに、ディスクレషナリーサービスについてはすべての顧客に適用される"
+      },
+      {
+        "letter": "D",
+        "text": ". Dealing may only take place if it would not be regarded as too frequent in the circumstances and is justified from the customer's point of view",
+        "textJa": ". 取引は、状況に照らして頻度が多すぎると見なされず、顧客の観点から正当化される場合にのみ行うことができる"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Churning and switching are still considered against the interests of the clients. The FCA provides them as guidance to the suitability rules, rather than rules themselves. They cover advisory and discretionary services for both retail and professional clients.",
+    "globalId": 318,
+    "categoryId": 77,
+    "questionJa": "チャーニングとスイッチングに関して、以下の中で誤っているものはどれですか？",
+    "explanationJa": "チャーニングとスイッチングは依然として顧客の利益に反すると考えられています。FCAはこれらを規則そのものではなく、適合性規則のガイダンスとして提供しています。これらはリテール顧客とプロフェッショナル顧客双方のアドバイザリーサービスとディスクレషナリーサービスを対象としています。"
+  },
+  {
+    "id": 78,
+    "question": "The following are true of investment advertisements sent to retail clients except that they must:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078753",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Not use any past performance data",
+        "textJa": ". 過去のパフォーマンスデータを使用してはならない"
+      },
+      {
+        "letter": "B",
+        "text": ". Be fair, clear and not misleading",
+        "textJa": ". 公正、明確かつ誤解を招くものであってはならない"
+      },
+      {
+        "letter": "C",
+        "text": ". Indicate that the value of shares can go down as well as up",
+        "textJa": ". 株式の価値は上下する可能性があることを示さなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". Warn that past performance is no guarantee of future performance",
+        "textJa": ". 過去のパフォーマンスは将来のパフォーマンスを保証するものではないことを警告しなければならない"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Past performance data may be used, provided a 'wealth warning' is given.",
+    "globalId": 319,
+    "categoryId": 78,
+    "questionJa": "リテール顧客に送付される投資広告に関して、以下の中で広告が満たすべき要件として誤っているものはどれですか？",
+    "explanationJa": "過去のパフォーマンスデータは、「ウェルス・ワーニング（富に関する警告）」が提供されれば使用できます。"
+  },
+  {
+    "id": 79,
+    "question": "When entering into a distance marketing contract for a life policy, how much time must a retail client be given to cancel the contract if they wish to do so?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014041",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 14 calendar days",
+        "textJa": ". 暦日14日間"
+      },
+      {
+        "letter": "B",
+        "text": ". 14 business days",
+        "textJa": ". 営業日14日間"
+      },
+      {
+        "letter": "C",
+        "text": ". 30 calendar days",
+        "textJa": ". 暦日30日間"
+      },
+      {
+        "letter": "D",
+        "text": ". 30 business days",
+        "textJa": ". 営業日30日間"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Cancellation is usually 14 calendar days, but for life policies (and pensions) it is 30 calendar days.",
+    "globalId": 320,
+    "categoryId": 79,
+    "questionJa": "生命保険の遠隔販売契約を締結する際、リテール顧客が希望する場合、契約を解除するためにどれくらいの期間を与えられなければなりませんか？",
+    "explanationJa": "キャンセル期間は通常暦日14日間ですが、生命保険（および年金）の場合は暦日30日間です。"
+  },
+  {
+    "id": 80,
+    "question": "In which of the following circumstances may a firm aggregate a client's order with an own account order?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014046",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is likely that the aggregation will not work to the disadvantage of each of the clients concerned",
+        "textJa": ". 集約が関係する各顧客にとって不利に働かない可能性が高い場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Whenever aggregation is required",
+        "textJa": ". 集約が必要な場合はいつでも"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm has disclosed orally or in writing to clients, either specifically or in the client agreement, that the effect will work to their advantage",
+        "textJa": ". 企業が、口頭または書面で、顧客契約書において具体的または一般的に、その効果が顧客に有利に働くことを開示した場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Aggregation is never allowed",
+        "textJa": ". 集約は決して許可されない"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The firm should believe that aggregation will not work to the disadvantage of the clients. However, they should also notify the clients that a disadvantage is possible. Firms should also have an aggregations policy.",
+    "globalId": 321,
+    "categoryId": 80,
+    "questionJa": "どのような状況下で、企業は顧客の注文を自己勘定の注文と集約することができますか？",
+    "explanationJa": "企業は、集約が顧客にとって不利に働かないと信じるべきです。しかし、不利になる可能性についても顧客に通知すべきです。企業はまた、集約に関する方針を持つべきです。"
+  },
+  {
+    "id": 81,
+    "question": "To whom do the client money rules apply?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014050",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All clients",
+        "textJa": ". すべての顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". All customers",
+        "textJa": ". すべてのカスタマー"
+      },
+      {
+        "letter": "C",
+        "text": ". Retail clients only",
+        "textJa": ". リテール顧客のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". Professional clients only",
+        "textJa": ". プロフェッショナル顧客のみ"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The Client Money Rules are part of the Client Asset Rules and they apply to all clients. Page 28 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 29 ────────────────────────────────────────────────────────────",
+    "globalId": 322,
+    "categoryId": 81,
+    "questionJa": "顧客金銭規則は誰に適用されますか？",
+    "explanationJa": "顧客金銭規則は顧客資産規則の一部であり、すべての顧客に適用されます。"
+  },
+  {
+    "id": 82,
+    "question": "Failure to comply with the FCA's rule on fair, clear and not misleading communications would also constitute a breach of which of the following?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078754",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Criminal Justice Act",
+        "textJa": ". Criminal Justice Act"
+      },
+      {
+        "letter": "B",
+        "text": ". Order execution policy",
+        "textJa": ". 注文執行方針"
+      },
+      {
+        "letter": "C",
+        "text": ". Trust law",
+        "textJa": ". 信託法"
+      },
+      {
+        "letter": "D",
+        "text": ". Misleading statements and impressions",
+        "textJa": ". 誤解を招く記述および印象操作"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Failure to comply with the FCA's rule on fair, clear and not misleading communications would also constitute a breach of FSA 2012 s89-91 Misleading Statements and Impressions.",
+    "globalId": 323,
+    "categoryId": 82,
+    "questionJa": "公正、明確かつ誤解を招かないコミュニケーションに関するFCAの規則の不遵守は、次のうちどれの違反にも該当しますか？",
+    "explanationJa": "公正、明確かつ誤解を招かないコミュニケーションに関するFCAの規則の不遵守は、FSA 2012 s89-91 Misleading Statements and Impressions の違反にも該当します。"
+  },
+  {
+    "id": 83,
+    "question": "Which of the following statements is true with respect to cancellation rights on the sale to a retail client of a packaged product? Cancellation rights:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078755",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Are not required",
+        "textJa": ". 要求されない"
+      },
+      {
+        "letter": "B",
+        "text": ". Should be offered",
+        "textJa": ". 提供されるべきである"
+      },
+      {
+        "letter": "C",
+        "text": ". Of 21 days are compulsory",
+        "textJa": ". 21日間の権利が義務付けられている"
+      },
+      {
+        "letter": "D",
+        "text": ". May be offered for a minimum period specified by the firm",
+        "textJa": ". 企業が指定する最低期間提供される場合がある"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This is the best answer. Depending upon the type of product, cancellation periods can vary between 14 and 30 calendar days.",
+    "globalId": 324,
+    "categoryId": 83,
+    "questionJa": "リテール顧客へのパッケージ商品の販売に関するキャンセル権について、次の記述のうち正しいものはどれですか？ キャンセル権は…",
+    "explanationJa": "これが最良の回答です。商品の種類によって、キャンセル期間は暦日14日から30日の間で変動する可能性があります。"
+  },
+  {
+    "id": 84,
+    "question": "When is the FCA's Conduct of Business Rule relating to suitability required? When the firm is performing:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078756",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Discretionary MiFID services on behalf of retail and professional clients",
+        "textJa": ". リテール顧客およびプロフェッショナル顧客のためにMiFIDに基づくディスクレషナリーサービスを提供する場合"
+      },
+      {
+        "letter": "B",
+        "text": ". Discretionary MiFID services on behalf of retail clients only",
+        "textJa": ". リテール顧客のためにのみMiFIDに基づくディスクレషナリーサービスを提供する場合"
+      },
+      {
+        "letter": "C",
+        "text": ". Execution only MiFID services on behalf of retail clients only",
+        "textJa": ". リテール顧客のためにのみMiFIDに基づく執行のみのサービスを提供する場合"
+      },
+      {
+        "letter": "D",
+        "text": ". Execution only MiFID services on behalf of any customer",
+        "textJa": ". いかなる顧客のためにMiFIDに基づく執行のみのサービスを提供する場合"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Principle 9 requires firms to take reasonable care etc. for discretionary and advisory clients. In practice, this is achieved through compliance with the suitability rule. Suitability is required to be assessed for discretionary and advisory business, but not for execution-only business. The rule covers 'all customers' for MiFID business, and so therefore A is the best answer.",
+    "globalId": 325,
+    "categoryId": 84,
+    "questionJa": "適合性に関するFCAの業務遂行規則はいつ要求されますか？ 企業が以下を実行している場合…",
+    "explanationJa": "原則9は、企業に対し、ディスクレషナリー顧客およびアドバイザリー顧客のために合理的な注意を払うことなどを要求しています。実際には、これは適合性規則の遵守を通じて達成されます。適合性は、ディスクレషナリー業務およびアドバイザリー業務については評価が要求されますが、執行のみの業務については要求されません。この規則はMiFID業務に関して「すべての顧客」を対象としているため、Aが最良の回答です。"
+  },
+  {
+    "id": 85,
+    "question": "When can a retail client expect to receive information regarding their right to cancel an agreement to purchase units in an authorised unit trust?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014076",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Before entering into the agreement at all times",
+        "textJa": ". 常に契約締結前に"
+      },
+      {
+        "letter": "B",
+        "text": ". After entering into the agreement at all times",
+        "textJa": ". 常に契約締結後に"
+      },
+      {
+        "letter": "C",
+        "text": ". Before and after entering into the agreement at all times",
+        "textJa": ". 常に契約締結前および締結後に"
+      },
+      {
+        "letter": "D",
+        "text": ". Before or after entering into the agreement depending on the situation",
+        "textJa": ". 状況に応じて契約締結前または締結後に"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "If cancellation rights apply, firms must tell consumers of their rights in good time before (or where that is not possible, immediately after) the consumer is bound by the contract; and they must do so in a durable medium.",
+    "globalId": 326,
+    "categoryId": 85,
+    "questionJa": "リテール顧客は、認可ユニット・トラストのユニット購入契約をキャンセルする権利に関する情報をいつ受け取ることを期待できますか？",
+    "explanationJa": "キャンセル権が適用される場合、企業は消費者が契約に拘束される前（それが不可能な場合は、直後）に、十分な時間をもって消費者にその権利を伝えなければならず、かつ耐久性のある媒体で行わなければなりません。"
+  },
+  {
+    "id": 86,
+    "question": "Which clients need to have the most comprehensive risk explanation provided to them?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078757",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A discretionary retail client selling shares to the firm",
+        "textJa": ". 企業に株式を売却するディスクレషナリー・リテール顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". An execution only retail client selling warrants",
+        "textJa": ". ワラントを売却する執行のみのリテール顧客"
+      },
+      {
+        "letter": "C",
+        "text": ". A discretionary professional client engaged in derivatives",
+        "textJa": ". デリバティブ取引に従事するディスクレషナリー・プロフェッショナル顧客"
+      },
+      {
+        "letter": "D",
+        "text": ". An execution only retail client buying options",
+        "textJa": ". オプションを購入する執行のみのリテール顧客"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The risks should be explained to the client as specified by the client's knowledge etc. given that the first two are sales of assets pre-owned. A professional client would most likely not have a significant explanation of the risks given the requirements, as they are considered to have sufficient knowledge and experience.",
+    "globalId": 327,
+    "categoryId": 86,
+    "questionJa": "どの顧客に最も包括的なリスク説明を提供する必要がありますか？",
+    "explanationJa": "リスクは、顧客の知識などに応じて説明されるべきです。最初の2つは既に所有している資産の売却であるためです。プロフェッショナル顧客は、その要件から、リスクについて重大な説明を受ける可能性は低いでしょう。なぜなら、彼らは十分な知識と経験を有していると見なされるためです。"
+  },
+  {
+    "id": 87,
+    "question": "Which of the following are not protected by the conduct of business rules sourcebook?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014083",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Personal recommendations to a retail client",
+        "textJa": ". リテール顧客への個人的な推奨"
+      },
+      {
+        "letter": "B",
+        "text": ". Pension transfers for retail client",
+        "textJa": ". リテール顧客の年金移管"
+      },
+      {
+        "letter": "C",
+        "text": ". Acting as investment manager for a retail client",
+        "textJa": ". リテール顧客の投資マネージャーとしての活動"
+      },
+      {
+        "letter": "D",
+        "text": ". Property purchases by a retail client",
+        "textJa": ". リテール顧客による不動産購入"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "The purchase of property is not classed as designated investment business.",
+    "globalId": 328,
+    "categoryId": 87,
+    "questionJa": "次のうち、業務遂行規則ソースブックによって保護されないものはどれですか？",
+    "explanationJa": "不動産の購入は、指定投資業務として分類されません。"
+  },
+  {
+    "id": 88,
+    "question": "An authorised firm provides a service to a retail client. The FCA requires that the firm discloses its charges to that client. When should this disclosure occur?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014088",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". At the time of doing business",
+        "textJa": ". 取引を行う時点で"
+      },
+      {
+        "letter": "B",
+        "text": ". Before doing business",
+        "textJa": ". 取引を行う前に"
+      },
+      {
+        "letter": "C",
+        "text": ". After a reasonable period of doing business",
+        "textJa": ". 取引を行ってから合理的な期間が経過した後に"
+      },
+      {
+        "letter": "D",
+        "text": ". At the discretion of the firm",
+        "textJa": ". 企業の裁量で"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Charges must be made clear to clients before doing business or before the client is bound by the terms.",
+    "globalId": 329,
+    "categoryId": 88,
+    "questionJa": "認可された企業がリテール顧客にサービスを提供します。FCAは、企業がその顧客に手数料を開示することを要求しています。この開示はいつ行われるべきですか？",
+    "explanationJa": "手数料は、取引を行う前、または顧客が条件に拘束される前に、顧客に明確にされなければなりません。"
+  },
+  {
+    "id": 89,
+    "question": "When a firm communicates initially with a retail client, COBS requires it to provide 'appropriate information', which includes all of the following except:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014090",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm's name and address",
+        "textJa": ". 企業の名称と住所"
+      },
+      {
+        "letter": "B",
+        "text": ". A statement that it is FCA authorised or regulated",
+        "textJa": ". FCAの認可または規制を受けている旨の記述"
+      },
+      {
+        "letter": "C",
+        "text": ". The name and status of the person they can contact",
+        "textJa": ". 連絡可能な担当者の氏名と役職"
+      },
+      {
+        "letter": "D",
+        "text": ". Who to refer complaints to if they cannot be resolved by the firm",
+        "textJa": ". 企業によって解決できない場合の苦情の照会先"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Reference to any complaints resolution body is not necessary.",
+    "globalId": 330,
+    "categoryId": 89,
+    "questionJa": "企業がリテール顧客と最初にコミュニケーションを取る際、COBSは「適切な情報」の提供を要求しますが、これには次のうちどれが含まれませんか？",
+    "explanationJa": "苦情解決機関への言及は必要ありません。"
+  },
+  {
+    "id": 90,
+    "question": "Which ONE of the following is LEAST likely to cause a conflict of interest?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014702",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Encouraging customer A to sell so B can buy",
+        "textJa": ". 顧客Bが購入できるように顧客Aに売却を促すこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Recommending customer sells shares which an analyst rates highly",
+        "textJa": ". アナリストが高く評価している株式を顧客に売却するよう推奨すること"
+      },
+      {
+        "letter": "C",
+        "text": ". Customer instructs firm to buy shares when the firm holds a position",
+        "textJa": ". 企業がポジションを保有しているときに、顧客が企業に株式の購入を指示すること"
+      },
+      {
+        "letter": "D",
+        "text": ". Advising both sides in a takeover situation",
+        "textJa": ". 買収状況において双方に助言すること"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The question shows three situations where conflicts of interest could arise and one situation where it is unlikely. 'Customer instructs firm to buy shares when the firm holds a position' is least likely to give rise to a conflict of interest.  The customer is instructing the firm to buy shares (i.e. execution only order). Remember, the question is not saying that the other situations will give rise to conflicts of interests in all cases, but that we should identify them as potential conflicts.",
+    "globalId": 331,
+    "categoryId": 90,
+    "questionJa": "次のうち、利益相反を引き起こす可能性が最も低いのはどれですか？",
+    "explanationJa": "この質問は、利益相反が生じる可能性のある3つの状況と、その可能性が低い1つの状況を示しています。「企業がポジションを保有しているときに、顧客が企業に株式の購入を指示すること」は、利益相反を引き起こす可能性が最も低いです。顧客は企業に株式の購入を指示しています（つまり、執行のみの注文）。他の状況がすべての場合に利益相反を引き起こすと言っているわけではなく、潜在的な利益相反として特定すべきであるという点に注意してください。"
+  },
+  {
+    "id": 91,
+    "question": "The website of a firm shows two products; details on one are available only by post and of the other only online. Which of the two is a written financial promotion?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014705",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Both",
+        "textJa": ". 両方"
+      },
+      {
+        "letter": "B",
+        "text": ". Neither",
+        "textJa": ". どちらでもない"
+      },
+      {
+        "letter": "C",
+        "text": ". The one available by post only",
+        "textJa": ". 郵送でのみ入手可能なもの"
+      },
+      {
+        "letter": "D",
+        "text": ". The one available online only",
+        "textJa": ". オンラインでのみ入手可能なもの"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Both products are considered written financial promotions.",
+    "globalId": 332,
+    "categoryId": 91,
+    "questionJa": "ある企業のウェブサイトには2つの商品が掲載されています。一方の詳細は郵送でのみ、もう一方はオンラインでのみ入手可能です。このうち、書面による金融プロモーションはどちらですか？",
+    "explanationJa": "両方の製品が書面による金融プロモーションと見なされます。"
+  },
+  {
+    "id": 92,
+    "question": "If a client is unwilling to provide sufficient information for a firm to assess suitability in respect of a personal recommendation, what should the firm do next?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078758",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Act for a professional client on a non-advised execution only basis as long as the client provides instruction for the trades",
+        "textJa": ". 顧客が取引の指示を出す限り、助言なしの執行のみベースでプロフェッショナル顧客のために行動する"
+      },
+      {
+        "letter": "B",
+        "text": ". Send a suspicious transaction and order report on the client to the FCA for market abuse without delay",
+        "textJa": ". 市場濫用に関する顧客の疑わしい取引および注文報告書を遅滞なくFCAに送付する"
+      },
+      {
+        "letter": "C",
+        "text": ". Make an appropriate recommendation or take a decision to trade for him provided the client has accepted a risk warning",
+        "textJa": ". 顧客がリスク警告を受け入れた場合に限り、適切な推奨を行うか、顧客のために取引を決定する"
+      },
+      {
+        "letter": "D",
+        "text": ". Make an appropriate personal recommendation to the customer on a take it or leave it basis",
+        "textJa": ". 顧客に対し、「受けるか断るか」ベースで適切な個人的推奨を行う"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "There is no requirement to report the client to the FCA. If the firm does NOT obtain sufficient information, it must not make a personal recommendation to the client or take a decision to trade for him. It would not be possible for a firm to make a personal recommendation as it does not have sufficient information. The firm can still act for a professional client on an execution only basis. This question would work in exactly the same way if it was for a retail client instead Page 29 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 30 ────────────────────────────────────────────────────────────",
+    "globalId": 333,
+    "categoryId": 92,
+    "questionJa": "個人的な推奨に関して、企業が適合性を評価するのに十分な情報を顧客が提供したがらない場合、企業は次に何をすべきですか？",
+    "explanationJa": "顧客をFCAに報告する必要はありません。企業が十分な情報を得られない場合、顧客に個人的な推奨を行ったり、顧客のために取引を決定したりしてはなりません。十分な情報がないため、企業が個人的な推奨を行うことは不可能です。企業は引き続き、執行のみベースでプロフェッショナル顧客のために行動することができます。この質問は、リテール顧客の場合でも全く同じように機能します。"
+  },
+  {
+    "id": 93,
+    "question": "In relation to the conduct of business rules in respect of disclosure of conflicts of interest, which ONE of the following is FALSE of the disclosure?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078759",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It must be in writing",
+        "textJa": ". 書面でなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". It can be made verbally",
+        "textJa": ". 口頭で行うことができる"
+      },
+      {
+        "letter": "C",
+        "text": ". It must be made before acting on behalf of the client",
+        "textJa": ". 顧客のために行動する前に行わなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". It must be made in a durable medium",
+        "textJa": ". 耐久性のある媒体で行わなければならない"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The disclosure of a conflict of interest must be made in a durable manner and therefore cannot be made verbally. Details of the conflict of interest must be disclosed to the client prior to acting on behalf of the client.",
+    "globalId": 334,
+    "categoryId": 93,
+    "questionJa": "利益相反の開示に関する業務遂行規則に関して、次のうち開示について誤っているものはどれですか？",
+    "explanationJa": "利益相反の開示は耐久性のある方法で行われなければならず、したがって口頭で行うことはできません。利益相反の詳細は、顧客のために行動する前に顧客に開示されなければなりません。"
+  },
+  {
+    "id": 94,
+    "question": "In relation to MiFID business, how long must a firm retain records of trade confirmations sent to a client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014785",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Three years from date of trade",
+        "textJa": ". 取引日から3年間"
+      },
+      {
+        "letter": "B",
+        "text": ". Three years from date of dispatch",
+        "textJa": ". 発送日から3年間"
+      },
+      {
+        "letter": "C",
+        "text": ". Five years from date of dispatch",
+        "textJa": ". 発送日から5年間"
+      },
+      {
+        "letter": "D",
+        "text": ". Five years from date of trade",
+        "textJa": ". 取引日から5年間"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "In relation to MiFID business, trade confirmation records have to be kept for five years from date of dispatch.",
+    "globalId": 335,
+    "categoryId": 94,
+    "questionJa": "MiFID業務に関して、企業は顧客に送付した取引確認書の記録をどのくらいの期間保持しなければなりませんか？",
+    "explanationJa": "MiFID業務に関して、取引確認書の記録は発送日から5年間保持する必要があります。"
+  },
+  {
+    "id": 95,
+    "question": "With reference to appointed representatives giving advice on packaged products, who is responsible for maintaining written records covering the agent's scope of advice and range of products?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014897",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The appointing firm",
+        "textJa": ". 任命する企業"
+      },
+      {
+        "letter": "B",
+        "text": ". The product provider if different from the appointing firm",
+        "textJa": ". 任命する企業と異なる場合は商品提供者"
+      },
+      {
+        "letter": "C",
+        "text": ". The appointed representative",
+        "textJa": ". 任命代理人"
+      },
+      {
+        "letter": "D",
+        "text": ". The Financial Conduct Authority",
+        "textJa": ". Financial Conduct Authority"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The firm is always responsible.",
+    "globalId": 336,
+    "categoryId": 95,
+    "questionJa": "パッケージ商品に関する助言を行う任命代理人に関して、代理人の助言範囲と商品範囲をカバーする書面記録を維持する責任は誰にありますか？",
+    "explanationJa": "常に企業が責任を負います。"
+  },
+  {
+    "id": 96,
+    "question": "With regard to financial promotions, the need to be 'fair, clear and not misleading' applies to:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1016023",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". All clients",
+        "textJa": ". すべての顧客"
+      },
+      {
+        "letter": "B",
+        "text": ". Retail clients only",
+        "textJa": ". リテール顧客のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Professional clients only",
+        "textJa": ". プロフェッショナル顧客のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". Eligible counterparties only",
+        "textJa": ". 適格な取引相手のみ"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The FINANCIAL PROMOTION COBS apply to retail clients only. There is also a general rule regarding all communications which applies to all clients, saying that the communication should be 'clear, fair and not misleading' - in line with PRIN7.",
+    "globalId": 337,
+    "categoryId": 96,
+    "questionJa": "金融プロモーションに関して、「公正、明確かつ誤解を招かない」という要件は誰に適用されますか？",
+    "explanationJa": "金融プロモーションに関するCOBSはリテール顧客のみに適用されます。また、すべての顧客に適用されるコミュニケーション全般に関する一般規則もあり、PRIN7に沿って、コミュニケーションは「明確、公正かつ誤解を招かない」ものでなければならないとされています。"
+  },
+  {
+    "id": 97,
+    "question": "When considering best execution criteria for a retail client, which of the following would NOT be considered when obtaining the best possible result?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1018141",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The characteristics of the order",
+        "textJa": ". 注文の特性"
+      },
+      {
+        "letter": "B",
+        "text": ". The characteristics of the investment",
+        "textJa": ". 投資の特性"
+      },
+      {
+        "letter": "C",
+        "text": ". The costs incurred by the client payable to the firm",
+        "textJa": ". 顧客が企業に支払う費用"
+      },
+      {
+        "letter": "D",
+        "text": ". The costs incurred by the client payable to the execution venue",
+        "textJa": ". 顧客が執行場所に支払う費用"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The characteristics of the client, the order, the investment and the execution venue will all be taken into consideration. In addition for a retail client, costs directly relating to execution - including execution venue fees and clearing and settlement fees - must also be considered. Costs payable to the firm that the client is dealing with are not to be included in this assessment.",
+    "globalId": 338,
+    "categoryId": 97,
+    "questionJa": "リテール顧客の最良執行基準を検討する際、最良の結果を得るために考慮されないのは次のうちどれですか？",
+    "explanationJa": "顧客、注文、投資、および執行場所の特性はすべて考慮されます。さらに、リテール顧客の場合、執行場所手数料や清算・決済手数料を含む、執行に直接関連する費用も考慮されなければなりません。顧客が取引している企業に支払う費用は、この評価には含まれません。"
+  },
+  {
+    "id": 98,
+    "question": "When a professional client is initially classified, which of the following terms is used?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1024592",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Person",
+        "textJa": ". Person"
+      },
+      {
+        "letter": "B",
+        "text": ". Per se",
+        "textJa": ". Per se"
+      },
+      {
+        "letter": "C",
+        "text": ". Automatic",
+        "textJa": ". Automatic"
+      },
+      {
+        "letter": "D",
+        "text": ". Elective",
+        "textJa": ". Elective"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A professional client will initially be classified as a per se client. They have to choose to be considered as an elective professional client.",
+    "globalId": 339,
+    "categoryId": 98,
+    "questionJa": "プロフェッショナル顧客が最初に分類される際、次のどの用語が使用されますか？",
+    "explanationJa": "プロフェッショナル顧客は、最初は per se 顧客として分類されます。彼らは、elective プロフェッショナル顧客と見なされることを選択しなければなりません。"
+  },
+  {
+    "id": 99,
+    "question": "Which of the following sets of information is not required in a direct offer financial promotion to a retail client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1078760",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm and its services",
+        "textJa": ". 企業とそのサービス"
+      },
+      {
+        "letter": "B",
+        "text": ". Costs and charges",
+        "textJa": ". 費用と手数料"
+      },
+      {
+        "letter": "C",
+        "text": ". Safekeeping of client money",
+        "textJa": ". 顧客金銭の保管"
+      },
+      {
+        "letter": "D",
+        "text": ". Execution venues where trading will occur",
+        "textJa": ". 取引が行われる執行場所"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Execution venues will be in an order execution policy.",
+    "globalId": 340,
+    "categoryId": 99,
+    "questionJa": "リテール顧客へのダイレクトオファー金融プロモーションにおいて、次の情報セットのうち、要求されないものはどれですか？",
+    "explanationJa": "執行場所は注文執行方針に含まれます。"
+  },
+  {
+    "id": 100,
+    "question": "An authorised firm wishes to increase its retail client base by launching a cold calling campaign. Which of the following would be permitted?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1045998",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". An insurance company marketing life assurance contracts with a high volatility element",
+        "textJa": ". ボラティリティの高い要素を持つ生命保険契約を販売する保険会社"
+      },
+      {
+        "letter": "B",
+        "text": ". A securities broker marketing warrants traded on the London Stock Exchange",
+        "textJa": ". London Stock Exchangeで取引されるワラントを販売する証券ブローカー"
+      },
+      {
+        "letter": "C",
+        "text": ". A wealth management company marketing advisory services about main market shares",
+        "textJa": ". 主要市場の株式に関するアドバイザリーサービスを販売するウェルスマネジメント会社"
+      },
+      {
+        "letter": "D",
+        "text": ". Marketing through cold calls is not permitted to retail clients under any circumstance",
+        "textJa": ". いかなる状況下でも、リテール顧客へのコールドコールによるマーケティングは許可されない"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Cold calls can be used to sell services that relate to liquid securities. Listed shares would meet this definition. Note: the securities themselves could not be sold on the cold call.",
+    "globalId": 341,
+    "categoryId": 100,
+    "questionJa": "認可された企業が、コールドコールキャンペーンを開始してリテール顧客ベースを拡大したいと考えています。次のうち、許可されるものはどれですか？",
+    "explanationJa": "コールドコールは、流動性の高い証券に関連するサービスを販売するために使用できます。上場株式はこの定義に該当します。注意：証券自体はコールドコールで販売できません。"
+  },
+  {
+    "id": 101,
+    "question": "Which is FALSE in terms of the aggregation of orders?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1046006",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Firms must aggregate firm and client orders together",
+        "textJa": ". 企業は、企業自身の注文と顧客の注文を集約しなければならない"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm must disclose its use of aggregation",
+        "textJa": ". 企業は、集約の利用を開示しなければならない"
+      },
+      {
+        "letter": "C",
+        "text": ". Aggregation must be unlikely to operate to the disadvantage of clients",
+        "textJa": ". 集約は、顧客にとって不利に働く可能性が低いものでなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". An order allocation policy must be in place",
+        "textJa": ". 注文配分方針が整備されていなければならない"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Aggregation of trades is not mandatory.",
+    "globalId": 342,
+    "categoryId": 101,
+    "questionJa": "注文の集約に関して、誤っているものはどれですか？",
+    "explanationJa": "取引の集約は必須ではありません。"
+  },
+  {
+    "id": 102,
+    "question": "Limit orders not executed immediately must be made public to:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1046007",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". ESMA",
+        "textJa": ". ESMA"
+      },
+      {
+        "letter": "B",
+        "text": ". A Primary information provider",
+        "textJa": ". 一次情報提供者"
+      },
+      {
+        "letter": "C",
+        "text": ". A regulated market",
+        "textJa": ". 規制市場"
+      },
+      {
+        "letter": "D",
+        "text": ". The FCA",
+        "textJa": ". FCA"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Orders must be made public to a regulated/unregulated market or an MTF.",
+    "globalId": 343,
+    "categoryId": 102,
+    "questionJa": "直ちに執行されない指値注文は、誰に公表されなければなりませんか？",
+    "explanationJa": "注文は、規制市場／非規制市場またはMTFに公表されなければなりません。"
+  },
+  {
+    "id": 103,
+    "question": "From which of the following must a firm keep client money segregated?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1046009",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Money belonging to the firm",
+        "textJa": ". 企業に属する金銭"
+      },
+      {
+        "letter": "B",
+        "text": ". Money belonging to the firm and eligible counterparties",
+        "textJa": ". 企業および適格な取引相手に属する金銭"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm and other retail client money",
+        "textJa": ". 企業および他のリテール顧客の金銭"
+      },
+      {
+        "letter": "D",
+        "text": ". The firm and all other client money",
+        "textJa": ". 企業および他のすべての顧客の金銭"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "The aim of the rules is to keep client money segregated from that of the firm.",
+    "globalId": 344,
+    "categoryId": 103,
+    "questionJa": "企業は、次のうちどれから顧客金銭を分別管理しなければなりませんか？",
+    "explanationJa": "この規則の目的は、顧客金銭を企業の金銭から分別管理することです。"
+  },
+  {
+    "id": 104,
+    "question": "Churning is the name given to:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013855",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Dealing in derivatives",
+        "textJa": ". デリバティブ取引"
+      },
+      {
+        "letter": "B",
+        "text": ". Unsuitable recommendations of packaged products",
+        "textJa": ". パッケージ商品の不適切な推奨"
+      },
+      {
+        "letter": "C",
+        "text": ". Dealing in advance of disseminating a research recommendation",
+        "textJa": ". リサーチ推奨を公表する前の取引"
+      },
+      {
+        "letter": "D",
+        "text": ". Overtrading in securities",
+        "textJa": ". 証券の過度な売買"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Churning is the practice of over-dealing in a client's securities in an attempt to generate fees.",
+    "globalId": 345,
+    "categoryId": 104,
+    "questionJa": "チャーニングとは何と呼ばれる行為ですか？",
+    "explanationJa": "チャーニングとは、手数料を得る目的で顧客の証券を過度に売買する行為です。"
+  },
+  {
+    "id": 105,
+    "question": "Churning relates to:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1057265",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The overtrading of investments only",
+        "textJa": ". 投資の過度な売買のみ"
+      },
+      {
+        "letter": "B",
+        "text": ". UK clients only",
+        "textJa": ". 英国の顧客のみ"
+      },
+      {
+        "letter": "C",
+        "text": ". Retail clients only",
+        "textJa": ". リテール顧客のみ"
+      },
+      {
+        "letter": "D",
+        "text": ". Changing between packaged products only",
+        "textJa": ". パッケージ商品間の乗り換えのみ"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Churning is the activity of dealing in securities with excessive frequency for a client in order to generate additional fees/commissions for the firm. It is relevant when, for example, a firm manages a client's portfolio on a discretionary basis.",
+    "globalId": 346,
+    "categoryId": 105,
+    "questionJa": "チャーニングは何に関連していますか？",
+    "explanationJa": "チャーニングとは、企業が追加の手数料／コミッションを得るために、顧客のために過度な頻度で証券を売買する行為です。例えば、企業が顧客のポートフォリオをディスクレషナリーベースで管理する場合などに関連します。"
+  },
+  {
+    "id": 106,
+    "question": "Which of the following is client money?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1016029",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A transaction fee due to the firm",
+        "textJa": ". 企業に支払われるべき取引手数料"
+      },
+      {
+        "letter": "B",
+        "text": ". Money held by an approved bank",
+        "textJa": ". 承認された銀行が保有する金銭"
+      },
+      {
+        "letter": "C",
+        "text": ". Settlement charge due to the firm",
+        "textJa": ". 企業に支払われるべき決済手数料"
+      },
+      {
+        "letter": "D",
+        "text": ". Money held in excess to a client's obligations",
+        "textJa": ". 顧客の債務を超える額で保有されている金銭"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Any money 'due to the firm' is not client money. Approved banks do not need to treat money deposited with them as client money. Where a firm sells assets held as security against client obligations, the amount equal to the obligation is the firm's money. However, anything in excess of this obligation has to be returned to the client or treated as client money.",
+    "globalId": 347,
+    "categoryId": 106,
+    "questionJa": "次のうち、顧客金銭はどれですか？",
+    "explanationJa": "「企業に支払われるべき」金銭は顧客金銭ではありません。承認された銀行は、預託された金銭を顧客金銭として扱う必要はありません。企業が顧客の債務に対する担保として保有する資産を売却する場合、債務と同額は企業の金銭です。ただし、この債務を超える額は顧客に返還されるか、顧客金銭として扱われなければなりません。"
+  },
+  {
+    "id": 107,
+    "question": "Which of the following best describes the cancelation period offered to a client of the firm?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000642",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Should be offered on all products",
+        "textJa": ". すべての商品で提供されるべきである"
+      },
+      {
+        "letter": "B",
+        "text": ". Optional on all products",
+        "textJa": ". すべての商品で任意である"
+      },
+      {
+        "letter": "C",
+        "text": ". Compulsory for certain products",
+        "textJa": ". 特定の商品では義務付けられている"
+      },
+      {
+        "letter": "D",
+        "text": ". Always a maximum of 14 days",
+        "textJa": ". 常に最大14日間である"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Reflection periods of 14 or 30 days have to be offered when the firm sells packaged products or cash deposit ISAs. Page 30 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 31 ────────────────────────────────────────────────────────────",
+    "globalId": 348,
+    "categoryId": 107,
+    "questionJa": "企業の顧客に提供されるキャンセル期間について、最もよく説明しているのは次のうちどれですか？",
+    "explanationJa": "企業がパッケージ商品または現金預金ISAを販売する場合、14日間または30日間の熟慮期間を提供しなければなりません。"
+  },
+  {
+    "id": 108,
+    "question": "With regard to the approval of a non-real time financial promotion, which of the following is true? A firm:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000682",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Can use any third party to approve the financial promotion but it remains the responsibility of the firm",
+        "textJa": ". 金融プロモーションの承認に第三者を利用できるが、責任は依然として企業にある"
+      },
+      {
+        "letter": "B",
+        "text": ". Cannot use a third party to approve the financial promotion",
+        "textJa": ". 金融プロモーションの承認に第三者を利用できない"
+      },
+      {
+        "letter": "C",
+        "text": ". Can use any third party authorised to approve the financial promotion and the promotion remains the responsibility of the firm",
+        "textJa": ". 金融プロモーションの承認を認可された第三者を利用できるが、プロモーションの責任は依然として企業にある"
+      },
+      {
+        "letter": "D",
+        "text": ". Can use any third party authorised to approve the financial promotion and the promotion becomes the responsibility of the third party",
+        "textJa": ". 金融プロモーションの承認を認可された第三者を利用でき、プロモーションの責任はその第三者に移る"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "In approving a financial promotion, the approving firm takes on responsibility for the promotion.",
+    "globalId": 349,
+    "categoryId": 108,
+    "questionJa": "非リアルタイム金融プロモーションの承認に関して、次のうち正しいものはどれですか？ 企業は…",
+    "explanationJa": "金融プロモーションを承認する際、承認する企業がそのプロモーションの責任を負います。"
+  },
+  {
+    "id": 109,
+    "question": "How soon must the firm correct a discrepancy after completing a client money reconciliation?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000706",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". No later than the next day",
+        "textJa": ". 翌日までに"
+      },
+      {
+        "letter": "B",
+        "text": ". As soon as possible",
+        "textJa": ". できるだけ早く"
+      },
+      {
+        "letter": "C",
+        "text": ". Within 5 business days",
+        "textJa": ". 5営業日以内に"
+      },
+      {
+        "letter": "D",
+        "text": ". Within 25 business days",
+        "textJa": ". 25営業日以内に"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A firm must reconcile its records of client balances to bank statements from approved banks as often as is necessary. The firm must complete the reconciliation of client money within ten business days of the date to which the reconciliation relates. Where discrepancies arise, the firm must correct it as soon as possible.",
+    "globalId": 350,
+    "categoryId": 109,
+    "questionJa": "顧客金銭の照合完了後、企業はどれくらいの期間内に不一致を修正しなければなりませんか？",
+    "explanationJa": "企業は、承認された銀行からの銀行取引明細書と顧客残高の記録を、必要に応じて頻繁に照合しなければなりません。企業は、照合の対象となる日から10営業日以内に顧客金銭の照合を完了しなければなりません。不一致が生じた場合、企業はできるだけ早くそれを修正しなければなりません。"
+  },
+  {
+    "id": 110,
+    "question": "Which of the following is true of key information documents (KID)?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013903",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". It is a complex document giving key facts to investors",
+        "textJa": ". 投資家に主要な事実を提供する複雑な文書である"
+      },
+      {
+        "letter": "B",
+        "text": ". It is aimed at helping investors better understand and compare key features",
+        "textJa": ". 投資家が主要な特徴をよりよく理解し比較するのを助けることを目的としている"
+      },
+      {
+        "letter": "C",
+        "text": ". It is used for collective investment schemes only",
+        "textJa": ". 集団投資スキームにのみ使用される"
+      },
+      {
+        "letter": "D",
+        "text": ". Firms should target the content at professional clients",
+        "textJa": ". 企業はプロフェッショナル顧客を対象としたコンテンツを作成すべきである"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The ‘KID’ is a simple document giving key facts to investors in a clear and understandable manner, covering not only collective investment schemes, but also other ’packaged’ investment products offered by banks or insurance companies. The aim of the PRIIPs legislation is to help investors to better understand and compare the key features, risks, rewards and costs of different PRIIPs, through access to a short and consumer-friendly KID. It should be understood by a retail client.",
+    "globalId": 351,
+    "categoryId": 110,
+    "questionJa": "キーインフォメーション・ドキュメント（KID）について、次のうち正しいものはどれですか？",
+    "explanationJa": "「KID」は、投資家に主要な事実を明確かつ理解しやすい方法で提供する簡単な文書であり、集団投資スキームだけでなく、銀行や保険会社が提供する他の「パッケージ型」投資商品も対象としています。PRIIPs法の目的は、短く消費者フレンドリーなKIDへのアクセスを通じて、投資家がさまざまなPRIIPsの主要な特徴、リスク、リターン、コストをよりよく理解し比較するのを助けることです。これはリテール顧客に理解されるべきです。"
+  },
+  {
+    "id": 111,
+    "question": "Which of the following best describes Chinese walls? An arrangement that requires:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000716",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Paperwork held by a person in the course of carrying on one part of its business to be withheld from, or not to be used by, persons with or for whom it acts in the course of carrying on another part of its business",
+        "textJa": ". ある事業部門を遂行する過程で個人が保有する書類を、別の事業部門を遂行する過程でその個人が行動を共にする、またはそのために行動する人物から差し控え、または使用させないこと"
+      },
+      {
+        "letter": "B",
+        "text": ". Information held by a person in the course of carrying on one part of its business not to socialise with other persons with or for whom it acts in the course of carrying on another part of its business",
+        "textJa": ". ある事業部門を遂行する過程で個人が保有する情報を、別の事業部門を遂行する過程でその個人が行動を共にする、またはそのために行動する他の人物と共有しないこと"
+      },
+      {
+        "letter": "C",
+        "text": ". Information held by a person in the course of carrying on one part of its business to be withheld from, or not to be used by, persons with or for whom it acts in the course of carrying on another part of its business",
+        "textJa": ". ある事業部門を遂行する過程で個人が保有する情報を、別の事業部門を遂行する過程でその個人が行動を共にする、またはそのために行動する人物から差し控え、または使用させないこと"
+      },
+      {
+        "letter": "D",
+        "text": ". Information held by a person in the course of carrying on one part of its business not to talk to persons with or for whom it acts in the course of carrying on another part of its business",
+        "textJa": ". ある事業部門を遂行する過程で個人が保有する情報を、別の事業部門を遂行する過程でその個人が行動を共にする、またはそのために行動する人物と話さないこと"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This is the definition given in the FCA's glossary of terms.",
+    "globalId": 352,
+    "categoryId": 111,
+    "questionJa": "チャイニーズ・ウォールを最もよく説明しているのは次のうちどれですか？ それは…を要求する取り決めです。",
+    "explanationJa": "これはFCAの用語集に記載されている定義です。"
+  },
+  {
+    "id": 112,
+    "question": "When a firm uses a website to promote a product and gives the facility for an online application this would be considered to be?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000755",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Indirect real-time offer",
+        "textJa": ". 間接的リアルタイムオファー"
+      },
+      {
+        "letter": "B",
+        "text": ". Direct real-time offer",
+        "textJa": ". 直接的リアルタイムオファー"
+      },
+      {
+        "letter": "C",
+        "text": ". Direct non real-time offer",
+        "textJa": ". 直接的非リアルタイムオファー"
+      },
+      {
+        "letter": "D",
+        "text": ". Indirect non real-time offer",
+        "textJa": ". 間接的非リアルタイムオファー"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Website promotions are deemed to be non-real time financial promotions.",
+    "globalId": 353,
+    "categoryId": 112,
+    "questionJa": "企業がウェブサイトを利用して商品を宣伝し、オンラインでの申し込み機能を提供する場合、これは何と見なされますか？",
+    "explanationJa": "ウェブサイトのプロモーションは、非リアルタイム金融プロモーションと見なされます。"
+  },
+  {
+    "id": 113,
+    "question": "The financial promotion rules do not apply to marketing communications in respect of which one of the following?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013837",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". A predator company posting details of a takeover to shareholders",
+        "textJa": ". 買収企業が株主に買収の詳細を郵送すること"
+      },
+      {
+        "letter": "B",
+        "text": ". An authorised firm communicating details of derivative investments to clients",
+        "textJa": ". 認可された企業がデリバティブ投資の詳細を顧客に伝えること"
+      },
+      {
+        "letter": "C",
+        "text": ". An independent financial adviser communicating its services in relation to pensions",
+        "textJa": ". 独立系ファイナンシャルアドバイザーが年金に関するサービスを伝えること"
+      },
+      {
+        "letter": "D",
+        "text": ". An insurance company communicating a financial promotion regarding life policies",
+        "textJa": ". 保険会社が生命保険に関する金融プロモーションを伝えること"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Communications regarding takeovers are subject to the takeover code, not the FCA Financial Promotions Rules.",
+    "globalId": 354,
+    "categoryId": 113,
+    "questionJa": "金融プロモーション規則は、次のうちどれに関するマーケティングコミュニケーションには適用されませんか？",
+    "explanationJa": "買収に関するコミュニケーションは、FCAの金融プロモーション規則ではなく、買収コードの対象となります。"
+  },
+  {
+    "id": 114,
+    "question": "When a firm trades with an eligible counterparty, which one of the following rules does not apply?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000815",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Selling and advising",
+        "textJa": ". 販売および助言"
+      },
+      {
+        "letter": "B",
+        "text": ". Personal account notices",
+        "textJa": ". 個人口座通知"
+      },
+      {
+        "letter": "C",
+        "text": ". Client assets",
+        "textJa": ". 顧客資産"
+      },
+      {
+        "letter": "D",
+        "text": ". Client classification",
+        "textJa": ". 顧客分類"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "COBS have a limited application to eligible counterparties and the advising and selling regulations do not apply.",
+    "globalId": 355,
+    "categoryId": 114,
+    "questionJa": "企業が適格な取引相手と取引する場合、次のどの規則が適用されませんか？",
+    "explanationJa": "COBSは適格な取引相手には限定的に適用され、助言および販売に関する規制は適用されません。"
+  },
+  {
+    "id": 115,
+    "question": "When a person is communicating a non-written financial promotion on behalf of an authorised firm which of the following must they always do?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014764",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Identify himself and the regulator of the firm",
+        "textJa": ". 自身と、所属する企業の規制当局を明らかにする"
+      },
+      {
+        "letter": "B",
+        "text": ". Ensure the conversation is recorded and the tape kept securely",
+        "textJa": ". 会話を録音し、その録音媒体を安全に保管することを徹底する"
+      },
+      {
+        "letter": "C",
+        "text": ". Ensure the call is made during office hours",
+        "textJa": ". 電話は営業時間内にかけることを徹底する"
+      },
+      {
+        "letter": "D",
+        "text": ". Identify himself and the firm he represents",
+        "textJa": ". 自身と、代表する企業名を明らかにする"
+      }
+    ],
+    "globalId": 356,
+    "categoryId": 115,
+    "questionJa": "認可された企業のために非書面による金融プロモーションを伝達する際、個人は常に何をしなければなりませんか？",
+    "explanationJa": ""
+  },
+  {
+    "id": 116,
+    "question": "The FCA rules on financial promotions expand which Principle for Businesses?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000635",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Market Conduct",
+        "textJa": ". 市場行動"
+      },
+      {
+        "letter": "B",
+        "text": ". Financial Prudence",
+        "textJa": ". 財務健全性"
+      },
+      {
+        "letter": "C",
+        "text": ". Customers' Interests",
+        "textJa": ". 顧客の利益"
+      },
+      {
+        "letter": "D",
+        "text": ". Clients' Assets",
+        "textJa": ". 顧客資産"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "It is important that a firm has their clients' interests in mind when they communicate financial promotions.",
+    "globalId": 357,
+    "categoryId": 116,
+    "questionJa": "金融プロモーションに関するFCAの規則は、どの事業原則を拡大するものですか？",
+    "explanationJa": "企業が金融プロモーションを伝達する際には、顧客の利益を念頭に置くことが重要です。"
+  },
+  {
+    "id": 117,
+    "question": "In relation to financial promotions, the guidance for a firm wishing to communicate or approve a financial promotion aims to amplify which Principles for Businesses?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000729",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 'Customers' interests' and 'Communication with clients'",
+        "textJa": ". 「顧客の利益」と「顧客とのコミュニケーション」"
+      },
+      {
+        "letter": "B",
+        "text": ". 'Communication with clients' and 'Customers: relationship of trust'",
+        "textJa": ". 「顧客とのコミュニケーション」と「顧客：信頼関係」"
+      },
+      {
+        "letter": "C",
+        "text": ". 'Market conduct' and 'Customers' interests'",
+        "textJa": ". 「市場行動」と「顧客の利益」"
+      },
+      {
+        "letter": "D",
+        "text": ". 'Customers' interests' and 'Customers: relationship of trust'",
+        "textJa": ". 「顧客の利益」と「顧客：信頼関係」"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Principle 6 - Customers' interests and Principle 7 - Communications with Clients.",
+    "globalId": 358,
+    "categoryId": 117,
+    "questionJa": "金融プロモーションに関して、企業が金融プロモーションを伝達または承認する際のガイダンスは、どの事業原則を増幅することを目的としていますか？",
+    "explanationJa": "原則6 - 顧客の利益 と 原則7 - 顧客とのコミュニケーション。"
+  },
+  {
+    "id": 118,
+    "question": "The COBS relating to financial promotions require an individual with appropriate expertise to check that the promotion is fair, clear and not misleading. For which of the following types of financial promotion is such a confirmation exercise required in advance of communicating the promotion?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000770",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Real-time financial promotions",
+        "textJa": ". リアルタイム金融プロモーション"
+      },
+      {
+        "letter": "B",
+        "text": ". Non real-time financial promotions",
+        "textJa": ". 非リアルタイム金融プロモーション"
+      },
+      {
+        "letter": "C",
+        "text": ". All financial promotions",
+        "textJa": ". すべての金融プロモーション"
+      },
+      {
+        "letter": "D",
+        "text": ". Real-time and non real-time financial promotions",
+        "textJa": ". リアルタイムおよび非リアルタイム金融プロモーション"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Only non-real time financial promotions can be approved in advance of the communication. Real time financial promotions are spontaneous and it would be very difficult to approve in advance.",
+    "globalId": 359,
+    "categoryId": 118,
+    "questionJa": "金融プロモーションに関するCOBSは、プロモーションが公正、明確かつ誤解を招かないものであることを確認するために、適切な専門知識を持つ個人による確認を要求しています。次のどの種類の金融プロモーションについて、プロモーションを伝達する前にそのような確認作業が必要ですか？",
+    "explanationJa": "コミュニケーションの前に承認できるのは、非リアルタイム金融プロモーションのみです。リアルタイム金融プロモーションは自発的なものであり、事前に承認することは非常に困難です。"
+  },
+  {
+    "id": 119,
+    "question": "All of the following statements regarding Chinese walls are true except:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000773",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". They are a method by which a firm can avoid a conflict of interests",
+        "textJa": ". 企業が利益相反を回避するための方法である"
+      },
+      {
+        "letter": "B",
+        "text": ". They may be physical or artificial barriers preventing the flow of information",
+        "textJa": ". 情報の流れを妨げる物理的または人為的な障壁である場合がある"
+      },
+      {
+        "letter": "C",
+        "text": ". The FCA specify that Chinese walls must be implemented in all asset management firms",
+        "textJa": ". FCAは、すべてのアセットマネジメント会社にチャイニーズ・ウォールの導入を義務付けている"
+      },
+      {
+        "letter": "D",
+        "text": ". They may be operated by firms with several departments",
+        "textJa": ". 複数の部門を持つ企業によって運営される場合がある"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The FCA defends the use of Chinese walls but does not require Chinese walls to be put in place in all firms without exception.",
+    "globalId": 360,
+    "categoryId": 119,
+    "questionJa": "チャイニーズ・ウォールに関する次の記述のうち、誤っているものはどれですか？",
+    "explanationJa": "FCAはチャイニーズ・ウォールの使用を擁護していますが、例外なくすべての企業にチャイニーズ・ウォールの設置を要求しているわけではありません。"
+  },
+  {
+    "id": 120,
+    "question": "Under the client asset rules contained within the FCA Handbook, all of the following are classified as client money except:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1000774",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". Money held by the firm on behalf of the client",
+        "textJa": ". 企業が顧客のために保有する金銭"
+      },
+      {
+        "letter": "B",
+        "text": ". Uncleared cheque written by the firm to the client",
+        "textJa": ". 企業が顧客に振り出した未清算の小切手"
+      },
+      {
+        "letter": "C",
+        "text": ". Amounts deposited by the client to be held on discretion",
+        "textJa": ". 顧客が裁量で保有するために預託した金額"
+      },
+      {
+        "letter": "D",
+        "text": ". Monies due and payable by the client to the firm",
+        "textJa": ". 顧客が企業に支払うべき金銭"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Money due and payable is not client money. The value of the cheque remains client money until it clears. The other two desribe what client money is.",
+    "globalId": 361,
+    "categoryId": 120,
+    "questionJa": "FCAハンドブックに含まれる顧客資産規則に基づき、次のうち顧客金銭として分類されないものはどれですか？",
+    "explanationJa": "支払うべき金銭は顧客金銭ではありません。小切手の価値は、清算されるまで顧客金銭のままです。他の2つは顧客金銭が何であるかを説明しています。"
+  },
+  {
+    "id": 121,
+    "question": "In relation to MiFID business, how many transactions per quarter (over the previous four quarters) must a client have carried out in order to be treated as an elective professional client?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1013830",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". 50",
+        "textJa": ". 50"
+      },
+      {
+        "letter": "B",
+        "text": ". 25",
+        "textJa": ". 25"
+      },
+      {
+        "letter": "C",
+        "text": ". 10",
+        "textJa": ". 10"
+      },
+      {
+        "letter": "D",
+        "text": ". 5",
+        "textJa": ". 5"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "One of the criteria in the quantitative test is average frequency of transaction of ten per quarter. Page 31 of 79 CISI Unit 1 Regulations ──────────────────────────────────────────────────────────── PAGE 32 ────────────────────────────────────────────────────────────",
+    "globalId": 362,
+    "categoryId": 121,
+    "questionJa": "MiFID業務に関して、顧客がelectiveプロフェッショナル顧客として扱われるためには、過去4四半期にわたって四半期あたり何回の取引を行っている必要がありますか？",
+    "explanationJa": "定量的テストの基準の1つは、四半期あたり平均10回の取引頻度です。"
+  },
+  {
+    "id": 122,
+    "question": "Which of the following statements is true with respect to cancellation rights on the sale to a retail client of a packaged product?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014069",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". None required",
+        "textJa": ". 不要"
+      },
+      {
+        "letter": "B",
+        "text": ". Cancellation rights should be offered",
+        "textJa": ". キャンセル権は提供されるべきである"
+      },
+      {
+        "letter": "C",
+        "text": ". Cancellation and withdrawal rights of 21 days are compulsory",
+        "textJa": ". 21日間のキャンセル権および撤回権が義務付けられている"
+      },
+      {
+        "letter": "D",
+        "text": ". Cancellation rights may be offered for a minimum period specified by the firm",
+        "textJa": ". キャンセル権は企業が指定する最低期間提供される場合がある"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This is the best answer. Depending upon the type of product, cancellation periods can vary between 14 and 30 calendar days.",
+    "globalId": 363,
+    "categoryId": 122,
+    "questionJa": "リテール顧客へのパッケージ商品の販売に関するキャンセル権について、次の記述のうち正しいものはどれですか？",
+    "explanationJa": "これが最良の回答です。商品の種類によって、キャンセル期間は暦日14日から30日の間で変動する可能性があります。"
+  },
+  {
+    "id": 123,
+    "question": "A firm has received several execution only client orders for purchases in Company A. The firm also has an order to purchase shares in that company. Which ONE of the following statements is FALSE in respect of the execution of these orders?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1014773",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm may aggregate the orders if it is unlikely that the aggregation will work to the disadvantage of any client",
+        "textJa": ". 集約がどの顧客にとっても不利に働かない可能性が高い場合、企業は注文を集約することができる"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm can only rely on aggregation if the orders cannot be executed sequentially",
+        "textJa": ". 注文を順次執行できない場合に限り、企業は集約に頼ることができる"
+      },
+      {
+        "letter": "C",
+        "text": ". If aggregation occurs, the firm must disclose to the client that the effect of aggregation may work to their disadvantage",
+        "textJa": ". 集約が行われる場合、企業は集約の効果が顧客に不利に働く可能性があることを顧客に開示しなければならない"
+      },
+      {
+        "letter": "D",
+        "text": ". The firm should aggregate the trade if it is in the client's best interests",
+        "textJa": ". 顧客の最善の利益になる場合、企業は取引を集約すべきである"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Client orders can be aggregated with each other or with the firm's orders provided that certain criteria are met. A firm is not required to perform aggregation.",
+    "globalId": 364,
+    "categoryId": 123,
+    "questionJa": "ある企業は、A社の株式購入に関する複数の執行のみの顧客注文を受けました。また、同社は自社の株式購入注文も持っています。これらの注文の執行に関して、次の記述のうち誤っているものはどれですか？",
+    "explanationJa": "顧客の注文は、特定の基準が満たされれば、互いにまたは企業の注文と集約することができます。企業は集約を実行する必要はありません。"
+  },
+  {
+    "id": 124,
+    "question": "A firm is considering putting its own buy order on the same ticket as one of its client's buy orders. Which of the following is true before the firm does this?",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "1024617",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". The firm has obtained consent from the client that this is acceptable",
+        "textJa": ". 企業は、これが許容できることについて顧客から同意を得ている"
+      },
+      {
+        "letter": "B",
+        "text": ". The firm truly believes that by aggregating the order, the terms of the trade will be improved",
+        "textJa": ". 企業は、注文を集約することによって取引条件が改善されると真に信じている"
+      },
+      {
+        "letter": "C",
+        "text": ". The firm has disclosed to the client that aggregation may operate to the disadvantage of clients",
+        "textJa": ". 企業は、集約が顧客にとって不利に働く可能性があることを顧客に開示している"
+      },
+      {
+        "letter": "D",
+        "text": ". A firm may aggregate orders if it wishes",
+        "textJa": ". 企業は、希望すれば注文を集約することができる"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A disclosure that aggregation may operate to the disadvantage clients is essential.",
+    "globalId": 365,
+    "categoryId": 124,
+    "questionJa": "ある企業が、自社の買い注文を顧客の買い注文と同じチケットに載せることを検討しています。企業がこれを行う前に、次のうち正しいものはどれですか？",
+    "explanationJa": "集約が顧客に不利に働く可能性があるという開示は不可欠です。"
+  },
+  {
+    "id": 125,
+    "question": "Where an investment bank is providing research to a fund manager a firm must apply a separately identifiable charge for this research. The FCA implemented changes under UK MiFID that fund managers do not have to pay if the research provided relates a company with a market capitalisation below:",
+    "category": "The FCA Conduct of Business Sourcebook/Client Assets",
+    "questionId": "4161512",
+    "options": [
+      {
+        "letter": "A",
+        "text": ". £50 million",
+        "textJa": ". 5000万ポンド"
+      },
+      {
+        "letter": "B",
+        "text": ". £100 million",
+        "textJa": ". 1億ポンド"
+      },
+      {
+        "letter": "C",
+        "text": ". £200 million",
+        "textJa": ". 2億ポンド"
+      },
+      {
+        "letter": "D",
+        "text": ". £270 million",
+        "textJa": ". 2億7000万ポンド"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "With respect to the provision of research under UK MiFID, the following new rules came into effect from 1 March 2022 under  the Inducement Rules for small or medium enterprises. Research on companies with a market capitalisation of below £200 million will be exempt – meaning that UK-based fund managers do not have to pay for this research. UK asset managers can continue to pay for this research if they so wish – due to operational limitations.",
+    "globalId": 366,
+    "categoryId": 125,
+    "questionJa": "投資銀行がファンドマネージャーにリサーチを提供する場合、企業はこのリサーチに対して別途特定可能な料金を適用しなければなりません。FCAはUK MiFIDの下で変更を実施し、提供されるリサーチが時価総額いくら未満の企業に関するものである場合、ファンドマネージャーは支払う必要がないとしましたか？",
+    "explanationJa": "UK MiFIDに基づくリサーチの提供に関して、中小企業向けの誘引規則に基づき、2022年3月1日から以下の新しい規則が発効しました。時価総額2億ポンド未満の企業に関するリサーチは免除され、英国を拠点とするファンドマネージャーはこのリサーチに対して支払う必要がありません。英国のアセットマネージャーは、運用上の制約から、希望すれば引き続きこのリサーチに対して支払うことができます。"
+  }
+]
