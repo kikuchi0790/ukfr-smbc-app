@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, BookOpen, Target, Trophy, Clock, ArrowRight, Languages, Timer, RotateCcw, LogOut } from "lucide-react";
+import { GraduationCap, BookOpen, Target, Clock, ArrowRight, Languages, Timer, RotateCcw, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
@@ -22,14 +22,32 @@ const BigBenShowcase = dynamic(
   }
 );
 
-const BackgroundBuildings = dynamic(
-  () => import('@/components/BackgroundBuildings'),
-  { ssr: false }
+// ワイヤーアート版（将来的な切り替え用）
+// const BackgroundBuildings = dynamic(
+//   () => import('@/components/BackgroundBuildings'),
+//   { ssr: false }
+// );
+
+const BackgroundCityscape = () => (
+  <div 
+    className="fixed inset-0 w-full h-full z-0"
+    style={{
+      backgroundImage: 'url(/collective_architectural_vision.jpeg)',
+      backgroundSize: 'contain', // アスペクト比を保持して全体を表示
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: '#0a0a0a' // 画像の外側の背景色
+    }}
+  >
+    {/* オーバーレイで暗くして文字を読みやすくする */}
+    <div className="absolute inset-0 bg-gray-900/50"></div>
+  </div>
 );
 
 export default function Home() {
   const { isAuthenticated, user, logout } = useAuth();
   const [bigBenProgress, setBigBenProgress] = useState(100);
+  const bigBenStartProgress = 25; // 固定値なのでstateではなく定数として定義
 
   useEffect(() => {
     // Start animation after component mounts with a small delay
@@ -43,7 +61,7 @@ export default function Home() {
     {
       icon: <BookOpen className="w-8 h-8" />,
       title: "カテゴリ別学習",
-      description: "11カテゴリから10問ずつランダム出題"
+      description: "5カテゴリから10問ずつランダム出題"
     },
     {
       icon: <Timer className="w-8 h-8" />,
@@ -105,8 +123,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 relative">
-      {/* Wire Art Background */}
-      <BackgroundBuildings />
+      {/* 都市景観背景 */}
+      <BackgroundCityscape />
       
       {/* Content wrapper with higher z-index */}
       <div className="relative z-10">
@@ -283,24 +301,69 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* 3D Model Showcase */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+              {/* 25% Progress Example */}
+              <div className="bg-black rounded-xl overflow-hidden shadow-2xl">
+                <div className="p-4 bg-gradient-to-r from-gray-600 to-gray-500 text-white">
+                  <h4 className="text-lg font-bold flex items-center gap-2">
+                    <span className="text-2xl">🏗️</span>
+                    学習開始時 - 25%
+                  </h4>
+                  <p className="text-sm opacity-90">カテゴリ学習開始直後</p>
+                </div>
+                <div className="h-[300px]">
+                  <BigBenShowcase targetProgress={bigBenStartProgress} animationDuration={0} />
+                </div>
+              </div>
+
+              {/* 100% Progress Example */}
               <div className="bg-black rounded-xl overflow-hidden shadow-2xl">
                 <div className="p-4 bg-gradient-to-r from-yellow-600 to-yellow-500 text-white">
                   <h4 className="text-lg font-bold flex items-center gap-2">
                     <span className="text-2xl">🕰️</span>
-                    Big Ben - 100% 完成例
+                    完成形 - 100%
                   </h4>
-                  <p className="text-sm opacity-90">Regulatory Environment完全制覇で獲得</p>
+                  <p className="text-sm opacity-90">カテゴリ完全制覇！</p>
                 </div>
-                <div className="h-[400px]">
+                <div className="h-[300px]">
                   <BigBenShowcase targetProgress={bigBenProgress} animationDuration={3000} />
                 </div>
               </div>
               
-              {/* Building Icons Grid */}
-              <div>
-                <h4 className="text-xl font-bold mb-6 text-white">6つのカテゴリ、6つの建築物</h4>
+              {/* Growth Arrow and Description */}
+              <div className="flex flex-col justify-center">
+                <div className="text-center mb-6">
+                  <div className="text-6xl mb-4 animate-pulse">→</div>
+                  <h4 className="text-xl font-bold text-white mb-2">成長の証</h4>
+                  <p className="text-gray-300 text-sm">
+                    学習を進めるごとに<br/>
+                    建物が徐々に完成していきます
+                  </p>
+                </div>
+                <div className="bg-gray-800 rounded-lg p-4 space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-400">0% - 25%</span>
+                    <span className="text-gray-300">基礎構造</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-400">25% - 50%</span>
+                    <span className="text-gray-300">主要構造</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-400">50% - 75%</span>
+                    <span className="text-gray-300">詳細追加</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-400">75% - 100%</span>
+                    <span className="text-yellow-400 font-bold">完成！✨</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Building Icons Grid */}
+            <div className="mt-12">
+              <h4 className="text-xl font-bold mb-6 text-white text-center">6つのカテゴリ、6つの建築物</h4>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center group cursor-pointer hover:scale-110 transition-transform duration-200">
                     <div className="bg-gray-800 rounded-lg p-4 group-hover:bg-gray-700 h-full flex flex-col justify-between">
@@ -357,16 +420,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 p-4 bg-gray-800 rounded-lg">
-                  <p className="text-sm text-gray-300 flex items-center gap-2">
-                    <span className="text-yellow-400">✨</span>
-                    各カテゴリの進捗に応じて建物が段階的に構築!!
-                  </p>
-                  <p className="text-xs text-gray-500 mt-2">
-                    0% → 25% → 50% → 75% → 100%（完成）
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

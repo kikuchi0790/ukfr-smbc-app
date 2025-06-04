@@ -327,19 +327,36 @@ export default function BigBenShowcase({
 
     animate();
 
-    // Handle resize
+    // Handle resize with ResizeObserver for better responsiveness
     const handleResize = () => {
       if (!mountRef.current || !rendererRef.current || !cameraRef.current) return;
-      cameraRef.current.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
+      
+      const width = mountRef.current.clientWidth;
+      const height = mountRef.current.clientHeight;
+      
+      cameraRef.current.aspect = width / height;
       cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+      rendererRef.current.setSize(width, height);
+      rendererRef.current.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     };
 
+    // Use ResizeObserver to detect container size changes
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    
+    if (mountRef.current) {
+      resizeObserver.observe(mountRef.current);
+    }
+    
+    // Also listen to window resize for good measure
     window.addEventListener('resize', handleResize);
 
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
+      
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }

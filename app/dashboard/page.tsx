@@ -53,6 +53,22 @@ const BackgroundBuildings = dynamic(
   { ssr: false }
 );
 
+const BackgroundCityscape = () => (
+  <div 
+    className="fixed inset-0 w-full h-full z-0"
+    style={{
+      backgroundImage: 'url(/collective_architectural_vision.jpeg)',
+      backgroundSize: 'contain', // アスペクト比を保持して全体を表示
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: '#0a0a0a' // 画像の外側の背景色
+    }}
+  >
+    {/* オーバーレイで暗くして文字を読みやすくする */}
+    <div className="absolute inset-0 bg-gray-900/50"></div>
+  </div>
+);
+
 function DashboardContent() {
   const { user } = useAuth();
   const router = useRouter();
@@ -226,8 +242,8 @@ function DashboardContent() {
 
   return (
     <div className="min-h-screen bg-gray-900 relative">
-      {/* 3D Background */}
-      <BackgroundBuildings />
+      {/* 都市景観背景 */}
+      <BackgroundCityscape />
       
       {/* Content with relative positioning */}
       <div className="relative z-10">

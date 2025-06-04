@@ -60,6 +60,8 @@ function StudySessionContent() {
   const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
+  const isMockMode = mode === "mock25" || mode === "mock75";
+
   useEffect(() => {
     loadQuestions();
   }, [mode, categoryParam]);
@@ -81,7 +83,12 @@ function StudySessionContent() {
     }
   }, [mockAnswers, currentQuestionIndex, session, questions, mode, user]);
 
-  const isMockMode = mode === "mock25" || mode === "mock75";
+  // セッション終了時のリダイレクト
+  useEffect(() => {
+    if (sessionEnded) {
+      router.push('/study/complete');
+    }
+  }, [sessionEnded, router]);
 
   const loadQuestions = withErrorHandling(async () => {
     setLoading(true);
@@ -535,18 +542,17 @@ function StudySessionContent() {
       // クリーンアップが失敗してもMock試験保存は試行する
     }
     
-    // Mock試験の回答をAnswerオブジェクトに変換
+    // Mock試験の回答をAnswerオブジェクトに変換（未回答も含める）
     const answers: Answer[] = [];
     questions.forEach((question, index) => {
       const selectedAnswer = mockAnswers.get(question.questionId);
-      if (selectedAnswer) {
-        answers.push({
-          questionId: question.questionId,
-          selectedAnswer,
-          isCorrect: selectedAnswer === question.correctAnswer,
-          answeredAt: new Date().toISOString()
-        });
-      }
+      // 回答の有無に関わらず、すべての問題を記録
+      answers.push({
+        questionId: question.questionId,
+        selectedAnswer: selectedAnswer || '', // 未回答は空文字列
+        isCorrect: selectedAnswer ? selectedAnswer === question.correctAnswer : false, // 未回答は不正解扱い
+        answeredAt: selectedAnswer ? new Date().toISOString() : ''
+      });
     });
     
     console.log('answers length:', answers.length);
@@ -799,8 +805,14 @@ function StudySessionContent() {
   }
 
   if (sessionEnded) {
-    router.push('/study/complete');
-    return null;
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-400">完了画面へ移動中...</p>
+        </div>
+      </div>
+    );
   }
 
   const currentQuestion = questions[currentQuestionIndex];

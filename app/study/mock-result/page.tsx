@@ -407,8 +407,33 @@ function MockResultContent() {
             {passed ? '合格' : '不合格'}
           </p>
           <p className="text-gray-400">
-            {session.answers.filter(a => a.isCorrect).length} / {session.answers.length} 問正解
+            {session.answers.filter(a => a.isCorrect).length} / {session.answers.length} 問中正解
           </p>
+          <p className="text-gray-500 text-sm mt-1">
+            （{session.answers.filter(a => a.selectedAnswer !== '').length} 問回答済み）
+          </p>
+        </div>
+
+        {/* Answer Summary */}
+        <div className="bg-gray-800 rounded-lg p-4 mb-6 border border-gray-700">
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-sm text-gray-400">回答済み</p>
+              <p className="text-xl font-bold text-gray-100">
+                {session.answers.filter(a => a.selectedAnswer !== '').length}問
+              </p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400">未回答</p>
+              <p className="text-xl font-bold text-yellow-400">
+                {session.answers.filter(a => a.selectedAnswer === '').length}問
+              </p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400">全問題数</p>
+              <p className="text-xl font-bold text-gray-100">{session.answers.length}問</p>
+            </div>
+          </div>
         </div>
 
         {/* Stats Grid */}
@@ -439,9 +464,11 @@ function MockResultContent() {
               <h3 className="font-medium text-gray-300">平均解答時間</h3>
             </div>
             <p className="text-2xl font-bold text-gray-100">
-              {Math.floor((new Date(session.completedAt || '').getTime() - new Date(session.startedAt).getTime()) / 1000 / session.answers.length)}秒
+              {session.answers.filter(a => a.selectedAnswer !== '').length > 0 
+                ? Math.floor((new Date(session.completedAt || '').getTime() - new Date(session.startedAt).getTime()) / 1000 / session.answers.filter(a => a.selectedAnswer !== '').length)
+                : 0}秒
             </p>
-            <p className="text-sm text-gray-500">1問あたり</p>
+            <p className="text-sm text-gray-500">1問あたり（回答済みのみ）</p>
           </div>
         </div>
 
