@@ -37,7 +37,7 @@ function cleanupOldData() {
       if (!key) continue;
       
       // 一時的なMock試験結果（1時間以上前）を削除
-      if (key.startsWith('tempMockResult_')) {
+      if (key.startsWith('tempMockResult_') || key.startsWith('tempMockQuestions_')) {
         keysToDelete.push(key);
       }
       

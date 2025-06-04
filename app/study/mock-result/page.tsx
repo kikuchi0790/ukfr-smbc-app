@@ -68,10 +68,13 @@ function MockResultContent() {
     
     // LocalStorageから一時保存されたMock試験結果を読み込む（ユーザー固有のキーを使用）
     const tempKey = `tempMockResult_${user.nickname}`;
+    const questionsKey = `tempMockQuestions_${user.nickname}`;
     console.log('User:', user.nickname);
     console.log('Looking for key:', tempKey);
-    const tempResult = safeLocalStorage.getItem<MockResult>(tempKey);
+    const tempResult = safeLocalStorage.getItem<any>(tempKey);
+    const tempQuestions = safeLocalStorage.getItem<Question[]>(questionsKey);
     console.log('Found result:', tempResult);
+    console.log('Found questions:', tempQuestions?.length);
     
     if (!tempResult) {
       console.error('No mock result found in localStorage with key:', tempKey);
@@ -80,23 +83,35 @@ function MockResultContent() {
       
       // フォールバック1：userIdを使ったキーも試す
       const fallbackKey = `tempMockResult_${user.id}`;
-      const fallbackResult = safeLocalStorage.getItem<MockResult>(fallbackKey);
-      if (fallbackResult) {
+      const fallbackQuestionsKey = `tempMockQuestions_${user.id}`;
+      const fallbackResult = safeLocalStorage.getItem<any>(fallbackKey);
+      const fallbackQuestions = safeLocalStorage.getItem<Question[]>(fallbackQuestionsKey);
+      if (fallbackResult && (fallbackQuestions || fallbackResult.questions)) {
         console.log('Found result with fallback key:', fallbackKey);
-        processResults(fallbackResult);
+        processResults({
+          ...fallbackResult,
+          questions: fallbackQuestions || fallbackResult.questions
+        });
         safeLocalStorage.removeItem(fallbackKey);
+        safeLocalStorage.removeItem(fallbackQuestionsKey);
         return;
       }
       
       // フォールバック2：グローバルキーも試す
       const globalKey = 'tempMockResult_latest';
-      const globalResult = safeLocalStorage.getItem<MockResult>(globalKey);
+      const globalQuestionsKey = 'tempMockQuestions_latest';
+      const globalResult = safeLocalStorage.getItem<any>(globalKey);
+      const globalQuestions = safeLocalStorage.getItem<Question[]>(globalQuestionsKey);
       if (globalResult) {
         console.log('Found result with global key:', globalKey);
         // ユーザー情報が一致するか確認
         if (globalResult.userNickname === user.nickname || globalResult.userId === user.id) {
-          processResults(globalResult);
+          processResults({
+            ...globalResult,
+            questions: globalQuestions || globalResult.questions
+          });
           safeLocalStorage.removeItem(globalKey);
+          safeLocalStorage.removeItem(globalQuestionsKey);
           return;
         } else {
           console.warn('Global result found but user mismatch:', {
@@ -110,27 +125,38 @@ function MockResultContent() {
       router.push('/study');
       return;
     }
+    
+    // 結果と問題データを結合
+    const mockResultWithQuestions: MockResult = {
+      ...tempResult,
+      questions: tempQuestions || tempResult.questions || [],
+      session: tempResult.session
+    };
 
     // データの検証
-    if (!tempResult.session || !tempResult.questions) {
-      console.error('Invalid mock result data', tempResult);
+    if (!mockResultWithQuestions.session || !mockResultWithQuestions.questions || mockResultWithQuestions.questions.length === 0) {
+      console.error('Invalid mock result data', mockResultWithQuestions);
+      alert('Mock試験の問題データが見つかりませんでした。');
       router.push('/study');
       return;
     }
 
     // answersが存在しない場合は空配列を設定
-    if (!tempResult.session.answers) {
+    if (!mockResultWithQuestions.session.answers) {
       console.warn('No answers found in session, setting empty array');
-      tempResult.session.answers = [];
+      mockResultWithQuestions.session.answers = [];
     }
 
     // 採点を実行
-    processResults(tempResult);
+    processResults(mockResultWithQuestions);
     
     // 一時データを削除（すべての可能なキーをクリーンアップ）
     safeLocalStorage.removeItem(tempKey);
+    safeLocalStorage.removeItem(questionsKey);
     safeLocalStorage.removeItem(`tempMockResult_${user.id}`);
+    safeLocalStorage.removeItem(`tempMockQuestions_${user.id}`);
     safeLocalStorage.removeItem('tempMockResult_latest');
+    safeLocalStorage.removeItem('tempMockQuestions_latest');
   }, [router, user, authLoading]);
 
   const processResults = (result: MockResult) => {

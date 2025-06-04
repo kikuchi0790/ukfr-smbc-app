@@ -41,6 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           
           // 一時的なデータを削除
           if (key.startsWith('tempMockResult_') || 
+              key.startsWith('tempMockQuestions_') ||
               key.startsWith('mockExamProgress_') ||
               key === 'answeredQuestionsTracker') {
             keysToDelete.push(key);

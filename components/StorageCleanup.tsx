@@ -35,7 +35,7 @@ export default function StorageCleanup() {
         if (!key) continue;
         
         // 一時的なMock試験結果（すべて削除）
-        if (key.startsWith('tempMockResult_')) {
+        if (key.startsWith('tempMockResult_') || key.startsWith('tempMockQuestions_')) {
           keysToDelete.push(key);
         }
         

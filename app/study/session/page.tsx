@@ -448,18 +448,22 @@ function StudySessionContent() {
     
     console.log('answers length:', answers.length);
     
-    // Mock試験の結果を一時的に保存
+    // Mock試験の結果を一時的に保存（questionsは別に保存）
     const mockResult = {
       session: {
         ...session,
         answers,
         completedAt: new Date().toISOString()
       },
-      questions: questions,
+      questionIds: questions.map(q => q.questionId),
       // ユーザー情報も保存しておく（フォールバック用）
       userId: user.id,
       userNickname: user.nickname
     };
+    
+    // 問題データは別のキーに保存（結果表示用）
+    const questionsKey = `tempMockQuestions_${user.nickname}`;
+    safeLocalStorage.setItem(questionsKey, questions);
     
     // LocalStorageに一時保存（複数のキーで保存して確実性を高める）
     const tempKey = `tempMockResult_${user.nickname}`;
@@ -473,18 +477,25 @@ function StudySessionContent() {
     try {
       // 保存前に古い一時データを削除
       const keysToClean = Object.keys(localStorage).filter(k => 
-        k.startsWith('tempMockResult_') && 
+        (k.startsWith('tempMockResult_') || k.startsWith('tempMockQuestions_')) && 
         k !== tempKey && 
         k !== tempKeyById && 
-        k !== globalKey
+        k !== globalKey &&
+        k !== questionsKey &&
+        k !== `tempMockQuestions_${user.id}` &&
+        k !== 'tempMockQuestions_latest'
       );
       keysToClean.forEach(k => localStorage.removeItem(k));
       console.log(`Cleaned ${keysToClean.length} old temp mock results`);
       
-      // 複数のキーで保存
+      // 複数のキーで保存（結果と問題を分離）
       safeLocalStorage.setItem(tempKey, mockResult);
       safeLocalStorage.setItem(tempKeyById, mockResult);
       safeLocalStorage.setItem(globalKey, mockResult);
+      
+      // 問題データも対応するキーに保存
+      safeLocalStorage.setItem(`tempMockQuestions_${user.id}`, questions);
+      safeLocalStorage.setItem('tempMockQuestions_latest', questions);
       
       console.log('Successfully saved mock result to multiple keys');
       
