@@ -121,7 +121,30 @@ function MockResultContent() {
         }
       }
       
-      alert('Mock試験の結果が見つかりませんでした。');
+      // 最終手段：最新のMock試験詳細から結果を復元してみる
+      console.log('Attempting to restore from latestMockExam data...');
+      const latestMockKey = getUserKey('latestMockExam');
+      const latestMock = safeLocalStorage.getItem<any>(latestMockKey);
+      
+      if (latestMock && latestMock.examRecord && latestMock.examRecord.completedAt) {
+        // 5分以内の最新データなら使用
+        const completedTime = new Date(latestMock.examRecord.completedAt).getTime();
+        const fiveMinutesAgo = Date.now() - (5 * 60 * 1000);
+        
+        if (completedTime > fiveMinutesAgo) {
+          console.log('Found recent mock exam data, using it as fallback');
+          processResults({
+            session: latestMock.session,
+            questions: latestMock.questions || [],
+            userId: user.id,
+            userNickname: user.nickname
+          });
+          return;
+        }
+      }
+      
+      console.error('No recent mock exam data found for recovery');
+      alert('Mock試験の結果が見つかりませんでした。\n\n保存に失敗した可能性があります。\nStorageCleanupでデータを整理してから再度お試しください。');
       router.push('/study');
       return;
     }

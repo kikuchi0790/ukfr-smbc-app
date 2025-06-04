@@ -432,6 +432,28 @@ function StudySessionContent() {
     console.log('mockAnswers size:', mockAnswers.size);
     console.log('questions length:', questions.length);
     
+    // デバッグ: 現在のlocalStorageの状況を確認
+    console.log('=== PRE-SAVE DEBUG INFO ===');
+    const currentKeys = Object.keys(localStorage);
+    console.log('Current localStorage keys:', currentKeys);
+    const currentStorage = safeLocalStorage.getStorageInfo();
+    console.log('Current storage usage:', `${(currentStorage.used/1024/1024).toFixed(2)}MB / ${(currentStorage.total/1024/1024).toFixed(2)}MB (${currentStorage.percentage}%)`);
+    
+    // 大きなアイテムを特定
+    const largeItems: { key: string, size: number }[] = [];
+    currentKeys.forEach(key => {
+      const item = localStorage.getItem(key);
+      if (item) {
+        const size = new Blob([item]).size;
+        largeItems.push({ key, size });
+      }
+    });
+    largeItems.sort((a, b) => b.size - a.size);
+    console.log('Top 10 largest items:');
+    largeItems.slice(0, 10).forEach(item => {
+      console.log(`  ${item.key}: ${(item.size/1024).toFixed(2)}KB`);
+    });
+    
     // Mock試験保存前に積極的なクリーンアップを実行
     try {
       console.log('Performing aggressive cleanup before saving mock result...');
@@ -457,6 +479,26 @@ function StudySessionContent() {
         
         // 古いMock試験進捗を削除
         if (key.startsWith('mockExamProgress_') && !key.includes(user.nickname)) {
+          keysToDelete.push(key);
+        }
+        
+        // 古いユーザーのデータを削除（きくち、きくち2など）
+        if ((key.startsWith('userProgress_') || key.startsWith('answeredQuestions_') || 
+             key.startsWith('mockExamHistory_')) && 
+            !key.includes(user.nickname) && key !== 'userProgress' && key !== 'answeredQuestions') {
+          keysToDelete.push(key);
+        }
+        
+        // Clerkやその他の外部サービスの古いデータ
+        if (key.includes('clerk') || key.includes('__clerk') || 
+            key === 'ukfr_answered_questions' || key === 'ukfr_user_progress' ||
+            key === 'userPreferences' || key.startsWith('userPreferences_')) {
+          keysToDelete.push(key);
+        }
+        
+        // その他の不要なデータ
+        if (key === 'token' || key === 'key' || key === 'final' || 
+            key === 'TanstackQueryDevtools.open' || key === 'ally-supports-cache') {
           keysToDelete.push(key);
         }
       }
@@ -565,14 +607,31 @@ function StudySessionContent() {
       
       for (const operation of saveOperations) {
         try {
+          console.log(`Attempting to save: ${operation.description} (${operation.key})`);
+          const dataSize = new Blob([JSON.stringify(operation.data)]).size;
+          console.log(`  Data size: ${(dataSize/1024).toFixed(2)}KB`);
+          
           safeLocalStorage.setItem(operation.key, operation.data);
           console.log(`✓ Saved: ${operation.description} (${operation.key})`);
           if (!savedSuccessfully) savedSuccessfully = true; // 少なくとも1つ成功
         } catch (saveError) {
           console.error(`✗ Failed to save: ${operation.description} (${operation.key})`, saveError);
+          
+          // さらに詳細なエラー情報
+          if (saveError instanceof Error) {
+            console.error(`Error name: ${saveError.name}`);
+            console.error(`Error message: ${saveError.message}`);
+            console.error(`Error stack:`, saveError.stack);
+          }
+          
+          // ストレージ状況を再確認
+          const errorTimeStorage = safeLocalStorage.getStorageInfo();
+          console.error(`Storage at error time: ${(errorTimeStorage.used/1024/1024).toFixed(2)}MB / ${(errorTimeStorage.total/1024/1024).toFixed(2)}MB (${errorTimeStorage.percentage}%)`);
+          
           // 最初の保存が失敗した場合、ユーザーにエラーを通知
           if (operation.key === tempKey) {
-            alert(`Mock試験結果の保存に失敗しました。\n\nエラー: ${saveError instanceof Error ? saveError.message : '不明なエラー'}\n\nStorageCleanupボタンでデータを削除してから再試行してください。`);
+            const errorMessage = saveError instanceof Error ? saveError.message : '不明なエラー';
+            alert(`Mock試験結果の保存に失敗しました。\n\nエラー: ${errorMessage}\n\nストレージ使用量: ${errorTimeStorage.percentage}%\n\nStorageCleanupボタンでデータを削除してから再試行してください。`);
             return; // 保存を中止
           }
         }
