@@ -196,7 +196,7 @@ function StudySessionContent() {
         savedMockProgress = safeLocalStorage.getItem<any>(progressKey);
         if (savedMockProgress && savedMockProgress.session.category === categoryParam && savedMockProgress.session.mode === mode) {
           // Restore saved progress
-          const mockAnswersMap = new Map(savedMockProgress.mockAnswers);
+          const mockAnswersMap = new Map<string, string>(savedMockProgress.mockAnswers);
           setMockAnswers(mockAnswersMap);
           setCurrentQuestionIndex(savedMockProgress.session.currentQuestionIndex);
           setSession(savedMockProgress.session);
@@ -544,13 +544,12 @@ function StudySessionContent() {
       }
       
       // 保存用のセッションデータを作成（questionsを除外）
-      const sessionToSave = {
-        ...session,
+      const { questions: _, ...sessionWithoutQuestions } = session;
+      const sessionToSave: any = {
+        ...sessionWithoutQuestions,
         completedAt: new Date().toISOString(),
-        questionIds: session.questions.map(q => q.questionId),
-        questions: undefined // 明示的に除外
+        questionIds: session.questions.map(q => q.questionId)
       };
-      delete sessionToSave.questions; // questionsフィールドを削除
       
       // Save session to history
       try {

@@ -226,12 +226,11 @@ function MockResultContent() {
 
     // セッションを履歴に追加（questionsを除外）
     if (!progress.studySessions) progress.studySessions = [];
-    const sessionToSave = {
-      ...session,
-      questionIds: questions.map(q => q.questionId),
-      questions: undefined
+    const { questions: _, ...sessionWithoutQuestions } = session;
+    const sessionToSave: any = {
+      ...sessionWithoutQuestions,
+      questionIds: questions.map(q => q.questionId)
     };
-    delete sessionToSave.questions;
     
     progress.studySessions.push(sessionToSave);
     
@@ -248,12 +247,11 @@ function MockResultContent() {
     const history = safeLocalStorage.getItem<any[]>(historyKey) || [];
     
     // セッションデータを軽量化
-    const lightSession = {
-      ...result.session,
-      questionIds: result.questions.map(q => q.questionId),
-      questions: undefined
+    const { questions: _, ...sessionWithoutQuestions } = result.session;
+    const lightSession: any = {
+      ...sessionWithoutQuestions,
+      questionIds: result.questions.map(q => q.questionId)
     };
-    delete lightSession.questions;
     
     const examRecord = {
       id: `mock_${Date.now()}`,
