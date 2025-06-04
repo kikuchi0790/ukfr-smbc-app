@@ -49,7 +49,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
         
         keysToDelete.forEach(key => localStorage.removeItem(key));
-        console.log(`App startup cleanup: removed ${keysToDelete.length} items`);
+        
+        // sessionStorageのフォールバックデータもクリーンアップ
+        const sessionKeysToDelete: string[] = [];
+        for (let i = 0; i < sessionStorage.length; i++) {
+          const key = sessionStorage.key(i);
+          if (key && key.startsWith('fallback_')) {
+            sessionKeysToDelete.push(key);
+          }
+        }
+        sessionKeysToDelete.forEach(key => sessionStorage.removeItem(key));
+        
+        console.log(`App startup cleanup: removed ${keysToDelete.length} localStorage items and ${sessionKeysToDelete.length} sessionStorage items`);
       };
       
       cleanupStorage();

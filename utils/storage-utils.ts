@@ -113,7 +113,18 @@ export const safeLocalStorage = {
         return defaultValue || null;
       }
 
-      const item = localStorage.getItem(key);
+      // まずlocalStorageから試す
+      let item = localStorage.getItem(key);
+      
+      // localStorageにない場合、sessionStorageのフォールバックを確認
+      if (item === null) {
+        const fallbackKey = `fallback_${key}`;
+        item = sessionStorage.getItem(fallbackKey);
+        if (item) {
+          console.log(`Retrieved from sessionStorage fallback: ${fallbackKey}`);
+        }
+      }
+      
       if (item === null) {
         return defaultValue || null;
       }
@@ -167,6 +178,16 @@ export const safeLocalStorage = {
         }, 0);
         
         if (newTotalSize + currentSize > 5 * 1024 * 1024) {
+          // localStorageが使えない場合、sessionStorageにフォールバック
+          console.warn('localStorage still full after cleanup, trying sessionStorage as fallback');
+          try {
+            sessionStorage.setItem(`fallback_${key}`, serialized);
+            console.log(`Saved to sessionStorage as fallback: fallback_${key}`);
+            return;
+          } catch (sessionError) {
+            console.error('sessionStorage fallback also failed:', sessionError);
+          }
+          
           throw new StorageError(
             'ストレージ容量が不足しています。ブラウザの設定から閲覧データを削除してください。',
             'QUOTA_EXCEEDED'
@@ -182,8 +203,18 @@ export const safeLocalStorage = {
         throw error;
       }
       
-      // QuotaExceededError
+      // QuotaExceededError - sessionStorageにフォールバック
       if (error instanceof DOMException && (error.code === 22 || error.name === 'QuotaExceededError')) {
+        console.warn('localStorage quota exceeded, trying sessionStorage fallback');
+        try {
+          const serialized = typeof value === 'string' ? value : JSON.stringify(value);
+          sessionStorage.setItem(`fallback_${key}`, serialized);
+          console.log(`Saved to sessionStorage as fallback: fallback_${key}`);
+          return;
+        } catch (sessionError) {
+          console.error('sessionStorage fallback failed:', sessionError);
+        }
+        
         throw new StorageError(
           'ストレージ容量が不足しています。古いデータを削除してください。',
           'QUOTA_EXCEEDED'
@@ -211,6 +242,10 @@ export const safeLocalStorage = {
         return;
       }
       localStorage.removeItem(key);
+      
+      // sessionStorageのフォールバックも削除
+      const fallbackKey = `fallback_${key}`;
+      sessionStorage.removeItem(fallbackKey);
     } catch (error) {
       console.error(`Failed to remove item from localStorage: ${key}`, error);
     }
