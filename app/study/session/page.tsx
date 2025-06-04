@@ -432,6 +432,67 @@ function StudySessionContent() {
     console.log('mockAnswers size:', mockAnswers.size);
     console.log('questions length:', questions.length);
     
+    // Mock試験保存前に積極的なクリーンアップを実行
+    try {
+      console.log('Performing aggressive cleanup before saving mock result...');
+      const storageInfo = safeLocalStorage.getStorageInfo();
+      console.log('Storage before cleanup:', `${(storageInfo.used/1024/1024).toFixed(2)}MB / ${(storageInfo.total/1024/1024).toFixed(2)}MB (${storageInfo.percentage}%)`);
+      
+      // 1. 古いMock試験の詳細データを削除（容量削減効果が高い）
+      const keysToDelete: string[] = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key) continue;
+        
+        // 最新Mock試験詳細（latestMockExam_）を削除（400KB削減）
+        if (key.startsWith('latestMockExam_')) {
+          keysToDelete.push(key);
+        }
+        
+        // 他ユーザーの一時データを削除
+        if ((key.startsWith('tempMockResult_') || key.startsWith('tempMockQuestions_')) && 
+            !key.includes(user.nickname) && !key.includes(user.id)) {
+          keysToDelete.push(key);
+        }
+        
+        // 古いMock試験進捗を削除
+        if (key.startsWith('mockExamProgress_') && !key.includes(user.nickname)) {
+          keysToDelete.push(key);
+        }
+      }
+      
+      // 2. Mock試験履歴をさらに縮小（20→10件）
+      const historyKey = `mockExamHistory_${user.nickname}`;
+      const history = safeLocalStorage.getItem<any[]>(historyKey) || [];
+      if (history.length > 10) {
+        safeLocalStorage.setItem(historyKey, history.slice(-10));
+        console.log(`Reduced mock exam history from ${history.length} to 10 items`);
+      }
+      
+      // 3. 学習セッション履歴をさらに縮小（50→30件）
+      const progressKey = `userProgress_${user.nickname}`;
+      const progress = safeLocalStorage.getItem<any>(progressKey);
+      if (progress && progress.studySessions && progress.studySessions.length > 30) {
+        progress.studySessions = progress.studySessions.slice(-30);
+        safeLocalStorage.setItem(progressKey, progress);
+        console.log('Reduced study sessions to 30 most recent');
+      }
+      
+      // 削除実行
+      keysToDelete.forEach(key => {
+        localStorage.removeItem(key);
+        console.log(`Deleted: ${key}`);
+      });
+      
+      const newStorageInfo = safeLocalStorage.getStorageInfo();
+      console.log('Storage after cleanup:', `${(newStorageInfo.used/1024/1024).toFixed(2)}MB / ${(newStorageInfo.total/1024/1024).toFixed(2)}MB (${newStorageInfo.percentage}%)`);
+      const freedBytes = storageInfo.used - newStorageInfo.used;
+      console.log(`Freed up: ${(freedBytes / 1024).toFixed(2)}KB`);
+    } catch (cleanupError) {
+      console.error('Cleanup failed:', cleanupError);
+      // クリーンアップが失敗してもMock試験保存は試行する
+    }
+    
     // Mock試験の回答をAnswerオブジェクトに変換
     const answers: Answer[] = [];
     questions.forEach((question, index) => {
@@ -489,22 +550,53 @@ function StudySessionContent() {
       console.log(`Cleaned ${keysToClean.length} old temp mock results`);
       
       // 複数のキーで保存（結果と問題を分離）
-      safeLocalStorage.setItem(tempKey, mockResult);
-      safeLocalStorage.setItem(tempKeyById, mockResult);
-      safeLocalStorage.setItem(globalKey, mockResult);
+      let savedSuccessfully = false;
+      const saveOperations = [
+        { key: tempKey, data: mockResult, description: 'Main result' },
+        { key: tempKeyById, data: mockResult, description: 'Backup result by ID' },
+        { key: globalKey, data: mockResult, description: 'Global result' },
+        { key: questionsKey, data: questions, description: 'Main questions' },
+        { key: `tempMockQuestions_${user.id}`, data: questions, description: 'Backup questions by ID' },
+        { key: 'tempMockQuestions_latest', data: questions, description: 'Global questions' }
+      ];
       
-      // 問題データも対応するキーに保存
-      safeLocalStorage.setItem(`tempMockQuestions_${user.id}`, questions);
-      safeLocalStorage.setItem('tempMockQuestions_latest', questions);
+      const finalStorageCheck = safeLocalStorage.getStorageInfo();
+      console.log('Storage before save attempt:', `${(finalStorageCheck.used/1024/1024).toFixed(2)}MB / ${(finalStorageCheck.total/1024/1024).toFixed(2)}MB (${finalStorageCheck.percentage}%)`);
       
-      console.log('Successfully saved mock result to multiple keys');
+      for (const operation of saveOperations) {
+        try {
+          safeLocalStorage.setItem(operation.key, operation.data);
+          console.log(`✓ Saved: ${operation.description} (${operation.key})`);
+          if (!savedSuccessfully) savedSuccessfully = true; // 少なくとも1つ成功
+        } catch (saveError) {
+          console.error(`✗ Failed to save: ${operation.description} (${operation.key})`, saveError);
+          // 最初の保存が失敗した場合、ユーザーにエラーを通知
+          if (operation.key === tempKey) {
+            alert(`Mock試験結果の保存に失敗しました。\n\nエラー: ${saveError instanceof Error ? saveError.message : '不明なエラー'}\n\nStorageCleanupボタンでデータを削除してから再試行してください。`);
+            return; // 保存を中止
+          }
+        }
+      }
+      
+      if (!savedSuccessfully) {
+        console.error('All save operations failed');
+        alert('Mock試験結果の保存に完全に失敗しました。ページを再読み込みして再試行してください。');
+        return;
+      }
+      
+      console.log('Save operations completed');
       
       // 確認のため再度読み込んでみる
       const savedResult = safeLocalStorage.getItem(tempKey);
-      console.log('Verification - saved result:', savedResult);
+      const savedQuestions = safeLocalStorage.getItem(questionsKey);
+      console.log('Verification - saved result:', !!savedResult);
+      console.log('Verification - saved questions:', !!savedQuestions, `(${savedQuestions?.length || 0} items)`);
       
-      // デバッグ：全てのLocalStorageキーを表示
-      console.log('All localStorage keys after save:', Object.keys(localStorage));
+      if (!savedResult) {
+        console.error('Main result verification failed!');
+        alert('Mock試験結果の保存確認に失敗しました。');
+        return;
+      }
       
       // 保存された進捗をクリア
       const progressKey = `mockExamProgress_${user.nickname}`;
@@ -513,7 +605,6 @@ function StudySessionContent() {
       // 結果画面へ遷移（保存が確実に完了してから）
       console.log('Navigating to /study/mock-result');
       
-      // 少し遅延を入れて確実に保存されるようにする
       setTimeout(() => {
         router.push('/study/mock-result');
       }, 100);

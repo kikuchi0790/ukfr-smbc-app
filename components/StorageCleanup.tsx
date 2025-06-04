@@ -49,6 +49,7 @@ export default function StorageCleanup() {
           keysToDelete.push(key);
         }
         
+        
         // 回答済み問題トラッカー（すべて削除）
         if (key === 'answeredQuestionsTracker') {
           keysToDelete.push(key);
@@ -160,11 +161,17 @@ export default function StorageCleanup() {
             <p className="text-gray-300 mb-4">
               以下のデータが削除されます：
             </p>
-            <ul className="list-disc list-inside text-sm text-gray-400 mb-6">
-              <li>1日以上前の一時的なMock試験結果</li>
-              <li>1週間以上前のMock試験履歴</li>
-              <li>古い学習セッション（最新100件以外）</li>
+            <ul className="list-disc list-inside text-sm text-gray-400 mb-4">
+              <li>すべての一時的なMock試験結果</li>
+              <li>すべてのMock試験進捗データ</li>
+              <li>最新のMock試験詳細（復習用データ）</li>
+              <li>回答済み問題トラッカー</li>
+              <li>古い学習セッション（最新30件以外）</li>
+              <li>古いMock試験履歴（最新10件以外）</li>
             </ul>
+            <p className="text-yellow-400 text-sm mb-4">
+              ⚠️ 注意：実行中のMock試験がある場合は、進捗が失われます。
+            </p>
             
             <div className="flex gap-3 justify-end">
               <button
