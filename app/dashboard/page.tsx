@@ -30,6 +30,7 @@ import WireframeBuildings from "@/components/WireframeBuildings";
 import dynamic from 'next/dynamic';
 import { categories } from "@/utils/category-utils";
 import { validateAndFixProgress, cleanupAllProgressData } from "@/utils/progress-validator";
+import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
 
 // Dynamic import for 3D components to avoid SSR issues
 const WireframeBuildings3D = dynamic(
@@ -119,6 +120,16 @@ function DashboardContent() {
   const calculateAccuracy = () => {
     if (!progress || progress.totalQuestionsAnswered === 0) return 0;
     return Math.round((progress.correctAnswers / progress.totalQuestionsAnswered) * 100);
+  };
+
+  const calculateOverallMockAccuracy = () => {
+    if (!progress?.mockCategoryProgress) return 0;
+    
+    const mockResults = Object.values(progress.mockCategoryProgress);
+    if (mockResults.length === 0) return 0;
+    
+    const totalScore = mockResults.reduce((sum, result) => sum + result.latestScore, 0);
+    return Math.round(totalScore / mockResults.length);
   };
 
   const calculatePassProbability = () => {
@@ -260,7 +271,7 @@ function DashboardContent() {
         <div className="container mx-auto px-4 py-8">
           {/* Compact Stats Summary */}
           <div className="bg-gray-800/90 rounded-xl shadow-lg border border-gray-700 p-4 mb-6 backdrop-blur-sm">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             <div className="text-center">
               <div className="flex items-center justify-center mb-1">
                 <BarChart3 className="w-5 h-5 text-indigo-600 mr-1" />
@@ -290,7 +301,15 @@ function DashboardContent() {
                 <TrendingUp className="w-5 h-5 text-green-600 mr-1" />
                 <span className="text-xl font-bold text-gray-100">{calculateAccuracy()}%</span>
               </div>
-              <p className="text-xs text-gray-400">正答率</p>
+              <p className="text-xs text-gray-400">学習正答率</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-1">
+                <Trophy className="w-5 h-5 text-yellow-600 mr-1" />
+                <span className="text-xl font-bold text-yellow-400">{calculateOverallMockAccuracy()}%</span>
+              </div>
+              <p className="text-xs text-gray-400">Mock平均</p>
             </div>
             
             <div className="text-center">
@@ -406,29 +425,79 @@ function DashboardContent() {
             <h2 className="text-xl font-bold mb-4 text-gray-100">Mock試験進捗</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {mockCategories.map((category) => {
-                const data = progress.categoryProgress[category.name];
-                const percentage = data.totalQuestions > 0 
-                  ? Math.round((data.answeredQuestions / data.totalQuestions) * 100)
-                  : 0;
-                const accuracy = data.answeredQuestions > 0
-                  ? Math.round((data.correctAnswers / data.answeredQuestions) * 100)
-                  : 0;
-
+                const mockProgress = getMockCategoryProgress(category.name);
+                
                 return (
                   <div key={category.name} className="border border-gray-700 bg-gray-700/90 backdrop-blur-sm rounded-lg p-4">
-                    <h3 className="font-medium mb-2 text-gray-200">{category.name}</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-400">進捗:</span>
-                        <span className="text-gray-200">{percentage}%</span>
+                    <h3 className="font-medium mb-3 text-gray-200">{category.name}</h3>
+                    
+                    {mockProgress ? (
+                      <div className="space-y-3 text-sm">
+                        {/* 受験回数 */}
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">受験回数:</span>
+                          <span className="text-gray-200 font-medium">{mockProgress.attemptsCount}回</span>
+                        </div>
+                        
+                        {/* 最高得点 */}
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">最高得点:</span>
+                          <span className={`font-bold ${mockProgress.bestScore >= 70 ? 'text-green-400' : 'text-orange-400'}`}>
+                            {mockProgress.bestScore}%
+                            {mockProgress.bestScore >= 70 && <span className="ml-1 text-xs">合格</span>}
+                          </span>
+                        </div>
+                        
+                        {/* 最新得点 */}
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">最新得点:</span>
+                          <span className={`font-medium ${mockProgress.latestScore >= 70 ? 'text-green-400' : 'text-orange-400'}`}>
+                            {mockProgress.latestScore}%
+                          </span>
+                        </div>
+                        
+                        {/* 合格率 */}
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">合格率:</span>
+                          <span className="text-gray-200">
+                            {mockProgress.passedCount}/{mockProgress.attemptsCount}回
+                            <span className="ml-1 text-xs text-gray-400">
+                              ({Math.round((mockProgress.passedCount / mockProgress.attemptsCount) * 100)}%)
+                            </span>
+                          </span>
+                        </div>
+                        
+                        {/* 平均得点 */}
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">平均得点:</span>
+                          <span className="text-gray-300">{mockProgress.averageScore}%</span>
+                        </div>
+                        
+                        {/* 進捗インジケーター */}
+                        <div className="mt-3 pt-2 border-t border-gray-600">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-gray-500">習熟度</span>
+                            <span className={`font-bold ${
+                              mockProgress.bestScore >= 80 ? 'text-green-400' : 
+                              mockProgress.bestScore >= 70 ? 'text-yellow-400' : 'text-orange-400'
+                            }`}>
+                              {mockProgress.bestScore >= 80 ? '優秀' : 
+                               mockProgress.bestScore >= 70 ? '合格レベル' : '要学習'}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-400">正答率:</span>
-                        <span className={accuracy >= 70 ? 'text-green-500' : 'text-orange-500'}>
-                          {accuracy}%
-                        </span>
+                    ) : (
+                      <div className="text-center py-4">
+                        <div className="text-gray-400 text-sm mb-2">未受験</div>
+                        <Link 
+                          href={`/study?mode=mock&category=${encodeURIComponent(category.name)}`}
+                          className="inline-block px-3 py-1 bg-indigo-600 text-white text-xs rounded hover:bg-indigo-700 transition-colors"
+                        >
+                          受験する
+                        </Link>
                       </div>
-                    </div>
+                    )}
                   </div>
                 );
               })}

@@ -6,7 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { safeLocalStorage, getUserKey } from '@/utils/storage-utils';
 import { Question, StudySession, Answer, UserProgress } from '@/types';
-import { saveIncorrectQuestion } from '@/utils/study-utils';
+import { saveIncorrectQuestion, updateMockExamProgress, isMockCategory } from '@/utils/study-utils';
 import { 
   Trophy, 
   Target, 
@@ -223,8 +223,19 @@ function MockResultContent() {
       setTotalScore(score);
       setPassed(score >= 70);
 
-      // UserProgressを更新
-      updateUserProgress(session, questions);
+      // Mock試験の場合は専用の進捗更新を使用
+      if (session.category && isMockCategory(session.category)) {
+        updateMockExamProgress(session.category, score, questions.length);
+        // Mock試験では間違えた問題のみ記録（進捗は更新しない）
+        session.answers.forEach((answer, index) => {
+          if (!answer.isCorrect && questions[index]) {
+            saveIncorrectQuestion(questions[index].questionId, questions[index].category);
+          }
+        });
+      } else {
+        // 通常学習の場合は従来の更新
+        updateUserProgress(session, questions);
+      }
       
       // Mock試験履歴を保存
       saveMockExamHistory(result, score);

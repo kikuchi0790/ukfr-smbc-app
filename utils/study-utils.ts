@@ -1,4 +1,4 @@
-import { Question, IncorrectQuestion, UserProgress, OvercomeQuestion, Category } from "@/types";
+import { Question, IncorrectQuestion, UserProgress, OvercomeQuestion, Category, MockCategoryProgress } from "@/types";
 import { safeLocalStorage, getUserKey } from './storage-utils';
 import { categories } from './category-utils';
 
@@ -291,5 +291,80 @@ export function getAnsweredQuestionIds(category: string): string[] {
   } catch (error) {
     console.error('Error getting answered question IDs:', error);
     return [];
+  }
+}
+
+// Mock試験の結果を進捗に反映（通常学習とは分離）
+export function updateMockExamProgress(category: Category, score: number, totalQuestions: number) {
+  try {
+    const userProgressKey = getUserKey('userProgress');
+    let progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    if (!progress) return;
+
+    // mockCategoryProgressが未定義の場合は初期化
+    if (!progress.mockCategoryProgress) {
+      progress.mockCategoryProgress = {};
+    }
+
+    const currentProgress = progress.mockCategoryProgress[category];
+    const passed = score >= 70;
+    const currentDate = new Date().toISOString();
+
+    if (currentProgress) {
+      // 既存の進捗を更新
+      const newAttemptsCount = currentProgress.attemptsCount + 1;
+      const newBestScore = Math.max(currentProgress.bestScore, score);
+      const newPassedCount = currentProgress.passedCount + (passed ? 1 : 0);
+      
+      // 平均スコアを計算
+      const newAverageScore = Math.round(
+        ((currentProgress.averageScore * currentProgress.attemptsCount) + score) / newAttemptsCount
+      );
+
+      progress.mockCategoryProgress[category] = {
+        totalQuestions,
+        attemptsCount: newAttemptsCount,
+        bestScore: newBestScore,
+        latestScore: score,
+        averageScore: newAverageScore,
+        passedCount: newPassedCount,
+        lastAttemptDate: currentDate
+      };
+    } else {
+      // 新規の進捗を作成
+      progress.mockCategoryProgress[category] = {
+        totalQuestions,
+        attemptsCount: 1,
+        bestScore: score,
+        latestScore: score,
+        averageScore: score,
+        passedCount: passed ? 1 : 0,
+        lastAttemptDate: currentDate
+      };
+    }
+
+    safeLocalStorage.setItem(userProgressKey, progress);
+    console.log(`Mock exam progress updated for ${category}: ${score}% (${passed ? 'PASSED' : 'FAILED'})`);
+  } catch (error) {
+    console.error('Error updating mock exam progress:', error);
+  }
+}
+
+// Mock試験のカテゴリかどうかを判定
+export function isMockCategory(category: Category): boolean {
+  return category.includes('Mock') || category.includes('Final Study Questions');
+}
+
+// Mock試験の進捗情報を取得
+export function getMockCategoryProgress(category: Category): MockCategoryProgress | null {
+  try {
+    const userProgressKey = getUserKey('userProgress');
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    if (!progress?.mockCategoryProgress) return null;
+    
+    return progress.mockCategoryProgress[category] || null;
+  } catch (error) {
+    console.error('Error getting mock category progress:', error);
+    return null;
   }
 }

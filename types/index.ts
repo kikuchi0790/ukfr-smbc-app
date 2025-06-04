@@ -73,6 +73,7 @@ export interface UserProgress {
   totalQuestionsAnswered: number;
   correctAnswers: number;
   categoryProgress: Record<Category, CategoryProgress>;
+  mockCategoryProgress?: Record<Category, MockCategoryProgress>; // Mock試験専用進捗
   studySessions: StudySession[];
   incorrectQuestions: IncorrectQuestion[];
   overcomeQuestions: OvercomeQuestion[];
@@ -94,6 +95,16 @@ export interface CategoryProgress {
   answeredQuestions: number;
   correctAnswers: number;
   lastStudyDate?: string;
+}
+
+export interface MockCategoryProgress {
+  totalQuestions: number;
+  attemptsCount: number;        // 受験回数
+  bestScore: number;           // 最高得点
+  latestScore: number;         // 最新得点
+  averageScore: number;        // 平均得点
+  passedCount: number;         // 合格回数 (≥70%)
+  lastAttemptDate: string;     // 最終受験日
 }
 
 export interface UserPreferences {
