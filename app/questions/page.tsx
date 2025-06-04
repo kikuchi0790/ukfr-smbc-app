@@ -161,27 +161,27 @@ export default function QuestionsListPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
-          <p className="mt-4 text-gray-600">問題を読み込んでいます...</p>
+          <p className="mt-4 text-gray-400">問題を読み込んでいます...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-10">
+      <header className="bg-gray-800 shadow-sm sticky top-0 z-10 border-b border-gray-700">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
+            <Link href="/dashboard" className="text-gray-400 hover:text-gray-100">
               <ArrowLeft className="w-6 h-6" />
             </Link>
             <div className="flex-1">
-              <h1 className="text-2xl font-bold text-gray-900">問題リスト</h1>
-              <p className="text-gray-600">カテゴリ別の問題一覧</p>
+              <h1 className="text-2xl font-bold text-gray-100">問題リスト</h1>
+              <p className="text-gray-400">カテゴリ別の問題一覧</p>
             </div>
           </div>
         </div>
@@ -189,17 +189,18 @@ export default function QuestionsListPage() {
 
       <div className="container mx-auto px-4 py-8">
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-gray-800 rounded-lg shadow-sm p-6 mb-6 border border-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Category Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 カテゴリ
               </label>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value as Category | "all")}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                style={{ colorScheme: 'dark' }}
               >
                 {categories.map(cat => (
                   <option key={cat.value} value={cat.value}>
@@ -211,13 +212,14 @@ export default function QuestionsListPage() {
 
             {/* Status Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 ステータス
               </label>
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value as "all" | "unanswered" | "correct" | "incorrect" | "overcome")}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                style={{ colorScheme: 'dark' }}
               >
                 <option value="all">すべて ({getStatusCount("all")}問)</option>
                 <option value="unanswered">未学習 ({getStatusCount("unanswered")}問)</option>
@@ -229,7 +231,7 @@ export default function QuestionsListPage() {
 
             {/* Search */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 検索
               </label>
               <div className="relative">
@@ -239,14 +241,15 @@ export default function QuestionsListPage() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="問題文や解説を検索..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  style={{ colorScheme: 'dark' }}
+                  className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
             </div>
           </div>
 
           {/* Results count */}
-          <div className="mt-4 text-sm text-gray-600">
+          <div className="mt-4 text-sm text-gray-400">
             {filteredQuestions.length}問が見つかりました
           </div>
         </div>
@@ -258,52 +261,52 @@ export default function QuestionsListPage() {
             const isExpanded = expandedQuestion === question.questionId;
 
             return (
-              <div key={question.questionId} className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div key={question.questionId} className="bg-gray-800 rounded-lg shadow-sm overflow-hidden border border-gray-700">
                 <button
                   onClick={() => toggleQuestion(question.questionId)}
-                  className="w-full px-6 py-4 text-left hover:bg-gray-50 transition-colors"
+                  className="w-full px-6 py-4 text-left hover:bg-gray-700 transition-colors"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1 pr-4">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded">
+                        <span className="text-xs px-2 py-1 bg-indigo-900/30 text-indigo-400 rounded">
                           {question.category}
                         </span>
                         {status ? (
                           <div className="flex items-center gap-2">
                             {status.overcome ? (
-                              <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded flex items-center gap-1">
+                              <span className="text-xs px-2 py-1 bg-green-900/30 text-green-400 rounded flex items-center gap-1">
                                 <Check className="w-3 h-3" />
                                 克服済み
                               </span>
                             ) : status.correct ? (
-                              <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded flex items-center gap-1">
+                              <span className="text-xs px-2 py-1 bg-blue-900/30 text-blue-400 rounded flex items-center gap-1">
                                 <Check className="w-3 h-3" />
                                 正解済み
                               </span>
                             ) : status.answered ? (
-                              <span className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded flex items-center gap-1">
+                              <span className="text-xs px-2 py-1 bg-red-900/30 text-red-400 rounded flex items-center gap-1">
                                 <X className="w-3 h-3" />
                                 不正解
                               </span>
                             ) : null}
                           </div>
                         ) : (
-                          <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">
+                          <span className="text-xs px-2 py-1 bg-gray-700 text-gray-400 rounded">
                             未学習
                           </span>
                         )}
                       </div>
-                      <h3 className="font-medium text-gray-900">
+                      <h3 className="font-medium text-gray-100">
                         Q{question.id}. {question.question}
                       </h3>
                       {question.questionJa && (
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-gray-400 mt-1">
                           {question.questionJa}
                         </p>
                       )}
                     </div>
-                    <div className="text-gray-400">
+                    <div className="text-gray-500">
                       {isExpanded ? (
                         <ChevronUp className="w-5 h-5" />
                       ) : (
@@ -315,7 +318,7 @@ export default function QuestionsListPage() {
 
                 {/* Expanded Content */}
                 {isExpanded && (
-                  <div className="px-6 pb-4 border-t">
+                  <div className="px-6 pb-4 border-t border-gray-700">
                     {/* Options */}
                     <div className="mt-4 space-y-2">
                       {question.options.map((option) => {
@@ -324,24 +327,24 @@ export default function QuestionsListPage() {
                           <div
                             key={option.letter}
                             className={`p-3 rounded-lg ${
-                              isCorrect ? 'bg-green-50 border border-green-200' : 'bg-gray-50'
+                              isCorrect ? 'bg-green-900/20 border border-green-800' : 'bg-gray-700'
                             }`}
                           >
                             <div className="flex items-start gap-2">
-                              <span className={`font-medium ${isCorrect ? 'text-green-700' : 'text-gray-700'}`}>
+                              <span className={`font-medium ${isCorrect ? 'text-green-400' : 'text-gray-300'}`}>
                                 {option.letter}.
                               </span>
                               <div className="flex-1">
-                                <p className={isCorrect ? 'text-green-700' : 'text-gray-700'}>
+                                <p className={isCorrect ? 'text-green-400' : 'text-gray-300'}>
                                   {option.text}
                                 </p>
                                 {option.textJa && (
-                                  <p className={`text-sm mt-1 ${isCorrect ? 'text-green-600' : 'text-gray-600'}`}>
+                                  <p className={`text-sm mt-1 ${isCorrect ? 'text-green-400' : 'text-gray-400'}`}>
                                     {option.textJa}
                                   </p>
                                 )}
                               </div>
-                              {isCorrect && <Check className="w-5 h-5 text-green-600 flex-shrink-0" />}
+                              {isCorrect && <Check className="w-5 h-5 text-green-400 flex-shrink-0" />}
                             </div>
                           </div>
                         );
@@ -349,14 +352,14 @@ export default function QuestionsListPage() {
                     </div>
 
                     {/* Explanation */}
-                    <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <div className="mt-4 p-4 bg-blue-900/20 rounded-lg">
                       <div className="flex items-start gap-2">
-                        <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <AlertCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="font-medium text-blue-900 mb-1">解説</p>
-                          <p className="text-blue-800">{question.explanation}</p>
+                          <p className="font-medium text-blue-300 mb-1">解説</p>
+                          <p className="text-blue-200">{question.explanation}</p>
                           {question.explanationJa && (
-                            <p className="text-blue-700 text-sm mt-2">
+                            <p className="text-blue-300 text-sm mt-2">
                               {question.explanationJa}
                             </p>
                           )}
@@ -384,7 +387,7 @@ export default function QuestionsListPage() {
         {/* No results */}
         {filteredQuestions.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500">該当する問題が見つかりませんでした</p>
+            <p className="text-gray-400">該当する問題が見つかりませんでした</p>
           </div>
         )}
       </div>

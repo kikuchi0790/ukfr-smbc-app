@@ -16,11 +16,14 @@ import {
   Timer
 } from "lucide-react";
 import { Category, UserProgress, CategoryStudyMode } from "@/types";
-import { safeLocalStorage } from "@/utils/storage-utils";
+import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
+import { useAuth } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 function StudyModeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useAuth();
   const categoryRef = useRef<HTMLDivElement>(null);
   const mockRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -29,13 +32,26 @@ function StudyModeContent() {
   const [selectedPart, setSelectedPart] = useState<1 | 2 | 3 | null>(null);
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [categoryStudyMode, setCategoryStudyMode] = useState<CategoryStudyMode>("random");
+  const [hasSavedMockProgress, setHasSavedMockProgress] = useState(false);
+  const [savedMockCategory, setSavedMockCategory] = useState<string | null>(null);
+  const [savedMockMode, setSavedMockMode] = useState<string | null>(null);
 
   useEffect(() => {
     // Load user progress
-    const userProgress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    const userProgressKey = getUserKey('userProgress');
+    const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     setProgress(userProgress);
     if (userProgress?.preferences?.categoryStudyMode) {
       setCategoryStudyMode(userProgress.preferences.categoryStudyMode);
+    }
+
+    // Check for saved Mock exam progress
+    const progressKey = `mockExamProgress_${user?.nickname}`;
+    const savedMockProgress = safeLocalStorage.getItem<any>(progressKey);
+    if (savedMockProgress) {
+      setHasSavedMockProgress(true);
+      setSavedMockCategory(savedMockProgress.session.category);
+      setSavedMockMode(savedMockProgress.session.mode);
     }
 
     // Handle query parameters
@@ -192,6 +208,39 @@ function StudyModeContent() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
+        {/* Saved Mock Progress Alert */}
+        {hasSavedMockProgress && (
+          <div className="mb-6 bg-blue-900/30 border border-blue-700 rounded-lg p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Timer className="w-6 h-6 text-blue-400" />
+              <div>
+                <p className="text-blue-200 font-medium">前回のMock試験を続けますか？</p>
+                <p className="text-blue-300 text-sm">{savedMockCategory} - {savedMockMode === 'mock25' ? '25問' : '75問'}</p>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  router.push(`/study/session?mode=${savedMockMode}&category=${encodeURIComponent(savedMockCategory!)}`);
+                }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                続ける
+              </button>
+              <button
+                onClick={() => {
+                  const progressKey = `mockExamProgress_${user?.nickname}`;
+                  safeLocalStorage.removeItem(progressKey);
+                  setHasSavedMockProgress(false);
+                }}
+                className="px-4 py-2 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600"
+              >
+                破棄
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Category Study Section */}
         <div ref={categoryRef} className="mb-12">
           <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-gray-100">
@@ -454,8 +503,10 @@ function StudyModeContent() {
 
 export default function StudyModePage() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-100">Loading...</div>}>
-      <StudyModeContent />
-    </Suspense>
+    <ProtectedRoute>
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-100">Loading...</div>}>
+        <StudyModeContent />
+      </Suspense>
+    </ProtectedRoute>
   );
 }

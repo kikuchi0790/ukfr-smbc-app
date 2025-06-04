@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { AuthProvider } from "@/contexts/AuthContext";
+import StorageCleanup from "@/components/StorageCleanup";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,14 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="ja">
-        <body className={inter.className}>
+    <html lang="ja">
+      <body className={inter.className}>
+        <AuthProvider>
           <ErrorBoundary>
             {children}
+            <StorageCleanup />
           </ErrorBoundary>
-        </body>
-      </html>
-    </ClerkProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

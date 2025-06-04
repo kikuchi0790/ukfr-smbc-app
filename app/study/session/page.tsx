@@ -20,7 +20,7 @@ import StudyTimer from "@/components/StudyTimer";
 import ErrorAlert from "@/components/ErrorAlert";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import { fetchJSON } from "@/utils/fetch-utils";
-import { safeLocalStorage } from "@/utils/storage-utils";
+import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { 
   getRandomQuestionsForCategory, 
   getMockQuestions, 
@@ -33,10 +33,13 @@ import {
 } from "@/utils/study-utils";
 import { getCategoryInfo } from "@/utils/category-utils";
 import { AnsweredQuestionsTracker, validateAndFixProgress } from "@/utils/progress-validator";
+import { useAuth } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 function StudySessionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useAuth();
   const mode = searchParams.get("mode") as StudyMode;
   const categoryParam = searchParams.get("category") ? decodeURIComponent(searchParams.get("category")!) : null;
   const partParam = searchParams.get("part");
@@ -46,17 +49,39 @@ function StudySessionContent() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
+  const [mockAnswers, setMockAnswers] = useState<Map<string, string>>(new Map()); // Mock試験用の回答記録
   const [session, setSession] = useState<StudySession | null>(null);
   const [loading, setLoading] = useState(true);
   const [showJapanese, setShowJapanese] = useState(true);
   const [sessionEnded, setSessionEnded] = useState(false);
   const [showOvercomeMessage, setShowOvercomeMessage] = useState(false);
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   useEffect(() => {
     loadQuestions();
   }, [mode, categoryParam]);
+
+  // Mock試験の進捗を自動保存
+  useEffect(() => {
+    if (isMockMode && session && mockAnswers.size > 0) {
+      const mockProgress = {
+        session: {
+          ...session,
+          currentQuestionIndex,
+          savedAt: new Date().toISOString()
+        },
+        mockAnswers: Array.from(mockAnswers.entries()),
+        questions
+      };
+      const progressKey = `mockExamProgress_${user?.nickname}`;
+      safeLocalStorage.setItem(progressKey, mockProgress);
+    }
+  }, [mockAnswers, currentQuestionIndex, session, questions, mode, user]);
+
+  const isMockMode = mode === "mock25" || mode === "mock75";
 
   const loadQuestions = withErrorHandling(async () => {
     setLoading(true);
@@ -136,17 +161,57 @@ function StudySessionContent() {
         }
         setShowJapanese(progress?.preferences?.showJapaneseInStudy ?? true);
       } else if (mode === "mock25" || mode === "mock75") {
-        // Mock試験モード
-        const categoryQuestions = allQuestions.filter(q => q.category === categoryParam);
+        // Mock試験モード - 個別のMockファイルから読み込む
+        let mockQuestions: Question[] = [];
+        
+        // Mock試験番号を抽出 (例: "Regulations Mock 1" -> "1")
+        const mockNumber = categoryParam?.match(/Mock (\d+)/)?.[1];
+        if (mockNumber) {
+          try {
+            // 個別のMock試験ファイルから読み込む
+            const mockData = await fetchJSON<Question[]>(`/data/category-regulations-mock-${mockNumber}.json`);
+            mockQuestions = mockData;
+          } catch (error) {
+            console.warn(`Failed to load mock file, falling back to all-questions.json`, error);
+            // フォールバック: all-questions.jsonから読み込む
+            mockQuestions = allQuestions.filter(q => q.category === categoryParam);
+          }
+        } else {
+          // Mock番号が取得できない場合はall-questions.jsonから読み込む
+          mockQuestions = allQuestions.filter(q => q.category === categoryParam);
+        }
+        
         const part = partParam ? parseInt(partParam) as 1 | 2 | 3 : undefined;
-        questionSet = getMockQuestions(categoryQuestions, mode, part);
+        questionSet = getMockQuestions(mockQuestions, mode, part);
         timeLimit = mode === "mock25" ? 30 : 90;
         setShowJapanese(progress?.preferences?.showJapaneseInMock ?? false);
       }
 
       setQuestions(questionSet);
       
-      // Initialize session
+      // Check for saved Mock exam progress
+      let savedMockProgress = null;
+      if ((mode === "mock25" || mode === "mock75") && categoryParam) {
+        const progressKey = `mockExamProgress_${user?.nickname}`;
+        savedMockProgress = safeLocalStorage.getItem<any>(progressKey);
+        if (savedMockProgress && savedMockProgress.session.category === categoryParam && savedMockProgress.session.mode === mode) {
+          // Restore saved progress
+          const mockAnswersMap = new Map(savedMockProgress.mockAnswers);
+          setMockAnswers(mockAnswersMap);
+          setCurrentQuestionIndex(savedMockProgress.session.currentQuestionIndex);
+          setSession(savedMockProgress.session);
+          
+          // Show confirmation message
+          const timeSince = new Date().getTime() - new Date(savedMockProgress.session.savedAt).getTime();
+          const minutesSince = Math.floor(timeSince / 60000);
+          if (minutesSince < 60) {
+            alert(`前回の進捗を復元しました（${minutesSince}分前に保存）`);
+          }
+          return;
+        }
+      }
+      
+      // Initialize new session if no saved progress
       const newSession: StudySession = {
         id: Date.now().toString(),
         mode,
@@ -179,11 +244,25 @@ function StudySessionContent() {
     }
   };
 
+  // Mock試験で前の問題に戻った時に前回の回答を復元
+  useEffect(() => {
+    const question = questions[currentQuestionIndex];
+    if (question && (mode === "mock25" || mode === "mock75")) {
+      const previousAnswer = mockAnswers.get(question.questionId);
+      if (previousAnswer) {
+        setSelectedAnswer(previousAnswer);
+      } else {
+        setSelectedAnswer(null);
+      }
+    }
+  }, [currentQuestionIndex, questions, mockAnswers, mode]);
+
   const handleSubmitAnswer = () => {
     if (!selectedAnswer || !session || !questions[currentQuestionIndex]) return;
 
     const currentQuestion = questions[currentQuestionIndex];
     const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+    const isMockMode = mode === "mock25" || mode === "mock75";
     
     // Record answer
     const newAnswer: Answer = {
@@ -199,30 +278,46 @@ function StudySessionContent() {
     };
     setSession(updatedSession);
     
-    // Update user progress
-    updateUserProgress(isCorrect, currentQuestion);
-    
-    // Save incorrect question if wrong
-    if (!isCorrect) {
-      saveIncorrectQuestion(currentQuestion.questionId, currentQuestion.category);
-    }
-    
-    // Update review count if in review mode
-    if (mode === "review") {
-      updateReviewCount(currentQuestion.questionId);
+    // Mock試験モードでは採点を保留
+    if (!isMockMode) {
+      // Update user progress
+      updateUserProgress(isCorrect, currentQuestion);
       
-      // 復習モードで正解した場合、克服フォルダに移動
-      if (isCorrect) {
-        const moved = moveToOvercomeQuestions(currentQuestion.questionId, mode);
-        if (moved) {
-          setShowOvercomeMessage(true);
-          // 3秒後にメッセージを非表示
-          setTimeout(() => setShowOvercomeMessage(false), 3000);
+      // Save incorrect question if wrong
+      if (!isCorrect) {
+        saveIncorrectQuestion(currentQuestion.questionId, currentQuestion.category);
+      }
+      
+      // Update review count if in review mode
+      if (mode === "review") {
+        updateReviewCount(currentQuestion.questionId);
+        
+        // 復習モードで正解した場合、克服フォルダに移動
+        if (isCorrect) {
+          const moved = moveToOvercomeQuestions(currentQuestion.questionId, mode);
+          if (moved) {
+            setShowOvercomeMessage(true);
+            // 3秒後にメッセージを非表示
+            setTimeout(() => setShowOvercomeMessage(false), 3000);
+          }
         }
       }
+      
+      setShowResult(true);
+    } else {
+      // Mock試験モードでは回答を記録
+      const newMockAnswers = new Map(mockAnswers);
+      newMockAnswers.set(currentQuestion.questionId, selectedAnswer);
+      setMockAnswers(newMockAnswers);
+      
+      if (currentQuestionIndex < questions.length - 1) {
+        // 次の問題へ
+        handleNextQuestion();
+      } else {
+        // 最後の問題の場合は確認画面を表示
+        setShowCompleteConfirm(true);
+      }
     }
-    
-    setShowResult(true);
   };
 
   const updateUserProgress = (isCorrect: boolean, question: Question) => {
@@ -322,20 +417,155 @@ function StudySessionContent() {
     }
   };
 
+  const handleMockExamComplete = () => {
+    if (!session || !user) {
+      console.error('Missing session or user:', { session, user });
+      // ユーザーがない場合はログイン画面へ
+      if (!user) {
+        router.push('/login');
+      }
+      return;
+    }
+    
+    console.log('handleMockExamComplete called');
+    console.log('Current user in handleMockExamComplete:', user);
+    console.log('mockAnswers size:', mockAnswers.size);
+    console.log('questions length:', questions.length);
+    
+    // Mock試験の回答をAnswerオブジェクトに変換
+    const answers: Answer[] = [];
+    questions.forEach((question, index) => {
+      const selectedAnswer = mockAnswers.get(question.questionId);
+      if (selectedAnswer) {
+        answers.push({
+          questionId: question.questionId,
+          selectedAnswer,
+          isCorrect: selectedAnswer === question.correctAnswer,
+          answeredAt: new Date().toISOString()
+        });
+      }
+    });
+    
+    console.log('answers length:', answers.length);
+    
+    // Mock試験の結果を一時的に保存
+    const mockResult = {
+      session: {
+        ...session,
+        answers,
+        completedAt: new Date().toISOString()
+      },
+      questions: questions,
+      // ユーザー情報も保存しておく（フォールバック用）
+      userId: user.id,
+      userNickname: user.nickname
+    };
+    
+    // LocalStorageに一時保存（複数のキーで保存して確実性を高める）
+    const tempKey = `tempMockResult_${user.nickname}`;
+    const tempKeyById = `tempMockResult_${user.id}`;
+    const globalKey = 'tempMockResult_latest';
+    
+    console.log('Current user:', user);
+    console.log('Saving to keys:', { tempKey, tempKeyById, globalKey });
+    console.log('mockResult:', mockResult);
+    
+    try {
+      // 保存前に古い一時データを削除
+      const keysToClean = Object.keys(localStorage).filter(k => 
+        k.startsWith('tempMockResult_') && 
+        k !== tempKey && 
+        k !== tempKeyById && 
+        k !== globalKey
+      );
+      keysToClean.forEach(k => localStorage.removeItem(k));
+      console.log(`Cleaned ${keysToClean.length} old temp mock results`);
+      
+      // 複数のキーで保存
+      safeLocalStorage.setItem(tempKey, mockResult);
+      safeLocalStorage.setItem(tempKeyById, mockResult);
+      safeLocalStorage.setItem(globalKey, mockResult);
+      
+      console.log('Successfully saved mock result to multiple keys');
+      
+      // 確認のため再度読み込んでみる
+      const savedResult = safeLocalStorage.getItem(tempKey);
+      console.log('Verification - saved result:', savedResult);
+      
+      // デバッグ：全てのLocalStorageキーを表示
+      console.log('All localStorage keys after save:', Object.keys(localStorage));
+      
+      // 保存された進捗をクリア
+      const progressKey = `mockExamProgress_${user.nickname}`;
+      safeLocalStorage.removeItem(progressKey);
+      
+      // 結果画面へ遷移（保存が確実に完了してから）
+      console.log('Navigating to /study/mock-result');
+      
+      // 少し遅延を入れて確実に保存されるようにする
+      setTimeout(() => {
+        router.push('/study/mock-result');
+      }, 100);
+    } catch (error) {
+      console.error('Failed to save mock result:', error);
+      alert('結果の保存に失敗しました。再度お試しください。');
+    }
+  };
+
+  const handleSaveAndExit = () => {
+    if (!isMockMode || !session) {
+      router.push('/study');
+      return;
+    }
+    
+    // Mock試験の進捗を保存
+    const mockProgress = {
+      session: {
+        ...session,
+        currentQuestionIndex,
+        savedAt: new Date().toISOString()
+      },
+      mockAnswers: Array.from(mockAnswers.entries()),
+      questions
+    };
+    const progressKey = `mockExamProgress_${user?.nickname}`;
+    safeLocalStorage.setItem(progressKey, mockProgress);
+    
+    // 学習画面に戻る
+    router.push('/study');
+  };
+
   const completeSession = () => {
     if (session) {
-      const completedSession = {
+      // Mock試験の場合は別の処理
+      if (isMockMode) {
+        // 確認画面を表示するだけで、ここでは何もしない
+        return;
+      }
+      
+      // 保存用のセッションデータを作成（questionsを除外）
+      const sessionToSave = {
         ...session,
-        completedAt: new Date().toISOString()
+        completedAt: new Date().toISOString(),
+        questionIds: session.questions.map(q => q.questionId),
+        questions: undefined // 明示的に除外
       };
+      delete sessionToSave.questions; // questionsフィールドを削除
       
       // Save session to history
       try {
-        const progress: UserProgress | null = safeLocalStorage.getItem('userProgress');
+        const userProgressKey = getUserKey('userProgress', user?.nickname);
+        const progress: UserProgress | null = safeLocalStorage.getItem(userProgressKey);
         if (progress) {
           if (!progress.studySessions) progress.studySessions = [];
-          progress.studySessions.push(completedSession);
-          safeLocalStorage.setItem('userProgress', progress);
+          
+          // 最新50セッションのみ保持
+          progress.studySessions.push(sessionToSave);
+          if (progress.studySessions.length > 50) {
+            progress.studySessions = progress.studySessions.slice(-50);
+          }
+          
+          safeLocalStorage.setItem(userProgressKey, progress);
         }
       } catch (error) {
         console.error('Failed to save session:', error);
@@ -348,7 +578,11 @@ function StudySessionContent() {
 
   const handleTimeUp = () => {
     alert("制限時間に達しました。試験を終了します。");
-    completeSession();
+    if (isMockMode) {
+      handleMockExamComplete();
+    } else {
+      completeSession();
+    }
   };
 
   const toggleJapanese = () => {
@@ -411,7 +645,6 @@ function StudySessionContent() {
 
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-  const isMockMode = mode === "mock25" || mode === "mock75";
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -426,6 +659,68 @@ function StudySessionContent() {
               loadQuestions();
             }}
           />
+        </div>
+      )}
+
+      {/* Exit Confirmation Dialog for Mock Exam */}
+      {showExitConfirm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-gray-800 p-6 rounded-lg max-w-md w-full mx-4">
+            <h3 className="text-xl font-bold text-gray-100 mb-4">試験を中断しますか？</h3>
+            <p className="text-gray-300 mb-6">
+              現在の進捗は保存されます。後で続きから再開できます。
+            </p>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setShowExitConfirm(false)}
+                className="px-4 py-2 bg-gray-700 text-gray-100 rounded-lg hover:bg-gray-600"
+              >
+                キャンセル
+              </button>
+              <button
+                onClick={() => {
+                  handleSaveAndExit();
+                }}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+              >
+                保存して終了
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Complete Confirmation Dialog for Mock Exam */}
+      {showCompleteConfirm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-gray-800 p-6 rounded-lg max-w-md w-full mx-4">
+            <h3 className="text-xl font-bold text-gray-100 mb-4">試験を終了しますか？</h3>
+            <p className="text-gray-300 mb-2">
+              全{questions.length}問中{mockAnswers.size}問回答済み
+            </p>
+            {mockAnswers.size < questions.length && (
+              <p className="text-orange-400 mb-4 text-sm">
+                まだ{questions.length - mockAnswers.size}問が未回答です
+              </p>
+            )}
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setShowCompleteConfirm(false)}
+                className="px-4 py-2 bg-gray-700 text-gray-100 rounded-lg hover:bg-gray-600"
+              >
+                問題に戻る
+              </button>
+              <button
+                onClick={() => {
+                  setShowCompleteConfirm(false);
+                  handleMockExamComplete();
+                }}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+              >
+                試験を終了
+              </button>
+            </div>
+          </div>
         </div>
       )}
       
@@ -449,11 +744,17 @@ function StudySessionContent() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <button
-              onClick={() => router.push('/study')}
+              onClick={() => {
+                if (isMockMode) {
+                  setShowExitConfirm(true);
+                } else {
+                  router.push('/study');
+                }
+              }}
               className="text-gray-400 hover:text-gray-100 flex items-center gap-2"
             >
               <ArrowLeft className="w-5 h-5" />
-              学習モードに戻る
+              {isMockMode ? '保存して終了' : '学習モードに戻る'}
             </button>
             <div className="flex items-center gap-4">
               <button
@@ -469,7 +770,7 @@ function StudySessionContent() {
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-gray-400" />
                 <span className="text-sm text-gray-300">
-                  {session?.answers.filter(a => a.isCorrect).length || 0} 正解
+                  {isMockMode ? `${mockAnswers.size} 問回答済み` : `${session?.answers.filter(a => a.isCorrect).length || 0} 正解`}
                 </span>
               </div>
             </div>
@@ -598,7 +899,12 @@ function StudySessionContent() {
                         : 'bg-gray-700 text-gray-500 cursor-not-allowed'
                     }`}
                   >
-                    回答する
+                    {isMockMode 
+                      ? currentQuestionIndex === questions.length - 1 
+                        ? '試験を終了' 
+                        : '回答を記録'
+                      : '回答する'
+                    }
                   </button>
                 ) : (
                   <button
@@ -625,6 +931,54 @@ function StudySessionContent() {
               </div>
             )}
 
+            {/* Mock試験の問題ナビゲーション */}
+            {isMockMode && (
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <h3 className="text-sm font-medium text-gray-300 mb-3">問題一覧</h3>
+                <div className="grid grid-cols-5 gap-2">
+                  {questions.map((question, index) => {
+                    const isAnswered = mockAnswers.has(question.questionId);
+                    const isCurrent = index === currentQuestionIndex;
+                    
+                    return (
+                      <button
+                        key={question.questionId}
+                        onClick={() => setCurrentQuestionIndex(index)}
+                        className={`
+                          p-2 text-sm rounded-lg font-medium transition-all
+                          ${
+                            isCurrent
+                              ? 'bg-indigo-600 text-white'
+                              : isAnswered
+                              ? 'bg-green-900/50 text-green-400 border border-green-700'
+                              : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
+                          }
+                        `}
+                      >
+                        {index + 1}
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <div className="w-3 h-3 bg-green-900/50 border border-green-700 rounded"></div>
+                    <span>回答済み</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <div className="w-3 h-3 bg-indigo-600 rounded"></div>
+                    <span>現在の問題</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-gray-400 mt-3">
+                    <span>進捗</span>
+                    <span className="font-medium text-gray-300">
+                      {mockAnswers.size} / {questions.length} 問回答済み
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       </div>
@@ -634,8 +988,10 @@ function StudySessionContent() {
 
 export default function StudySessionPage() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-100">Loading...</div>}>
-      <StudySessionContent />
-    </Suspense>
+    <ProtectedRoute>
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-100">Loading...</div>}>
+        <StudySessionContent />
+      </Suspense>
+    </ProtectedRoute>
   );
 }

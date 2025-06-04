@@ -36,7 +36,7 @@ export default function BackgroundBuildings() {
       0.1,
       1000
     );
-    camera.position.set(0, 100, 250); // Further back and higher
+    camera.position.set(0, 80, 200); // Closer for better visibility
     camera.lookAt(0, 20, 0);
     cameraRef.current = camera;
 
@@ -50,15 +50,15 @@ export default function BackgroundBuildings() {
     mountRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Lights - adjusted for warm night atmosphere
-    const ambientLight = new THREE.AmbientLight(0x4a3a28, 0.6); // Dim warm ambient
+    // Lights - warm night scene atmosphere
+    const ambientLight = new THREE.AmbientLight(0x4a3a28, 0.4); // Dim warm ambient for night
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xFFB366, 0.4); // Warm orange light
+    const directionalLight = new THREE.DirectionalLight(0xFFD4A3, 0.5); // Warm street lamp color
     directionalLight.position.set(50, 100, 50);
     scene.add(directionalLight);
 
-    const directionalLight2 = new THREE.DirectionalLight(0xFFA040, 0.3); // Warmer orange light
+    const directionalLight2 = new THREE.DirectionalLight(0xFFA366, 0.4); // Warmer orange light
     directionalLight2.position.set(-50, 100, -50);
     scene.add(directionalLight2);
 
@@ -83,7 +83,7 @@ export default function BackgroundBuildings() {
       try {
         const building = config.create();
         
-        // Set 25% completion - show only level0 with reduced opacity
+        // Set 25% completion - show only level0
         ['level0', 'level1', 'level2', 'level3', 'level4'].forEach((levelName, levelIndex) => {
           if (building.userData[levelName]) {
             // Only show level0 for 25% completion
@@ -93,17 +93,17 @@ export default function BackgroundBuildings() {
             building.userData[levelName].traverse((child: any) => {
               if (child instanceof THREE.Line || child instanceof THREE.LineSegments) {
                 if (child.material) {
-                  // Warm amber/orange light color
-                  child.material.color = new THREE.Color(0xFFB366); // Warm orange glow
-                  // Very low opacity for 25% completion
-                  child.material.opacity = 0.4;
+                  // Warm street lamp color for night scene
+                  child.material.color = new THREE.Color(0xFFD4A3); // Warm yellow-orange like street lamps
+                  // Moderate opacity for subtle glow
+                  child.material.opacity = 0.7;
                   child.material.transparent = true;
                 }
               }
               if (child instanceof THREE.Mesh) {
                 if (child.material) {
-                  child.material.color = new THREE.Color(0xFFB366); // Warm orange glow
-                  child.material.opacity = 0.4;
+                  child.material.color = new THREE.Color(0xFFD4A3); // Warm yellow-orange like street lamps
+                  child.material.opacity = 0.7;
                   child.material.transparent = true;
                 }
               }
@@ -135,7 +135,7 @@ export default function BackgroundBuildings() {
 
       // Rotate buildings group slowly
       if (buildingsGroupRef.current) {
-        buildingsGroupRef.current.rotation.y += 0.002; // Increased rotation speed
+        buildingsGroupRef.current.rotation.y += 0.003; // Faster rotation for better visibility
       }
 
       rendererRef.current.render(sceneRef.current, cameraRef.current);
@@ -170,7 +170,7 @@ export default function BackgroundBuildings() {
   return (
     <div 
       ref={mountRef} 
-      className="fixed inset-0 w-full h-full opacity-30 z-0" // Fixed positioning with z-0, reduced opacity
+      className="fixed inset-0 w-full h-full opacity-50 z-0 pointer-events-none" // Fixed positioning with z-0, increased opacity, no pointer events
     />
   );
 }

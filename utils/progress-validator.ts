@@ -1,12 +1,17 @@
 import { UserProgress, Category } from "@/types";
 import { categories, getCategoryInfo } from "./category-utils";
-import { safeLocalStorage } from "./storage-utils";
+import { safeLocalStorage, getUserKey } from "./storage-utils";
 
 /**
  * 進捗データの整合性をチェックし、必要に応じて修正する
  */
 export function validateAndFixProgress(progress: UserProgress): UserProgress {
   const fixedProgress = { ...progress };
+  
+  // categoryProgressが存在しない場合は初期化
+  if (!fixedProgress.categoryProgress) {
+    fixedProgress.categoryProgress = {} as Record<Category, any>;
+  }
   
   // カテゴリ進捗の検証と修正
   categories.forEach(categoryInfo => {
@@ -49,14 +54,15 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
  * 進捗をロードし、検証・修正を行う
  */
 export function loadValidatedProgress(): UserProgress | null {
-  const progress = safeLocalStorage.getItem<UserProgress>('userProgress');
+  const userProgressKey = getUserKey('userProgress');
+  const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
   if (!progress) return null;
   
   const validatedProgress = validateAndFixProgress(progress);
   
   // 修正が必要だった場合は保存
   if (JSON.stringify(progress) !== JSON.stringify(validatedProgress)) {
-    safeLocalStorage.setItem('userProgress', validatedProgress);
+    safeLocalStorage.setItem(userProgressKey, validatedProgress);
   }
   
   return validatedProgress;
@@ -69,12 +75,14 @@ export class AnsweredQuestionsTracker {
   private static STORAGE_KEY = 'answeredQuestions';
   
   static getAnsweredQuestions(category: Category): Set<string> {
-    const data = safeLocalStorage.getItem<Record<Category, string[]>>(this.STORAGE_KEY) || {} as Record<Category, string[]>;
+    const userKey = getUserKey(this.STORAGE_KEY);
+    const data = safeLocalStorage.getItem<Record<Category, string[]>>(userKey) || {} as Record<Category, string[]>;
     return new Set(data[category] || []);
   }
   
   static addAnsweredQuestion(category: Category, questionId: string): void {
-    const data = safeLocalStorage.getItem<Record<Category, string[]>>(this.STORAGE_KEY) || {} as Record<Category, string[]>;
+    const userKey = getUserKey(this.STORAGE_KEY);
+    const data = safeLocalStorage.getItem<Record<Category, string[]>>(userKey) || {} as Record<Category, string[]>;
     if (!data[category]) {
       data[category] = [];
     }
@@ -92,7 +100,7 @@ export class AnsweredQuestionsTracker {
         return;
       }
       
-      safeLocalStorage.setItem(this.STORAGE_KEY, data);
+      safeLocalStorage.setItem(userKey, data);
     }
   }
   
@@ -101,16 +109,18 @@ export class AnsweredQuestionsTracker {
   }
   
   static clearCategory(category: Category): void {
-    const data = safeLocalStorage.getItem<Record<Category, string[]>>(this.STORAGE_KEY) || {} as Record<Category, string[]>;
+    const userKey = getUserKey(this.STORAGE_KEY);
+    const data = safeLocalStorage.getItem<Record<Category, string[]>>(userKey) || {} as Record<Category, string[]>;
     data[category] = [];
-    safeLocalStorage.setItem(this.STORAGE_KEY, data);
+    safeLocalStorage.setItem(userKey, data);
   }
   
   /**
    * 重複を削除し、上限を超えないように修正
    */
   static cleanupAllCategories(): void {
-    const data = safeLocalStorage.getItem<Record<Category, string[]>>(this.STORAGE_KEY) || {} as Record<Category, string[]>;
+    const userKey = getUserKey(this.STORAGE_KEY);
+    const data = safeLocalStorage.getItem<Record<Category, string[]>>(userKey) || {} as Record<Category, string[]>;
     
     categories.forEach(categoryInfo => {
       const category = categoryInfo.name;
@@ -128,7 +138,7 @@ export class AnsweredQuestionsTracker {
       }
     });
     
-    safeLocalStorage.setItem(this.STORAGE_KEY, data);
+    safeLocalStorage.setItem(userKey, data);
   }
 }
 

@@ -47,7 +47,8 @@ export interface StudySession {
   startedAt: string;
   completedAt?: string;
   currentQuestionIndex: number;
-  questions: Question[];
+  questions: Question[]; // 実行時のみ使用、保存時は除外
+  questionIds?: string[]; // 保存用：問題IDのみ
   answers: Answer[];
   timeLimit?: number; // Mock試験用（分）
   showJapanese: boolean;

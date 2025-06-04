@@ -19,7 +19,7 @@ export default function BigBenShowcase({
   const animationFrameRef = useRef<number | null>(null);
   const bigBenGroupRef = useRef<THREE.Group | null>(null);
   const particlesRef = useRef<THREE.Points | null>(null);
-  const [currentProgress, setCurrentProgress] = useState(0);
+  const [currentProgress, setCurrentProgress] = useState(targetProgress);
   const progressRef = useRef(0);
   const startTimeRef = useRef<number | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
@@ -283,8 +283,8 @@ export default function BigBenShowcase({
     scene.add(gridHelper);
 
 
-    // Initial Big Ben - start with current progress or targetProgress
-    const initialProgress = progressRef.current || targetProgress;
+    // Initial Big Ben - start with targetProgress
+    const initialProgress = targetProgress;
     const initialBigBen = createBigBen(initialProgress);
     initialBigBen.position.y = -2;
     bigBenGroupRef.current = initialBigBen;
@@ -432,17 +432,8 @@ export default function BigBenShowcase({
       />
       {/* Progress indicator */}
       <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-        {currentProgress}% 完成
+        {isNaN(currentProgress) ? 0 : currentProgress}% 完成
       </div>
-      {/* Debug fallback */}
-      {!rendererRef.current && (
-        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-          <div className="text-center">
-            <div className="text-6xl mb-4">🕰️</div>
-            <p>Big Ben 3D モデル準備中...</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -3,7 +3,6 @@
   "outputDirectory": ".next",
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_cGxlYXNlZC1raWxsZGVlci0xOS5jbGVyay5hY2NvdW50cy5kZXYk",
-    "CLERK_SECRET_KEY": "sk_test_7wDvuf3Y2BusrJBijlKlKJBXhZ3jAjVMKaD3cf3bE5"
+    "NEXT_PUBLIC_PASSCODE": "1234"
   }
 }

@@ -5,6 +5,107 @@ export class StorageError extends Error {
   }
 }
 
+// ユーザー別のキーを生成するヘルパー関数
+export function getUserKey(baseKey: string, nickname?: string | null): string {
+  if (!nickname) {
+    // 認証情報から現在のユーザーのニックネームを取得
+    try {
+      const authUser = localStorage.getItem('authUser');
+      if (authUser) {
+        const parsed = JSON.parse(authUser);
+        nickname = parsed.nickname;
+      }
+    } catch (error) {
+      console.error('Failed to get auth user from localStorage', error);
+    }
+  }
+  
+  // ニックネームがある場合はユーザー別のキーを返す
+  return nickname ? `${baseKey}_${nickname}` : baseKey;
+}
+
+// 古いデータを削除するヘルパー関数
+function cleanupOldData() {
+  try {
+    const keysToDelete: string[] = [];
+    const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+    const oneHourAgo = Date.now() - (60 * 60 * 1000);
+    
+    // すべてのキーをチェック
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (!key) continue;
+      
+      // 一時的なMock試験結果（1時間以上前）を削除
+      if (key.startsWith('tempMockResult_')) {
+        keysToDelete.push(key);
+      }
+      
+      // Mock試験の進捗（1日以上前）を削除
+      if (key.startsWith('mockExamProgress_')) {
+        keysToDelete.push(key);
+      }
+      
+      // userProgressのクリーンアップ
+      if (key.startsWith('userProgress_')) {
+        try {
+          const progress = JSON.parse(localStorage.getItem(key) || '{}');
+          let modified = false;
+          
+          // studySessionsが存在し、questionsフィールドを含む場合は削除
+          if (progress.studySessions && Array.isArray(progress.studySessions)) {
+            progress.studySessions = progress.studySessions.map((session: any) => {
+              if (session.questions) {
+                const { questions, ...rest } = session;
+                modified = true;
+                return {
+                  ...rest,
+                  questionIds: questions.map((q: any) => q.questionId || q)
+                };
+              }
+              return session;
+            });
+            
+            // 最新50セッションのみ保持
+            if (progress.studySessions.length > 50) {
+              progress.studySessions = progress.studySessions.slice(-50);
+              modified = true;
+            }
+          }
+          
+          if (modified) {
+            localStorage.setItem(key, JSON.stringify(progress));
+          }
+        } catch (error) {
+          console.error('Failed to cleanup userProgress:', error);
+        }
+      }
+      
+      // 最新のMock試験結果（1日以上前）を削除
+      if (key.startsWith('latestMockExam_')) {
+        try {
+          const item = localStorage.getItem(key);
+          if (item) {
+            const parsed = JSON.parse(item);
+            const createdAt = parsed.examRecord?.completedAt || parsed.completedAt;
+            if (createdAt && new Date(createdAt).getTime() < oneDayAgo) {
+              keysToDelete.push(key);
+            }
+          }
+        } catch {
+          keysToDelete.push(key);
+        }
+      }
+    }
+    
+    // 削除実行
+    keysToDelete.forEach(key => localStorage.removeItem(key));
+    console.log(`Cleaned up ${keysToDelete.length} old items from localStorage`);
+  } catch (error) {
+    console.error('Failed to cleanup old data:', error);
+  }
+}
+
 export const safeLocalStorage = {
   getItem<T = any>(key: string, defaultValue?: T): T | null {
     try {
@@ -55,10 +156,22 @@ export const safeLocalStorage = {
 
       // 5MB制限のチェック（一般的なブラウザの制限）
       if (estimatedTotalSize + currentSize > 5 * 1024 * 1024) {
-        throw new StorageError(
-          'ストレージ容量が不足しています。古いデータを削除してください。',
-          'QUOTA_EXCEEDED'
-        );
+        console.warn('Storage quota exceeded, attempting cleanup...');
+        // 古いデータを削除してリトライ
+        cleanupOldData();
+        
+        // 再度サイズをチェック
+        const newTotalSize = Object.keys(localStorage).reduce((acc, k) => {
+          const item = localStorage.getItem(k);
+          return acc + (item ? new Blob([item]).size : 0);
+        }, 0);
+        
+        if (newTotalSize + currentSize > 5 * 1024 * 1024) {
+          throw new StorageError(
+            'ストレージ容量が不足しています。ブラウザの設定から閲覧データを削除してください。',
+            'QUOTA_EXCEEDED'
+          );
+        }
       }
 
       localStorage.setItem(key, serialized);

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { GraduationCap, BookOpen, Target, Trophy, Clock, ArrowRight, Languages, Timer, RotateCcw } from "lucide-react";
+import { GraduationCap, BookOpen, Target, Trophy, Clock, ArrowRight, Languages, Timer, RotateCcw, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
@@ -28,15 +28,16 @@ const BackgroundBuildings = dynamic(
 );
 
 export default function Home() {
-  const [bigBenProgress, setBigBenProgress] = useState(100); // Start at 100% to show completed form
+  const { isAuthenticated, user, logout } = useAuth();
+  const [bigBenProgress, setBigBenProgress] = useState(100);
 
   useEffect(() => {
-    // Optional: animate from 0 to 100
-    // setBigBenProgress(0);
-    // const timer = setTimeout(() => {
-    //   setBigBenProgress(100);
-    // }, 1000);
-    // return () => clearTimeout(timer);
+    // Start animation after component mounts with a small delay
+    const timer = setTimeout(() => {
+      setBigBenProgress(100);
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, []);
   const features = [
     {
@@ -103,7 +104,12 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gray-900 relative">
+      {/* Wire Art Background */}
+      <BackgroundBuildings />
+      
+      {/* Content wrapper with higher z-index */}
+      <div className="relative z-10">
       {/* Header */}
       <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -112,68 +118,64 @@ export default function Home() {
             <h1 className="text-xl font-bold text-gray-100">UKFR Learning for SMBC</h1>
           </div>
           <nav className="flex items-center gap-6">
-            <SignedOut>
-              <Link href="/sign-in" className="text-gray-400 hover:text-gray-100">
-                ログイン
-              </Link>
-              <Link href="/sign-up" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
-                無料で始める
-              </Link>
-            </SignedOut>
-            <SignedIn>
-              <Link href="/dashboard" className="text-gray-400 hover:text-gray-100">
-                マイページ
-              </Link>
-              <Link href="/dashboard" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
-                学習を始める
-              </Link>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
+            {!isAuthenticated ? (
+              <>
+                <Link href="/login" className="text-gray-400 hover:text-gray-100">
+                  ログイン
+                </Link>
+                <Link href="/login" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+                  始める
+                </Link>
+              </>
+            ) : (
+              <>
+                <span className="text-gray-400">こんにちは、{user?.nickname}さん</span>
+                <Link href="/dashboard" className="text-gray-400 hover:text-gray-100">
+                  マイページ
+                </Link>
+                <Link href="/dashboard" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+                  学習を始める
+                </Link>
+                <button 
+                  onClick={logout}
+                  className="text-gray-400 hover:text-gray-100 flex items-center gap-1"
+                >
+                  <LogOut className="w-4 h-4" />
+                  ログアウト
+                </button>
+              </>
+            )}
           </nav>
         </div>
       </header>
 
-      {/* Hero Section with Background */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* 3D Background - Full viewport */}
-        <div className="fixed inset-0 w-full h-full">
-          <BackgroundBuildings />
-        </div>
-        
-        {/* Content Overlay */}
-        <div className="relative z-10 min-h-screen flex items-center justify-center">
-          <div className="container mx-auto px-4 py-20">
-            <div className="text-center max-w-4xl mx-auto">
-              <h2 className="text-5xl font-bold text-gray-100 mb-6">
-                UKFR Learning for SMBC
-                <span className="block text-3xl text-indigo-500 mt-2">高精度AIがサポート</span>
-              </h2>
-              <p className="text-xl text-gray-400 mb-8">
-                SMBC欧州チームのためのCISI試験対策アプリ。
-                <br />
-                10問ずつの効率学習と日本語学習により確実な合格をサポート。
-              </p>
-              <div className="flex gap-4 justify-center">
-                <SignedOut>
-                  <Link href="/sign-up" className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-indigo-700 flex items-center gap-2 backdrop-blur-sm">
-                    無料ではじめる <ArrowRight className="w-5 h-5" />
-                  </Link>
-                </SignedOut>
-                <SignedIn>
-                  <Link href="/dashboard" className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-indigo-700 flex items-center gap-2 backdrop-blur-sm">
-                    学習を開始 <ArrowRight className="w-5 h-5" />
-                  </Link>
-                </SignedIn>
-                <Link href="#features" className="border-2 border-gray-600 text-gray-300 px-8 py-4 rounded-lg text-lg hover:border-gray-500 backdrop-blur-sm">
-                  機能を見る
-                </Link>
-              </div>
-            </div>
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="text-center max-w-4xl mx-auto">
+          <h2 className="text-5xl font-bold text-gray-100 mb-6">
+            UKFR Learning for SMBC
+            <span className="block text-3xl text-indigo-500 mt-2">高精度AIがサポート</span>
+          </h2>
+          <p className="text-xl text-gray-400 mb-8">
+            SMBC欧州チームのためのCISI試験対策アプリ。
+            <br />
+            10問ずつの効率学習と日本語学習により確実な合格をサポート。
+          </p>
+          <div className="flex gap-4 justify-center">
+            {!isAuthenticated ? (
+              <Link href="/login" className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-indigo-700 flex items-center gap-2">
+                はじめる <ArrowRight className="w-5 h-5" />
+              </Link>
+            ) : (
+              <Link href="/dashboard" className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-indigo-700 flex items-center gap-2">
+                学習を開始 <ArrowRight className="w-5 h-5" />
+              </Link>
+            )}
+            <Link href="#features" className="border-2 border-gray-600 text-gray-300 px-8 py-4 rounded-lg text-lg hover:border-gray-500">
+              機能を見る
+            </Link>
           </div>
         </div>
-        
-        {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/30 to-gray-900/70 pointer-events-none" />
       </section>
 
       {/* Learning Modes */}
@@ -289,10 +291,10 @@ export default function Home() {
                     <span className="text-2xl">🕰️</span>
                     Big Ben - 100% 完成例
                   </h4>
-                  <p className="text-sm opacity-90">規制環境カテゴリ完全制覇で獲得</p>
+                  <p className="text-sm opacity-90">Regulatory Environment完全制覇で獲得</p>
                 </div>
                 <div className="h-[400px]">
-                  <BigBenShowcase targetProgress={bigBenProgress} animationDuration={5000} />
+                  <BigBenShowcase targetProgress={bigBenProgress} animationDuration={3000} />
                 </div>
               </div>
               
@@ -375,16 +377,15 @@ export default function Home() {
         <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-2xl p-12 text-center text-white shadow-2xl">
           <h3 className="text-3xl font-bold mb-4">短期間でスコアUP!!</h3>
           <p className="text-xl mb-8">10問ずつの効率学習で、無理なく確実に合格へ</p>
-          <SignedOut>
-            <Link href="/sign-up" className="bg-white text-indigo-700 px-8 py-4 rounded-lg text-lg hover:bg-gray-100 inline-flex items-center gap-2 font-semibold transition-all hover:scale-105">
-              無料ではじめる <ArrowRight className="w-5 h-5" />
+          {!isAuthenticated ? (
+            <Link href="/login" className="bg-white text-indigo-700 px-8 py-4 rounded-lg text-lg hover:bg-gray-100 inline-flex items-center gap-2 font-semibold transition-all hover:scale-105">
+              はじめる <ArrowRight className="w-5 h-5" />
             </Link>
-          </SignedOut>
-          <SignedIn>
+          ) : (
             <Link href="/dashboard" className="bg-white text-indigo-700 px-8 py-4 rounded-lg text-lg hover:bg-gray-100 inline-flex items-center gap-2 font-semibold transition-all hover:scale-105">
               はじめる <ArrowRight className="w-5 h-5" />
             </Link>
-          </SignedIn>
+          )}
         </div>
       </section>
 
@@ -394,6 +395,7 @@ export default function Home() {
           <p>&copy; 2025 Mitsunori Kikuchi. All rights reserved.</p>
         </div>
       </footer>
+      </div>
     </div>
   );
 }

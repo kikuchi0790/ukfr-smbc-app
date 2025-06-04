@@ -1,6 +1,7 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -17,7 +18,9 @@ import {
   AlertCircle,
   Check,
   List,
-  ArrowLeft
+  ArrowLeft,
+  FileText,
+  Trophy
 } from "lucide-react";
 import { UserProgress, Category } from "@/types";
 import { safeLocalStorage } from "@/utils/storage-utils";
@@ -49,12 +52,13 @@ const BackgroundBuildings = dynamic(
   { ssr: false }
 );
 
-export default function Dashboard() {
-  const { user } = useUser();
+function DashboardContent() {
+  const { user } = useAuth();
   const router = useRouter();
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [loading, setLoading] = useState(true);
   const [show3D, setShow3D] = useState(false);
+  const [mockExamHistory, setMockExamHistory] = useState<any[]>([]);
   const { error, isError, clearError, handleError } = useErrorHandler();
 
 
@@ -62,13 +66,15 @@ export default function Dashboard() {
     // Clean up progress data on first load
     cleanupAllProgressData();
     loadUserProgress();
-  }, []);
+    loadMockExamHistory();
+  }, [user]);
 
   const loadUserProgress = () => {
     try {
       setLoading(true);
-      // Load user progress from localStorage
-      const parsedProgress = safeLocalStorage.getItem<UserProgress>('userProgress');
+      // Load user-specific progress from localStorage
+      const userProgressKey = `userProgress_${user?.nickname}`;
+      const parsedProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
       if (parsedProgress) {
         // 進捗データの検証と修正
         const validatedProgress = validateAndFixProgress(parsedProgress);
@@ -101,7 +107,7 @@ export default function Dashboard() {
         }
       };
         setProgress(initialProgress);
-        safeLocalStorage.setItem('userProgress', initialProgress);
+        safeLocalStorage.setItem(userProgressKey, initialProgress);
       }
     } catch (error) {
       handleError(error, '学習進捗の読み込みに失敗しました');
@@ -136,6 +142,17 @@ export default function Dashboard() {
 
   const getOvercomeQuestionsCount = () => {
     return progress?.overcomeQuestions?.length || 0;
+  };
+
+  const loadMockExamHistory = () => {
+    try {
+      const historyKey = `mockExamHistory_${user?.nickname}`;
+      const history = safeLocalStorage.getItem<any[]>(historyKey) || [];
+      // 最新5件のみ表示
+      setMockExamHistory(history.slice(-5).reverse());
+    } catch (error) {
+      console.error('Failed to load mock exam history:', error);
+    }
   };
 
   const quickActions = [
@@ -227,7 +244,7 @@ export default function Dashboard() {
                 </Link>
                 <div>
                   <h1 className="text-2xl font-bold text-gray-100">ダッシュボード</h1>
-                  <p className="text-gray-400">こんにちは、{user?.firstName || "学習者"}さん！</p>
+                  <p className="text-gray-400">こんにちは、{user?.nickname || "学習者"}さん！</p>
                 </div>
               </div>
               <Link 
@@ -417,9 +434,67 @@ export default function Dashboard() {
               })}
             </div>
           </div>
+
+          {/* Mock試験履歴 */}
+          {mockExamHistory.length > 0 && (
+            <div className="bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg border border-gray-700 p-6">
+              <h2 className="text-xl font-bold mb-4 text-gray-100 flex items-center gap-2">
+                <Trophy className="w-6 h-6 text-yellow-500" />
+                最近のMock試験結果
+              </h2>
+              <div className="space-y-3">
+                {mockExamHistory.map((exam) => {
+                  const date = new Date(exam.completedAt);
+                  const dateStr = `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+                  
+                  return (
+                    <div key={exam.id} className="border border-gray-700 bg-gray-700/50 rounded-lg p-4 hover:bg-gray-700/70 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="font-medium text-gray-200">
+                            {exam.session.category}
+                          </h4>
+                          <p className="text-sm text-gray-500">
+                            {dateStr} • {exam.questionsCount}問
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className={`text-2xl font-bold ${
+                            exam.passed ? 'text-green-400' : 'text-red-400'
+                          }`}>
+                            {exam.score}%
+                          </p>
+                          <p className={`text-sm ${
+                            exam.passed ? 'text-green-400' : 'text-red-400'
+                          }`}>
+                            {exam.passed ? '合格' : '不合格'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <Link 
+                href="/study?mode=mock"
+                className="mt-4 flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition-colors"
+              >
+                <FileText className="w-5 h-5" />
+                新しいMock試験を受ける
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       </div>
     </div>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <ProtectedRoute>
+      <DashboardContent />
+    </ProtectedRoute>
   );
 }

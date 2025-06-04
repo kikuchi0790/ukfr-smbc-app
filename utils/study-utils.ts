@@ -1,11 +1,12 @@
 import { Question, IncorrectQuestion, UserProgress, OvercomeQuestion, Category } from "@/types";
-import { safeLocalStorage } from './storage-utils';
+import { safeLocalStorage, getUserKey } from './storage-utils';
 import { categories } from './category-utils';
 
 // 間違えた問題を保存
 export function saveIncorrectQuestion(questionId: string, category: string) {
   try {
-    let progress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    const userProgressKey = getUserKey('userProgress');
+    let progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) {
       // progressが存在しない場合は初期化
       const initialCategoryProgress: Partial<Record<Category, any>> = {};
@@ -61,7 +62,7 @@ export function saveIncorrectQuestion(questionId: string, category: string) {
       progress.incorrectQuestions.push(newIncorrect);
     }
 
-    safeLocalStorage.setItem('userProgress', progress);
+    safeLocalStorage.setItem(userProgressKey, progress);
   } catch (error) {
     console.error('Error saving incorrect question:', error);
     // Don't throw - this is not critical for the user experience
@@ -71,7 +72,8 @@ export function saveIncorrectQuestion(questionId: string, category: string) {
 // 間違えた問題から復習用の問題を取得
 export function getReviewQuestions(allQuestions: Question[], count: number = 10): Question[] {
   try {
-    const progress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    const userProgressKey = getUserKey('userProgress');
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress || !progress.incorrectQuestions) return [];
 
     const incorrectQuestions = progress.incorrectQuestions || [];
@@ -190,14 +192,15 @@ function shuffleArray<T>(array: T[]): T[] {
 // 復習回数を更新
 export function updateReviewCount(questionId: string) {
   try {
-    const progress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    const userProgressKey = getUserKey('userProgress');
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress || !progress.incorrectQuestions) return;
     
     const incorrect = progress.incorrectQuestions.find(q => q.questionId === questionId);
   
     if (incorrect) {
       incorrect.reviewCount++;
-      safeLocalStorage.setItem('userProgress', progress);
+      safeLocalStorage.setItem(userProgressKey, progress);
     }
   } catch (error) {
     console.error('Error updating review count:', error);
@@ -208,7 +211,8 @@ export function updateReviewCount(questionId: string) {
 // 復習モードで正解した問題を克服フォルダに移動
 export function moveToOvercomeQuestions(questionId: string, mode: string) {
   try {
-    const progress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    const userProgressKey = getUserKey('userProgress');
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) return false;
     
     // 復習モードでない場合は何もしない
@@ -241,7 +245,7 @@ export function moveToOvercomeQuestions(questionId: string, mode: string) {
     progress.incorrectQuestions.splice(incorrectIndex, 1);
     
     // 保存
-    safeLocalStorage.setItem('userProgress', progress);
+    safeLocalStorage.setItem(userProgressKey, progress);
     
     return true;
   } catch (error) {
@@ -268,7 +272,8 @@ export function getSequentialQuestionsForCategory(
 // カテゴリの回答済み問題IDを取得
 export function getAnsweredQuestionIds(category: string): string[] {
   try {
-    const progress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    const userProgressKey = getUserKey('userProgress');
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress || !progress.studySessions) return [];
     
     const answeredIds = new Set<string>();
