@@ -303,7 +303,19 @@ export function updateMockExamProgress(category: Category, score: number, totalQ
 
     // mockCategoryProgressが未定義の場合は初期化
     if (!progress.mockCategoryProgress) {
-      progress.mockCategoryProgress = {};
+      const initialMockProgress: Record<Category, MockCategoryProgress> = {} as Record<Category, MockCategoryProgress>;
+      categories.forEach(category => {
+        initialMockProgress[category.name] = {
+          totalQuestions: category.totalQuestions,
+          attemptsCount: 0,
+          bestScore: 0,
+          latestScore: 0,
+          averageScore: 0,
+          passedCount: 0,
+          lastAttemptDate: new Date().toISOString()
+        };
+      });
+      progress.mockCategoryProgress = initialMockProgress;
     }
 
     const currentProgress = progress.mockCategoryProgress[category];
