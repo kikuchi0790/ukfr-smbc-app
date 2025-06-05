@@ -47,7 +47,7 @@ const BackgroundCityscape = () => (
 export default function Home() {
   const { isAuthenticated, user, logout } = useAuth();
   const [bigBenProgress, setBigBenProgress] = useState(100);
-  const bigBenStartProgress = 25; // 固定値なのでstateではなく定数として定義
+  const bigBenStartProgress = 25; // 展示用: 学習開始時の状態を示す（実際の進捗とは無関係）
 
   useEffect(() => {
     // Start animation after component mounts with a small delay

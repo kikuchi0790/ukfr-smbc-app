@@ -35,6 +35,7 @@ import { getCategoryInfo, categories } from "@/utils/category-utils";
 import { AnsweredQuestionsTracker, validateAndFixProgress } from "@/utils/progress-validator";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { progressSync } from "@/services/progress-sync";
 
 function StudySessionContent() {
   const router = useRouter();
@@ -114,6 +115,7 @@ function StudySessionContent() {
         incorrectQuestions: [],
         overcomeQuestions: [],
         currentStreak: 0,
+        bestStreak: 0,
         lastStudyDate: new Date().toISOString(),
         preferences: {
           showJapaneseInStudy: true,
@@ -209,6 +211,7 @@ function StudySessionContent() {
           incorrectQuestions: [],
           overcomeQuestions: [],
           currentStreak: 0,
+          bestStreak: 0,
           lastStudyDate: new Date().toISOString(),
           preferences: {
             showJapaneseInStudy: true,
@@ -364,25 +367,20 @@ function StudySessionContent() {
 
   const updateUserProgress = (isCorrect: boolean, question: Question) => {
     try {
-      const userProgressKey = getUserKey('userProgress', user?.nickname);
-      let progress: UserProgress | null = safeLocalStorage.getItem(userProgressKey);
+      // Check if this question was already answered in this session
+      if (answeredQuestionIds.has(question.questionId)) {
+        console.log('Question already answered in this session, skipping progress update');
+        return;
+      }
       
-      if (progress) {
-        // 進捗データの検証と修正
-        progress = validateAndFixProgress(progress);
-        
-        // Check if this question was already answered in this session
-        if (answeredQuestionIds.has(question.questionId)) {
-          console.log('Question already answered in this session, skipping progress update');
-          return;
-        }
-        
-        // Track answered questions globally
-        AnsweredQuestionsTracker.addAnsweredQuestion(question.category, question.questionId);
-        
-        // Add to answered questions for this session
-        setAnsweredQuestionIds(prev => new Set(prev).add(question.questionId));
-        
+      // Track answered questions globally
+      AnsweredQuestionsTracker.addAnsweredQuestion(question.category, question.questionId);
+      
+      // Add to answered questions for this session
+      setAnsweredQuestionIds(prev => new Set(prev).add(question.questionId));
+      
+      // Update progress using the sync service
+      progressSync.updateUserProgress(user?.nickname, (progress) => {
         progress.totalQuestionsAnswered++;
         if (isCorrect) progress.correctAnswers++;
         
@@ -434,8 +432,8 @@ function StudySessionContent() {
           progress.lastStudyDate = today;
         }
         
-        safeLocalStorage.setItem(userProgressKey, progress);
-      }
+        return progress;
+      });
     } catch (error) {
       console.error('Failed to update progress:', error);
       // 進捗の更新に失敗しても学習は継続

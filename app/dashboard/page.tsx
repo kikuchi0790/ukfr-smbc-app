@@ -20,10 +20,12 @@ import {
   List,
   ArrowLeft,
   FileText,
-  Trophy
+  Trophy,
+  Cloud,
+  CloudOff
 } from "lucide-react";
 import { UserProgress, Category } from "@/types";
-import { safeLocalStorage } from "@/utils/storage-utils";
+import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import ErrorAlert from "@/components/ErrorAlert";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import WireframeBuildings from "@/components/WireframeBuildings";
@@ -48,6 +50,7 @@ const WireframeBuildings3D = dynamic(
   }
 );
 
+
 const BackgroundBuildings = dynamic(
   () => import('@/components/BackgroundBuildings'),
   { ssr: false }
@@ -70,11 +73,11 @@ const BackgroundCityscape = () => (
 );
 
 function DashboardContent() {
-  const { user } = useAuth();
+  const { user, isFirebaseAuth } = useAuth();
   const router = useRouter();
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [loading, setLoading] = useState(true);
-  const [show3D, setShow3D] = useState(false);
+  const [show3D, setShow3D] = useState(true);
   const [mockExamHistory, setMockExamHistory] = useState<any[]>([]);
   const { error, isError, clearError, handleError } = useErrorHandler();
 
@@ -90,7 +93,7 @@ function DashboardContent() {
     try {
       setLoading(true);
       // Load user-specific progress from localStorage
-      const userProgressKey = `userProgress_${user?.nickname}`;
+      const userProgressKey = getUserKey('userProgress', user?.nickname);
       const parsedProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
       if (parsedProgress) {
         // 進捗データの検証と修正
@@ -98,6 +101,7 @@ function DashboardContent() {
         setProgress(validatedProgress);
       } else {
       // Initialize new user progress
+      console.log('Initializing new user progress for:', user?.nickname);
       const initialCategoryProgress: Partial<Record<Category, any>> = {};
       categories.forEach(category => {
         initialCategoryProgress[category.name] = {
@@ -105,6 +109,7 @@ function DashboardContent() {
           answeredQuestions: 0,
           correctAnswers: 0
         };
+        console.log(`Initialized ${category.name}: 0 / ${category.totalQuestions}`);
       });
 
       const initialProgress: UserProgress = {
@@ -115,6 +120,7 @@ function DashboardContent() {
         incorrectQuestions: [],
         overcomeQuestions: [],
         currentStreak: 0,
+        bestStreak: 0,
         lastStudyDate: "",
         preferences: {
           showJapaneseInStudy: true,
@@ -123,6 +129,9 @@ function DashboardContent() {
           notificationEnabled: false
         }
       };
+      
+      // Ensure all categories start at 0
+      console.log('Creating new user progress with all categories at 0%');
         setProgress(initialProgress);
         safeLocalStorage.setItem(userProgressKey, initialProgress);
       }
@@ -173,7 +182,7 @@ function DashboardContent() {
 
   const loadMockExamHistory = () => {
     try {
-      const historyKey = `mockExamHistory_${user?.nickname}`;
+      const historyKey = getUserKey('mockExamHistory', user?.nickname);
       const history = safeLocalStorage.getItem<any[]>(historyKey) || [];
       // 最新5件のみ表示
       setMockExamHistory(history.slice(-5).reverse());
@@ -272,6 +281,20 @@ function DashboardContent() {
                 <div>
                   <h1 className="text-2xl font-bold text-gray-100">ダッシュボード</h1>
                   <p className="text-gray-400">こんにちは、{user?.nickname || "学習者"}さん！</p>
+                </div>
+                {/* クラウド同期ステータス */}
+                <div className="ml-4 flex items-center gap-2">
+                  {isFirebaseAuth ? (
+                    <div className="flex items-center gap-2 text-green-400">
+                      <Cloud className="w-5 h-5" />
+                      <span className="text-sm">クラウド同期中</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 text-gray-500">
+                      <CloudOff className="w-5 h-5" />
+                      <span className="text-sm">ローカル保存</span>
+                    </div>
+                  )}
                 </div>
               </div>
               <Link 
@@ -399,8 +422,9 @@ function DashboardContent() {
             <div className="space-y-4">
               {studyCategories.map((category) => {
                 const data = progress.categoryProgress[category.name];
+                // 進捗率を正答数ベースに変更
                 const percentage = data.totalQuestions > 0 
-                  ? Math.round((data.answeredQuestions / data.totalQuestions) * 100)
+                  ? Math.round((data.correctAnswers / data.totalQuestions) * 100)
                   : 0;
                 const accuracy = data.answeredQuestions > 0
                   ? Math.round((data.correctAnswers / data.answeredQuestions) * 100)
@@ -417,7 +441,10 @@ function DashboardContent() {
                       </div>
                       <div className="flex gap-4 text-sm">
                         <span className="text-gray-400">
-                          {data.answeredQuestions}/{data.totalQuestions}問
+                          正解数: {data.correctAnswers}/{data.totalQuestions}問
+                        </span>
+                        <span className="text-gray-400">
+                          回答済: {data.answeredQuestions}/{data.totalQuestions}問
                         </span>
                         <span className="text-gray-400">
                           正答率: {accuracy}%

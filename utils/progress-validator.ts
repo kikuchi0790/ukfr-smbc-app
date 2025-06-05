@@ -13,6 +13,9 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
     fixedProgress.categoryProgress = {} as Record<Category, any>;
   }
   
+  // 新規ユーザーの判定: totalQuestionsAnsweredが0の場合、すべてのカテゴリをリセット
+  const isNewUser = fixedProgress.totalQuestionsAnswered === 0;
+  
   // カテゴリ進捗の検証と修正
   categories.forEach(categoryInfo => {
     const categoryName = categoryInfo.name;
@@ -26,6 +29,13 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
       };
     } else {
       const categoryProgress = fixedProgress.categoryProgress[categoryName];
+      
+      // 新規ユーザーの場合、すべてのカテゴリをリセット
+      if (isNewUser) {
+        console.log(`New user detected - resetting category: ${categoryName}`);
+        categoryProgress.answeredQuestions = 0;
+        categoryProgress.correctAnswers = 0;
+      }
       
       // totalQuestionsが正しいか確認
       if (categoryProgress.totalQuestions !== categoryInfo.totalQuestions) {

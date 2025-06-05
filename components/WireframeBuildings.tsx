@@ -162,7 +162,8 @@ export default function WireframeBuildings({ progress }: WireframeBuildingsProps
   const getProgressPercentage = (category: Category): number => {
     const categoryProgress = progress[category];
     if (!categoryProgress || categoryProgress.totalQuestions === 0) return 0;
-    // Use correct answers instead of answered questions
+    
+    // Progress based on correct answers - building progresses with correct answers
     return Math.round(((categoryProgress.correctAnswers || 0) / categoryProgress.totalQuestions) * 100);
   };
 

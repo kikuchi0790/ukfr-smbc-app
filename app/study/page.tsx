@@ -13,12 +13,14 @@ import {
   ArrowLeft,
   RotateCcw,
   FileText,
-  Timer
+  Timer,
+  RefreshCw
 } from "lucide-react";
 import { Category, UserProgress, CategoryStudyMode } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { progressSync } from "@/services/progress-sync";
 
 function StudyModeContent() {
   const router = useRouter();
@@ -35,18 +37,38 @@ function StudyModeContent() {
   const [hasSavedMockProgress, setHasSavedMockProgress] = useState(false);
   const [savedMockCategory, setSavedMockCategory] = useState<string | null>(null);
   const [savedMockMode, setSavedMockMode] = useState<string | null>(null);
+  const [showResetModal, setShowResetModal] = useState(false);
+  const [resetInput, setResetInput] = useState("");
+
+  // Function to refresh progress data
+  const refreshProgress = () => {
+    if (!user) return;
+    
+    const userProgressKey = getUserKey('userProgress', user.nickname);
+    const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    console.log('Refreshing progress:', userProgress);
+    setProgress(userProgress);
+  };
 
   useEffect(() => {
+    // Only load progress when user is available
+    if (!user) {
+      console.log('User not available yet, skipping progress load');
+      return;
+    }
+
     // Load user progress
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', user.nickname);
+    console.log('Loading progress with key:', userProgressKey);
     const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    console.log('Loaded user progress:', userProgress);
     setProgress(userProgress);
     if (userProgress?.preferences?.categoryStudyMode) {
       setCategoryStudyMode(userProgress.preferences.categoryStudyMode);
     }
 
     // Check for saved Mock exam progress
-    const progressKey = `mockExamProgress_${user?.nickname}`;
+    const progressKey = `mockExamProgress_${user.nickname}`;
     const savedMockProgress = safeLocalStorage.getItem<any>(progressKey);
     if (savedMockProgress) {
       setHasSavedMockProgress(true);
@@ -71,7 +93,42 @@ function StudyModeContent() {
       // Scroll to mock section
       mockRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, [searchParams]);
+  }, [searchParams, user]);
+
+  // Refresh progress when page gains focus (user returns from study session)
+  useEffect(() => {
+    const handleFocus = () => {
+      console.log('Page gained focus, refreshing progress');
+      refreshProgress();
+    };
+
+    window.addEventListener('focus', handleFocus);
+    
+    // Also refresh on visibility change
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        console.log('Page became visible, refreshing progress');
+        refreshProgress();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [user]);
+
+  // Subscribe to progress updates
+  useEffect(() => {
+    const unsubscribe = progressSync.addListener(() => {
+      console.log('Progress updated, refreshing');
+      refreshProgress();
+    });
+
+    return unsubscribe;
+  }, [user]);
 
   const categories: { name: Category; questions: number; isMock: boolean; nameJa?: string }[] = [
     { name: "The Regulatory Environment", questions: 42, isMock: false, nameJa: "規制環境" },
@@ -139,16 +196,17 @@ function StudyModeContent() {
     const correct = categoryProgress.correctAnswers || 0;
     const answered = categoryProgress.answeredQuestions || 0;
     const total = categoryProgress.totalQuestions || 0;
-    // Calculate percentage based on correct answers
+    // Calculate percentage based on correct answers for buildings progress
     const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
     
     return { correct, answered, total, percentage };
   };
 
   const handleStartCategoryStudy = () => {
-    if (selectedCategory) {
+    if (selectedCategory && user) {
       // 設定を保存
-      const userProgress = safeLocalStorage.getItem<UserProgress>('userProgress');
+      const userProgressKey = getUserKey('userProgress', user.nickname);
+      const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
       if (userProgress) {
         if (!userProgress.preferences) {
           userProgress.preferences = {
@@ -159,7 +217,7 @@ function StudyModeContent() {
           };
         }
         userProgress.preferences.categoryStudyMode = categoryStudyMode;
-        safeLocalStorage.setItem('userProgress', userProgress);
+        safeLocalStorage.setItem(userProgressKey, userProgress);
       }
       
       router.push(`/study/session?mode=category&category=${encodeURIComponent(selectedCategory)}&studyMode=${categoryStudyMode}`);
@@ -185,6 +243,52 @@ function StudyModeContent() {
     // 75問モードの場合はパート選択不要
     if (selectedMockMode === "mock75") {
       setSelectedPart(null);
+    }
+  };
+
+  const handleReset = () => {
+    if (resetInput === "reset history") {
+      if (!user) return;
+      
+      // Reset all category progress
+      const userProgressKey = getUserKey('userProgress', user.nickname);
+      const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+      
+      if (userProgress) {
+        // Reset all category progress to 0
+        Object.keys(userProgress.categoryProgress).forEach(category => {
+          userProgress.categoryProgress[category as Category].answeredQuestions = 0;
+          userProgress.categoryProgress[category as Category].correctAnswers = 0;
+        });
+        
+        // Reset overall stats
+        userProgress.totalQuestionsAnswered = 0;
+        userProgress.correctAnswers = 0;
+        userProgress.studySessions = [];
+        userProgress.incorrectQuestions = [];
+        userProgress.overcomeQuestions = [];
+        userProgress.currentStreak = 0;
+        userProgress.bestStreak = 0;
+        userProgress.lastStudyDate = "";
+        
+        // Save the reset progress
+        safeLocalStorage.setItem(userProgressKey, userProgress);
+        
+        // Also reset answered questions tracker
+        const answeredQuestionsKey = `answeredQuestions_${user.nickname}`;
+        safeLocalStorage.removeItem(answeredQuestionsKey);
+        
+        // Reload progress
+        setProgress(userProgress);
+        
+        // Close modal and reset input
+        setShowResetModal(false);
+        setResetInput("");
+        
+        alert("学習履歴がリセットされました。");
+      }
+    } else {
+      alert("「reset history」と入力してください。");
     }
   };
 
@@ -229,9 +333,11 @@ function StudyModeContent() {
               </button>
               <button
                 onClick={() => {
-                  const progressKey = `mockExamProgress_${user?.nickname}`;
-                  safeLocalStorage.removeItem(progressKey);
-                  setHasSavedMockProgress(false);
+                  if (user) {
+                    const progressKey = `mockExamProgress_${user.nickname}`;
+                    safeLocalStorage.removeItem(progressKey);
+                    setHasSavedMockProgress(false);
+                  }
                 }}
                 className="px-4 py-2 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600"
               >
@@ -243,14 +349,23 @@ function StudyModeContent() {
 
         {/* Category Study Section */}
         <div ref={categoryRef} className="mb-12">
-          <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-gray-100">
-            <div className="p-2 bg-indigo-600 rounded-lg shadow-sm">
-              <BookOpen className="w-6 h-6 text-white" />
+          <h2 className="text-xl font-bold mb-6 flex items-center justify-between text-gray-100">
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-indigo-600 rounded-lg shadow-sm">
+                <BookOpen className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-gray-100">
+                カテゴリ別学習
+              </span>
+              <span className="text-sm font-normal text-gray-500">10問ランダム出題</span>
             </div>
-            <span className="text-gray-100">
-              カテゴリ別学習
-            </span>
-            <span className="text-sm font-normal text-gray-500">10問ランダム出題</span>
+            <button
+              onClick={() => setShowResetModal(true)}
+              className="px-3 py-1.5 bg-red-600/20 text-red-400 rounded-lg hover:bg-red-600/30 flex items-center gap-2 text-sm font-normal transition-colors"
+            >
+              <RefreshCw className="w-4 h-4" />
+              リセット
+            </button>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {studyCategories.map((category) => {
@@ -287,9 +402,14 @@ function StudyModeContent() {
                     <div className="rounded-lg p-3 bg-gray-900/50 backdrop-blur-sm border border-gray-700/50">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-xs text-gray-400 font-medium">進捗</span>
-                        <span className="text-xs text-gray-300 font-bold">
-                          正解: {categoryProgress.correct} / {categoryProgress.total} 問
-                        </span>
+                        <div className="flex flex-col items-end gap-0.5">
+                          <span className="text-xs text-gray-300 font-bold">
+                            正解数: {categoryProgress.correct} / {categoryProgress.total} 問
+                          </span>
+                          <span className="text-xs text-gray-400">
+                            回答済: {categoryProgress.answered} / {categoryProgress.total} 問
+                          </span>
+                        </div>
                       </div>
                       <div className="w-full bg-gray-700/50 rounded-full h-2.5 overflow-hidden">
                         <div 
@@ -497,6 +617,46 @@ function StudyModeContent() {
         </div>
 
       </div>
+
+      {/* Reset Modal */}
+      {showResetModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-gray-800 rounded-xl p-6 max-w-md w-full mx-4 border border-gray-700">
+            <h3 className="text-xl font-bold mb-4 text-gray-100">学習履歴をリセット</h3>
+            <p className="text-gray-400 mb-4">
+              すべてのカテゴリの学習履歴がリセットされます。この操作は取り消せません。
+            </p>
+            <p className="text-gray-300 mb-4">
+              続行するには「<span className="font-mono text-red-400">reset history</span>」と入力してください：
+            </p>
+            <input
+              type="text"
+              value={resetInput}
+              onChange={(e) => setResetInput(e.target.value)}
+              className="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent mb-4"
+              placeholder="ここに入力"
+              autoFocus
+            />
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowResetModal(false);
+                  setResetInput("");
+                }}
+                className="flex-1 px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                キャンセル
+              </button>
+              <button
+                onClick={handleReset}
+                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                リセット
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

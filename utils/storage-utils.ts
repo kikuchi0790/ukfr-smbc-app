@@ -5,6 +5,13 @@ export class StorageError extends Error {
   }
 }
 
+// Firebase同期用のコールバック
+let syncCallback: ((key: string, data: any) => void) | null = null;
+
+export function setSyncCallback(callback: (key: string, data: any) => void) {
+  syncCallback = callback;
+}
+
 // ユーザー別のキーを生成するヘルパー関数
 export function getUserKey(baseKey: string, nickname?: string | null): string {
   if (!nickname) {
@@ -196,6 +203,16 @@ export const safeLocalStorage = {
       }
 
       localStorage.setItem(key, serialized);
+      
+      // Firebase同期コールバックを呼び出す（userProgressのみ）
+      if (syncCallback && key.startsWith('userProgress_')) {
+        try {
+          syncCallback(key, value);
+        } catch (syncError) {
+          console.error('Firebase sync failed:', syncError);
+          // 同期エラーがあってもローカル保存は成功させる
+        }
+      }
     } catch (error) {
       console.error(`Failed to set item in localStorage: ${key}`, error);
       

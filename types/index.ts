@@ -78,6 +78,7 @@ export interface UserProgress {
   incorrectQuestions: IncorrectQuestion[];
   overcomeQuestions: OvercomeQuestion[];
   currentStreak: number;
+  bestStreak?: number; // 最長連続学習日数
   lastStudyDate: string;
   preferences: UserPreferences;
 }

@@ -15,10 +15,13 @@ import {
 } from "lucide-react";
 import { Question, Category, UserProgress } from "@/types";
 import { fetchJSON } from "@/utils/fetch-utils";
-import { safeLocalStorage } from "@/utils/storage-utils";
+import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
+import { useAuth } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-export default function QuestionsListPage() {
+function QuestionsListContent() {
   const router = useRouter();
+  const { user } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [filteredQuestions, setFilteredQuestions] = useState<Question[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<Category | "all">("all");
@@ -66,8 +69,11 @@ export default function QuestionsListPage() {
 
   useEffect(() => {
     loadQuestions();
-    loadProgress();
   }, []);
+
+  useEffect(() => {
+    loadProgress();
+  }, [user]);
 
   useEffect(() => {
     filterQuestions();
@@ -88,7 +94,9 @@ export default function QuestionsListPage() {
   };
 
   const loadProgress = () => {
-    const userProgress = safeLocalStorage.getItem<UserProgress>('userProgress');
+    if (!user) return;
+    const userProgressKey = getUserKey('userProgress', user.nickname);
+    const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     setProgress(userProgress);
   };
 
@@ -392,5 +400,13 @@ export default function QuestionsListPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function QuestionsListPage() {
+  return (
+    <ProtectedRoute>
+      <QuestionsListContent />
+    </ProtectedRoute>
   );
 }
