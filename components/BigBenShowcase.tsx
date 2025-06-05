@@ -20,7 +20,7 @@ export default function BigBenShowcase({
   const bigBenGroupRef = useRef<THREE.Group | null>(null);
   const particlesRef = useRef<THREE.Points | null>(null);
   const [currentProgress, setCurrentProgress] = useState(targetProgress);
-  const progressRef = useRef(0);
+  const progressRef = useRef(targetProgress);
   const startTimeRef = useRef<number | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -407,6 +407,22 @@ export default function BigBenShowcase({
   // Animate progress changes
   useEffect(() => {
     if (!sceneRef.current || !bigBenGroupRef.current) return;
+
+    // If animationDuration is 0, skip animation and set progress directly
+    if (animationDuration === 0) {
+      progressRef.current = targetProgress;
+      setCurrentProgress(targetProgress);
+      
+      // Update Big Ben immediately
+      if (sceneRef.current && bigBenGroupRef.current) {
+        sceneRef.current.remove(bigBenGroupRef.current);
+        const newBigBen = createBigBen(targetProgress);
+        newBigBen.position.y = -2;
+        bigBenGroupRef.current = newBigBen;
+        sceneRef.current.add(newBigBen);
+      }
+      return;
+    }
 
     const startProgress = progressRef.current;
     const endProgress = targetProgress;
