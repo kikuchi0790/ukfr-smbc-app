@@ -133,7 +133,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <GraduationCap className="w-8 h-8 text-indigo-500" />
-            <h1 className="text-xl font-bold text-gray-100">UKFR Learning for SMBC</h1>
+            <h1 className="text-xl font-bold text-gray-100">UKFR Learning for SMBC BI</h1>
           </div>
           <nav className="flex items-center gap-6">
             {!isAuthenticated ? (
@@ -175,7 +175,7 @@ export default function Home() {
             <span className="block text-3xl text-indigo-500 mt-2">高精度AIがサポート</span>
           </h2>
           <p className="text-xl text-gray-400 mb-8">
-            SMBC欧州チームのためのCISI試験対策アプリ。
+            SMBC欧州トレジャリー部のためのCISI試験対策アプリ。
             <br />
             10問ずつの効率学習と日本語学習により確実な合格をサポート。
           </p>

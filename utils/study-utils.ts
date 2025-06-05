@@ -3,9 +3,9 @@ import { safeLocalStorage, getUserKey } from './storage-utils';
 import { categories } from './category-utils';
 
 // 間違えた問題を保存
-export function saveIncorrectQuestion(questionId: string, category: string) {
+export function saveIncorrectQuestion(questionId: string, category: string, userNickname?: string) {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     let progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) {
       // progressが存在しない場合は初期化
@@ -70,9 +70,9 @@ export function saveIncorrectQuestion(questionId: string, category: string) {
 }
 
 // 間違えた問題から復習用の問題を取得
-export function getReviewQuestions(allQuestions: Question[], count: number = 10): Question[] {
+export function getReviewQuestions(allQuestions: Question[], count: number = 10, userNickname?: string): Question[] {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress || !progress.incorrectQuestions) return [];
 
@@ -190,9 +190,9 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 // 復習回数を更新
-export function updateReviewCount(questionId: string) {
+export function updateReviewCount(questionId: string, userNickname?: string) {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress || !progress.incorrectQuestions) return;
     
@@ -209,9 +209,9 @@ export function updateReviewCount(questionId: string) {
 }
 
 // 復習モードで正解した問題を克服フォルダに移動
-export function moveToOvercomeQuestions(questionId: string, mode: string) {
+export function moveToOvercomeQuestions(questionId: string, mode: string, userNickname?: string) {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) return false;
     
@@ -270,9 +270,9 @@ export function getSequentialQuestionsForCategory(
 }
 
 // カテゴリの回答済み問題IDを取得
-export function getAnsweredQuestionIds(category: string): string[] {
+export function getAnsweredQuestionIds(category: string, userNickname?: string): string[] {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress || !progress.studySessions) return [];
     
@@ -295,9 +295,9 @@ export function getAnsweredQuestionIds(category: string): string[] {
 }
 
 // Mock試験の結果を進捗に反映（通常学習とは分離）
-export function updateMockExamProgress(category: Category, score: number, totalQuestions: number) {
+export function updateMockExamProgress(category: Category, score: number, totalQuestions: number, userNickname?: string) {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     let progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) return;
 
@@ -368,9 +368,9 @@ export function isMockCategory(category: Category): boolean {
 }
 
 // Mock試験の進捗情報を取得
-export function getMockCategoryProgress(category: Category): MockCategoryProgress | null {
+export function getMockCategoryProgress(category: Category, userNickname?: string): MockCategoryProgress | null {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress?.mockCategoryProgress) return null;
     

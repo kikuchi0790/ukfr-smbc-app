@@ -14,9 +14,13 @@ import {
   RefreshCw
 } from "lucide-react";
 import { UserProgress } from "@/types";
+import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
+import { useAuth } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-export default function StudyCompletePage() {
+function StudyCompletePageContent() {
   const router = useRouter();
+  const { user } = useAuth();
   const [sessionStats, setSessionStats] = useState<{
     totalQuestions: number;
     correctAnswers: number;
@@ -29,9 +33,9 @@ export default function StudyCompletePage() {
 
   useEffect(() => {
     // Get the latest session stats
-    const savedProgress = localStorage.getItem('userProgress');
-    if (savedProgress) {
-      const progress: UserProgress = JSON.parse(savedProgress);
+    const userProgressKey = getUserKey('userProgress', user?.nickname);
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    if (progress) {
       const latestSession = progress.studySessions[progress.studySessions.length - 1];
       
       if (latestSession) {
@@ -58,7 +62,7 @@ export default function StudyCompletePage() {
         });
       }
     }
-  }, []);
+  }, [user]);
 
   const getPerformanceMessage = (accuracy: number) => {
     if (accuracy >= 90) return { message: "素晴らしい！", color: "text-green-400" };
@@ -183,5 +187,13 @@ export default function StudyCompletePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function StudyCompletePage() {
+  return (
+    <ProtectedRoute>
+      <StudyCompletePageContent />
+    </ProtectedRoute>
   );
 }

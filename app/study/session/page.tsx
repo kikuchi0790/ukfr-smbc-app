@@ -31,7 +31,7 @@ import {
   getSequentialQuestionsForCategory,
   getAnsweredQuestionIds
 } from "@/utils/study-utils";
-import { getCategoryInfo } from "@/utils/category-utils";
+import { getCategoryInfo, categories } from "@/utils/category-utils";
 import { AnsweredQuestionsTracker, validateAndFixProgress } from "@/utils/progress-validator";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -85,7 +85,9 @@ function StudySessionContent() {
 
   // セッション終了時のリダイレクト
   useEffect(() => {
+    console.log('sessionEnded changed:', sessionEnded);
     if (sessionEnded) {
+      console.log('Navigating to /study/complete');
       router.push('/study/complete');
     }
   }, [sessionEnded, router]);
@@ -100,7 +102,8 @@ function StudySessionContent() {
       // Load all questions first
       const allQuestions = await fetchJSON<Question[]>('/data/all-questions.json');
 
-      const savedProgress = safeLocalStorage.getItem<any>('userProgress');
+      const userProgressKey = getUserKey('userProgress', user?.nickname);
+      const savedProgress = safeLocalStorage.getItem<any>(userProgressKey);
       
       // デフォルトのUserProgressオブジェクト
       const defaultProgress: UserProgress = {
@@ -143,7 +146,7 @@ function StudySessionContent() {
         
         // 順番に出題するか、ランダムに出題するか
         if (studyModeParam === "sequential") {
-          const answeredIds = getAnsweredQuestionIds(categoryParam);
+          const answeredIds = getAnsweredQuestionIds(categoryParam, user?.nickname);
           questionSet = getSequentialQuestionsForCategory(
             categoryQuestions,
             answeredIds,
@@ -160,7 +163,7 @@ function StudySessionContent() {
         setShowJapanese(progress?.preferences?.showJapaneseInStudy ?? true);
       } else if (mode === "review") {
         // 復習モード：間違えた問題から10問
-        questionSet = getReviewQuestions(allQuestions, 10);
+        questionSet = getReviewQuestions(allQuestions, 10, user?.nickname);
         if (questionSet.length === 0) {
           alert("復習する問題がありません。まずは学習を始めてください。");
           router.push('/study');
@@ -195,6 +198,38 @@ function StudySessionContent() {
       }
 
       setQuestions(questionSet);
+      
+      // ユーザー固有の進捗が存在しない場合は初期化
+      if (!savedProgress && user) {
+        const defaultProgress: UserProgress = {
+          totalQuestionsAnswered: 0,
+          correctAnswers: 0,
+          categoryProgress: {} as Record<Category, CategoryProgress>,
+          studySessions: [],
+          incorrectQuestions: [],
+          overcomeQuestions: [],
+          currentStreak: 0,
+          lastStudyDate: new Date().toISOString(),
+          preferences: {
+            showJapaneseInStudy: true,
+            showJapaneseInMock: false,
+            autoReviewIncorrect: true,
+            notificationEnabled: false,
+            categoryStudyMode: 'random'
+          }
+        };
+        
+        // カテゴリプログレスを初期化
+        categories.forEach(category => {
+          defaultProgress.categoryProgress[category.name] = {
+            totalQuestions: category.totalQuestions,
+            answeredQuestions: 0,
+            correctAnswers: 0
+          };
+        });
+        
+        safeLocalStorage.setItem(userProgressKey, defaultProgress);
+      }
       
       // Check for saved Mock exam progress
       let savedMockProgress = null;
@@ -292,16 +327,16 @@ function StudySessionContent() {
       
       // Save incorrect question if wrong
       if (!isCorrect) {
-        saveIncorrectQuestion(currentQuestion.questionId, currentQuestion.category);
+        saveIncorrectQuestion(currentQuestion.questionId, currentQuestion.category, user?.nickname);
       }
       
       // Update review count if in review mode
       if (mode === "review") {
-        updateReviewCount(currentQuestion.questionId);
+        updateReviewCount(currentQuestion.questionId, user?.nickname);
         
         // 復習モードで正解した場合、克服フォルダに移動
         if (isCorrect) {
-          const moved = moveToOvercomeQuestions(currentQuestion.questionId, mode);
+          const moved = moveToOvercomeQuestions(currentQuestion.questionId, mode, user?.nickname);
           if (moved) {
             setShowOvercomeMessage(true);
             // 3秒後にメッセージを非表示
@@ -329,7 +364,8 @@ function StudySessionContent() {
 
   const updateUserProgress = (isCorrect: boolean, question: Question) => {
     try {
-      let progress: UserProgress | null = safeLocalStorage.getItem('userProgress');
+      const userProgressKey = getUserKey('userProgress', user?.nickname);
+      let progress: UserProgress | null = safeLocalStorage.getItem(userProgressKey);
       
       if (progress) {
         // 進捗データの検証と修正
@@ -398,7 +434,7 @@ function StudySessionContent() {
           progress.lastStudyDate = today;
         }
         
-        safeLocalStorage.setItem('userProgress', progress);
+        safeLocalStorage.setItem(userProgressKey, progress);
       }
     } catch (error) {
       console.error('Failed to update progress:', error);
@@ -409,6 +445,8 @@ function StudySessionContent() {
   const handleNextQuestion = () => {
     const isLastQuestion = currentQuestionIndex === questions.length - 1;
     const is10thQuestion = (currentQuestionIndex + 1) % 10 === 0;
+    
+    console.log('handleNextQuestion:', { currentQuestionIndex, isLastQuestion, is10thQuestion, mode });
     
     if (mode === "category" && (is10thQuestion || isLastQuestion)) {
       // カテゴリ学習：10問ごとに結果表示
@@ -703,6 +741,7 @@ function StudySessionContent() {
   };
 
   const completeSession = () => {
+    console.log('completeSession called', { session, isMockMode });
     if (session) {
       // Mock試験の場合は別の処理
       if (isMockMode) {
@@ -736,9 +775,11 @@ function StudySessionContent() {
       } catch (error) {
         console.error('Failed to save session:', error);
         // セッション保存に失敗しても継続
+      } finally {
+        // エラーが発生してもセッションを終了して完了画面へ遷移
+        console.log('Setting sessionEnded to true');
+        setSessionEnded(true);
       }
-      
-      setSessionEnded(true);
     }
   };
 
@@ -755,7 +796,8 @@ function StudySessionContent() {
     setShowJapanese(!showJapanese);
     // Save preference
     try {
-      const progress: UserProgress | null = safeLocalStorage.getItem('userProgress');
+      const userProgressKey = getUserKey('userProgress', user?.nickname);
+      const progress: UserProgress | null = safeLocalStorage.getItem(userProgressKey);
       if (progress) {
         if (!progress.preferences) {
           progress.preferences = {
@@ -770,7 +812,7 @@ function StudySessionContent() {
         } else {
           progress.preferences.showJapaneseInStudy = !showJapanese;
         }
-        safeLocalStorage.setItem('userProgress', progress);
+        safeLocalStorage.setItem(userProgressKey, progress);
       }
     } catch (error) {
       console.error('Failed to save preference:', error);
