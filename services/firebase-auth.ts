@@ -21,6 +21,10 @@ export interface FirebaseUser {
 
 // ユーザー登録
 export async function signUp(email: string, password: string, nickname: string): Promise<FirebaseUser> {
+  if (!auth || !db) {
+    throw new Error('Firebase is not initialized. Please check your environment variables.');
+  }
+  
   try {
     // Firebase Authでユーザー作成
     const userCredential: UserCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -94,6 +98,10 @@ export async function signUp(email: string, password: string, nickname: string):
 
 // ログイン
 export async function signIn(email: string, password: string): Promise<FirebaseUser> {
+  if (!auth || !db) {
+    throw new Error('Firebase is not initialized. Please check your environment variables.');
+  }
+  
   try {
     const userCredential: UserCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
@@ -128,6 +136,10 @@ export async function signIn(email: string, password: string): Promise<FirebaseU
 
 // ログアウト
 export async function logOut(): Promise<void> {
+  if (!auth) {
+    throw new Error('Firebase is not initialized. Please check your environment variables.');
+  }
+  
   try {
     await signOut(auth);
   } catch (error) {
@@ -138,5 +150,8 @@ export async function logOut(): Promise<void> {
 
 // 現在のユーザー取得
 export function getCurrentUser(): User | null {
+  if (!auth) {
+    return null;
+  }
   return auth.currentUser;
 }

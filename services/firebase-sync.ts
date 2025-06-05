@@ -22,6 +22,11 @@ function getDeviceId(): string {
 
 // ローカルデータをFirestoreに保存
 export async function syncToFirestore(userId: string, nickname: string): Promise<void> {
+  if (!db) {
+    console.warn('Firebase is not initialized. Skipping sync.');
+    return;
+  }
+  
   try {
     const userProgressKey = getUserKey('userProgress', nickname);
     const localProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
@@ -44,6 +49,11 @@ export async function syncToFirestore(userId: string, nickname: string): Promise
 
 // Firestoreからデータを取得
 export async function loadFromFirestore(userId: string, nickname: string): Promise<UserProgress | null> {
+  if (!db) {
+    console.warn('Firebase is not initialized. Using local storage only.');
+    return null;
+  }
+  
   try {
     const docRef = doc(db, 'userProgress', userId);
     const docSnap = await getDoc(docRef);
@@ -91,6 +101,11 @@ export async function loadFromFirestore(userId: string, nickname: string): Promi
 
 // リアルタイム同期を設定
 export function setupRealtimeSync(userId: string, nickname: string, onUpdate: (progress: UserProgress) => void) {
+  if (!db) {
+    console.warn('Firebase is not initialized. Realtime sync disabled.');
+    return () => {}; // Return empty unsubscribe function
+  }
+  
   const unsubscribe = onSnapshot(
     doc(db, 'userProgress', userId), 
     (doc) => {

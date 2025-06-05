@@ -38,6 +38,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
+    // Firebase認証が利用可能かチェック
+    if (!auth) {
+      console.warn('Firebase is not initialized. App will run with limited functionality.');
+      setIsLoading(false);
+      return;
+    }
+    
     // アプリ起動時にストレージをクリーンアップ
     try {
       const cleanupStorage = () => {
