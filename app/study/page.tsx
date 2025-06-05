@@ -34,6 +34,7 @@ function StudyModeContent() {
   const [selectedPart, setSelectedPart] = useState<1 | 2 | 3 | null>(null);
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [categoryStudyMode, setCategoryStudyMode] = useState<CategoryStudyMode>("random");
+  const [categoryQuestionCount, setCategoryQuestionCount] = useState<5 | 10>(10);
   const [hasSavedMockProgress, setHasSavedMockProgress] = useState(false);
   const [savedMockCategory, setSavedMockCategory] = useState<string | null>(null);
   const [savedMockMode, setSavedMockMode] = useState<string | null>(null);
@@ -220,7 +221,7 @@ function StudyModeContent() {
         safeLocalStorage.setItem(userProgressKey, userProgress);
       }
       
-      router.push(`/study/session?mode=category&category=${encodeURIComponent(selectedCategory)}&studyMode=${categoryStudyMode}`);
+      router.push(`/study/session?mode=category&category=${encodeURIComponent(selectedCategory)}&studyMode=${categoryStudyMode}&questionCount=${categoryQuestionCount}`);
     }
   };
 
@@ -235,7 +236,7 @@ function StudyModeContent() {
   };
 
   const handleReviewIncorrect = () => {
-    router.push('/study/session?mode=review');
+    router.push(`/study/session?mode=review&questionCount=${categoryQuestionCount}`);
   };
 
   const handleMockCategorySelect = (category: Category) => {
@@ -357,7 +358,7 @@ function StudyModeContent() {
               <span className="text-gray-100">
                 カテゴリ別学習
               </span>
-              <span className="text-sm font-normal text-gray-500">10問ランダム出題</span>
+              <span className="text-sm font-normal text-gray-500">{categoryQuestionCount}問出題</span>
             </div>
             <button
               onClick={() => setShowResetModal(true)}
@@ -396,7 +397,7 @@ function StudyModeContent() {
                     {category.nameJa && (
                       <p className="text-sm text-gray-400 mb-2">{category.nameJa}</p>
                     )}
-                    <p className="text-gray-400 text-sm mb-3">全{category.questions}問から10問出題</p>
+                    <p className="text-gray-400 text-sm mb-3">全{category.questions}問から{categoryQuestionCount}問出題</p>
                     
                     {/* Progress bar */}
                     <div className="rounded-lg p-3 bg-gray-900/50 backdrop-blur-sm border border-gray-700/50">
@@ -457,6 +458,30 @@ function StudyModeContent() {
                           }`}
                         >
                           順番に出題
+                        </button>
+                      </div>
+                      
+                      {/* Question count toggle */}
+                      <div className="flex gap-2 p-1 bg-gray-800 rounded-lg shadow-sm">
+                        <button
+                          onClick={() => setCategoryQuestionCount(5)}
+                          className={`flex-1 px-3 py-2 rounded-md transition-all duration-200 text-sm font-medium transform ${
+                            categoryQuestionCount === 5
+                              ? "bg-gray-700 text-gray-100 shadow-sm scale-[1.02]"
+                              : "text-gray-400 hover:text-gray-100 hover:bg-gray-700"
+                          }`}
+                        >
+                          5問
+                        </button>
+                        <button
+                          onClick={() => setCategoryQuestionCount(10)}
+                          className={`flex-1 px-3 py-2 rounded-md transition-all duration-200 text-sm font-medium transform ${
+                            categoryQuestionCount === 10
+                              ? "bg-gray-700 text-gray-100 shadow-sm scale-[1.02]"
+                              : "text-gray-400 hover:text-gray-100 hover:bg-gray-700"
+                          }`}
+                        >
+                          10問
                         </button>
                       </div>
                       
@@ -607,7 +632,7 @@ function StudyModeContent() {
             <div className="flex items-center justify-between">
               <div className="text-left">
                 <h3 className="font-bold mb-2 text-gray-100 group-hover:text-white">間違えた問題を復習</h3>
-                <p className="text-gray-400 text-sm">過去に間違えた問題から10問出題</p>
+                <p className="text-gray-400 text-sm">過去に間違えた問題から{categoryQuestionCount}問出題</p>
               </div>
               <div className="bg-gradient-to-br from-orange-400 to-orange-500 p-3 rounded-full shadow-sm group-hover:shadow-md transition-all">
                 <Zap className="w-6 h-6 text-white" />

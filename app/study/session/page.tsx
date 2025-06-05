@@ -45,6 +45,7 @@ function StudySessionContent() {
   const categoryParam = searchParams.get("category") ? decodeURIComponent(searchParams.get("category")!) : null;
   const partParam = searchParams.get("part");
   const studyModeParam = searchParams.get("studyMode") as "random" | "sequential" | null;
+  const questionCountParam = searchParams.get("questionCount");
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -137,7 +138,8 @@ function StudySessionContent() {
       } : defaultProgress;
 
       if (mode === "category" && categoryParam) {
-        // カテゴリ別学習：10問
+        // カテゴリ別学習：デフォルト10問（パラメータがあれば5問も可能）
+        const questionCount = questionCountParam === "5" ? 5 : 10;
         const categoryQuestions = allQuestions.filter(q => q.category === categoryParam);
         
         if (categoryQuestions.length === 0) {
@@ -152,20 +154,21 @@ function StudySessionContent() {
           questionSet = getSequentialQuestionsForCategory(
             categoryQuestions,
             answeredIds,
-            10
+            questionCount
           );
         } else {
           questionSet = getRandomQuestionsForCategory(
             categoryQuestions,
             progress?.incorrectQuestions || [],
-            10
+            questionCount
           );
         }
         
         setShowJapanese(progress?.preferences?.showJapaneseInStudy ?? true);
       } else if (mode === "review") {
-        // 復習モード：間違えた問題から10問
-        questionSet = getReviewQuestions(allQuestions, 10, user?.nickname);
+        // 復習モード：間違えた問題からデフォルト10問（パラメータがあれば5問も可能）
+        const questionCount = questionCountParam === "5" ? 5 : 10;
+        questionSet = getReviewQuestions(allQuestions, questionCount, user?.nickname);
         if (questionSet.length === 0) {
           alert("復習する問題がありません。まずは学習を始めてください。");
           router.push('/study');
