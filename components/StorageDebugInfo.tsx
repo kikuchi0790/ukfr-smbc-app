@@ -14,12 +14,27 @@ export default function StorageDebugInfo({ nickname }: { nickname?: string }) {
   }, [nickname]);
 
   const analyzeStorage = () => {
-    const info: any = {
+    const info: {
+      totalKeys: number;
+      userProgressKeys: Array<{
+        key: string;
+        isOldKey: boolean;
+        totalQuestions: number;
+        categories: Record<string, {
+          answered: number;
+          total: number;
+          percentage: number;
+        }>;
+      }>;
+      oldDataKeys: string[];
+      currentUserKey: string | null;
+      storageSize: string;
+    } = {
       totalKeys: localStorage.length,
       userProgressKeys: [],
       oldDataKeys: [],
       currentUserKey: nickname ? `userProgress_${nickname}` : null,
-      storageSize: 0
+      storageSize: '0'
     };
 
     const keys: string[] = [];
@@ -34,7 +49,16 @@ export default function StorageDebugInfo({ nickname }: { nickname?: string }) {
         try {
           const data = JSON.parse(localStorage.getItem(key) || '{}');
           const isOldKey = key === 'userProgress';
-          const keyInfo = {
+          const keyInfo: {
+            key: string;
+            isOldKey: boolean;
+            totalQuestions: number;
+            categories: Record<string, {
+              answered: number;
+              total: number;
+              percentage: number;
+            }>;
+          } = {
             key,
             isOldKey,
             totalQuestions: data.totalQuestionsAnswered || 0,
