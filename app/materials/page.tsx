@@ -36,6 +36,9 @@ export default function MaterialsPage() {
     script.onload = () => {
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      // CMapの設定を追加
+      window.pdfjsLib.cMapUrl = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/';
+      window.pdfjsLib.cMapPacked = true;
       loadPDF(selectedPdf);
     };
     document.body.appendChild(script);
@@ -54,10 +57,32 @@ export default function MaterialsPage() {
   const loadPDF = async (filename: string) => {
     setLoading(true);
     try {
-      const loadingTask = window.pdfjsLib.getDocument(`/materials/${filename}`);
+      console.log('Attempting to load PDF:', `/materials/${filename}`);
+      
+      // First check if the file is accessible
+      const testResponse = await fetch(`/materials/${filename}`);
+      console.log('Fetch test response:', testResponse.status, testResponse.statusText);
+      
+      if (!testResponse.ok) {
+        throw new Error(`Failed to fetch PDF: ${testResponse.status} ${testResponse.statusText}`);
+      }
+      
+      // Try loading with ArrayBuffer method for better compatibility
+      const pdfData = await testResponse.arrayBuffer();
+      console.log('PDF data loaded, size:', pdfData.byteLength);
+      
+      const loadingTask = window.pdfjsLib.getDocument({
+        data: pdfData,
+        cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/',
+        cMapPacked: true,
+        disableFontFace: false,
+        useSystemFonts: true,
+        standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/'
+      });
       const pdf = await loadingTask.promise;
       setPdfDoc(pdf);
       setTotalPages(pdf.numPages);
+      console.log('PDF loaded successfully, pages:', pdf.numPages);
       
       // レンダリングをクリア
       if (pdfWrapperRef.current) {
@@ -85,7 +110,22 @@ export default function MaterialsPage() {
       setLoading(false);
     } catch (error) {
       console.error('Error loading PDF:', error);
+      if (error instanceof Error) {
+        console.error('Error details:', error.message, error.stack);
+      }
       setLoading(false);
+      // Display error in UI
+      if (pdfWrapperRef.current) {
+        pdfWrapperRef.current.innerHTML = `
+          <div class="text-red-400 text-center p-8">
+            <div class="mb-4 text-lg">PDFの読み込みに失敗しました</div>
+            <div class="text-sm text-gray-400 mb-4">${error instanceof Error ? error.message : 'Unknown error'}</div>
+            <button onclick="window.location.reload()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+              ページを再読み込み
+            </button>
+          </div>
+        `;
+      }
     }
   };
 
@@ -110,6 +150,8 @@ export default function MaterialsPage() {
         canvasContext: context,
         viewport: scaledViewport
       };
+      
+      console.log(`Rendering page ${pageNum}`);
       
       await page.render(renderContext).promise;
       pageContainer.appendChild(canvas);
@@ -253,7 +295,10 @@ export default function MaterialsPage() {
           >
             {loading ? (
               <div className="text-center py-20 text-gray-300">
-                PDFを読み込み中...
+                <div className="mb-4">PDFを読み込み中...</div>
+                <div className="text-sm text-gray-400">
+                  問題が続く場合は、ページを再読み込みしてください
+                </div>
               </div>
             ) : (
               <div ref={pdfWrapperRef} className="max-w-4xl mx-auto">
