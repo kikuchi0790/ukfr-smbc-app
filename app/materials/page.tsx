@@ -23,17 +23,29 @@ export default function MaterialsPage() {
   const [syncScroll, setSyncScroll] = useState(true);
   const [loading, setLoading] = useState(true);
   const [textContent, setTextContent] = useState<Record<number, string>>({});
+  const [isRendering, setIsRendering] = useState(false);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
   const scrollingRef = useRef(false);
   const pdfWrapperRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const scriptLoadedRef = useRef(false);
 
   useEffect(() => {
+    // 既にスクリプトが読み込まれている場合はスキップ
+    if (scriptLoadedRef.current || window.pdfjsLib) {
+      if (window.pdfjsLib) {
+        loadPDF(selectedPdf);
+      }
+      return;
+    }
+
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
     script.async = true;
     script.onload = () => {
+      scriptLoadedRef.current = true;
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
       // CMapの設定を追加
@@ -44,23 +56,45 @@ export default function MaterialsPage() {
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      // クリーンアップ時にAbortControllerをキャンセル
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
     };
   }, []);
 
   useEffect(() => {
-    if (window.pdfjsLib) {
+    if (window.pdfjsLib && scriptLoadedRef.current) {
       loadPDF(selectedPdf);
     }
   }, [selectedPdf]);
 
   const loadPDF = async (filename: string) => {
+    // 既にレンダリング中の場合はスキップ
+    if (isRendering) {
+      console.log('Already rendering, skipping...');
+      return;
+    }
+
+    // 前のAbortControllerをキャンセル
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    // 新しいAbortControllerを作成
+    const abortController = new AbortController();
+    abortControllerRef.current = abortController;
+
     setLoading(true);
+    setIsRendering(true);
+
     try {
       console.log('Attempting to load PDF:', `/materials/${filename}`);
       
       // First check if the file is accessible
-      const testResponse = await fetch(`/materials/${filename}`);
+      const testResponse = await fetch(`/materials/${filename}`, {
+        signal: abortController.signal
+      });
       console.log('Fetch test response:', testResponse.status, testResponse.statusText);
       
       if (!testResponse.ok) {
@@ -70,6 +104,12 @@ export default function MaterialsPage() {
       // Try loading with ArrayBuffer method for better compatibility
       const pdfData = await testResponse.arrayBuffer();
       console.log('PDF data loaded, size:', pdfData.byteLength);
+      
+      // Abortされていないかチェック
+      if (abortController.signal.aborted) {
+        console.log('PDF loading was aborted');
+        return;
+      }
       
       const loadingTask = window.pdfjsLib.getDocument({
         data: pdfData,
@@ -91,6 +131,11 @@ export default function MaterialsPage() {
       
       // すべてのページをレンダリング
       for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        // Abortされていないかチェック
+        if (abortController.signal.aborted) {
+          console.log('Rendering was aborted');
+          break;
+        }
         await renderPage(pdf, pageNum);
       }
       
@@ -108,12 +153,20 @@ export default function MaterialsPage() {
       }
       
       setLoading(false);
+      setIsRendering(false);
     } catch (error) {
+      // AbortErrorの場合は無視
+      if (error instanceof Error && error.name === 'AbortError') {
+        console.log('PDF loading was cancelled');
+        return;
+      }
+      
       console.error('Error loading PDF:', error);
       if (error instanceof Error) {
         console.error('Error details:', error.message, error.stack);
       }
       setLoading(false);
+      setIsRendering(false);
       // Display error in UI
       if (pdfWrapperRef.current) {
         pdfWrapperRef.current.innerHTML = `
