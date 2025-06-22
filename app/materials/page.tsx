@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Book } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Book, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
 interface PDFDocument {
@@ -16,6 +17,7 @@ declare global {
 }
 
 export default function MaterialsPage() {
+  const router = useRouter();
   const [pdfDoc, setPdfDoc] = useState<PDFDocument | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -291,6 +293,94 @@ export default function MaterialsPage() {
     return paragraphs.join('\n');
   };
 
+  // スクロール同期のためのイベントリスナー
+  useEffect(() => {
+    const pdfPanel = pdfPanelRef.current;
+    const textPanel = textPanelRef.current;
+    
+    if (!pdfPanel || !textPanel || !syncScroll) return;
+    
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handlePdfScroll = () => {
+      if (scrollingRef.current) return;
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        scrollingRef.current = true;
+        
+        // 現在表示されているPDFページを検出
+        const pageElements = pdfPanel.querySelectorAll('[id^="pdf-page-"]');
+        let visiblePage = 1;
+        
+        for (let i = 0; i < pageElements.length; i++) {
+          const rect = pageElements[i].getBoundingClientRect();
+          const pdfPanelRect = pdfPanel.getBoundingClientRect();
+          
+          // ページの中央がビューポート内にあるか確認
+          const pageCenterY = rect.top + rect.height / 2;
+          if (pageCenterY > pdfPanelRect.top && pageCenterY < pdfPanelRect.bottom) {
+            visiblePage = i + 1;
+            break;
+          }
+        }
+        
+        // 対応するテキストページにスクロール
+        const textPage = document.getElementById(`text-page-${visiblePage}`);
+        if (textPage) {
+          textPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        setTimeout(() => { scrollingRef.current = false; }, 300);
+      }, 150);
+    };
+    
+    const handleTextScroll = () => {
+      if (scrollingRef.current) return;
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        scrollingRef.current = true;
+        
+        // 現在表示されているテキストページを検出
+        const pageElements = textPanel.querySelectorAll('[id^="text-page-"]');
+        let visiblePage = 1;
+        
+        for (let i = 0; i < pageElements.length; i++) {
+          const rect = pageElements[i].getBoundingClientRect();
+          const textPanelRect = textPanel.getBoundingClientRect();
+          
+          // ページの上部がビューポート内にあるか確認
+          if (rect.top >= textPanelRect.top && rect.top < textPanelRect.top + 100) {
+            const match = pageElements[i].id.match(/text-page-(\d+)/);
+            if (match) {
+              visiblePage = parseInt(match[1]);
+              break;
+            }
+          }
+        }
+        
+        // 対応するPDFページにスクロール
+        const pdfPage = document.getElementById(`pdf-page-${visiblePage}`);
+        if (pdfPage) {
+          pdfPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        setCurrentPage(visiblePage);
+        setTimeout(() => { scrollingRef.current = false; }, 300);
+      }, 150);
+    };
+    
+    pdfPanel.addEventListener('scroll', handlePdfScroll);
+    textPanel.addEventListener('scroll', handleTextScroll);
+    
+    return () => {
+      clearTimeout(scrollTimeout);
+      pdfPanel.removeEventListener('scroll', handlePdfScroll);
+      textPanel.removeEventListener('scroll', handleTextScroll);
+    };
+  }, [syncScroll, pdfCanvases.length]);
+
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
@@ -298,6 +388,15 @@ export default function MaterialsPage() {
         <div className="fixed top-0 left-0 right-0 bg-gray-800 z-50 border-b border-gray-700">
           <div className="px-4 h-12 flex items-center justify-between">
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => router.push('/dashboard')}
+                className="p-1.5 text-gray-200 hover:bg-gray-700 rounded flex items-center gap-1 transition-colors"
+                title="ダッシュボードに戻る"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span className="text-sm">戻る</span>
+              </button>
+              <div className="w-px h-6 bg-gray-600" />
               <Book className="w-5 h-5 text-blue-400" />
               <select 
                 value={selectedPdf}
