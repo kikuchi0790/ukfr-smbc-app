@@ -115,9 +115,10 @@ export default function MaterialsPage() {
         data: pdfData,
         cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/',
         cMapPacked: true,
-        disableFontFace: false,
-        useSystemFonts: true,
-        standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/'
+        disableFontFace: true,  // フォント処理を無効化
+        useSystemFonts: false,  // システムフォントも使用しない
+        standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/',
+        verbosity: 0  // エラーログを減らす
       });
       const pdf = await loadingTask.promise;
       setPdfDoc(pdf);
@@ -183,32 +184,52 @@ export default function MaterialsPage() {
   };
 
   const renderPage = async (pdf: PDFDocument, pageNum: number) => {
-    const page = await pdf.getPage(pageNum);
-    const desiredWidth = 800;
-    const viewport = page.getViewport({ scale: 1 });
-    const scale = Math.min(desiredWidth / viewport.width, 1.5);
-    const scaledViewport = page.getViewport({ scale });
-    
-    const pageContainer = document.createElement('div');
-    pageContainer.className = 'mb-3 shadow-lg bg-white w-fit mx-auto';
-    pageContainer.id = `pdf-page-${pageNum}`;
-    
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (context) {
-      canvas.height = scaledViewport.height;
-      canvas.width = scaledViewport.width;
+    try {
+      const page = await pdf.getPage(pageNum);
+      const desiredWidth = 800;
+      const viewport = page.getViewport({ scale: 1 });
+      const scale = Math.min(desiredWidth / viewport.width, 1.5);
+      const scaledViewport = page.getViewport({ scale });
       
-      const renderContext = {
-        canvasContext: context,
-        viewport: scaledViewport
-      };
+      const pageContainer = document.createElement('div');
+      pageContainer.className = 'mb-3 shadow-lg bg-white w-fit mx-auto';
+      pageContainer.id = `pdf-page-${pageNum}`;
       
-      console.log(`Rendering page ${pageNum}`);
-      
-      await page.render(renderContext).promise;
-      pageContainer.appendChild(canvas);
-      pdfWrapperRef.current?.appendChild(pageContainer);
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (context) {
+        canvas.height = scaledViewport.height;
+        canvas.width = scaledViewport.width;
+        // Canvasのスタイルを設定
+        canvas.style.display = 'block';
+        canvas.style.margin = '0 auto';
+        canvas.style.maxWidth = '100%';
+        canvas.style.height = 'auto';
+        
+        const renderContext = {
+          canvasContext: context,
+          viewport: scaledViewport,
+          // フォントエラーを回避するための追加オプション
+          renderInteractiveForms: false,
+          includeAnnotationStorage: false
+        };
+        
+        console.log(`Rendering page ${pageNum}, dimensions: ${canvas.width}x${canvas.height}`);
+        
+        await page.render(renderContext).promise;
+        pageContainer.appendChild(canvas);
+        
+        // DOMに確実に追加されているか確認
+        if (pdfWrapperRef.current) {
+          pdfWrapperRef.current.appendChild(pageContainer);
+          console.log(`Page ${pageNum} added to DOM`);
+        } else {
+          console.error(`pdfWrapperRef.current is null for page ${pageNum}`);
+        }
+      }
+    } catch (error) {
+      console.error(`Error rendering page ${pageNum}:`, error);
+      // エラーが発生してもレンダリングを継続
     }
   };
 
