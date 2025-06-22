@@ -126,17 +126,16 @@ export default function MaterialsPage() {
       console.log('PDF loaded successfully, pages:', pdf.numPages);
       
       // レンダリングをクリア
-      if (pdfWrapperRef.current) {
-        pdfWrapperRef.current.innerHTML = '';
-      } else {
+      if (!pdfWrapperRef.current) {
         console.error('pdfWrapperRef.current is null before rendering');
         // DOMが準備されるまで少し待つ
         await new Promise(resolve => setTimeout(resolve, 100));
-        if (pdfWrapperRef.current) {
-          pdfWrapperRef.current.innerHTML = '';
-        } else {
-          throw new Error('PDF wrapper element not found');
-        }
+      }
+      
+      if (pdfWrapperRef.current) {
+        pdfWrapperRef.current.innerHTML = '';
+      } else {
+        throw new Error('PDF wrapper element not found');
       }
       
       // すべてのページをレンダリング
