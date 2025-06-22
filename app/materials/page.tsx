@@ -24,6 +24,7 @@ export default function MaterialsPage() {
   const [loading, setLoading] = useState(true);
   const [textContent, setTextContent] = useState<Record<number, string>>({});
   const [isRendering, setIsRendering] = useState(false);
+  const [pdfCanvases, setPdfCanvases] = useState<Array<{ pageNum: number; canvas: HTMLCanvasElement }>>([]);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
@@ -125,28 +126,27 @@ export default function MaterialsPage() {
       setTotalPages(pdf.numPages);
       console.log('PDF loaded successfully, pages:', pdf.numPages);
       
-      // レンダリングをクリア
-      if (!pdfWrapperRef.current) {
-        console.error('pdfWrapperRef.current is null before rendering');
-        // DOMが準備されるまで少し待つ
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-      
-      if (pdfWrapperRef.current) {
-        pdfWrapperRef.current.innerHTML = '';
-      } else {
-        throw new Error('PDF wrapper element not found');
-      }
+      // Reactの方法でキャンバスをクリア
+      setPdfCanvases([]);
       
       // すべてのページをレンダリング
+      const newCanvases: Array<{ pageNum: number; canvas: HTMLCanvasElement }> = [];
+      
       for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
         // Abortされていないかチェック
         if (abortController.signal.aborted) {
           console.log('Rendering was aborted');
           break;
         }
-        await renderPage(pdf, pageNum);
+        
+        const canvas = await renderPage(pdf, pageNum);
+        if (canvas) {
+          newCanvases.push({ pageNum, canvas });
+        }
       }
+      
+      // 一度にすべてのキャンバスを設定
+      setPdfCanvases(newCanvases);
       
       // テキストファイルを読み込む
       const baseFilename = filename.replace('.pdf', '_ja');
@@ -191,17 +191,13 @@ export default function MaterialsPage() {
     }
   };
 
-  const renderPage = async (pdf: PDFDocument, pageNum: number) => {
+  const renderPage = async (pdf: PDFDocument, pageNum: number): Promise<HTMLCanvasElement | null> => {
     try {
       const page = await pdf.getPage(pageNum);
       const desiredWidth = 800;
       const viewport = page.getViewport({ scale: 1 });
       const scale = Math.min(desiredWidth / viewport.width, 1.5);
       const scaledViewport = page.getViewport({ scale });
-      
-      const pageContainer = document.createElement('div');
-      pageContainer.className = 'mb-3 shadow-lg bg-white w-fit mx-auto';
-      pageContainer.id = `pdf-page-${pageNum}`;
       
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
@@ -225,20 +221,15 @@ export default function MaterialsPage() {
         console.log(`Rendering page ${pageNum}, dimensions: ${canvas.width}x${canvas.height}`);
         
         await page.render(renderContext).promise;
-        pageContainer.appendChild(canvas);
+        console.log(`Page ${pageNum} rendered successfully`);
         
-        // DOMに確実に追加されているか確認
-        if (pdfWrapperRef.current) {
-          pdfWrapperRef.current.appendChild(pageContainer);
-          console.log(`Page ${pageNum} added to DOM`);
-        } else {
-          console.error(`pdfWrapperRef.current is null for page ${pageNum}`);
-        }
+        return canvas;
       }
     } catch (error) {
       console.error(`Error rendering page ${pageNum}:`, error);
       // エラーが発生してもレンダリングを継続
     }
+    return null;
   };
 
   const loadText = async (filename: string) => {
@@ -384,7 +375,24 @@ export default function MaterialsPage() {
                   </div>
                 </div>
               )}
-              {/* PDFページがここにレンダリングされる */}
+              {/* Reactでキャンバスをレンダリング */}
+              {pdfCanvases.map(({ pageNum, canvas }) => (
+                <div 
+                  key={pageNum}
+                  id={`pdf-page-${pageNum}`}
+                  className="mb-3 shadow-lg bg-white w-fit mx-auto"
+                  ref={(node) => {
+                    if (node && canvas) {
+                      // 既存の子要素をクリア
+                      while (node.firstChild) {
+                        node.removeChild(node.firstChild);
+                      }
+                      // キャンバスを追加
+                      node.appendChild(canvas);
+                    }
+                  }}
+                />
+              ))}
             </div>
           </div>
           
