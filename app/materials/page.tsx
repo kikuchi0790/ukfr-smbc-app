@@ -128,6 +128,15 @@ export default function MaterialsPage() {
       // レンダリングをクリア
       if (pdfWrapperRef.current) {
         pdfWrapperRef.current.innerHTML = '';
+      } else {
+        console.error('pdfWrapperRef.current is null before rendering');
+        // DOMが準備されるまで少し待つ
+        await new Promise(resolve => setTimeout(resolve, 100));
+        if (pdfWrapperRef.current) {
+          pdfWrapperRef.current.innerHTML = '';
+        } else {
+          throw new Error('PDF wrapper element not found');
+        }
       }
       
       // すべてのページをレンダリング
@@ -367,18 +376,17 @@ export default function MaterialsPage() {
             ref={pdfPanelRef}
             className="flex-1 overflow-y-auto bg-gray-600 p-5"
           >
-            {loading ? (
-              <div className="text-center py-20 text-gray-300">
-                <div className="mb-4">PDFを読み込み中...</div>
-                <div className="text-sm text-gray-400">
-                  問題が続く場合は、ページを再読み込みしてください
+            <div ref={pdfWrapperRef} className="max-w-4xl mx-auto">
+              {loading && (
+                <div className="text-center py-20 text-gray-300">
+                  <div className="mb-4">PDFを読み込み中...</div>
+                  <div className="text-sm text-gray-400">
+                    問題が続く場合は、ページを再読み込みしてください
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div ref={pdfWrapperRef} className="max-w-4xl mx-auto">
-                {/* PDFページがここにレンダリングされる */}
-              </div>
-            )}
+              )}
+              {/* PDFページがここにレンダリングされる */}
+            </div>
           </div>
           
           {/* Text Panel */}
