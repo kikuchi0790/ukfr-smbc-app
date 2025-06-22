@@ -261,6 +261,8 @@ export default function MaterialsPage() {
   const goToPage = (pageNum: number) => {
     if (pageNum < 1 || pageNum > totalPages) return;
     
+    // スクロール同期を一時的に無効化
+    scrollingRef.current = true;
     setCurrentPage(pageNum);
     
     const pdfPage = document.getElementById(`pdf-page-${pageNum}`);
@@ -272,7 +274,11 @@ export default function MaterialsPage() {
     if (textPage && syncScroll) {
       setTimeout(() => {
         textPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // スクロール完了後に同期を再開
+        setTimeout(() => { scrollingRef.current = false; }, 500);
       }, 50);
+    } else {
+      setTimeout(() => { scrollingRef.current = false; }, 500);
     }
   };
 
@@ -311,7 +317,7 @@ export default function MaterialsPage() {
         
         // 現在表示されているPDFページを検出
         const pageElements = pdfPanel.querySelectorAll('[id^="pdf-page-"]');
-        let visiblePage = 1;
+        let visiblePage = currentPage; // デフォルトを現在のページに
         
         for (let i = 0; i < pageElements.length; i++) {
           const rect = pageElements[i].getBoundingClientRect();
@@ -325,10 +331,13 @@ export default function MaterialsPage() {
           }
         }
         
-        // 対応するテキストページにスクロール
-        const textPage = document.getElementById(`text-page-${visiblePage}`);
-        if (textPage) {
-          textPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ページが変わった場合のみ同期
+        if (visiblePage !== currentPage) {
+          setCurrentPage(visiblePage);
+          const textPage = document.getElementById(`text-page-${visiblePage}`);
+          if (textPage) {
+            textPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         }
         
         setTimeout(() => { scrollingRef.current = false; }, 300);
@@ -344,14 +353,14 @@ export default function MaterialsPage() {
         
         // 現在表示されているテキストページを検出
         const pageElements = textPanel.querySelectorAll('[id^="text-page-"]');
-        let visiblePage = 1;
+        let visiblePage = currentPage; // デフォルトを現在のページに
         
         for (let i = 0; i < pageElements.length; i++) {
           const rect = pageElements[i].getBoundingClientRect();
           const textPanelRect = textPanel.getBoundingClientRect();
           
-          // ページの上部がビューポート内にあるか確認
-          if (rect.top >= textPanelRect.top && rect.top < textPanelRect.top + 100) {
+          // より正確なページ検出
+          if (rect.top <= textPanelRect.top + 50 && rect.bottom > textPanelRect.top + 50) {
             const match = pageElements[i].id.match(/text-page-(\d+)/);
             if (match) {
               visiblePage = parseInt(match[1]);
@@ -360,13 +369,14 @@ export default function MaterialsPage() {
           }
         }
         
-        // 対応するPDFページにスクロール
-        const pdfPage = document.getElementById(`pdf-page-${visiblePage}`);
-        if (pdfPage) {
-          pdfPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ページが変わった場合のみ同期
+        if (visiblePage !== currentPage) {
+          setCurrentPage(visiblePage);
+          const pdfPage = document.getElementById(`pdf-page-${visiblePage}`);
+          if (pdfPage) {
+            pdfPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         }
-        
-        setCurrentPage(visiblePage);
         setTimeout(() => { scrollingRef.current = false; }, 300);
       }, 150);
     };
@@ -379,7 +389,7 @@ export default function MaterialsPage() {
       pdfPanel.removeEventListener('scroll', handlePdfScroll);
       textPanel.removeEventListener('scroll', handleTextScroll);
     };
-  }, [syncScroll, pdfCanvases.length]);
+  }, [syncScroll, pdfCanvases.length, currentPage]);
 
   return (
     <ProtectedRoute>
