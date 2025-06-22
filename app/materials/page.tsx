@@ -284,14 +284,14 @@ export default function MaterialsPage() {
 
   const processTextContent = (content: string) => {
     let processed = content
-      .replace(/^([A-Z][^\n]{0,100})$/gm, '<h2 class="text-xl font-semibold mt-8 mb-4">$1</h2>')
-      .replace(/^(\d+\.\s+[^\n]+)$/gm, '<h3 class="text-lg font-medium mt-6 mb-3">$1</h3>')
-      .replace(/^(\d+\.\d+\.\s+[^\n]+)$/gm, '<h4 class="text-base font-medium mt-4 mb-2">$1</h4>');
+      .replace(/^([A-Z][^\n]{0,100})$/gm, '<h2 class="text-xl font-semibold mt-8 mb-4 text-gray-900">$1</h2>')
+      .replace(/^(\d+\.\s+[^\n]+)$/gm, '<h3 class="text-lg font-medium mt-6 mb-3 text-gray-800">$1</h3>')
+      .replace(/^(\d+\.\d+\.\s+[^\n]+)$/gm, '<h4 class="text-base font-medium mt-4 mb-2 text-gray-800">$1</h4>');
     
     const paragraphs = processed.split('\n\n').map(para => {
       para = para.trim();
       if (para && !para.match(/^<[^>]+>/)) {
-        return `<p class="mb-4 text-justify">${para}</p>`;
+        return `<p class="mb-4 text-justify text-gray-900 leading-relaxed">${para}</p>`;
       }
       return para;
     });
@@ -508,10 +508,10 @@ export default function MaterialsPage() {
           {/* Text Panel */}
           <div 
             ref={textPanelRef}
-            className="flex-1 overflow-y-auto bg-white"
+            className="flex-1 overflow-y-auto bg-white text-gray-900"
           >
             {loading ? (
-              <div className="text-center py-20 text-gray-500">
+              <div className="text-center py-20 text-gray-600">
                 テキストを読み込み中...
               </div>
             ) : (
@@ -522,11 +522,11 @@ export default function MaterialsPage() {
                     id={`text-page-${pageNum}`}
                     className="min-h-screen mb-12"
                   >
-                    <div className="text-sm text-gray-500 uppercase tracking-wider mb-8 pb-4 border-b">
+                    <div className="text-sm text-gray-600 uppercase tracking-wider mb-8 pb-4 border-b border-gray-200">
                       ページ {pageNum}
                     </div>
                     <div 
-                      className="prose prose-lg max-w-none"
+                      className="prose prose-lg max-w-none prose-gray"
                       dangerouslySetInnerHTML={{ __html: processTextContent(content) }}
                     />
                   </div>
