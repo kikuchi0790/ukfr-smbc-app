@@ -22,7 +22,8 @@ import {
   FileText,
   Trophy,
   Cloud,
-  CloudOff
+  CloudOff,
+  Book
 } from "lucide-react";
 import { UserProgress, Category } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
@@ -220,6 +221,13 @@ function DashboardContent() {
       icon: <List className="w-6 h-6" />,
       href: "/questions",
       color: "bg-purple-500"
+    },
+    {
+      title: "教材ビュー",
+      description: "PDFと和訳を並列表示",
+      icon: <Book className="w-6 h-6" />,
+      href: "/materials",
+      color: "bg-blue-500"
     }
   ];
 

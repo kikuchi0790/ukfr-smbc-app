@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF & 和訳テキスト並列ビューア</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            height: calc(100vh - 48px);
+            margin-top: 48px;
+            background: #525659;
+        }
+        .panel {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .left-panel {
+            background-color: #525659;
+            border-right: 1px solid #3a3d41;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .pdf-wrapper {
+            max-width: 900px;
+            width: 100%;
+        }
+        .right-panel {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+        }
+        .controls {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #323639;
+            padding: 0 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 14px;
+            height: 48px;
+            box-sizing: border-box;
+        }
+        .controls-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+        .controls-center {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+        select {
+            padding: 4px 8px;
+            font-size: 13px;
+            background: transparent;
+            color: #e8eaed;
+            border: 1px solid #5f6368;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        select:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        button {
+            padding: 8px;
+            cursor: pointer;
+            background: transparent;
+            color: #e8eaed;
+            border: none;
+            border-radius: 4px;
+            font-size: 20px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        button:active {
+            background: rgba(255,255,255,0.2);
+        }
+        .divider {
+            width: 1px;
+            height: 24px;
+            background: #5f6368;
+            margin: 0 4px;
+        }
+        .page-container {
+            margin-bottom: 12px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.5);
+            background: white;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .text-page {
+            padding: 60px 80px;
+            margin-bottom: 0;
+            background: #ffffff;
+            border: none;
+            border-radius: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+            min-height: 100vh;
+            color: #333;
+        }
+        .text-page h1, .text-page h2, .text-page h3, .text-page h4 {
+            font-weight: 600;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            color: #111;
+        }
+        .text-page h1 {
+            font-size: 24px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5em;
+        }
+        .text-page h2 {
+            font-size: 20px;
+            margin-top: 1.5em;
+        }
+        .text-page h3 {
+            font-size: 18px;
+            color: #333;
+        }
+        .text-page p {
+            margin: 1em 0;
+            text-align: justify;
+        }
+        .text-page ul, .text-page ol {
+            margin: 1em 0;
+            padding-left: 2em;
+        }
+        .text-page li {
+            margin-bottom: 0.5em;
+            line-height: 1.6;
+        }
+        .text-page ul li {
+            list-style-type: none;
+            position: relative;
+        }
+        .text-page ul li:before {
+            content: "•";
+            position: absolute;
+            left: -1.5em;
+            color: #666;
+            font-weight: 400;
+        }
+        .text-page ul ul {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        .text-page ul ul li:before {
+            content: "◦";
+            font-size: 0.9em;
+        }
+        .text-page ol {
+            counter-reset: item;
+        }
+        .text-page ol li {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        .text-page ol li:before {
+            content: counter(item) ". ";
+            counter-increment: item;
+            font-weight: 500;
+            color: #666;
+        }
+        .text-page strong {
+            font-weight: 600;
+            color: #111;
+        }
+        .text-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .text-page-header {
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 2em;
+            padding-bottom: 1em;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        #pageInfo {
+            font-size: 13px;
+            color: #e8eaed;
+            cursor: text;
+            padding: 4px 0;
+            min-width: 100px;
+            text-align: center;
+        }
+        #pageInput {
+            width: 40px;
+            padding: 4px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            text-align: center;
+            background: #41464b;
+            color: #e8eaed;
+            margin: 0 4px;
+        }
+        #pageInput:focus {
+            outline: none;
+            background: #5b6165;
+        }
+        .page-label {
+            color: #9aa0a6;
+            font-size: 13px;
+        }
+        .sync-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="controls-left">
+            <select id="pdfSelector">
+                <option value="UKFR_ED32_Checkpoint.pdf">UKFR_ED32_Checkpoint.pdf</option>
+                <option value="UKFR_ED32_Study_Companion.pdf">UKFR_ED32_Study_Companion.pdf</option>
+            </select>
+        </div>
+        <div class="controls-center">
+            <button id="prevPage" title="前のページ">◀</button>
+            <button id="nextPage" title="次のページ">▶</button>
+            <div class="divider"></div>
+            <div style="display: flex; align-items: center;">
+                <input type="number" id="pageInput" min="1">
+                <span class="page-label">/ <span id="totalPages">?</span></span>
+            </div>
+        </div>
+        <div class="controls-right">
+            <div class="sync-checkbox" style="display: flex; align-items: center; gap: 6px;">
+                <input type="checkbox" id="syncScroll" checked style="cursor: pointer;">
+                <label for="syncScroll" style="color: #e8eaed; cursor: pointer; font-size: 13px;">スクロール同期</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="panel left-panel" id="pdfPanel">
+            <div class="loading">PDFを読み込み中...</div>
+        </div>
+        <div class="panel right-panel" id="textPanel">
+            <div class="loading">テキストを読み込み中...</div>
+        </div>
+    </div>
+
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        let pdfDoc = null;
+        let currentPage = 1;
+        let totalPages = 0;
+        let textPages = {};
+        let syncScroll = true;
+        
+        const pdfSelector = document.getElementById('pdfSelector');
+        const pdfPanel = document.getElementById('pdfPanel');
+        const textPanel = document.getElementById('textPanel');
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+        const pageInfo = document.getElementById('pageInfo');
+        const pageInput = document.getElementById('pageInput');
+        const syncCheckbox = document.getElementById('syncScroll');
+        
+        syncCheckbox.addEventListener('change', (e) => {
+            syncScroll = e.target.checked;
+        });
+        
+        // PDFを読み込む
+        async function loadPDF(filename) {
+            pdfPanel.innerHTML = '<div class="loading">PDFを読み込み中...</div>';
+            
+            try {
+                const loadingTask = pdfjsLib.getDocument(filename);
+                pdfDoc = await loadingTask.promise;
+                totalPages = pdfDoc.numPages;
+                pageInput.value = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+                
+                // すべてのページをレンダリング
+                pdfPanel.innerHTML = '<div class="pdf-wrapper"></div>';
+                const pdfWrapper = pdfPanel.querySelector('.pdf-wrapper');
+                for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+                    await renderPage(pageNum, pdfWrapper);
+                }
+                
+                // 対応するテキストファイルを読み込む（修正済みファイルを優先）
+                const baseFilename = filename.replace('.pdf', '_ja');
+                const fixedFilename = baseFilename + '_fixed.txt';
+                const normalFilename = baseFilename + '.txt';
+                
+                // 修正済みファイルが存在するか確認
+                fetch(fixedFilename)
+                    .then(response => {
+                        if (response.ok) {
+                            loadText(fixedFilename);
+                        } else {
+                            loadText(normalFilename);
+                        }
+                    })
+                    .catch(() => loadText(normalFilename));
+            } catch (error) {
+                pdfPanel.innerHTML = `<div class="loading">エラー: PDFの読み込みに失敗しました<br>${error.message}</div>`;
+            }
+        }
+        
+        // PDFページをレンダリング
+        async function renderPage(pageNum, pdfWrapper) {
+            const page = await pdfDoc.getPage(pageNum);
+            const desiredWidth = 800; // 最大幅
+            const viewport = page.getViewport({ scale: 1 });
+            const scale = Math.min(desiredWidth / viewport.width, 1.5);
+            const scaledViewport = page.getViewport({ scale });
+            
+            const pageContainer = document.createElement('div');
+            pageContainer.className = 'page-container';
+            pageContainer.id = `pdf-page-${pageNum}`;
+            
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = scaledViewport.height;
+            canvas.width = scaledViewport.width;
+            
+            const renderContext = {
+                canvasContext: context,
+                viewport: scaledViewport
+            };
+            
+            await page.render(renderContext).promise;
+            pageContainer.appendChild(canvas);
+            pdfWrapper.appendChild(pageContainer);
+        }
+        
+        // テキストファイルを読み込む
+        async function loadText(filename) {
+            textPanel.innerHTML = '<div class="loading">テキストを読み込み中...</div>';
+            
+            try {
+                const response = await fetch(filename);
+                const text = await response.text();
+                
+                // ページごとに分割
+                const pageRegex = /ページ\s+(\d+)/g;
+                const pages = text.split(/(?=ページ\s+\d+)/);
+                
+                textPanel.innerHTML = '';
+                pages.forEach((pageContent, index) => {
+                    if (pageContent.trim()) {
+                        const pageMatch = pageContent.match(/ページ\s+(\d+)/);
+                        const pageNum = pageMatch ? parseInt(pageMatch[1]) : index;
+                        
+                        const pageDiv = document.createElement('div');
+                        pageDiv.className = 'text-page';
+                        pageDiv.id = `text-page-${pageNum}`;
+                        
+                        const headerDiv = document.createElement('div');
+                        headerDiv.className = 'text-page-header';
+                        headerDiv.textContent = `ページ ${pageNum}`;
+                        
+                        const contentDiv = document.createElement('div');
+                        contentDiv.className = 'text-content';
+                        let content = pageContent.replace(/ページ\s+\d+/, '').trim();
+                        
+                        // HTMLとして解釈するための処理
+                        content = escapeHtml(content);
+                        
+                        // 見出しの検出と変換
+                        content = content.replace(/^([A-Z][^\n]{0,100})$/gm, '<h2>$1</h2>');
+                        content = content.replace(/^(\d+\.\s+[^\n]+)$/gm, '<h3>$1</h3>');
+                        content = content.replace(/^(\d+\.\d+\.\s+[^\n]+)$/gm, '<h4>$1</h4>');
+                        
+                        // 箇条書きの処理
+                        content = processLists(content);
+                        
+                        // 段落の処理
+                        content = content.split('\n\n').map(para => {
+                            para = para.trim();
+                            if (para && !para.match(/^<[^>]+>/)) {
+                                return '<p>' + para + '</p>';
+                            }
+                            return para;
+                        }).join('\n\n');
+                        
+                        contentDiv.innerHTML = content;
+                        
+                        pageDiv.appendChild(headerDiv);
+                        pageDiv.appendChild(contentDiv);
+                        textPanel.appendChild(pageDiv);
+                        
+                        textPages[pageNum] = pageDiv;
+                    }
+                });
+            } catch (error) {
+                textPanel.innerHTML = `<div class="loading">エラー: テキストの読み込みに失敗しました<br>${error.message}</div>`;
+            }
+        }
+        
+        // ページナビゲーション
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalPages) return;
+            
+            currentPage = pageNum;
+            pageInput.value = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+            
+            const pdfPage = document.getElementById(`pdf-page-${pageNum}`);
+            const textPage = document.getElementById(`text-page-${pageNum}`);
+            
+            if (pdfPage) {
+                pdfPage.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+            if (textPage && syncScroll) {
+                // テキストページへのスクロールを遅延実行
+                setTimeout(() => {
+                    textPage.scrollIntoView({ behavior: 'auto', block: 'start' });
+                }, 50);
+            }
+        }
+        
+        // スクロール同期
+        let scrolling = false;
+        let scrollTimeout = null;
+        
+        // PDFパネルのスクロール監視
+        pdfPanel.addEventListener('scroll', () => {
+            if (!syncScroll || scrolling) return;
+            
+            // デバウンス処理
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            
+            scrollTimeout = setTimeout(() => {
+                // 現在表示されているPDFページを検出
+                const pageContainers = document.querySelectorAll('.page-container');
+                let visiblePage = currentPage;
+                
+                for (let i = 0; i < pageContainers.length; i++) {
+                    const rect = pageContainers[i].getBoundingClientRect();
+                    // ページの中央がビューポート内にあるか確認
+                    const pageCenterY = rect.top + rect.height / 2;
+                    if (pageCenterY > 0 && pageCenterY < window.innerHeight) {
+                        visiblePage = i + 1;
+                        break;
+                    }
+                }
+                
+                if (currentPage !== visiblePage) {
+                    currentPage = visiblePage;
+                    pageInput.value = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+                    
+                    // テキストページを同期
+                    scrolling = true;
+                    const textPage = document.getElementById(`text-page-${currentPage}`);
+                    if (textPage) {
+                        textPage.scrollIntoView({ behavior: 'auto', block: 'start' });
+                    }
+                    setTimeout(() => { scrolling = false; }, 300);
+                }
+            }, 150);
+        });
+        
+        // テキストパネルのスクロール監視
+        let textScrollTimeout = null;
+        
+        textPanel.addEventListener('scroll', () => {
+            if (!syncScroll || scrolling) return;
+            
+            // デバウンス処理
+            if (textScrollTimeout) clearTimeout(textScrollTimeout);
+            
+            textScrollTimeout = setTimeout(() => {
+                // 現在表示されているテキストページを検出
+                const textPageElements = document.querySelectorAll('.text-page');
+                let visiblePage = currentPage;
+                
+                for (let i = 0; i < textPageElements.length; i++) {
+                    const rect = textPageElements[i].getBoundingClientRect();
+                    // ページの上部がビューポート内にあるか確認
+                    if (rect.top >= -50 && rect.top < window.innerHeight / 2) {
+                        const pageId = textPageElements[i].id.match(/text-page-(\d+)/);
+                        if (pageId) {
+                            visiblePage = parseInt(pageId[1]);
+                            break;
+                        }
+                    }
+                }
+                
+                if (currentPage !== visiblePage) {
+                    currentPage = visiblePage;
+                    pageInput.value = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+                    
+                    // PDFページを同期
+                    scrolling = true;
+                    const pdfPage = document.getElementById(`pdf-page-${currentPage}`);
+                    if (pdfPage) {
+                        pdfPage.scrollIntoView({ behavior: 'auto', block: 'start' });
+                    }
+                    setTimeout(() => { scrolling = false; }, 300);
+                }
+            }, 150);
+        });
+        
+        // イベントリスナー
+        pdfSelector.addEventListener('change', (e) => {
+            currentPage = 1;
+            loadPDF(e.target.value);
+        });
+        
+        prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+        nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
+        
+        // ページ番号入力機能
+        pageInput.addEventListener('change', () => {
+            const page = parseInt(pageInput.value);
+            if (page >= 1 && page <= totalPages) {
+                goToPage(page);
+            } else {
+                pageInput.value = currentPage;
+            }
+        });
+        
+        pageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const page = parseInt(pageInput.value);
+                if (page >= 1 && page <= totalPages) {
+                    goToPage(page);
+                } else {
+                    pageInput.value = currentPage;
+                }
+                pageInput.blur();
+            }
+        });
+        
+        // キーボードショートカット
+        document.addEventListener('keydown', (e) => {
+            // 入力フィールドにフォーカスがある場合はスキップ
+            if (document.activeElement === pageInput) return;
+            
+            if (e.key === 'ArrowLeft') goToPage(currentPage - 1);
+            if (e.key === 'ArrowRight') goToPage(currentPage + 1);
+        });
+        
+        // HTMLエスケープ関数
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+        
+        // リスト処理関数
+        function processLists(content) {
+            const lines = content.split('\n');
+            let result = [];
+            let inList = false;
+            let listItems = [];
+            let currentIndent = 0;
+            
+            for (let line of lines) {
+                // 箇条書き項目の検出
+                if (line.match(/^\s*[•●・▪□▫▻◦–]/)) {
+                    if (!inList) {
+                        inList = true;
+                        if (result.length > 0 && result[result.length - 1] !== '') {
+                            result.push('');
+                        }
+                    }
+                    
+                    const indent = line.search(/\S/);
+                    const cleanLine = line.trim().replace(/^[•●・▪□▫▻◦–]\s*/, '');
+                    
+                    if (indent > currentIndent + 2) {
+                        listItems.push('<ul><li>' + cleanLine + '</li>');
+                    } else if (indent < currentIndent - 2 && listItems.length > 0) {
+                        listItems.push('</ul></li><li>' + cleanLine + '</li>');
+                    } else {
+                        if (listItems.length > 0) {
+                            listItems.push('</li><li>' + cleanLine + '</li>');
+                        } else {
+                            listItems.push('<li>' + cleanLine + '</li>');
+                        }
+                    }
+                    currentIndent = indent;
+                } else if (line.match(/^\s*\d+\.\s+/)) {
+                    // 番号付きリスト
+                    if (inList && listItems.length > 0) {
+                        result.push('<ul>' + listItems.join('') + '</li></ul>');
+                        listItems = [];
+                        inList = false;
+                    }
+                    const cleanLine = line.trim().replace(/^\d+\.\s+/, '');
+                    result.push('<ol><li>' + cleanLine + '</li></ol>');
+                } else {
+                    if (inList && listItems.length > 0) {
+                        let listHtml = '<ul>' + listItems.join('');
+                        // 未閉じのネストを閉じる
+                        const openUls = (listHtml.match(/<ul>/g) || []).length;
+                        const closeUls = (listHtml.match(/<\/ul>/g) || []).length;
+                        for (let i = 0; i < openUls - closeUls - 1; i++) {
+                            listHtml += '</ul>';
+                        }
+                        listHtml += '</li></ul>';
+                        result.push(listHtml);
+                        listItems = [];
+                        inList = false;
+                        currentIndent = 0;
+                    }
+                    result.push(line);
+                }
+            }
+            
+            // 最後のリストを処理
+            if (inList && listItems.length > 0) {
+                let listHtml = '<ul>' + listItems.join('');
+                const openUls = (listHtml.match(/<ul>/g) || []).length;
+                const closeUls = (listHtml.match(/<\/ul>/g) || []).length;
+                for (let i = 0; i < openUls - closeUls - 1; i++) {
+                    listHtml += '</ul>';
+                }
+                listHtml += '</li></ul>';
+                result.push(listHtml);
+            }
+            
+            return result.join('\n');
+        }
+        
+        // 初期読み込み
+        loadPDF(pdfSelector.value);
+    </script>
+</body>
+</html>

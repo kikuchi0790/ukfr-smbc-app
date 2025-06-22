@@ -1,0 +1,298 @@
+'use client';
+
+import { useEffect, useState, useRef } from 'react';
+import { ChevronLeft, ChevronRight, Book } from 'lucide-react';
+import ProtectedRoute from '@/components/ProtectedRoute';
+
+interface PDFDocument {
+  numPages: number;
+  getPage: (pageNum: number) => Promise<any>;
+}
+
+declare global {
+  interface Window {
+    pdfjsLib: any;
+  }
+}
+
+export default function MaterialsPage() {
+  const [pdfDoc, setPdfDoc] = useState<PDFDocument | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [selectedPdf, setSelectedPdf] = useState('UKFR_ED32_Checkpoint.pdf');
+  const [syncScroll, setSyncScroll] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [textContent, setTextContent] = useState<Record<number, string>>({});
+
+  const pdfPanelRef = useRef<HTMLDivElement>(null);
+  const textPanelRef = useRef<HTMLDivElement>(null);
+  const scrollingRef = useRef(false);
+  const pdfWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    script.async = true;
+    script.onload = () => {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      loadPDF(selectedPdf);
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (window.pdfjsLib) {
+      loadPDF(selectedPdf);
+    }
+  }, [selectedPdf]);
+
+  const loadPDF = async (filename: string) => {
+    setLoading(true);
+    try {
+      const loadingTask = window.pdfjsLib.getDocument(`/materials/${filename}`);
+      const pdf = await loadingTask.promise;
+      setPdfDoc(pdf);
+      setTotalPages(pdf.numPages);
+      
+      // レンダリングをクリア
+      if (pdfWrapperRef.current) {
+        pdfWrapperRef.current.innerHTML = '';
+      }
+      
+      // すべてのページをレンダリング
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        await renderPage(pdf, pageNum);
+      }
+      
+      // テキストファイルを読み込む
+      const baseFilename = filename.replace('.pdf', '_ja');
+      const fixedFilename = baseFilename + '_fixed.txt';
+      
+      try {
+        const response = await fetch(`/materials/${fixedFilename}`);
+        if (response.ok) {
+          await loadText(fixedFilename);
+        }
+      } catch (error) {
+        console.error('Failed to load text file:', error);
+      }
+      
+      setLoading(false);
+    } catch (error) {
+      console.error('Error loading PDF:', error);
+      setLoading(false);
+    }
+  };
+
+  const renderPage = async (pdf: PDFDocument, pageNum: number) => {
+    const page = await pdf.getPage(pageNum);
+    const desiredWidth = 800;
+    const viewport = page.getViewport({ scale: 1 });
+    const scale = Math.min(desiredWidth / viewport.width, 1.5);
+    const scaledViewport = page.getViewport({ scale });
+    
+    const pageContainer = document.createElement('div');
+    pageContainer.className = 'mb-3 shadow-lg bg-white w-fit mx-auto';
+    pageContainer.id = `pdf-page-${pageNum}`;
+    
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context) {
+      canvas.height = scaledViewport.height;
+      canvas.width = scaledViewport.width;
+      
+      const renderContext = {
+        canvasContext: context,
+        viewport: scaledViewport
+      };
+      
+      await page.render(renderContext).promise;
+      pageContainer.appendChild(canvas);
+      pdfWrapperRef.current?.appendChild(pageContainer);
+    }
+  };
+
+  const loadText = async (filename: string) => {
+    try {
+      const response = await fetch(`/materials/${filename}`);
+      const text = await response.text();
+      
+      const pages = text.split(/(?=ページ\s+\d+)/);
+      const pageContents: Record<number, string> = {};
+      
+      pages.forEach((pageContent) => {
+        if (pageContent.trim()) {
+          const pageMatch = pageContent.match(/ページ\s+(\d+)/);
+          const pageNum = pageMatch ? parseInt(pageMatch[1]) : 0;
+          if (pageNum > 0) {
+            pageContents[pageNum] = pageContent.replace(/ページ\s+\d+/, '').trim();
+          }
+        }
+      });
+      
+      setTextContent(pageContents);
+    } catch (error) {
+      console.error('Error loading text:', error);
+    }
+  };
+
+  const goToPage = (pageNum: number) => {
+    if (pageNum < 1 || pageNum > totalPages) return;
+    
+    setCurrentPage(pageNum);
+    
+    const pdfPage = document.getElementById(`pdf-page-${pageNum}`);
+    const textPage = document.getElementById(`text-page-${pageNum}`);
+    
+    if (pdfPage) {
+      pdfPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (textPage && syncScroll) {
+      setTimeout(() => {
+        textPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  };
+
+  const processTextContent = (content: string) => {
+    let processed = content
+      .replace(/^([A-Z][^\n]{0,100})$/gm, '<h2 class="text-xl font-semibold mt-8 mb-4">$1</h2>')
+      .replace(/^(\d+\.\s+[^\n]+)$/gm, '<h3 class="text-lg font-medium mt-6 mb-3">$1</h3>')
+      .replace(/^(\d+\.\d+\.\s+[^\n]+)$/gm, '<h4 class="text-base font-medium mt-4 mb-2">$1</h4>');
+    
+    const paragraphs = processed.split('\n\n').map(para => {
+      para = para.trim();
+      if (para && !para.match(/^<[^>]+>/)) {
+        return `<p class="mb-4 text-justify">${para}</p>`;
+      }
+      return para;
+    });
+    
+    return paragraphs.join('\n');
+  };
+
+  return (
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
+        {/* Header */}
+        <div className="fixed top-0 left-0 right-0 bg-gray-800 z-50 border-b border-gray-700">
+          <div className="px-4 h-12 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Book className="w-5 h-5 text-blue-400" />
+              <select 
+                value={selectedPdf}
+                onChange={(e) => setSelectedPdf(e.target.value)}
+                className="bg-gray-700 text-gray-200 px-3 py-1 rounded text-sm border border-gray-600 hover:bg-gray-600"
+              >
+                <option value="UKFR_ED32_Checkpoint.pdf">UKFR_ED32_Checkpoint.pdf</option>
+                <option value="UKFR_ED32_Study_Companion.pdf">UKFR_ED32_Study_Companion.pdf</option>
+              </select>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage <= 1}
+                className="p-1.5 text-gray-200 hover:bg-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              
+              <div className="flex items-center gap-2 text-sm">
+                <input
+                  type="number"
+                  value={currentPage}
+                  onChange={(e) => {
+                    const page = parseInt(e.target.value);
+                    if (page >= 1 && page <= totalPages) {
+                      goToPage(page);
+                    }
+                  }}
+                  className="w-12 px-2 py-1 bg-gray-700 text-gray-200 rounded text-center border border-gray-600"
+                  min="1"
+                  max={totalPages}
+                />
+                <span className="text-gray-400">/ {totalPages}</span>
+              </div>
+              
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage >= totalPages}
+                className="p-1.5 text-gray-200 hover:bg-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="syncScroll"
+                checked={syncScroll}
+                onChange={(e) => setSyncScroll(e.target.checked)}
+                className="cursor-pointer"
+              />
+              <label htmlFor="syncScroll" className="text-sm text-gray-200 cursor-pointer">
+                スクロール同期
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        {/* Main Content */}
+        <div className="flex h-screen pt-12">
+          {/* PDF Panel */}
+          <div 
+            ref={pdfPanelRef}
+            className="flex-1 overflow-y-auto bg-gray-600 p-5"
+          >
+            {loading ? (
+              <div className="text-center py-20 text-gray-300">
+                PDFを読み込み中...
+              </div>
+            ) : (
+              <div ref={pdfWrapperRef} className="max-w-4xl mx-auto">
+                {/* PDFページがここにレンダリングされる */}
+              </div>
+            )}
+          </div>
+          
+          {/* Text Panel */}
+          <div 
+            ref={textPanelRef}
+            className="flex-1 overflow-y-auto bg-white"
+          >
+            {loading ? (
+              <div className="text-center py-20 text-gray-500">
+                テキストを読み込み中...
+              </div>
+            ) : (
+              <div className="max-w-3xl mx-auto px-20 py-12">
+                {Object.entries(textContent).map(([pageNum, content]) => (
+                  <div 
+                    key={pageNum}
+                    id={`text-page-${pageNum}`}
+                    className="min-h-screen mb-12"
+                  >
+                    <div className="text-sm text-gray-500 uppercase tracking-wider mb-8 pb-4 border-b">
+                      ページ {pageNum}
+                    </div>
+                    <div 
+                      className="prose prose-lg max-w-none"
+                      dangerouslySetInnerHTML={{ __html: processTextContent(content) }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
+}
