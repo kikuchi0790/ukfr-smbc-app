@@ -267,37 +267,63 @@ export default function MaterialsPage() {
       const doc = parser.parseFromString(html, 'text/html');
       const pageContents: Record<number, string> = {};
       
-      // ページマーカーがある場合
-      const pageMarkers = doc.querySelectorAll('.page-marker');
-      if (pageMarkers.length > 0) {
-        pageMarkers.forEach((marker, index) => {
-          const pageNum = parseInt(marker.getAttribute('data-page') || '1');
-          const nextMarker = pageMarkers[index + 1];
-          
-          let content = '';
-          let currentNode = marker.nextSibling;
-          
-          while (currentNode && currentNode !== nextMarker) {
-            if (currentNode.nodeType === Node.ELEMENT_NODE) {
-              content += (currentNode as Element).outerHTML;
-            } else if (currentNode.nodeType === Node.TEXT_NODE) {
-              content += currentNode.textContent;
-            }
-            currentNode = currentNode.nextSibling;
-          }
-          
-          pageContents[pageNum] = content;
+      // StudyCompanion.htmlのようにpage-contentクラスがある場合を先にチェック
+      const pageElements = doc.querySelectorAll('.page-content[id]');
+      if (pageElements.length > 0) {
+        pageElements.forEach((elem, index) => {
+          const id = elem.getAttribute('id');
+          const pageMatch = id?.match(/page-(\d+)/);
+          const pageNum = pageMatch ? parseInt(pageMatch[1]) : index + 1;
+          pageContents[pageNum] = elem.innerHTML; // innerHTMLを使用してpage-content自体は含めない
         });
       } else {
-        // StudyCompanion.htmlのようにpage-contentクラスがある場合
-        const pageElements = doc.querySelectorAll('.page-content[id]');
-        if (pageElements.length > 0) {
-          pageElements.forEach((elem, index) => {
-            const id = elem.getAttribute('id');
-            const pageMatch = id?.match(/page-(\d+)/);
-            const pageNum = pageMatch ? parseInt(pageMatch[1]) : index + 1;
-            pageContents[pageNum] = elem.outerHTML;
-          });
+        // ページマーカーがある場合（Checkpoint.htmlなど）
+        const pageMarkers = doc.querySelectorAll('.page-marker');
+        if (pageMarkers.length > 0) {
+          // HTMLを文字列として処理して、page-marker間のコンテンツを抽出
+          const bodyHtml = doc.body.innerHTML;
+          
+          // すべてのpage-markerの位置を見つける
+          const markerPattern = /<div[^>]*class="page-marker"[^>]*data-page="(\d+)"[^>]*>.*?<\/div>/g;
+          const markers: Array<{pageNum: number, index: number}> = [];
+          let match;
+          
+          while ((match = markerPattern.exec(bodyHtml)) !== null) {
+            markers.push({
+              pageNum: parseInt(match[1]),
+              index: match.index
+            });
+          }
+          
+          // 各マーカー間のコンテンツを抽出
+          for (let i = 0; i < markers.length; i++) {
+            const currentMarker = markers[i];
+            const nextMarker = markers[i + 1];
+            
+            let content = '';
+            if (nextMarker) {
+              // 現在のマーカーから次のマーカーまでの内容を取得
+              content = bodyHtml.substring(currentMarker.index, nextMarker.index);
+            } else {
+              // 最後のマーカーから最後までの内容を取得
+              content = bodyHtml.substring(currentMarker.index);
+            }
+            
+            // page-marker自体を削除
+            content = content.replace(/<div[^>]*class="page-marker"[^>]*>.*?<\/div>/g, '');
+            
+            if (content.trim()) {
+              pageContents[currentMarker.pageNum] = content;
+            }
+          }
+          
+          // ページ1が存在しない場合、最初のマーカーより前のコンテンツをページ1として追加
+          if (!pageContents[1] && markers.length > 0 && markers[0].index > 0) {
+            const firstContent = bodyHtml.substring(0, markers[0].index);
+            if (firstContent.trim()) {
+              pageContents[1] = firstContent;
+            }
+          }
         } else {
           // フォールバック：全体を1ページとして扱う
           const bodyContent = doc.body.innerHTML;
@@ -317,6 +343,9 @@ export default function MaterialsPage() {
         const pageNum = parseInt(key);
         pageContents[pageNum] = styleContent + pageContents[pageNum];
       });
+      
+      console.log('Loaded HTML pages:', Object.keys(pageContents).length, 'for', filename);
+      console.log('Page numbers:', Object.keys(pageContents).sort((a, b) => parseInt(a) - parseInt(b)));
       
       setTextContent(pageContents);
       setIsHtmlContent(true);
