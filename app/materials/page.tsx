@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Book, ArrowLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
@@ -29,6 +29,10 @@ export default function MaterialsPage() {
   const [isRendering, setIsRendering] = useState(false);
   const [pdfCanvases, setPdfCanvases] = useState<Array<{ pageNum: number; canvas: HTMLCanvasElement }>>([]);
   const [isHtmlContent, setIsHtmlContent] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [currentMatch, setCurrentMatch] = useState(0);
+  const [totalMatches, setTotalMatches] = useState(0);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
@@ -36,6 +40,8 @@ export default function MaterialsPage() {
   const pdfWrapperRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const scriptLoadedRef = useRef(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const htmlContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // 既にスクリプトが読み込まれている場合はスキップ
@@ -73,6 +79,13 @@ export default function MaterialsPage() {
       loadPDF(selectedPdf);
     }
   }, [selectedPdf]);
+
+  // 検索状態のクリーンアップ
+  useEffect(() => {
+    return () => {
+      clearSearch();
+    };
+  }, [isHtmlContent]);
 
   const loadPDF = async (filename: string) => {
     // 既にレンダリング中の場合はスキップ
@@ -353,6 +366,134 @@ export default function MaterialsPage() {
     return paragraphs.join('\n');
   };
 
+  // 検索機能の実装
+  const performSearch = (term: string) => {
+    if (!term || !htmlContentRef.current) {
+      clearSearch();
+      return;
+    }
+
+    // 既存のハイライトをクリア
+    clearSearch();
+
+    const content = htmlContentRef.current;
+    const text = content.textContent || '';
+    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    const matches = [...text.matchAll(regex)];
+    
+    setTotalMatches(matches.length);
+    
+    if (matches.length > 0) {
+      // テキストノードを探してハイライト
+      highlightMatches(content, term);
+      setCurrentMatch(1);
+      scrollToMatch(1);
+    }
+  };
+
+  const clearSearch = () => {
+    if (!htmlContentRef.current) return;
+    
+    // すべてのハイライトを削除
+    const highlights = htmlContentRef.current.querySelectorAll('.search-highlight');
+    highlights.forEach(highlight => {
+      const parent = highlight.parentNode;
+      if (parent) {
+        parent.replaceChild(document.createTextNode(highlight.textContent || ''), highlight);
+        parent.normalize();
+      }
+    });
+    
+    setTotalMatches(0);
+    setCurrentMatch(0);
+  };
+
+  const highlightMatches = (element: HTMLElement, term: string) => {
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+
+    const textNodes: Text[] = [];
+    let node;
+    while (node = walker.nextNode()) {
+      textNodes.push(node as Text);
+    }
+
+    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    let matchIndex = 0;
+
+    textNodes.forEach(textNode => {
+      const text = textNode.textContent || '';
+      const matches = [...text.matchAll(regex)];
+      
+      if (matches.length > 0) {
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+
+        matches.forEach(match => {
+          matchIndex++;
+          const matchStart = match.index!;
+          const matchEnd = matchStart + match[0].length;
+
+          // マッチ前のテキスト
+          if (matchStart > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, matchStart)));
+          }
+
+          // マッチ部分をハイライト
+          const span = document.createElement('span');
+          span.className = 'search-highlight';
+          span.setAttribute('data-match-index', matchIndex.toString());
+          span.style.backgroundColor = '#ffeb3b';
+          span.style.color = '#000';
+          span.style.padding = '2px 0';
+          span.style.borderRadius = '2px';
+          span.textContent = match[0];
+          fragment.appendChild(span);
+
+          lastIndex = matchEnd;
+        });
+
+        // マッチ後のテキスト
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode?.replaceChild(fragment, textNode);
+      }
+    });
+  };
+
+  const scrollToMatch = (matchNumber: number) => {
+    if (!htmlContentRef.current) return;
+    
+    const highlights = htmlContentRef.current.querySelectorAll('.search-highlight');
+    highlights.forEach((highlight, index) => {
+      if (index + 1 === matchNumber) {
+        highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        (highlight as HTMLElement).style.backgroundColor = '#ff9800';
+      } else {
+        (highlight as HTMLElement).style.backgroundColor = '#ffeb3b';
+      }
+    });
+  };
+
+  const navigateSearch = (direction: 'next' | 'prev') => {
+    if (totalMatches === 0) return;
+    
+    let newMatch = currentMatch;
+    if (direction === 'next') {
+      newMatch = currentMatch >= totalMatches ? 1 : currentMatch + 1;
+    } else {
+      newMatch = currentMatch <= 1 ? totalMatches : currentMatch - 1;
+    }
+    
+    setCurrentMatch(newMatch);
+    scrollToMatch(newMatch);
+  };
+
   // スクロール同期のためのイベントリスナー
   useEffect(() => {
     const pdfPanel = pdfPanelRef.current;
@@ -555,6 +696,84 @@ export default function MaterialsPage() {
                   </label>
                 </div>
               )}
+              
+              {isHtmlContent && (
+                <div className="flex items-center gap-2">
+                  {!searchVisible && (
+                    <button
+                      onClick={() => {
+                        setSearchVisible(true);
+                        setTimeout(() => searchInputRef.current?.focus(), 100);
+                      }}
+                      className="p-2 text-gray-200 hover:bg-gray-700 rounded transition-colors touch-manipulation"
+                      title="検索"
+                    >
+                      <Search className="w-5 h-5" />
+                    </button>
+                  )}
+                  
+                  {searchVisible && (
+                    <div className="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded">
+                      <Search className="w-4 h-4 text-gray-400" />
+                      <input
+                        ref={searchInputRef}
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => {
+                          setSearchTerm(e.target.value);
+                          performSearch(e.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            navigateSearch('next');
+                          } else if (e.key === 'Escape') {
+                            setSearchVisible(false);
+                            setSearchTerm('');
+                            clearSearch();
+                          }
+                        }}
+                        placeholder="検索..."
+                        className="bg-transparent text-gray-200 placeholder-gray-400 outline-none w-32 sm:w-40"
+                      />
+                      
+                      {totalMatches > 0 && (
+                        <>
+                          <span className="text-xs text-gray-400">
+                            {currentMatch}/{totalMatches}
+                          </span>
+                          <button
+                            onClick={() => navigateSearch('prev')}
+                            className="p-1.5 hover:bg-gray-600 rounded touch-manipulation"
+                            title="前へ"
+                          >
+                            <ChevronLeft className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => navigateSearch('next')}
+                            className="p-1.5 hover:bg-gray-600 rounded touch-manipulation"
+                            title="次へ"
+                          >
+                            <ChevronRight className="w-4 h-4" />
+                          </button>
+                        </>
+                      )}
+                      
+                      <button
+                        onClick={() => {
+                          setSearchVisible(false);
+                          setSearchTerm('');
+                          clearSearch();
+                        }}
+                        className="p-1.5 hover:bg-gray-600 rounded touch-manipulation"
+                        title="閉じる"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -608,6 +827,7 @@ export default function MaterialsPage() {
             ) : isHtmlContent ? (
               <div className="max-w-3xl mx-auto px-20 py-12">
                 <div 
+                  ref={htmlContentRef}
                   className="prose prose-lg max-w-none prose-gray"
                   dangerouslySetInnerHTML={{ __html: textContent[1] || '' }}
                 />
