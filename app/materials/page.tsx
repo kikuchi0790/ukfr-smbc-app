@@ -267,85 +267,18 @@ export default function MaterialsPage() {
       const doc = parser.parseFromString(html, 'text/html');
       const pageContents: Record<number, string> = {};
       
-      // StudyCompanion.htmlのようにpage-contentクラスがある場合を先にチェック
-      const pageElements = doc.querySelectorAll('.page-content[id]');
-      if (pageElements.length > 0) {
-        pageElements.forEach((elem, index) => {
-          const id = elem.getAttribute('id');
-          const pageMatch = id?.match(/page-(\d+)/);
-          const pageNum = pageMatch ? parseInt(pageMatch[1]) : index + 1;
-          pageContents[pageNum] = elem.innerHTML; // innerHTMLを使用してpage-content自体は含めない
-        });
-      } else {
-        // ページマーカーがある場合（Checkpoint.htmlなど）
-        const pageMarkers = doc.querySelectorAll('.page-marker');
-        if (pageMarkers.length > 0) {
-          // HTMLを文字列として処理して、page-marker間のコンテンツを抽出
-          const bodyHtml = doc.body.innerHTML;
-          
-          // すべてのpage-markerの位置を見つける
-          const markerPattern = /<div[^>]*class="page-marker"[^>]*data-page="(\d+)"[^>]*>.*?<\/div>/g;
-          const markers: Array<{pageNum: number, index: number}> = [];
-          let match;
-          
-          while ((match = markerPattern.exec(bodyHtml)) !== null) {
-            markers.push({
-              pageNum: parseInt(match[1]),
-              index: match.index
-            });
-          }
-          
-          // 各マーカー間のコンテンツを抽出
-          for (let i = 0; i < markers.length; i++) {
-            const currentMarker = markers[i];
-            const nextMarker = markers[i + 1];
-            
-            let content = '';
-            if (nextMarker) {
-              // 現在のマーカーから次のマーカーまでの内容を取得
-              content = bodyHtml.substring(currentMarker.index, nextMarker.index);
-            } else {
-              // 最後のマーカーから最後までの内容を取得
-              content = bodyHtml.substring(currentMarker.index);
-            }
-            
-            // page-marker自体を削除
-            content = content.replace(/<div[^>]*class="page-marker"[^>]*>.*?<\/div>/g, '');
-            
-            if (content.trim()) {
-              pageContents[currentMarker.pageNum] = content;
-            }
-          }
-          
-          // ページ1が存在しない場合、最初のマーカーより前のコンテンツをページ1として追加
-          if (!pageContents[1] && markers.length > 0 && markers[0].index > 0) {
-            const firstContent = bodyHtml.substring(0, markers[0].index);
-            if (firstContent.trim()) {
-              pageContents[1] = firstContent;
-            }
-          }
-        } else {
-          // フォールバック：全体を1ページとして扱う
-          const bodyContent = doc.body.innerHTML;
-          pageContents[1] = bodyContent;
-        }
-      }
-      
-      // スタイルも含める
+      // スタイルを取得
       const styles = doc.querySelectorAll('style');
       let styleContent = '';
       styles.forEach(style => {
         styleContent += style.outerHTML;
       });
       
-      // 各ページにスタイルを追加
-      Object.keys(pageContents).forEach(key => {
-        const pageNum = parseInt(key);
-        pageContents[pageNum] = styleContent + pageContents[pageNum];
-      });
+      // HTML全体を1つのコンテンツとして設定
+      const bodyContent = doc.body.innerHTML;
+      pageContents[1] = styleContent + bodyContent;
       
-      console.log('Loaded HTML pages:', Object.keys(pageContents).length, 'for', filename);
-      console.log('Page numbers:', Object.keys(pageContents).sort((a, b) => parseInt(a) - parseInt(b)));
+      console.log('Loaded HTML content for', filename);
       
       setTextContent(pageContents);
       setIsHtmlContent(true);
@@ -608,18 +541,20 @@ export default function MaterialsPage() {
                 </select>
               </div>
               
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="syncScroll"
-                  checked={syncScroll}
-                  onChange={(e) => setSyncScroll(e.target.checked)}
-                  className="cursor-pointer"
-                />
-                <label htmlFor="syncScroll" className="text-sm text-gray-200 cursor-pointer">
-                  スクロール同期
-                </label>
-              </div>
+              {!isHtmlContent && (
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="syncScroll"
+                    checked={syncScroll}
+                    onChange={(e) => setSyncScroll(e.target.checked)}
+                    className="cursor-pointer"
+                  />
+                  <label htmlFor="syncScroll" className="text-sm text-gray-200 cursor-pointer">
+                    スクロール同期
+                  </label>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -670,6 +605,13 @@ export default function MaterialsPage() {
               <div className="text-center py-20 text-gray-600">
                 テキストを読み込み中...
               </div>
+            ) : isHtmlContent ? (
+              <div className="max-w-3xl mx-auto px-20 py-12">
+                <div 
+                  className="prose prose-lg max-w-none prose-gray"
+                  dangerouslySetInnerHTML={{ __html: textContent[1] || '' }}
+                />
+              </div>
             ) : (
               <div className="max-w-3xl mx-auto px-20 py-12">
                 {Object.entries(textContent).map(([pageNum, content]) => (
@@ -683,7 +625,7 @@ export default function MaterialsPage() {
                     </div>
                     <div 
                       className="prose prose-lg max-w-none prose-gray"
-                      dangerouslySetInnerHTML={{ __html: isHtmlContent ? content : processTextContent(content) }}
+                      dangerouslySetInnerHTML={{ __html: processTextContent(content) }}
                     />
                   </div>
                 ))}
