@@ -22,11 +22,13 @@ export default function MaterialsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [selectedPdf, setSelectedPdf] = useState('UKFR_ED32_Checkpoint.pdf');
+  const [selectedText, setSelectedText] = useState('UKFR_ED32_Checkpoint_ja_fixed.txt');
   const [syncScroll, setSyncScroll] = useState(true);
   const [loading, setLoading] = useState(true);
   const [textContent, setTextContent] = useState<Record<number, string>>({});
   const [isRendering, setIsRendering] = useState(false);
   const [pdfCanvases, setPdfCanvases] = useState<Array<{ pageNum: number; canvas: HTMLCanvasElement }>>([]);
+  const [isHtmlContent, setIsHtmlContent] = useState(false);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
@@ -150,17 +152,39 @@ export default function MaterialsPage() {
       // 一度にすべてのキャンバスを設定
       setPdfCanvases(newCanvases);
       
-      // テキストファイルを読み込む
-      const baseFilename = filename.replace('.pdf', '_ja');
-      const fixedFilename = baseFilename + '_fixed.txt';
+      // 対応するテキストまたはHTMLファイルを読み込む
+      const baseFilename = filename.replace('.pdf', '');
       
-      try {
-        const response = await fetch(`/materials/${fixedFilename}`);
-        if (response.ok) {
-          await loadText(fixedFilename);
+      // まずHTMLファイルを試す
+      let htmlFilename = '';
+      if (baseFilename.includes('Checkpoint')) {
+        htmlFilename = 'Checkpoint.html';
+      } else if (baseFilename.includes('Study_Companion')) {
+        htmlFilename = 'StudyCompanion.html';
+      }
+      
+      if (htmlFilename) {
+        try {
+          const htmlResponse = await fetch(`/materials/${htmlFilename}`);
+          if (htmlResponse.ok) {
+            await loadHtmlContent(htmlFilename);
+            setSelectedText(htmlFilename);
+          } else {
+            throw new Error('HTML file not found');
+          }
+        } catch (error) {
+          // HTMLファイルが見つからない場合は、テキストファイルを試す
+          const txtFilename = baseFilename + '_ja_fixed.txt';
+          try {
+            const txtResponse = await fetch(`/materials/${txtFilename}`);
+            if (txtResponse.ok) {
+              await loadText(txtFilename);
+              setSelectedText(txtFilename);
+            }
+          } catch (error) {
+            console.error('Failed to load text file:', error);
+          }
         }
-      } catch (error) {
-        console.error('Failed to load text file:', error);
       }
       
       setLoading(false);
@@ -234,6 +258,73 @@ export default function MaterialsPage() {
     return null;
   };
 
+  const loadHtmlContent = async (filename: string) => {
+    try {
+      const response = await fetch(`/materials/${filename}`);
+      const html = await response.text();
+      
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const pageContents: Record<number, string> = {};
+      
+      // ページマーカーがある場合
+      const pageMarkers = doc.querySelectorAll('.page-marker');
+      if (pageMarkers.length > 0) {
+        pageMarkers.forEach((marker, index) => {
+          const pageNum = parseInt(marker.getAttribute('data-page') || '1');
+          const nextMarker = pageMarkers[index + 1];
+          
+          let content = '';
+          let currentNode = marker.nextSibling;
+          
+          while (currentNode && currentNode !== nextMarker) {
+            if (currentNode.nodeType === Node.ELEMENT_NODE) {
+              content += (currentNode as Element).outerHTML;
+            } else if (currentNode.nodeType === Node.TEXT_NODE) {
+              content += currentNode.textContent;
+            }
+            currentNode = currentNode.nextSibling;
+          }
+          
+          pageContents[pageNum] = content;
+        });
+      } else {
+        // StudyCompanion.htmlのようにpage-contentクラスがある場合
+        const pageElements = doc.querySelectorAll('.page-content[id]');
+        if (pageElements.length > 0) {
+          pageElements.forEach((elem, index) => {
+            const id = elem.getAttribute('id');
+            const pageMatch = id?.match(/page-(\d+)/);
+            const pageNum = pageMatch ? parseInt(pageMatch[1]) : index + 1;
+            pageContents[pageNum] = elem.outerHTML;
+          });
+        } else {
+          // フォールバック：全体を1ページとして扱う
+          const bodyContent = doc.body.innerHTML;
+          pageContents[1] = bodyContent;
+        }
+      }
+      
+      // スタイルも含める
+      const styles = doc.querySelectorAll('style');
+      let styleContent = '';
+      styles.forEach(style => {
+        styleContent += style.outerHTML;
+      });
+      
+      // 各ページにスタイルを追加
+      Object.keys(pageContents).forEach(key => {
+        const pageNum = parseInt(key);
+        pageContents[pageNum] = styleContent + pageContents[pageNum];
+      });
+      
+      setTextContent(pageContents);
+      setIsHtmlContent(true);
+    } catch (error) {
+      console.error('Error loading HTML:', error);
+    }
+  };
+
   const loadText = async (filename: string) => {
     try {
       const response = await fetch(`/materials/${filename}`);
@@ -253,6 +344,7 @@ export default function MaterialsPage() {
       });
       
       setTextContent(pageContents);
+      setIsHtmlContent(false);
     } catch (error) {
       console.error('Error loading text:', error);
     }
@@ -453,17 +545,52 @@ export default function MaterialsPage() {
               </button>
             </div>
             
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id="syncScroll"
-                checked={syncScroll}
-                onChange={(e) => setSyncScroll(e.target.checked)}
-                className="cursor-pointer"
-              />
-              <label htmlFor="syncScroll" className="text-sm text-gray-200 cursor-pointer">
-                スクロール同期
-              </label>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <label className="text-sm text-gray-200">表示形式:</label>
+                <select
+                  onChange={(e) => {
+                    const useHtml = e.target.value === 'html';
+                    const baseFilename = selectedPdf.replace('.pdf', '');
+                    
+                    if (useHtml) {
+                      let htmlFilename = '';
+                      if (baseFilename.includes('Checkpoint')) {
+                        htmlFilename = 'Checkpoint.html';
+                      } else if (baseFilename.includes('Study_Companion')) {
+                        htmlFilename = 'StudyCompanion.html';
+                      }
+                      
+                      if (htmlFilename) {
+                        loadHtmlContent(htmlFilename);
+                        setSelectedText(htmlFilename);
+                      }
+                    } else {
+                      const txtFilename = baseFilename + '_ja_fixed.txt';
+                      loadText(txtFilename);
+                      setSelectedText(txtFilename);
+                    }
+                  }}
+                  defaultValue={isHtmlContent ? 'html' : 'text'}
+                  className="bg-gray-700 text-gray-200 px-2 py-1 rounded text-sm border border-gray-600 hover:bg-gray-600"
+                >
+                  <option value="text">テキスト</option>
+                  <option value="html">HTML</option>
+                </select>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="syncScroll"
+                  checked={syncScroll}
+                  onChange={(e) => setSyncScroll(e.target.checked)}
+                  className="cursor-pointer"
+                />
+                <label htmlFor="syncScroll" className="text-sm text-gray-200 cursor-pointer">
+                  スクロール同期
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -527,7 +654,7 @@ export default function MaterialsPage() {
                     </div>
                     <div 
                       className="prose prose-lg max-w-none prose-gray"
-                      dangerouslySetInnerHTML={{ __html: processTextContent(content) }}
+                      dangerouslySetInnerHTML={{ __html: isHtmlContent ? content : processTextContent(content) }}
                     />
                   </div>
                 ))}
