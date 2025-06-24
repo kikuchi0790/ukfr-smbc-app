@@ -83,7 +83,7 @@ function StudySessionContent() {
       currentQuestionIndex,
       isMockMode ? mockAnswers : undefined,
       showJapanese,
-      selectedAnswer,
+      selectedAnswer || undefined,
       showResult,
       mode,
       categoryParam || undefined,
