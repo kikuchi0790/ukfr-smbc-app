@@ -16,7 +16,7 @@ export async function saveHighlight(userId: string, highlight: Highlight): Promi
 
   try {
     // Firestoreに保存
-    const highlightRef = doc(db, 'users', userId, 'highlights', highlight.id);
+    const highlightRef = doc(db!, 'users', userId, 'highlights', highlight.id);
     await setDoc(highlightRef, highlight);
     
     // ローカルストレージにも保存
@@ -41,7 +41,7 @@ export async function deleteHighlight(userId: string, highlightId: string): Prom
 
   try {
     // Firestoreから削除
-    const highlightRef = doc(db, 'users', userId, 'highlights', highlightId);
+    const highlightRef = doc(db!, 'users', userId, 'highlights', highlightId);
     await deleteDoc(highlightRef);
     
     // ローカルストレージからも削除
@@ -63,7 +63,7 @@ export async function getHighlightsForMaterial(userId: string, materialId: strin
 
   try {
     // Firestoreから取得
-    const highlightsRef = collection(db, 'users', userId, 'highlights');
+    const highlightsRef = collection(db!, 'users', userId, 'highlights');
     const q = query(highlightsRef, where('materialId', '==', materialId));
     const snapshot = await getDocs(q);
     
@@ -91,7 +91,7 @@ export async function getAllHighlights(userId: string): Promise<Highlight[]> {
   }
 
   try {
-    const highlightsRef = collection(db, 'users', userId, 'highlights');
+    const highlightsRef = collection(db!, 'users', userId, 'highlights');
     const snapshot = await getDocs(highlightsRef);
     
     const highlights: Highlight[] = [];
