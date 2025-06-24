@@ -68,6 +68,7 @@ function StudySessionContent() {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
   const sessionPersistence = useRef<SessionPersistence | null>(null);
+  const isLoadingQuestions = useRef(false);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   const isMockMode = mode === "mock25" || mode === "mock75";
@@ -111,7 +112,19 @@ function StudySessionContent() {
     // セッション永続化の初期化
     sessionPersistence.current = SessionPersistence.getInstance();
 
-    // カスタムイベントリスナーの設定
+    // カスタムイベントリスナーの設定は別のuseEffectで行う
+
+    loadQuestions();
+
+    return () => {
+      if (sessionPersistence.current) {
+        sessionPersistence.current.stopAutosave();
+      }
+    };
+  }, [mode, categoryParam, partParam, studyModeParam, questionCountParam, router]);
+  
+  // カスタムイベントリスナーの設定
+  useEffect(() => {
     const handleAutosave = () => saveSessionState();
     const handleCheckUnsaved = (event: any) => {
       event.detail.hasChanges = hasUnsavedChanges;
@@ -119,17 +132,12 @@ function StudySessionContent() {
 
     window.addEventListener('session-autosave', handleAutosave);
     window.addEventListener('check-unsaved-changes', handleCheckUnsaved);
-
-    loadQuestions();
-
+    
     return () => {
       window.removeEventListener('session-autosave', handleAutosave);
       window.removeEventListener('check-unsaved-changes', handleCheckUnsaved);
-      if (sessionPersistence.current) {
-        sessionPersistence.current.stopAutosave();
-      }
     };
-  }, [mode, categoryParam, partParam, studyModeParam, questionCountParam, hasUnsavedChanges, saveSessionState]);
+  }, [hasUnsavedChanges, saveSessionState]);
 
   // Mock試験の進捗を自動保存
   useEffect(() => {
@@ -232,12 +240,20 @@ function StudySessionContent() {
     }
   }, [mode, categoryParam, partParam]);
 
-  const loadQuestions = withErrorHandling(async () => {
+  const loadQuestionsCore = async () => {
+    // 既に読み込み中の場合はスキップ
+    if (isLoadingQuestions.current) {
+      console.log('Already loading questions, skipping...');
+      return;
+    }
+    
+    isLoadingQuestions.current = true;
     setLoading(true);
     
     // Add a loading timeout
     const loadingTimeout = setTimeout(() => {
       setLoading(false);
+      isLoadingQuestions.current = false;
       handleError(new Error('問題の読み込みがタイムアウトしました。ページを更新してください。'));
     }, 60000); // 60 seconds timeout
     
@@ -454,8 +470,15 @@ function StudySessionContent() {
       throw error;
     } finally {
       setLoading(false);
+      isLoadingQuestions.current = false;
     }
-  }, '問題データの読み込みに失敗しました。ネットワーク接続を確認してください。');
+  };
+  
+  const loadQuestions = useCallback(() => {
+    loadQuestionsCore().catch(error => {
+      console.error('Error in loadQuestions:', error);
+    });
+  }, [mode, categoryParam, partParam, questionCountParam, studyModeParam, user?.nickname]);
 
   const handleAnswerSelect = (answer: string) => {
     if (!showResult) {
