@@ -235,7 +235,14 @@ function StudySessionContent() {
   const loadQuestions = withErrorHandling(async () => {
     setLoading(true);
     
+    // Add a loading timeout
+    const loadingTimeout = setTimeout(() => {
+      setLoading(false);
+      handleError(new Error('問題の読み込みがタイムアウトしました。ページを更新してください。'));
+    }, 60000); // 60 seconds timeout
+    
     try {
+      console.log('Starting to load questions...', { mode, categoryParam, partParam });
       let questionSet: Question[] = [];
       let timeLimit: number | undefined;
       
@@ -423,16 +430,26 @@ function StudySessionContent() {
       };
       setSession(newSession);
       
+      // Clear the timeout if loading successful
+      clearTimeout(loadingTimeout);
+      
       // 自動保存を開始
       if (sessionPersistence.current) {
         sessionPersistence.current.startAutosave(saveSessionState);
       }
     } catch (error) {
+      clearTimeout(loadingTimeout);
       console.error('Failed to load questions:', error);
-      if (!categoryParam) {
-        handleError(error, 'カテゴリが指定されていません');
+      
+      // More specific error messages
+      if (!navigator.onLine) {
+        handleError(new Error('インターネット接続がありません。接続を確認してください。'));
+      } else if (!categoryParam) {
+        handleError(new Error('カテゴリが指定されていません'));
+      } else if (error instanceof Error && error.message.includes('404')) {
+        handleError(new Error('問題ファイルが見つかりません。管理者にお問い合わせください。'));
       } else {
-        handleError(error, '問題の読み込みに失敗しました');
+        handleError(error instanceof Error ? error : new Error('問題の読み込みに失敗しました'));
       }
       throw error;
     } finally {
@@ -1037,9 +1054,22 @@ function StudySessionContent() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-900">
-        <div className="text-center">
+        <div className="text-center max-w-md">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
           <p className="mt-4 text-gray-400">問題を読み込んでいます...</p>
+          <div className="mt-6 space-y-2">
+            <p className="text-sm text-gray-500">
+              カテゴリ: {categoryParam || "選択中..."}
+            </p>
+            <p className="text-sm text-gray-500">
+              モード: {mode === "mock25" ? "Mock試験 (25問)" : mode === "mock75" ? "Mock試験 (75問)" : mode === "category" ? "カテゴリ学習" : mode === "review" ? "復習モード" : mode}
+            </p>
+          </div>
+          <div className="mt-8">
+            <p className="text-xs text-gray-600">
+              読み込みに時間がかかる場合は、インターネット接続を確認してください
+            </p>
+          </div>
         </div>
       </div>
     );

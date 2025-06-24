@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
@@ -26,6 +26,8 @@ interface AuthContextType {
   signUp: (email: string, password: string, nickname: string) => Promise<boolean>;
   logout: () => void;
   isFirebaseAuth: boolean;
+  isOfflineMode: boolean;
+  retryFirebaseConnection: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -35,6 +37,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isFirebaseAuth, setIsFirebaseAuth] = useState(true);
   const [cleanupSync, setCleanupSync] = useState<(() => void) | null>(null);
+  const [isOfflineMode, setIsOfflineMode] = useState(false);
+  const [firebaseUnsubscribe, setFirebaseUnsubscribe] = useState<(() => void) | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,6 +48,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setIsLoading(false);
       return;
     }
+    
+    // Firebase接続タイムアウトを設定（10秒）
+    const authTimeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('Firebase authentication timeout - continuing in offline mode');
+        setIsLoading(false);
+        setIsOfflineMode(true);
+        // オフラインモードで続行
+      }
+    }, 10000);
     
     // アプリ起動時にストレージをクリーンアップ
     try {
@@ -97,6 +111,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     
     // Firebase認証状態の監視
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      clearTimeout(authTimeout); // タイムアウトをクリア
       if (firebaseUser) {
         // Firebaseユーザーがログインしている
         const userData: User = {
@@ -133,13 +148,85 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setIsLoading(false);
     });
 
+    // Store the unsubscribe function for potential reconnection
+    setFirebaseUnsubscribe(() => unsubscribe);
+    
     return () => {
+      clearTimeout(authTimeout);
       unsubscribe();
       if (cleanupSync) {
         cleanupSync();
       }
     };
   }, []);
+  
+  // Firebase再接続を試みる関数
+  const retryFirebaseConnection = useCallback(async () => {
+    if (!auth || !isOfflineMode) return;
+    
+    console.log('Attempting to reconnect to Firebase...');
+    setIsLoading(true);
+    
+    try {
+      // 既存のリスナーをクリーンアップ
+      if (firebaseUnsubscribe) {
+        firebaseUnsubscribe();
+      }
+      
+      // 新しいリスナーを設定
+      const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        if (firebaseUser) {
+          const userData: User = {
+            id: firebaseUser.uid,
+            nickname: firebaseUser.displayName || 'User',
+            createdAt: firebaseUser.metadata.creationTime || new Date().toISOString(),
+            email: firebaseUser.email || undefined
+          };
+          setUser(userData);
+          setIsFirebaseAuth(true);
+          setIsOfflineMode(false);
+          
+          // Firestoreからデータを読み込み、自動同期を開始
+          try {
+            await loadFromFirestore(firebaseUser.uid, userData.nickname);
+            const cleanup = await enableAutoSync(firebaseUser.uid, userData.nickname);
+            setCleanupSync(() => cleanup);
+          } catch (error) {
+            console.error('Failed to setup sync after reconnection:', error);
+          }
+        }
+        setIsLoading(false);
+      });
+      
+      setFirebaseUnsubscribe(() => unsubscribe);
+      
+      // タイムアウト設定
+      setTimeout(() => {
+        if (isLoading) {
+          console.warn('Firebase reconnection timeout');
+          setIsLoading(false);
+        }
+      }, 5000);
+    } catch (error) {
+      console.error('Failed to reconnect to Firebase:', error);
+      setIsLoading(false);
+    }
+  }, [isOfflineMode, firebaseUnsubscribe]);
+  
+  // ネットワーク状態の監視
+  useEffect(() => {
+    const handleOnline = () => {
+      if (isOfflineMode) {
+        retryFirebaseConnection();
+      }
+    };
+    
+    window.addEventListener('online', handleOnline);
+    
+    return () => {
+      window.removeEventListener('online', handleOnline);
+    };
+  }, [isOfflineMode, retryFirebaseConnection]);
 
   // Firebase Email認証でログイン
   const loginWithEmail = async (email: string, password: string): Promise<boolean> => {
@@ -288,6 +375,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         signUp,
         logout,
         isFirebaseAuth,
+        isOfflineMode,
+        retryFirebaseConnection,
       }}
     >
       {children}

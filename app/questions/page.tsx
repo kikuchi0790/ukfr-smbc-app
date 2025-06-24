@@ -80,14 +80,30 @@ function QuestionsListContent() {
   }, [selectedCategory, selectedStatus, searchTerm, questions, progress]);
 
   const loadQuestions = async () => {
+    // Add a loading timeout
+    const loadingTimeout = setTimeout(() => {
+      setLoading(false);
+      alert('問題の読み込みがタイムアウトしました。ページを更新してください。');
+    }, 30000); // 30 seconds timeout
+    
     try {
+      console.log('Loading questions list...');
       const allQuestions = await fetchJSON<Question[]>('/data/all-questions.json');
       // Mock試験を除外
       const studyQuestions = allQuestions.filter(q => !q.category.includes("Mock"));
       setQuestions(studyQuestions);
       setFilteredQuestions(studyQuestions);
+      clearTimeout(loadingTimeout);
     } catch (error) {
+      clearTimeout(loadingTimeout);
       console.error('Failed to load questions:', error);
+      
+      // Show specific error messages
+      if (!navigator.onLine) {
+        alert('インターネット接続がありません。接続を確認してください。');
+      } else {
+        alert('問題の読み込みに失敗しました。ページを更新してください。');
+      }
     } finally {
       setLoading(false);
     }
@@ -170,9 +186,19 @@ function QuestionsListContent() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center max-w-md">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
           <p className="mt-4 text-gray-400">問題を読み込んでいます...</p>
+          <div className="mt-6">
+            <p className="text-sm text-gray-500">
+              問題リストを準備中です...
+            </p>
+          </div>
+          <div className="mt-8">
+            <p className="text-xs text-gray-600">
+              読み込みに時間がかかる場合は、インターネット接続を確認してください
+            </p>
+          </div>
         </div>
       </div>
     );

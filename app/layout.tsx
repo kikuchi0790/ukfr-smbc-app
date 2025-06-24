@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/contexts/AuthContext";
 import StorageCleanup from "@/components/StorageCleanup";
+import NetworkStatus from "@/components/NetworkStatus";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <ErrorBoundary>
+            <NetworkStatus />
             {children}
             <StorageCleanup />
           </ErrorBoundary>

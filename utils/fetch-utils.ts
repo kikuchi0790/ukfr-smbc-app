@@ -26,11 +26,18 @@ export async function fetchWithRetry(
     ...fetchOptions
   } = options;
 
+  // Check offline status before attempting fetch
+  if (!navigator.onLine) {
+    throw new FetchError('インターネット接続がありません');
+  }
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
   const attemptFetch = async (attemptsLeft: number): Promise<Response> => {
     try {
+      console.log(`Fetching: ${url} (attempt ${retries - attemptsLeft + 1}/${retries + 1})`);
+      
       const response = await fetch(url, {
         ...fetchOptions,
         signal: controller.signal,
@@ -64,6 +71,10 @@ export async function fetchWithRetry(
 
       // ネットワークエラーまたは再試行可能なエラーの場合
       if (attemptsLeft > 0 && (!(error instanceof FetchError) || isRetryable)) {
+        // Check if still online before retrying
+        if (!navigator.onLine) {
+          throw new FetchError('インターネット接続が失われました');
+        }
         console.log(`Retrying... (${attemptsLeft} attempts left)`);
         await new Promise(resolve => setTimeout(resolve, retryDelay));
         return attemptFetch(attemptsLeft - 1);

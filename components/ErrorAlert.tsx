@@ -13,8 +13,10 @@ export default function ErrorAlert({ error, onClose, onRetry, variant = 'error' 
   const isError = variant === 'error';
 
   return (
-    <div className={`rounded-lg p-4 mb-4 ${
-      isError ? 'bg-red-50 border border-red-200' : 'bg-yellow-50 border border-yellow-200'
+    <div className={`rounded-lg p-4 mb-4 shadow-lg ${
+      isError 
+        ? 'bg-red-900/20 border border-red-500/50 dark:bg-red-900/30' 
+        : 'bg-yellow-900/20 border border-yellow-500/50 dark:bg-yellow-900/30'
     }`}>
       <div className="flex items-start">
         <div className="flex-shrink-0">
@@ -24,12 +26,12 @@ export default function ErrorAlert({ error, onClose, onRetry, variant = 'error' 
         </div>
         <div className="ml-3 flex-1">
           <h3 className={`text-sm font-medium ${
-            isError ? 'text-red-800' : 'text-yellow-800'
+            isError ? 'text-red-200' : 'text-yellow-200'
           }`}>
             {isError ? 'エラー' : '警告'}
           </h3>
           <div className={`mt-2 text-sm ${
-            isError ? 'text-red-700' : 'text-yellow-700'
+            isError ? 'text-red-300' : 'text-yellow-300'
           }`}>
             <p>{errorMessage}</p>
           </div>
@@ -39,8 +41,8 @@ export default function ErrorAlert({ error, onClose, onRetry, variant = 'error' 
                 onClick={onRetry}
                 className={`inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-md ${
                   isError 
-                    ? 'bg-red-100 text-red-800 hover:bg-red-200' 
-                    : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
+                    ? 'bg-red-800/50 text-red-200 hover:bg-red-800/70' 
+                    : 'bg-yellow-800/50 text-yellow-200 hover:bg-yellow-800/70'
                 } transition-colors`}
               >
                 <RefreshCw className="h-4 w-4" />
@@ -55,8 +57,8 @@ export default function ErrorAlert({ error, onClose, onRetry, variant = 'error' 
               onClick={onClose}
               className={`inline-flex rounded-md p-1.5 ${
                 isError 
-                  ? 'text-red-500 hover:bg-red-100' 
-                  : 'text-yellow-500 hover:bg-yellow-100'
+                  ? 'text-red-400 hover:bg-red-800/30' 
+                  : 'text-yellow-400 hover:bg-yellow-800/30'
               } transition-colors`}
             >
               <span className="sr-only">閉じる</span>
