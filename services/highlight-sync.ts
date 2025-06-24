@@ -8,7 +8,7 @@ const HIGHLIGHTS_KEY = 'userHighlights';
 
 // ハイライトをFirestoreに保存
 export async function saveHighlight(userId: string, highlight: Highlight): Promise<void> {
-  if (!isFirebaseAvailable()) {
+  if (!isFirebaseAvailable() || !db) {
     console.warn('Firebase is not available. Saving to local storage only.');
     saveHighlightToLocal(highlight);
     return;
@@ -16,24 +16,28 @@ export async function saveHighlight(userId: string, highlight: Highlight): Promi
 
   try {
     // Firestoreに保存
-    const highlightRef = doc(db!, 'users', userId, 'highlights', highlight.id);
+    const highlightRef = doc(db, 'users', userId, 'highlights', highlight.id);
     await setDoc(highlightRef, highlight);
     
     // ローカルストレージにも保存
     saveHighlightToLocal(highlight);
     
     console.log('ハイライトが保存されました:', highlight.id);
-  } catch (error) {
+  } catch (error: any) {
     console.error('ハイライト保存エラー:', error);
     // エラー時はローカルストレージのみに保存
     saveHighlightToLocal(highlight);
-    throw error;
+    
+    // 権限エラーの場合はエラーを投げない
+    if (error.code !== 'permission-denied') {
+      throw error;
+    }
   }
 }
 
 // ハイライトを削除
 export async function deleteHighlight(userId: string, highlightId: string): Promise<void> {
-  if (!isFirebaseAvailable()) {
+  if (!isFirebaseAvailable() || !db) {
     console.warn('Firebase is not available. Deleting from local storage only.');
     deleteHighlightFromLocal(highlightId);
     return;
@@ -41,29 +45,36 @@ export async function deleteHighlight(userId: string, highlightId: string): Prom
 
   try {
     // Firestoreから削除
-    const highlightRef = doc(db!, 'users', userId, 'highlights', highlightId);
+    const highlightRef = doc(db, 'users', userId, 'highlights', highlightId);
     await deleteDoc(highlightRef);
     
     // ローカルストレージからも削除
     deleteHighlightFromLocal(highlightId);
     
     console.log('ハイライトが削除されました:', highlightId);
-  } catch (error) {
+  } catch (error: any) {
     console.error('ハイライト削除エラー:', error);
-    throw error;
+    
+    // ローカルから削除
+    deleteHighlightFromLocal(highlightId);
+    
+    // 権限エラーの場合はエラーを投げない
+    if (error.code !== 'permission-denied') {
+      throw error;
+    }
   }
 }
 
 // 特定の教材のハイライトを取得
 export async function getHighlightsForMaterial(userId: string, materialId: string): Promise<Highlight[]> {
-  if (!isFirebaseAvailable()) {
+  if (!isFirebaseAvailable() || !db) {
     console.warn('Firebase is not initialized. Getting from local storage only.');
     return getHighlightsFromLocal(materialId);
   }
 
   try {
     // Firestoreから取得
-    const highlightsRef = collection(db!, 'users', userId, 'highlights');
+    const highlightsRef = collection(db, 'users', userId, 'highlights');
     const q = query(highlightsRef, where('materialId', '==', materialId));
     const snapshot = await getDocs(q);
     
@@ -76,7 +87,7 @@ export async function getHighlightsForMaterial(userId: string, materialId: strin
     syncHighlightsToLocal(materialId, highlights);
     
     return highlights;
-  } catch (error) {
+  } catch (error: any) {
     console.error('ハイライト取得エラー:', error);
     // エラー時はローカルストレージから取得
     return getHighlightsFromLocal(materialId);
@@ -85,13 +96,13 @@ export async function getHighlightsForMaterial(userId: string, materialId: strin
 
 // すべてのハイライトを取得
 export async function getAllHighlights(userId: string): Promise<Highlight[]> {
-  if (!isFirebaseAvailable()) {
+  if (!isFirebaseAvailable() || !db) {
     console.warn('Firebase is not initialized. Getting from local storage only.');
     return getAllHighlightsFromLocal();
   }
 
   try {
-    const highlightsRef = collection(db!, 'users', userId, 'highlights');
+    const highlightsRef = collection(db, 'users', userId, 'highlights');
     const snapshot = await getDocs(highlightsRef);
     
     const highlights: Highlight[] = [];
@@ -100,7 +111,7 @@ export async function getAllHighlights(userId: string): Promise<Highlight[]> {
     });
     
     return highlights;
-  } catch (error) {
+  } catch (error: any) {
     console.error('全ハイライト取得エラー:', error);
     return getAllHighlightsFromLocal();
   }
@@ -108,30 +119,48 @@ export async function getAllHighlights(userId: string): Promise<Highlight[]> {
 
 // リアルタイム同期のセットアップ
 export function setupHighlightSync(userId: string, materialId: string, callback: (highlights: Highlight[]) => void): () => void {
-  if (!isFirebaseAvailable()) {
+  if (!isFirebaseAvailable() || !db) {
     console.warn('Firebase is not initialized. Real-time sync is not available.');
+    // ローカルのハイライトを返す
+    const localHighlights = getHighlightsFromLocal(materialId);
+    callback(localHighlights);
     return () => {};
   }
 
-  const highlightsRef = collection(db!, 'users', userId, 'highlights');
-  const q = query(highlightsRef, where('materialId', '==', materialId));
-  
-  const unsubscribe = onSnapshot(q, (snapshot) => {
-    const highlights: Highlight[] = [];
-    snapshot.forEach((doc) => {
-      highlights.push(doc.data() as Highlight);
+  try {
+    const highlightsRef = collection(db, 'users', userId, 'highlights');
+    const q = query(highlightsRef, where('materialId', '==', materialId));
+    
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const highlights: Highlight[] = [];
+      snapshot.forEach((doc) => {
+        highlights.push(doc.data() as Highlight);
+      });
+      
+      // ローカルストレージと同期
+      syncHighlightsToLocal(materialId, highlights);
+      
+      // コールバックを実行
+      callback(highlights);
+    }, (error: any) => {
+      console.error('リアルタイム同期エラー:', error);
+      
+      // 権限エラーの場合はローカルストレージにフォールバック
+      if (error.code === 'permission-denied') {
+        console.warn('Firebase権限エラー。ローカルストレージを使用します。');
+        const localHighlights = getHighlightsFromLocal(materialId);
+        callback(localHighlights);
+      }
     });
     
-    // ローカルストレージと同期
-    syncHighlightsToLocal(materialId, highlights);
-    
-    // コールバックを実行
-    callback(highlights);
-  }, (error) => {
-    console.error('リアルタイム同期エラー:', error);
-  });
-  
-  return unsubscribe;
+    return unsubscribe;
+  } catch (error) {
+    console.error('setupHighlightSyncエラー:', error);
+    // エラー時はローカルストレージを使用
+    const localHighlights = getHighlightsFromLocal(materialId);
+    callback(localHighlights);
+    return () => {};
+  }
 }
 
 // ローカルストレージ操作関数

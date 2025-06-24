@@ -130,12 +130,25 @@ function MaterialsContent() {
     const questionId = searchParams.get('questionId');
     const keywords = searchParams.get('keywords');
     const autoSearch = searchParams.get('autoSearch');
+    const returnMode = searchParams.get('returnMode');
+    const returnCategory = searchParams.get('returnCategory');
+    const returnPart = searchParams.get('returnPart');
+    const returnStudyMode = searchParams.get('returnStudyMode');
+    const returnQuestionCount = searchParams.get('returnQuestionCount');
 
     if (from && questionId) {
       // LocalStorageから詳細なナビゲーション状態を取得
       const savedState = safeLocalStorage.getItem<MaterialNavigationState>('materialNavigationState');
       if (savedState && savedState.questionId === questionId) {
-        setNavigationState(savedState);
+        // queryParamsからの情報で上書き
+        setNavigationState({
+          ...savedState,
+          mode: returnMode || savedState.mode,
+          category: returnCategory || savedState.category,
+          part: returnPart || savedState.part,
+          studyMode: returnStudyMode || savedState.studyMode,
+          questionCount: returnQuestionCount || savedState.questionCount
+        });
       }
 
       // 自動検索の実行
@@ -704,41 +717,37 @@ function MaterialsContent() {
                 onClick={() => {
                   if (navigationState) {
                     // 問題演習に戻る
-                    const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
+                    const params = new URLSearchParams();
                     
-                    if (savedSessionState) {
-                      // 保存されたセッション情報からURLパラメータを再構築
-                      const params = new URLSearchParams();
-                      params.set('mode', savedSessionState.mode);
-                      
-                      if (savedSessionState.category) {
-                        params.set('category', encodeURIComponent(savedSessionState.category));
-                      }
-                      
-                      if (savedSessionState.part) {
-                        params.set('part', savedSessionState.part);
-                      }
-                      
-                      if (savedSessionState.studyMode) {
-                        params.set('studyMode', savedSessionState.studyMode);
-                      }
-                      
-                      if (savedSessionState.questionCount) {
-                        params.set('questionCount', savedSessionState.questionCount);
-                      }
-                      
-                      router.push(`/study/session?${params.toString()}`);
+                    // navigationStateから情報を取得（新しい情報があれば優先）
+                    if (navigationState.mode) {
+                      params.set('mode', navigationState.mode);
                     } else {
                       // フォールバック
-                      const params = new URLSearchParams();
-                      if (navigationState.from === 'study' || navigationState.from === 'mock') {
-                        params.set('mode', navigationState.from === 'mock' ? 'mock75' : 'category');
-                        router.push(`/study/session?${params.toString()}`);
-                      } else if (navigationState.from === 'review') {
-                        params.set('mode', 'review');
-                        router.push(`/study/session?${params.toString()}`);
-                      }
+                      params.set('mode', navigationState.from === 'mock' ? 'mock75' : navigationState.from === 'review' ? 'review' : 'category');
                     }
+                    
+                    if (navigationState.category) {
+                      params.set('category', navigationState.category);
+                    }
+                    
+                    if (navigationState.part) {
+                      params.set('part', navigationState.part);
+                    }
+                    
+                    if (navigationState.studyMode) {
+                      params.set('studyMode', navigationState.studyMode);
+                    }
+                    
+                    if (navigationState.questionCount) {
+                      params.set('questionCount', navigationState.questionCount);
+                    }
+                    
+                    router.push(`/study/session?${params.toString()}`);
+                    
+                    // 旧式のstudySessionStateがあれば削除
+                    safeLocalStorage.removeItem('studySessionState');
+                    safeLocalStorage.removeItem('materialNavigationState');
                   } else {
                     // デフォルトはダッシュボードに戻る
                     router.push('/dashboard');

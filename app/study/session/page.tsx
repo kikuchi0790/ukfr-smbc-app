@@ -588,7 +588,12 @@ function StudySessionContent() {
         sessionId: session.id,
         questionIndex: currentQuestionIndex,
         questionId: currentQuestion.questionId,
-        keywords
+        keywords,
+        mode,
+        category: categoryParam,
+        part: partParam,
+        studyMode: studyModeParam,
+        questionCount: questionCountParam
       };
       
       // LocalStorageに保存
@@ -599,7 +604,12 @@ function StudySessionContent() {
         from: navigationState.from,
         questionId: currentQuestion.questionId,
         keywords: keywords.join(','),
-        autoSearch: 'true'
+        autoSearch: 'true',
+        returnMode: mode,
+        returnCategory: categoryParam || '',
+        returnPart: partParam || '',
+        returnStudyMode: studyModeParam || '',
+        returnQuestionCount: questionCountParam || ''
       });
       
       router.push(`/materials?${queryParams.toString()}`);

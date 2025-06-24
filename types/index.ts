@@ -149,4 +149,9 @@ export interface MaterialNavigationState {
   questionIndex: number;
   questionId: string;
   keywords?: string[];
+  mode?: string;
+  category?: string;
+  part?: string;
+  studyMode?: string;
+  questionCount?: string;
 }
