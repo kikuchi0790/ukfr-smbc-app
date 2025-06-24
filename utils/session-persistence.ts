@@ -105,16 +105,12 @@ export class SessionPersistence {
       }
 
       // セッション状態を保存
-      const saved = safeLocalStorage.setItem(
+      safeLocalStorage.setItem(
         getUserKey(SESSION_KEY, userId || 'guest'),
         sessionState
       );
-
-      if (saved) {
-        console.log('[SessionPersistence] Session saved successfully');
-      }
-
-      return saved;
+      console.log('[SessionPersistence] Session saved successfully');
+      return true;
     } catch (error) {
       console.error('[SessionPersistence] Failed to save session:', error);
       return false;
