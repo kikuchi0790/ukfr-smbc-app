@@ -113,7 +113,7 @@ export function setupHighlightSync(userId: string, materialId: string, callback:
     return () => {};
   }
 
-  const highlightsRef = collection(db, 'users', userId, 'highlights');
+  const highlightsRef = collection(db!, 'users', userId, 'highlights');
   const q = query(highlightsRef, where('materialId', '==', materialId));
   
   const unsubscribe = onSnapshot(q, (snapshot) => {
