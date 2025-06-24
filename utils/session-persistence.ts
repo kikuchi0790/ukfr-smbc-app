@@ -58,7 +58,8 @@ export class SessionPersistence {
     category?: string,
     part?: string,
     studyMode?: string,
-    questionCount?: string
+    questionCount?: string,
+    userId?: string
   ): Promise<boolean> {
     if (this.isSaving) {
       // 保存中の場合はキューに追加
@@ -67,7 +68,7 @@ export class SessionPersistence {
           this.saveSession(
             session, questions, currentQuestionIndex, mockAnswers,
             showJapanese, selectedAnswer, showResult, mode, category,
-            part, studyMode, questionCount
+            part, studyMode, questionCount, userId
           ).then(resolve);
         });
       });
@@ -105,7 +106,7 @@ export class SessionPersistence {
 
       // セッション状態を保存
       const saved = safeLocalStorage.setItem(
-        getUserKey(SESSION_KEY, session.userId || 'guest'),
+        getUserKey(SESSION_KEY, userId || 'guest'),
         sessionState
       );
 

@@ -89,7 +89,8 @@ function StudySessionContent() {
       categoryParam || undefined,
       partParam || undefined,
       studyModeParam || undefined,
-      questionCountParam || undefined
+      questionCountParam || undefined,
+      user?.nickname
     ).then(saved => {
       if (saved) {
         setHasUnsavedChanges(false);
@@ -98,7 +99,7 @@ function StudySessionContent() {
     });
   }, [session, questions, currentQuestionIndex, mockAnswers, showJapanese, 
       selectedAnswer, showResult, mode, categoryParam, partParam, 
-      studyModeParam, questionCountParam, isMockMode]);
+      studyModeParam, questionCountParam, isMockMode, user?.nickname]);
 
   // セッション永続化の初期化と問題の読み込み
   useEffect(() => {
