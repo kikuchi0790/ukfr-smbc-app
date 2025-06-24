@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { 
@@ -19,6 +19,7 @@ import { Question, StudySession, Answer, UserProgress, StudyMode, Category, Cate
 import StudyTimer from "@/components/StudyTimer";
 import ErrorAlert from "@/components/ErrorAlert";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
+import SaveStatusIndicator from "@/components/SaveStatusIndicator";
 import { fetchJSON } from "@/utils/fetch-utils";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { 
@@ -37,6 +38,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { progressSync } from "@/services/progress-sync";
 import { extractKeywords } from "@/services/keyword-extraction";
+import { SessionPersistence } from "@/utils/session-persistence";
 
 function StudySessionContent() {
   const router = useRouter();
@@ -63,13 +65,70 @@ function StudySessionContent() {
   const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
   const [extractingKeywords, setExtractingKeywords] = useState(false);
   const [questionsToRestore, setQuestionsToRestore] = useState<string[] | null>(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
+  const sessionPersistence = useRef<SessionPersistence | null>(null);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   const isMockMode = mode === "mock25" || mode === "mock75";
 
+  // セッション保存関数
+  const saveSessionState = useCallback(() => {
+    if (!session || !questions.length) return;
+
+    const persistence = sessionPersistence.current || SessionPersistence.getInstance();
+    persistence.saveSession(
+      session,
+      questions,
+      currentQuestionIndex,
+      isMockMode ? mockAnswers : undefined,
+      showJapanese,
+      selectedAnswer,
+      showResult,
+      mode,
+      categoryParam || undefined,
+      partParam || undefined,
+      studyModeParam || undefined,
+      questionCountParam || undefined
+    ).then(saved => {
+      if (saved) {
+        setHasUnsavedChanges(false);
+        setLastSaveTime(new Date());
+      }
+    });
+  }, [session, questions, currentQuestionIndex, mockAnswers, showJapanese, 
+      selectedAnswer, showResult, mode, categoryParam, partParam, 
+      studyModeParam, questionCountParam, isMockMode]);
+
+  // セッション永続化の初期化と問題の読み込み
   useEffect(() => {
+    if (!mode) {
+      router.push('/study');
+      return;
+    }
+
+    // セッション永続化の初期化
+    sessionPersistence.current = SessionPersistence.getInstance();
+
+    // カスタムイベントリスナーの設定
+    const handleAutosave = () => saveSessionState();
+    const handleCheckUnsaved = (event: any) => {
+      event.detail.hasChanges = hasUnsavedChanges;
+    };
+
+    window.addEventListener('session-autosave', handleAutosave);
+    window.addEventListener('check-unsaved-changes', handleCheckUnsaved);
+
     loadQuestions();
-  }, [mode, categoryParam]);
+
+    return () => {
+      window.removeEventListener('session-autosave', handleAutosave);
+      window.removeEventListener('check-unsaved-changes', handleCheckUnsaved);
+      if (sessionPersistence.current) {
+        sessionPersistence.current.stopAutosave();
+      }
+    };
+  }, [mode, categoryParam, partParam, studyModeParam, questionCountParam, hasUnsavedChanges, saveSessionState]);
 
   // Mock試験の進捗を自動保存
   useEffect(() => {
@@ -97,8 +156,46 @@ function StudySessionContent() {
     }
   }, [sessionEnded, router]);
 
-  // 教材から戻った時のセッション復元
+  // セッション復元処理
   useEffect(() => {
+    // まず永続化システムからセッションを読み込む
+    const persistence = sessionPersistence.current || SessionPersistence.getInstance();
+    const savedSession = persistence.loadSession(user?.nickname);
+    
+    if (savedSession && 
+        savedSession.mode === mode && 
+        savedSession.category === categoryParam &&
+        savedSession.part === partParam) {
+      
+      // セッションを復元
+      setSession(savedSession.session);
+      setCurrentQuestionIndex(savedSession.currentQuestionIndex);
+      setShowJapanese(savedSession.showJapanese);
+      setQuestionsToRestore(savedSession.questionIds);
+      
+      if (savedSession.mockAnswers) {
+        setMockAnswers(new Map(savedSession.mockAnswers));
+      }
+      
+      if (savedSession.selectedAnswer !== undefined) {
+        setSelectedAnswer(savedSession.selectedAnswer);
+      }
+      
+      if (savedSession.showResult !== undefined) {
+        setShowResult(savedSession.showResult);
+      }
+      
+      const timeSince = new Date().getTime() - new Date(savedSession.savedAt).getTime();
+      const minutesSince = Math.floor(timeSince / 60000);
+      console.log(`[Session] Restored session from ${minutesSince} minutes ago`);
+      
+      // 教材から戻った場合の処理も統合
+      safeLocalStorage.removeItem('studySessionState');
+      safeLocalStorage.removeItem('materialNavigationState');
+      return;
+    }
+    
+    // 教材から戻った時の復元（互換性のため）
     const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
     const navigationState = safeLocalStorage.getItem<any>('materialNavigationState');
     
@@ -242,6 +339,8 @@ function StudySessionContent() {
         setShowJapanese(progress?.preferences?.showJapaneseInMock ?? false);
       }
 
+      setQuestions(questionSet);
+      
       // 復元する問題がある場合は、そのIDに基づいて問題を再構築
       if (questionsToRestore && questionsToRestore.length > 0) {
         const restoredQuestions = questionsToRestore
@@ -249,11 +348,9 @@ function StudySessionContent() {
           .filter((q): q is Question => q !== undefined);
         
         if (restoredQuestions.length === questionsToRestore.length) {
-          questionSet = restoredQuestions;
+          setQuestions(restoredQuestions);
         }
       }
-      
-      setQuestions(questionSet);
       
       // ユーザー固有の進捗が存在しない場合は初期化
       if (!savedProgress && user) {
@@ -324,6 +421,11 @@ function StudySessionContent() {
         showJapanese
       };
       setSession(newSession);
+      
+      // 自動保存を開始
+      if (sessionPersistence.current) {
+        sessionPersistence.current.startAutosave(saveSessionState);
+      }
     } catch (error) {
       console.error('Failed to load questions:', error);
       if (!categoryParam) {
@@ -340,6 +442,7 @@ function StudySessionContent() {
   const handleAnswerSelect = (answer: string) => {
     if (!showResult) {
       setSelectedAnswer(answer);
+      setHasUnsavedChanges(true);
     }
   };
 
@@ -376,6 +479,12 @@ function StudySessionContent() {
       answers: [...session.answers, newAnswer]
     };
     setSession(updatedSession);
+    setHasUnsavedChanges(true);
+    
+    // 回答カウントを増やし、闾値に達したら自動保存
+    if (sessionPersistence.current) {
+      sessionPersistence.current.incrementAnswerCount(saveSessionState);
+    }
     
     // Mock試験モードでは採点を保留
     if (!isMockMode) {
@@ -426,6 +535,9 @@ function StudySessionContent() {
     setExtractingKeywords(true);
     
     try {
+      // セッションを保存
+      await saveSessionState();
+      
       // キーワードを抽出
       const keywords = await extractKeywords(currentQuestion);
       
@@ -440,25 +552,6 @@ function StudySessionContent() {
       
       // LocalStorageに保存
       safeLocalStorage.setItem('materialNavigationState', navigationState);
-      
-      // 現在のセッション状態を保存（復元用）
-      const sessionState = {
-        mode,
-        category: categoryParam,
-        part: partParam,
-        studyMode: studyModeParam,
-        questionCount: questionCountParam,
-        session: {
-          ...session,
-          currentQuestionIndex,
-          userAnswers: session.userAnswers
-        },
-        questions: questions.map(q => q.questionId), // IDのみ保存
-        mockAnswers: isMockMode ? Array.from(mockAnswers.entries()) : null,
-        showJapanese,
-        savedAt: new Date().toISOString()
-      };
-      safeLocalStorage.setItem('studySessionState', sessionState);
       
       // 教材ビューアへ遷移
       const queryParams = new URLSearchParams({
@@ -815,6 +908,11 @@ function StudySessionContent() {
       const progressKey = `mockExamProgress_${user.nickname}`;
       safeLocalStorage.removeItem(progressKey);
       
+      // セッションをクリア
+      if (sessionPersistence.current) {
+        sessionPersistence.current.clearSession(user?.nickname);
+      }
+      
       // 結果画面へ遷移（保存が確実に完了してから）
       console.log('Navigating to /study/mock-result');
       
@@ -889,6 +987,11 @@ function StudySessionContent() {
         // エラーが発生してもセッションを終了して完了画面へ遷移
         console.log('Setting sessionEnded to true');
         setSessionEnded(true);
+      }
+      
+      // セッションをクリア
+      if (sessionPersistence.current) {
+        sessionPersistence.current.clearSession(user?.nickname);
       }
     }
   };
@@ -1263,10 +1366,14 @@ function StudySessionContent() {
           <div className="lg:col-span-1">
             {/* Timer for Mock exams */}
             {isMockMode && session?.timeLimit && (
-              <div className="mb-6">
+              <div className="mb-6 flex items-center justify-between">
                 <StudyTimer
                   timeLimit={session.timeLimit}
                   onTimeUp={handleTimeUp}
+                />
+                <SaveStatusIndicator 
+                  hasUnsavedChanges={hasUnsavedChanges}
+                  lastSaveTime={lastSaveTime}
                 />
               </div>
             )}
