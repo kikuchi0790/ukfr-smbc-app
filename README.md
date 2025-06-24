@@ -206,7 +206,9 @@ npm run dev
   "@react-three/drei": "^9.117.3",
   "lucide-react": "^0.468.0",
   "clsx": "^2.1.1",
-  "tailwind-merge": "^2.6.0"
+  "tailwind-merge": "^2.6.0",
+  "firebase": "^11.1.0",
+  "@google-gemini/core": "^2.0.0"
 }
 ```
 
@@ -299,11 +301,12 @@ interface UserProgress {
 ## 🔐 認証とルーティング
 
 ### 認証システム
-- **パスコード認証**: 共通パスコードでログイン
+- **Firebase Authentication**: Googleログインまたはメール/パスワード
 - **ニックネーム管理**: ユーザーごとの進捗を分けて保存
-- **ログイン後**: `/welcome`へリダイレクト
-- **保護されたルート**: `/dashboard`, `/study/*`, `/questions`
+- **ログイン後**: `/dashboard`へリダイレクト
+- **保護されたルート**: `/dashboard`, `/study/*`, `/questions`, `/materials`
 - **公開ルート**: `/`, `/login`
+- **オフラインモード**: Firebase接続エラー時も基本機能は動作
 
 ## 🛠️ v2.2.0 技術実装詳細
 
@@ -327,6 +330,8 @@ interface UserProgress {
 詳細な実装ドキュメント:
 - AI連携機能: `/docs/FEATURE_MATERIAL_INTEGRATION.md`
 - バグ修正とセッション永続化: `/docs/BUG_FIXES_AND_SESSION_PERSISTENCE.md`
+- トラブルシューティング: `/docs/TROUBLESHOOTING.md`
+- 2024年12月修正履歴: `/docs/RECENT_FIXES_2024_12.md`
 
 ## 📝 今後の機能追加予定
 
@@ -341,6 +346,18 @@ interface UserProgress {
 - [ ] ハイライトの共有機能
 - [ ] AI学習提案機能
 
+## 🌐 既知の問題と対処法
+
+### Firebase権限エラー
+教材ビューでハイライト機能使用時に発生する場合があります。
+- エラー時は自動的にローカルストレージにフォールバック
+- 機能は継続して使用可能
+- 詳細は`/docs/TROUBLESHOOTING.md`参照
+
+### ネットワーク接続問題
+- 広告ブロッカーがFirebaseをブロックする場合があります
+- ネットワーク状態インジケーターで接続状態を確認可能
+
 ## 🤝 コントリビューション
 
 改善提案やバグ報告は大歓迎です！
@@ -349,6 +366,7 @@ interface UserProgress {
 - 日本語翻訳の改善
 - UI/UXの向上提案
 - 新機能のアイデア
+- Firebaseセキュリティルールの改善
 
 ## 📄 ライセンス
 
@@ -373,18 +391,27 @@ npm start
 
 ### 環境変数（.env.local）
 ```env
-NEXT_PUBLIC_PASSCODE=your_passcode_here
-```
+# Firebase設定
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
-※ デフォルトのパスコードは`1234`です。実運用時は変更してください。
+# Gemini API設定
+GEMINI_API_KEY=your_gemini_api_key
+```
 
 ### Vercelデプロイ
 1. GitHubリポジトリにプッシュ
 2. Vercelでプロジェクトインポート
-3. 環境変数設定（NEXT_PUBLIC_PASSCODE）
+3. 環境変数設定（Firebase、Gemini API）
 4. デプロイ実行
 
-注意：パスコードは環境変数で管理されるため、Vercelの環境変数設定から変更可能です。
+注意：
+- Firebase設定がない場合も基本機能は動作します
+- ハイライト機能はFirebaseが利用できない場合、ローカルストレージを使用します
 
 ## 📝 重要な実装詳細
 
