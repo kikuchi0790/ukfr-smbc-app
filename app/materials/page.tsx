@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import { safeLocalStorage } from '@/utils/storage-utils';
+import { MaterialNavigationState } from '@/types';
 
 interface PDFDocument {
   numPages: number;
@@ -16,8 +18,9 @@ declare global {
   }
 }
 
-export default function MaterialsPage() {
+function MaterialsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [pdfDoc, setPdfDoc] = useState<PDFDocument | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -33,6 +36,7 @@ export default function MaterialsPage() {
   const [searchVisible, setSearchVisible] = useState(false);
   const [currentMatch, setCurrentMatch] = useState(0);
   const [totalMatches, setTotalMatches] = useState(0);
+  const [navigationState, setNavigationState] = useState<MaterialNavigationState | null>(null);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
@@ -86,6 +90,44 @@ export default function MaterialsPage() {
       clearSearch();
     };
   }, [isHtmlContent]);
+
+  // URLパラメータからナビゲーション状態を取得
+  useEffect(() => {
+    const from = searchParams.get('from');
+    const questionId = searchParams.get('questionId');
+    const keywords = searchParams.get('keywords');
+    const autoSearch = searchParams.get('autoSearch');
+
+    if (from && questionId) {
+      // LocalStorageから詳細なナビゲーション状態を取得
+      const savedState = safeLocalStorage.getItem<MaterialNavigationState>('materialNavigationState');
+      if (savedState && savedState.questionId === questionId) {
+        setNavigationState(savedState);
+      }
+
+      // 自動検索の実行
+      if (autoSearch === 'true' && keywords && isHtmlContent) {
+        // HTMLコンテンツが読み込まれるまで待機
+        const checkAndSearch = () => {
+          if (htmlContentRef.current && textContent[1]) {
+            const keywordArray = keywords.split(',').map(k => k.trim());
+            // 最初のキーワードで検索
+            if (keywordArray.length > 0) {
+              setSearchTerm(keywordArray[0]);
+              setSearchVisible(true);
+              setTimeout(() => {
+                performSearch(keywordArray[0]);
+              }, 100);
+            }
+          } else {
+            // まだ読み込まれていない場合は再試行
+            setTimeout(checkAndSearch, 500);
+          }
+        };
+        checkAndSearch();
+      }
+    }
+  }, [searchParams, isHtmlContent, textContent]);
 
   const loadPDF = async (filename: string) => {
     // 既にレンダリング中の場合はスキップ
@@ -594,15 +636,42 @@ export default function MaterialsPage() {
           <div className="px-4 h-12 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => router.push('/dashboard')}
+                onClick={() => {
+                  if (navigationState) {
+                    // 問題演習に戻る
+                    const params = new URLSearchParams();
+                    if (navigationState.from === 'study' || navigationState.from === 'mock') {
+                      params.set('mode', navigationState.from === 'mock' ? 'mock75' : 'category');
+                      // セッション情報から復帰
+                      router.push(`/study/session?${params.toString()}`);
+                    } else if (navigationState.from === 'review') {
+                      params.set('mode', 'review');
+                      router.push(`/study/session?${params.toString()}`);
+                    }
+                  } else {
+                    // デフォルトはダッシュボードに戻る
+                    router.push('/dashboard');
+                  }
+                }}
                 className="p-1.5 text-gray-200 hover:bg-gray-700 rounded flex items-center gap-1 transition-colors"
-                title="ダッシュボードに戻る"
+                title={navigationState ? "問題に戻る" : "ダッシュボードに戻る"}
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span className="text-sm">戻る</span>
               </button>
               <div className="w-px h-6 bg-gray-600" />
               <Book className="w-5 h-5 text-blue-400" />
+              {navigationState && (
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <span>問題ID: {navigationState.questionId}</span>
+                  {navigationState.keywords && navigationState.keywords.length > 0 && (
+                    <>
+                      <span>|</span>
+                      <span>キーワード: {navigationState.keywords.join(', ')}</span>
+                    </>
+                  )}
+                </div>
+              )}
               <select 
                 value={selectedPdf}
                 onChange={(e) => setSelectedPdf(e.target.value)}
@@ -855,5 +924,13 @@ export default function MaterialsPage() {
         </div>
       </div>
     </ProtectedRoute>
+  );
+}
+
+export default function MaterialsPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-100">Loading...</div>}>
+      <MaterialsContent />
+    </Suspense>
   );
 }

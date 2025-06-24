@@ -115,3 +115,38 @@ export interface UserPreferences {
   notificationEnabled: boolean;
   categoryStudyMode?: CategoryStudyMode;
 }
+
+// ハイライト関連の型定義
+export interface Highlight {
+  id: string;
+  userId: string;
+  materialId: string; // PDFファイル名 (e.g., "UKFR_ED32_Checkpoint.pdf")
+  pageNumber?: number;
+  text: string;
+  startOffset: number;
+  endOffset: number;
+  color: HighlightColor;
+  note?: string;
+  relatedQuestionId?: string; // 関連する問題ID
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type HighlightColor = 'yellow' | 'green' | 'red' | 'blue';
+
+// キーワードキャッシュの型定義
+export interface KeywordCache {
+  questionId: string;
+  keywords: string[];
+  createdAt: string;
+  expiresAt: string; // キャッシュの有効期限
+}
+
+// 教材連携のナビゲーション情報
+export interface MaterialNavigationState {
+  from: 'study' | 'mock' | 'review';
+  sessionId: string;
+  questionIndex: number;
+  questionId: string;
+  keywords?: string[];
+}

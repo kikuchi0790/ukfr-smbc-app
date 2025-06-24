@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英国金融規制 - チェックポイント ED32</title>
+    <style>
+        :root {
+            --primary-color: #333;
+            --secondary-color: #555;
+            --accent-color: #8C1D40; /* A color inspired by the Fitch logo */
+            --bg-color: #ffffff;
+            --border-color: #ddd;
+            --note-bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: var(--bg-color);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            line-height: 1.3;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 2.2em; border-bottom: 2px solid var(--accent-color); padding-bottom: 0.3em; }
+        h2 { font-size: 1.8em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.2em; }
+        h3 { font-size: 1.4em; }
+        h4 { font-size: 1.2em; color: var(--secondary-color); font-weight: bold;}
+
+        p, ul, ol {
+            margin-bottom: 1em;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong, b {
+            font-weight: 600;
+        }
+        
+        em, i {
+            font-style: italic;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .cover-page {
+            text-align: center;
+            border: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+        .cover-page .logo {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0;
+        }
+        .cover-page .tagline {
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            margin-top: 5px;
+            margin-bottom: 60px;
+        }
+        .cover-page h2, .cover-page h3 {
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .copyright-section {
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        
+        .note {
+            background-color: var(--note-bg-color);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 1.5em 0;
+            font-style: italic;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        caption {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--note-bg-color);
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+
+        /* Table of Contents */
+        nav#toc {
+            background: var(--note-bg-color);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        nav#toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        nav#toc > ul > li {
+            font-weight: bold;
+            margin-top: 1em;
+        }
+        nav#toc ul ul {
+            padding-left: 20px;
+            font-weight: normal;
+        }
+        
+        /* Diagram Styles */
+        .diagram-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2em 0;
+        }
+        .diagram-list {
+            flex-grow: 1;
+        }
+        .diagram-box {
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            text-align: center;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .diagram-brace {
+            font-size: 8em;
+            line-height: 1;
+            font-family: "Times New Roman", Times, serif;
+            color: var(--secondary-color);
+            transform: rotate(90deg);
+            margin-right: -1.2em;
+            margin-left: -1em;
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Flowchart Styles */
+        .flowchart {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background: #fafafa;
+            margin: 2em 0;
+            overflow-x: auto;
+        }
+        .flow-box {
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 10px auto;
+            background: #fff;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-box.primary { border-color: var(--accent-color); font-weight: bold; }
+        .flow-arrow {
+            font-size: 2em;
+            color: #555;
+            margin: 5px 0;
+        }
+        .flow-columns {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .flow-column {
+            flex: 1;
+            min-width: 180px;
+        }
+        .flow-horizontal-arrow {
+            flex-grow: 1;
+            text-align: center;
+            align-self: center;
+            font-size: 2em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="cover-page">
+            <div class="logo">FitchLearning</div>
+            <p class="tagline">知識 | スキル | 行動規範</p>
+            
+            <h2>Chartered Institute for Securities and Investment</h2>
+            <h1>英国金融規制</h1>
+            <h3>チェックポイント - ED32 (2025/04/01)</h3>
+        </header>
+
+        <main>
+            <nav id="toc">
+                <h2>目次</h2>
+                <ul>
+                    <li><a href="#sec-1">1. クイックリファレンス: 規制環境</a></li>
+                    <li><a href="#sec-2">2. クイックリファレンス: 2000年金融サービス・市場法および2012年金融サービス法</a></li>
+                    <li><a href="#sec-3">3. クイックリファレンス: 関連法規と規制</a></li>
+                    <li><a href="#sec-4">4. クイックリファレンス: FCAの事業行為および顧客資産ソースブック</a></li>
+                    <li><a href="#sec-5">5. クイックリファレンス: 苦情および救済措置</a></li>
+                </ul>
+            </nav>
+
+            <article>
+                <section id="sec-1">
+                    <h1>1. クイックリファレンス: 規制環境</h1>
+                    
+                    <section id="sec-1-1">
+                        <h2>1.1. 規制環境: 概要</h2>
+                        <h4>FSA 2012と英国の規制当局</h4>
+                        <p>FSA 2012は、英国の金融サービス業界に対する二重規制を定めています。</p>
+                        
+                        <h4>金融行為監督機構 (FCA)</h4>
+                        <ul>
+                            <li>全金融機関の行為に対する責任</li>
+                            <li>PRA非規制対象金融機関すべての健全性監督に対する責任</li>
+                            <li>独自の規則集 (FCAハンドブック) を持つ</li>
+                            <li>保証有限責任会社である</li>
+                            <li>理事会は財務省 (Treasury) によって任命される</li>
+                        </ul>
+
+                        <h4>健全性規制機構 (PRA)</h4>
+                        <p>以下の機関の健全性監督に責任を負う:</p>
+                        <ul>
+                            <li>預金受入機関</li>
+                            <li>保険会社</li>
+                            <li>重要な金融機関</li>
+                        </ul>
+                        <ul>
+                           <li>独自の規則集 (PRAハンドブック) を持つ</li>
+                           <li>イングランド銀行 (Bank of England) そのものである</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-1-2">
+                        <h2>1.2. 法的目標</h2>
+                        <h4>FCA</h4>
+                        <ul>
+                            <li><strong>戦略的目標</strong>
+                                <ul><li>関連市場が十分に機能することを確保する</li></ul>
+                            </li>
+                            <li><strong>運営上の目標</strong>
+                                <ul>
+                                    <li>消費者保護</li>
+                                    <li>インテグリティ (誠実性)</li>
+                                    <li>競争</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h4>PRA</h4>
+                        <ul>
+                            <li><strong>一般的目標</strong>
+                                <ul>
+                                    <li>PRA認可事業者の安全性と健全性を促進する
+                                        <ul>
+                                            <li>事業が金融システムの安定性に悪影響を及ぼさない方法で運営される</li>
+                                            <li>破綻した場合の悪影響を最小限に抑える</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                             <li><strong>保険に関する目標</strong>
+                                <ul>
+                                    <li>現在または将来の保険契約者に対して、適切な程度の保護を確保することに貢献する。</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h4>リスクベースの規制アプローチ</h4>
+                        <p>規制当局は、活動に対してリスクベースのアプローチを取ることにより、問題が発生する前にそれを予測しようとします。当局はリスク発生の影響と確率を評価します。</p>
+                        <p>リスクの<strong>影響</strong>を評価する際、FCAは法的目標がどの程度危険にさらされているかを考慮します。</p>
+                        <p>リスク発生の<strong>確率</strong>を評価する際、FCAは以下を考慮します:</p>
+                        <ul>
+                            <li>金融機関の戦略</li>
+                            <li>金融機関の<strong>事業</strong>リスクと<strong>統制</strong>リスク</li>
+                        </ul>
+
+                        <h4>監督の3つの柱</h4>
+                        <ul>
+                            <li><strong>第1の柱 - 事前的な金融機関監督</strong>
+                                <ul>
+                                    <li>事業モデル戦略分析</li>
+                                    <li>事前的なエンゲージメント</li>
+                                    <li>詳細な評価</li>
+                                    <li>金融機関の評価</li>
+                                </ul>
+                            </li>
+                            <li><strong>第2の柱 - 事後的な監督</strong>
+                                <ul><li>イベントドリブンな業務</li></ul>
+                            </li>
+                            <li><strong>第3の柱 - テーマ別の監督</strong>
+                                <ul><li>課題および商品に関する監督</li></ul>
+                            </li>
+                        </ul>
+                        <p>監督モデルの変更の一環として、金融機関は以下のいずれかに分類されます:</p>
+                        <ul>
+                            <li><strong>固定ポートフォリオ (Fixed portfolio)</strong> – 引き続き、金融機関またはグループごとの監督プログラムの対象となる (3つの柱すべてが適用)</li>
+                            <li><strong>変動ポートフォリオ (Flexible portfolio)</strong> – イベントドリブンな事後的監督 (第2の柱) およびテーマ別のレビューまたは商品監督 (第3の柱) のみが適用される。</li>
+                        </ul>
+
+                        <h4>監督のツール</h4>
+                        <p>このリスクベースのアプローチは4つの段階で説明できます。これらは:</p>
+                        <ul>
+                            <li><strong>特定:</strong> 損害または潜在的な損害が存在する場所を特定する</li>
+                            <li><strong>診断:</strong> 損害の原因、範囲、および潜在的な進展は何か</li>
+                            <li><strong>是正:</strong> 実行可能なさまざまなFCAの措置を通じて是正する</li>
+                            <li><strong>評価:</strong> FCAはこれらの措置がどれほど効果的であったかを評価する</li>
+                        </ul>
+
+                        <h4>成果重視の規制</h4>
+                        <ul>
+                            <li>成果重視の規則への依存度を高める</li>
+                            <li>コンダクトリスク・アプローチ</li>
+                        </ul>
+                        <p>これにより以下が可能になる:</p>
+                        <ul>
+                            <li>イノベーションと開発</li>
+                            <li>小規模金融機関のアクセスしやすさ</li>
+                            <li>規制の目的に焦点を当てる</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-1-3">
+                        <h2>1.3. 原則主義に基づく規制</h2>
+                        <h4>コンダクトリスク</h4>
+                        <p>事業活動の遂行における不適切な判断により、顧客、クライアント、取引相手、従業員に損害が生じるリスク、および不適切な企業文化による顧客への損害のリスク。</p>
+                        
+                        <h4>一般的な規則制定権限</h4>
+                        <p>規制当局は、FSMA 2000に基づき広範な権限を与えられています。これらの権限には以下が含まれます:</p>
+                        <ul>
+                            <li>認可</li>
+                            <li>監督</li>
+                            <li>執行</li>
+                            <li>制裁および懲戒処分</li>
+                            <li>規則制定</li>
+                        </ul>
+
+                        <h4>事業原則 (Principles for Businesses)</h4>
+                        <p><strong>事業原則</strong>は、<strong>認可事業者</strong>の<strong>基本的な義務</strong>に関する一般的な声明です。<strong>12</strong>の事業原則は以下の通りです:</p>
+                        <ol>
+                            <li>インテグリティ (誠実性)</li>
+                            <li>スキル、注意、および勤勉さ</li>
+                            <li>経営および管理</li>
+                            <li>財務の健全性</li>
+                            <li>市場における行為</li>
+                            <li>顧客の利益</li>
+                            <li>顧客とのコミュニケーション</li>
+                            <li>利益相反</li>
+                            <li>顧客: 信頼関係</li>
+                            <li>顧客資産</li>
+                            <li>規制当局との関係</li>
+                            <li>消費者に対する義務</li>
+                        </ol>
+                        <p class="note">注意: 消費者に対する義務 (Consumer Duty) の対象となる金融機関はPRIN 6および7を無視し、対象外の金融機関はPRIN 12を無視します。</p>
+
+                        <h4>顧客の公正な処遇 – 消費者に対する義務の対象外の金融機関のみに関連</h4>
+                        <p><strong>成果1:</strong> 顧客の公正な処遇が企業文化の中心であること。</p>
+                        <p><strong>成果2:</strong> 製品とサービスが特定された消費者グループのニーズを満たしていること。</p>
+                        <p><strong>成果3:</strong> 販売前、販売中、販売後に消費者に明確な情報が提供されること。</p>
+                        <p><strong>成果4:</strong> 助言が適切であること。</p>
+                        <p><strong>成果5:</strong> 金融機関が期待させたものを消費者に提供すること。</p>
+                        <p><strong>成果6:</strong> 消費者が不当な販売後の障壁に直面しないこと。</p>
+                        
+                        <h4>PRAの基本規則</h4>
+                        <ol>
+                            <li>インテグリティ (誠実性)。</li>
+                            <li>スキル、注意、および勤勉さ。</li>
+                            <li>金融機関は慎重に行動しなければならない。</li>
+                            <li>適切な財務資源。</li>
+                            <li>効果的なリスク戦略とリスク管理システム。</li>
+                            <li>責任をもって効果的に業務を組織し、管理すること。</li>
+                            <li>規制当局に対してオープンかつ協調的な方法で対応すること。</li>
+                            <li>破綻処理に備えること。</li>
+                        </ol>
+                    </section>
+
+                    <section id="sec-1-4">
+                        <h2>1.4. 上級管理職および認証制度</h2>
+                        <p>次章で詳述</p>
+                    </section>
+
+                    <section id="sec-1-5">
+                        <h2>1.5. Chartered Institute for Securities and Investmentの行動規範</h2>
+                        <p>CISIのメンバーは、協会の原則に定められた基準を満たすことが求められます。</p>
+                        <h4>原則</h4>
+                        <table>
+                            <caption>表2. 原則</caption>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>原則</th>
+                                    <th>利害関係者</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td><strong>個人的説明責任</strong> - 常に最高水準の個人的・専門的基準を維持し、誠実、正直、相応のスキル、注意、勤勉さをもって行動し、自社または専門職の評判を損なうことを避ける</td>
+                                    <td>自己、顧客、規制当局、同僚、市場参加者、会社、社会</td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td><strong>顧客第一</strong> - 顧客と利用者の利益を第一に考え、公正に扱い、その利益の良きスチュワード（受託者）となり、機密保持を尊重する</td>
+                                    <td>顧客</td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td><strong>利益相反</strong> - 個人的またはその他の利益相反に注意を払い、公正かつ効果的に積極的に管理する。法律および規制を遵守する</td>
+                                    <td>顧客、市場参加者、規制当局</td>
+                                </tr>
+                                <tr>
+                                    <td>4.</td>
+                                    <td><strong>市場パートナーへの敬意</strong> - すべての取引相手とビジネスパートナーに敬意をもって接し、市場のインテグリティと行動に関する適切な基準を遵守する</td>
+                                    <td>顧客、市場参加者</td>
+                                </tr>
+                                <tr>
+                                    <td>5.</td>
+                                    <td><strong>専門性の向上</strong> - 常に専門的な卓越性を追求し、CPD（継続的専門能力開発）にコミットし、他者の発展を促進し支援する</td>
+                                    <td>専門職、顧客、同僚</td>
+                                </tr>
+                                <tr>
+                                    <td>6.</td>
+                                    <td><strong>能力の認識</strong> - 助言や支援を得られない限り、自身が有能または資格を有していない事項については行動を辞退する</td>
+                                    <td>顧客、専門職、市場参加者</td>
+                                </tr>
+                                <tr>
+                                    <td>7.</td>
+                                    <td><strong>他者と環境への敬意</strong> - すべての人を公正かつ敬意をもって扱い、すべての人の機会を支援し、多様性と包摂性を受け入れ、業務の環境への影響を考慮する</td>
+                                    <td>社会、同僚、顧客、規制当局、市場参加者、専門職、専門機関</td>
+                                </tr>
+                                <tr>
+                                    <td>8.</td>
+                                    <td><strong>声を上げ、耳を傾ける</strong> - 積極的に声を上げ、耳を傾けることで他者もそうするよう奨励し、すべての人のための安全な環境を促進する</td>
+                                    <td>社会、同僚</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="sec-1-6">
+                        <h2>1.6. 上級管理職の配置、システムおよびコントロール (SYSC)</h2>
+                        <p>PRA/FCAは、金融サービス企業の取締役および上級管理職に対し、事業におけるシステムとコントロールに関する特定の要件を課しています。その目的は:</p>
+                        <ul>
+                            <li>取締役と上級管理職に責任を負うことを奨励する</li>
+                            <li>事業原則3（経営および管理）を強化する</li>
+                            <li>特定の取締役に責任を負わせるよう金融機関に奨励する</li>
+                            <li>システムとコントロールの共通プラットフォームを作成する</li>
+                        </ul>
+                        <p>より具体的な規定は以下を参照しています:</p>
+                        <ul>
+                            <li>健全なガバナンスに関する一般的要件 (SYSC 4)</li>
+                            <li>従業員、代理人、その他関連する人物に対する責任 (SYSC 5)
+                                <ul>
+                                    <li>スキル、知識、専門性</li>
+                                    <li>職務の分離</li>
+                                    <li>手続きの認識</li>
+                                    <li>モニタリング</li>
+                                </ul>
+                            </li>
+                            <li>以下の規定:
+                                <ul>
+                                    <li>コンプライアンス、監査、金融犯罪 (SYSC 6)</li>
+                                    <li>内部 (SYSC 7) および外部 (SYSC 12) のリスク管理</li>
+                                    <li>アウトソーシング (SYSC 8)</li>
+                                    <li>記録保持 (SYSC 9)</li>
+                                    <li>利益相反 (SYSC 10)</li>
+                                </ul>
+                            </li>
+                            <li>報酬規定の確立 (SYSC 19A)</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-1-7">
+                        <h2>1.7. その他の機関</h2>
+                        <h4>金融オンブズマン・サービス (FOS)</h4>
+                        <ul><li>第5章参照</li></ul>
+                        
+                        <h4>年金オンブズマン (The Pensions Ombudsman)</h4>
+                        <ul><li>第5章参照</li></ul>
+
+                        <h4>金融サービス補償制度 (FSCS)</h4>
+                        <ul><li>第5章参照</li></ul>
+                        
+                        <h4>競争・市場庁 (CMA)</h4>
+                        <ul>
+                           <li>買収および合併の調査</li>
+                           <li>違法カルテルの訴追</li>
+                           <li>消費者保護法の執行</li>
+                           <li>目標には以下が含まれる:
+                               <ul>
+                                   <li>消費者を保護し、事業者を教育する</li>
+                                   <li>競争を改善する</li>
+                                   <li>消費者に力を与える</li>
+                               </ul>
+                           </li>
+                        </ul>
+                        
+                        <h4>情報コミッショナー事務局 (ICO)</h4>
+                        <ul>
+                            <li>情報に関する権利の擁護
+                                <ul>
+                                    <li>公式情報へのアクセスの促進
+                                        <ul><li>情報公開法</li></ul>
+                                    </li>
+                                    <li>個人情報の保護
+                                        <ul><li>データ保護法</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h4>年金規制機関 (The Pensions Regulator)</h4>
+                        <ul><li>職域年金へのアクセス提供と管理に責任を持つ人々が、その義務を確実に果たすようにする</li></ul>
+                        
+                        <h4>金融政策委員会 (FPC)</h4>
+                        <ul><li>英国金融システムの強靭性を保護し強化する観点から、システミックリスクを特定、監視し、それらを除去または低減するための措置を講じる</li></ul>
+                        
+                        <h4>上級審判所 (税務・衡平法部) (The Upper Tribunal (Tax and Chancery Chamber))</h4>
+                        <ul><li>規制上の決定に対する不服申し立てを審理する</li></ul>
+                        
+                        <h4>買収・合併パネル (Panel on Takeovers and Mergers)</h4>
+                        <ul><li>第3章参照</li></ul>
+                    </section>
+                    
+                    <section id="sec-1-8">
+                        <h2>1.8. FCA/PRAハンドブックの規定</h2>
+                        <p>ハンドブック内には様々な種類の規定があります。異なる規定とそれらを示す略語は以下の通りです:</p>
+                        <h4>拘束力あり</h4>
+                        <ul>
+                            <li>R (Rule - 規則)</li>
+                            <li>D (Direction - 指示)</li>
+                            <li>P (Statement of principle - 原則の表明)</li>
+                            <li>UK (Text from UK law - 英国法からのテキスト)</li>
+                        </ul>
+                        <h4>拘束力なし</h4>
+                        <ul>
+                            <li>E (Evidential provision - 証拠規定)</li>
+                            <li>G (Guidance - ガイダンス)</li>
+                            <li>C (Conclusive provision - 決定規定)</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-1-9">
+                        <h2>1.9. 不公正な条項</h2>
+                        <p>FCAは、2015年消費者権利法および1999年消費者契約における不公正条項規制に基づき、金融サービスにおける消費者契約の不公正な条項に異議を唱え、修正し、削除する権限を持っています。</p>
+                    </section>
+                    
+                    <section id="sec-1-10">
+                        <h2>1.10. 監督の役割</h2>
+                        <ul>
+                            <li><strong>内部監査機能</strong>は、規制要件の不遵守のリスクを監督します。彼らはこれらのリスクについて独立した情報に基づいた見解を形成し、監査委員会や取締役会と直接議論すべきです。</li>
+                            <li>金融機関の<strong>外部監査人</strong>は、財務諸表における重要な虚偽記載のリスクを客観的かつ独立して評価し、適切に対応すべきです。</li>
+                            <li><strong>受託者</strong>は、第三者（受益者）に代わって資産の法的管理を行います。彼らは資産を保護し、受益者のために資産を管理する注意義務を負います。彼らは投資助言などの業務を委任することがありますが、最終的な責任は保持します。</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section id="sec-2">
+                    <h1>2. クイックリファレンス: 2000年金融サービス・市場法および2012年金融サービス法</h1>
+
+                    <section id="sec-2-1">
+                        <h2>2.1. 一般的禁止事項</h2>
+                        <p><em>「何人も、<strong>認可されている</strong>か<strong>免除されている</strong>場合を除き、<strong>規制対象業務</strong>を行ってはならない。」</em> 規制対象業務は、2001年規制対象業務命令において次のように定義されています:</p>
+                        <ul>
+                            <li>特定業務、以下に関連して:</li>
+                            <li>特定投資商品</li>
+                        </ul>
+                        <p>対処すべき主な問題は:</p>
+                        <ul>
+                            <li>どの投資商品が特定投資商品か？</li>
+                            <li>どの業務が特定業務か？</li>
+                            <li>認可を得るためのルートは何か？</li>
+                            <li>認可要件から免除されるのは誰か？</li>
+                        </ul>
+                        <p>一般的禁止事項の違反は<strong>刑事犯罪</strong>です。</p>
+                    </section>
+                    
+                    <section id="sec-2-2">
+                        <h2>2.2. 特定投資商品</h2>
+                        <h4>除外される投資商品</h4>
+                        <ul>
+                            <li>有形財産（土地、骨董品、商品を含む）</li>
+                            <li>通貨（物理的な通貨および通貨取引、すなわちスポットおよびフォワード契約）</li>
+                            <li>プレミアムボンドおよびその他の国民貯蓄投資銀行の商品</li>
+                        </ul>
+                        <h4>特定の規制対象投資商品</h4>
+                        <div class="diagram-container">
+                            <div class="diagram-list">
+                                <ul>
+                                    <li>株式/預託証券/ワラント</li>
+                                    <li>債券</li>
+                                    <li>集団投資スキームのユニット</li>
+                                    <li>以下のオプション:
+                                        <ul>
+                                            <li>特定投資商品</li>
+                                            <li>通貨</li>
+                                            <li>貴金属（金、銀、プラチナ、パラジウム）</li>
+                                        </ul>
+                                    </li>
+                                    <li>先物</li>
+                                    <li>差金決済取引 (CFDs)</li>
+                                </ul>
+                            </div>
+                            <div class="diagram-brace">{</div>
+                            <div class="diagram-box">
+                                MiFID<br>投資商品と同等
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Lloyd'sシンジケート、保険契約、葬儀プラン契約</li>
+                            <li>年金</li>
+                            <li>規制対象住宅ローンおよびホームファイナンス</li>
+                            <li>預金および電子マネー</li>
+                            <li>特定投資商品への権利、例：売戻し条件付売買契約（レポ）</li>
+                            <li>ローンおよびその他の形態の信用</li>
+                            <li>信用照会または信用情報サービス</li>
+                            <li>排出量オークション商品</li>
+                            <li>ベンチマーク</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-2-3">
+                        <h2>2.3. 特定業務</h2>
+                        <h4>特定の規制対象業務</h4>
+                        <div class="diagram-container">
+                            <div class="diagram-list">
+                                <ul>
+                                    <li>投資商品のディーリング</li>
+                                    <li>投資商品の取引の斡旋</li>
+                                    <li>投資商品の管理</li>
+                                    <li>投資商品に関する助言</li>
+                                    <li>多角的取引システム (MTF) または組織的取引システム (OTF) の運営</li>
+                                </ul>
+                            </div>
+                            <div class="diagram-brace">{</div>
+                            <div class="diagram-box">
+                                MiFID<br>業務と同等
+                            </div>
+                        </div>
+                        <ul>
+                           <li>投資商品の保管および管理、例：カストディアンとしての活動</li>
+                           <li>非物質化された指示の送信、例：電子送金</li>
+                           <li>Lloyd'sの活動、保険活動、葬儀プラン契約の提供</li>
+                           <li>住宅ローン：提供、管理、助言、斡旋</li>
+                           <li>ホームファイナンス活動</li>
+                           <li>休眠口座資金の管理</li>
+                           <li>事業としての預金の受入れおよび電子マネーの発行</li>
+                           <li>集団投資スキームまたは年金制度の設立、運営、または清算</li>
+                           <li>ほとんどの規制対象業務を行うことに同意すること</li>
+                        </ul>
+                        <h4>主な除外事項</h4>
+                        <ul>
+                            <li>新聞における投資助言（注意：ティップシートは除外されない）</li>
+                            <li>テレビ放送</li>
+                            <li>情報の提供（例：Reuters、Bloomberg）</li>
+                            <li>無報酬の受託者、名義人、人格代表者</li>
+                            <li>従業員持株制度の運営</li>
+                            <li>表示の欠如 - 自己勘定取引およびエンドユーザーとしての取引</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-2-4">
+                        <h2>2.4. 一般的禁止事項の違反</h2>
+                        <h4>違反：刑事犯罪と罰則</h4>
+                        <table>
+                           <caption>表3. 刑事犯罪と罰則</caption>
+                           <thead>
+                               <tr>
+                                   <th></th>
+                                   <th>懲役および/または</th>
+                                   <th>罰金</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td><strong>刑事法院 (Crown Court)</strong></td>
+                                   <td>2年</td>
+                                   <td>無制限</td>
+                               </tr>
+                           </tbody>
+                        </table>
+                        <p>FCA/PRAは訴追する権限を持っています。</p>
+                        <h4>違反：民事救済</h4>
+                        <p>契約は金融機関によって<strong>執行不能</strong>となります。</p>
+                        <p>投資家は契約を執行（<strong>損害賠償</strong>を求めて訴訟）するか、契約を「無効」（そして<strong>返金</strong>を請求）にすることができます。</p>
+                    </section>
+                    
+                    <section id="sec-2-5">
+                        <h2>2.5. 免除対象者</h2>
+                        <h4>免除対象者：要約</h4>
+                        <p class="note">この図は、一般的禁止事項から免除されるさまざまな団体を示しています。</p>
+                        <div class="flowchart" style="padding: 10px;">
+                            <div class="flow-columns" style="align-items: center; justify-content: space-between;">
+                                <div>
+                                    <div class="flow-box">イングランド銀行</div>
+                                    <div class="flow-box" style="margin-top: 20px;">指定専門職団体 (DPBs)</div>
+                                </div>
+                                <div>
+                                    <div class="flow-box">Lloyd'sシンジケートメンバー</div>
+                                    <div class="flow-box primary">免除対象者</div>
+                                    <div class="flow-box">任命代理人</div>
+                                </div>
+                                <div>
+                                    <div class="flow-box">承認投資取引所 (RIEs)</div>
+                                    <div class="flow-box" style="margin-top: 20px;">承認清算機関 (RCHs)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="sec-2-6">
+                        <h2>2.6. 認可事業者</h2>
+                        <h4>認可</h4>
+                        <p><strong>パート4A許可</strong></p>
+                        <p>申請者が許可を得るためには、FCA/PRAがその適格性を満たしていると認めなければなりません。適格であるためには、金融機関は以下の「閾値条件」を満たし、継続して満たす必要があります:</p>
+                        <ul>
+                            <li><strong>法的地位:</strong> 申請者の必要な法的地位</li>
+                            <li><strong>事務所の所在地:</strong> 本店および登記上の事務所が英国にあること</li>
+                            <li><strong>事業が慎重な方法で運営されること</strong></li>
+                            <li><strong>効果的な監督:</strong> 支配株主（議決権資本の20%以上）</li>
+                            <li><strong>適切な資源</strong></li>
+                            <li><strong>適合性</strong></li>
+                            <li><strong>事業モデル</strong></li>
+                            <li><strong>請求代理人の任命</strong>（自動車保険会社のみ）</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-2-7">
+                        <h2>2.7. SM&CRおよび研修・コンピテンシー</h2>
+                        <h4>SM&CR</h4>
+                        <p>SM&CRとは、上級管理職および認証制度 (Senior Managers and Certification Regime) を指します。この制度は、金融サービス機関で働く個人が健全な文化を育む方法で行動することを保証します。この制度はリスクベースであり、金融機関は以下のように分類されます:</p>
+                        <ul>
+                            <li>コア機関</li>
+                            <li>限定スコープ機関</li>
+                            <li>強化スコープ機関</li>
+                        </ul>
+                        <p>この制度は、個人説明責任制度としても知られています。</p>
+                        
+                        <h4>適格性テスト (Fit and proper test)</h4>
+                        <p>適格性とは:</p>
+                        <ul>
+                            <li>個人が上級管理職能に任命される前に、規制当局によって評価されます。</li>
+                            <li>認証職能が任命される前に、金融機関によって評価されます。</li>
+                            <li>その後、両方について毎年、金融機関によって評価されます。</li>
+                        </ul>
+                        <p>規制当局は、個人が管理職能を遂行するのに適格である場合にのみ、承認者ステータスを付与します。</p>
+                        <p>適格性を評価する際、規制当局または金融機関は以下を考慮します:</p>
+                        <ul>
+                            <li>誠実性、インテグリティ、および評判</li>
+                            <li>コンピテンシーと能力</li>
+                            <li>財務の健全性</li>
+                        </ul>
+
+                        <h4>上級管理職能</h4>
+                        <p>これには、取締役、非業務執行取締役、最高責任者、議長、および金融機関内の主要な事業部門または機能領域の責任者が含まれます。また、マネーロンダリング報告責任者およびコンプライアンス監督職能も含まれます。</p>
+
+                        <h4>認証職能</h4>
+                        <p>認証制度は、金融機関に対し、採用段階およびその後毎年、金融機関またはその顧客に重大な損害のリスクをもたらす可能性のある特定の従業員の適格性を評価することを義務付けています。そのような従業員には、重要なリスクテイカー、重大な損害リスクのある職能を遂行する者、および認証者を監督する者が含まれます。</p>
+                        
+                        <h4>行動規範規則 (Conduct Rules)</h4>
+                        <p>FCAは、すべての関連スタッフの行動を、行動の基本フレームワークに照らして評価します。このフレームワークは行動規範規則と呼ばれます。関連スタッフには、ケータリングサービスや受付スタッフなどの補助スタッフを除くすべてのスタッフが含まれます。</p>
+                        <p>行動規範規則には2つの階層があります。第1階層はすべての関連スタッフに適用され、第2階層は上級管理職能のみに適用されます。</p>
+                        
+                        <h5>個人（第1階層）行動規範規則</h5>
+                        <ol>
+                            <li><b>あなたは誠実に行動しなければならない</b>
+                                <ul><li>違反例は、作為または不作為によって意図的に誤解を招くこと</li></ul>
+                            </li>
+                            <li><b>あなたは相応のスキル、注意、および勤勉さをもって行動しなければならない</b>
+                                <ul><li>違反例は、十分な理解なしに行動すること、プロセスに従わないこと、または規制当局の承認を得ずに行動すること</li></ul>
+                            </li>
+                            <li><b>あなたはFCA、PRA、その他の規制当局に対してオープンかつ協力的でなければならない</b>
+                                <ul><li>違反例は、FCAが合理的に通知されるべき性質の事項を通知しないこと</li></ul>
+                            </li>
+                            <li><b>あなたは顧客の利益を十分に考慮し、公正に扱わなければならない</b>
+                                <ul><li>これは実質的に、FTOC（顧客の公正な処遇）の責任を個人にまで拡大するものです</li></ul>
+                            </li>
+                            <li><b>あなたは市場行動の適切な基準を遵守しなければならない</b>
+                                <ul><li>違反例は、市場行動規範を遵守しないこと</li></ul>
+                            </li>
+                            <li><b>あなたはリテール顧客のために良い成果をもたらすよう行動しなければならない</b>
+                                <ul><li>これは実質的に、消費者に対する義務（Consumer Duty）の責任を個人にまで拡大するものです</li></ul>
+                            </li>
+                        </ol>
+                        <p class="note">注意: 消費者に対する義務の対象となる従業員は規則4を無視し、対象外の金融機関の従業員は規則6を無視します。</p>
+
+                        <h5>第2階層 - 上級管理職行動規範規則</h5>
+                        <ul>
+                            <li><b>SM1:</b> あなたは、責任を負う会社の事業が効果的に管理されるよう、合理的な措置を講じなければならない。</li>
+                            <li><b>SM2:</b> あなたは、責任を負う会社の事業が、規制システムの関連要件および基準を遵守するよう、合理的な措置を講じなければならない。</li>
+                            <li><b>SM3:</b> あなたは、責任の委任が適切な人物に対して行われ、委任された責任の遂行を効果的に監督するよう、合理的な措置を講じなければならない。</li>
+                            <li><b>SM4:</b> あなたは、FCAまたはPRAが合理的に通知を期待する情報を適切に開示しなければならない。</li>
+                        </ul>
+
+                        <h4>研修とコンピテンシー</h4>
+                        <p>リテール顧客にサービスを提供する金融機関は、従業員がコンピテンシーを達成、維持、強化するための手配をする義務があります。</p>
+                        <p>従業員が適格であるためには、有能で能力があること（すなわち、<b>閾値コンピテンシー</b>を達成すること）が必要です。これは以下によって達成されます:</p>
+                        <ul>
+                            <li>適切な試験に合格すること、および</li>
+                            <li>内部評価に合格すること</li>
+                        </ul>
+                        <p>閾値コンピテンシーが達成されると、従業員は監督なしで業務を行うことができます。</p>
+                        <p>金融機関が試験要件に従う必要がない特定の状況があり得ます。</p>
+                    </section>
+                    
+                    <section id="sec-2-8">
+                        <h2>2.8. 内部告発</h2>
+                        <p>法律およびFCAの規則で定められた保護された開示。規定には以下が含まれます:</p>
+                        <ul>
+                            <li>十分な年功序列を持つ個人を内部告発の責任者として任命する</li>
+                            <li>内部告発の内部手続きを採用する</li>
+                            <li>内部告発を行う法的権利を明確に説明する</li>
+                            <li>英国を拠点とする従業員にFCAおよびPRAの内部告発サービスについて通知する</li>
+                            <li>年次報告書</li>
+                            <li>内部告発者との雇用審判で敗訴した場合、FCAに通知する</li>
+                            <li>任命代理人にも適用される</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-2-9">
+                        <h2>2.9. 調査</h2>
+                        <h4>執行官</h4>
+                        <p>規制当局による直接的な監督は、執行官による監督訪問を通じて行われます。執行官は、認可事業者の施設に<strong>予告なし</strong>に立ち入り、以下のことができます:</p>
+                        <ul>
+                            <li>文書、テープ、ファイル、コンピュータデータ、またはその他の情報の提出を要求する</li>
+                            <li><strong>いかなる</strong>従業員にも聞き取り調査を行う</li>
+                        </ul>
+                        
+                        <h4>情報要求権限</h4>
+                        <ul>
+                            <li>金融機関は合理的な時間内に情報を提供しなければならない (S165)</li>
+                            <li>金融機関、またはその従業員は、特定の懸念事項に関する情報を収集し、報告書を提出するよう要求されることがある (S167)</li>
+                            <li>規制当局は、その代理として調査を行う第三者を任命することができる (S168)</li>
+                            <li>規制当局に協力しないことは刑事犯罪である</li>
+                        </ul>
+                        
+                        <h4>懲戒プロセスと措置</h4>
+                        <h5>規制決定委員会 (RDC)</h5>
+                        <p>規制決定委員会 (Regulatory Decision Committee, RDC) は、規制当局が開始した調査を管理します。RDCはFCAの理事会に対して説明責任を負いますが、そのメンバーは独立しています。唯一のFCA職員はRDCの議長です。</p>
+                        <h5>イングランド銀行執行決定委員会</h5>
+                        <p>PRAは、PRAの執行体制における意思決定権限を執行決定委員会 (Enforcement Decision-Making Committee, EDMC) に委任します。RDCと同様に、EDMCのプロセスは司法的ではなく行政的なものです。これは不服申立機関ではありません。</p>
+
+                        <h5>調査を取り巻く典型的な事象の概要:</h5>
+                        <div class="flowchart">
+                            <div class="flow-box primary">調査</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-columns">
+                                <div class="flow-column">
+                                    <div class="flow-box">予備的調査結果</div>
+                                    <div class="flow-arrow">↓</div>
+                                    <div class="flow-box">非公開の警告</div>
+                                </div>
+                                <div class="flow-column">
+                                    <div class="flow-box primary">RDCが発行可能:</div>
+                                    <div class="flow-arrow">↓</div>
+                                    <div class="flow-box">警告通知</div>
+                                    <div class="flow-box">監督通知</div>
+                                    <div class="flow-box">中止通知</div>
+                                </div>
+                                <div class="flow-column">
+                                    <div class="flow-box">
+                                        上級審判所へ<br>28日以内に<br>不服申立
+                                    </div>
+                                    <div class="flow-arrow">↑</div>
+                                    <div class="flow-box primary">RDCが発行可能:</div>
+                                    <div class="flow-arrow">↓</div>
+                                    <div class="flow-box">決定通知</div>
+                                    <div class="flow-box">監督通知</div>
+                                    <div class="flow-box">中止通知</div>
+                                </div>
+                                <div class="flow-column">
+                                    <div class="flow-box primary">RDCが発行可能:</div>
+                                    <div class="flow-arrow">↓</div>
+                                    <div class="flow-box">最終決定</div>
+                                    <div class="flow-box">最終監督</div>
+                                    <div class="flow-box">中止通知</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                                <div class="flow-box">金融機関の応答</div>
+                                <div class="flow-horizontal-arrow">→</div>
+                                <div class="flow-box primary">懲戒措置</div>
+                            </div>
+                        </div>
+
+                        <h4>通知</h4>
+                        <h5>警告通知</h5>
+                        <p>RDCが講じようとしている措置の詳細を提供します。</p>
+                        <h5>監督通知</h5>
+                        <p>警告通知の代替として、監督通知は懲戒的ではなく、予防的および保護的であることを意図しています。RDCが講じた、または講じようとしている措置の詳細を、通常は<strong>即時</strong>に有効となる形で提供します。</p>
+                        <h5>決定通知</h5>
+                        <p>RDCが警告通知または監督通知に関する陳述を審査し、決定を下したときに発行されます。</p>
+                        <h5>追加決定通知</h5>
+                        <p>規制当局が決定通知にある措置とは異なる措置を取ることに金融機関と合意した場合、決定通知に続いて発行されることがあります。</p>
+                        <h5>最終通知</h5>
+                        <p>決定された最終的な措置の条件を定めます。最終通知は、措置が発効する<strong>日付</strong>を記載します。</p>
+                        <h5>中止通知</h5>
+                        <p>この通知は、金融機関または個人に対し、規制当局によるさらなる措置が取られないことを通知します。</p>
+                        <h5>非公開の警告</h5>
+                        <p>非公開の警告は、FCAが金融機関の行動に関して懸念を持っているが、正式な懲戒処分を下すことが<strong>適切でない</strong>と判断した場合に発行されます。</p>
+                        
+                        <h4>審判所への付託権</h4>
+                        <p>以下の事項に対して、上級審判所の税務・衡平法部に不服申し立てができます:</p>
+                        <ul>
+                            <li>決定通知</li>
+                            <li>監督通知</li>
+                            <li>認可/承認の拒否</li>
+                        </ul>
+                        <p>審判所は、司法省が運営する独立した機関です。</p>
+
+                        <h4>規制執行措置</h4>
+                        <div class="flowchart" style="padding: 10px;">
+                             <div class="flow-box primary">懲戒措置</div>
+                             <div style="text-align: center; font-size: 2em; line-height: 0.5;">↓</div>
+                             <div class="flow-box">訴追</div>
+                             <div class="flow-arrow">↓</div>
+                             <div class="flow-box">公的譴責、不正行為の声明、および罰金</div>
+                             <div class="flow-arrow">↓</div>
+                             <div class="flow-columns" style="align-items:center;">
+                                <div class="flow-box">認可または承認の撤回または変更</div>
+                                <div class="flow-box">禁止</div>
+                                <div class="flow-box">原状回復命令</div>
+                             </div>
+                        </div>
+
+                    </section>
+                    
+                    <section id="sec-2-10">
+                        <h2>2.10. 誤解を招く記述および印象 (2012年FSA第89-91条)</h2>
+                        <h4>誤解を招く記述および印象：犯罪行為</h4>
+                        <ul>
+                            <li>S89 誤解を招く記述</li>
+                            <li>S90 誤解を招く印象</li>
+                            <li>S91 ベンチマークに関する誤解を招く記述</li>
+                        </ul>
+                        <h4>誤解を招く記述および印象：抗弁事由</h4>
+                        <ul>
+                            <li>記述が虚偽または誤解を招くものではないと合理的に信じていた</li>
+                            <li>価格安定化規則、情報管理規則（チャイニーズウォール）、または自社株買い戻し規則に従って行動した</li>
+                        </ul>
+                        <h4>誤解を招く記述および印象：罰則</h4>
+                        <ul>
+                            <li><strong>刑事法院 (Crown court):</strong> 10年の懲役および/または無制限の罰金</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section id="sec-3">
+                    <h1>3. クイックリファレンス: 関連法規と規制</h1>
+                    
+                    <section id="sec-3-1">
+                        <h2>3.1. インサイダー取引 (1993年刑事司法法第52条)</h2>
+                        <h4>インサイダー取引：犯罪行為</h4>
+                        <p>未公開の価格感応性情報に関して:</p>
+                        <ul>
+                            <li>有価証券の<strong>取引</strong></li>
+                            <li>他人に取引を<strong>奨励する</strong>こと、または</li>
+                            <li>情報を<strong>渡す</strong>こと</li>
+                        </ul>
+                        <p>取締役が自社株を取引すること自体は犯罪では<strong>ありません</strong>。</p>
+                        
+                        <h4>インサイダー取引：対象となる有価証券</h4>
+                        <p>以下のものを除くすべての規制対象投資商品:</p>
+                        <ul>
+                            <li>預金口座</li>
+                            <li>商品現物市場</li>
+                            <li>外国為替の現物および先物市場</li>
+                            <li>保険商品</li>
+                        </ul>
+                        <p>取引は、英国またはEEAの規制市場、NASDAQ、NYSE、SIX、または専門の仲介業者を介して行われます。1993年刑事司法法の下では、<strong>個人</strong>のみがインサイダー取引で有罪となる可能性があります。</p>
+                        
+                        <h4>インサイダー取引：抗弁事由</h4>
+                        <h5>一般的な抗弁事由</h5>
+                        <ul>
+                            <li>利益を得る（または損失を回避する）ことを期待していなかった</li>
+                            <li>同じように行動したであろう</li>
+                            <li>受領者が取引することを期待していなかった</li>
+                            <li>情報がすでに公開されていた</li>
+                        </ul>
+                        <h5>特別な抗弁事由</h5>
+                        <ul>
+                            <li>価格安定化規則</li>
+                            <li>市場情報の受領者</li>
+                            <li>誠実に行動するマーケットメーカー</li>
+                        </ul>
+                        
+                        <h4>インサイダー取引：執行</h4>
+                        <p>LSEは市場を<strong>監視</strong>します。調査および<strong>訴追</strong>はFCAによって行われます。</p>
+                        
+                        <h4>インサイダー取引の刑事犯罪：罰則</h4>
+                        <ul><li><strong>刑事法院 (Crown court):</strong> 10年の懲役および/または無制限の罰金</li></ul>
+                    </section>
+                    
+                    <section id="sec-3-2">
+                        <h2>3.2. 市場濫用 (市場濫用規制)</h2>
+                        <h4>市場濫用の範囲</h4>
+                        <ul>
+                            <li>金融商品に適用される
+                                <ul>
+                                    <li>規制市場、多角的取引システム (MTF)、または組織的取引システム (OTF) で取引されている、取引が許可されている、または取引許可の申請があるもの</li>
+                                    <li>店頭で取引され、上記の価格または価値に影響を与えるもの</li>
+                                </ul>
+                            </li>
+                            <li>排出量許可に適用される</li>
+                            <li>市場操作の犯罪については、商品デリバティブおよび商品現物市場にも適用される</li>
+                        </ul>
+                        
+                        <h4>市場濫用：市場行動規範</h4>
+                        <ul>
+                            <li>インサイダー取引</li>
+                            <li>不適切な開示</li>
+                            <li>取引の操作</li>
+                            <li>装置の操作</li>
+                            <li>情報の流布</li>
+                            <li>ベンチマークの操作</li>
+                        </ul>
+                        <p>疑義は疑わしい取引・注文報告書 (Suspicious Transaction and Order Report, STOR) を通じて報告される</p>
+                        
+                        <h4>市場濫用：正当な行動</h4>
+                        <ul>
+                            <li>自社株買い戻しプログラムおよび安定化措置</li>
+                            <li>FCA規則</li>
+                            <li>買収コード</li>
+                            <li>マーケットサウンディング</li>
+                        </ul>
+                        
+                        <h4>市場濫用：経営陣の取引</h4>
+                        <p>経営責任を負う者 (PDMR) は、関連会社の株式における個人勘定取引の詳細を発行者およびFCAに通知しなければならない。
+                        <strong>取引禁止期間：</strong>中間または年次財務報告の発表前の30暦日。</p>
+                    </section>
+                    
+                    <section id="sec-3-3">
+                        <h2>3.3. マネーロンダリング (2002年犯罪収益法)</h2>
+                        <h4>POCA：マネーロンダリングの3段階</h4>
+                        <ul>
+                            <li><strong>プレースメント (Placement):</strong> 不正な収益の預け入れ</li>
+                            <li><strong>レイヤリング (Layering):</strong> 資金の投資と預け入れ</li>
+                            <li><strong>インテグレーション (Integration):</strong> 正当な収益の表面化</li>
+                        </ul>
+                        <h4>POCA：罰則</h4>
+                        <h5>刑事犯罪</h5>
+                        <ul>
+                            <li>隠匿、取得、所持、および取り決め（幇助） - 14年の懲役および/または無制限の罰金</li>
+                            <li>故意に捜査を妨害すること – 5年の懲役および/または無制限の罰金</li>
+                            <li><strong>規制セクターの刑事犯罪</strong>
+                                <ul>
+                                    <li>報告義務違反 - 5年の懲役および/または無制限の罰金</li>
+                                    <li>情報漏洩（タレコミ） - 2年の懲役および/または無制限の罰金</li>
+                                    <li>マネーロンダリング規制の遵守違反 – 2年の懲役および/または無制限の罰金</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-3-4">
+                        <h2>3.4. 2017年マネーロンダリング規制</h2>
+                        <h4>金融活動作業部会 (Financial Action Task Force)</h4>
+                        <ul>
+                           <li>マネーロンダリングとテロ資金供与に関する世界的な政府間監視機関。</li>
+                           <li>勧告/基準を設定し、監視する。</li>
+                           <li>遵守しない国に責任を問う。</li>
+                        </ul>
+                        <h4>内部統制</h4>
+                        <ul>
+                            <li>適切な内部統制とスタッフ研修</li>
+                            <li>マネーロンダリング報告責任者 (MLRO) を任命する</li>
+                        </ul>
+                        <h4>教育と研修</h4>
+                        <p>スタッフは以下について研修を受けます:</p>
+                        <ul>
+                            <li>マネーロンダリング対策に関する法律と規制</li>
+                            <li>疑わしい取引の認識</li>
+                            <li>適切な報告方法</li>
+                        </ul>
+                        <h4>記録保持</h4>
+                        <p>すべての記録は、以下の時点から5年間保管する必要があります:</p>
+                        <ul>
+                            <li>取引関係が終了した後、または</li>
+                            <li>一時的な取引の後</li>
+                        </ul>
+                        <h4>本人確認手続き – 顧客デューデリジェンス (CDD)</h4>
+                        <p>一般的に、新規顧客には本人確認手続きが必要です。顧客がEEAの金融機関またはそれに類する機関である場合、本人確認手続きは<strong>不要</strong>です。</p>
+                        <p><strong>以下の場合に強化されたデューデリジェンスが必要:</strong></p>
+                        <ul>
+                            <li>金融機関がそのリスク評価（または監督当局から提供された情報）に基づき、ML/FTのリスクが高いと特定したケース</li>
+                            <li>高リスク第三国に設立された人物との取引（またはその人物が設立された国での取引）</li>
+                            <li>顧客が本人確認のために物理的に立ち会っていない場合</li>
+                            <li>コルレス銀行関係に関する場合</li>
+                            <li>政治的に影響力のある人物 (PEP)、またはPEPの家族、既知の親しい関係者との取引関係または一時的な取引の場合</li>
+                            <li>顧客が偽造または盗難された身分証明書を提供した場合</li>
+                            <li>取引が複雑で異常に大規模であるか、または異常な取引パターンがある場合</li>
+                            <li>石油、武器、貴金属、タバコ製品、文化財、象牙またはその他保護種に関連する品目に関する取引</li>
+                            <li>考古学的、歴史的、文化的、宗教的に重要な、または希少な科学的価値のあるものに関する取引</li>
+                        </ul>
+                    </section>
+                
+                    <section id="sec-3-5">
+                        <h2>3.5. マネーロンダリング合同運営グループ ガイダンスノート</h2>
+                        
+                        <h4>疑義の報告</h4>
+                        <p>従業員は、マネーロンダリング報告責任者に疑いを報告することが<strong>義務付けられて</strong>います。報告を怠ることは<strong>刑事犯罪</strong>です。</p>
+                        
+                        <h4>AML/CFTにおける関連人物</h4>
+                        <h5>マネーロンダリング報告責任者および指名責任者</h5>
+                        <ul>
+                            <li>責任ある人物</li>
+                            <li>POCA、テロリズム法、およびMLRは指名責任者を要求</li>
+                            <li>FCAはMLROを要求</li>
+                            <li>通常、両方の役割は同一人物が担い、MLROと呼ばれる</li>
+                            <li>MLROは国家犯罪対策庁 (NCA) に報告する</li>
+                        </ul>
+                        
+                        <h5>国家犯罪対策庁 (NCA)</h5>
+                        <ul>
+                            <li>強力な実働犯罪対策部隊</li>
+                            <li>目的は、組織犯罪への対処、英国国境の防衛、詐欺およびサイバー犯罪との戦い、子供と若者の保護</li>
+                            <li>上級警察長官が率いる</li>
+                            <li>内務大臣に説明責任を負う</li>
+                        </ul>
+                        
+                        <h4>目的</h4>
+                        <ul>
+                            <li>MLR2007の実施に対するリスクベースのアプローチ</li>
+                            <li>金融機関に対して拘束力はない</li>
+                            <li>デューデリジェンスの証拠となり得る</li>
+                        </ul>
+                        
+                        <h4>政治的に影響力のある人物 (PEP)</h4>
+                        <p>この定義には2種類の人物が含まれます:</p>
+                        <ul>
+                            <li>現在または過去1年以内に重要な公的職務を委任された個人、および</li>
+                            <li>そのような人物の近親者、または既知の親しい関係者。</li>
+                        </ul>
+                        
+                        <h4>制裁体制</h4>
+                        <p>制裁リストは、マネーロンダリングのリスクにさらされているすべての金融機関に配布されます。英国の制裁体制は以下の機関が責任を負います:</p>
+                        <ul>
+                            <li>HM Treasury (英国大蔵省)</li>
+                            <li>The Foreign Commonwealth Office (外務・英連邦省)、および</li>
+                            <li>The UK Department for Business Innovation and Skills (BIS) (ビジネス・イノベーション・技能省)</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-3-6">
+                        <h2>3.6. テロ資金供与対策</h2>
+                        <h4>2000年テロリズム法</h4>
+                        <ul>
+                            <li>テロリズムを定義する</li>
+                            <li>テロリズムを犯罪とする</li>
+                            <li>報告を怠ることが刑事犯罪であると規定する</li>
+                        </ul>
+                        <h4>2008年テロ対策法</h4>
+                        <p>2008年テロ対策法 (CTA 08) は、テロ活動のための資金管理に関する既存の法律および規制を補完するために実施されました。テロ活動に使用される資金を扱っていると疑われる金融機関に対し、Her Majesty's Treasury (HMT) に追加の権限を与えます。これらには以下が含まれます:</p>
+                        <ul>
+                            <li>強化されたデューデリジェンスとモニタリング</li>
+                            <li>体系的な報告</li>
+                            <li>事業の制限または停止</li>
+                        </ul>
+                        <h4>マネーロンダリングとテロ資金供与の違い</h4>
+                        <p>テロ資金とマネーロンダリング活動を比較すると、2つの大きな違いがあります:</p>
+                        <ul>
+                            <li>テロ活動の資金調達には、しばしばかなり少額の資金しか必要とされない</li>
+                            <li>テロ資金は正当な源泉から来ることもある</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-3-7">
+                        <h2>3.7. 2010年英国贈収賄防止法</h2>
+                        <p>この法律の下では、以下の行為が犯罪となります:</p>
+                        <ul>
+                            <li><strong>贈賄</strong> - 人に「関連する職務または活動」を不適切に遂行させる意図で、金銭的またはその他の利益を与えたり、提供したりすることは違法です</li>
+                            <li><strong>収賄</strong> – 「関連する職務または活動」の不適切な遂行を奨励するために、金銭的またはその他の利益を受け取ることは違法です</li>
+                            <li>外国公務員への贈賄</li>
+                            <li>組織として贈収賄を防止しなかったこと</li>
+                        </ul>
+                        <h4>罰則</h4>
+                        <ul>
+                            <li>個人 - 最高懲役刑は10年</li>
+                            <li>法人 - 無制限の罰金</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-3-8">
+                        <h2>3.8. 開示・透明性規則 (DTR)</h2>
+                        <p>開示・透明性規則 (DTR) は以下を強調しています:</p>
+                        <ul>
+                            <li>どのような種類の情報を開示すべきか</li>
+                            <li>その情報をいつ、どのように開示すべきか</li>
+                            <li>開示を遅延させるための手続き</li>
+                        </ul>
+                        <p>この指令の主な目的は:</p>
+                        <ul>
+                            <li>関連情報を市場へ迅速かつ公正に開示すること</li>
+                            <li>情報を遅延させることができる特定の状況を定めること</li>
+                            <li>投資家を保護し、インサイダー取引を防ぐための情報管理を確保する要件</li>
+                        </ul>
+                        <p>開示規則は上場公開会社 (plc) にのみ適用されます。</p>
+                        
+                        <h4>株式保有の積み増しに関する開示</h4>
+                        <ul>
+                            <li>EU透明性指令の株式保有積み増し開示閾値: 5%, 10%, 15%, 20%, 25%, 30%, 50%, 75%</li>
+                            <li>英国の開示規則では、以下の閾値に達した場合、2営業日以内に発行者に開示することが要求される:
+                                <ul>
+                                    <li>3%に達したとき</li>
+                                    <li>(3%超で) 次の整数%ポイントに上下に変動したとき</li>
+                                    <li>3%を下回ったとき</li>
+                                </ul>
+                            </li>
+                            <li>例外
+                                <ul>
+                                    <li>ファンドマネージャー – 5%, 10%、その後は1%ポイントごとに</li>
+                                    <li>マーケットメーカー - 10%未満は免除</li>
+                                    <li>カストディアンおよび単なる名義人 - 免除</li>
+                                    <li>担保として保有される株式 - 免除</li>
+                                </ul>
+                            </li>
+                            <li>CA 2006 S793 開示書簡
+                                <ul><li>実質的受益権の開示要件</li></ul>
+                            </li>
+                        </ul>
+                        
+                        <h4>英国買収コード</h4>
+                        <ul>
+                            <li>買収パネルが管理</li>
+                            <li>コードは買収提案の影響を受ける株主を保護する</li>
+                            <li>6つの一般原則
+                                <ul>
+                                    <li>すべての株主は平等に扱われ、保護される</li>
+                                    <li>株主には決定を下すための十分な時間と情報が与えられる</li>
+                                    <li>対象企業の取締役会は会社全体の最善の利益のために行動する</li>
+                                    <li>虚偽の市場が創出されてはならない</li>
+                                    <li>買収提案者は、買収に必要な現金を確保した後にのみ提案を行う</li>
+                                    <li>対象企業は必要以上に長く事業活動を妨げられてはならない</li>
+                                </ul>
+                            </li>
+                            <li>買収コードにおける重要な定義
+                                <ul>
+                                    <li>共同行動</li>
+                                    <li>取引</li>
+                                    <li>株式の持分</li>
+                                    <li>関連証券</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-3-9">
+                        <h2>3.9. 報告対象取引</h2>
+                        <h4>取引報告</h4>
+                        <ul>
+                            <li>目的 - 監視</li>
+                            <li>両方の金融機関が報告</li>
+                            <li>T+1の締め切り</li>
+                            <li>空売り規制および証券金融取引規制</li>
+                        </ul>
+                        <h4>取引報告チャネルとシステム</h4>
+                         <ul>
+                            <li>目的 - 価格の透明性</li>
+                            <li>シニア、次いで売り手の金融機関が報告</li>
+                            <li>3分間の締め切り</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-3-10">
+                        <h2>3.10. データ保護</h2>
+                        <h4>はじめに</h4>
+                        <p>2018年データ保護法 (DPA) は、データ管理者に情報コミッショナーへの登録義務を課しています。</p>
+                        <p>DPAは、EU GDPRを英国で法的に有効にします。</p>
+                        <h4>2018年データ保護法：データ保護の原則</h4>
+                        <ul>
+                            <li>処理は合法的かつ公正でなければならない</li>
+                            <li>処理の目的は特定され、明確かつ正当でなければならない</li>
+                            <li>個人データは適切、関連性があり、過剰であってはならない</li>
+                            <li>個人データは正確であり、最新の状態に保たれなければならない</li>
+                            <li>個人データは必要以上に長く保持されてはならない</li>
+                            <li>個人データは安全な方法で処理されなければならない</li>
+                        </ul>
+                        <h4>情報コミッショナー事務局 (ICO) の執行権限</h4>
+                        <ul>
+                            <li>ICOの罰則:
+                                <ul>
+                                    <li>執行通知</li>
+                                    <li>最大1,750万ポンドまたは全世界売上高の4%のいずれか高い方の罰金</li>
+                                </ul>
+                            </li>
+                            <li>刑事罰:
+                                <ul><li>潜在的に無制限の罰金</li></ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-3-11">
+                        <h2>3.11. 自己資本指令</h2>
+                        <p>自己資本指令 (CRD) は2007年1月1日に施行され、銀行統合指令および自己資本充足性指令を改正しました。</p>
+                        <p>これは3つの柱で構成されています:</p>
+                        <h4>第1の柱</h4>
+                        <ul><li>最低自己資本要件</li></ul>
+                        <h4>第2の柱</h4>
+                        <ul><li>追加資本の必要性の評価</li></ul>
+                        <h4>第3の柱</h4>
+                        <ul><li>開示</li></ul>
+                        <p>最低自己資本水準が評価・合意されると、金融機関は常にその自己資本要件 (CRR) を超える自己資本を維持しなければなりません。</p>
+                    </section>
+
+                    <section id="sec-3-12">
+                        <h2>3.12. 金融商品市場指令</h2>
+                        <h4>英国のEU離脱</h4>
+                        <p>2021年1月1日から、英国の金融機関は第三国の金融機関として分類されるため、EU域内で金融サービスを「パスポート」することができなくなりました。したがって、英国とEUの金融機関は、それぞれEUと英国の顧客に金融サービスを提供する能力が制限されています。</p>
+                        <p>多くの英国企業はこれに対応するため、EEA諸国に子会社を設立し、現地での認可を求めることで、EEA全域でのパスポート権を享受し続けられるようにしています。HM Treasuryは「一時的移行権限」を付与し、英国に支店を持つか、支店設立を検討しているEUの金融機関が、一時的移行期間の終了（2022年3月31日）まで、2020年12月31日時点の各EU法規を遵守し続けることを可能にしました。</p>
+                    </section>
+
+                    <section id="sec-3-13">
+                        <h2>3.13. 法的義務の違反 (2000年FSMA)</h2>
+                        <h4>第56条</h4>
+                        <p>個人が<strong>もはや適格でなくなった</strong>場合、FCAは<strong>禁止命令</strong>を出します。</p>
+                        <h4>第59条</h4>
+                        <p>認可事業者は、FCAによって承認されていない者が管理職能を遂行しないように、合理的な注意を払わなければなりません。</p>
+                        <h4>第71条</h4>
+                        <p><strong>私人</strong>は、<strong>禁止された人物の雇用</strong>から生じる損失について、認可事業者を訴えることができます。</p>
+                        <h4>第138D条 (2012年FSA)</h4>
+                        <p><strong>何人</strong>も、FCA規則の<strong>違反</strong>から生じる損失について、認可事業者を訴えることができます。</p>
+                        <p><strong>金銭的損失</strong>を被っている必要があります。</p>
+                    </section>
+                </section>
+
+                <section id="sec-4">
+                    <h1>4. クイックリファレンス: FCAの事業行為および顧客資産ソースブック</h1>
+                    
+                    <section id="sec-4-1">
+                        <h2>4.1. 事業行為規則の適用 (COBS 1)</h2>
+                        <h4>一般適用規則</h4>
+                        <p>事業行為規則は、以下の業務を行うすべての認可事業者に適用されます:</p>
+                        <ul>
+                            <li>指定投資業務</li>
+                            <li>生命保険証券に関する長期保険業務</li>
+                            <li>金融機関は英国の事業所から運営されている必要があります</li>
+                        </ul>
+                        <h4>対象となる事業の概要</h4>
+                        <p>事業行為規則を遵守しなければならない事業の範囲には以下が含まれます:</p>
+                        <ul>
+                            <li>ブローカー</li>
+                            <li>ファンドマネージャー</li>
+                            <li>デリバティブトレーダー</li>
+                            <li>ユニットトラスト、年金、または生命保険証券の管理またはマーケティングを行う組織</li>
+                            <li>独立系ファイナンシャルアドバイザー (IFAs)</li>
+                            <li>預金受入機関（限定的な適用）</li>
+                        </ul>
+                        <h4>任命代理人</h4>
+                        <p>事業行為規則は、金融機関の任命代理人に直接適用されませんが、金融機関は常にその任命代理人の作為および不作為に対して直接責任を負います。</p>
+                        <h4>適格取引相手方業務</h4>
+                        <p>適格取引相手方業務に適用されない事業行為規則は以下の通りです:</p>
+                        <ul>
+                            <li>COBS 2のほとんど（事業行為義務）</li>
+                            <li>COBS 4のほとんど（金融プロモーションを含む顧客とのコミュニケーション）</li>
+                            <li>COBS 6.1（金融機関、そのサービス、報酬に関する情報）</li>
+                            <li>COBS 8（顧客契約）</li>
+                            <li>COBS 10（非助言サービスの適切性）</li>
+                            <li>COBS 11の一部（最良執行、顧客注文処理、およびディーリングコミッションの使用）</li>
+                            <li>COBS 12の一部（非独立リサーチの表示）</li>
+                            <li>COBS 14.3（指定投資商品に関する情報）</li>
+                        </ul>
+                        <h4>電子媒体</h4>
+                        <p>変化する時代に対応するため、FCAは情報の電子的な伝達を可能にする規則を適応させました。情報は<strong>耐久性媒体</strong>で提供される必要があります。これは以下を意味します:</p>
+                        <ul>
+                            <li>紙</li>
+                            <li>顧客が変更不可能な形式で保存できるあらゆる形式。</li>
+                        </ul>
+                        <p class="note">注：これにはウェブサイトは含まれません。</p>
+
+                        <h4>ウェブサイト</h4>
+                        <p>ウェブサイトは、金融機関が使用する前に特定の条件があります:</p>
+                        <ul>
+                            <li>顧客とサービスにとって適切であること</li>
+                            <li>顧客が同意すること</li>
+                            <li>顧客に電子的に通知されること</li>
+                            <li>情報が最新に保たれること</li>
+                            <li>情報が継続的にアクセス可能であること</li>
+                        </ul>
+
+                        <h4>顧客の最善の利益に関する規則</h4>
+                        <p>金融機関は、いかなる顧客のために行う指定投資業務に関しても、顧客の最善の利益に従い、誠実、公正かつ専門的に行動しなければなりません。</p>
+
+                        <h4>電話会話の録音</h4>
+                        <p>以下の際には、音声通信の高品質な録音が必要です:</p>
+                        <ul>
+                            <li>顧客の注文を受ける際</li>
+                            <li>顧客の注文を執行する際</li>
+                            <li>顧客の注文の執行を手配する際</li>
+                            <li>上記に影響を与える取引</li>
+                            <li>記録は5年間保管されなければなりません</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-4-2">
+                        <h2>4.2. 顧客分類 (COBS 3)</h2>
+                        <h4>リテール顧客</h4>
+                        <p>リテール顧客とは、プロフェッショナル顧客または適格取引相手方ではない顧客です。</p>
+                        
+                        <h4>プロフェッショナル顧客</h4>
+                        <p>プロフェッショナル顧客は、当然のプロフェッショナル顧客または選択的プロフェッショナル顧客のいずれかです。</p>
+                        <h5>当然のプロフェッショナル顧客</h5>
+                        <p>金融市場で活動するために認可または規制されることが要求される事業体で、以下を含む:</p>
+                        <ul>
+                            <li>信用機関</li>
+                            <li>投資会社</li>
+                            <li>その他の認可または規制された金融機関</li>
+                            <li>保険会社</li>
+                            <li>CIS（またはその管理会社）</li>
+                            <li>年金基金（またはその管理会社）</li>
+                            <li>商品または商品デリバティブディーラー</li>
+                            <li>ローカル</li>
+                            <li>その他の機関投資家</li>
+                        </ul>
+                        <p>大企業：MiFID業務に関しては、以下の規模要件のうち2つを満たす企業:</p>
+                        <ul>
+                            <li>貸借対照表合計が2,000万ユーロ</li>
+                            <li>純売上高が4,000万ユーロ</li>
+                            <li>自己資本が200万ユーロ</li>
+                        </ul>
+                        <p>非MiFID業務には他の基準があります。</p>
+
+                        <h5>選択的プロフェッショナル顧客</h5>
+                        <p>金融機関は、以下の条件を満たす場合、顧客を選択的プロフェッショナル顧客として扱うことができます:</p>
+                        <ul>
+                            <li>「定性的テスト」に準拠し、かつ</li>
+                            <li>手続きに準拠し、かつ</li>
+                            <li>以下の3つのうち2つを満たす「定量的テスト」:
+                                <ul>
+                                    <li>過去4四半期にわたって四半期あたり平均10回</li>
+                                    <li>50万ユーロ超のポートフォリオ</li>
+                                    <li>1年間の専門的経験</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h4>適格取引相手方</h4>
+                        <p>適格取引相手方は、当然の適格取引相手方または選択的適格取引相手方のいずれかです。</p>
+                        <p>MiFID業務に関しては、顧客は適格取引相手方業務（上記第1節で定義）に関してのみ適格取引相手方となり得ます。</p>
+                        <h5>当然の適格取引相手方</h5>
+                        <p>以下は当然の適格取引相手方です（これにはEEA内外の事業体が含まれます）:</p>
+                        <ul>
+                            <li>認可または規制された金融機関</li>
+                            <li>国の中央政府（公的債務を扱う機関を含む）</li>
+                            <li>中央銀行</li>
+                            <li>超国家組織</li>
+                        </ul>
+                        <h5>選択的適格取引相手方</h5>
+                        <p>選択的適格取引相手方の地位は、事業体（個人ではない）のみが利用できます。</p>
+                        <p>MiFID業務に関しては、金融機関は顧客から適格取引相手方として扱われることに同意する旨の明確な確認を得なければなりません。</p>
+                        
+                        <h4>顧客により高いレベルの保護を提供すること</h4>
+                        <p>当然の適格取引相手方はプロフェッショナル顧客またはリテール顧客として扱われることができ、また、当然のプロフェッショナル顧客はリテール顧客として扱われることができます。これは、金融機関自身の主導または顧客の要求により行われます。</p>
+                    </section>
+                    
+                    <section id="sec-4-3">
+                        <h2>4.3. 顧客契約 (COBS 8)</h2>
+                        <h4>代理人を顧客とする場合</h4>
+                        <p>金融機関が取引相手が基礎となる顧客の代理人として行動していることを認識している場合、その代理人が金融機関の顧客となります。</p>
+                        
+                        <p>事業行為規則では、顧客契約を、金融機関と顧客の間の基本的な権利と義務を定めた書面による基本合意と説明しています。</p>
+                        <p>金融機関がリテール顧客のために指定投資業務を行う場合、および（MiFID業務に関して）プロフェッショナル顧客のために行う場合、顧客契約が必要です。</p>
+                        <p>保険会社が元受として生命保険証券を発行する場合には適用されません。</p>
+                        <p>顧客が契約に拘束される前、またはサービスの提供前に提供されなければなりません。業務が遠隔マーケティングを介して行われる場合、これは緩和されます。</p>
+                    </section>
+                    
+                    <section id="sec-4-4">
+                        <h2>4.4. サービス提供前の情報開示</h2>
+                        <p>金融機関は、顧客が提供されるサービスと投資の性質とリスクを合理的に理解できるよう、包括的な形式で適切な情報を顧客に提供しなければなりません。</p>
+                        <h4>金融機関、そのサービス、報酬に関する情報 (COBS 6)</h4>
+                        <h5>提供すべき情報</h5>
+                        <p>金融機関は、すべての顧客に所定の情報を提供しなければなりません。これには以下が含まれます:</p>
+                        <ul>
+                            <li>金融機関とそのサービスに関する情報</li>
+                            <li>指定投資商品と顧客資金の保管に関する情報</li>
+                            <li>執行場所</li>
+                            <li>コストと関連費用に関する情報</li>
+                        </ul>
+                        <p>リテール顧客にはより多くの情報が提供されます:</p>
+                        <ul>
+                            <li>金融機関に関する情報</li>
+                            <li>投資管理に関する情報</li>
+                            <li>投資/資金の保管に関する情報</li>
+                            <li>コストの開示</li>
+                        </ul>
+                        <p>顧客を最新の状態に保ち、補償情報について通知する必要があることは明らかです。</p>
+                    </section>
+
+                    <section id="sec-4-5">
+                        <h2>4.5. リテール販売見直し (RDR)</h2>
+                        <p>リテール販売見直し (RDR) に応じて、「パッケージ商品」という用語は「リテール投資商品」に置き換えられました。</p>
+                        <table>
+                            <caption>表4. リテール投資商品</caption>
+                            <thead>
+                                <tr>
+                                    <th>パッケージ商品</th>
+                                    <th>リテール投資商品</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>生命保険証券</td>
+                                    <td>生命保険証券（投資型債券を含む）</td>
+                                </tr>
+                                <tr>
+                                    <td>規制対象集団投資スキームのユニット</td>
+                                    <td>規制対象および非規制対象集団投資スキームのユニット</td>
+                                </tr>
+                                <tr>
+                                    <td>投資信託貯蓄制度の持分</td>
+                                    <td>投資信託貯蓄制度の持分</td>
+                                </tr>
+                                <tr>
+                                    <td>ステークホルダー年金</td>
+                                    <td>ステークホルダー年金/グループステークホルダー年金</td>
+                                </tr>
+                                <tr>
+                                    <td>個人年金</td>
+                                    <td>個人年金制度（自己投資型個人年金を含む）/グループ個人年金制度</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>投資信託の株式</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>元本割れリスクのある仕組商品</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>商品の特徴を変更するためにパッケージ化されたその他の商品</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>独立系ファイナンシャルアドバイザー (IFA) への影響</h4>
+                        <p>金融機関が独立していると表示するためには:</p>
+                        <ul>
+                            <li>金融機関は、すべてのリテール投資アドバイザーが、その助言に制限なくすべてのリテール投資商品について顧客に助言する能力があることを保証しなければならない。かつ</li>
+                            <li>アドバイザーは助言に対して料金を請求する必要がある</li>
+                        </ul>
+                        <p>この料金は以下の形式を取ることができます:</p>
+                        <ul>
+                            <li>特定のサービスに対する前払い料金、または</li>
+                            <li>投資資金の一定割合</li>
+                        </ul>
+                        
+                        <h4>リテール販売見直し (RDR) 下での専門基準</h4>
+                        <p>RDRはまた、リテール投資アドバイザーに新たなレベルの専門基準を課しました。</p>
+                        <ul>
+                            <li>専門職団体（例：CISI）によるアドバイザーの能力の独立した検証を経て、専門職地位証明書 (SPS) を取得すること。</li>
+                            <li>年間少なくとも35時間の継続的専門能力開発 (CPD) を行い、そのうち21時間は構造化されたものでなければならない。かつ</li>
+                            <li>原則の声明に含まれる要件の遵守に関する年次宣言</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-4-6">
+                        <h2>4.6. 金融プロモーションを含む顧客とのコミュニケーション (COBS 4)</h2>
+                        <h4>FSMA 2000</h4>
+                        <p>人は、以下の場合を除き、金融プロモーションを伝達しては<strong>なりません</strong>:</p>
+                        <ul>
+                            <li>その人が認可事業者である場合、または</li>
+                            <li>金融プロモーションの内容が認可事業者によって承認されている場合</li>
+                        </ul>
+                        <p>第21条の違反には、2年の懲役と無制限の罰金が科せられます。</p>
+                        
+                        <h4>コミュニケーションの種類</h4>
+                        <h5>非書面コミュニケーション（リアルタイム）</h5>
+                        <ul>
+                            <li>個人的な訪問</li>
+                            <li>電話での会話</li>
+                            <li>その他の対話型ダイアログ</li>
+                            <li>連絡は顧客から開始される場合（「勧誘された」と呼ばれる）と、金融機関から開始される場合（「勧誘されていない」と呼ばれる、非勧誘のリアルタイムコミュニケーションはコールドコールです）があります。</li>
+                        </ul>
+                        <h5>書面プロモーション（非リアルタイム）</h5>
+                        <p>リアルタイム以外のプロモーションは、非リアルタイムと呼ばれます。これらは、手紙、電子メール、ウェブサイト、新聞などの伝統的な広告です。</p>
+                        
+                        <h4>リテール顧客とのコミュニケーション</h4>
+                        <h5>公正、明確、かつ誤解を招かない規則</h5>
+                        <p>金融機関は、自社によるコミュニケーション、または自社が伝達または承認した事業または金融プロモーションが、公正、明確、かつ誤解を招かないものであることを保証しなければなりません。</p>
+                        <p>リテール顧客宛、またはリテール顧客が受け取る可能性のあるコミュニケーションまたは金融プロモーションに含まれる情報は、以下の要件を満たさなければなりません:</p>
+                        <ul>
+                            <li>金融機関の名称を含むこと</li>
+                            <li>正確であり、関連する投資の利益との間で公正なバランスを保つこと</li>
+                            <li>平均的な受取人が理解できるのに十分であり、理解しやすいこと</li>
+                            <li>重要な項目、声明、または警告を隠したり、軽視したり、曖昧にしたりしないこと</li>
+                        </ul>
+                        
+                        <h4>過去、シミュレーションされた過去、および将来のパフォーマンス</h4>
+                        <h5>過去のパフォーマンス情報は以下をカバーしなければなりません:</h5>
+                        <ul>
+                            <li>少なくとも過去5年間（または利用可能な全期間、それより短い場合）</li>
+                            <li>完全な12ヶ月の期間に基づいていること</li>
+                            <li>参照期間と情報源が明記されていること</li>
+                            <li>過去のパフォーマンスは将来の結果の信頼できる指標ではないこと</li>
+                        </ul>
+                        <h5>シミュレーションされた過去のパフォーマンスは以下を満たさなければなりません:</h5>
+                        <ul>
+                            <li>対象となる投資と同じ、またはその基礎となる投資の実際の過去のパフォーマンスに関連していること、かつ</li>
+                            <li>上記の過去のパフォーマンスと同じ規則に準拠していること</li>
+                        </ul>
+                        <h5>将来のパフォーマンスは以下を満たさなければなりません:</h5>
+                        <ul>
+                            <li>シミュレーションされた過去のパフォーマンスに基づいていないこと</li>
+                            <li>客観的なデータに裏付けられた合理的な仮定に基づいていること</li>
+                            <li>手数料、料金、または費用の影響を開示すること、かつ</li>
+                            <li>そのような予測は将来のパフォーマンスの信頼できる指標ではないという目立つ警告を含むこと</li>
+                        </ul>
+
+                        <h4>ダイレクトオファー金融プロモーション</h4>
+                        <p>リテール顧客が受け取る可能性が高い場合、ダイレクトオファー金融プロモーションは以下を含まなければなりません:</p>
+                        <ul>
+                            <li>宣伝されている商品またはサービスに関連する情報開示規則に定められた情報</li>
+                            <li>顧客が投資の性質とリスクを理解し、情報に基づいた投資決定を下すことを可能にする適切な情報</li>
+                            <li>顧客のキャンセル権</li>
+                        </ul>
+
+                        <h4>コールドコールおよびその他の非書面プロモーション</h4>
+                        <p>コミュニケーションを行う者は、以下の要件を満たさなければなりません:</p>
+                        <ul>
+                            <li>適切な時間帯にのみ行うこと</li>
+                            <li>冒頭で自身と代表する金融機関を名乗ること</li>
+                            <li>コミュニケーションの目的を明確にすること</li>
+                            <li>顧客がいつでもコミュニケーションを終了できることを明確にすること</li>
+                            <li>約束を取り付けた顧客に連絡先を提供すること</li>
+                        </ul>
+                        
+                        <h4>コールドコールの制限</h4>
+                        <p>コールドコールは、顧客から明示的に要求されていない非書面のプロモーションです。これらは以下の状況でのみ行うことができます:</p>
+                        <ul>
+                            <li>コールドコールの受取人が金融機関と既存の顧客関係を持ち、コールドコールを受けることを予見している場合、または</li>
+                            <li>コールドコールが一般的に市場性のある商品に関するものである場合、または</li>
+                            <li>コールドコールが容易に換金可能な証券（ワラントを除く）に関連する活動に関するものである場合</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-4-7">
+                        <h2>4.7. 顧客への助言 (適合性 - COBS 9)</h2>
+                        <h4>適用</h4>
+                        <p>適合性に関する規則は、指定投資商品について個人的な推奨を行う、または投資を管理する金融機関に適用されます。</p>
+                        <p>非MiFID業務の場合、規則は以下の場合にのみ適用されます:</p>
+                        <ul>
+                            <li>顧客がリテール顧客である場合、または</li>
+                            <li>金融機関がOPS、ステークホルダー年金制度、または個人年金制度の資産を管理している場合</li>
+                        </ul>
+                        <h4>適合性の評価：義務</h4>
+                        <p>金融機関は、個人的な推奨または取引の決定が顧客にとって適合していることを確認するために、合理的な措置を講じなければなりません。</p>
+                        <ul>
+                            <li>顧客はそれを望んでいるか？（目的）</li>
+                            <li>顧客はそれに耐えられるか？（資力）</li>
+                            <li>顧客はそれを理解しているか？</li>
+                        </ul>
+                        <h4>適合性報告書</h4>
+                        <p>金融機関がリテール顧客に対して行う投資に関する個人的な推奨は、適合性報告書によって裏付けられなければなりません。</p>
+                    </section>
+
+                    <section id="sec-4-8">
+                        <h2>4.8. 適切性 (非助言サービス向け) (COBS 10)</h2>
+                        <h4>適用</h4>
+                        <p>適切性に関する規則は、以下の業務を行う金融機関に適用されます:</p>
+                        <ul>
+                            <li>個人的な推奨や投資管理以外のMiFID業務を提供する</li>
+                            <li>リテール顧客との間で、またはそのためにデリバティブやワラントに関する取引を手配または行う場合で、注文がダイレクトオファーに応じたものである</li>
+                            <li>他のMiFID投資会社に代わって適切性を評価する</li>
+                        </ul>
+                        <h4>適切性の評価：義務</h4>
+                        <p>上記のサービスのいずれかを提供する際、金融機関は顧客に対し、その関連する知識と経験に関する情報を提供するよう求めなければなりません。</p>
+                        <ul>
+                            <li>顧客はそれに耐えられるか？（資力）</li>
+                            <li>顧客はそれを理解しているか？</li>
+                        </ul>
+                        <h4>顧客への警告</h4>
+                        <p>以下の場合は警告が与えられます:</p>
+                        <ul>
+                            <li>金融機関がその商品やサービスが顧客にとって適切ではないと判断した場合</li>
+                            <li>顧客が金融機関が適切性を評価するための情報を提供しない場合</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="sec-4-9">
+                        <h2>4.9. 商品開示</h2>
+                        <h4>パッケージ商品：情報の開示</h4>
+                        <p>金融機関がリテール顧客にパッケージ商品を推奨または手配する場合、金融機関は商品の詳細、金融機関のサービス、手数料、コミッションなどに関する標準化された情報を提供することが義務付けられています。金融機関は、リテール顧客が情報に基づいた決定を下すことができるように、商品の性質とリスクについて十分な情報を提供しなければなりません。</p>
+                        <h4>種類</h4>
+                        <ul>
+                            <li><strong>主要情報文書 (KID)</strong>
+                                <ul><li>パッケージ型リテール・保険ベース投資商品 (PRIIPS)</li></ul>
+                            </li>
+                            <li><strong>主要投資家情報文書 (KIID)</strong>
+                                <ul><li>UCITSスキーム</li></ul>
+                            </li>
+                            <li><strong>主要特徴文書 (Key Features Document)</strong>
+                                <ul><li>PRIIP以外のパッケージ商品（例：年金アニュイティ）</li></ul>
+                            </li>
+                        </ul>
+                        <h4>顧客のキャンセル権</h4>
+                        <p>リテール投資商品への投資契約を締結する際、リテール顧客にはキャンセルする権利があります:</p>
+                        <ul>
+                            <li>一般的に - 14暦日</li>
+                            <li>生命保険商品および年金 - 30暦日</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-4-10">
+                        <h2>4.10. ディーリングおよび管理 (COBS 11)</h2>
+                        <h4>利益相反</h4>
+                        <h5>適用</h5>
+                        <p>金融機関は、以下の間の利益相反を特定するために、すべての合理的な措置を講じなければなりません:</p>
+                        <ul>
+                            <li>金融機関自身と顧客との間、または</li>
+                            <li>金融機関のある顧客と他の顧客との間</li>
+                        </ul>
+                        <h5>利益相反の種類</h5>
+                        <p>発生しうる利益相反の種類には、金融機関が以下のような状況にある場合が含まれます:</p>
+                        <ul>
+                            <li>顧客を犠牲にして金銭的利益を得る（または金銭的損失を回避する）可能性がある</li>
+                            <li>顧客に提供されるサービスにおいて、顧客の利益とは異なる利害関係を持つ</li>
+                            <li>ある顧客の利益を他の顧客の利益より優先させる金銭的またはその他のインセンティブを持つ、または</li>
+                            <li>顧客に提供されるサービスに関連して、顧客以外の者からインセンティブを受け取る</li>
+                        </ul>
+                        <h5>利益相反の管理または開示</h5>
+                        <p>金融機関は、利益相反が顧客の利益に重大な損害を与えるリスクを生じさせないように、それらを管理するための効果的な取り決めを持たなければなりません。</p>
+                        <h5>書面による利益相反ポリシー</h5>
+                        <p>金融機関は、以下の内容を含む書面による利益相反ポリシーを整備しなければなりません:</p>
+                        <ul>
+                            <li>利益相反を生じさせる可能性のある状況を特定し、かつ</li>
+                            <li>そのような相反を管理するために採用される手続きを明記する</li>
+                        </ul>
+
+                        <h4>チャイニーズウォール</h4>
+                        <p>チャイニーズウォールとは、「ある事業部門で保有する情報を、他の事業部門で取引する相手や顧客から隔離し、またはそのために使用しないことを要求する取り決め」と定義されます。</p>
+
+                        <h4>投資リサーチ (COBS 12)</h4>
+                        <p>金融機関が顧客や一般向けに投資リサーチを作成・配布する場合、金融機関はリサーチを提供する側とそれを受け取る側の間の利益相反を管理するためのすべての措置の実施を保証しなければなりません。</p>
+                        <p>例えば、金融機関は以下を保証しなければなりません:</p>
+                        <ul>
+                            <li>金融機関または金融アナリストは、受領者がリサーチに基づいて行動する合理的な機会を得るまで、そのリサーチに基づいて取引してはならない</li>
+                            <li>金融機関/金融アナリストは、発行者に有利なリサーチカバレッジを約束してはならない</li>
+                        </ul>
+
+                        <h4>最良執行</h4>
+                        <h5>最良執行義務と執行要因</h5>
+                        <p>顧客の注文を執行する際、金融機関は、執行要因を考慮して、顧客にとって<strong>最良の結果</strong>を得るために、すべての<strong>十分な措置</strong>を講じなければなりません。</p>
+                        <p><strong>執行要因</strong>とは、「価格、コスト、速度、執行および決済の可能性、または注文の執行に関連するその他の考慮事項」です。</p>
+                        <h5>価格の役割</h5>
+                        <p>リテール顧客の場合、最良の結果は<strong>総対価</strong>で決定されなければならず、注文の執行に直接関連して顧客が負担したすべての費用を含まなければなりません。</p>
+                        <h5>競合する執行場所</h5>
+                        <p>リテール顧客の場合、2つ以上の競合する執行場所がある場合、金融機関は注文を執行するための自身のコミッションとコストを考慮に入れなければなりません。</p>
+                        <h5>最良執行を達成する方法</h5>
+                        <ul>
+                            <li>注文執行方針に従う、または</li>
+                            <li>特定の顧客の指示に従う</li>
+                        </ul>
+                        <h5>注文執行方針</h5>
+                        <p>顧客にとって最良の結果を得るという義務を満たすために、金融機関は注文執行方針を確立し、運用することが求められます。この方針には以下の情報が含まれなければなりません:</p>
+                        <ul>
+                            <li>金融機関が顧客の注文を執行するために使用するさまざまな執行場所、および</li>
+                            <li>執行場所の選択に影響を与える要因</li>
+                        </ul>
+                        <h5>ポートフォリオマネージャーの顧客の最善の利益のために行動する義務</h5>
+                        <p>顧客の最善の利益のために行動する義務は、ポートフォリオマネージャーが顧客に代わって他の事業体に執行を依頼する際にも拡大されます。</p>
+
+                        <h4>顧客注文処理</h4>
+                        <h5>一般原則</h5>
+                        <p>金融機関は、顧客の注文を迅速、公正、かつ迅速に執行するよう努めなければなりません。一般的に、他に比較可能な顧客に代わって執行される注文は、以下の要件を満たさなければなりません:</p>
+                        <ul>
+                            <li>迅速に記録され、割り当てられること</li>
+                            <li>他に比較可能な注文は、順次かつ迅速に実行されること</li>
+                        </ul>
+                        <h5>注文の集約と割り当て</h5>
+                        <p>以下の条件が満たされない限り、金融機関は注文を集約することは許可されません:</p>
+                        <ul>
+                            <li>集約が、注文が集約される顧客全体にとって不利に働く可能性が低いこと</li>
+                            <li>集約の効果が特定の注文において不利に働く可能性があることを各顧客に開示すること</li>
+                            <li>金融機関は、集約された注文の割り当てを正確な条件で規定する注文割り当て方針を整備していること</li>
+                        </ul>
+                        <h5>指値注文</h5>
+                        <p>金融機関が直ちに執行できない指値注文は、以下の場合を除き、公開されなければなりません:</p>
+                        <ul>
+                            <li>特定の顧客の指示</li>
+                            <li>大口注文</li>
+                        </ul>
+
+                        <h4>個人勘定取引</h4>
+                        <p>金融機関の個人勘定取引に関する取り決めは、以下を保証しなければなりません:</p>
+                        <ul>
+                            <li>各関連者が個人取引に関する制限（およびこの分野における金融機関の取り決め）を認識していること</li>
+                            <li>すべての個人取引が金融機関に迅速に通知されること</li>
+                            <li>金融機関に通知されたすべての個人取引の記録が保持されること</li>
+                        </ul>
+                        <p>個人勘定取引に関する規則は、以下の個人取引には適用されません:</p>
+                        <ul>
+                            <li>関連者から独立して裁量的に管理されているもの</li>
+                            <li>UCITSスキームの株式</li>
+                            <li>生命保険証券</li>
+                        </ul>
+                    </section>
+
+                    <section id="sec-4-11">
+                        <h2>4.11. インセンティブおよびリサーチ対価の支払い</h2>
+                        <h4>インセンティブに関する規則</h4>
+                        <p>MiFID IIは、利益相反のリスクを低減するために、インセンティブに関する規則を強化しました。MiFID業務については:</p>
+                        <ul>
+                            <li>金融機関は、顧客以外の者から手数料、コミッション、または非金銭的利益を支払ったり受け取ったりしてはならない。ただし、その手数料等が顧客へのサービスの質を向上させ、顧客の最善の利益のために行動する金融機関の義務を損なわない場合に限る</li>
+                            <li>金融機関は、サービスを提供する前に、その手数料/コミッションの存在、性質、および金額を顧客に明確に開示しなければならない</li>
+                            <li>業務の提供に必要な適切な手数料は許容される</li>
+                        </ul>
+                        <h4>リサーチ対価の支払い</h4>
+                        <p>金融機関は、他の金融機関にリサーチを提供する際に料金を適用しなければなりません:</p>
+                        <ul><li>受け取る側の金融機関は、自社の資金から支払うか、別のリサーチ勘定から支払う場合にのみ、そのリサーチを利用できます</li></ul>
+                    </section>
+                    
+                    <section id="sec-4-12">
+                        <h2>4.12. 顧客への情報報告 (COBS 16)</h2>
+                        <h4>随時報告（確認書）</h4>
+                        <h5>発送のタイミング</h5>
+                        <p>金融機関が顧客に代わって注文を執行した場合、その注文の執行に関する重要な情報を顧客に速やかに提供しなければなりません。</p>
+                        <p>リテール顧客の場合、これは執行の翌営業日までに送付されなければなりません。</p>
+                        <h5>要件の例外</h5>
+                        <p>非MiFID業務の場合、金融機関は以下の場合に確認書を発送する必要はありません:</p>
+                        <ul>
+                            <li>金融機関が顧客と合意した場合、または</li>
+                            <li>投資が生命保険証券または個人年金制度である場合</li>
+                        </ul>
+
+                        <h4>定期報告</h4>
+                        <h5>定期報告書の提供</h5>
+                        <p>金融機関が顧客に代わって投資を管理している場合、顧客に耐久性媒体で定期報告書を提供しなければなりません。</p>
+                        <h5>定期報告書のタイミング</h5>
+                        <div class="flowchart">
+                             <div class="flow-box primary">定期報告書</div>
+                             <div class="flow-columns">
+                                <div class="flow-column">
+                                    <div class="flow-arrow">↓</div>
+                                    <b>一般規則</b>
+                                    <p>3ヶ月ごとに作成<br>速やかに送付</p>
+                                    <p>（顧客は年次報告書を要求できる）</p>
+                                </div>
+                                <div class="flow-column">
+                                    <div class="flow-arrow">↓</div>
+                                    <b>デリバティブ</b>
+                                    <p>毎月作成<br>速やかに送付</p>
+                                </div>
+                             </div>
+                        </div>
+                        <h5>要件の例外</h5>
+                        <p>非MiFID業務の場合、金融機関は、英国外に常居所を有する顧客がそのように要求した場合、定期報告書を提供する必要はありません。</p>
+                    </section>
+                    
+                    <section id="sec-4-13">
+                        <h2>4.13. 顧客資産</h2>
+                        <h4>保管規則 (CASS 6) 全金融機関に適用</h4>
+                        <h5>目的</h5>
+                        <ul>
+                            <li>顧客資産と金融機関資産の混同を制限する</li>
+                            <li>顧客の同意なしに、または顧客の意に反して顧客資産が使用されるリスクを最小限に抑える</li>
+                        </ul>
+                        <h5>免除</h5>
+                        <p>保管規則は以下には適用<strong>されません</strong>:</p>
+                        <ul>
+                            <li>英国にパスポートされた投資業務</li>
+                            <li>関連会社のために保有される指定投資商品（<strong>ただし</strong>、それらが顧客のために保有されている場合、または関連会社が独立した顧客である場合を除く）</li>
+                            <li>規制対象集団投資スキームの運営者として行動する金融機関</li>
+                        </ul>
+                        <h5>受渡対価支払 (DvP) 取引</h5>
+                        <p>保管規則は、顧客が受渡または支払を行った後、金融機関による受渡または支払が<strong>3営業日</strong>以内に行われる場合に限り、DvP取引には適用されません。</p>
+                        <h5>照合</h5>
+                        <p>金融機関は、提供する安全保管業務に関連して、3つの異なる記録セットを持ちます:</p>
+                        <ul>
+                            <li>責任はあるが、所持していない安全保管投資の記録</li>
+                            <li><strong>実際に</strong>物理的に保有している安全保管投資の記録</li>
+                            <li>顧客ごとに保有されている<strong>すべての</strong>安全保管投資の記録</li>
+                        </ul>
+                        <p>不一致は金融機関によって補填されなければならず、金融機関は照合要件の不遵守を遅滞なくFCAに通知すべきです。</p>
+
+                        <h4>顧客資金規則 (CASS 7)</h4>
+                        <p>MiFID金融機関に適用</p>
+                        <h5>顧客資金</h5>
+                        <p>金融機関が他者に属する資金を保有する場合、それは顧客資金です。</p>
+                        <h5>分別管理</h5>
+                        <p>顧客資金は、顧客資金銀行口座を使用して、金融機関の資金から<strong>分別管理</strong>されるべきです。FCAは通常、金融機関に「承認銀行」の顧客銀行口座に顧客資金を預けるよう要求します。</p>
+                        <h5>顧客資金ではないもの</h5>
+                        <p>資金が金融機関自身の勘定に正当に支払われるべきものとなった場合、それは顧客資金ではありません。</p>
+                        <p>金融機関が顧客資金を分別管理する責任を果たし、それを別途保有している場合、それは顧客資金ではありません。</p>
+                        <h5>照合</h5>
+                        <p>金融機関は、必要に応じて頻繁に、顧客残高の記録を承認銀行の銀行取引明細書と照合しなければなりません。</p>
+                        <ul>
+                            <li>内部照合
+                                <ul><li>エラーは照合が行われた営業日の終わりまでに修正される。</li></ul>
+                            </li>
+                            <li>外部照合
+                                <ul><li>エラーは調査され、できるだけ早く修正される。</li></ul>
+                            </li>
+                        </ul>
+
+                        <h4>CASS体制の強化</h4>
+                        <h5>CASS監査</h5>
+                        <ul>
+                            <li>毎年要求され、監査後4ヶ月以内にFCAに提出される</li>
+                            <li>顧客資産保証基準は財務報告評議会によって設定される</li>
+                            <li>金融機関は特定された違反を説明する</li>
+                        </ul>
+
+                        <h4>使用権</h4>
+                        <ul>
+                           <li>顧客の資産を使用する権利が金融機関に移転される場合（例：再担保）</li>
+                           <li>権原移転担保契約</li>
+                        </ul>
+
+                        <h4>CASS破綻処理パック</h4>
+                        <ul>
+                           <li>顧客資金および資産に関する特定の文書と情報</li>
+                           <li>要請に応じて規制当局に提供可能でなければならない</li>
+                        </ul>
+
+                        <h4>委任口座</h4>
+                        <ul>
+                           <li>顧客が金融機関に資産または負債の管理を委任する場合（例：ダイレクトデビット、PayPalで事前承認された企業）</li>
+                           <li>金融機関は適切な記録と管理を確立し、維持しなければならない</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section id="sec-5">
+                    <h1>5. クイックリファレンス: 苦情および救済措置</h1>
+                    
+                    <section id="sec-5-1">
+                        <h2>5.1. 苦情および救済措置</h2>
+                        <h4>適格な苦情申立人</h4>
+                        <ul>
+                            <li>消費者</li>
+                            <li>零細企業
+                                <ul>
+                                    <li>従業員10人未満</li>
+                                    <li>貸借対照表200万ユーロ未満</li>
+                                </ul>
+                            </li>
+                            <li>年間収入650万ポンド未満の慈善団体</li>
+                            <li>苦情申し立て時に純資産価値が500万未満の信託の受託者</li>
+                            <li>特定の中小企業 (SMEs)
+                                <ul>
+                                    <li>売上高650万ポンド未満</li>
+                                    <li>貸借対照表500万ポンド未満</li>
+                                    <li>従業員50人未満</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h4>苦情処理手続き</h4>
+                        <p>内部の苦情処理手続きは<strong>書面</strong>でなければならず、以下をカバーする必要があります:</p>
+                        <ul>
+                            <li>苦情の受付</li>
+                            <li>苦情への対応</li>
+                            <li>苦情の適切な調査、および</li>
+                            <li>金融オンブズマン・サービスに申し立てる権利を申立人に通知すること</li>
+                        </ul>
+                        <p>手続きは、最初の接触時点でお客様の注意を喚起し、要求に応じてお客様に送付し、苦情申立人には自動的に送付されるべきです。顧客と接するすべての従業員は、苦情処理手続きを認識しているべきです。</p>
+                        <p>苦情の受領後、速やかに書面による受領確認と苦情処理手続きのコピーを送付すべきです。</p>
+                        <p>金融機関は、苦情の解決を試みるために最大<strong>8週間</strong>の期間があり、その期間の終わりに、申立人が金融オンブズマン・サービスに苦情を付託できることを通知しなければなりません。</p>
+
+                        <h4>金融オンブズマン・サービス (FOS)</h4>
+                        <h5>FOSの目的</h5>
+                        <p>認可事業者の顧客のための無料かつ非公開の紛争解決サービス。この制度は適格な苦情申立人が利用できます。この制度による最大裁定額は430,000ポンドです。</p>
+                        <h5>FOSの範囲</h5>
+                        <p>認可事業者に対する強制的な管轄権。</p>
+                        <p>その他の金融機関に対する任意的な管轄権。</p>
+
+                        <h4>年金オンブズマン・サービス (POS)</h4>
+                        <p>年金オンブズマンは、年金制度に関する苦情について同様の役割を果たします。</p>
+                        
+                        <h4>金融サービス補償制度 (FSCS)</h4>
+                        <p>この制度は、認可事業者の破綻時に請求権を持つ投資家のためにFCAによって運営されています。</p>
+                        <p>この制度は主に<strong>リテール顧客</strong>が利用できますが、中間顧客や市場取引相手方も保険損失に関して限定的な請求を行うことができます。</p>
+                        <p>制度の上限は以下の通りです:</p>
+                        <ul>
+                            <li>預金、投資、または住宅ローン：最大85,000ポンドまでの請求額の100%。</li>
+                        </ul>
+                        <p>この制度による年間最大支払額は無制限です。</p>
+
+                        <h4>スーパー苦情および集団的損害の付託</h4>
+                        <h5>スーパー苦情</h5>
+                        <p>消費者団体は、競争および消費者の問題について苦情を申し立てることができます</p>
+                        <ul><li>消費者団体は財務省によって指定されなければなりません</li></ul>
+                        <h5>集団的損害</h5>
+                        <p>FOSおよび金融機関は、以下の場合に規制当局に集団的損害を報告することができます:</p>
+                        <ul>
+                            <li>消費者が金融機関による定期的な不履行に苦しんでいる場合</li>
+                            <li>金融機関が定期的に苦情につながるような行動をとる場合</li>
+                        </ul>
+                        <h5>影響</h5>
+                        <p>FCAは、スーパー苦情または集団的損害に対して90日以内に回答を公表しなければなりません。</p>
+                    </section>
+                </section>
+                
+                <div class="copyright-section">
+                    <p><strong>Copyright © Fitch Learning Limited 2025</strong></p>
+                    <p>All rights reserved. この出版物のいかなる部分も、著作権者の事前の許可なく、複製、検索システムへの保存または導入、あるいは電子的、機械的、複写、録音、その他いかなる形式または手段によっても送信することを禁じます。この出版物に関して無許可の行為を行った者は、刑事訴追および損害賠償の民事請求の対象となる場合があります。</p>
+                    <p>本書の正確性を確保するためにあらゆる努力が払われていますが、Fitch Learning Limitedは、本書のいかなる内容の結果として行動した、または行動を控えたことによって人に生じたいかなる損失についても責任を負いかねます。</p>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

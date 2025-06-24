@@ -36,6 +36,7 @@ import { AnsweredQuestionsTracker, validateAndFixProgress } from "@/utils/progre
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { progressSync } from "@/services/progress-sync";
+import { extractKeywords } from "@/services/keyword-extraction";
 
 function StudySessionContent() {
   const router = useRouter();
@@ -60,6 +61,7 @@ function StudySessionContent() {
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set());
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
+  const [extractingKeywords, setExtractingKeywords] = useState(false);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   const isMockMode = mode === "mock25" || mode === "mock75";
@@ -365,6 +367,45 @@ function StudySessionContent() {
         // 最後の問題の場合は確認画面を表示
         setShowCompleteConfirm(true);
       }
+    }
+  };
+
+  const handleCheckInMaterials = async () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (!currentQuestion || !session) return;
+
+    setExtractingKeywords(true);
+    
+    try {
+      // キーワードを抽出
+      const keywords = await extractKeywords(currentQuestion);
+      
+      // 現在のセッション情報を保存
+      const navigationState = {
+        from: mode === 'review' ? 'review' : isMockMode ? 'mock' : 'study',
+        sessionId: session.id,
+        questionIndex: currentQuestionIndex,
+        questionId: currentQuestion.questionId,
+        keywords
+      };
+      
+      // LocalStorageに保存
+      safeLocalStorage.setItem('materialNavigationState', navigationState);
+      
+      // 教材ビューアへ遷移
+      const queryParams = new URLSearchParams({
+        from: navigationState.from,
+        questionId: currentQuestion.questionId,
+        keywords: keywords.join(','),
+        autoSearch: 'true'
+      });
+      
+      router.push(`/materials?${queryParams.toString()}`);
+    } catch (error) {
+      console.error('Failed to extract keywords:', error);
+      handleError(new Error('キーワード抽出に失敗しました'));
+    } finally {
+      setExtractingKeywords(false);
     }
   };
 
@@ -1073,19 +1114,35 @@ function StudySessionContent() {
 
               {/* Explanation (shown after answer) */}
               {showResult && (
-                <div className="mb-6 p-4 bg-blue-900/30 rounded-lg border border-blue-700">
-                  <div className="flex items-start gap-2">
-                    <AlertCircle className="w-5 h-5 text-blue-400 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-blue-300 mb-1">解説</p>
-                      <p className="text-blue-100">{currentQuestion.explanation}</p>
-                      {showJapanese && currentQuestion.explanationJa && (
-                        <p className="text-blue-200 text-sm mt-2">
-                          {currentQuestion.explanationJa || "（翻訳準備中）"}
-                        </p>
-                      )}
+                <div className="mb-6">
+                  <div className="p-4 bg-blue-900/30 rounded-lg border border-blue-700">
+                    <div className="flex items-start gap-2">
+                      <AlertCircle className="w-5 h-5 text-blue-400 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="font-medium text-blue-300 mb-1">解説</p>
+                        <p className="text-blue-100">{currentQuestion.explanation}</p>
+                        {showJapanese && currentQuestion.explanationJa && (
+                          <p className="text-blue-200 text-sm mt-2">
+                            {currentQuestion.explanationJa || "（翻訳準備中）"}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
+                  
+                  {/* 教材で確認ボタン */}
+                  <button
+                    onClick={handleCheckInMaterials}
+                    disabled={extractingKeywords}
+                    className={`mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
+                      extractingKeywords
+                        ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                        : 'bg-purple-600 text-white hover:bg-purple-700'
+                    }`}
+                  >
+                    <BookOpen className="w-5 h-5" />
+                    {extractingKeywords ? 'キーワードを抽出中...' : '教材で詳しく確認'}
+                  </button>
                 </div>
               )}
 
