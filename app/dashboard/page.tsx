@@ -23,7 +23,8 @@ import {
   Trophy,
   Cloud,
   CloudOff,
-  Book
+  Book,
+  Highlighter
 } from "lucide-react";
 import { UserProgress, Category } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
@@ -228,6 +229,13 @@ function DashboardContent() {
       icon: <Book className="w-6 h-6" />,
       href: "/materials",
       color: "bg-blue-500"
+    },
+    {
+      title: "ハイライト一覧",
+      description: "保存したハイライトを確認",
+      icon: <Highlighter className="w-6 h-6" />,
+      href: "/highlights",
+      color: "bg-pink-500"
     }
   ];
 

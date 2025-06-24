@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useState, useRef, Suspense } from 'react';
-import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X, Highlighter } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { safeLocalStorage } from '@/utils/storage-utils';
-import { MaterialNavigationState } from '@/types';
+import { MaterialNavigationState, Highlight } from '@/types';
+import HighlightManager from '@/components/HighlightManager';
+import { getAllHighlights, getHighlightsForMaterial } from '@/services/highlight-sync';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface PDFDocument {
   numPages: number;
@@ -21,6 +24,7 @@ declare global {
 function MaterialsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useAuth();
   const [pdfDoc, setPdfDoc] = useState<PDFDocument | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -37,6 +41,8 @@ function MaterialsContent() {
   const [currentMatch, setCurrentMatch] = useState(0);
   const [totalMatches, setTotalMatches] = useState(0);
   const [navigationState, setNavigationState] = useState<MaterialNavigationState | null>(null);
+  const [highlights, setHighlights] = useState<Highlight[]>([]);
+  const [showHighlights, setShowHighlights] = useState(true);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
@@ -128,6 +134,22 @@ function MaterialsContent() {
       }
     }
   }, [searchParams, isHtmlContent, textContent]);
+
+  // ハイライトの読み込み
+  useEffect(() => {
+    if (!user?.id || !selectedPdf) return;
+
+    const loadHighlights = async () => {
+      try {
+        const materialHighlights = await getHighlightsForMaterial(user.id, selectedPdf);
+        setHighlights(materialHighlights);
+      } catch (error) {
+        console.error('Failed to load highlights:', error);
+      }
+    };
+
+    loadHighlights();
+  }, [user?.id, selectedPdf]);
 
   const loadPDF = async (filename: string) => {
     // 既にレンダリング中の場合はスキップ
@@ -843,6 +865,23 @@ function MaterialsContent() {
                   )}
                 </div>
               )}
+              
+              {isHtmlContent && (
+                <button
+                  onClick={() => setShowHighlights(!showHighlights)}
+                  className={`p-2 rounded transition-colors touch-manipulation ${
+                    showHighlights 
+                      ? 'bg-purple-600 text-white' 
+                      : 'text-gray-200 hover:bg-gray-700'
+                  }`}
+                  title={showHighlights ? 'ハイライトを非表示' : 'ハイライトを表示'}
+                >
+                  <Highlighter className="w-5 h-5" />
+                  {highlights.length > 0 && (
+                    <span className="ml-1 text-xs">({highlights.length})</span>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -894,7 +933,16 @@ function MaterialsContent() {
                 テキストを読み込み中...
               </div>
             ) : isHtmlContent ? (
-              <div className="max-w-3xl mx-auto px-20 py-12">
+              <div className="max-w-3xl mx-auto px-20 py-12 relative">
+                {showHighlights && user && (
+                  <HighlightManager
+                    materialId={selectedPdf}
+                    contentRef={htmlContentRef}
+                    highlights={highlights}
+                    onHighlightsChange={setHighlights}
+                    relatedQuestionId={navigationState?.questionId}
+                  />
+                )}
                 <div 
                   ref={htmlContentRef}
                   className="prose prose-lg max-w-none prose-gray"
