@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef, Suspense } from 'react';
+import { useEffect, useState, useRef, Suspense, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X, Highlighter } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -43,6 +43,7 @@ function MaterialsContent() {
   const [navigationState, setNavigationState] = useState<MaterialNavigationState | null>(null);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
   const [showHighlights, setShowHighlights] = useState(true);
+  const textContentRef = useRef<HTMLDivElement>(null);
 
   const pdfPanelRef = useRef<HTMLDivElement>(null);
   const textPanelRef = useRef<HTMLDivElement>(null);
@@ -52,6 +53,8 @@ function MaterialsContent() {
   const scriptLoadedRef = useRef(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const htmlContentRef = useRef<HTMLDivElement>(null);
+  const autoSearchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pdfSwitchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     // 既にスクリプトが読み込まれている場合はスキップ
@@ -84,18 +87,42 @@ function MaterialsContent() {
     };
   }, []);
 
+  // PDF切替時のデバウンス処理
   useEffect(() => {
-    if (window.pdfjsLib && scriptLoadedRef.current) {
-      loadPDF(selectedPdf);
+    if (!window.pdfjsLib || !scriptLoadedRef.current) return;
+
+    // 前のPDF読み込みをキャンセル
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
     }
+
+    // 前のタイマーをクリア
+    if (pdfSwitchTimeoutRef.current) {
+      clearTimeout(pdfSwitchTimeoutRef.current);
+    }
+
+    // キャンバスを即座にクリア
+    setPdfCanvases([]);
+    setIsRendering(false);
+
+    // デバウンスされたPDF読み込み
+    pdfSwitchTimeoutRef.current = setTimeout(() => {
+      loadPDF(selectedPdf);
+    }, 300);
+
+    return () => {
+      if (pdfSwitchTimeoutRef.current) {
+        clearTimeout(pdfSwitchTimeoutRef.current);
+      }
+    };
   }, [selectedPdf]);
 
-  // 検索状態のクリーンアップ
+  // 検索状態のクリーンアップ（モード切替時）
   useEffect(() => {
-    return () => {
-      clearSearch();
-    };
-  }, [isHtmlContent]);
+    clearSearch();
+    setSearchTerm('');
+    setSearchVisible(false);
+  }, [isHtmlContent, selectedPdf, selectedText]);
 
   // URLパラメータからナビゲーション状態を取得
   useEffect(() => {
@@ -113,6 +140,11 @@ function MaterialsContent() {
 
       // 自動検索の実行
       if (autoSearch === 'true' && keywords && isHtmlContent) {
+        // 前のタイムアウトをクリア
+        if (autoSearchTimeoutRef.current) {
+          clearTimeout(autoSearchTimeoutRef.current);
+        }
+
         // HTMLコンテンツが読み込まれるまで待機
         const checkAndSearch = () => {
           if (htmlContentRef.current && textContent[1]) {
@@ -127,12 +159,19 @@ function MaterialsContent() {
             }
           } else {
             // まだ読み込まれていない場合は再試行
-            setTimeout(checkAndSearch, 500);
+            autoSearchTimeoutRef.current = setTimeout(checkAndSearch, 500);
           }
         };
         checkAndSearch();
       }
     }
+
+    // クリーンアップ
+    return () => {
+      if (autoSearchTimeoutRef.current) {
+        clearTimeout(autoSearchTimeoutRef.current);
+      }
+    };
   }, [searchParams, isHtmlContent, textContent]);
 
   // ハイライトの読み込み
@@ -270,6 +309,7 @@ function MaterialsContent() {
       // AbortErrorの場合は無視
       if (error instanceof Error && error.name === 'AbortError') {
         console.log('PDF loading was cancelled');
+        setIsRendering(false);
         return;
       }
       
@@ -432,7 +472,9 @@ function MaterialsContent() {
 
   // 検索機能の実装
   const performSearch = (term: string) => {
-    if (!term || !htmlContentRef.current) {
+    const searchContainer = isHtmlContent ? htmlContentRef.current : textContentRef.current;
+    
+    if (!term || !searchContainer) {
       clearSearch();
       return;
     }
@@ -440,8 +482,7 @@ function MaterialsContent() {
     // 既存のハイライトをクリア
     clearSearch();
 
-    const content = htmlContentRef.current;
-    const text = content.textContent || '';
+    const text = searchContainer.textContent || '';
     const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
     const matches = [...text.matchAll(regex)];
     
@@ -449,17 +490,18 @@ function MaterialsContent() {
     
     if (matches.length > 0) {
       // テキストノードを探してハイライト
-      highlightMatches(content, term);
+      highlightMatches(searchContainer, term);
       setCurrentMatch(1);
       scrollToMatch(1);
     }
   };
 
   const clearSearch = () => {
-    if (!htmlContentRef.current) return;
+    const searchContainer = isHtmlContent ? htmlContentRef.current : textContentRef.current;
+    if (!searchContainer) return;
     
     // すべてのハイライトを削除
-    const highlights = htmlContentRef.current.querySelectorAll('.search-highlight');
+    const highlights = searchContainer.querySelectorAll('.search-highlight');
     highlights.forEach(highlight => {
       const parent = highlight.parentNode;
       if (parent) {
@@ -531,9 +573,10 @@ function MaterialsContent() {
   };
 
   const scrollToMatch = (matchNumber: number) => {
-    if (!htmlContentRef.current) return;
+    const searchContainer = isHtmlContent ? htmlContentRef.current : textContentRef.current;
+    if (!searchContainer) return;
     
-    const highlights = htmlContentRef.current.querySelectorAll('.search-highlight');
+    const highlights = searchContainer.querySelectorAll('.search-highlight');
     highlights.forEach((highlight, index) => {
       if (index + 1 === matchNumber) {
         highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -661,14 +704,40 @@ function MaterialsContent() {
                 onClick={() => {
                   if (navigationState) {
                     // 問題演習に戻る
-                    const params = new URLSearchParams();
-                    if (navigationState.from === 'study' || navigationState.from === 'mock') {
-                      params.set('mode', navigationState.from === 'mock' ? 'mock75' : 'category');
-                      // セッション情報から復帰
+                    const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
+                    
+                    if (savedSessionState) {
+                      // 保存されたセッション情報からURLパラメータを再構築
+                      const params = new URLSearchParams();
+                      params.set('mode', savedSessionState.mode);
+                      
+                      if (savedSessionState.category) {
+                        params.set('category', encodeURIComponent(savedSessionState.category));
+                      }
+                      
+                      if (savedSessionState.part) {
+                        params.set('part', savedSessionState.part);
+                      }
+                      
+                      if (savedSessionState.studyMode) {
+                        params.set('studyMode', savedSessionState.studyMode);
+                      }
+                      
+                      if (savedSessionState.questionCount) {
+                        params.set('questionCount', savedSessionState.questionCount);
+                      }
+                      
                       router.push(`/study/session?${params.toString()}`);
-                    } else if (navigationState.from === 'review') {
-                      params.set('mode', 'review');
-                      router.push(`/study/session?${params.toString()}`);
+                    } else {
+                      // フォールバック
+                      const params = new URLSearchParams();
+                      if (navigationState.from === 'study' || navigationState.from === 'mock') {
+                        params.set('mode', navigationState.from === 'mock' ? 'mock75' : 'category');
+                        router.push(`/study/session?${params.toString()}`);
+                      } else if (navigationState.from === 'review') {
+                        params.set('mode', 'review');
+                        router.push(`/study/session?${params.toString()}`);
+                      }
                     }
                   } else {
                     // デフォルトはダッシュボードに戻る
@@ -788,8 +857,7 @@ function MaterialsContent() {
                 </div>
               )}
               
-              {isHtmlContent && (
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                   {!searchVisible && (
                     <button
                       onClick={() => {
@@ -864,7 +932,6 @@ function MaterialsContent() {
                     </div>
                   )}
                 </div>
-              )}
               
               {isHtmlContent && (
                 <button
@@ -950,7 +1017,7 @@ function MaterialsContent() {
                 />
               </div>
             ) : (
-              <div className="max-w-3xl mx-auto px-20 py-12">
+              <div ref={textContentRef} className="max-w-3xl mx-auto px-20 py-12">
                 {Object.entries(textContent).map(([pageNum, content]) => (
                   <div 
                     key={pageNum}

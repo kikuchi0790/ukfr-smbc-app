@@ -62,6 +62,7 @@ function StudySessionContent() {
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
   const [extractingKeywords, setExtractingKeywords] = useState(false);
+  const [questionsToRestore, setQuestionsToRestore] = useState<string[] | null>(null);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   const isMockMode = mode === "mock25" || mode === "mock75";
@@ -95,6 +96,43 @@ function StudySessionContent() {
       router.push('/study/complete');
     }
   }, [sessionEnded, router]);
+
+  // 教材から戻った時のセッション復元
+  useEffect(() => {
+    const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
+    const navigationState = safeLocalStorage.getItem<any>('materialNavigationState');
+    
+    if (savedSessionState && navigationState) {
+      // 保存されたセッションが現在のモードと一致するか確認
+      if (savedSessionState.mode === mode && 
+          savedSessionState.category === categoryParam &&
+          savedSessionState.part === partParam) {
+        
+        // 保存時間から30分以内か確認
+        const savedTime = new Date(savedSessionState.savedAt).getTime();
+        const currentTime = new Date().getTime();
+        const timeDiff = currentTime - savedTime;
+        
+        if (timeDiff < 30 * 60 * 1000) { // 30分以内
+          // セッションを復元
+          setSession(savedSessionState.session);
+          setCurrentQuestionIndex(savedSessionState.session.currentQuestionIndex);
+          setShowJapanese(savedSessionState.showJapanese);
+          
+          if (savedSessionState.mockAnswers) {
+            setMockAnswers(new Map(savedSessionState.mockAnswers));
+          }
+          
+          // セッション状態をクリア
+          safeLocalStorage.removeItem('studySessionState');
+          safeLocalStorage.removeItem('materialNavigationState');
+          
+          // 問題の復元が必要
+          setQuestionsToRestore(savedSessionState.questions);
+        }
+      }
+    }
+  }, [mode, categoryParam, partParam]);
 
   const loadQuestions = withErrorHandling(async () => {
     setLoading(true);
@@ -204,6 +242,17 @@ function StudySessionContent() {
         setShowJapanese(progress?.preferences?.showJapaneseInMock ?? false);
       }
 
+      // 復元する問題がある場合は、そのIDに基づいて問題を再構築
+      if (questionsToRestore && questionsToRestore.length > 0) {
+        const restoredQuestions = questionsToRestore
+          .map(id => allQuestions.find(q => q.questionId === id))
+          .filter((q): q is Question => q !== undefined);
+        
+        if (restoredQuestions.length === questionsToRestore.length) {
+          questionSet = restoredQuestions;
+        }
+      }
+      
       setQuestions(questionSet);
       
       // ユーザー固有の進捗が存在しない場合は初期化
@@ -391,6 +440,25 @@ function StudySessionContent() {
       
       // LocalStorageに保存
       safeLocalStorage.setItem('materialNavigationState', navigationState);
+      
+      // 現在のセッション状態を保存（復元用）
+      const sessionState = {
+        mode,
+        category: categoryParam,
+        part: partParam,
+        studyMode: studyModeParam,
+        questionCount: questionCountParam,
+        session: {
+          ...session,
+          currentQuestionIndex,
+          userAnswers: session.userAnswers
+        },
+        questions: questions.map(q => q.questionId), // IDのみ保存
+        mockAnswers: isMockMode ? Array.from(mockAnswers.entries()) : null,
+        showJapanese,
+        savedAt: new Date().toISOString()
+      };
+      safeLocalStorage.setItem('studySessionState', sessionState);
       
       // 教材ビューアへ遷移
       const queryParams = new URLSearchParams({

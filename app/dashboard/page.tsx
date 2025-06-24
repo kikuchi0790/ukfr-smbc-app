@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { UserProgress, Category } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
+import FirebaseStatusNotice from "@/components/FirebaseStatusNotice";
 import ErrorAlert from "@/components/ErrorAlert";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import WireframeBuildings from "@/components/WireframeBuildings";
@@ -267,6 +268,9 @@ function DashboardContent() {
 
   return (
     <div className="min-h-screen bg-gray-900 relative">
+      {/* Firebase状態通知 */}
+      <FirebaseStatusNotice />
+      
       {/* 都市景観背景 */}
       <BackgroundCityscape />
       

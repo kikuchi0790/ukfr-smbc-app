@@ -1,5 +1,5 @@
 import { collection, doc, setDoc, getDoc, getDocs, deleteDoc, query, where, onSnapshot } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { db, isFirebaseAvailable } from '@/lib/firebase';
 import { Highlight } from '@/types';
 import { safeLocalStorage } from '@/utils/storage-utils';
 
@@ -8,8 +8,8 @@ const HIGHLIGHTS_KEY = 'userHighlights';
 
 // ハイライトをFirestoreに保存
 export async function saveHighlight(userId: string, highlight: Highlight): Promise<void> {
-  if (!db) {
-    console.warn('Firebase is not initialized. Saving to local storage only.');
+  if (!isFirebaseAvailable()) {
+    console.warn('Firebase is not available. Saving to local storage only.');
     saveHighlightToLocal(highlight);
     return;
   }
@@ -33,8 +33,8 @@ export async function saveHighlight(userId: string, highlight: Highlight): Promi
 
 // ハイライトを削除
 export async function deleteHighlight(userId: string, highlightId: string): Promise<void> {
-  if (!db) {
-    console.warn('Firebase is not initialized. Deleting from local storage only.');
+  if (!isFirebaseAvailable()) {
+    console.warn('Firebase is not available. Deleting from local storage only.');
     deleteHighlightFromLocal(highlightId);
     return;
   }
@@ -56,7 +56,7 @@ export async function deleteHighlight(userId: string, highlightId: string): Prom
 
 // 特定の教材のハイライトを取得
 export async function getHighlightsForMaterial(userId: string, materialId: string): Promise<Highlight[]> {
-  if (!db) {
+  if (!isFirebaseAvailable()) {
     console.warn('Firebase is not initialized. Getting from local storage only.');
     return getHighlightsFromLocal(materialId);
   }
@@ -85,7 +85,7 @@ export async function getHighlightsForMaterial(userId: string, materialId: strin
 
 // すべてのハイライトを取得
 export async function getAllHighlights(userId: string): Promise<Highlight[]> {
-  if (!db) {
+  if (!isFirebaseAvailable()) {
     console.warn('Firebase is not initialized. Getting from local storage only.');
     return getAllHighlightsFromLocal();
   }
@@ -108,7 +108,7 @@ export async function getAllHighlights(userId: string): Promise<Highlight[]> {
 
 // リアルタイム同期のセットアップ
 export function setupHighlightSync(userId: string, materialId: string, callback: (highlights: Highlight[]) => void): () => void {
-  if (!db) {
+  if (!isFirebaseAvailable()) {
     console.warn('Firebase is not initialized. Real-time sync is not available.');
     return () => {};
   }
