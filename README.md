@@ -318,7 +318,15 @@ interface UserProgress {
 - **リアルタイム同期**: Firestore onSnapshotによる即時更新
 - **ローカルフォールバック**: オフライン時もLocalStorageで動作継続
 
-詳細な実装ドキュメント: `/docs/FEATURE_MATERIAL_INTEGRATION.md`
+### セッション永続化システム
+- **自動保存**: 30秒ごと、5問回答ごとの自動保存
+- **ブラウザイベント対応**: beforeunload、visibilitychangeイベントのハンドリング
+- **ストレージ最適化**: 問題IDのみ保存、容量監視、自動クリーンアップ
+- **保存状態表示**: リアルタイムの保存状態インジケーター
+
+詳細な実装ドキュメント:
+- AI連携機能: `/docs/FEATURE_MATERIAL_INTEGRATION.md`
+- バグ修正とセッション永続化: `/docs/BUG_FIXES_AND_SESSION_PERSISTENCE.md`
 
 ## 📝 今後の機能追加予定
 
