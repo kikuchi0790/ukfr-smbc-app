@@ -69,6 +69,25 @@ export function calculateActualStats(progress: UserProgress): ProgressStats {
     });
   }
 
+  // 克服した問題も正解として追加
+  if (progress.overcomeQuestions) {
+    progress.overcomeQuestions.forEach(overcome => {
+      // 既に処理済みでない場合のみ追加（克服した問題は必ず正解扱い）
+      if (!processedQuestions.has(overcome.questionId)) {
+        processedQuestions.set(overcome.questionId, {
+          isCorrect: true,
+          category: overcome.category as Category
+        });
+      } else {
+        // 既に処理済みの場合は正解に更新
+        processedQuestions.set(overcome.questionId, {
+          isCorrect: true,
+          category: overcome.category as Category
+        });
+      }
+    });
+  }
+
   // 統計を計算
   processedQuestions.forEach((data, questionId) => {
     stats.totalAnswered++;
@@ -269,6 +288,33 @@ export function debugProgress(nickname?: string): void {
   }
 
   console.groupEnd();
+}
+
+/**
+ * 表示用の正解数を計算（克服した問題を含む）
+ */
+export function getDisplayCorrectCount(progress: UserProgress, category?: Category): number {
+  let baseCorrect = 0;
+  
+  if (category) {
+    // カテゴリ別の正解数
+    baseCorrect = progress.categoryProgress[category]?.correctAnswers || 0;
+    
+    // そのカテゴリの克服した問題数を追加
+    const overcomeInCategory = progress.overcomeQuestions?.filter(
+      q => q.category === category
+    ).length || 0;
+    
+    return baseCorrect + overcomeInCategory;
+  } else {
+    // 全体の正解数
+    baseCorrect = progress.correctAnswers || 0;
+    
+    // 全体の克服した問題数を追加
+    const totalOvercome = progress.overcomeQuestions?.length || 0;
+    
+    return baseCorrect + totalOvercome;
+  }
 }
 
 // ブラウザコンソールからアクセスできるようにグローバルに公開

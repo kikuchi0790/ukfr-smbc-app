@@ -22,6 +22,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { progressSync } from "@/services/progress-sync";
 import { formatPercentage } from "@/utils/formatters";
+import { getDisplayCorrectCount } from "@/utils/progress-tracker";
 
 function StudyModeContent() {
   const router = useRouter();
@@ -195,7 +196,8 @@ function StudyModeContent() {
     const categoryProgress = progress.categoryProgress[categoryName];
     if (!categoryProgress) return { correct: 0, answered: 0, total: 0, percentage: 0 };
     
-    const correct = categoryProgress.correctAnswers || 0;
+    // 克服した問題を含めた正解数を取得
+    const correct = getDisplayCorrectCount(progress, categoryName);
     const answered = categoryProgress.answeredQuestions || 0;
     const total = categoryProgress.totalQuestions || 0;
     // Calculate percentage based on correct answers for buildings progress

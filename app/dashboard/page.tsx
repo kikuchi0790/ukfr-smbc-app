@@ -37,6 +37,7 @@ import { categories } from "@/utils/category-utils";
 import { validateAndFixProgress, cleanupAllProgressData } from "@/utils/progress-validator";
 import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
 import { formatPercentage } from "@/utils/formatters";
+import { getDisplayCorrectCount } from "@/utils/progress-tracker";
 
 // Dynamic import for 3D components to avoid SSR issues
 const WireframeBuildings3D = dynamic(
@@ -148,7 +149,9 @@ function DashboardContent() {
 
   const calculateAccuracy = () => {
     if (!progress || progress.totalQuestionsAnswered === 0) return 0;
-    return parseFloat(formatPercentage(progress.correctAnswers, progress.totalQuestionsAnswered));
+    // 克服した問題を含めた正解数を使用
+    const totalCorrect = getDisplayCorrectCount(progress);
+    return parseFloat(formatPercentage(totalCorrect, progress.totalQuestionsAnswered));
   };
 
   const calculateOverallMockAccuracy = () => {
@@ -443,12 +446,14 @@ function DashboardContent() {
             <div className="space-y-4">
               {studyCategories.map((category) => {
                 const data = progress.categoryProgress[category.name];
-                // 進捗率を正答数ベースに変更
+                // 克服した問題を含めた正解数を取得
+                const displayCorrectAnswers = getDisplayCorrectCount(progress, category.name);
+                // 進捗率を正答数ベースに変更（克服問題を含む）
                 const percentage = data.totalQuestions > 0 
-                  ? Math.round((data.correctAnswers / data.totalQuestions) * 100)
+                  ? Math.round((displayCorrectAnswers / data.totalQuestions) * 100)
                   : 0;
                 const accuracy = data.answeredQuestions > 0
-                  ? Math.round((data.correctAnswers / data.answeredQuestions) * 100)
+                  ? Math.round((displayCorrectAnswers / data.answeredQuestions) * 100)
                   : 0;
 
                 return (
@@ -462,7 +467,7 @@ function DashboardContent() {
                       </div>
                       <div className="flex gap-4 text-sm">
                         <span className="text-gray-400">
-                          正解数: {data.correctAnswers}/{data.totalQuestions}問
+                          正解数: {displayCorrectAnswers}/{data.totalQuestions}問
                         </span>
                         <span className="text-gray-400">
                           回答済: {data.answeredQuestions}/{data.totalQuestions}問
