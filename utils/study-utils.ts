@@ -199,6 +199,13 @@ export function moveToOvercomeQuestions(questionId: string, mode: string, userNi
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) return false;
     
+    console.log('🎯 Overcome Check:', {
+      questionId,
+      mode,
+      incorrectCount: progress.incorrectQuestions?.length || 0,
+      overcomeCount: progress.overcomeQuestions?.length || 0
+    });
+    
     // 復習モードでない場合は何もしない
     if (mode !== 'review') return false;
     
@@ -230,6 +237,12 @@ export function moveToOvercomeQuestions(questionId: string, mode: string, userNi
     
     // 保存
     safeLocalStorage.setItem(userProgressKey, progress);
+    
+    console.log('✅ Question overcome successfully:', {
+      questionId,
+      newIncorrectCount: progress.incorrectQuestions.length,
+      newOvercomeCount: progress.overcomeQuestions.length
+    });
     
     return true;
   } catch (error) {

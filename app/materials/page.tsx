@@ -22,15 +22,17 @@ function MaterialsContent() {
   const [showToc, setShowToc] = useState(false);
   const [htmlContent, setHtmlContent] = useState('');
   const [textContent, setTextContent] = useState('');
+  const [navigationState, setNavigationState] = useState<any>(null);
 
   useEffect(() => {
-    const navigationState = safeLocalStorage.getItem<any>('materialNavigationState');
-    if (navigationState && navigationState.anchor) {
-      setTemporaryHighlight(navigationState.anchor);
-      // In a real implementation, we would use the anchor to scroll to the correct position.
-      // For now, we'll just log it to the console.
-      console.log('Found anchor in navigation state:', navigationState.anchor);
-      safeLocalStorage.removeItem('materialNavigationState');
+    const savedState = safeLocalStorage.getItem<any>('materialNavigationState');
+    if (savedState) {
+      setNavigationState(savedState);
+      if (savedState.anchor) {
+        setTemporaryHighlight(savedState.anchor);
+      }
+      console.log('Found navigation state:', savedState);
+      // 注意: ここではまだ削除しない（戻るボタンで使用するため）
     }
   }, []);
 
@@ -65,9 +67,27 @@ function MaterialsContent() {
           <div className="px-4 h-12 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => router.push('/dashboard')}
+                onClick={() => {
+                  if (navigationState && navigationState.from) {
+                    // 学習セッションから来た場合は元のセッションに戻る
+                    safeLocalStorage.removeItem('materialNavigationState');
+                    
+                    // クエリパラメータを再構築
+                    const params = new URLSearchParams();
+                    if (navigationState.mode) params.set('mode', navigationState.mode);
+                    if (navigationState.category) params.set('category', navigationState.category);
+                    if (navigationState.part) params.set('part', navigationState.part);
+                    if (navigationState.studyMode) params.set('studyMode', navigationState.studyMode);
+                    if (navigationState.questionCount) params.set('questionCount', navigationState.questionCount);
+                    
+                    router.push(`/study/session?${params.toString()}`);
+                  } else {
+                    // 通常はダッシュボードに戻る
+                    router.push('/dashboard');
+                  }
+                }}
                 className="p-1.5 text-gray-200 hover:bg-gray-700 rounded flex items-center gap-1 transition-colors"
-                title="ダッシュボードに戻る"
+                title={navigationState ? "学習に戻る" : "ダッシュボードに戻る"}
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span className="text-sm">戻る</span>

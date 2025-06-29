@@ -649,6 +649,14 @@ function StudySessionContent() {
       
       // Update progress using the sync service
       progressSync.updateUserProgress(user?.nickname, (progress) => {
+        // デバッグログ: 更新前の値
+        console.log('📊 Progress Update - Before:', {
+          total: progress.totalQuestionsAnswered,
+          correct: progress.correctAnswers,
+          question: question.questionId,
+          isCorrect
+        });
+        
         progress.totalQuestionsAnswered++;
         if (isCorrect) progress.correctAnswers++;
         
@@ -699,6 +707,13 @@ function StudySessionContent() {
           }
           progress.lastStudyDate = today;
         }
+        
+        // デバッグログ: 更新後の値
+        console.log('📊 Progress Update - After:', {
+          total: progress.totalQuestionsAnswered,
+          correct: progress.correctAnswers,
+          categoryProgress: progress.categoryProgress[categoryName]
+        });
         
         return progress;
       });

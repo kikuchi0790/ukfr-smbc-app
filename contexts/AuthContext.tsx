@@ -10,6 +10,7 @@ import { safeLocalStorage, setSyncCallback } from '@/utils/storage-utils';
 import { cleanupLegacyData } from '@/utils/cleanup-legacy-data';
 import { resetAllUserProgress } from '@/utils/reset-all-data';
 import { migrateOldData } from '@/utils/data-migration';
+import { validateAndFixProgress } from '@/utils/progress-tracker';
 
 interface User {
   id: string;
@@ -243,6 +244,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       // 古いデータのマイグレーション
       migrateOldData(userData.nickname);
+      
+      // データ整合性チェックと修正
+      const userProgressKey = `userProgress_${userData.nickname}`;
+      const progress = safeLocalStorage.getItem<any>(userProgressKey);
+      if (progress) {
+        const validation = validateAndFixProgress(progress);
+        if (!validation.isValid) {
+          console.warn('🔧 Fixing progress data inconsistencies:', validation.issues);
+          safeLocalStorage.setItem(userProgressKey, validation.fixed);
+        }
+      }
       
       // 自動同期を開始
       const cleanup = await enableAutoSync(firebaseUser.uid, userData.nickname);

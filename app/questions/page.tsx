@@ -19,6 +19,7 @@ import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { filterByCategory, searchQuestions, filterByQuery } from "@/utils/question-filters";
+import { getAccurateQuestionStatus, debugProgress } from "@/utils/progress-tracker";
 
 function QuestionsListContent() {
   const router = useRouter();
@@ -74,6 +75,10 @@ function QuestionsListContent() {
 
   useEffect(() => {
     loadProgress();
+    // デバッグ用: コンソールで debugProgress() を実行可能
+    if (user) {
+      console.log('💡 Tip: Run debugProgress() in console to check progress data');
+    }
   }, [user]);
 
   useEffect(() => {
@@ -157,25 +162,18 @@ function QuestionsListContent() {
 
   const getQuestionStatus = (questionId: string) => {
     if (!progress) return null;
-
-    // 回答済みかチェック
-    const answered = progress.studySessions?.some(session => 
-      session.answers?.some(answer => answer.questionId === questionId)
-    );
-
-    if (!answered) return null;
-
-    // 正解したかチェック
-    const correct = progress.studySessions?.some(session => 
-      session.answers?.some(answer => 
-        answer.questionId === questionId && answer.isCorrect
-      )
-    );
-
-    // 克服済みかチェック
-    const overcome = progress.overcomeQuestions?.some(q => q.questionId === questionId);
-
-    return { answered, correct, overcome };
+    
+    // 新しい正確なステータス取得関数を使用
+    const status = getAccurateQuestionStatus(questionId, progress);
+    
+    // 旧形式との互換性のため、null または オブジェクトを返す
+    if (!status.answered) return null;
+    
+    return {
+      answered: status.answered,
+      correct: status.correct,
+      overcome: status.overcome
+    };
   };
 
   const toggleQuestion = (questionId: string) => {
