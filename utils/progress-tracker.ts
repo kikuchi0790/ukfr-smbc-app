@@ -292,6 +292,8 @@ export function debugProgress(nickname?: string): void {
 
 /**
  * 表示用の正解数を計算（克服した問題を含む）
+ * 復習モードで初めて正解した問題はcorrectAnswersを増やさないようにしたので、
+ * 克服した問題を追加しても二重カウントにならない
  */
 export function getDisplayCorrectCount(progress: UserProgress, category?: Category): number {
   let baseCorrect = 0;

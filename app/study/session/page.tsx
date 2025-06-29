@@ -641,8 +641,14 @@ function StudySessionContent() {
         return;
       }
       
-      // Track answered questions globally
-      AnsweredQuestionsTracker.addAnsweredQuestion(question.category, question.questionId);
+      // 復習モードの場合、既に回答済みの問題かチェック
+      const isAlreadyAnswered = AnsweredQuestionsTracker.getAnsweredQuestions(question.category).has(question.questionId);
+      
+      // 復習モードで既に回答済みの問題の場合は、AnsweredQuestionsTrackerに追加しない
+      if (!(mode === "review" && isAlreadyAnswered)) {
+        // Track answered questions globally
+        AnsweredQuestionsTracker.addAnsweredQuestion(question.category, question.questionId);
+      }
       
       // Add to answered questions for this session
       setAnsweredQuestionIds(prev => new Set(prev).add(question.questionId));
@@ -654,11 +660,39 @@ function StudySessionContent() {
           total: progress.totalQuestionsAnswered,
           correct: progress.correctAnswers,
           question: question.questionId,
-          isCorrect
+          isCorrect,
+          mode
         });
         
-        progress.totalQuestionsAnswered++;
-        if (isCorrect) progress.correctAnswers++;
+        // 復習モードの場合、この問題が既に回答/正解したことがあるかチェック
+        let shouldIncrementTotal = true;
+        let shouldIncrementCorrect = isCorrect;
+        
+        if (mode === "review") {
+          // 既に回答済みの問題かチェック（復習モードで重複カウントを防ぐ）
+          if (isAlreadyAnswered) {
+            console.log('📚 Review mode: Question was already answered, not incrementing totalQuestionsAnswered');
+            shouldIncrementTotal = false;
+          }
+          
+          if (isCorrect) {
+            // 過去のセッションでこの問題を正解したことがあるかチェック
+            const wasCorrectBefore = progress.studySessions?.some(session => 
+              session.answers?.some(answer => 
+                answer.questionId === question.questionId && 
+                answer.isCorrect
+              )
+            );
+            
+            if (wasCorrectBefore) {
+              console.log('📚 Review mode: Question was correct before, not incrementing correctAnswers');
+              shouldIncrementCorrect = false;
+            }
+          }
+        }
+        
+        if (shouldIncrementTotal) progress.totalQuestionsAnswered++;
+        if (shouldIncrementCorrect) progress.correctAnswers++;
         
         // Update category progress with bounds checking
         const categoryName = question.category as keyof typeof progress.categoryProgress;
@@ -687,9 +721,13 @@ function StudySessionContent() {
             // Only update if it's increasing (to prevent decreasing due to data issues)
             if (newAnsweredCount > categoryProgress.answeredQuestions) {
               categoryProgress.answeredQuestions = newAnsweredCount;
-              if (isCorrect) categoryProgress.correctAnswers++;
+              if (shouldIncrementCorrect) categoryProgress.correctAnswers++;
             } else if (categoryProgress.answeredQuestions >= categoryProgress.totalQuestions) {
               console.warn(`Category ${question.category} already at 100% (${categoryProgress.answeredQuestions}/${categoryProgress.totalQuestions})`);
+            } else if (mode === "review" && isAlreadyAnswered) {
+              // 復習モードで既に回答済みの問題の場合、回答数は増やさない
+              console.log('📚 Review mode: Not incrementing answered count for already answered question');
+              if (shouldIncrementCorrect) categoryProgress.correctAnswers++;
             }
           }
         }
