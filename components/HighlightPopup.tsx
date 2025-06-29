@@ -6,9 +6,10 @@ interface HighlightPopupProps {
   position: { x: number; y: number };
   onSelectColor: (color: HighlightColor) => void;
   onClose: () => void;
+  onNote: () => void;
 }
 
-export default function HighlightPopup({ position, onSelectColor, onClose }: HighlightPopupProps) {
+export default function HighlightPopup({ position, onSelectColor, onClose, onNote }: HighlightPopupProps) {
   const [showNoteInput, setShowNoteInput] = useState(false);
   const [note, setNote] = useState('');
 
@@ -49,7 +50,7 @@ export default function HighlightPopup({ position, onSelectColor, onClose }: Hig
           </div>
           <div className="w-px h-8 bg-gray-300 mx-1" />
           <button
-            onClick={() => setShowNoteInput(true)}
+            onClick={onNote}
             className="p-2 hover:bg-gray-100 rounded transition-colors"
             title="ノートを追加"
           >

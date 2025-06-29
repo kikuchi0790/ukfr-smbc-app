@@ -144,9 +144,9 @@ export default function HighlightsList({ onHighlightClick }: HighlightsListProps
                 <span className="text-sm font-medium text-gray-700">
                   {getMaterialName(highlight.materialId)}
                 </span>
-                {highlight.pageNumber && (
+                {highlight.anchor?.pageNumber && (
                   <span className="text-xs text-gray-500">
-                    ページ {highlight.pageNumber}
+                    ページ {highlight.anchor.pageNumber}
                   </span>
                 )}
               </div>
@@ -167,7 +167,7 @@ export default function HighlightsList({ onHighlightClick }: HighlightsListProps
 
             {highlight.note && (
               <div className="bg-white/50 rounded p-2 mb-2">
-                <p className="text-sm text-gray-700">{highlight.note}</p>
+                <p className="text-sm text-gray-700">{highlight.note.content}</p>
               </div>
             )}
 

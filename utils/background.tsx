@@ -1,7 +1,10 @@
 
 import * as THREE from 'three';
+import { Building3DFactory, createEdges, createMesh, getBuildingConfig } from './3d-building-factory';
+import { getBigBenConfig } from './building-configs/bigben-config';
+import { getEiffelTowerConfig } from './building-configs/eiffel-config';
 
-// Building configurations
+// Building configurations (for legacy functions)
 const BUILDING_CONFIGS: Record<string, { buildingColor: number; accentColor: number; detailColor?: number }> = {
   bigben: {
     buildingColor: 0xD4A76A,
@@ -30,22 +33,14 @@ const BUILDING_CONFIGS: Record<string, { buildingColor: number; accentColor: num
   }
 };
 
-// Helper to get building config by ID
-const getBuildingConfig = (id: string) => BUILDING_CONFIGS[id];
-
-// --- Helper function to create line segments from geometry ---
-function createEdges(geometry: THREE.BufferGeometry, material: THREE.LineBasicMaterialParameters): THREE.LineSegments {
-    const edges = new THREE.EdgesGeometry(geometry);
-    return new THREE.LineSegments(edges, new THREE.LineBasicMaterial(material));
-}
-
-// --- Helper function to create a mesh with basic material ---
-function createMesh(geometry: THREE.BufferGeometry, material: THREE.MeshBasicMaterialParameters): THREE.Mesh {
-    return new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(material));
-}
-
 
 export function createBigBen_three(): THREE.Group {
+    const config = getBigBenConfig();
+    return Building3DFactory.create(config);
+}
+
+// Legacy implementation (will be removed after all buildings are migrated)
+export function createBigBen_three_legacy(): THREE.Group {
     const group = new THREE.Group();
     const buildingConfig = getBuildingConfig('bigben');
     if (!buildingConfig) return group;
@@ -91,17 +86,17 @@ export function createBigBen_three(): THREE.Group {
         const clockGroup = new THREE.Group();
         
         const clockFaceGeometry = new THREE.CircleGeometry(2.5, 32);
-        const clockFaceLines = createEdges(clockFaceGeometry, { color: buildingColor, transparent: true, opacity: 0 });
+        const clockFaceLines = createEdges(clockFaceGeometry, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
         clockGroup.add(clockFaceLines);
         
         const innerCircleGeometry = new THREE.CircleGeometry(2, 24);
-        const innerCircleLines = createEdges(innerCircleGeometry, { color: buildingColor, transparent: true, opacity: 0 });
+        const innerCircleLines = createEdges(innerCircleGeometry, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
         clockGroup.add(innerCircleLines);
         
         for (let hour = 0; hour < 12; hour++) {
             const hourAngle = (hour / 12) * Math.PI * 2 - Math.PI / 2;
             const markerGeometry = new THREE.BoxGeometry(0.1, 0.4, 0.1);
-            const markerMesh = createMesh(markerGeometry, { color: accentColor, transparent: true, opacity: 0 });
+            const markerMesh = createMesh(markerGeometry, { color: accentColor.getHex(), transparent: true, opacity: 0 });
             markerMesh.position.x = Math.cos(hourAngle) * 2.2;
             markerMesh.position.y = Math.sin(hourAngle) * 2.2;
             markerMesh.position.z = 0.1; // slight offset
@@ -141,11 +136,11 @@ export function createBigBen_three(): THREE.Group {
             ]);
             const archPoints = archCurve.getPoints(20);
             const archGeometry = new THREE.BufferGeometry().setFromPoints(archPoints);
-            const archLine = new THREE.Line(archGeometry, new THREE.LineBasicMaterial({ color: accentColor, transparent: true, opacity: 0 }));
+            const archLine = new THREE.Line(archGeometry, new THREE.LineBasicMaterial({ color: accentColor.getHex(), transparent: true, opacity: 0 }));
             windowGroup.add(archLine);
             
             const gridGeometry = new THREE.PlaneGeometry(0.5, 1);
-            const gridMesh = createMesh(gridGeometry, { color: accentColor, transparent: true, opacity: 0, wireframe: true });
+            const gridMesh = createMesh(gridGeometry, { color: accentColor.getHex(), transparent: true, opacity: 0, wireframe: true });
             windowGroup.add(gridMesh);
             
             windowGroup.position.x = Math.cos(angle) * 2.8; // Position on the face of the tower
@@ -158,7 +153,7 @@ export function createBigBen_three(): THREE.Group {
     for (let level = 0; level < 3; level++) { // Decorative cornices
         const corniceRadius = 3 - level * 0.3;
         const corniceGeometry = new THREE.TorusGeometry(corniceRadius, 0.2, 4, 16); // Simplified segments
-        const corniceLines = createEdges(corniceGeometry, { color: buildingColor, transparent: true, opacity: 0 });
+        const corniceLines = createEdges(corniceGeometry, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
         corniceLines.position.y = 8 + level * 8;
         corniceLines.rotation.x = Math.PI / 2;
         level2.add(corniceLines);
@@ -188,7 +183,7 @@ export function createBigBen_three(): THREE.Group {
         handsGroup.add(minuteHandMesh);
         
         const centerGeometry = new THREE.SphereGeometry(0.3, 8, 8);
-        const centerMesh = createMesh(centerGeometry, { color: accentColor, transparent: true, opacity: 0 });
+        const centerMesh = createMesh(centerGeometry, { color: accentColor.getHex(), transparent: true, opacity: 0 });
         handsGroup.add(centerMesh);
         
         handsGroup.position.y = 20; // Align with clock face center
@@ -201,7 +196,7 @@ export function createBigBen_three(): THREE.Group {
         level3.add(handsGroup);
     }
     const bellGeometry = new THREE.SphereGeometry(1, 8, 6, 0, Math.PI * 2, 0, Math.PI * 0.8); // Open bottom
-    const bellMesh = createMesh(bellGeometry, { color: accentColor, transparent: true, opacity: 0, wireframe: true });
+    const bellMesh = createMesh(bellGeometry, { color: accentColor.getHex(), transparent: true, opacity: 0, wireframe: true });
     bellMesh.position.y = 24; // Inside belfry
     bellMesh.name = 'bigBell';
     level3.add(bellMesh);
@@ -216,11 +211,11 @@ export function createBigBen_three(): THREE.Group {
         const angle = (Math.PI * 2 / 8) * i;
         
         const pinnacleGeometry = new THREE.ConeGeometry(0.4, 2, 6);
-        const pinnacleMesh = createMesh(pinnacleGeometry, { color: buildingColor, transparent: true, opacity: 0 });
+        const pinnacleMesh = createMesh(pinnacleGeometry, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
         pinnacleGroup.add(pinnacleMesh);
         
         const orbGeometry = new THREE.SphereGeometry(0.2, 6, 6);
-        const orbMesh = createMesh(orbGeometry, { color: accentColor, transparent: true, opacity: 0 });
+        const orbMesh = createMesh(orbGeometry, { color: accentColor.getHex(), transparent: true, opacity: 0 });
         orbMesh.position.y = 1.2; // Top of pinnacle cone
         pinnacleGroup.add(orbMesh);
         
@@ -230,13 +225,13 @@ export function createBigBen_three(): THREE.Group {
         level4.add(pinnacleGroup);
     }
     const crownGeometry = new THREE.TorusGeometry(1, 0.3, 6, 8);
-    const crownMesh = createMesh(crownGeometry, { color: accentColor, transparent: true, opacity: 0, wireframe: true });
+    const crownMesh = createMesh(crownGeometry, { color: accentColor.getHex(), transparent: true, opacity: 0, wireframe: true });
     crownMesh.position.y = 34; // Top of spire
     crownMesh.rotation.x = Math.PI / 2;
     level4.add(crownMesh);
     
     const flagPoleGeometry = new THREE.CylinderGeometry(0.05, 0.05, 2);
-    const flagPoleMesh = createMesh(flagPoleGeometry, { color: buildingColor, transparent: true, opacity: 0 });
+    const flagPoleMesh = createMesh(flagPoleGeometry, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
     flagPoleMesh.position.y = 35; // Top of crown
     level4.add(flagPoleMesh);
     level4.visible = false;
@@ -247,6 +242,12 @@ export function createBigBen_three(): THREE.Group {
 }
 
 export function createEiffelTower_three(): THREE.Group {
+    const config = getEiffelTowerConfig();
+    return Building3DFactory.create(config);
+}
+
+// Legacy implementation (will be removed after all buildings are migrated)
+export function createEiffelTower_three_legacy(): THREE.Group {
     const group = new THREE.Group();
     const buildingConfig = getBuildingConfig('eiffel');
     if (!buildingConfig) return group;
@@ -336,11 +337,11 @@ export function createEiffelTower_three(): THREE.Group {
 
     // --- Level 1: Platforms Details & Base Arches (20%) ---
     const level1 = new THREE.Group();
-    const platformDetailMat = new THREE.LineBasicMaterial({ color: buildingColor, transparent: true, opacity: 0 });
+    const platformDetailMat = new THREE.LineBasicMaterial({ color: buildingColor.getHex(), transparent: true, opacity: 0 });
 
     // First platform details
     const p1DetailGeom = new THREE.BoxGeometry(8.2, 0.7, 8.2);
-    const p1DetailEdges = createEdges(p1DetailGeom, { color: buildingColor, transparent: true, opacity: 0 });
+    const p1DetailEdges = createEdges(p1DetailGeom, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
     p1DetailEdges.position.y = firstPlatformHeight;
     level1.add(p1DetailEdges);
 
@@ -370,7 +371,7 @@ export function createEiffelTower_three(): THREE.Group {
 
     // --- Level 2: Primary Lattice Work (40%) ---
     const level2 = new THREE.Group();
-    const latticeMat = new THREE.LineBasicMaterial({ color: buildingColor, transparent: true, opacity: 0 });
+    const latticeMat = new THREE.LineBasicMaterial({ color: buildingColor.getHex(), transparent: true, opacity: 0 });
 
     // Legs lattice
     for (let i = 0; i < 4; i++) {
@@ -400,7 +401,7 @@ export function createEiffelTower_three(): THREE.Group {
 
     // --- Level 3: Secondary Lattice & Platform Railings (60%) ---
     const level3 = new THREE.Group();
-    const fineLatticeMat = new THREE.LineBasicMaterial({ color: accentColor, transparent: true, opacity: 0 });
+    const fineLatticeMat = new THREE.LineBasicMaterial({ color: accentColor.getHex(), transparent: true, opacity: 0 });
 
     // Railings for platforms
     const railingHeight = 0.5;
@@ -440,23 +441,23 @@ export function createEiffelTower_three(): THREE.Group {
 
     // --- Level 4: Antenna & Lighting Accents (80%) ---
     const level4 = new THREE.Group();
-    const lightMat = new THREE.MeshBasicMaterial({ color: accentColor, transparent: true, opacity: 0 });
+    const lightMat = new THREE.MeshBasicMaterial({ color: accentColor.getHex(), transparent: true, opacity: 0 });
 
     // Antenna
     const antennaBaseGeom = new THREE.CylinderGeometry(0.3, 0.2, 2, 6);
-    const antennaBaseMesh = createMesh(antennaBaseGeom, {color: buildingColor, transparent: true, opacity: 0});
+    const antennaBaseMesh = createMesh(antennaBaseGeom, {color: buildingColor.getHex(), transparent: true, opacity: 0});
     antennaBaseMesh.position.y = towerHeight + 1;
     level4.add(antennaBaseMesh);
 
     const antennaSpireGeom = new THREE.ConeGeometry(0.2, 3, 6);
-    const antennaSpireMesh = createMesh(antennaSpireGeom, {color: buildingColor, transparent: true, opacity: 0});
+    const antennaSpireMesh = createMesh(antennaSpireGeom, {color: buildingColor.getHex(), transparent: true, opacity: 0});
     antennaSpireMesh.position.y = towerHeight + 1 + 2; // Base height + half spire height
     level4.add(antennaSpireMesh);
 
     // Lighting "sparkles"
     for (let i = 0; i < 30; i++) {
         const lightGeom = new THREE.SphereGeometry(0.1, 4, 4);
-        const lightMesh = createMesh(lightGeom, {color: accentColor, transparent: true, opacity: 0});
+        const lightMesh = createMesh(lightGeom, {color: accentColor.getHex(), transparent: true, opacity: 0});
         const y = Math.random() * towerHeight;
         const t = y / towerHeight; // 0 at base, 1 at top
         
@@ -514,7 +515,7 @@ export function createColosseum_three(): THREE.Group {
     
     // Level 1: Arches
     const level1 = new THREE.Group();
-    const archMaterial = new THREE.LineBasicMaterial({color: buildingColor, transparent:true, opacity: 0});
+    const archMaterial = new THREE.LineBasicMaterial({color: buildingColor.getHex(), transparent:true, opacity: 0});
     for (let l = 0; l < levels; l++) {
         const y = l * levelHeight;
         for (let i = 0; i < 16; i++) { // Arches per level
@@ -542,7 +543,7 @@ export function createColosseum_three(): THREE.Group {
     // Level 2: Inner structures and details
     const level2 = new THREE.Group();
     const innerRadius = outerRadius * 0.6;
-    const innerMaterial = new THREE.LineBasicMaterial({color: accentColor, transparent: true, opacity: 0});
+    const innerMaterial = new THREE.LineBasicMaterial({color: accentColor.getHex(), transparent: true, opacity: 0});
     for (let l = 0; l < levels -1; l++) { // Inner walls don't go to top typically
         const y = l * levelHeight;
         const innerPoints = [];
@@ -595,7 +596,7 @@ export function createSagradaFamilia_three(): THREE.Group {
 
     // Level 1: Spiral details and tower tops
     const level1 = new THREE.Group();
-    const spiralMat = new THREE.LineBasicMaterial({color: buildingColor, transparent:true, opacity:0});
+    const spiralMat = new THREE.LineBasicMaterial({color: buildingColor.getHex(), transparent:true, opacity:0});
     towerPositions.forEach(pos => {
         const spiralPoints = [];
         for (let i = 0; i <= 50; i++) {
@@ -608,7 +609,7 @@ export function createSagradaFamilia_three(): THREE.Group {
         level1.add(spiralLine);
 
         const topGeometry = new THREE.ConeGeometry(pos.radius * 0.5, 3, 4);
-        const topLines = createEdges(topGeometry, { color: buildingColor, transparent: true, opacity: 0 });
+        const topLines = createEdges(topGeometry, { color: buildingColor.getHex(), transparent: true, opacity: 0 });
         topLines.position.set(pos.x, pos.height + 1.5, pos.z);
         level1.add(topLines);
     });
@@ -618,7 +619,7 @@ export function createSagradaFamilia_three(): THREE.Group {
 
     // Level 2: Facade and connecting structures
     const level2 = new THREE.Group();
-    const facadeMat = new THREE.LineBasicMaterial({color: accentColor, transparent:true, opacity:0});
+    const facadeMat = new THREE.LineBasicMaterial({color: accentColor.getHex(), transparent:true, opacity:0});
     const facadeWidth = 8; const facadeHeight = 15;
     const facadePoints = [
         new THREE.Vector3(-facadeWidth/2, 0, 3), new THREE.Vector3(-facadeWidth/2, facadeHeight, 3),
@@ -681,7 +682,7 @@ export function createWindmill_three(): THREE.Group {
     // Blades are part of base structure but colored by accentColor when revealed
     const bladeGroup = new THREE.Group();
     bladeGroup.name = 'blades'; // For animation
-    const bladeMaterial = new THREE.LineBasicMaterial({ color: accentColor, transparent: true, opacity: 0 }); // Start transparent
+    const bladeMaterial = new THREE.LineBasicMaterial({ color: accentColor.getHex(), transparent: true, opacity: 0 }); // Start transparent
     for (let i = 0; i < 4; i++) {
         const angle = (Math.PI / 2) * i;
         const bladeFramePoints = [ // Rectangular frame for each blade
@@ -708,7 +709,7 @@ export function createWindmill_three(): THREE.Group {
             const xPos = j * 1.2; // along the blade length
             const strutPoints = [ new THREE.Vector3(xPos, 0.8, 0), new THREE.Vector3(xPos, -0.8, 0) ];
             const strutGeom = new THREE.BufferGeometry().setFromPoints(strutPoints);
-            const strutLine = new THREE.Line(strutGeom, new THREE.LineBasicMaterial({color: accentColor, transparent:true, opacity:0}));
+            const strutLine = new THREE.Line(strutGeom, new THREE.LineBasicMaterial({color: accentColor.getHex(), transparent:true, opacity:0}));
             strutLine.rotation.z = angle;
             level1.add(strutLine);
         }
@@ -719,7 +720,7 @@ export function createWindmill_three(): THREE.Group {
 
     // Level 2: Windows and door
     const level2 = new THREE.Group();
-    const featureMat = new THREE.MeshBasicMaterial({color: buildingColor, transparent: true, opacity: 0, wireframe: true});
+    const featureMat = new THREE.MeshBasicMaterial({color: buildingColor.getHex(), transparent: true, opacity: 0, wireframe: true});
     
     const windowGeometry = new THREE.PlaneGeometry(1.5,2);
     const windowMesh = new THREE.Mesh(windowGeometry, featureMat.clone());
@@ -734,10 +735,10 @@ export function createWindmill_three(): THREE.Group {
 
     // Level 3: Brick/texture indication lines
     const level3 = new THREE.Group();
-    const brickLineMat = new THREE.LineBasicMaterial({color: buildingColor, transparent: true, opacity: 0});
+    const brickLineMat = new THREE.LineBasicMaterial({color: buildingColor.getHex(), transparent: true, opacity: 0});
     for (let y = 0; y < 12; y+=1) { // Horizontal lines around cylinder
         const ringGeom = new THREE.TorusGeometry(3 + (y/12), 0.05, 4, 8); // radius, tube, radialSegments, tubularSegments
-        const ringLine = createEdges(ringGeom, {color:buildingColor, transparent:true, opacity:0});
+        const ringLine = createEdges(ringGeom, {color:buildingColor.getHex(), transparent:true, opacity:0});
         ringLine.rotation.x = Math.PI/2;
         ringLine.position.y = y;
         level3.add(ringLine);
@@ -784,15 +785,15 @@ export function createBrandenburgGate_three(): THREE.Group {
 
     // Level 1: Column capitals and base details
     const level1 = new THREE.Group();
-    const capitalDetailMat = new THREE.LineBasicMaterial({color: buildingColor, transparent:true, opacity:0});
+    const capitalDetailMat = new THREE.LineBasicMaterial({color: buildingColor.getHex(), transparent:true, opacity:0});
     columnPositionsX.forEach(x => {
         const capitalGeom = new THREE.BoxGeometry(columnRadius*2, columnRadius, columnRadius*2);
-        const capitalEdges = createEdges(capitalGeom, {color:buildingColor, transparent: true, opacity:0});
+        const capitalEdges = createEdges(capitalGeom, {color:buildingColor.getHex(), transparent: true, opacity:0});
         capitalEdges.position.set(x, columnHeight - columnRadius/2, 0); // Top of column
         level1.add(capitalEdges);
 
         const baseGeom = new THREE.CylinderGeometry(columnRadius*1.2, columnRadius*1.2, 0.5, 8);
-        const baseEdges = createEdges(baseGeom, {color:buildingColor, transparent: true, opacity:0});
+        const baseEdges = createEdges(baseGeom, {color:buildingColor.getHex(), transparent: true, opacity:0});
         baseEdges.position.set(x, 0.25, 0); // Base of column
         level1.add(baseEdges);
     });
@@ -802,11 +803,11 @@ export function createBrandenburgGate_three(): THREE.Group {
     
     // Level 2: Entablature details (triglyphs, metopes - simplified)
     const level2 = new THREE.Group();
-    const entabDetailMat = new THREE.LineBasicMaterial({color:buildingColor, transparent:true, opacity:0});
+    const entabDetailMat = new THREE.LineBasicMaterial({color:buildingColor.getHex(), transparent:true, opacity:0});
     for(let i=0; i < 10; i++) {
         const detailWidth = entablatureWidth / 10;
         const triglyphGeom = new THREE.BoxGeometry(detailWidth*0.4, entablatureHeight*0.8, entablatureDepth*0.5);
-        const triglyphEdges = createEdges(triglyphGeom, {color:buildingColor, transparent:true, opacity:0});
+        const triglyphEdges = createEdges(triglyphGeom, {color:buildingColor.getHex(), transparent:true, opacity:0});
         triglyphEdges.position.set(-entablatureWidth/2 + i*detailWidth + detailWidth*0.2, columnHeight + entablatureHeight/2, entablatureDepth/2);
         level2.add(triglyphEdges);
     }
@@ -816,15 +817,15 @@ export function createBrandenburgGate_three(): THREE.Group {
 
     // Level 3: Quadriga (simplified chariot and horses)
     const level3 = new THREE.Group();
-    const quadrigaMat = new THREE.LineBasicMaterial({color:accentColor, transparent:true, opacity:0});
+    const quadrigaMat = new THREE.LineBasicMaterial({color:accentColor.getHex(), transparent:true, opacity:0});
     const chariotGeom = new THREE.BoxGeometry(2,1,1.5);
-    const chariotEdges = createEdges(chariotGeom, {color:accentColor, transparent:true, opacity:0});
+    const chariotEdges = createEdges(chariotGeom, {color:accentColor.getHex(), transparent:true, opacity:0});
     chariotEdges.position.y = columnHeight + entablatureHeight + 0.5;
     level3.add(chariotEdges);
 
     for(let i=-1; i<=1; i+=2){ // Two horses simplified
         const horseGeom = new THREE.BoxGeometry(0.8,1.5,2.5);
-        const horseEdges = createEdges(horseGeom, {color:accentColor, transparent:true, opacity:0});
+        const horseEdges = createEdges(horseGeom, {color:accentColor.getHex(), transparent:true, opacity:0});
         horseEdges.position.set(i*1.2, columnHeight+entablatureHeight+0.75, -1);
         level3.add(horseEdges);
     }
@@ -835,7 +836,7 @@ export function createBrandenburgGate_three(): THREE.Group {
     // Level 4: Victory statue in Quadriga (very simplified)
     const level4 = new THREE.Group();
     const statueGeom = new THREE.CylinderGeometry(0.2,0.2,1.5,6);
-    const statueMesh = createMesh(statueGeom, {color:accentColor, transparent:true, opacity:0});
+    const statueMesh = createMesh(statueGeom, {color:accentColor.getHex(), transparent:true, opacity:0});
     statueMesh.position.set(0, columnHeight+entablatureHeight+1.5, 0); // On chariot
     level4.add(statueMesh);
     level4.visible = false;

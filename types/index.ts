@@ -120,19 +120,45 @@ export interface UserPreferences {
 export interface Highlight {
   id: string;
   userId: string;
-  materialId: string; // PDFファイル名 (e.g., "UKFR_ED32_Checkpoint.pdf")
-  pageNumber?: number;
-  text: string;
-  startOffset: number;
-  endOffset: number;
-  color: HighlightColor;
-  note?: string;
-  relatedQuestionId?: string; // 関連する問題ID
+  materialId: string;
   createdAt: string;
   updatedAt: string;
+  anchor: HighlightAnchor;
+  text: string;
+  color: HighlightColor;
+  note?: {
+    content: string;
+    updatedAt: string;
+  };
+  relatedQuestionId?: string;
+  versions: Record<string, number>; // { [deviceId]: version }
 }
 
 export type HighlightColor = 'yellow' | 'green' | 'red' | 'blue';
+
+export interface HighlightAnchor {
+  selector: string;
+  startOffset: number;
+  endOffset: number;
+  selectedText: string;
+  beforeText: string;
+  afterText: string;
+  pageNumber: number;
+}
+
+export interface MaterialMetadata {
+  id: string;
+  title: string;
+  version: string;
+  tableOfContents: TocItem[];
+}
+
+export interface TocItem {
+  title: string;
+  pageNumber?: number;
+  anchorSelector?: string;
+  children?: TocItem[];
+}
 
 // キーワードキャッシュの型定義
 export interface KeywordCache {

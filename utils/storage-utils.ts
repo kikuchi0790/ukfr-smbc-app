@@ -1,9 +1,6 @@
-export class StorageError extends Error {
-  constructor(message: string, public readonly code: string) {
-    super(message);
-    this.name = 'StorageError';
-  }
-}
+import { StorageService, storage as defaultStorage } from '@/services/storage-service';
+import { isNotEmpty, safeJsonParse } from './validation-utils';
+import { StorageError } from './error-utils';
 
 // Firebase同期用のコールバック
 let syncCallback: ((key: string, data: any) => void) | null = null;
@@ -19,8 +16,10 @@ export function getUserKey(baseKey: string, nickname?: string | null): string {
     try {
       const authUser = localStorage.getItem('authUser');
       if (authUser) {
-        const parsed = JSON.parse(authUser);
-        nickname = parsed.nickname;
+        const parsed = safeJsonParse(authUser, null) as { nickname?: string } | null;
+        if (parsed && parsed.nickname) {
+          nickname = parsed.nickname;
+        }
       }
     } catch (error) {
       console.error('Failed to get auth user from localStorage', error);
@@ -56,7 +55,9 @@ function cleanupOldData() {
       // userProgressのクリーンアップ
       if (key.startsWith('userProgress_')) {
         try {
-          const progress = JSON.parse(localStorage.getItem(key) || '{}');
+          const progressStr = localStorage.getItem(key);
+          if (!progressStr) continue;
+          const progress = safeJsonParse(progressStr, {}) as any;
           let modified = false;
           
           // studySessionsが存在し、questionsフィールドを含む場合は削除
@@ -93,7 +94,8 @@ function cleanupOldData() {
         try {
           const item = localStorage.getItem(key);
           if (item) {
-            const parsed = JSON.parse(item);
+            const parsed = safeJsonParse(item, null) as any;
+            if (!parsed) continue;
             const createdAt = parsed.examRecord?.completedAt || parsed.completedAt;
             if (createdAt && new Date(createdAt).getTime() < oneDayAgo) {
               keysToDelete.push(key);
@@ -113,51 +115,30 @@ function cleanupOldData() {
   }
 }
 
+// StorageServiceを使用したシンプルなラッパー
+// 互換性を保つために旧APIを維持
 export const safeLocalStorage = {
   getItem<T = any>(key: string, defaultValue?: T): T | null {
-    try {
-      if (typeof window === 'undefined') {
-        return defaultValue || null;
-      }
-
-      // まずlocalStorageから試す
-      let item = localStorage.getItem(key);
-      
-      // localStorageにない場合、sessionStorageのフォールバックを確認
-      if (item === null) {
-        const fallbackKey = `fallback_${key}`;
-        item = sessionStorage.getItem(fallbackKey);
-        if (item) {
-          console.log(`Retrieved from sessionStorage fallback: ${fallbackKey}`);
-        }
-      }
-      
-      if (item === null) {
-        return defaultValue || null;
-      }
-
+    // 同期的に動作させるためにPromiseを待機せずにデータを取得
+    const promise = defaultStorage.load<T>(key);
+    if (promise instanceof Promise) {
+      // 同期的なインターフェースを保つため、直接localStorageを使用
       try {
-        return JSON.parse(item) as T;
-      } catch {
-        // JSON.parseに失敗した場合は文字列として返す
-        return item as unknown as T;
+        const item = localStorage.getItem(key);
+        if (item === null) {
+          return defaultValue || null;
+        }
+        return safeJsonParse<T>(item, defaultValue as T) || null;
+      } catch (error) {
+        console.error(`Failed to get item: ${key}`, error);
+        return defaultValue || null;
       }
-    } catch (error) {
-      console.error(`Failed to get item from localStorage: ${key}`, error);
-      
-      // プライベートブラウジングモードの可能性
-      if (error instanceof DOMException && error.code === 18) {
-        throw new StorageError(
-          'プライベートブラウジングモードではデータを保存できません。通常モードでお試しください。',
-          'PRIVATE_BROWSING'
-        );
-      }
-      
-      return defaultValue || null;
     }
+    return promise
   },
 
   setItem(key: string, value: any): void {
+    // 同期的なインターフェースを保つため、直接localStorageを使用
     try {
       if (typeof window === 'undefined') {
         return;
@@ -197,7 +178,8 @@ export const safeLocalStorage = {
           
           throw new StorageError(
             'ストレージ容量が不足しています。ブラウザの設定から閲覧データを削除してください。',
-            'QUOTA_EXCEEDED'
+            'write',
+            key
           );
         }
       }
@@ -234,7 +216,9 @@ export const safeLocalStorage = {
         
         throw new StorageError(
           'ストレージ容量が不足しています。古いデータを削除してください。',
-          'QUOTA_EXCEEDED'
+          'write',
+          key,
+          error instanceof Error ? error : undefined
         );
       }
       
@@ -242,18 +226,23 @@ export const safeLocalStorage = {
       if (error instanceof DOMException && error.code === 18) {
         throw new StorageError(
           'プライベートブラウジングモードではデータを保存できません。通常モードでお試しください。',
-          'PRIVATE_BROWSING'
+          'write',
+          key,
+          error
         );
       }
       
       throw new StorageError(
         'データの保存に失敗しました。',
-        'UNKNOWN'
+        'write',
+        key,
+        error instanceof Error ? error : undefined
       );
     }
   },
 
   removeItem(key: string): void {
+    // 同期的なインターフェースを保つため、直接localStorageを使用
     try {
       if (typeof window === 'undefined') {
         return;

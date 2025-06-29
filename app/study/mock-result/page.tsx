@@ -7,6 +7,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import { safeLocalStorage, getUserKey } from '@/utils/storage-utils';
 import { Question, StudySession, Answer, UserProgress } from '@/types';
 import { saveIncorrectQuestion, updateMockExamProgress, isMockCategory } from '@/utils/study-utils';
+import { formatElapsedTime, formatPercentage, formatTime } from '@/utils/formatters';
 import { 
   Trophy, 
   Target, 
@@ -212,14 +213,14 @@ function MockResultContent() {
         name,
         correct: data.correct,
         total: data.total,
-        percentage: data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0
+        percentage: data.total > 0 ? parseFloat(formatPercentage(data.correct, data.total)) : 0
       }));
 
       setCategoryResults(results);
 
       // 総合スコアを計算
       const totalCorrect = session.answers.filter(a => a.isCorrect).length;
-      const score = session.answers.length > 0 ? Math.round((totalCorrect / session.answers.length) * 100) : 0;
+      const score = session.answers.length > 0 ? parseFloat(formatPercentage(totalCorrect, session.answers.length)) : 0;
       setTotalScore(score);
       setPassed(score >= 70);
 
@@ -343,13 +344,11 @@ function MockResultContent() {
     });
   };
 
-  const formatTime = (startTime: string, endTime: string) => {
+  const formatTimeDifference = (startTime: string, endTime: string) => {
     const start = new Date(startTime);
     const end = new Date(endTime);
-    const diffMs = end.getTime() - start.getTime();
-    const minutes = Math.floor(diffMs / 60000);
-    const seconds = Math.floor((diffMs % 60000) / 1000);
-    return `${minutes}分${seconds}秒`;
+    const diffSeconds = Math.floor((end.getTime() - start.getTime()) / 1000);
+    return formatElapsedTime(diffSeconds);
   };
 
   if (loading || authLoading) {
@@ -368,7 +367,7 @@ function MockResultContent() {
   }
 
   const { session, questions } = mockResult;
-  const timeTaken = formatTime(session.startedAt, session.completedAt || new Date().toISOString());
+  const timeTaken = formatTimeDifference(session.startedAt, session.completedAt || new Date().toISOString());
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -445,7 +444,7 @@ function MockResultContent() {
             </div>
             <p className="text-2xl font-bold text-gray-100">{timeTaken}</p>
             <p className="text-sm text-gray-500">
-              制限時間: {session.timeLimit ? `${session.timeLimit / 60000}分` : '無制限'}
+              制限時間: {session.timeLimit ? formatElapsedTime(session.timeLimit / 1000) : '無制限'}
             </p>
           </div>
 

@@ -151,7 +151,7 @@ export default function Home() {
                 <Link href="/dashboard" className="text-gray-400 hover:text-gray-100">
                   マイページ
                 </Link>
-                <Link href="/dashboard" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+                <Link href="/dashboard" data-cy="start-learning-button" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
                   学習を始める
                 </Link>
                 <button 

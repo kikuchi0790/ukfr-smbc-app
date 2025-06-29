@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { AlertCircle, Database, Trash2 } from 'lucide-react';
 import { UserProgress } from '@/types';
 import { safeLocalStorage } from '@/utils/storage-utils';
+import { formatPercentage, formatFileSize } from '@/utils/formatters';
 
 export default function StorageDebugInfo({ nickname }: { nickname?: string }) {
   const [storageInfo, setStorageInfo] = useState<any>(null);
@@ -71,7 +72,7 @@ export default function StorageDebugInfo({ nickname }: { nickname?: string }) {
                 keyInfo.categories[cat] = {
                   answered: prog.answeredQuestions,
                   total: prog.totalQuestions,
-                  percentage: Math.round((prog.answeredQuestions / prog.totalQuestions) * 100)
+                  percentage: parseFloat(formatPercentage(prog.answeredQuestions, prog.totalQuestions))
                 };
               }
             });
@@ -101,7 +102,7 @@ export default function StorageDebugInfo({ nickname }: { nickname?: string }) {
         totalSize += key.length + value.length;
       }
     });
-    info.storageSize = (totalSize / 1024).toFixed(2);
+    info.storageSize = formatFileSize(totalSize, 2);
 
     setStorageInfo(info);
   };
@@ -134,7 +135,7 @@ export default function StorageDebugInfo({ nickname }: { nickname?: string }) {
       </div>
 
       <div className="text-sm text-gray-300 space-y-1">
-        <p>総キー数: {storageInfo.totalKeys} | ストレージ使用量: {storageInfo.storageSize} KB</p>
+        <p>総キー数: {storageInfo.totalKeys} | ストレージ使用量: {storageInfo.storageSize}</p>
         <p>現在のユーザーキー: {storageInfo.currentUserKey || 'なし'}</p>
         
         {storageInfo.oldDataKeys.length > 0 && (

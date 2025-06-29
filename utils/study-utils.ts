@@ -1,6 +1,7 @@
 import { Question, IncorrectQuestion, UserProgress, OvercomeQuestion, Category, MockCategoryProgress } from "@/types";
 import { safeLocalStorage, getUserKey } from './storage-utils';
 import { categories } from './category-utils';
+import { filterByIncorrect, selectRandom, excludeAnswered, sortByGlobalId } from './question-filters';
 
 // 間違えた問題を保存
 export function saveIncorrectQuestion(questionId: string, category: string, userNickname?: string) {
@@ -80,26 +81,21 @@ export function getReviewQuestions(allQuestions: Question[], count: number = 10,
 
     if (incorrectQuestions.length === 0) return [];
 
-  // 間違えた回数と最後に間違えた日付でソート（優先度高い順）
-  const sortedIncorrect = [...incorrectQuestions].sort((a, b) => {
-    // まず間違えた回数で比較
-    if (b.incorrectCount !== a.incorrectCount) {
-      return b.incorrectCount - a.incorrectCount;
-    }
-    // 次に最後に間違えた日付で比較（新しい順）
-    return new Date(b.lastIncorrectDate).getTime() - new Date(a.lastIncorrectDate).getTime();
-  });
+    // 間違えた回数と最後に間違えた日付でソート（優先度高い順）
+    const sortedIncorrect = [...incorrectQuestions].sort((a, b) => {
+      // まず間違えた回数で比較
+      if (b.incorrectCount !== a.incorrectCount) {
+        return b.incorrectCount - a.incorrectCount;
+      }
+      // 次に最後に間違えた日付で比較（新しい順）
+      return new Date(b.lastIncorrectDate).getTime() - new Date(a.lastIncorrectDate).getTime();
+    });
 
-  // 対応する問題を取得
-  const reviewQuestions: Question[] = [];
-  for (const incorrect of sortedIncorrect) {
-    const question = allQuestions.find(q => q.questionId === incorrect.questionId);
-    if (question && reviewQuestions.length < count) {
-      reviewQuestions.push(question);
-    }
-  }
-
-    return reviewQuestions;
+    // question-filtersを使用して間違えた問題のみをフィルタリング
+    const incorrectQuestionsFiltered = filterByIncorrect(allQuestions, sortedIncorrect);
+    
+    // 必要な数だけ返す
+    return incorrectQuestionsFiltered.slice(0, count);
   } catch (error) {
     console.error('Error in getReviewQuestions:', error);
     return [];
@@ -134,14 +130,14 @@ export function getRandomQuestionsForCategory(
 
   // 間違えた問題から最大3問まで含める
   const incorrectCount = Math.min(3, incorrectQuestionsInCategory.length);
-  const selectedIncorrect = shuffleArray(incorrectQuestionsInCategory).slice(0, incorrectCount);
+  const selectedIncorrect = selectRandom(incorrectQuestionsInCategory, incorrectCount);
 
   // 残りを正解した問題から選択
   const remainingCount = count - selectedIncorrect.length;
-  const selectedCorrect = shuffleArray(correctQuestionsInCategory).slice(0, remainingCount);
+  const selectedCorrect = selectRandom(correctQuestionsInCategory, remainingCount);
 
   // 混ぜて返す
-  return shuffleArray([...selectedIncorrect, ...selectedCorrect]);
+  return selectRandom([...selectedIncorrect, ...selectedCorrect], count);
 }
 
 // Mock試験用の問題を取得
@@ -176,18 +172,6 @@ export function getMockQuestions(
   return categoryQuestions.slice(0, 25);
 }
 
-// 配列をシャッフル
-function shuffleArray<T>(array: T[]): T[] {
-  if (!array || array.length === 0) {
-    return [];
-  }
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
 
 // 復習回数を更新
 export function updateReviewCount(questionId: string, userNickname?: string) {
@@ -261,12 +245,12 @@ export function getSequentialQuestionsForCategory(
   count: number = 10
 ): Question[] {
   // 回答済みの問題を除外
-  const unansweredQuestions = categoryQuestions.filter(
-    q => !answeredQuestionIds.includes(q.questionId)
-  );
+  const unansweredQuestions = excludeAnswered(categoryQuestions, answeredQuestionIds);
   
-  // 最初から順番に取得
-  return unansweredQuestions.slice(0, count);
+  // globalIdでソートして最初から順番に取得
+  const sortedQuestions = sortByGlobalId(unansweredQuestions, 'asc');
+  
+  return sortedQuestions.slice(0, count);
 }
 
 // カテゴリの回答済み問題IDを取得

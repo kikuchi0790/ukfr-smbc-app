@@ -18,6 +18,7 @@ import { fetchJSON } from "@/utils/fetch-utils";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { filterByCategory, searchQuestions, filterByQuery } from "@/utils/question-filters";
 
 function QuestionsListContent() {
   const router = useRouter();
@@ -121,7 +122,7 @@ function QuestionsListContent() {
 
     // カテゴリフィルター
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(q => q.category === selectedCategory);
+      filtered = filterByCategory(filtered, selectedCategory as Category);
     }
 
     // ステータスフィルター
@@ -144,12 +145,10 @@ function QuestionsListContent() {
 
     // 検索フィルター
     if (searchTerm) {
-      const lowerSearchTerm = searchTerm.toLowerCase();
-      filtered = filtered.filter(q => 
-        q.question.toLowerCase().includes(lowerSearchTerm) ||
-        q.questionJa?.toLowerCase().includes(lowerSearchTerm) ||
-        q.explanation.toLowerCase().includes(lowerSearchTerm) ||
-        q.explanationJa?.toLowerCase().includes(lowerSearchTerm)
+      filtered = searchQuestions(
+        filtered,
+        [searchTerm],
+        ['question', 'explanation']
       );
     }
 

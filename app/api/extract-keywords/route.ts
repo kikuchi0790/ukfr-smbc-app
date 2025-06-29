@@ -1,69 +1,65 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { kv } from '@vercel/kv';
 import { extractKeywordsFromQuestion } from '@/lib/gemini';
 import { KeywordCache } from '@/types';
 
-// メモリ内キャッシュ（サーバーサイド）
-const keywordCache = new Map<string, KeywordCache>();
+// API response structure
+interface ApiResponse<T> {
+  success: boolean;
+  data: T | null;
+  error: string | null;
+  cached?: boolean;
+}
 
-// キャッシュの有効期限（24時間）
-const CACHE_DURATION = 24 * 60 * 60 * 1000;
+// Cache duration: 24 hours in seconds
+const CACHE_DURATION_SECONDS = 24 * 60 * 60;
 
-// レート制限用の設定
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT = 10; // 1分あたりの最大リクエスト数
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1分
+// Rate limiting settings
+const RATE_LIMIT = 20; // Max requests per minute per client
+const RATE_LIMIT_WINDOW_SECONDS = 60;
+
+// Helper for creating standardized responses
+function apiResponse<T>(status: number, success: boolean, data: T | null, error: string | null, cached?: boolean): NextResponse {
+  return NextResponse.json({ success, data, error, cached }, { status });
+}
 
 export async function POST(request: NextRequest) {
+  // Get client IP from headers
+  const forwarded = request.headers.get('x-forwarded-for');
+  const clientId = forwarded ? forwarded.split(',')[0] : 'anonymous';
+
   try {
-    // リクエストボディの取得
+    // Rate Limiting Check
+    const rateLimitKey = `rate_limit:extract_keywords:${clientId}`;
+    const currentUsage = await kv.get<number>(rateLimitKey) ?? 0;
+
+    if (currentUsage >= RATE_LIMIT) {
+      console.warn(`Rate limit exceeded for client: ${clientId}`);
+      return apiResponse(429, false, null, 'Rate limit exceeded. Please try again later.');
+    }
+
+    // Get request body
     const body = await request.json();
-    const { questionId, question, options, correctAnswer, explanation, clientId } = body;
+    const { questionId, question, options, correctAnswer, explanation } = body;
 
-    // 必須パラメータのチェック
+    // Validate required parameters
     if (!questionId || !question || !options || !correctAnswer) {
-      return NextResponse.json(
-        { error: 'Missing required parameters' },
-        { status: 400 }
-      );
+      return apiResponse(400, false, null, 'Missing required parameters');
     }
 
-    // レート制限のチェック
-    const now = Date.now();
-    const rateLimit = rateLimitMap.get(clientId || 'anonymous');
-    
-    if (rateLimit) {
-      if (now < rateLimit.resetTime) {
-        if (rateLimit.count >= RATE_LIMIT) {
-          return NextResponse.json(
-            { error: 'Rate limit exceeded. Please try again later.' },
-            { status: 429 }
-          );
-        }
-        rateLimit.count++;
-      } else {
-        // リセット時間を過ぎたらカウントをリセット
-        rateLimit.count = 1;
-        rateLimit.resetTime = now + RATE_LIMIT_WINDOW;
-      }
-    } else {
-      // 初回リクエスト
-      rateLimitMap.set(clientId || 'anonymous', {
-        count: 1,
-        resetTime: now + RATE_LIMIT_WINDOW
-      });
-    }
+    // Check cache first
+    const cacheKey = `keyword_cache:${questionId}`;
+    const cached = await kv.get<KeywordCache>(cacheKey);
 
-    // キャッシュの確認
-    const cached = keywordCache.get(questionId);
-    if (cached && new Date(cached.expiresAt).getTime() > now) {
+    if (cached) {
       console.log(`Cache hit for question ${questionId}`);
-      return NextResponse.json({
-        keywords: cached.keywords,
-        cached: true
-      });
+      return apiResponse(200, true, { keywords: cached.keywords }, null, true);
     }
 
-    // Gemini APIを使用してキーワードを抽出
+    // If not cached, increment rate limit counter and call the Gemini API
+    await kv.incr(rateLimitKey);
+    await kv.expire(rateLimitKey, RATE_LIMIT_WINDOW_SECONDS);
+
     console.log(`Extracting keywords for question ${questionId}`);
     const keywords = await extractKeywordsFromQuestion(
       question,
@@ -72,56 +68,38 @@ export async function POST(request: NextRequest) {
       explanation || ''
     );
 
-    // キャッシュに保存
+    // Save result to cache
     const cacheEntry: KeywordCache = {
       questionId,
       keywords,
       createdAt: new Date().toISOString(),
-      expiresAt: new Date(now + CACHE_DURATION).toISOString()
+      expiresAt: new Date(Date.now() + CACHE_DURATION_SECONDS * 1000).toISOString()
     };
-    keywordCache.set(questionId, cacheEntry);
+    await kv.set(cacheKey, cacheEntry, { ex: CACHE_DURATION_SECONDS });
 
-    // 古いキャッシュエントリをクリーンアップ（100件を超えたら古いものから削除）
-    if (keywordCache.size > 100) {
-      const entries = Array.from(keywordCache.entries());
-      entries.sort((a, b) => new Date(a[1].createdAt).getTime() - new Date(b[1].createdAt).getTime());
-      
-      // 最も古い20件を削除
-      for (let i = 0; i < 20; i++) {
-        keywordCache.delete(entries[i][0]);
-      }
-    }
-
-    return NextResponse.json({
-      keywords,
-      cached: false
-    });
+    return apiResponse(200, true, { keywords }, null, false);
 
   } catch (error) {
-    console.error('Error in extract-keywords API:', error);
+    const errorId = `err_${Date.now()}`;
+    console.error(`[API Error ${errorId}]`, error);
+
+    if (error instanceof SyntaxError) {
+      return apiResponse(400, false, null, `Invalid JSON body. Error ID: ${errorId}`);
+    }
     
-    // エラーの種類に応じて適切なステータスコードを返す
     if (error instanceof Error) {
       if (error.message.includes('API key')) {
-        return NextResponse.json(
-          { error: 'API configuration error' },
-          { status: 500 }
-        );
+        return apiResponse(500, false, null, `API configuration error. Error ID: ${errorId}`);
       }
       if (error.message.includes('rate limit')) {
-        return NextResponse.json(
-          { error: 'External API rate limit exceeded' },
-          { status: 503 }
-        );
+        return apiResponse(503, false, null, `External API rate limit exceeded. Error ID: ${errorId}`);
       }
     }
 
-    return NextResponse.json(
-      { error: 'Failed to extract keywords' },
-      { status: 500 }
-    );
+    return apiResponse(500, false, null, `Failed to extract keywords. Error ID: ${errorId}`);
   }
 }
+
 
 // OPTIONS リクエストのハンドリング（CORS対応）
 export async function OPTIONS(request: NextRequest) {

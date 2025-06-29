@@ -17,6 +17,7 @@ import { UserProgress } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { formatElapsedTime, formatPercentage } from "@/utils/formatters";
 
 function StudyCompletePageContent() {
   const router = useRouter();
@@ -41,15 +42,13 @@ function StudyCompletePageContent() {
       if (latestSession) {
         const correctAnswers = latestSession.answers.filter(a => a.isCorrect).length;
         const totalQuestions = latestSession.answers.length;
-        const accuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+        const accuracy = totalQuestions > 0 ? parseFloat(formatPercentage(correctAnswers, totalQuestions)) : 0;
         
         // Calculate time spent
         const startTime = new Date(latestSession.startedAt);
         const endTime = new Date(latestSession.completedAt || new Date());
-        const diffMinutes = Math.round((endTime.getTime() - startTime.getTime()) / (1000 * 60));
-        const timeSpent = diffMinutes < 60 
-          ? `${diffMinutes}分` 
-          : `${Math.floor(diffMinutes / 60)}時間${diffMinutes % 60}分`;
+        const diffSeconds = Math.floor((endTime.getTime() - startTime.getTime()) / 1000);
+        const timeSpent = formatElapsedTime(diffSeconds);
         
         setSessionStats({
           totalQuestions,

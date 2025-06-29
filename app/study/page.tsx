@@ -21,6 +21,7 @@ import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { progressSync } from "@/services/progress-sync";
+import { formatPercentage } from "@/utils/formatters";
 
 function StudyModeContent() {
   const router = useRouter();
@@ -198,7 +199,7 @@ function StudyModeContent() {
     const answered = categoryProgress.answeredQuestions || 0;
     const total = categoryProgress.totalQuestions || 0;
     // Calculate percentage based on correct answers for buildings progress
-    const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const percentage = total > 0 ? parseFloat(formatPercentage(correct, total)) : 0;
     
     return { correct, answered, total, percentage };
   };
@@ -368,7 +369,7 @@ function StudyModeContent() {
               リセット
             </button>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-cy="category-list">
             {studyCategories.map((category) => {
               const categoryProgress = getCategoryProgress(category.name);
               const colors = categoryColors[category.name] || { 

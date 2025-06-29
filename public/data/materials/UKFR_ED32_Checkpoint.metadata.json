@@ -1,0 +1,29 @@
+{
+  "id": "UKFR_ED32_Checkpoint.pdf",
+  "title": "UKFR ED32 Checkpoint",
+  "version": "1.0.0",
+  "tableOfContents": [
+    {
+      "title": "Chapter 1: Introduction",
+      "pageNumber": 1
+    },
+    {
+      "title": "Chapter 2: The Regulatory Environment",
+      "pageNumber": 5,
+      "children": [
+        {
+          "title": "2.1 The Financial Services and Markets Act 2000",
+          "pageNumber": 6
+        },
+        {
+          "title": "2.2 The FCA's Conduct of Business Sourcebook",
+          "pageNumber": 12
+        }
+      ]
+    },
+    {
+      "title": "Chapter 3: Complaints and Redress",
+      "pageNumber": 25
+    }
+  ]
+}

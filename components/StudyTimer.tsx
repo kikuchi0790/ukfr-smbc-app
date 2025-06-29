@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Clock, Pause, Play } from "lucide-react";
+import { formatTime } from "@/utils/formatters";
 
 interface StudyTimerProps {
   timeLimit: number; // 分
@@ -29,9 +30,8 @@ export default function StudyTimer({ timeLimit, onTimeUp, isPaused = false }: St
     return () => clearInterval(interval);
   }, [isRunning, remainingSeconds, onTimeUp]);
 
-  const minutes = Math.floor(remainingSeconds / 60);
-  const seconds = remainingSeconds % 60;
   const percentage = ((timeLimit * 60 - remainingSeconds) / (timeLimit * 60)) * 100;
+  const formattedTime = formatTime(remainingSeconds);
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);
@@ -58,7 +58,7 @@ export default function StudyTimer({ timeLimit, onTimeUp, isPaused = false }: St
       </div>
       
       <div className="text-2xl font-bold text-gray-900 mb-2">
-        {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+        {formattedTime}
       </div>
       
       <div className="w-full bg-gray-200 rounded-full h-2">

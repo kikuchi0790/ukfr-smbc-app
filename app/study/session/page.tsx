@@ -15,7 +15,7 @@ import {
   Languages,
   Timer
 } from "lucide-react";
-import { Question, StudySession, Answer, UserProgress, StudyMode, Category, CategoryProgress } from "@/types";
+import { Question, StudySession, Answer, UserProgress, StudyMode, Category, CategoryProgress, HighlightAnchor } from "@/types";
 import StudyTimer from "@/components/StudyTimer";
 import ErrorAlert from "@/components/ErrorAlert";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
@@ -583,12 +583,24 @@ function StudySessionContent() {
       const keywords = await extractKeywords(currentQuestion);
       
       // 現在のセッション情報を保存
+      // In a real implementation, the anchor would be pre-calculated and stored with the question.
+      const anchor: HighlightAnchor = {
+        selector: 'p:nth-child(3)',      // Placeholder
+        startOffset: 0,                  // Placeholder
+        endOffset: 100,                  // Placeholder
+        selectedText: keywords.join(' '), // Using keywords as the selected text
+        beforeText: '',                  // Placeholder
+        afterText: '',                   // Placeholder
+        pageNumber: 1                    // Placeholder
+      };
+
       const navigationState = {
         from: mode === 'review' ? 'review' : isMockMode ? 'mock' : 'study',
         sessionId: session.id,
         questionIndex: currentQuestionIndex,
         questionId: currentQuestion.questionId,
         keywords,
+        anchor, // Add the anchor to the navigation state
         mode,
         category: categoryParam,
         part: partParam,
@@ -1313,6 +1325,7 @@ function StudySessionContent() {
                   return (
                     <button
                       key={option.letter}
+                      data-cy={`option-${option.letter}`}
                       onClick={() => handleAnswerSelect(option.letter)}
                       disabled={showResult}
                       className={`w-full p-4 rounded-lg border-2 text-left transition-all ${

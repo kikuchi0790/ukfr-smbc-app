@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Trash2, AlertCircle } from 'lucide-react';
 import { safeLocalStorage } from '@/utils/storage-utils';
+import { formatPercentage, formatFileSize } from '@/utils/formatters';
 
 export default function StorageCleanup() {
   const [showModal, setShowModal] = useState(false);
@@ -11,13 +12,13 @@ export default function StorageCleanup() {
   const getStorageInfo = () => {
     const info = safeLocalStorage.getStorageInfo();
     const percentage = info.percentage;
-    const usedMB = (info.used / 1024 / 1024).toFixed(2);
-    const totalMB = (info.total / 1024 / 1024).toFixed(2);
+    const usedFormatted = formatFileSize(info.used, 2);
+    const totalFormatted = formatFileSize(info.total, 2);
     
     return {
       percentage,
-      usedMB,
-      totalMB,
+      usedFormatted,
+      totalFormatted,
       isNearLimit: percentage > 80
     };
   };
@@ -102,7 +103,7 @@ export default function StorageCleanup() {
       keysToDelete.forEach(key => localStorage.removeItem(key));
       
       const newInfo = getStorageInfo();
-      alert(`クリーンアップが完了しました。\n削除: ${keysToDelete.length}個\n最適化: ${sessionsCleaned}セッション\n\n使用量: ${newInfo.usedMB}MB / ${newInfo.totalMB}MB (${newInfo.percentage}%)`);
+      alert(`クリーンアップが完了しました。\n削除: ${keysToDelete.length}個\n最適化: ${sessionsCleaned}セッション\n\n使用量: ${newInfo.usedFormatted} / ${newInfo.totalFormatted} (${newInfo.percentage}%)`);
     } catch (error) {
       console.error('Storage cleanup failed:', error);
       alert('クリーンアップ中にエラーが発生しました。');
@@ -123,7 +124,7 @@ export default function StorageCleanup() {
             <div>
               <p className="font-medium mb-1">ストレージ容量が不足しています</p>
               <p className="text-sm opacity-90 mb-2">
-                使用中: {storageInfo.usedMB}MB / {storageInfo.totalMB}MB ({storageInfo.percentage}%)
+                使用中: {storageInfo.usedFormatted} / {storageInfo.totalFormatted} ({storageInfo.percentage}%)
               </p>
               <button
                 onClick={() => setShowModal(true)}
@@ -146,7 +147,7 @@ export default function StorageCleanup() {
             
             <div className="mb-4">
               <p className="text-gray-300 mb-2">
-                現在の使用状況: {storageInfo.usedMB}MB / {storageInfo.totalMB}MB ({storageInfo.percentage}%)
+                現在の使用状況: {storageInfo.usedFormatted} / {storageInfo.totalFormatted} ({storageInfo.percentage}%)
               </p>
               <div className="w-full bg-gray-700 rounded-full h-2">
                 <div 

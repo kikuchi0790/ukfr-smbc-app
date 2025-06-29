@@ -2,6 +2,7 @@ import { doc, setDoc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { UserProgress, Category, StudySession } from '@/types';
 import { safeLocalStorage, getUserKey } from '@/utils/storage-utils';
+import { DataMerger } from '@/utils/data-merge-utils';
 
 // Firestoreと同期するデータ構造
 interface SyncData {
@@ -135,104 +136,14 @@ export function setupRealtimeSync(userId: string, nickname: string, onUpdate: (p
 
 // データマージ戦略：より新しいデータを優先
 export function mergeProgressData(local: UserProgress, remote: UserProgress): UserProgress {
-  // 基本的な統計情報は加算
-  const merged: UserProgress = {
-    ...remote,
-    totalQuestionsAnswered: Math.max(local.totalQuestionsAnswered, remote.totalQuestionsAnswered),
-    correctAnswers: Math.max(local.correctAnswers, remote.correctAnswers),
-    currentStreak: Math.max(local.currentStreak, remote.currentStreak),
-    bestStreak: Math.max(local.bestStreak || 0, remote.bestStreak || 0),
-    lastStudyDate: local.lastStudyDate > remote.lastStudyDate ? local.lastStudyDate : remote.lastStudyDate,
-    
-    // 配列データはマージ
-    studySessions: mergeArraysByDate(local.studySessions || [], remote.studySessions || []),
-    incorrectQuestions: mergeIncorrectQuestions(local.incorrectQuestions || [], remote.incorrectQuestions || []),
-    overcomeQuestions: mergeOvercomeQuestions(local.overcomeQuestions || [], remote.overcomeQuestions || []),
-    
-    // カテゴリ進捗は最大値を取る
-    categoryProgress: mergeCategoryProgress(local.categoryProgress, remote.categoryProgress),
-    mockCategoryProgress: local.mockCategoryProgress || remote.mockCategoryProgress,
-    
-    // 設定は最新のものを使用
-    preferences: local.preferences || remote.preferences
-  };
-  
-  return merged;
+  return DataMerger.mergeProgress(local, remote);
 }
 
-// 学習セッションをマージ（重複排除）
-function mergeArraysByDate(arr1: StudySession[], arr2: StudySession[]): StudySession[] {
-  const map = new Map<string, StudySession>();
-  
-  [...arr1, ...arr2].forEach(item => {
-    const key = item.id;
-    if (!map.has(key)) {
-      map.set(key, item);
-    }
-  });
-  
-  return Array.from(map.values()).sort((a, b) => 
-    new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime()
-  );
-}
-
-// 間違えた問題をマージ
-function mergeIncorrectQuestions(arr1: any[], arr2: any[]): any[] {
-  const map = new Map<string, any>();
-  
-  [...arr1, ...arr2].forEach(item => {
-    const existing = map.get(item.questionId);
-    if (!existing || item.lastAttemptDate > existing.lastAttemptDate) {
-      map.set(item.questionId, item);
-    } else if (existing) {
-      // 間違えた回数は加算
-      map.set(item.questionId, {
-        ...item,
-        incorrectCount: Math.max(item.incorrectCount, existing.incorrectCount),
-        reviewCount: Math.max(item.reviewCount, existing.reviewCount)
-      });
-    }
-  });
-  
-  return Array.from(map.values());
-}
-
-// 克服した問題をマージ
-function mergeOvercomeQuestions(arr1: any[], arr2: any[]): any[] {
-  const map = new Map<string, any>();
-  
-  [...arr1, ...arr2].forEach(item => {
-    const existing = map.get(item.questionId);
-    if (!existing || item.overcomeDate > existing.overcomeDate) {
-      map.set(item.questionId, item);
-    }
-  });
-  
-  return Array.from(map.values());
-}
-
-// カテゴリ進捗をマージ
-function mergeCategoryProgress(local: any, remote: any): any {
-  const merged: any = {};
-  
-  const allCategories = new Set([
-    ...Object.keys(local || {}),
-    ...Object.keys(remote || {})
-  ]);
-  
-  allCategories.forEach(category => {
-    const localCat = local?.[category] || { answeredQuestions: 0, correctAnswers: 0 };
-    const remoteCat = remote?.[category] || { answeredQuestions: 0, correctAnswers: 0 };
-    
-    merged[category] = {
-      totalQuestions: localCat.totalQuestions || remoteCat.totalQuestions,
-      answeredQuestions: Math.max(localCat.answeredQuestions, remoteCat.answeredQuestions),
-      correctAnswers: Math.max(localCat.correctAnswers, remoteCat.correctAnswers)
-    };
-  });
-  
-  return merged;
-}
+// 以下の関数はDataMergerクラスに移行済み
+// - mergeArraysByDate -> DataMerger.mergeStudySessions
+// - mergeIncorrectQuestions -> DataMerger.mergeIncorrectQuestions
+// - mergeOvercomeQuestions -> DataMerger.mergeOvercomeQuestions
+// - mergeCategoryProgress -> DataMerger.mergeCategoryProgress
 
 // 自動同期の設定
 export async function enableAutoSync(userId: string, nickname: string): Promise<() => void> {

@@ -36,6 +36,7 @@ import dynamic from 'next/dynamic';
 import { categories } from "@/utils/category-utils";
 import { validateAndFixProgress, cleanupAllProgressData } from "@/utils/progress-validator";
 import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
+import { formatPercentage } from "@/utils/formatters";
 
 // Dynamic import for 3D components to avoid SSR issues
 const WireframeBuildings3D = dynamic(
@@ -147,7 +148,7 @@ function DashboardContent() {
 
   const calculateAccuracy = () => {
     if (!progress || progress.totalQuestionsAnswered === 0) return 0;
-    return Math.round((progress.correctAnswers / progress.totalQuestionsAnswered) * 100);
+    return parseFloat(formatPercentage(progress.correctAnswers, progress.totalQuestionsAnswered));
   };
 
   const calculateOverallMockAccuracy = () => {

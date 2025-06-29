@@ -1,6 +1,7 @@
 import { safeLocalStorage } from './storage-utils';
 import { UserProgress, Category, CategoryProgress, MockCategoryProgress } from '@/types';
 import { categories } from './category-utils';
+import { DataMerger } from './data-merge-utils';
 
 /**
  * 古いデータをマイグレーションする
@@ -92,77 +93,21 @@ export function migrateOldData(nickname: string): boolean {
  * より多く進んでいる方のデータを優先する
  */
 function mergeProgressData(current: UserProgress, old: UserProgress): UserProgress {
-  // Initialize category progress with all categories
-  const initialCategoryProgress: Partial<Record<Category, CategoryProgress>> = {};
+  // DataMergerを使用してマージ
+  const merged = DataMerger.mergeProgress(current, old);
+  
+  // カテゴリ進捗の初期化（DataMergerで処理されない場合の保険）
   categories.forEach(category => {
-    initialCategoryProgress[category.name] = {
-      totalQuestions: category.totalQuestions,
-      answeredQuestions: 0,
-      correctAnswers: 0
-    };
+    if (!merged.categoryProgress[category.name]) {
+      merged.categoryProgress[category.name] = {
+        totalQuestions: category.totalQuestions,
+        answeredQuestions: 0,
+        correctAnswers: 0
+      };
+    }
   });
 
-  const merged: UserProgress = {
-    ...current,
-    totalQuestionsAnswered: Math.max(current.totalQuestionsAnswered, old.totalQuestionsAnswered),
-    correctAnswers: Math.max(current.correctAnswers, old.correctAnswers),
-    currentStreak: Math.max(current.currentStreak, old.currentStreak || 0),
-    bestStreak: Math.max(current.bestStreak || 0, old.bestStreak || 0),
-    lastStudyDate: current.lastStudyDate > old.lastStudyDate ? current.lastStudyDate : old.lastStudyDate,
-    categoryProgress: initialCategoryProgress as Record<Category, CategoryProgress>,
-    studySessions: [],
-    incorrectQuestions: [],
-    overcomeQuestions: [],
-    mockCategoryProgress: undefined
-  };
-
-  // カテゴリ進捗のマージ（より進んでいる方を採用）
-  if (old.categoryProgress) {
-    Object.entries(old.categoryProgress).forEach(([category, oldProg]) => {
-      const categoryKey = category as Category;
-      const currentProg = current.categoryProgress?.[categoryKey];
-      if (!currentProg || oldProg.answeredQuestions > currentProg.answeredQuestions) {
-        merged.categoryProgress[categoryKey] = oldProg;
-      } else {
-        merged.categoryProgress[categoryKey] = currentProg;
-      }
-    });
-  }
-
-  // 現在のカテゴリ進捗も確認
-  if (current.categoryProgress) {
-    Object.entries(current.categoryProgress).forEach(([category, currentProg]) => {
-      const categoryKey = category as Category;
-      if (!merged.categoryProgress[categoryKey]) {
-        merged.categoryProgress[categoryKey] = currentProg;
-      }
-    });
-  }
-
-  // Study sessionsのマージ（両方を結合して日付でソート）
-  merged.studySessions = [
-    ...(current.studySessions || []),
-    ...(old.studySessions || [])
-  ].sort((a, b) => new Date(b.startedAt || '').getTime() - new Date(a.startedAt || '').getTime())
-    .slice(0, 100); // 最新100件のみ保持
-
-  // 間違えた問題のマージ（重複を除去）
-  const incorrectMap = new Map();
-  [...(old.incorrectQuestions || []), ...(current.incorrectQuestions || [])]
-    .forEach(q => {
-      const existing = incorrectMap.get(q.questionId);
-      if (!existing || q.incorrectCount > existing.incorrectCount) {
-        incorrectMap.set(q.questionId, q);
-      }
-    });
-  merged.incorrectQuestions = Array.from(incorrectMap.values());
-
-  // 克服した問題のマージ（重複を除去）
-  const overcomeMap = new Map();
-  [...(old.overcomeQuestions || []), ...(current.overcomeQuestions || [])]
-    .forEach(q => overcomeMap.set(q.questionId, q));
-  merged.overcomeQuestions = Array.from(overcomeMap.values());
-
+  // DataMergerが処理しきれない追加フィールドの処理
   // Mock試験進捗のマージ（より良いスコアを採用）
   if (old.mockCategoryProgress || current.mockCategoryProgress) {
     merged.mockCategoryProgress = {} as Record<Category, MockCategoryProgress>;
@@ -189,9 +134,6 @@ function mergeProgressData(current: UserProgress, old: UserProgress): UserProgre
       });
     }
   }
-
-  // 設定は現在のものを優先
-  merged.preferences = current.preferences || old.preferences;
 
   return merged;
 }

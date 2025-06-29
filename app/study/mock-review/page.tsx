@@ -6,6 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { safeLocalStorage, getUserKey } from '@/utils/storage-utils';
 import { Question, StudySession, Answer } from '@/types';
+import { searchQuestions } from '@/utils/question-filters';
 import { 
   ArrowLeft,
   CheckCircle,
@@ -66,7 +67,8 @@ function MockReviewContent() {
     
     const { questions, session } = examData;
     
-    return questions.filter((question, index) => {
+    // 最初にフィルターモードで絞り込み
+    let filteredQuestions = questions.filter((question, index) => {
       const answer = session.answers[index];
       if (!answer) return false;
 
@@ -74,19 +76,19 @@ function MockReviewContent() {
       if (filterMode === 'correct' && !answer.isCorrect) return false;
       if (filterMode === 'incorrect' && answer.isCorrect) return false;
 
-      // 検索クエリによる絞り込み
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        return (
-          question.question.toLowerCase().includes(query) ||
-          question.questionJa?.toLowerCase().includes(query) ||
-          question.explanation.toLowerCase().includes(query) ||
-          question.explanationJa?.toLowerCase().includes(query)
-        );
-      }
-
       return true;
     });
+
+    // 検索クエリがある場合は、question-filtersのsearchQuestionsを使用
+    if (searchQuery) {
+      filteredQuestions = searchQuestions(
+        filteredQuestions,
+        [searchQuery],
+        ['question', 'explanation', 'options']
+      );
+    }
+
+    return filteredQuestions;
   };
 
   if (loading) {

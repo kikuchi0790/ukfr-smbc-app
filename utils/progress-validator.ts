@@ -1,6 +1,9 @@
 import { UserProgress, Category } from "@/types";
 import { categories, getCategoryInfo } from "./category-utils";
 import { safeLocalStorage, getUserKey } from "./storage-utils";
+import { ensureProperty, clamp, isNotEmpty, ensureArray, uniqueArray } from "./validation-utils";
+import { isValidProgress, isValidCategoryProgress } from "./type-guards";
+import { ValidationError, handleValidationError } from "./error-utils";
 
 /**
  * 進捗データの整合性をチェックし、必要に応じて修正する
@@ -9,9 +12,7 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
   const fixedProgress = { ...progress };
   
   // categoryProgressが存在しない場合は初期化
-  if (!fixedProgress.categoryProgress) {
-    fixedProgress.categoryProgress = {} as Record<Category, any>;
-  }
+  ensureProperty(fixedProgress, 'categoryProgress', {} as Record<Category, any>);
   
   // 新規ユーザーの判定: totalQuestionsAnsweredが0の場合、すべてのカテゴリをリセット
   const isNewUser = fixedProgress.totalQuestionsAnswered === 0;
@@ -21,13 +22,16 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
     const categoryName = categoryInfo.name;
     
     // カテゴリが存在しない場合は初期化
-    if (!fixedProgress.categoryProgress[categoryName]) {
-      fixedProgress.categoryProgress[categoryName] = {
-        totalQuestions: categoryInfo.totalQuestions,
-        answeredQuestions: 0,
-        correctAnswers: 0
-      };
-    } else {
+    ensureProperty(fixedProgress.categoryProgress, categoryName, {
+      totalQuestions: categoryInfo.totalQuestions,
+      answeredQuestions: 0,
+      correctAnswers: 0
+    });
+    
+    const categoryProgress = fixedProgress.categoryProgress[categoryName];
+    
+    // カテゴリプログレスの検証
+    if (isValidCategoryProgress(categoryProgress)) {
       const categoryProgress = fixedProgress.categoryProgress[categoryName];
       
       // 新規ユーザーの場合、すべてのカテゴリをリセット
@@ -44,16 +48,18 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
       }
       
       // answeredQuestionsがtotalQuestionsを超えていないか確認
-      if (categoryProgress.answeredQuestions > categoryProgress.totalQuestions) {
-        console.warn(`Fixing answered questions for ${categoryName}: ${categoryProgress.answeredQuestions} → ${categoryProgress.totalQuestions}`);
-        categoryProgress.answeredQuestions = categoryProgress.totalQuestions;
-      }
+      categoryProgress.answeredQuestions = clamp(
+        categoryProgress.answeredQuestions,
+        0,
+        categoryProgress.totalQuestions
+      );
       
       // correctAnswersがansweredQuestionsを超えていないか確認
-      if (categoryProgress.correctAnswers > categoryProgress.answeredQuestions) {
-        console.warn(`Fixing correct answers for ${categoryName}: ${categoryProgress.correctAnswers} → ${categoryProgress.answeredQuestions}`);
-        categoryProgress.correctAnswers = categoryProgress.answeredQuestions;
-      }
+      categoryProgress.correctAnswers = clamp(
+        categoryProgress.correctAnswers,
+        0,
+        categoryProgress.answeredQuestions
+      );
     }
   });
   
@@ -64,18 +70,33 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
  * 進捗をロードし、検証・修正を行う
  */
 export function loadValidatedProgress(): UserProgress | null {
-  const userProgressKey = getUserKey('userProgress');
-  const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
-  if (!progress) return null;
-  
-  const validatedProgress = validateAndFixProgress(progress);
-  
-  // 修正が必要だった場合は保存
-  if (JSON.stringify(progress) !== JSON.stringify(validatedProgress)) {
-    safeLocalStorage.setItem(userProgressKey, validatedProgress);
+  try {
+    const userProgressKey = getUserKey('userProgress');
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    
+    if (!isNotEmpty(progress)) return null;
+    
+    // 型ガードでバリデーション
+    if (!isValidProgress(progress)) {
+      throw new ValidationError(
+        'Invalid progress data structure',
+        'progress',
+        progress
+      );
+    }
+    
+    const validatedProgress = validateAndFixProgress(progress);
+    
+    // 修正が必要だった場合は保存
+    if (JSON.stringify(progress) !== JSON.stringify(validatedProgress)) {
+      safeLocalStorage.setItem(userProgressKey, validatedProgress);
+    }
+    
+    return validatedProgress;
+  } catch (error) {
+    handleValidationError(error, 'loadValidatedProgress');
+    return null;
   }
-  
-  return validatedProgress;
 }
 
 /**
@@ -87,15 +108,13 @@ export class AnsweredQuestionsTracker {
   static getAnsweredQuestions(category: Category): Set<string> {
     const userKey = getUserKey(this.STORAGE_KEY);
     const data = safeLocalStorage.getItem<Record<Category, string[]>>(userKey) || {} as Record<Category, string[]>;
-    return new Set(data[category] || []);
+    return new Set(ensureArray(data[category]));
   }
   
   static addAnsweredQuestion(category: Category, questionId: string): void {
     const userKey = getUserKey(this.STORAGE_KEY);
     const data = safeLocalStorage.getItem<Record<Category, string[]>>(userKey) || {} as Record<Category, string[]>;
-    if (!data[category]) {
-      data[category] = [];
-    }
+    ensureProperty(data, category, []);
     
     // Ensure no duplicates
     if (!data[category].includes(questionId)) {
@@ -135,15 +154,12 @@ export class AnsweredQuestionsTracker {
     categories.forEach(categoryInfo => {
       const category = categoryInfo.name;
       if (data[category]) {
-        // Remove duplicates
-        const uniqueIds = [...new Set(data[category])];
+        // Remove duplicates and limit to total questions
+        const uniqueIds = uniqueArray(data[category]);
+        data[category] = uniqueIds.slice(0, categoryInfo.totalQuestions);
         
-        // Limit to total questions
         if (uniqueIds.length > categoryInfo.totalQuestions) {
           console.warn(`Cleaning up ${category}: ${uniqueIds.length} → ${categoryInfo.totalQuestions}`);
-          data[category] = uniqueIds.slice(0, categoryInfo.totalQuestions);
-        } else {
-          data[category] = uniqueIds;
         }
       }
     });

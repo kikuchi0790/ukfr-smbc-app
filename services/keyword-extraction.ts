@@ -1,5 +1,8 @@
 import { Question, KeywordCache } from '@/types';
 import { safeLocalStorage } from '@/utils/storage-utils';
+import { isNotEmpty, isNotBlank, ensureArray, safeJsonParse } from '@/utils/validation-utils';
+import { isValidQuestion } from '@/utils/type-guards';
+import { ApiError, handleApiError, handleStorageError } from '@/utils/error-utils';
 
 const KEYWORD_CACHE_KEY = 'keywordCache';
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 7日間
@@ -35,10 +38,12 @@ export async function extractKeywords(question: Question): Promise<string[]> {
 
     if (!response.ok) {
       const error = await response.json();
-      console.error('API error:', error);
-      
-      // エラー時はフォールバック
-      return extractFallbackKeywords(question);
+      throw new ApiError(
+        error.message || 'Failed to extract keywords',
+        response.status,
+        '/api/extract-keywords',
+        error
+      );
     }
 
     const data = await response.json();
@@ -51,14 +56,18 @@ export async function extractKeywords(question: Question): Promise<string[]> {
 
     return keywords;
   } catch (error) {
-    console.error('Failed to extract keywords:', error);
-    // ネットワークエラーなどの場合はフォールバック
+    handleApiError(error, '/api/extract-keywords', 'extractKeywords');
+    // エラー時はフォールバック
     return extractFallbackKeywords(question);
   }
 }
 
 // フォールバックキーワード抽出（クライアント側）
 function extractFallbackKeywords(question: Question): string[] {
+  // 入力検証
+  if (!isValidQuestion(question)) {
+    return [];
+  }
   const keywords: string[] = [];
   const text = `${question.question} ${question.explanation}`.toLowerCase();
 
@@ -124,18 +133,24 @@ function extractFallbackKeywords(question: Question): string[] {
 
 // ローカルキャッシュ管理
 function getKeywordsFromCache(questionId: string): string[] | null {
-  const cache = safeLocalStorage.getItem<Record<string, KeywordCache>>(KEYWORD_CACHE_KEY) || {};
-  const cached = cache[questionId];
-  
-  if (cached && new Date(cached.expiresAt).getTime() > Date.now()) {
-    return cached.keywords;
+  try {
+    const cache = safeLocalStorage.getItem<Record<string, KeywordCache>>(KEYWORD_CACHE_KEY) || {};
+    const cached = cache[questionId];
+    
+    if (isNotEmpty(cached) && new Date(cached.expiresAt).getTime() > Date.now()) {
+      return ensureArray(cached.keywords);
+    }
+    
+    return null;
+  } catch (error) {
+    handleStorageError(error, 'read', KEYWORD_CACHE_KEY, 'getKeywordsFromCache');
+    return null;
   }
-  
-  return null;
 }
 
 function saveKeywordsToCache(questionId: string, keywords: string[]): void {
-  const cache = safeLocalStorage.getItem<Record<string, KeywordCache>>(KEYWORD_CACHE_KEY) || {};
+  try {
+    const cache = safeLocalStorage.getItem<Record<string, KeywordCache>>(KEYWORD_CACHE_KEY) || {};
   
   cache[questionId] = {
     questionId,
@@ -152,25 +167,33 @@ function saveKeywordsToCache(questionId: string, keywords: string[]): void {
     }
   });
   
-  safeLocalStorage.setItem(KEYWORD_CACHE_KEY, cache);
+    safeLocalStorage.setItem(KEYWORD_CACHE_KEY, cache);
+  } catch (error) {
+    handleStorageError(error, 'write', KEYWORD_CACHE_KEY, 'saveKeywordsToCache');
+  }
 }
 
 // クライアントID管理（レート制限用）
 function getClientId(): string {
-  let clientId = localStorage.getItem('clientId');
-  if (!clientId) {
-    clientId = `client_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    localStorage.setItem('clientId', clientId);
+  try {
+    let clientId = localStorage.getItem('clientId');
+    if (!isNotBlank(clientId)) {
+      clientId = `client_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('clientId', clientId);
+    }
+    return clientId;
+  } catch (error) {
+    // ストレージエラーの場合は一時的なIDを返す
+    return `temp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
-  return clientId;
 }
 
 // キーワードの検証とフィルタリング
 export function validateKeywords(keywords: string[]): string[] {
-  return keywords
+  return ensureArray(keywords)
     .filter(keyword => {
       // 空文字や短すぎる文字を除外
-      if (!keyword || keyword.length < 2) return false;
+      if (!isNotBlank(keyword) || keyword.length < 2) return false;
       
       // 一般的すぎる単語を除外
       const commonWords = ['the', 'and', 'or', 'is', 'are', 'was', 'were', 'been', 'have', 'has'];
