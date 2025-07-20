@@ -97,7 +97,9 @@ function DashboardContent() {
     cleanupAllProgressData();
     loadUserProgress();
     loadMockExamHistory();
-    
+  }, [user]);
+  
+  useEffect(() => {
     // デバッグモードのチェック
     const debug = searchParams.get('debug') === 'true';
     setDebugMode(debug);
@@ -110,7 +112,7 @@ function DashboardContent() {
       setDataIntegrityReport(report);
       console.log('📊 Data Integrity Report:', report);
     }
-  }, [user, searchParams, progress]);
+  }, [searchParams, progress, user?.nickname]);
 
   const loadUserProgress = () => {
     try {
@@ -701,11 +703,13 @@ function DashboardContent() {
           <div className="grid grid-cols-2 gap-4">
             <button
               onClick={() => {
-                if (window.progressSync) {
-                  window.progressSync.sync(user?.nickname, 'use_higher').then((result: any) => {
+                if (typeof window !== 'undefined' && (window as any).progressSync) {
+                  (window as any).progressSync.sync(user?.nickname, 'use_higher').then((result: any) => {
                     alert(`同期完了: ${result.changes.filter((c: any) => c.action !== 'none').length}カテゴリが更新されました`);
                     loadUserProgress();
                   });
+                } else {
+                  console.error('progressSync is not available');
                 }
               }}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -714,11 +718,13 @@ function DashboardContent() {
             </button>
             <button
               onClick={() => {
-                if (window.progressSync) {
-                  window.progressSync.autoRepair(user?.nickname).then((success: boolean) => {
+                if (typeof window !== 'undefined' && (window as any).progressSync) {
+                  (window as any).progressSync.autoRepair(user?.nickname).then((success: boolean) => {
                     alert(success ? '自動修復が完了しました' : '自動修復に失敗しました');
                     loadUserProgress();
                   });
+                } else {
+                  console.error('progressSync is not available');
                 }
               }}
               className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
