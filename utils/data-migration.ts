@@ -1,7 +1,10 @@
-import { safeLocalStorage } from './storage-utils';
+import { safeLocalStorage, getUserKey } from './storage-utils';
 import { UserProgress, Category, CategoryProgress, MockCategoryProgress } from '@/types';
 import { categories } from './category-utils';
 import { DataMerger } from './data-merge-utils';
+import { createBackup, restoreFromBackup, getAvailableBackups, checkDataIntegrity } from "./data-backup";
+import { syncAnsweredQuestionsWithProgress, autoRepairProgress } from "./progress-sync-utils";
+import { loadValidatedProgress } from "./progress-validator";
 
 /**
  * 古いデータをマイグレーションする
@@ -182,4 +185,200 @@ export function cleanupOldLocalStorageData(): void {
   } catch (error) {
     console.error('Error during localStorage cleanup:', error);
   }
+}
+
+// 新しい移行システム
+interface MigrationResult {
+  success: boolean;
+  version: string;
+  backupCreated: boolean;
+  issuesFixed: number;
+  error?: string;
+}
+
+const MIGRATION_VERSION_KEY = 'dataMigrationVersion';
+const CURRENT_MIGRATION_VERSION = '2.0.0'; // 復習モード回答数修正バージョン
+
+/**
+ * データ移行が必要かチェック
+ */
+function needsMigrationV2(nickname?: string): boolean {
+  const versionKey = getUserKey(MIGRATION_VERSION_KEY, nickname);
+  const currentVersion = safeLocalStorage.getItem<string>(versionKey);
+  return currentVersion !== CURRENT_MIGRATION_VERSION;
+}
+
+/**
+ * 移行処理を実行（V2）
+ */
+export async function runDataMigrationV2(nickname?: string): Promise<MigrationResult> {
+  console.log('🚀 Starting data migration V2 process...');
+  
+  const result: MigrationResult = {
+    success: false,
+    version: CURRENT_MIGRATION_VERSION,
+    backupCreated: false,
+    issuesFixed: 0
+  };
+  
+  try {
+    // 移行が必要かチェック
+    if (!needsMigrationV2(nickname)) {
+      console.log('✅ No migration needed, data is up to date');
+      result.success = true;
+      return result;
+    }
+    
+    // バックアップを作成
+    console.log('📦 Creating backup before migration...');
+    await createBackup(undefined, nickname);
+    result.backupCreated = true;
+    
+    // データの整合性チェック
+    const userProgressKey = getUserKey('userProgress', nickname);
+    const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    const answeredQuestionsKey = getUserKey('answeredQuestions', nickname);
+    const answeredQuestions = safeLocalStorage.getItem<Record<Category, string[]>>(answeredQuestionsKey);
+    
+    if (userProgress && answeredQuestions) {
+      const integrityReport = checkDataIntegrity(userProgress, answeredQuestions);
+      console.log('📊 Data integrity report:', integrityReport.summary);
+      result.issuesFixed = integrityReport.issues.length;
+    }
+    
+    // データ同期と修復
+    console.log('🔄 Synchronizing data sources...');
+    const syncResult = await syncAnsweredQuestionsWithProgress(nickname, 'use_higher');
+    
+    if (!syncResult.success) {
+      throw new Error('Data synchronization failed');
+    }
+    
+    // 自動修復
+    console.log('🔧 Running auto-repair...');
+    const repairSuccess = await autoRepairProgress(nickname);
+    
+    if (!repairSuccess) {
+      throw new Error('Auto-repair failed');
+    }
+    
+    // バージョンを更新
+    const versionKey = getUserKey(MIGRATION_VERSION_KEY, nickname);
+    safeLocalStorage.setItem(versionKey, CURRENT_MIGRATION_VERSION);
+    
+    result.success = true;
+    console.log('✅ Migration completed successfully');
+    
+  } catch (error) {
+    console.error('❌ Migration failed:', error);
+    result.error = error instanceof Error ? error.message : 'Unknown error';
+    result.success = false;
+  }
+  
+  return result;
+}
+
+/**
+ * ロールバック機能
+ */
+export async function rollbackToBackup(
+  backupIndex: number = 0,
+  nickname?: string,
+  restoreToFirestore: boolean = false
+): Promise<boolean> {
+  console.log('🔄 Starting rollback process...');
+  
+  try {
+    // 利用可能なバックアップを取得
+    const backups = getAvailableBackups(nickname);
+    
+    if (backups.length === 0) {
+      console.error('No backups available');
+      return false;
+    }
+    
+    if (backupIndex >= backups.length) {
+      console.error(`Invalid backup index: ${backupIndex}`);
+      return false;
+    }
+    
+    // 現在の状態をバックアップ（ロールバック前）
+    console.log('📦 Creating backup of current state before rollback...');
+    await createBackup(undefined, nickname);
+    
+    // 選択されたバックアップを復元
+    const selectedBackup = backups[backupIndex];
+    console.log(`📥 Restoring backup from ${selectedBackup.timestamp}`);
+    
+    const success = await restoreFromBackup(
+      selectedBackup,
+      undefined,
+      nickname,
+      restoreToFirestore
+    );
+    
+    if (success) {
+      console.log('✅ Rollback completed successfully');
+      
+      // 移行バージョンをリセット（再移行を促すため）
+      const versionKey = getUserKey(MIGRATION_VERSION_KEY, nickname);
+      safeLocalStorage.removeItem(versionKey);
+    } else {
+      console.error('❌ Rollback failed');
+    }
+    
+    return success;
+    
+  } catch (error) {
+    console.error('Rollback error:', error);
+    return false;
+  }
+}
+
+/**
+ * 起動時の自動移行チェック
+ */
+export async function checkAndRunMigration(nickname?: string): Promise<void> {
+  try {
+    // 古いデータの移行（既存機能）
+    migrateOldData(nickname || 'default');
+    
+    // 新しい移行システム（V2）
+    if (needsMigrationV2(nickname)) {
+      console.log('📢 Data migration V2 needed, starting process...');
+      
+      const result = await runDataMigrationV2(nickname);
+      
+      if (result.success) {
+        console.log(`✅ Migration v${result.version} completed successfully`);
+        if (result.issuesFixed > 0) {
+          console.log(`🔧 Fixed ${result.issuesFixed} data integrity issues`);
+        }
+      } else {
+        console.error('❌ Migration failed:', result.error);
+        
+        // ユーザーに通知（実装に応じて）
+        if (typeof window !== 'undefined' && window.alert) {
+          window.alert(
+            'データ移行中にエラーが発生しました。\n' +
+            'アプリケーションは通常通り動作しますが、\n' +
+            '一部の進捗データが正しく表示されない可能性があります。'
+          );
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Migration check failed:', error);
+  }
+}
+
+// デバッグ用にグローバルに公開
+if (typeof window !== 'undefined') {
+  (window as any).dataMigration = {
+    run: runDataMigrationV2,
+    rollback: rollbackToBackup,
+    check: checkAndRunMigration,
+    needsMigration: needsMigrationV2,
+    migrateOld: migrateOldData
+  };
 }

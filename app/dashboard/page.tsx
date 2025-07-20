@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { 
@@ -38,6 +38,8 @@ import { validateAndFixProgress, cleanupAllProgressData } from "@/utils/progress
 import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
 import { formatPercentage } from "@/utils/formatters";
 import { getDisplayCorrectCount } from "@/utils/progress-tracker";
+import { checkDataIntegrity } from "@/utils/data-backup";
+import { AnsweredQuestionsTracker } from "@/utils/progress-validator";
 
 // Dynamic import for 3D components to avoid SSR issues
 const WireframeBuildings3D = dynamic(
@@ -80,10 +82,13 @@ const BackgroundCityscape = () => (
 function DashboardContent() {
   const { user, isFirebaseAuth } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [loading, setLoading] = useState(true);
   const [show3D, setShow3D] = useState(true);
   const [mockExamHistory, setMockExamHistory] = useState<any[]>([]);
+  const [debugMode, setDebugMode] = useState(false);
+  const [dataIntegrityReport, setDataIntegrityReport] = useState<any>(null);
   const { error, isError, clearError, handleError } = useErrorHandler();
 
 
@@ -92,7 +97,20 @@ function DashboardContent() {
     cleanupAllProgressData();
     loadUserProgress();
     loadMockExamHistory();
-  }, [user]);
+    
+    // デバッグモードのチェック
+    const debug = searchParams.get('debug') === 'true';
+    setDebugMode(debug);
+    
+    // デバッグモードの場合、データ整合性チェックを実行
+    if (debug && progress) {
+      const answeredQuestionsKey = getUserKey('answeredQuestions', user?.nickname);
+      const answeredQuestions = safeLocalStorage.getItem<Record<Category, string[]>>(answeredQuestionsKey) || {} as Record<Category, string[]>;
+      const report = checkDataIntegrity(progress, answeredQuestions);
+      setDataIntegrityReport(report);
+      console.log('📊 Data Integrity Report:', report);
+    }
+  }, [user, searchParams, progress]);
 
   const loadUserProgress = () => {
     try {
@@ -624,6 +642,99 @@ function DashboardContent() {
           )}
         </div>
       </div>
+      
+      {/* デバッグセクション */}
+      {debugMode && (
+        <div className="mt-8 bg-gray-900/90 backdrop-blur-sm rounded-xl shadow-lg p-6">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <AlertCircle className="w-6 h-6 text-yellow-500" />
+            デバッグ情報
+          </h3>
+          
+          {dataIntegrityReport && (
+            <div className="mb-6">
+              <h4 className="text-lg font-medium mb-2">データ整合性レポート</h4>
+              <div className="bg-gray-800 rounded-lg p-4">
+                <p className="text-sm text-gray-400 mb-2">
+                  チェック日時: {new Date(dataIntegrityReport.timestamp).toLocaleString('ja-JP')}
+                </p>
+                <div className="grid grid-cols-4 gap-4 mb-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold">{dataIntegrityReport.summary.totalIssues}</p>
+                    <p className="text-sm text-gray-400">総問題数</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-red-500">{dataIntegrityReport.summary.highSeverity}</p>
+                    <p className="text-sm text-gray-400">高重要度</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-yellow-500">{dataIntegrityReport.summary.mediumSeverity}</p>
+                    <p className="text-sm text-gray-400">中重要度</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-blue-500">{dataIntegrityReport.summary.lowSeverity}</p>
+                    <p className="text-sm text-gray-400">低重要度</p>
+                  </div>
+                </div>
+                
+                {dataIntegrityReport.issues.length > 0 && (
+                  <div className="space-y-2">
+                    <h5 className="font-medium mb-2">詳細:</h5>
+                    {dataIntegrityReport.issues.map((issue: any, index: number) => (
+                      <div key={index} className={`p-2 rounded ${
+                        issue.severity === 'high' ? 'bg-red-900/20' :
+                        issue.severity === 'medium' ? 'bg-yellow-900/20' :
+                        'bg-blue-900/20'
+                      }`}>
+                        <p className="text-sm">
+                          <span className="font-medium">{issue.type}</span>
+                          {issue.category && ` (${issue.category})`}: {issue.message}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              onClick={() => {
+                if (window.progressSync) {
+                  window.progressSync.sync(user?.nickname, 'use_higher').then((result: any) => {
+                    alert(`同期完了: ${result.changes.filter((c: any) => c.action !== 'none').length}カテゴリが更新されました`);
+                    loadUserProgress();
+                  });
+                }
+              }}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              データ同期実行
+            </button>
+            <button
+              onClick={() => {
+                if (window.progressSync) {
+                  window.progressSync.autoRepair(user?.nickname).then((success: boolean) => {
+                    alert(success ? '自動修復が完了しました' : '自動修復に失敗しました');
+                    loadUserProgress();
+                  });
+                }
+              }}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              自動修復実行
+            </button>
+          </div>
+          
+          <div className="mt-4 text-sm text-gray-400">
+            <p>コンソールで以下のコマンドが使用可能:</p>
+            <code className="block mt-1 bg-gray-800 p-2 rounded">dataBackup.debug()</code>
+            <code className="block mt-1 bg-gray-800 p-2 rounded">dataMigration.check()</code>
+          </div>
+        </div>
+      )}
+      
       </div>
     </div>
   );

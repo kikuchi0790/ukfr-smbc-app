@@ -39,6 +39,8 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import { progressSync } from "@/services/progress-sync";
 import { extractKeywords } from "@/services/keyword-extraction";
 import { SessionPersistence } from "@/utils/session-persistence";
+import { incrementAnsweredCount, syncAnsweredQuestionsWithProgress } from "@/utils/progress-sync-utils";
+import { createBackup } from "@/utils/data-backup";
 
 function StudySessionContent() {
   const router = useRouter();
@@ -641,14 +643,21 @@ function StudySessionContent() {
         return;
       }
       
+      // データ整合性チェック（初回のみ）
+      if (!sessionPersistence.current?.hasPerformedDataSync) {
+        console.log('🔄 Performing initial data sync...');
+        syncAnsweredQuestionsWithProgress(user?.nickname, 'use_higher').then(result => {
+          if (result.success) {
+            console.log('✅ Initial data sync completed');
+          }
+        });
+        if (sessionPersistence.current) {
+          sessionPersistence.current.hasPerformedDataSync = true;
+        }
+      }
+      
       // 復習モードの場合、既に回答済みの問題かチェック
       const isAlreadyAnswered = AnsweredQuestionsTracker.getAnsweredQuestions(question.category).has(question.questionId);
-      
-      // 復習モードで既に回答済みの問題の場合は、AnsweredQuestionsTrackerに追加しない
-      if (!(mode === "review" && isAlreadyAnswered)) {
-        // Track answered questions globally
-        AnsweredQuestionsTracker.addAnsweredQuestion(question.category, question.questionId);
-      }
       
       // Add to answered questions for this session
       setAnsweredQuestionIds(prev => new Set(prev).add(question.questionId));
@@ -712,22 +721,26 @@ function StudySessionContent() {
         if (categoryName in progress.categoryProgress) {
           const categoryProgress = progress.categoryProgress[categoryName];
           if (categoryProgress) {
-            // Get actual answered count from tracker
-            const actualAnsweredCount = AnsweredQuestionsTracker.getAnsweredCount(question.category);
+            // 復習モードでの新しい問題の判定
+            const isNewQuestionInReview = mode === "review" && !isAlreadyAnswered;
+            const shouldIncrementAnswered = mode !== "review" || isNewQuestionInReview;
             
-            // Use the minimum of actual count and total questions to prevent overflow
-            const newAnsweredCount = Math.min(actualAnsweredCount, categoryProgress.totalQuestions);
-            
-            // Only update if it's increasing (to prevent decreasing due to data issues)
-            if (newAnsweredCount > categoryProgress.answeredQuestions) {
-              categoryProgress.answeredQuestions = newAnsweredCount;
-              if (shouldIncrementCorrect) categoryProgress.correctAnswers++;
-            } else if (categoryProgress.answeredQuestions >= categoryProgress.totalQuestions) {
-              console.warn(`Category ${question.category} already at 100% (${categoryProgress.answeredQuestions}/${categoryProgress.totalQuestions})`);
-            } else if (mode === "review" && isAlreadyAnswered) {
-              // 復習モードで既に回答済みの問題の場合、回答数は増やさない
+            // 回答数を増やすべきかチェック
+            if (shouldIncrementAnswered) {
+              // 既に最大値に達していないかチェック
+              if (categoryProgress.answeredQuestions < categoryProgress.totalQuestions) {
+                categoryProgress.answeredQuestions++;
+                console.log(`📊 Incremented answered count for ${question.category}: ${categoryProgress.answeredQuestions}/${categoryProgress.totalQuestions}`);
+              } else {
+                console.warn(`Category ${question.category} already at maximum (${categoryProgress.answeredQuestions}/${categoryProgress.totalQuestions})`);
+              }
+            } else {
               console.log('📚 Review mode: Not incrementing answered count for already answered question');
-              if (shouldIncrementCorrect) categoryProgress.correctAnswers++;
+            }
+            
+            // 正解数の更新
+            if (shouldIncrementCorrect) {
+              categoryProgress.correctAnswers++;
             }
           }
         }
@@ -755,6 +768,13 @@ function StudySessionContent() {
         
         return progress;
       });
+      
+      // AnsweredQuestionsTrackerも同期して更新（復習モードでの新しい問題のみ）
+      const isNewQuestionInReview = mode === "review" && !isAlreadyAnswered;
+      if (mode !== "review" || isNewQuestionInReview) {
+        incrementAnsweredCount(question.category, question.questionId, user?.nickname);
+      }
+      
     } catch (error) {
       console.error('Failed to update progress:', error);
       // 進捗の更新に失敗しても学習は継続

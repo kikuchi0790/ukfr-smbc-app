@@ -9,7 +9,7 @@ import { enableAutoSync, loadFromFirestore, syncToFirestore } from '@/services/f
 import { safeLocalStorage, setSyncCallback } from '@/utils/storage-utils';
 import { cleanupLegacyData } from '@/utils/cleanup-legacy-data';
 import { resetAllUserProgress } from '@/utils/reset-all-data';
-import { migrateOldData } from '@/utils/data-migration';
+import { migrateOldData, checkAndRunMigration } from '@/utils/data-migration';
 import { validateAndFixProgress } from '@/utils/progress-tracker';
 
 interface User {
@@ -126,6 +126,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         // 古いデータのマイグレーション
         migrateOldData(userData.nickname);
+        
+        // 新しいデータ移行システムのチェックと実行
+        await checkAndRunMigration(userData.nickname);
         
         // Firestoreからデータを読み込み、自動同期を開始
         try {

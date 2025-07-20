@@ -4,12 +4,15 @@ import { safeLocalStorage, getUserKey } from "./storage-utils";
 import { ensureProperty, clamp, isNotEmpty, ensureArray, uniqueArray } from "./validation-utils";
 import { isValidProgress, isValidCategoryProgress } from "./type-guards";
 import { ValidationError, handleValidationError } from "./error-utils";
+import { syncAnsweredQuestionsWithProgress } from "./progress-sync-utils";
+import { createBackup } from "./data-backup";
 
 /**
  * 進捗データの整合性をチェックし、必要に応じて修正する
  */
-export function validateAndFixProgress(progress: UserProgress): UserProgress {
+export function validateAndFixProgress(progress: UserProgress, nickname?: string): UserProgress {
   const fixedProgress = { ...progress };
+  let hasIssues = false;
   
   // categoryProgressが存在しない場合は初期化
   ensureProperty(fixedProgress, 'categoryProgress', {} as Record<Category, any>);
@@ -45,23 +48,57 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
       if (categoryProgress.totalQuestions !== categoryInfo.totalQuestions) {
         console.warn(`Fixing total questions for ${categoryName}: ${categoryProgress.totalQuestions} → ${categoryInfo.totalQuestions}`);
         categoryProgress.totalQuestions = categoryInfo.totalQuestions;
+        hasIssues = true;
       }
       
       // answeredQuestionsがtotalQuestionsを超えていないか確認
+      const originalAnswered = categoryProgress.answeredQuestions;
       categoryProgress.answeredQuestions = clamp(
         categoryProgress.answeredQuestions,
         0,
         categoryProgress.totalQuestions
       );
+      if (originalAnswered !== categoryProgress.answeredQuestions) {
+        console.warn(`Fixed answered questions for ${categoryName}: ${originalAnswered} → ${categoryProgress.answeredQuestions}`);
+        hasIssues = true;
+      }
       
       // correctAnswersがansweredQuestionsを超えていないか確認
+      const originalCorrect = categoryProgress.correctAnswers;
       categoryProgress.correctAnswers = clamp(
         categoryProgress.correctAnswers,
         0,
         categoryProgress.answeredQuestions
       );
+      if (originalCorrect !== categoryProgress.correctAnswers) {
+        console.warn(`Fixed correct answers for ${categoryName}: ${originalCorrect} → ${categoryProgress.correctAnswers}`);
+        hasIssues = true;
+      }
     }
   });
+  
+  // AnsweredQuestionsTrackerとの同期チェック
+  if (hasIssues) {
+    console.log('🔧 Issues detected, performing data sync...');
+    // 非同期処理なので、Promiseで実行
+    syncAnsweredQuestionsWithProgress(nickname, 'use_higher').then(result => {
+      if (result.success) {
+        console.log('✅ Data sync completed after validation');
+      }
+    });
+  }
+  
+  // 克服した問題の整合性チェック
+  if (fixedProgress.overcomeQuestions && fixedProgress.incorrectQuestions) {
+    const overcomeIds = new Set(fixedProgress.overcomeQuestions.map(q => q.questionId));
+    const originalIncorrectCount = fixedProgress.incorrectQuestions.length;
+    fixedProgress.incorrectQuestions = fixedProgress.incorrectQuestions.filter(
+      q => !overcomeIds.has(q.questionId)
+    );
+    if (originalIncorrectCount !== fixedProgress.incorrectQuestions.length) {
+      console.log(`Removed ${originalIncorrectCount - fixedProgress.incorrectQuestions.length} overcome questions from incorrect list`);
+    }
+  }
   
   return fixedProgress;
 }
@@ -69,9 +106,9 @@ export function validateAndFixProgress(progress: UserProgress): UserProgress {
 /**
  * 進捗をロードし、検証・修正を行う
  */
-export function loadValidatedProgress(): UserProgress | null {
+export function loadValidatedProgress(nickname?: string): UserProgress | null {
   try {
-    const userProgressKey = getUserKey('userProgress');
+    const userProgressKey = getUserKey('userProgress', nickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     
     if (!isNotEmpty(progress)) return null;
@@ -85,7 +122,7 @@ export function loadValidatedProgress(): UserProgress | null {
       );
     }
     
-    const validatedProgress = validateAndFixProgress(progress);
+    const validatedProgress = validateAndFixProgress(progress, nickname);
     
     // 修正が必要だった場合は保存
     if (JSON.stringify(progress) !== JSON.stringify(validatedProgress)) {

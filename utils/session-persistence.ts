@@ -29,6 +29,7 @@ export class SessionPersistence {
   private answerCount: number = 0;
   private isSaving: boolean = false;
   private saveQueue: (() => void)[] = [];
+  public hasPerformedDataSync: boolean = false;
 
   private constructor() {
     // ブラウザイベントのリスナー設定
