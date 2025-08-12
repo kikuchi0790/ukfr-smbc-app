@@ -35,6 +35,7 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
   const [loading, setLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<List>(null);
+  const visibleRangeRef = useRef<{ startIndex: number; stopIndex: number }>({ startIndex: 0, stopIndex: 0 });
   const observerRef = useRef<MutationObserver | null>(null);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
@@ -139,8 +140,16 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
     if (!containerRef.current) return;
     clearPdfHighlights();
     if (!searchTerm || searchTerm.trim().length === 0) return;
-    const textLayers = containerRef.current.querySelectorAll('.react-pdf__Page__textContent');
-    textLayers.forEach((layer) => highlightTextLayer(layer, searchTerm));
+    const { startIndex, stopIndex } = visibleRangeRef.current;
+    const pages = containerRef.current.querySelectorAll('[data-page-number]');
+    pages.forEach((pageEl) => {
+      const num = Number((pageEl as HTMLElement).dataset.pageNumber);
+      if (!Number.isFinite(num)) return;
+      const zeroBased = num - 1;
+      if (zeroBased < startIndex || zeroBased > stopIndex) return; // only visible pages
+      const layer = (pageEl as HTMLElement).querySelector('.react-pdf__Page__textContent');
+      if (layer) highlightTextLayer(layer, searchTerm);
+    });
   }, [clearPdfHighlights, highlightTextLayer, searchTerm]);
 
   // Re-apply highlights when searchTerm changes or after pages render
@@ -230,6 +239,15 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
             itemSize={getItemSize()}
             width="100%"
             overscanCount={2}
+            onItemsRendered={({ visibleStartIndex, visibleStopIndex }) => {
+              visibleRangeRef.current = {
+                startIndex: visibleStartIndex,
+                stopIndex: visibleStopIndex,
+              };
+              // apply highlights to newly visible pages
+              const handle = window.setTimeout(() => applyPdfHighlights(), 50);
+              return () => window.clearTimeout(handle as any);
+            }}
           >
             {({ index, style }) => (
               <div 

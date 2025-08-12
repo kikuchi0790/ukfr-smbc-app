@@ -103,21 +103,33 @@ function MaterialsContent() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => {
+                  // 学習セッションから来た場合は元のセッションに戻る
                   if (navigationState && navigationState.from) {
-                    // 学習セッションから来た場合は元のセッションに戻る
                     safeLocalStorage.removeItem('materialNavigationState');
-                    
-                    // クエリパラメータを再構築
                     const params = new URLSearchParams();
                     if (navigationState.mode) params.set('mode', navigationState.mode);
                     if (navigationState.category) params.set('category', navigationState.category);
                     if (navigationState.part) params.set('part', navigationState.part);
                     if (navigationState.studyMode) params.set('studyMode', navigationState.studyMode);
                     if (navigationState.questionCount) params.set('questionCount', navigationState.questionCount);
-                    
+                    router.push(`/study/session?${params.toString()}`);
+                    return;
+                  }
+                  // フォールバック: URLのreturn* から復元
+                  const returnMode = searchParams.get('returnMode');
+                  const returnCategory = searchParams.get('returnCategory');
+                  const returnPart = searchParams.get('returnPart');
+                  const returnStudyMode = searchParams.get('returnStudyMode');
+                  const returnQuestionCount = searchParams.get('returnQuestionCount');
+                  if (returnMode && returnCategory) {
+                    const params = new URLSearchParams();
+                    params.set('mode', returnMode);
+                    params.set('category', returnCategory);
+                    if (returnPart) params.set('part', returnPart);
+                    if (returnStudyMode) params.set('studyMode', returnStudyMode);
+                    if (returnQuestionCount) params.set('questionCount', returnQuestionCount);
                     router.push(`/study/session?${params.toString()}`);
                   } else {
-                    // 通常はダッシュボードに戻る
                     router.push('/dashboard');
                   }
                 }}
@@ -205,6 +217,36 @@ function MaterialsContent() {
                   <option value="html">HTML</option>
                   <option value="text">テキスト</option>
                 </select>
+                {/* External search shortcuts */}
+                <div className="hidden sm:flex items-center gap-1 ml-2">
+                  <button
+                    onClick={() => {
+                      const q = encodeURIComponent(searchTerm || (temporaryHighlight?.selectedText || ''));
+                      if (!q) return;
+                      window.open(`https://www.google.com/search?q=site:fca.org.uk+${q}`, '_blank', 'noopener');
+                    }}
+                    className="px-2 py-1 text-xs rounded bg-gray-700 hover:bg-gray-600 text-gray-200 border border-gray-600"
+                    title="FCA公式サイトを検索"
+                  >FCA</button>
+                  <button
+                    onClick={() => {
+                      const q = encodeURIComponent(searchTerm || (temporaryHighlight?.selectedText || ''));
+                      if (!q) return;
+                      window.open(`https://www.google.com/search?q=site:legislation.gov.uk+${q}`, '_blank', 'noopener');
+                    }}
+                    className="px-2 py-1 text-xs rounded bg-gray-700 hover:bg-gray-600 text-gray-200 border border-gray-600"
+                    title="legislation.gov.uk を検索"
+                  >Legislation</button>
+                  <button
+                    onClick={() => {
+                      const q = encodeURIComponent(searchTerm || (temporaryHighlight?.selectedText || ''));
+                      if (!q) return;
+                      window.open(`https://www.google.com/search?q=${q}+UK+financial+regulation`, '_blank', 'noopener');
+                    }}
+                    className="px-2 py-1 text-xs rounded bg-gray-700 hover:bg-gray-600 text-gray-200 border border-gray-600"
+                    title="Web全体を検索"
+                  >Web</button>
+                </div>
               </div>
             </div>
           </div>
