@@ -41,6 +41,18 @@ export function saveIncorrectQuestion(questionId: string, category: string, user
     if (!progress.incorrectQuestions) {
       progress.incorrectQuestions = [];
     }
+    
+    // overcomeQuestionsから削除（再度間違えた場合）
+    if (progress.overcomeQuestions) {
+      const overcomeIndex = progress.overcomeQuestions.findIndex(
+        q => q.questionId === questionId
+      );
+      if (overcomeIndex >= 0) {
+        // 克服済みから削除（再度間違えたため）
+        progress.overcomeQuestions.splice(overcomeIndex, 1);
+        console.log(`Question ${questionId} removed from overcome list (answered incorrectly again)`);
+      }
+    }
   
     // 既存の間違えた問題を探す
     const existingIndex = progress.incorrectQuestions.findIndex(
