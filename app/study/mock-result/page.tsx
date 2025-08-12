@@ -227,16 +227,11 @@ function MockResultContent() {
       // Mock試験の場合は専用の進捗更新を使用
       if (session.category && isMockCategory(session.category)) {
         updateMockExamProgress(session.category, score, questions.length);
-        // Mock試験では間違えた問題のみ記録（進捗は更新しない）
-        session.answers.forEach((answer, index) => {
-          if (!answer.isCorrect && questions[index]) {
-            saveIncorrectQuestion(questions[index].questionId, questions[index].category);
-          }
-        });
-      } else {
-        // 通常学習の場合は従来の更新
-        updateUserProgress(session, questions);
       }
+      
+      // Mock試験も通常学習も同じようにuserProgressを更新（studySessionsに追加）
+      // これによりMock試験結果もFirestoreに同期される
+      updateUserProgress(session, questions);
       
       // Mock試験履歴を保存
       saveMockExamHistory(result, score);
