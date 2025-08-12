@@ -46,15 +46,24 @@ export async function extractKeywords(question: Question): Promise<string[]> {
       );
     }
 
-    const data = await response.json();
-    const keywords = data.keywords;
+    const resJson = await response.json();
+    const keywords = (resJson?.data?.keywords ?? resJson?.keywords) as unknown;
 
-    // ローカルキャッシュに保存
-    if (!data.cached) {
-      saveKeywordsToCache(question.questionId, keywords);
+    if (!Array.isArray(keywords)) {
+      throw new ApiError(
+        resJson?.error || 'Failed to extract keywords',
+        response.status,
+        '/api/extract-keywords',
+        resJson
+      );
     }
 
-    return keywords;
+    // ローカルキャッシュに保存
+    if (!resJson.cached) {
+      saveKeywordsToCache(question.questionId, keywords as string[]);
+    }
+
+    return keywords as string[];
   } catch (error) {
     handleApiError(error, '/api/extract-keywords', 'extractKeywords');
     // エラー時はフォールバック

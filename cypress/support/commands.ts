@@ -28,6 +28,7 @@ declare global {
        * @example cy.createHighlight('Some text to highlight', 'yellow')
        */
       createHighlight(text: string, color?: string): Chainable<void>;
+      dragSelect(selector: string, startOffset?: number, endOffset?: number): Chainable<void>;
       
       /**
        * Custom command to navigate to materials page with specific content
@@ -82,10 +83,21 @@ Cypress.Commands.add('waitForAuth', () => {
 
 // Create highlight command
 Cypress.Commands.add('createHighlight', (text: string, color = 'yellow') => {
-  // Select text and trigger highlight
-  cy.contains(text).first().trigger('mousedown');
-  cy.contains(text).first().trigger('mousemove', { clientX: 100 });
-  cy.contains(text).first().trigger('mouseup');
+  // Select text and trigger highlight via robust drag
+  cy.contains(text).first().then(($el) => {
+    const el = $el.get(0);
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const startX = rect.left + Math.min(10, rect.width / 4);
+    const startY = rect.top + rect.height / 2;
+    const endX = rect.left + Math.min(rect.width - 10, rect.width / 2);
+    const endY = startY;
+
+    cy.wrap(el)
+      .trigger('mousedown', { which: 1, clientX: startX, clientY: startY, force: true })
+      .trigger('mousemove', { which: 1, clientX: endX, clientY: endY, force: true })
+      .trigger('mouseup', { force: true });
+  });
   
   // Wait for highlight popup and select color
   cy.get('.highlight-popup').should('be.visible');
@@ -93,6 +105,23 @@ Cypress.Commands.add('createHighlight', (text: string, color = 'yellow') => {
   
   // Verify highlight was created
   cy.get('.search-highlight').should('exist');
+});
+
+// Low-level drag selection helper
+Cypress.Commands.add('dragSelect', (selector: string, startOffset = 5, endOffset = 60) => {
+  cy.get(selector).first().then(($el) => {
+    const el = $el.get(0);
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const startX = rect.left + startOffset;
+    const startY = rect.top + rect.height / 2;
+    const endX = rect.left + endOffset;
+    const endY = startY;
+    cy.wrap(el)
+      .trigger('mousedown', { which: 1, clientX: startX, clientY: startY, force: true })
+      .trigger('mousemove', { which: 1, clientX: endX, clientY: endY, force: true })
+      .trigger('mouseup', { force: true });
+  });
 });
 
 // Visit material command

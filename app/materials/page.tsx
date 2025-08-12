@@ -25,6 +25,10 @@ function MaterialsContent() {
   const [navigationState, setNavigationState] = useState<any>(null);
 
   useEffect(() => {
+    // URLパラメータからキーワードを取得
+    const keywordsParam = searchParams.get('keywords');
+    const autoSearch = searchParams.get('autoSearch');
+    
     const savedState = safeLocalStorage.getItem<any>('materialNavigationState');
     if (savedState) {
       setNavigationState(savedState);
@@ -34,7 +38,28 @@ function MaterialsContent() {
       console.log('Found navigation state:', savedState);
       // 注意: ここではまだ削除しない（戻るボタンで使用するため）
     }
-  }, []);
+    
+    // キーワードが指定されている場合、自動的に検索
+    if (keywordsParam && autoSearch === 'true') {
+      const keywords = keywordsParam.split(',').map(k => k.trim());
+      if (keywords.length > 0) {
+        // 最初のキーワードで検索
+        setSearchTerm(keywords[0]);
+        
+        // 一時的なハイライト用のアンカーを作成
+        const anchor: HighlightAnchor = {
+          selector: '',
+          startOffset: 0,
+          endOffset: 0,
+          selectedText: keywords.join(', '),
+          beforeText: '',
+          afterText: '',
+          pageNumber: 0
+        };
+        setTemporaryHighlight(anchor);
+      }
+    }
+  }, [searchParams]);
 
   const handleViewModeChange = async (mode: string) => {
     setViewMode(mode as 'pdf' | 'html' | 'text');
@@ -47,15 +72,25 @@ function MaterialsContent() {
         htmlFilename = 'StudyCompanion.html';
       }
       if (htmlFilename) {
-        const response = await fetch(`/materials/${htmlFilename}`);
-        const html = await response.text();
-        setHtmlContent(html);
+        try {
+          const response = await fetch(`/materials/${htmlFilename}`);
+          if (!response.ok) throw new Error(`Failed to load ${htmlFilename}`);
+          const html = await response.text();
+          setHtmlContent(html);
+        } catch (e) {
+          setHtmlContent('<p>コンテンツの読み込みに失敗しました。</p>');
+        }
       }
     } else if (mode === 'text') {
       const txtFilename = selectedPdf.replace('.pdf', '_ja_fixed.txt');
-      const response = await fetch(`/materials/${txtFilename}`);
-      const text = await response.text();
-      setTextContent(text);
+      try {
+        const response = await fetch(`/materials/${txtFilename}`);
+        if (!response.ok) throw new Error(`Failed to load ${txtFilename}`);
+        const text = await response.text();
+        setTextContent(text);
+      } catch (e) {
+        setTextContent('コンテンツの読み込みに失敗しました。');
+      }
     }
   };
 

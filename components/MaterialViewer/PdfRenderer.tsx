@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { FixedSizeList as List } from 'react-window';
@@ -5,7 +6,17 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// Set workerSrc on client only to avoid SSR issues
+if (typeof window !== 'undefined') {
+  try {
+    // Resolve to a url string at runtime
+    const url = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url);
+    (pdfjs as any).GlobalWorkerOptions.workerSrc = url.toString();
+  } catch {
+    // Fallback to CDN if bundler cannot resolve the URL
+    (pdfjs as any).GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+  }
+}
 
 interface PdfRendererProps {
   file: string;
@@ -30,6 +41,7 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
   const [loading, setLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<List>(null);
+  const observerRef = useRef<MutationObserver | null>(null);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -46,21 +58,11 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
 
   function highlightPattern(text: string, pattern: string) {
     if (!pattern) return text;
-    
-    const regex = new RegExp(`(${pattern})`, 'gi');
-    const parts = text.split(regex);
-    
-    return parts.map((part, index) => {
-      if (index % 2 === 1) {
-        return <mark key={index} className="bg-yellow-300">{part}</mark>;
-      }
-      return part;
-    });
+    // Keep disabled for now; PDF layer highlighting requires deeper integration
+    return text;
   }
 
   const textRenderer = useCallback((textItem: TextItem) => {
-    // CustomTextRenderer expects a string return type, not JSX
-    // For now, we'll disable search highlighting in PDF view
     return textItem.str;
   }, []);
 
@@ -79,6 +81,97 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
     
     return () => window.removeEventListener('resize', updatePageSize);
   }, []);
+
+  // PDF text layer highlighting
+  const clearPdfHighlights = useCallback(() => {
+    if (!containerRef.current) return;
+    const highlights = containerRef.current.querySelectorAll('.pdf-search-highlight');
+    highlights.forEach((el) => {
+      const text = el.textContent || '';
+      const textNode = document.createTextNode(text);
+      el.parentNode?.replaceChild(textNode, el);
+    });
+  }, []);
+
+  const highlightTextLayer = useCallback((root: Element, term: string) => {
+    const results: Element[] = [];
+    if (!term || term.trim().length === 0) return results;
+    const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let node: Node | null;
+    let matchesApplied = 0;
+    const MATCH_LIMIT = 200;
+    while ((node = walker.nextNode()) && matchesApplied < MATCH_LIMIT) {
+      const textNode = node as Text;
+      const text = textNode.data;
+      if (!regex.test(text)) continue;
+      // reset regex lastIndex for reuse
+      regex.lastIndex = 0;
+      const fragments: (Text | HTMLElement)[] = [];
+      let lastIndex = 0;
+      let m: RegExpExecArray | null;
+      while ((m = regex.exec(text)) && matchesApplied < MATCH_LIMIT) {
+        const start = m.index;
+        const end = start + m[1].length;
+        if (start > lastIndex) {
+          fragments.push(document.createTextNode(text.slice(lastIndex, start)));
+        }
+        const span = document.createElement('span');
+        span.className = 'pdf-search-highlight';
+        span.style.backgroundColor = '#ffeb3b';
+        span.style.color = '#000';
+        span.style.padding = '0 2px';
+        span.style.borderRadius = '2px';
+        span.textContent = text.slice(start, end);
+        fragments.push(span);
+        results.push(span);
+        lastIndex = end;
+        matchesApplied += 1;
+      }
+      if (lastIndex < text.length) {
+        fragments.push(document.createTextNode(text.slice(lastIndex)));
+      }
+      if (fragments.length > 0) {
+        const parent = textNode.parentNode;
+        if (!parent) continue;
+        fragments.forEach((f) => parent.insertBefore(f, textNode));
+        parent.removeChild(textNode);
+      }
+    }
+    return results;
+  }, []);
+
+  const applyPdfHighlights = useCallback(() => {
+    if (!containerRef.current) return;
+    clearPdfHighlights();
+    if (!searchTerm || searchTerm.trim().length === 0) return;
+    const textLayers = containerRef.current.querySelectorAll('.react-pdf__Page__textContent');
+    textLayers.forEach((layer) => highlightTextLayer(layer, searchTerm));
+  }, [clearPdfHighlights, highlightTextLayer, searchTerm]);
+
+  // Re-apply highlights when searchTerm changes or after pages render
+  useEffect(() => {
+    // Debounce to wait for layer to render
+    const handle = window.setTimeout(() => applyPdfHighlights(), 200);
+    return () => window.clearTimeout(handle);
+  }, [applyPdfHighlights, searchTerm, numPages, pageWidth]);
+
+  // Observe text layer mutations to re-apply highlights (e.g., rerenders)
+  useEffect(() => {
+    if (!containerRef.current) return;
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+    const observer = new MutationObserver(() => {
+      if (searchTerm) {
+        // microtask -> debounce apply
+        Promise.resolve().then(() => applyPdfHighlights());
+      }
+    });
+    observer.observe(containerRef.current, { subtree: true, childList: true });
+    observerRef.current = observer;
+    return () => observer.disconnect();
+  }, [applyPdfHighlights, searchTerm]);
   
   // Jump to specific page when currentPage changes
   useEffect(() => {

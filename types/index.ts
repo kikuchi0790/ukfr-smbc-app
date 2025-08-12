@@ -144,6 +144,16 @@ export interface HighlightAnchor {
   beforeText: string;
   afterText: string;
   pageNumber: number;
+  // Optional Web Annotation-like selectors for robust restoration
+  textQuote?: {
+    exact: string;
+    prefix?: string;
+    suffix?: string;
+  };
+  textPosition?: {
+    start: number;
+    end: number;
+  };
 }
 
 export interface MaterialMetadata {

@@ -1,7 +1,13 @@
-// Gemini API configuration
-const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || 'AIzaSyDtxr5COsLokPUTKrPRK5oM5CDEuIprEmI';
+import 'server-only';
+// Gemini API configuration (server-only)
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta';
 const MODEL_NAME = 'models/gemini-2.5-flash-lite-preview-06-17';
+
+// Validate API key
+if (!GEMINI_API_KEY) {
+  throw new Error('GEMINI_API_KEY is not set in environment variables');
+}
 
 interface GeminiRequest {
   contents: {

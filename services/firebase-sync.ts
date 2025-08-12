@@ -11,14 +11,10 @@ interface SyncData {
   deviceId: string;
 }
 
-// デバイスIDを生成・取得
+// デバイスIDを生成・取得（簡略化版）
 function getDeviceId(): string {
-  let deviceId = localStorage.getItem('deviceId');
-  if (!deviceId) {
-    deviceId = `device_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    localStorage.setItem('deviceId', deviceId);
-  }
-  return deviceId;
+  // シンプルなデバイス識別のため、固定値を使用
+  return 'default-device';
 }
 
 // ローカルデータをFirestoreに保存

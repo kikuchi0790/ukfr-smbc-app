@@ -76,21 +76,6 @@ export default function HighlightsPage() {
               </ul>
             </div>
 
-            {/* 統計情報 */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-gray-800 rounded-lg border border-gray-700 p-4 text-center">
-                <div className="text-3xl font-bold text-yellow-400 mb-1">0</div>
-                <div className="text-sm text-gray-400">黄色のハイライト</div>
-              </div>
-              <div className="bg-gray-800 rounded-lg border border-gray-700 p-4 text-center">
-                <div className="text-3xl font-bold text-green-400 mb-1">0</div>
-                <div className="text-sm text-gray-400">緑のハイライト</div>
-              </div>
-              <div className="bg-gray-800 rounded-lg border border-gray-700 p-4 text-center">
-                <div className="text-3xl font-bold text-red-400 mb-1">0</div>
-                <div className="text-sm text-gray-400">赤のハイライト</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

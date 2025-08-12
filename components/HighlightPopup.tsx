@@ -27,7 +27,7 @@ export default function HighlightPopup({ position, onSelectColor, onClose, onNot
 
   return (
     <div
-      className="absolute z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-2"
+      className="highlight-popup absolute z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-2"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -42,6 +42,7 @@ export default function HighlightPopup({ position, onSelectColor, onClose, onNot
                 key={color}
                 onClick={() => handleColorSelect(color)}
                 className={`w-8 h-8 rounded ${bg} ${hover} transition-colors flex items-center justify-center`}
+                data-color={color}
                 title={`${color}でハイライト`}
               >
                 <Highlighter className="w-4 h-4 text-gray-700" />

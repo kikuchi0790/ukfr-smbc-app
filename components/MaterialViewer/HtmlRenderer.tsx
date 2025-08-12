@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useCallback, useState, ForwardedRef } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 import { HighlightAnchor } from '@/types';
-import { ChevronUp, ChevronDown, X } from 'lucide-react';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 interface HtmlRendererProps {
   htmlContent: string;
@@ -9,78 +9,94 @@ interface HtmlRendererProps {
   temporaryHighlight: HighlightAnchor | null;
 }
 
-function HtmlRenderer({ htmlContent, searchTerm, temporaryHighlight }: HtmlRendererProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [searchResults, setSearchResults] = useState<Range[]>([]);
-  const [currentSearchIndex, setCurrentSearchIndex] = useState(0);
-  const [searchCount, setSearchCount] = useState(0);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const shadowRoot = containerRef.current.shadowRoot;
-      if (shadowRoot) {
-        // Sanitize HTML content to prevent XSS attacks
-      const sanitizedContent = DOMPurify.sanitize(htmlContent, {
-        ALLOWED_TAGS: ['p', 'div', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
-                       'ul', 'ol', 'li', 'a', 'strong', 'em', 'b', 'i', 'u', 
-                       'br', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
-                       'img', 'blockquote', 'pre', 'code'],
-        ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'id', 'style'],
-        ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i
-      });
-      shadowRoot.innerHTML = sanitizedContent;
-
-        // Clear previous search highlights
-        clearSearchHighlights(shadowRoot);
-        
-        if (searchTerm && searchTerm.trim().length > 0) {
-          const results = highlightSearchTerms(shadowRoot, searchTerm);
-          setSearchResults(results);
-          setSearchCount(results.length);
-          setCurrentSearchIndex(0);
-          
-          // Scroll to first result if found
-          if (results.length > 0) {
-            scrollToSearchResult(results[0]);
-          }
-        } else {
-          setSearchResults([]);
-          setSearchCount(0);
-          setCurrentSearchIndex(0);
-        }
-
-        if (temporaryHighlight) {
-          try {
-            const element = shadowRoot.querySelector(temporaryHighlight.selector);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              // Apply temporary highlight style
-              (element as HTMLElement).style.backgroundColor = 'rgba(255, 255, 0, 0.5)';
-              
-              // Remove highlight after 3 seconds
-              setTimeout(() => {
-                (element as HTMLElement).style.backgroundColor = '';
-              }, 3000);
-            }
-          } catch (error) {
-            console.error('Failed to apply temporary highlight:', error, temporaryHighlight);
-          }
-        }
+let dompurifyHooked = false;
+function ensureDompurifyHook() {
+  if (dompurifyHooked) return;
+  DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+    if ((node as Element).tagName === 'A') {
+      const el = node as Element;
+      const href = el.getAttribute('href') || '';
+      if (!/^https?:|^mailto:|^tel:/i.test(href)) {
+        el.removeAttribute('href');
       }
+      el.setAttribute('rel', 'noopener noreferrer nofollow ugc');
     }
-  }, [htmlContent, searchTerm, temporaryHighlight]);
+    (node as Element).removeAttribute?.('style');
+  });
+  dompurifyHooked = true;
+}
 
+function InnerHtmlRenderer(
+  { htmlContent, searchTerm, temporaryHighlight }: HtmlRendererProps,
+  ref: ForwardedRef<HTMLDivElement>
+) {
+  const internalRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = internalRef;
+  // bridge forwarded ref
+  const setRef = useCallback((el: HTMLDivElement | null) => {
+    internalRef.current = el;
+    if (typeof ref === 'function') ref(el);
+    else if (ref && 'current' in (ref as any)) (ref as any).current = el;
+  }, [ref]);
+  const [searchResults, setSearchResults] = useState<Element[]>([]);
+  const [currentSearchIndex, setCurrentSearchIndex] = useState(0);
+
+  // Render sanitized HTML only when htmlContent changes
   useEffect(() => {
-    if (containerRef.current && !containerRef.current.shadowRoot) {
-      containerRef.current.attachShadow({ mode: 'open' });
+    if (!containerRef.current) return;
+    // Sanitize HTML content to prevent XSS attacks
+    ensureDompurifyHook();
+    const sanitizedContent = DOMPurify.sanitize(htmlContent, {
+      ALLOWED_TAGS: ['p', 'div', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
+                     'ul', 'ol', 'li', 'a', 'strong', 'em', 'b', 'i', 'u', 
+                     'br', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td',
+                     'img', 'blockquote', 'pre', 'code'],
+      ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'id'],
+      FORBID_ATTR: ['style'],
+      ALLOWED_URI_REGEXP: /^https?:|^mailto:|^tel:/i
+    });
+    containerRef.current.innerHTML = sanitizedContent;
+    // reset state after content change
+    setSearchResults([]);
+    setCurrentSearchIndex(0);
+  }, [htmlContent]);
+
+  // Debounced search highlighting when searchTerm changes
+  useEffect(() => {
+    if (!containerRef.current) return;
+    // Clear previous search highlights
+    clearSearchHighlights();
+    if (!searchTerm || searchTerm.trim().length === 0) {
+      setSearchResults([]);
+      setCurrentSearchIndex(0);
+      return;
     }
-  }, []);
+    const handle = window.setTimeout(() => {
+      const results = highlightSearchTerms(searchTerm);
+      setSearchResults(results);
+      setCurrentSearchIndex(0);
+      if (results.length > 0) {
+        results[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 150);
+    return () => window.clearTimeout(handle);
+  }, [searchTerm]);
+
+  // Apply temporary highlight on demand
+  useEffect(() => {
+    if (!containerRef.current) return;
+    if (temporaryHighlight && temporaryHighlight.selectedText) {
+      highlightKeywords(temporaryHighlight.selectedText);
+    }
+  }, [temporaryHighlight]);
 
   // Function to highlight search terms
-  const highlightSearchTerms = (root: ShadowRoot, term: string): Range[] => {
-    const results: Range[] = [];
+  const highlightSearchTerms = (term: string): Element[] => {
+    const results: Element[] = [];
+    if (!containerRef.current) return results;
+
     const walker = document.createTreeWalker(
-      root,
+      containerRef.current,
       NodeFilter.SHOW_TEXT,
       {
         acceptNode: (node) => {
@@ -94,32 +110,29 @@ function HtmlRenderer({ htmlContent, searchTerm, temporaryHighlight }: HtmlRende
     );
     
     let node;
-    let highlightIndex = 0;
     while (node = walker.nextNode()) {
       const text = node.textContent || '';
       const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
       let match;
       
       while ((match = regex.exec(text)) !== null) {
+        const span = document.createElement('span');
+        span.className = 'search-highlight';
+        span.style.backgroundColor = '#ffeb3b';
+        span.style.color = '#000';
+        span.style.padding = '0 2px';
+        span.style.borderRadius = '2px';
+        span.textContent = match[1];
+        
         const range = document.createRange();
         range.setStart(node, match.index);
         range.setEnd(node, match.index + match[1].length);
         
-        // Create highlight span
-        const span = document.createElement('span');
-        span.className = 'search-highlight';
-        span.setAttribute('data-highlight-index', String(highlightIndex));
-        span.style.backgroundColor = highlightIndex === 0 ? '#ff9632' : '#ffeb3b';
-        span.style.color = '#000';
-        span.style.padding = '0 2px';
-        span.style.borderRadius = '2px';
-        
         try {
-          range.surroundContents(span);
-          results.push(range);
-          highlightIndex++;
+          range.deleteContents();
+          range.insertNode(span);
+          results.push(span);
         } catch (e) {
-          // Range may span multiple elements, skip this match
           console.warn('Failed to highlight match:', e);
         }
       }
@@ -127,29 +140,71 @@ function HtmlRenderer({ htmlContent, searchTerm, temporaryHighlight }: HtmlRende
     
     return results;
   };
-  
-  // Function to clear search highlights
-  const clearSearchHighlights = (root: ShadowRoot) => {
-    const highlights = root.querySelectorAll('.search-highlight');
-    highlights.forEach(highlight => {
-      const parent = highlight.parentNode;
-      while (highlight.firstChild) {
-        parent?.insertBefore(highlight.firstChild, highlight);
+
+  // Function to highlight keywords (for temporary highlight)
+  const highlightKeywords = (keywords: string) => {
+    if (!containerRef.current) return;
+
+    // Split keywords by space or comma
+    const keywordList = keywords.split(/[,\s]+/).filter(k => k.length > 0);
+    
+    keywordList.forEach(keyword => {
+      const walker = document.createTreeWalker(
+        containerRef.current!,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
+      
+      let node;
+      while (node = walker.nextNode()) {
+        const text = node.textContent || '';
+        const regex = new RegExp(`(${escapeRegExp(keyword)})`, 'gi');
+        let match;
+        
+        if ((match = regex.exec(text)) !== null) {
+          const span = document.createElement('span');
+          span.className = 'keyword-highlight';
+          span.style.backgroundColor = 'rgba(255, 255, 0, 0.5)';
+          span.style.padding = '0 2px';
+          span.style.borderRadius = '2px';
+          span.style.transition = 'background-color 2s ease-out';
+          span.textContent = match[1];
+          
+          const range = document.createRange();
+          range.setStart(node, match.index);
+          range.setEnd(node, match.index + match[1].length);
+          
+          try {
+            range.deleteContents();
+            range.insertNode(span);
+            
+            // Scroll to first keyword
+            span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Remove highlight after 5 seconds
+            setTimeout(() => {
+              span.style.backgroundColor = 'transparent';
+            }, 5000);
+          } catch (e) {
+            console.warn('Failed to highlight keyword:', e);
+          }
+          
+          break; // Only highlight first occurrence
+        }
       }
-      parent?.removeChild(highlight);
     });
   };
   
-  // Function to scroll to search result
-  const scrollToSearchResult = (range: Range) => {
-    const rect = range.getBoundingClientRect();
-    const container = containerRef.current;
-    if (container) {
-      container.scrollTo({
-        top: rect.top + container.scrollTop - container.offsetHeight / 2,
-        behavior: 'smooth'
-      });
-    }
+  // Function to clear search highlights
+  const clearSearchHighlights = () => {
+    if (!containerRef.current) return;
+    
+    const highlights = containerRef.current.querySelectorAll('.search-highlight, .keyword-highlight');
+    highlights.forEach(highlight => {
+      const text = highlight.textContent || '';
+      const textNode = document.createTextNode(text);
+      highlight.parentNode?.replaceChild(textNode, highlight);
+    });
   };
   
   // Navigate to next search result
@@ -159,16 +214,12 @@ function HtmlRenderer({ htmlContent, searchTerm, temporaryHighlight }: HtmlRende
     setCurrentSearchIndex(newIndex);
     
     // Update highlight colors
-    const shadowRoot = containerRef.current?.shadowRoot;
-    if (shadowRoot) {
-      const highlights = shadowRoot.querySelectorAll('.search-highlight');
-      highlights.forEach((highlight, index) => {
-        (highlight as HTMLElement).style.backgroundColor = 
-          index === newIndex ? '#ff9632' : '#ffeb3b';
-      });
-    }
+    searchResults.forEach((element, index) => {
+      (element as HTMLElement).style.backgroundColor = 
+        index === newIndex ? '#ff9632' : '#ffeb3b';
+    });
     
-    scrollToSearchResult(searchResults[newIndex]);
+    searchResults[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [searchResults, currentSearchIndex]);
   
   // Navigate to previous search result
@@ -180,30 +231,26 @@ function HtmlRenderer({ htmlContent, searchTerm, temporaryHighlight }: HtmlRende
     setCurrentSearchIndex(newIndex);
     
     // Update highlight colors
-    const shadowRoot = containerRef.current?.shadowRoot;
-    if (shadowRoot) {
-      const highlights = shadowRoot.querySelectorAll('.search-highlight');
-      highlights.forEach((highlight, index) => {
-        (highlight as HTMLElement).style.backgroundColor = 
-          index === newIndex ? '#ff9632' : '#ffeb3b';
-      });
-    }
+    searchResults.forEach((element, index) => {
+      (element as HTMLElement).style.backgroundColor = 
+        index === newIndex ? '#ff9632' : '#ffeb3b';
+    });
     
-    scrollToSearchResult(searchResults[newIndex]);
+    searchResults[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, [searchResults, currentSearchIndex]);
   
   // Escape special regex characters
   const escapeRegExp = (str: string) => {
-    return str.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   };
 
   return (
     <div className="relative">
-      {searchTerm && searchCount > 0 && (
+      {searchTerm && searchResults.length > 0 && (
         <div className="fixed top-16 right-4 bg-white shadow-lg rounded-lg p-3 z-50 border border-gray-200">
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-600">
-              {currentSearchIndex + 1} / {searchCount} 件
+              {currentSearchIndex + 1} / {searchResults.length} 件
             </span>
             <button
               onClick={prevSearchResult}
@@ -222,9 +269,14 @@ function HtmlRenderer({ htmlContent, searchTerm, temporaryHighlight }: HtmlRende
           </div>
         </div>
       )}
-      <div ref={containerRef} className="html-content-container" />
+      <div 
+        ref={setRef} 
+        className="html-content-container p-8 max-w-4xl mx-auto"
+        style={{ minHeight: '600px' }}
+      />
     </div>
   );
 }
 
-export default React.memo(HtmlRenderer);
+const HtmlRenderer = React.memo(React.forwardRef<HTMLDivElement, HtmlRendererProps>(InnerHtmlRenderer));
+export default HtmlRenderer;

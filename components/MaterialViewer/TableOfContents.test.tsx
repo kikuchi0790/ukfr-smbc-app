@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import TableOfContents from './TableOfContents';
 import { MaterialMetadata } from '@/types';
 
@@ -17,7 +17,7 @@ global.fetch = vi.fn();
 
 describe('TableOfContents', () => {
   beforeEach(() => {
-    (fetch as vi.Mock).mockResolvedValue({
+    (fetch as Mock).mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockMetadata),
     });

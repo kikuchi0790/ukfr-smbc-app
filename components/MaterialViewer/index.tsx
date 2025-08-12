@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import PdfRenderer from './PdfRenderer';
 import HtmlRenderer from './HtmlRenderer';
+import HighlightManager from '@/components/HighlightManager';
 import TableOfContents from './TableOfContents';
-import HighlightManager from '../HighlightManager';
 import { HighlightAnchor } from '@/types';
 
 interface MaterialViewerProps {
@@ -66,6 +66,7 @@ export default function MaterialViewer({
         if (!htmlContent) return <div className="text-gray-500">HTMLコンテンツが読み込まれていません。</div>;
         return (
           <HtmlRenderer
+            ref={contentRef}
             htmlContent={htmlContent}
             searchTerm={searchTerm}
             temporaryHighlight={temporaryHighlight}
@@ -76,7 +77,7 @@ export default function MaterialViewer({
         if (!textContent) return <div className="text-gray-500">テキストコンテンツが読み込まれていません。</div>;
         return (
           <div className="max-w-4xl mx-auto p-8">
-            <pre className="whitespace-pre-wrap font-mono text-sm">{textContent}</pre>
+            <pre className="whitespace-pre-wrap font-mono text-sm text-gray-200">{textContent}</pre>
           </div>
         );
       
@@ -86,9 +87,9 @@ export default function MaterialViewer({
   };
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full bg-gray-900">
       {showToc && (
-        <div className="w-64 bg-gray-800 text-white overflow-y-auto">
+        <div className="w-64 bg-gray-800 text-white overflow-y-auto border-r border-gray-700">
           <ErrorBoundary>
             <TableOfContents 
               materialId={materialId}
@@ -99,19 +100,11 @@ export default function MaterialViewer({
       )}
       
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto" ref={contentRef}>
+        <div className="min-h-full">
           <ErrorBoundary>
-            {viewMode !== 'text' ? (
-              <HighlightManager
-                materialId={materialId}
-                contentRef={contentRef}
-                relatedQuestionId={relatedQuestionId}
-              >
-                {renderContent()}
-              </HighlightManager>
-            ) : (
-              renderContent()
-            )}
+            <HighlightManager materialId={materialId} contentRef={contentRef} relatedQuestionId={relatedQuestionId}>
+              {renderContent()}
+            </HighlightManager>
           </ErrorBoundary>
         </div>
       </div>
@@ -124,5 +117,4 @@ export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as PdfRenderer } from './PdfRenderer';
 export { default as HtmlRenderer } from './HtmlRenderer';
 export { default as TableOfContents } from './TableOfContents';
-export { default as HighlightLayer } from './HighlightLayer';
 export { default as NoteEditor } from './NoteEditor';
