@@ -4,9 +4,9 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEM
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta';
 const MODEL_NAME = 'models/gemini-2.5-flash-lite-preview-06-17';
 
-// Validate API key
+// Validate API key at runtime only; avoid breaking build when env is absent
 if (!GEMINI_API_KEY) {
-  throw new Error('GEMINI_API_KEY is not set in environment variables');
+  console.warn('GEMINI_API_KEY is not set. API calls will fail at runtime until configured.');
 }
 
 interface GeminiRequest {

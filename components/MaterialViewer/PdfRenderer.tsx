@@ -6,16 +6,9 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-// Set workerSrc on client only to avoid SSR issues
+// Set workerSrc on client only to avoid SSR issues (use HTTPS CDN for reliability)
 if (typeof window !== 'undefined') {
-  try {
-    // Resolve to a url string at runtime
-    const url = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url);
-    (pdfjs as any).GlobalWorkerOptions.workerSrc = url.toString();
-  } catch {
-    // Fallback to CDN if bundler cannot resolve the URL
-    (pdfjs as any).GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-  }
+  (pdfjs as any).GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 }
 
 interface PdfRendererProps {
