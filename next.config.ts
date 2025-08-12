@@ -5,19 +5,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/materials/:path*.pdf',
-        headers: [
-          {
-            key: 'Content-Type',
-            value: 'application/pdf',
-          },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600',
-          }
-        ],
-      },
-      {
         source: '/materials/:path*.txt',
         headers: [
           {
