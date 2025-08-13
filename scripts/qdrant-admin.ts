@@ -44,10 +44,10 @@ class QdrantAdmin {
       const info = await this.client.getCollection(this.collection);
       console.log('\n📊 Collection Information:');
       console.log(`  Name: ${this.collection}`);
-      console.log(`  Points count: ${info.points_count}`);
-      console.log(`  Vectors size: ${info.config?.params?.vectors?.size || 'N/A'}`);
-      console.log(`  Distance: ${info.config?.params?.vectors?.distance || 'N/A'}`);
-      console.log(`  Status: ${info.status}`);
+      console.log(`  Points count: ${info.points_count ?? 'N/A'}`);
+      console.log(`  Vectors size: ${info.config?.params?.vectors?.size ?? 'N/A'}`);
+      console.log(`  Distance: ${info.config?.params?.vectors?.distance ?? 'N/A'}`);
+      console.log(`  Status: ${info.status ?? 'N/A'}`);
       
       return info;
     } catch (error: any) {

@@ -249,13 +249,15 @@ class CleanUploader {
     
     try {
       const info = await this.client.getCollection(this.collection);
-      console.log(`  Collection points: ${info.points_count}`);
+      console.log(`  Collection points: ${info.points_count ?? 'N/A'}`);
       console.log(`  Expected points: ${this.uploadedCount}`);
       
-      if (info.points_count >= this.uploadedCount) {
+      if (info.points_count !== null && info.points_count !== undefined && info.points_count >= this.uploadedCount) {
         console.log('  ✅ Upload verification passed');
-      } else {
+      } else if (info.points_count !== null && info.points_count !== undefined) {
         console.log('  ⚠️ Point count mismatch - some records may not have been uploaded');
+      } else {
+        console.log('  ⚠️ Could not verify upload - points_count is unavailable');
       }
       
       // Analyze data quality
