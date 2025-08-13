@@ -127,7 +127,7 @@ function extractPagesFromText(content: string): PageContent[] {
   return pages;
 }
 
-function chunkText(text: string, targetChars = 600, overlapChars = 150): string[] {
+function chunkText(text: string, targetChars = 350, overlapChars = 100): string[] {
   const clean = text.replace(/\s+/g, ' ').trim();
   if (clean.length === 0) return [];
   

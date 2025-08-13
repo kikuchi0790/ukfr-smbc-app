@@ -18,6 +18,7 @@ export interface VectorSearcher {
 export interface VectorSearchOptions {
   k?: number;
   mmrLambda?: number;
+  minScore?: number;
 }
 
 export interface CacheEntry {

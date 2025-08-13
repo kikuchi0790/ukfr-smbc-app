@@ -51,19 +51,34 @@ export class LocalVectorClient {
   async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
     const k = options.k ?? 6;
     const mmrLambda = options.mmrLambda ?? 0.7; // Increased default from 0.5 to 0.7 for better accuracy
+    const minScore = options.minScore ?? 0.7; // Filter out low-relevance results
+    
     // Precompute similarities
     const sims = this.records.map((r, idx) => ({ idx, score: cosineSimilarity(queryEmbedding, r.embedding) }));
-    sims.sort((a, b) => b.score - a.score);
+    
+    // Filter by minimum score threshold
+    const filteredSims = sims.filter(s => s.score >= minScore);
+    console.log(`[Vector Search] Found ${filteredSims.length} results above score ${minScore} (total: ${sims.length})`);
+    
+    // Sort by score
+    filteredSims.sort((a, b) => b.score - a.score);
     // MMR selection
     const selected: number[] = [];
     const selectedResults: RetrievedPassage[] = [];
-    const maxIter = Math.min(k, sims.length);
+    const maxIter = Math.min(k, filteredSims.length);
+    
+    // If no results meet the threshold, return empty
+    if (filteredSims.length === 0) {
+      console.log('[Vector Search] No results met the minimum score threshold');
+      return [];
+    }
+    
     while (selected.length < maxIter) {
       let bestIdx = -1;
       let bestScore = -Infinity;
-      for (let i = 0; i < sims.length; i++) {
-        if (selected.includes(sims[i].idx)) continue;
-        const candidate = sims[i];
+      for (let i = 0; i < filteredSims.length; i++) {
+        if (selected.includes(filteredSims[i].idx)) continue;
+        const candidate = filteredSims[i];
         // Diversity penalty
         let diversity = 0;
         if (selected.length > 0) {
@@ -85,7 +100,7 @@ export class LocalVectorClient {
         materialId: r.materialId,
         page: r.pageNumber,
         quote: r.plainText,
-        score: sims.find(s => s.idx === bestIdx)?.score ?? 0,
+        score: filteredSims.find(s => s.idx === bestIdx)?.score ?? 0,
         offset: r.offset,
       });
     }

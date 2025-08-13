@@ -149,6 +149,20 @@ export async function POST(req: NextRequest) {
     const preprocessed = normalizeText(applyAliasExpansion(queryToProcess, aliasMap));
     const qEmbedding = await embedText(preprocessed);
     const results = await searcher.search(qEmbedding, { k: k ?? 6, mmrLambda: 0.7 }); // Increased from 0.5 to 0.7 for better accuracy
+    
+    // Debug logging for RAG search results
+    console.log('[RAG Debug] Query processed:', {
+      original: question.slice(0, 100),
+      optimized: queryToProcess.slice(0, 100),
+      preprocessed: preprocessed.slice(0, 100),
+      resultsCount: results.length,
+      topResults: results.slice(0, 3).map(r => ({
+        materialId: r.materialId,
+        page: r.page,
+        score: r.score,
+        snippet: r.quote.slice(0, 50)
+      }))
+    });
 
     const payload = { passages: results };
     cache.set(cacheKey, results);
