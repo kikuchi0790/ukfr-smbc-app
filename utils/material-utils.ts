@@ -49,8 +49,8 @@ export function validatePageNumber(materialId: string | undefined, pageNumber: n
   const normalized = normalizeMaterialId(materialId);
   
   if (normalized === 'UKFR_ED32_Study_Companion') {
-    // Study Companion has 112 pages
-    return pageNumber >= 1 && pageNumber <= 112;
+    // Study Companion has 117 pages (includes appendix)
+    return pageNumber >= 1 && pageNumber <= 117;
   }
   
   if (normalized === 'UKFR_ED32_Checkpoint') {
