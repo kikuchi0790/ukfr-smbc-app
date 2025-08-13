@@ -50,7 +50,7 @@ export class LocalVectorClient {
 
   async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
     const k = options.k ?? 6;
-    const mmrLambda = options.mmrLambda ?? 0.5;
+    const mmrLambda = options.mmrLambda ?? 0.7; // Increased default from 0.5 to 0.7 for better accuracy
     // Precompute similarities
     const sims = this.records.map((r, idx) => ({ idx, score: cosineSimilarity(queryEmbedding, r.embedding) }));
     sims.sort((a, b) => b.score - a.score);

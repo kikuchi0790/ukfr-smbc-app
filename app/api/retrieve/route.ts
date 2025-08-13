@@ -12,13 +12,14 @@ const RequestSchema = z.object({
   question: z.string().min(3).max(5000), // Add max length for security
   questionId: z.string().regex(/^[a-zA-Z0-9_-]+$/).optional(), // Validate format
   k: z.number().int().min(1).max(20).optional(),
+  useFullQuestion: z.boolean().optional(), // Option to use full question for backward compatibility
 });
 
 // LRU cache implementation
 class LRUCache {
   private cache = new Map<string, CacheEntry>();
   private readonly maxSize = 1000;
-  private readonly ttlMs = 7 * 24 * 60 * 60 * 1000;
+  private readonly ttlMs = 24 * 60 * 60 * 1000; // Reduced from 7 days to 24 hours
 
   get(key: string): CacheEntry | undefined {
     const entry = this.cache.get(key);
@@ -65,6 +66,25 @@ function getIndexPath(): string {
   return path.join(process.cwd(), 'services', 'data', 'materials_index.json');
 }
 
+function extractKeyPhrases(question: string): string {
+  // Remove options if they exist (they usually start with "A.", "B.", etc.)
+  const withoutOptions = question.split(/\n[A-E]\.\s/)[0];
+  
+  // Extract key phrases (first 200 chars if long, focusing on the actual question)
+  const mainQuestion = withoutOptions.trim();
+  if (mainQuestion.length > 200) {
+    // Try to find the actual question part (often after context)
+    const questionParts = mainQuestion.split(/[？。]/);
+    const lastPart = questionParts[questionParts.length - 1].trim();
+    if (lastPart.length > 50) {
+      return lastPart.slice(0, 200);
+    }
+    return mainQuestion.slice(-200); // Take last 200 chars which usually contain the actual question
+  }
+  
+  return mainQuestion;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -72,7 +92,7 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ success: false, error: 'Invalid request' }, { status: 400 });
     }
-    const { question, questionId, k } = parsed.data;
+    const { question, questionId, k, useFullQuestion } = parsed.data;
     const cacheKey = makeKey(questionId ? `qid:${questionId}` : question);
     const now = Date.now();
     const cached = cache.get(cacheKey);
@@ -112,10 +132,23 @@ export async function POST(req: NextRequest) {
       'fsma': 'financial services and markets act',
       'cobs': 'conduct of business sourcebook',
       'cisi': 'chartered institute for securities and investment',
+      'mifid': 'markets in financial instruments directive',
+      'prin': 'principles for businesses',
+      'sysc': 'senior management arrangements systems and controls',
+      'fit': 'fit and proper test',
+      'smcr': 'senior managers and certification regime',
+      'mar': 'market abuse regulation',
+      'aml': 'anti money laundering',
+      'kyc': 'know your customer',
+      'tcf': 'treating customers fairly',
+      'rdr': 'retail distribution review',
     };
-    const preprocessed = normalizeText(applyAliasExpansion(question, aliasMap));
+    
+    // Use optimized query unless full question is explicitly requested
+    const queryToProcess = useFullQuestion ? question : extractKeyPhrases(question);
+    const preprocessed = normalizeText(applyAliasExpansion(queryToProcess, aliasMap));
     const qEmbedding = await embedText(preprocessed);
-    const results = await searcher.search(qEmbedding, { k: k ?? 6, mmrLambda: 0.5 });
+    const results = await searcher.search(qEmbedding, { k: k ?? 6, mmrLambda: 0.7 }); // Increased from 0.5 to 0.7 for better accuracy
 
     const payload = { passages: results };
     cache.set(cacheKey, results);
