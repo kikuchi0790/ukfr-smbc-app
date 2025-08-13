@@ -29,7 +29,7 @@
     "jsdom": "^24.1.0",
     "lucide-react": "^0.511.0",
     "next": "15.3.3",
-    "openai": "^4.57.0",
+    "openai": "4.57.0",
     "pdfjs-dist": "^5.4.54",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
