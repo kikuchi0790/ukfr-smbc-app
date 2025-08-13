@@ -27,8 +27,6 @@ function MaterialsContent() {
   const [showQuestionPanel, setShowQuestionPanel] = useState(true);
   const [questionPanelWidth, setQuestionPanelWidth] = useState(30); // パネル幅（%）
   const [showJapanese, setShowJapanese] = useState(true);
-  const [showQuestionPanel, setShowQuestionPanel] = useState(true);
-  const [questionPanelWidth, setQuestionPanelWidth] = useState(35); // percentage
 
   useEffect(() => {
     // URLパラメータからキーワードを取得

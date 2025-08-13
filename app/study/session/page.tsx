@@ -77,7 +77,7 @@ function StudySessionContent() {
   const isLoadingQuestions = useRef(false);
   const hasRestoredRef = useRef(false);
   // RAG検索結果のキャッシュ（セッション永続化）
-  const ragResultsCache = useRef<Map<string, any>>(() => {
+  const ragResultsCache = useRef<Map<string, any>>((() => {
     // sessionStorageから復元を試みる
     try {
       const cached = sessionStorage.getItem('ragResultsCache');
@@ -89,7 +89,7 @@ function StudySessionContent() {
       console.warn('Failed to restore RAG cache from sessionStorage:', e);
     }
     return new Map();
-  }());
+  })());
   const ragTimerRef = useRef<NodeJS.Timeout | null>(null); // RAG検索タイマー
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
