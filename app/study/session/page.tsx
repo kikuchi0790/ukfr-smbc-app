@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense, useCallback, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, Suspense, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { 
@@ -74,16 +74,17 @@ function StudySessionContent() {
   const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
   const sessionPersistence = useRef<SessionPersistence | null>(null);
   const isLoadingQuestions = useRef(false);
+  const hasRestoredRef = useRef(false);
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   const isMockMode = mode === "mock25" || mode === "mock75";
 
   // セッション保存関数
-  const saveSessionState = useCallback(() => {
-    if (!session || !questions.length) return;
+  const saveSessionState = useCallback(async () => {
+    if (!session || !questions.length) return false;
 
     const persistence = sessionPersistence.current || SessionPersistence.getInstance();
-    persistence.saveSession(
+    const saved = await persistence.saveSession(
       session,
       questions,
       currentQuestionIndex,
@@ -97,14 +98,14 @@ function StudySessionContent() {
       studyModeParam || undefined,
       questionCountParam || undefined,
       user?.nickname
-    ).then(saved => {
-      if (saved) {
-        setHasUnsavedChanges(false);
-        setLastSaveTime(new Date());
-      }
-    });
-  }, [session, questions, currentQuestionIndex, mockAnswers, showJapanese, 
-      selectedAnswer, showResult, mode, categoryParam, partParam, 
+    );
+    if (saved) {
+      setHasUnsavedChanges(false);
+      setLastSaveTime(new Date());
+    }
+    return saved;
+  }, [session, questions, currentQuestionIndex, mockAnswers, showJapanese,
+      selectedAnswer, showResult, mode, categoryParam, partParam,
       studyModeParam, questionCountParam, isMockMode, user?.nickname]);
 
   // セッション永続化の初期化と問題の読み込み
@@ -119,7 +120,9 @@ function StudySessionContent() {
 
     // カスタムイベントリスナーの設定は別のuseEffectで行う
 
-    loadQuestions();
+    if (!hasRestoredRef.current) {
+      loadQuestions();
+    }
 
     return () => {
       if (sessionPersistence.current) {
@@ -170,147 +173,78 @@ function StudySessionContent() {
     }
   }, [sessionEnded, router]);
 
-  // セッション復元処理（認証の準備完了を待ってから実行）
-  useEffect(() => {
+  // セッション復元処理（同期的に適用して描画前に整合性を保つ）
+  useLayoutEffect(() => {
     if (authLoading) return; // 認証未確定なら待機
     
-    // restoreパラメータがある場合は優先的に復元
-    if (restoreParam) {
-      const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
-      const navigationState = safeLocalStorage.getItem<any>('materialNavigationState');
-      
-      if (savedSessionState) {
-        // セッションを復元
-        setSession(savedSessionState.session);
-        const savedIndex = savedSessionState.currentQuestionIndex || savedSessionState.session.currentQuestionIndex || 0;
-        setCurrentQuestionIndex(savedIndex);
-        setShowJapanese(savedSessionState.showJapanese);
-        
-        // 問題リストを直接復元（IDリストではなく完全なオブジェクト配列）
-        if (Array.isArray(savedSessionState.questions) && savedSessionState.questions.length > 0) {
-          // 問題がオブジェクト配列か、ID配列かを判定
-          if (typeof savedSessionState.questions[0] === 'string') {
-            // 古い形式（ID配列）の場合は復元が必要
-            setQuestionsToRestore(savedSessionState.questions);
+    const applyRestoration = (saved: any, source: 'persistence' | 'legacy') => {
+      try {
+        setSession(saved.session);
+        setShowJapanese(saved.showJapanese);
+
+        // Prefer questions array if present (v2)
+        if (Array.isArray(saved.questions) && saved.questions.length > 0 && typeof saved.questions[0] !== 'string') {
+          const qs = saved.questions as Question[];
+          setQuestions(qs);
+          // Recalculate index by ID if available
+          const idBasedIndex = saved.currentQuestionId ? qs.findIndex(q => q.questionId === saved.currentQuestionId) : -1;
+          const resolvedIndex = idBasedIndex >= 0 ? idBasedIndex : (saved.currentQuestionIndex || saved.session?.currentQuestionIndex || 0);
+          setCurrentQuestionIndex(resolvedIndex);
+
+          // Restore answer/showResult only when IDs match
+          const current = qs[resolvedIndex];
+          if (current && saved.currentQuestionId && current.questionId === saved.currentQuestionId) {
+            if (saved.selectedAnswer !== undefined) setSelectedAnswer(saved.selectedAnswer);
+            if (saved.showResult !== undefined) setShowResult(saved.showResult);
           } else {
-            // 新しい形式（問題オブジェクト配列）の場合は直接設定
-            setQuestions(savedSessionState.questions);
-            
-            // 回答状態は現在の問題とIDが一致する場合のみ復元
-            const currentQuestion = savedSessionState.questions[savedIndex];
-            if (currentQuestion && currentQuestion.questionId === savedSessionState.currentQuestionId) {
-              setSelectedAnswer(savedSessionState.selectedAnswer);
-              setShowResult(savedSessionState.showResult);
-            } else {
-              // IDが一致しない場合は回答状態をクリア
-              console.warn('[Session] Question ID mismatch, clearing answer state');
-              setSelectedAnswer(null);
-              setShowResult(false);
-            }
+            setSelectedAnswer(null);
+            setShowResult(false);
           }
+          hasRestoredRef.current = true;
+          // Ensure UI resumes immediately without waiting for loader
+          setLoading(false);
+          isLoadingQuestions.current = false;
+          // Start autosave loop when restored directly
+          if (sessionPersistence.current) {
+            sessionPersistence.current.startAutosave(() => { void saveSessionState(); });
+          }
+        } else if (Array.isArray(saved.questionIds) || (Array.isArray(saved.questions) && typeof saved.questions[0] === 'string')) {
+          // v1 compatibility: let loader reconstruct
+          const ids = (saved.questionIds as string[]) || (saved.questions as string[]);
+          setQuestionsToRestore(ids);
+          setCurrentQuestionIndex(saved.currentQuestionIndex || saved.session?.currentQuestionIndex || 0);
+          hasRestoredRef.current = false; // allow loader to run
         }
-        
-        if (savedSessionState.mockAnswers) {
-          setMockAnswers(new Map(savedSessionState.mockAnswers));
+
+        if (saved.mockAnswers) setMockAnswers(new Map(saved.mockAnswers));
+
+        // Cleanup only when not returning from materials
+        if (source === 'legacy' && !restoreParam) {
+          safeLocalStorage.removeItem('studySessionState');
+          safeLocalStorage.removeItem('materialNavigationState');
         }
-        
-        console.log('[Session] Restored from materials view with restore flag');
-        // 注意: ここではデータを削除しない（再度教材に移動する可能性があるため）
-        return;
+      } catch (e) {
+        console.error('[Session] Failed to apply restoration:', e);
       }
-    }
-    
-    // まず永続化システムからセッションを読み込む
+    };
+
+    // 1) Prefer unified persistence
     const persistence = sessionPersistence.current || SessionPersistence.getInstance();
     const savedSession = persistence.loadSession(user?.nickname);
-    
-    if (savedSession && 
-        savedSession.mode === mode && 
-        savedSession.category === categoryParam &&
-        savedSession.part === partParam) {
-      
-      // セッションを復元
-      setSession(savedSession.session);
-      setCurrentQuestionIndex(savedSession.currentQuestionIndex);
-      setShowJapanese(savedSession.showJapanese);
-      setQuestionsToRestore(savedSession.questionIds || null);
-      
-      if (savedSession.mockAnswers) {
-        setMockAnswers(new Map(savedSession.mockAnswers));
-      }
-      
-      if (savedSession.selectedAnswer !== undefined) {
-        setSelectedAnswer(savedSession.selectedAnswer);
-      }
-      
-      if (savedSession.showResult !== undefined) {
-        setShowResult(savedSession.showResult);
-      }
-      
-      const timeSince = new Date().getTime() - new Date(savedSession.savedAt).getTime();
-      const minutesSince = Math.floor(timeSince / 60000);
-      console.log(`[Session] Restored session from ${minutesSince} minutes ago`);
-      
-      // 教材から戻った場合の処理も統合
-      // 注意: restoreフラグがない場合のみ削除
-      if (!restoreParam) {
-        safeLocalStorage.removeItem('studySessionState');
-        safeLocalStorage.removeItem('materialNavigationState');
-      }
+    if (savedSession && savedSession.mode === mode && savedSession.category === categoryParam && savedSession.part === partParam) {
+      applyRestoration(savedSession, 'persistence');
       return;
     }
-    
-    // 教材から戻った時の復元（互換性のため）
-    const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
-    const navigationState = safeLocalStorage.getItem<any>('materialNavigationState');
-    
-    if (savedSessionState && navigationState) {
-      // 保存されたセッションが現在のモードと一致するか確認
-      if (savedSessionState.mode === mode && 
-          savedSessionState.category === categoryParam &&
-          savedSessionState.part === partParam) {
-        
-        // 保存時間から30分以内か確認
-        const savedTime = new Date(savedSessionState.savedAt).getTime();
-        const currentTime = new Date().getTime();
-        const timeDiff = currentTime - savedTime;
-        
-        if (timeDiff < 30 * 60 * 1000) { // 30分以内
-          // セッションを復元
-          setSession(savedSessionState.session);
-          const savedIndex = savedSessionState.currentQuestionIndex || savedSessionState.session.currentQuestionIndex || 0;
-          setCurrentQuestionIndex(savedIndex);
-          setShowJapanese(savedSessionState.showJapanese);
-          
-          if (savedSessionState.mockAnswers) {
-            setMockAnswers(new Map(savedSessionState.mockAnswers));
-          }
-          
-          // 問題リストの復元
-          if (Array.isArray(savedSessionState.questions) && savedSessionState.questions.length > 0) {
-            if (typeof savedSessionState.questions[0] === 'string') {
-              // 古い形式（ID配列）
-              setQuestionsToRestore(savedSessionState.questions);
-            } else {
-              // 新しい形式（問題オブジェクト配列）
-              setQuestions(savedSessionState.questions);
-              
-              // 回答状態の検証
-              const currentQuestion = savedSessionState.questions[savedIndex];
-              if (currentQuestion && currentQuestion.questionId === savedSessionState.currentQuestionId) {
-                setSelectedAnswer(savedSessionState.selectedAnswer);
-                setShowResult(savedSessionState.showResult);
-              }
-            }
-          }
-          
-          // セッション状態をクリア
-          // 注意: restoreフラグがない場合のみ削除
-          if (!restoreParam) {
-            safeLocalStorage.removeItem('studySessionState');
-            safeLocalStorage.removeItem('materialNavigationState');
-          }
-        }
+
+    // 2) Fallback: manual snapshot (used for materials navigation)
+    const savedLegacy = safeLocalStorage.getItem<any>('studySessionState');
+    if (savedLegacy && savedLegacy.mode === mode && savedLegacy.category === categoryParam && savedLegacy.part === partParam) {
+      // Validate within 30 minutes
+      const savedTime = new Date(savedLegacy.savedAt).getTime();
+      const currentTime = Date.now();
+      if (currentTime - savedTime < 30 * 60 * 1000) {
+        applyRestoration(savedLegacy, 'legacy');
+        return;
       }
     }
   }, [mode, categoryParam, partParam, user?.nickname, authLoading, restoreParam]);
@@ -687,7 +621,7 @@ function StudySessionContent() {
         const ragResp = await fetch('/api/retrieve', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ question: `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`, questionId: currentQuestion.questionId }),
+          body: JSON.stringify({ k: 8, question: `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`, questionId: currentQuestion.questionId }),
           signal: controller.signal
         });
         
@@ -695,7 +629,27 @@ function StudySessionContent() {
         const data = await ragResp.json();
         
         if (ragResp.ok && data.success && data.data?.passages) {
-          safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, data.data);
+          let storedPayload = data.data as any;
+          // 追加のリランクで最適な候補を選定
+          try {
+            const topForRerank = Array.isArray(storedPayload.passages) ? storedPayload.passages.slice(0, 5) : [];
+            if (topForRerank.length > 0) {
+              const rerankResp = await fetch('/api/rerank', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: currentQuestion.question, passages: topForRerank })
+              });
+              if (rerankResp.ok) {
+                const rerankJson = await rerankResp.json();
+                if (rerankJson?.success && rerankJson?.data) {
+                  storedPayload = { ...storedPayload, best: rerankJson.data };
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('Rerank failed, using top passage as-is');
+          }
+          safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, storedPayload);
           setRagStatus('関連箇所を特定しました');
         } else if (data.fallback && data.data?.passages) {
           // Fallback to local search was used

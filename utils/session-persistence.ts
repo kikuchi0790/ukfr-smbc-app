@@ -172,7 +172,7 @@ export class SessionPersistence {
 
   // 自動保存を開始
   startAutosave(
-    saveCallback: () => void,
+    saveCallback: () => void | Promise<unknown>,
     interval: number = AUTOSAVE_INTERVAL
   ): void {
     this.stopAutosave();
@@ -191,7 +191,7 @@ export class SessionPersistence {
   }
 
   // 回答カウントをインクリメント
-  incrementAnswerCount(saveCallback: () => void): void {
+  incrementAnswerCount(saveCallback: () => void | Promise<unknown>): void {
     this.answerCount++;
     if (this.answerCount >= ANSWER_THRESHOLD) {
       console.log('[SessionPersistence] Answer threshold reached, autosaving...');

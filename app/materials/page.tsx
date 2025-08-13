@@ -64,7 +64,10 @@ function MaterialsContent() {
     if (savedState?.questionId) {
       const stored = safeLocalStorage.getItem<any>(`retrieveResults_${savedState.questionId}`);
       if (stored && Array.isArray(stored.passages) && stored.passages.length > 0) {
-        const top = stored.passages[0];
+        // rerank結果があればそれを優先
+        const top = stored.best && typeof stored.best.page === 'number'
+          ? { materialId: savedState.materialId || stored.passages[0].materialId, page: stored.best.page, quote: stored.best.exactQuote || stored.passages[0].quote }
+          : stored.passages[0];
         // 材料の自動切替（Checkpoint/StudyCompanion）
         if (typeof top.materialId === 'string') {
           const mid = top.materialId.toLowerCase();
