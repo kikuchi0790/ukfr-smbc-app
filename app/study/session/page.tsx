@@ -621,10 +621,20 @@ function StudySessionContent() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
         
+        // Prepare enhanced query with explanation
+        const questionWithOptions = `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`;
+        const correctAnswer = currentQuestion.options.find(o => o.letter === currentQuestion.correctAnswer)?.text;
+        
         const ragResp = await fetch('/api/retrieve', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ k: 8, question: `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`, questionId: currentQuestion.questionId }),
+          body: JSON.stringify({ 
+            k: 10,  // Increased for better coverage
+            question: questionWithOptions,
+            questionId: currentQuestion.questionId,
+            explanation: currentQuestion.explanation,  // Pass explanation for better context
+            useAdvancedSearch: true  // Enable GPT-4o powered multi-stage search
+          }),
           signal: controller.signal
         });
         
@@ -639,11 +649,12 @@ function StudySessionContent() {
         
         if (ragResp.ok && data.success && data.data?.passages) {
           let storedPayload = data.data as any;
-          console.log('[Study Session] RAG passages:', storedPayload.passages.map((p: any) => ({
+          console.log('[Study Session] RAG passages:', storedPayload.passages.slice(0, 5).map((p: any) => ({
             materialId: p.materialId,
             page: p.page,
-            score: p.score,
-            snippet: p.quote ? p.quote.slice(0, 50) + '...' : ''
+            score: p.score?.toFixed(3),
+            queryHits: p.queryHits || 1,
+            snippet: p.quote ? p.quote.slice(0, 80) + '...' : ''
           })));
           
           // 古いmaterialIdが含まれているか検査
@@ -654,18 +665,34 @@ function StudySessionContent() {
             console.warn('[Study Session] WARNING: RAG results contain old materialId format. Index rebuild required!');
           }
           
-          // 追加のリランクで最適な候補を選定
+          // Enhanced reranking with more context
           try {
-            const topForRerank = Array.isArray(storedPayload.passages) ? storedPayload.passages.slice(0, 5) : [];
+            const topForRerank = Array.isArray(storedPayload.passages) ? storedPayload.passages.slice(0, 8) : [];  // Increased to 8 for better accuracy
             if (topForRerank.length > 0) {
+              // Extract amounts from question and explanation
+              const amountRegex = /£[\d,]+|\d{2,3},\d{3}ポンド|\$[\d,]+|\d+%/g;
+              const extractedAmounts = [
+                ...(currentQuestion.question.match(amountRegex) || []),
+                ...(currentQuestion.explanation?.match(amountRegex) || [])
+              ].filter((v, i, a) => a.indexOf(v) === i);  // Unique values
+              
               const rerankResp = await fetch('/api/rerank', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ question: currentQuestion.question, passages: topForRerank })
+                body: JSON.stringify({ 
+                  question: currentQuestion.question,
+                  passages: topForRerank,
+                  explanation: currentQuestion.explanation,
+                  extractedAmounts
+                })
               });
               if (rerankResp.ok) {
                 const rerankJson = await rerankResp.json();
-                console.log('[Study Session] Rerank result:', rerankJson?.data);
+                console.log('[Study Session] Rerank result:', {
+                  ...rerankJson?.data,
+                  confidence: rerankJson?.data?.confidence,
+                  reasoning: rerankJson?.data?.reasoning?.slice(0, 100)
+                });
                 if (rerankJson?.success && rerankJson?.data) {
                   storedPayload = { ...storedPayload, best: rerankJson.data };
                   // ページはbestから、materialIdは候補から推定

@@ -15,6 +15,7 @@
     "build-storybook": "storybook build",
     "build:index": "tsx scripts/build-material-index.ts",
     "build:index:text": "tsx scripts/build-material-index-from-text.ts",
+    "build:index:advanced": "tsx scripts/build-material-index-advanced.ts",
     "upload:qdrant": "tsx scripts/upload-to-qdrant.ts"
   },
   "dependencies": {

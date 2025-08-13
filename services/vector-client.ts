@@ -11,6 +11,11 @@ export interface PassageRecord {
   plainText: string;
   normalizedText: string;
   embedding: number[];
+  // Enhanced metadata for better search
+  sectionTitle?: string;
+  sectionNumber?: number;
+  containsAmounts?: string[];
+  keyEntities?: string[];
 }
 
 // Re-export types from rag.ts for backward compatibility
@@ -37,6 +42,8 @@ export function cosineSimilarity(a: number[], b: number[]): number {
 
 export class LocalVectorClient {
   private records: PassageRecord[] = [];
+  private amountIndex: Map<string, PassageRecord[]> = new Map();
+  private sectionIndex: Map<string, PassageRecord[]> = new Map();
 
   constructor(indexFilePath: string) {
     const p = path.resolve(indexFilePath);
@@ -46,9 +53,117 @@ export class LocalVectorClient {
     const raw = fs.readFileSync(p, 'utf-8');
     const json = JSON.parse(raw) as PassageRecord[];
     this.records = json;
+    
+    // Build specialized indexes
+    this.buildSpecializedIndexes();
+  }
+  
+  private buildSpecializedIndexes() {
+    // Build amount index for fast lookup
+    this.records.forEach(record => {
+      // Extract amounts from text
+      const amountRegex = /£[\d,]+|\d{2,3},\d{3}ポンド|\$[\d,]+|\d+%/g;
+      const amounts = record.plainText.match(amountRegex) || [];
+      
+      amounts.forEach(amount => {
+        if (!this.amountIndex.has(amount)) {
+          this.amountIndex.set(amount, []);
+        }
+        this.amountIndex.get(amount)!.push(record);
+      });
+      
+      // Store in metadata if available
+      if (record.containsAmounts) {
+        record.containsAmounts.forEach(amount => {
+          if (!this.amountIndex.has(amount)) {
+            this.amountIndex.set(amount, []);
+          }
+          this.amountIndex.get(amount)!.push(record);
+        });
+      }
+      
+      // Build section index
+      if (record.sectionTitle) {
+        const key = record.sectionTitle.toLowerCase();
+        if (!this.sectionIndex.has(key)) {
+          this.sectionIndex.set(key, []);
+        }
+        this.sectionIndex.get(key)!.push(record);
+      }
+    });
+    
+    console.log(`[Vector Client] Built specialized indexes: ${this.amountIndex.size} amounts, ${this.sectionIndex.size} sections`);
+  }
+  
+  // Direct amount-based search
+  async searchByAmount(amount: string): Promise<RetrievedPassage[]> {
+    const records = this.amountIndex.get(amount) || [];
+    console.log(`[Amount Search] Found ${records.length} records with amount "${amount}"`);
+    
+    return records.map(r => ({
+      materialId: r.materialId,
+      page: r.pageNumber,
+      quote: r.plainText,
+      score: 1.0,  // Perfect match for exact amount
+      offset: r.offset,
+    }));
+  }
+  
+  // Section-based search
+  async searchBySection(sectionKeywords: string[]): Promise<RetrievedPassage[]> {
+    const results: PassageRecord[] = [];
+    
+    sectionKeywords.forEach(keyword => {
+      const key = keyword.toLowerCase();
+      this.sectionIndex.forEach((records, sectionTitle) => {
+        if (sectionTitle.includes(key)) {
+          results.push(...records);
+        }
+      });
+    });
+    
+    console.log(`[Section Search] Found ${results.length} records matching sections: ${sectionKeywords.join(', ')}`);
+    
+    // Deduplicate and return
+    const seen = new Set<string>();
+    return results
+      .filter(r => {
+        const key = `${r.materialId}_${r.pageNumber}_${r.offset}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .map(r => ({
+        materialId: r.materialId,
+        page: r.pageNumber,
+        quote: r.plainText,
+        score: 0.95,  // High score for section match
+        offset: r.offset,
+      }));
   }
 
-  async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
+  async search(queryEmbedding: number[], options: VectorSearchOptions & { hybridAmounts?: string[], hybridSections?: string[] } = {}): Promise<RetrievedPassage[]> {
+    // Try hybrid search first if amounts or sections are provided
+    let hybridResults: RetrievedPassage[] = [];
+    
+    if (options.hybridAmounts && options.hybridAmounts.length > 0) {
+      for (const amount of options.hybridAmounts) {
+        const amountResults = await this.searchByAmount(amount);
+        hybridResults.push(...amountResults);
+      }
+    }
+    
+    if (options.hybridSections && options.hybridSections.length > 0) {
+      const sectionResults = await this.searchBySection(options.hybridSections);
+      hybridResults.push(...sectionResults);
+    }
+    
+    // If we have high-quality hybrid results, prioritize them
+    if (hybridResults.length > 0) {
+      console.log(`[Hybrid Search] Found ${hybridResults.length} high-priority results from amount/section search`);
+    }
+    
+    // Continue with vector search
     const k = options.k ?? 6;
     const mmrLambda = options.mmrLambda ?? 0.7; // Increased default from 0.5 to 0.7 for better accuracy
     const minScore = options.minScore ?? 0.65; // Lowered threshold for cross-lingual search
@@ -104,7 +219,31 @@ export class LocalVectorClient {
         offset: r.offset,
       });
     }
-    return Promise.resolve(selectedResults);
+    
+    // Merge hybrid results with vector results
+    const finalResults: RetrievedPassage[] = [];
+    const seen = new Set<string>();
+    
+    // Add hybrid results first (higher priority)
+    hybridResults.forEach(result => {
+      const key = `${result.materialId}_${result.page}_${result.offset}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        finalResults.push(result);
+      }
+    });
+    
+    // Add vector search results
+    selectedResults.forEach(result => {
+      const key = `${result.materialId}_${result.page}_${result.offset}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        finalResults.push(result);
+      }
+    });
+    
+    // Return top k results
+    return Promise.resolve(finalResults.slice(0, k));
   }
 }
 
