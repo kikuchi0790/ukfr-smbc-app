@@ -82,14 +82,36 @@ export function saveIncorrectQuestion(questionId: string, category: string, user
   }
 }
 
-// 間違えた問題から復習用の問題を取得
-export function getReviewQuestions(allQuestions: Question[], count: number = 10, userNickname?: string): Question[] {
+// 間違えた問題から復習用の問題を取得（カテゴリ別・Mock試験両対応）
+export function getReviewQuestions(
+  allQuestions: Question[], 
+  count: number = 10, 
+  userNickname?: string,
+  reviewType: 'category' | 'mock' = 'category'
+): Question[] {
   try {
     const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
-    if (!progress || !progress.incorrectQuestions) return [];
+    if (!progress) return [];
 
-    const incorrectQuestions = progress.incorrectQuestions || [];
+    let incorrectQuestions: IncorrectQuestion[] = [];
+    
+    if (reviewType === 'category') {
+      // カテゴリ別問題の間違い
+      if (!progress.incorrectQuestions) return [];
+      incorrectQuestions = progress.incorrectQuestions;
+    } else {
+      // Mock試験の間違いをIncorrectQuestion形式に変換
+      if (!progress.mockIncorrectQuestions) return [];
+      const mockIncorrect = progress.mockIncorrectQuestions;
+      incorrectQuestions = mockIncorrect.map(mq => ({
+        questionId: mq.questionId,
+        category: mq.category,
+        incorrectCount: mq.incorrectCount,
+        lastIncorrectDate: mq.lastIncorrectDate,
+        reviewCount: mq.reviewCount
+      }));
+    }
 
     if (incorrectQuestions.length === 0) return [];
 

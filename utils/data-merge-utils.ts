@@ -96,6 +96,7 @@ export class DataMerger {
 
   /**
    * カテゴリプログレスをマージする
+   * 重複カウントを防ぐため、合算ではなく最大値を取る方式に変更
    */
   static mergeCategoryProgress(
     local: Record<string, CategoryProgress>,
@@ -105,11 +106,13 @@ export class DataMerger {
     
     for (const [category, remoteProgress] of Object.entries(remote)) {
       if (merged[category]) {
-        // 既存のカテゴリがある場合は値を合算
+        // 既存のカテゴリがある場合は最大値を取る（重複カウント防止）
+        // これにより、同じ問題が複数回カウントされることを防ぐ
         merged[category] = {
           totalQuestions: Math.max(merged[category].totalQuestions, remoteProgress.totalQuestions),
-          answeredQuestions: merged[category].answeredQuestions + remoteProgress.answeredQuestions,
-          correctAnswers: merged[category].correctAnswers + remoteProgress.correctAnswers
+          // 回答済み問題数と正解数は最大値を取る（同期時の重複を防ぐ）
+          answeredQuestions: Math.max(merged[category].answeredQuestions, remoteProgress.answeredQuestions),
+          correctAnswers: Math.max(merged[category].correctAnswers, remoteProgress.correctAnswers)
         };
       } else {
         // 新しいカテゴリの場合はそのまま追加

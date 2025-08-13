@@ -239,7 +239,16 @@ function StudyModeContent() {
   };
 
   const handleReviewIncorrect = () => {
-    router.push(`/study/session?mode=review&questionCount=${categoryQuestionCount}`);
+    router.push(`/study/session?mode=review&questionCount=${categoryQuestionCount}&reviewType=category`);
+  };
+  
+  const handleReviewMockIncorrect = () => {
+    // Mock試験の間違いがあるかチェック
+    if (!progress?.mockIncorrectQuestions || progress.mockIncorrectQuestions.length === 0) {
+      alert("Mock試験で間違えた問題がありません。まずはMock試験を受けてください。");
+      return;
+    }
+    router.push(`/study/session?mode=review&questionCount=${categoryQuestionCount}&reviewType=mock`);
   };
 
   const handleMockCategorySelect = (category: Category) => {
@@ -628,20 +637,67 @@ function StudyModeContent() {
               復習モード
             </span>
           </h2>
-          <button
-            onClick={handleReviewIncorrect}
-            className="w-full max-w-md mx-auto block bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-700 hover:border-orange-700 group"
-          >
-            <div className="flex items-center justify-between">
-              <div className="text-left">
-                <h3 className="font-bold mb-2 text-gray-100 group-hover:text-white">間違えた問題を復習</h3>
-                <p className="text-gray-400 text-sm">過去に間違えた問題から{categoryQuestionCount}問出題</p>
+          
+          {/* Review Mode Selection */}
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {/* Category Review */}
+            <button
+              onClick={handleReviewIncorrect}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-700 hover:border-orange-700 group"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-gradient-to-br from-orange-400 to-orange-500 p-3 rounded-full shadow-sm group-hover:shadow-md transition-all mb-4">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold mb-2 text-gray-100 group-hover:text-white">カテゴリ別復習</h3>
+                <p className="text-gray-400 text-sm mb-2">カテゴリ学習で間違えた問題を復習</p>
+                <div className="text-xs text-gray-500">
+                  {progress?.incorrectQuestions?.length || 0}問の間違い
+                </div>
               </div>
-              <div className="bg-gradient-to-br from-orange-400 to-orange-500 p-3 rounded-full shadow-sm group-hover:shadow-md transition-all">
-                <Zap className="w-6 h-6 text-white" />
+            </button>
+            
+            {/* Mock Review */}
+            <button
+              onClick={handleReviewMockIncorrect}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-700 hover:border-emerald-700 group"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-gradient-to-br from-emerald-400 to-emerald-500 p-3 rounded-full shadow-sm group-hover:shadow-md transition-all mb-4">
+                  <Timer className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold mb-2 text-gray-100 group-hover:text-white">Mock試験復習</h3>
+                <p className="text-gray-400 text-sm mb-2">Mock試験で間違えた問題を復習</p>
+                <div className="text-xs text-gray-500">
+                  {progress?.mockIncorrectQuestions?.length || 0}問の間違い
+                </div>
               </div>
-            </div>
-          </button>
+            </button>
+          </div>
+          
+          {/* Question Count Setting for Review */}
+          <div className="mt-4 flex gap-2 justify-center">
+            <button
+              onClick={() => setCategoryQuestionCount(5)}
+              className={`px-4 py-2 rounded-lg transition-all text-sm ${
+                categoryQuestionCount === 5
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+              }`}
+            >
+              5問
+            </button>
+            <button
+              onClick={() => setCategoryQuestionCount(10)}
+              className={`px-4 py-2 rounded-lg transition-all text-sm ${
+                categoryQuestionCount === 10
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+              }`}
+            >
+              10問
+            </button>
+          </div>
         </div>
 
       </div>

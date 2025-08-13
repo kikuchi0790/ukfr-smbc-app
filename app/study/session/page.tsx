@@ -354,9 +354,14 @@ function StudySessionContent() {
       } else if (mode === "review") {
         // 復習モード：間違えた問題からデフォルト10問（パラメータがあれば5問も可能）
         const questionCount = questionCountParam === "5" ? 5 : 10;
-        questionSet = getReviewQuestions(allQuestions, questionCount, user?.nickname);
+        const reviewType = searchParams.get('reviewType') as 'category' | 'mock' || 'category';
+        
+        questionSet = getReviewQuestions(allQuestions, questionCount, user?.nickname, reviewType);
         if (questionSet.length === 0) {
-          alert("復習する問題がありません。まずは学習を始めてください。");
+          const message = reviewType === 'mock' 
+            ? "Mock試験で間違えた問題がありません。まずはMock試験を受けてください。"
+            : "復習する問題がありません。まずは学習を始めてください。";
+          alert(message);
           router.push('/study');
           return;
         }
@@ -1278,18 +1283,80 @@ function StudySessionContent() {
     
     // Mock試験の回答をAnswerオブジェクトに変換（未回答も含める）
     const answers: Answer[] = [];
+    const incorrectQuestions: string[] = []; // 間違えた問題のIDを収集
+    
     questions.forEach((question, index) => {
       const selectedAnswer = mockAnswers.get(question.questionId);
+      const isCorrect = selectedAnswer ? selectedAnswer === question.correctAnswer : false;
+      
       // 回答の有無に関わらず、すべての問題を記録
       answers.push({
         questionId: question.questionId,
         selectedAnswer: selectedAnswer || '', // 未回答は空文字列
-        isCorrect: selectedAnswer ? selectedAnswer === question.correctAnswer : false, // 未回答は不正解扱い
+        isCorrect: isCorrect,
         answeredAt: selectedAnswer ? new Date().toISOString() : ''
       });
+      
+      // 間違えた問題を記録（Mock試験用）
+      if (!isCorrect) {
+        incorrectQuestions.push(question.questionId);
+      }
     });
     
     console.log('answers length:', answers.length);
+    console.log('incorrect questions count:', incorrectQuestions.length);
+    
+    // Mock試験の間違えた問題をUserProgressに保存
+    if (incorrectQuestions.length > 0) {
+      try {
+        const userProgressKey = getUserKey('userProgress', user.nickname);
+        const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+        
+        if (progress) {
+          // mockIncorrectQuestionsを初期化または更新
+          if (!progress.mockIncorrectQuestions) {
+            progress.mockIncorrectQuestions = [];
+          }
+          
+          // Mock番号を取得（例: "Regulations: Mock 1" -> 1）
+          const mockNumber = session.category?.match(/Mock (\d+)/)?.[1];
+          const mockNum = mockNumber ? parseInt(mockNumber) : 0;
+          
+          // 間違えた問題を追加または更新
+          incorrectQuestions.forEach(questionId => {
+            const existingIndex = progress.mockIncorrectQuestions!.findIndex(
+              q => q.questionId === questionId
+            );
+            
+            if (existingIndex >= 0) {
+              // 既存の問題の場合は間違い回数を増やす
+              progress.mockIncorrectQuestions![existingIndex].incorrectCount++;
+              progress.mockIncorrectQuestions![existingIndex].lastIncorrectDate = new Date().toISOString();
+            } else {
+              // 新規の間違い問題
+              const question = questions.find(q => q.questionId === questionId);
+              if (question) {
+                progress.mockIncorrectQuestions!.push({
+                  questionId: questionId,
+                  category: question.category,
+                  incorrectCount: 1,
+                  lastIncorrectDate: new Date().toISOString(),
+                  reviewCount: 0,
+                  mockNumber: mockNum
+                });
+              }
+            }
+          });
+          
+          // 保存
+          safeLocalStorage.setItem(userProgressKey, progress);
+          console.log('Mock incorrect questions saved:', progress.mockIncorrectQuestions?.length);
+        }
+      } catch (error) {
+        console.error('Failed to save mock incorrect questions:', error);
+        // エラーがあっても処理を続行
+      }
+    }
     
     // Mock試験の結果を一時的に保存（questionsは別に保存）
     const mockResult = {

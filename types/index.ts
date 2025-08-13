@@ -69,14 +69,26 @@ export interface IncorrectQuestion {
   reviewCount: number;
 }
 
+// Mock試験の間違えた問題用の型
+export interface MockIncorrectQuestion {
+  questionId: string;
+  category: Category;  // Mock 1, Mock 2など
+  incorrectCount: number;
+  lastIncorrectDate: string;
+  reviewCount: number;
+  mockNumber: number;  // Mock試験番号（1-5）
+}
+
 export interface UserProgress {
   totalQuestionsAnswered: number;
   correctAnswers: number;
   categoryProgress: Record<Category, CategoryProgress>;
   mockCategoryProgress?: Record<Category, MockCategoryProgress>; // Mock試験専用進捗
   studySessions: StudySession[];
-  incorrectQuestions: IncorrectQuestion[];
+  incorrectQuestions: IncorrectQuestion[];  // カテゴリ別問題の間違い
+  mockIncorrectQuestions?: MockIncorrectQuestion[];  // Mock試験の間違い（新規追加）
   overcomeQuestions: OvercomeQuestion[];
+  mockOvercomeQuestions?: OvercomeQuestion[];  // Mock試験の克服問題（新規追加）
   currentStreak: number;
   bestStreak?: number; // 最長連続学習日数
   lastStudyDate: string;

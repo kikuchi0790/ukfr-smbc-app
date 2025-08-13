@@ -20,6 +20,7 @@ export interface ProgressStats {
 
 /**
  * StudySessionsから実際の統計を計算
+ * 各問題の最終状態のみをカウントして重複を防ぐ
  */
 export function calculateActualStats(progress: UserProgress): ProgressStats {
   const stats: ProgressStats = {
@@ -49,42 +50,43 @@ export function calculateActualStats(progress: UserProgress): ProgressStats {
   });
 
   // 全ての回答を追跡（重複を除外）
+  // キー: questionId, 値: 最終的な回答状態
   const processedQuestions = new Map<string, {
     isCorrect: boolean;
     category: Category;
+    isOvercome: boolean;
   }>();
 
-  // StudySessionsを時系列で処理
+  // StudySessionsを時系列で処理（古い→新しい順）
   if (progress.studySessions) {
-    progress.studySessions.forEach(session => {
+    // セッションを日付順にソート（古い順）
+    const sortedSessions = [...progress.studySessions].sort((a, b) => 
+      new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    
+    sortedSessions.forEach(session => {
       if (session.answers) {
         session.answers.forEach(answer => {
-          // 最新の回答結果を保持
+          // 最新の回答結果で上書き（同じ問題を複数回解いた場合）
           processedQuestions.set(answer.questionId, {
             isCorrect: answer.isCorrect,
-            category: session.category as Category
+            category: session.category as Category,
+            isOvercome: false
           });
         });
       }
     });
   }
 
-  // 克服した問題も正解として追加
+  // 克服した問題を正解として更新
   if (progress.overcomeQuestions) {
     progress.overcomeQuestions.forEach(overcome => {
-      // 既に処理済みでない場合のみ追加（克服した問題は必ず正解扱い）
-      if (!processedQuestions.has(overcome.questionId)) {
-        processedQuestions.set(overcome.questionId, {
-          isCorrect: true,
-          category: overcome.category as Category
-        });
-      } else {
-        // 既に処理済みの場合は正解に更新
-        processedQuestions.set(overcome.questionId, {
-          isCorrect: true,
-          category: overcome.category as Category
-        });
-      }
+      // 克服済みの問題は必ず正解扱い
+      processedQuestions.set(overcome.questionId, {
+        isCorrect: true,
+        category: overcome.category as Category,
+        isOvercome: true
+      });
     });
   }
 
@@ -113,6 +115,7 @@ export function calculateActualStats(progress: UserProgress): ProgressStats {
 
 /**
  * 進捗データの整合性をチェックし、修正
+ * 重複カウントの修正とデータの正確性を保証
  */
 export function validateAndFixProgress(progress: UserProgress): {
   isValid: boolean;
@@ -123,37 +126,55 @@ export function validateAndFixProgress(progress: UserProgress): {
   const fixed = { ...progress };
   const actualStats = calculateActualStats(progress);
 
-  // 1. 総回答数のチェック
+  // 1. 総回答数のチェックと修正
   if (fixed.totalQuestionsAnswered !== actualStats.totalAnswered) {
-    issues.push(`総回答数の不一致: 記録=${fixed.totalQuestionsAnswered}, 実際=${actualStats.totalAnswered}`);
+    const diff = fixed.totalQuestionsAnswered - actualStats.totalAnswered;
+    issues.push(`総回答数の不一致: 記録=${fixed.totalQuestionsAnswered}, 実際=${actualStats.totalAnswered} (差分: ${diff > 0 ? '+' : ''}${diff})`);
     fixed.totalQuestionsAnswered = actualStats.totalAnswered;
   }
 
-  // 2. 総正答数のチェック
+  // 2. 総正答数のチェックと修正
   if (fixed.correctAnswers !== actualStats.totalCorrect) {
-    issues.push(`総正答数の不一致: 記録=${fixed.correctAnswers}, 実際=${actualStats.totalCorrect}`);
+    const diff = fixed.correctAnswers - actualStats.totalCorrect;
+    issues.push(`総正答数の不一致: 記録=${fixed.correctAnswers}, 実際=${actualStats.totalCorrect} (差分: ${diff > 0 ? '+' : ''}${diff})`);
     fixed.correctAnswers = actualStats.totalCorrect;
   }
 
-  // 3. カテゴリ別の整合性チェック
+  // 3. カテゴリ別の整合性チェックと修正
   Object.entries(actualStats.categoryStats).forEach(([category, stats]) => {
     const cat = category as Category;
     const recorded = fixed.categoryProgress[cat];
     
     if (recorded) {
+      // 回答数の修正
       if (recorded.answeredQuestions !== stats.answered) {
-        issues.push(`${cat}の回答数不一致: 記録=${recorded.answeredQuestions}, 実際=${stats.answered}`);
+        const diff = recorded.answeredQuestions - stats.answered;
+        issues.push(`${cat}の回答数不一致: 記録=${recorded.answeredQuestions}, 実際=${stats.answered} (差分: ${diff > 0 ? '+' : ''}${diff})`);
         recorded.answeredQuestions = stats.answered;
       }
       
+      // 正答数の修正
       if (recorded.correctAnswers !== stats.correct) {
-        issues.push(`${cat}の正答数不一致: 記録=${recorded.correctAnswers}, 実際=${stats.correct}`);
+        const diff = recorded.correctAnswers - stats.correct;
+        issues.push(`${cat}の正答数不一致: 記録=${recorded.correctAnswers}, 実際=${stats.correct} (差分: ${diff > 0 ? '+' : ''}${diff})`);
         recorded.correctAnswers = stats.correct;
+      }
+      
+      // 回答数が総問題数を超えていないかチェック
+      if (recorded.answeredQuestions > recorded.totalQuestions) {
+        issues.push(`${cat}の回答数が総問題数を超過: ${recorded.answeredQuestions}/${recorded.totalQuestions}`);
+        recorded.answeredQuestions = Math.min(recorded.answeredQuestions, recorded.totalQuestions);
+      }
+      
+      // 正答数が回答数を超えていないかチェック
+      if (recorded.correctAnswers > recorded.answeredQuestions) {
+        issues.push(`${cat}の正答数が回答数を超過: ${recorded.correctAnswers}/${recorded.answeredQuestions}`);
+        recorded.correctAnswers = Math.min(recorded.correctAnswers, recorded.answeredQuestions);
       }
     }
   });
 
-  // 4. 克服問題のチェック
+  // 4. 克服問題と間違い問題の整合性チェック
   const overcomeIds = new Set(fixed.overcomeQuestions?.map(q => q.questionId) || []);
   const incorrectIds = new Set(fixed.incorrectQuestions?.map(q => q.questionId) || []);
   
@@ -165,6 +186,17 @@ export function validateAndFixProgress(progress: UserProgress): {
       fixed.incorrectQuestions = fixed.incorrectQuestions.filter(q => q.questionId !== id);
     }
   });
+  
+  // 5. 負の値のチェック
+  if (fixed.totalQuestionsAnswered < 0) {
+    issues.push(`総回答数が負の値: ${fixed.totalQuestionsAnswered}`);
+    fixed.totalQuestionsAnswered = 0;
+  }
+  
+  if (fixed.correctAnswers < 0) {
+    issues.push(`総正答数が負の値: ${fixed.correctAnswers}`);
+    fixed.correctAnswers = 0;
+  }
 
   return {
     isValid: issues.length === 0,
@@ -295,7 +327,7 @@ export function debugProgress(nickname?: string): void {
  * 復習モードで初めて正解した問題はcorrectAnswersを増やさないようにしたので、
  * 克服した問題を追加しても二重カウントにならない
  */
-export function getDisplayCorrectCount(progress: UserProgress, category?: Category): number {
+export function getDisplayCorrectCount(progress: UserProgress, category?: Category, includeMode: 'all' | 'category' | 'mock' = 'all'): number {
   let baseCorrect = 0;
   
   if (category) {
@@ -303,9 +335,19 @@ export function getDisplayCorrectCount(progress: UserProgress, category?: Catego
     baseCorrect = progress.categoryProgress[category]?.correctAnswers || 0;
     
     // そのカテゴリの克服した問題数を追加
-    const overcomeInCategory = progress.overcomeQuestions?.filter(
-      q => q.category === category
-    ).length || 0;
+    let overcomeInCategory = 0;
+    
+    if (includeMode === 'all' || includeMode === 'category') {
+      overcomeInCategory += progress.overcomeQuestions?.filter(
+        q => q.category === category
+      ).length || 0;
+    }
+    
+    if (includeMode === 'all' || includeMode === 'mock') {
+      overcomeInCategory += progress.mockOvercomeQuestions?.filter(
+        q => q.category === category
+      ).length || 0;
+    }
     
     return baseCorrect + overcomeInCategory;
   } else {
@@ -313,7 +355,15 @@ export function getDisplayCorrectCount(progress: UserProgress, category?: Catego
     baseCorrect = progress.correctAnswers || 0;
     
     // 全体の克服した問題数を追加
-    const totalOvercome = progress.overcomeQuestions?.length || 0;
+    let totalOvercome = 0;
+    
+    if (includeMode === 'all' || includeMode === 'category') {
+      totalOvercome += progress.overcomeQuestions?.length || 0;
+    }
+    
+    if (includeMode === 'all' || includeMode === 'mock') {
+      totalOvercome += progress.mockOvercomeQuestions?.length || 0;
+    }
     
     return baseCorrect + totalOvercome;
   }
