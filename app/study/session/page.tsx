@@ -630,6 +630,8 @@ function StudySessionContent() {
         
         if (ragResp.ok && data.success && data.data?.passages) {
           let storedPayload = data.data as any;
+          let chosenMaterialId: string | undefined;
+          let chosenPage: number | undefined;
           // 追加のリランクで最適な候補を選定
           try {
             const topForRerank = Array.isArray(storedPayload.passages) ? storedPayload.passages.slice(0, 5) : [];
@@ -643,12 +645,23 @@ function StudySessionContent() {
                 const rerankJson = await rerankResp.json();
                 if (rerankJson?.success && rerankJson?.data) {
                   storedPayload = { ...storedPayload, best: rerankJson.data };
+                  // ページはbestから、materialIdは候補から推定
+                  chosenPage = Number(rerankJson.data.page);
+                  const matched = topForRerank.find((p: any) => Number(p.page) === chosenPage);
+                  chosenMaterialId = matched?.materialId || topForRerank[0]?.materialId;
                 }
               }
             }
           } catch (e) {
             console.warn('Rerank failed, using top passage as-is');
           }
+          // リランクが無い場合や失敗時は先頭を使用
+          if (!chosenMaterialId || !chosenPage) {
+            const first = Array.isArray(storedPayload.passages) ? storedPayload.passages[0] : undefined;
+            chosenMaterialId = first?.materialId;
+            chosenPage = first?.page;
+          }
+
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, storedPayload);
           setRagStatus('関連箇所を特定しました');
         } else if (data.fallback && data.data?.passages) {
@@ -689,6 +702,8 @@ function StudySessionContent() {
         questionId: currentQuestion.questionId,
         keywords,
         anchor, // Add the anchor to the navigation state
+        materialId: (typeof chosenMaterialId === 'string' ? chosenMaterialId : undefined),
+        page: (typeof chosenPage === 'number' ? chosenPage : undefined),
         mode,
         category: categoryParam,
         part: partParam,

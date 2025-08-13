@@ -65,9 +65,19 @@ function MaterialsContent() {
       const stored = safeLocalStorage.getItem<any>(`retrieveResults_${savedState.questionId}`);
       if (stored && Array.isArray(stored.passages) && stored.passages.length > 0) {
         // rerank結果があればそれを優先
-        const top = stored.best && typeof stored.best.page === 'number'
-          ? { materialId: savedState.materialId || stored.passages[0].materialId, page: stored.best.page, quote: stored.best.exactQuote || stored.passages[0].quote }
-          : stored.passages[0];
+        const pageFromState = typeof savedState.page === 'number' ? savedState.page : undefined;
+        let top = stored.passages[0];
+        if (stored.best && typeof stored.best.page === 'number') {
+          const bestPage = Number(stored.best.page);
+          const matched = stored.passages.find((p: any) => Number(p.page) === bestPage) || stored.passages[0];
+          top = { materialId: matched.materialId, page: bestPage, quote: stored.best.exactQuote || matched.quote };
+        }
+        if (pageFromState) {
+          const matchedByState = stored.passages.find((p: any) => Number(p.page) === pageFromState);
+          if (matchedByState) {
+            top = { materialId: matchedByState.materialId, page: pageFromState, quote: matchedByState.quote };
+          }
+        }
         // 材料の自動切替（Checkpoint/StudyCompanion）
         if (typeof top.materialId === 'string') {
           const mid = top.materialId.toLowerCase();
