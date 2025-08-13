@@ -45,7 +45,7 @@ import { createBackup } from "@/utils/data-backup";
 function StudySessionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const mode = searchParams.get("mode") as StudyMode;
   const categoryParam = searchParams.get("category") ? decodeURIComponent(searchParams.get("category")!) : null;
   const partParam = searchParams.get("part");
@@ -167,8 +167,9 @@ function StudySessionContent() {
     }
   }, [sessionEnded, router]);
 
-  // セッション復元処理
+  // セッション復元処理（認証の準備完了を待ってから実行）
   useEffect(() => {
+    if (authLoading) return; // 認証未確定なら待機
     // まず永続化システムからセッションを読み込む
     const persistence = sessionPersistence.current || SessionPersistence.getInstance();
     const savedSession = persistence.loadSession(user?.nickname);
@@ -240,7 +241,7 @@ function StudySessionContent() {
         }
       }
     }
-  }, [mode, categoryParam, partParam]);
+  }, [mode, categoryParam, partParam, user?.nickname, authLoading]);
 
   const loadQuestionsCore = async () => {
     // 既に読み込み中の場合はスキップ
@@ -578,8 +579,26 @@ function StudySessionContent() {
     setExtractingKeywords(true);
     
     try {
-      // セッションを保存
+      // セッションを保存（完了を待ってから遷移）
       await saveSessionState();
+      // 明示的に studySessionState を書き出して確実に復元可能にする
+      const sessionSnapshot = {
+        mode,
+        category: categoryParam,
+        part: partParam,
+        studyMode: studyModeParam,
+        questionCount: questionCountParam,
+        session: {
+          ...session,
+          currentQuestionIndex,
+        },
+        showJapanese,
+        selectedAnswer,
+        showResult,
+        savedAt: new Date().toISOString(),
+        questions: questions.map(q => q.questionId)
+      };
+      safeLocalStorage.setItem('studySessionState', sessionSnapshot);
       
       // キーワードを抽出
       const keywords = await extractKeywords(currentQuestion);
