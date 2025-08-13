@@ -33,13 +33,14 @@ import {
   getAnsweredQuestionIds
 } from "@/utils/study-utils";
 import { getCategoryInfo, categories } from "@/utils/category-utils";
-import { AnsweredQuestionsTracker, validateAndFixProgress } from "@/utils/progress-validator";
+import { AnsweredQuestionsTracker } from "@/utils/answered-questions-tracker";
+import { validateAndFixProgress } from "@/utils/progress-tracker";
 import { useAuth } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { progressSync } from "@/services/progress-sync";
 import { extractKeywords } from "@/services/keyword-extraction";
 import { SessionPersistence } from "@/utils/session-persistence";
-import { incrementAnsweredCount, syncAnsweredQuestionsWithProgress } from "@/utils/progress-sync-utils";
+import { syncAnsweredQuestionsWithProgress } from "@/utils/progress-sync-utils";
 import { createBackup } from "@/utils/data-backup";
 
 function StudySessionContent() {
@@ -1122,10 +1123,11 @@ function StudySessionContent() {
         return progress;
       });
       
-      // AnsweredQuestionsTrackerも同期して更新（復習モードでの新しい問題のみ）
+      // AnsweredQuestionsTrackerを更新（復習モードでの新しい問題のみ）
       const isNewQuestionInReview = mode === "review" && !isAlreadyAnswered;
       if (mode !== "review" || isNewQuestionInReview) {
-        incrementAnsweredCount(question.category, question.questionId, user?.nickname);
+        // AnsweredQuestionsTrackerを直接更新（進捗のインクリメントは上記で既に処理済み）
+        AnsweredQuestionsTracker.addAnsweredQuestion(question.category as Category, question.questionId);
       }
       
     } catch (error) {

@@ -11,6 +11,7 @@ import { cleanupLegacyData } from '@/utils/cleanup-legacy-data';
 import { resetAllUserProgress } from '@/utils/reset-all-data';
 import { migrateOldData, checkAndRunMigration } from '@/utils/data-migration';
 import { validateAndFixProgress } from '@/utils/progress-tracker';
+import { ProgressRepairTool } from '@/utils/progress-repair';
 
 interface User {
   id: string;
@@ -248,15 +249,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // 古いデータのマイグレーション
       migrateOldData(userData.nickname);
       
-      // データ整合性チェックと修正
-      const userProgressKey = `userProgress_${userData.nickname}`;
-      const progress = safeLocalStorage.getItem<any>(userProgressKey);
-      if (progress) {
-        const validation = validateAndFixProgress(progress);
-        if (!validation.isValid) {
-          console.warn('🔧 Fixing progress data inconsistencies:', validation.issues);
-          safeLocalStorage.setItem(userProgressKey, validation.fixed);
-        }
+      // データ整合性チェックと修正（新しい修復ツールを使用）
+      const repairResult = ProgressRepairTool.repairUserProgress(userData.nickname);
+      if (repairResult.success && repairResult.issues && repairResult.issues.length > 0) {
+        console.warn('🔧 Fixed progress data inconsistencies:', repairResult.issues);
+        console.log(repairResult.message);
       }
       
       // 自動同期を開始

@@ -4,7 +4,7 @@ import { categories } from './category-utils';
 import { DataMerger } from './data-merge-utils';
 import { createBackup, restoreFromBackup, getAvailableBackups, checkDataIntegrity } from "./data-backup";
 import { syncAnsweredQuestionsWithProgress, autoRepairProgress } from "./progress-sync-utils";
-import { loadValidatedProgress } from "./progress-validator";
+import { loadValidatedProgress } from "./progress-tracker";
 
 /**
  * 古いデータをマイグレーションする

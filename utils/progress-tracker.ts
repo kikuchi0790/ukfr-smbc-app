@@ -369,6 +369,52 @@ export function getDisplayCorrectCount(progress: UserProgress, category?: Catego
   }
 }
 
+/**
+ * 進捗をロードし、検証・修正を行う
+ */
+export function loadValidatedProgress(nickname?: string): UserProgress | null {
+  try {
+    const userProgressKey = getUserKey('userProgress', nickname);
+    const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    
+    if (!progress) return null;
+    
+    const validation = validateAndFixProgress(progress);
+    
+    // 修正が必要だった場合は保存
+    if (!validation.isValid) {
+      safeLocalStorage.setItem(userProgressKey, validation.fixed);
+      console.log('Progress validated and fixed:', validation.issues);
+      return validation.fixed;
+    }
+    
+    return progress;
+  } catch (error) {
+    console.error('Error loading validated progress:', error);
+    return null;
+  }
+}
+
+/**
+ * すべての進捗データをクリーンアップ
+ */
+export function cleanupAllProgressData(nickname?: string): void {
+  console.log('Starting progress data cleanup...');
+  
+  const userProgressKey = getUserKey('userProgress', nickname);
+  const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+  
+  if (progress) {
+    const validation = validateAndFixProgress(progress);
+    if (!validation.isValid) {
+      safeLocalStorage.setItem(userProgressKey, validation.fixed);
+      console.log('Progress data cleaned up successfully', validation.issues);
+    } else {
+      console.log('Progress data is already clean');
+    }
+  }
+}
+
 // ブラウザコンソールからアクセスできるようにグローバルに公開
 if (typeof window !== 'undefined') {
   (window as any).debugProgress = debugProgress;

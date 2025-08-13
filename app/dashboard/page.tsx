@@ -34,12 +34,11 @@ import { useErrorHandler } from "@/hooks/useErrorHandler";
 import WireframeBuildings from "@/components/WireframeBuildings";
 import dynamic from 'next/dynamic';
 import { categories } from "@/utils/category-utils";
-import { validateAndFixProgress, cleanupAllProgressData } from "@/utils/progress-validator";
+import { validateAndFixProgress, getDisplayCorrectCount, cleanupAllProgressData } from "@/utils/progress-tracker";
 import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
 import { formatPercentage } from "@/utils/formatters";
-import { getDisplayCorrectCount } from "@/utils/progress-tracker";
 import { checkDataIntegrity } from "@/utils/data-backup";
-import { AnsweredQuestionsTracker } from "@/utils/progress-validator";
+import { AnsweredQuestionsTracker } from "@/utils/answered-questions-tracker";
 
 // Dynamic import for 3D components to avoid SSR issues
 const WireframeBuildings3D = dynamic(
@@ -122,8 +121,8 @@ function DashboardContent() {
       const parsedProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
       if (parsedProgress) {
         // 進捗データの検証と修正
-        const validatedProgress = validateAndFixProgress(parsedProgress);
-        setProgress(validatedProgress);
+        const validation = validateAndFixProgress(parsedProgress);
+        setProgress(validation.fixed);
       } else {
       // Initialize new user progress
       console.log('Initializing new user progress for:', user?.nickname);

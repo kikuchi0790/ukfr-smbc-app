@@ -1,6 +1,6 @@
 import { UserProgress, Category } from "@/types";
 import { safeLocalStorage, getUserKey } from "./storage-utils";
-import { AnsweredQuestionsTracker } from "./progress-validator";
+import { AnsweredQuestionsTracker } from "./answered-questions-tracker";
 import { loadFromFirestore, syncToFirestore } from "@/services/firebase-sync";
 
 export interface BackupData {

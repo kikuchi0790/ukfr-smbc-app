@@ -3,6 +3,53 @@
 ## プロジェクト概要
 英国財務報告（UKFR）学習アプリケーション。Next.js 15とTypeScriptで構築され、Firebase認証とFirestoreを使用。
 
+## 最近の重要な変更（2025-08-13 - Part 4）
+
+### データ重複カウント問題の根本的解決
+進捗データが重複してカウントされる問題を全体最適な観点から修正しました。
+
+#### 問題の原因
+1. **Firestore同期時の重複加算** - `DataMerger.mergeProgress`が数値を合算していた
+2. **複数箇所での進捗更新** - 同じ回答が複数回カウントされていた
+3. **Single Source of Truthの欠如** - StudySessionsと累積カウントが別々に管理されていた
+4. **重複した検証関数** - 古い実装と新しい実装が混在していた
+
+#### 実施した修正
+1. **Phase 1: DataMerger.mergeProgressの修正**
+   - 合算ではなくStudySessionsから再計算するように変更
+   - `calculateStatsFromSessions`メソッドを実装
+
+2. **Phase 2: Single Source of Truth実装**
+   - StudySessionsを唯一の真実の源として確立
+   - 克服した問題も考慮した統計計算
+
+3. **Phase 3: 重複コードの削除と統合**
+   - `progress-validator.ts`の古い実装を削除
+   - `AnsweredQuestionsTracker`を別ファイルに分離
+   - すべての場所で`progress-tracker.ts`の新実装を使用
+
+4. **Phase 4: 進捗更新フローの統一化**
+   - `incrementAnsweredCount`の削除
+   - 進捗更新を一箇所に集約
+
+5. **Phase 5: データ修復ツールの実装**
+   - `ProgressRepairTool`クラスを実装
+   - 自動的に既存ユーザーのデータを修復
+
+#### 新しいコマンド（ブラウザコンソール）
+```javascript
+// 自分の進捗を修復
+repairMyProgress()
+
+// すべてのユーザーの進捗を修復
+repairAllProgress()
+
+// 進捗レポートを表示
+progressReport()
+```
+
+詳細は `/utils/progress-repair.ts` を参照。
+
 ## 最近の重要な変更（2025-08-13 - Part 3）
 
 ### 本番インデックス再構築とGPT-5パラメータ対応

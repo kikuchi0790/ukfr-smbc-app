@@ -1,4 +1,4 @@
-import { UserProgress, CategoryProgress, StudySession, IncorrectQuestion } from '@/types';
+import { UserProgress, CategoryProgress, StudySession, IncorrectQuestion, Category, OvercomeQuestion } from '@/types';
 
 // 日付を持つアイテムのインターフェース
 export interface DateItem {
@@ -207,28 +207,143 @@ export class DataMerger {
   }
 
   /**
+   * StudySessionsから正確な統計を計算する
+   * Single Source of Truthとして機能
+   */
+  static calculateStatsFromSessions(
+    sessions: StudySession[],
+    overcomeQuestions?: OvercomeQuestion[]
+  ): {
+    totalAnswered: number;
+    totalCorrect: number;
+    categoryProgress: Record<Category, CategoryProgress>;
+  } {
+    const processedQuestions = new Map<string, {
+      isCorrect: boolean;
+      category: Category;
+    }>();
+    
+    const categoryProgress: Record<Category, CategoryProgress> = {} as Record<Category, CategoryProgress>;
+    
+    // カテゴリの初期化
+    const categories: Category[] = [
+      "The Regulatory Environment",
+      "The Financial Services and Markets Act 2000 and Financial Services Act 2012",
+      "Associated Legislation and Regulation",
+      "The FCA Conduct of Business Sourcebook/Client Assets",
+      "Complaints and Redress",
+      "Regulations: Mock 1",
+      "Regulations: Mock 2",
+      "Regulations: Mock 3",
+      "Regulations: Mock 4",
+      "Regulations: Mock 5",
+      "Regulations: Final Study Questions"
+    ];
+    
+    // 各カテゴリの総問題数を設定
+    const categoryTotals: Record<Category, number> = {
+      "The Regulatory Environment": 42,
+      "The Financial Services and Markets Act 2000 and Financial Services Act 2012": 99,
+      "Associated Legislation and Regulation": 100,
+      "The FCA Conduct of Business Sourcebook/Client Assets": 125,
+      "Complaints and Redress": 32,
+      "Regulations: Mock 1": 75,
+      "Regulations: Mock 2": 75,
+      "Regulations: Mock 3": 75,
+      "Regulations: Mock 4": 75,
+      "Regulations: Mock 5": 75,
+      "Regulations: Final Study Questions": 62
+    };
+    
+    // カテゴリ進捗の初期化
+    categories.forEach(cat => {
+      categoryProgress[cat] = {
+        totalQuestions: categoryTotals[cat],
+        answeredQuestions: 0,
+        correctAnswers: 0
+      };
+    });
+    
+    // セッションを時系列でソート（古い→新しい）
+    const sortedSessions = [...sessions].sort((a, b) => 
+      new Date(a.startedAt).getTime() - new Date(b.startedAt).getTime()
+    );
+    
+    // 各セッションの回答を処理
+    sortedSessions.forEach(session => {
+      if (session.answers && session.category) {
+        session.answers.forEach(answer => {
+          // 最新の回答で上書き（同じ問題を複数回解いた場合）
+          processedQuestions.set(answer.questionId, {
+            isCorrect: answer.isCorrect,
+            category: session.category as Category
+          });
+        });
+      }
+    });
+    
+    // 克服した問題を正解として処理
+    if (overcomeQuestions) {
+      overcomeQuestions.forEach(overcome => {
+        // 克服済みの問題は必ず正解扱い
+        processedQuestions.set(overcome.questionId, {
+          isCorrect: true,
+          category: overcome.category as Category
+        });
+      });
+    }
+    
+    // 統計を計算
+    let totalAnswered = 0;
+    let totalCorrect = 0;
+    
+    processedQuestions.forEach((data, questionId) => {
+      totalAnswered++;
+      
+      if (data.isCorrect) {
+        totalCorrect++;
+      }
+      
+      if (data.category && categoryProgress[data.category]) {
+        categoryProgress[data.category].answeredQuestions++;
+        if (data.isCorrect) {
+          categoryProgress[data.category].correctAnswers++;
+        }
+      }
+    });
+    
+    return {
+      totalAnswered,
+      totalCorrect,
+      categoryProgress
+    };
+  }
+
+  /**
    * 完全なUserProgressをマージする
    */
   static mergeProgress(local: UserProgress, remote: UserProgress): UserProgress {
-    // 基本的な数値フィールドのマージ
-    const totalQuestionsAnswered = this.mergeNumbers(
-      local.totalQuestionsAnswered || 0,
-      remote.totalQuestionsAnswered || 0,
-      'sum'
+    // まず、StudySessionsをマージ（真実の源）
+    const mergedStudySessions = this.mergeStudySessions(
+      local.studySessions || [],
+      remote.studySessions || []
     );
     
-    const correctAnswers = this.mergeNumbers(
-      local.correctAnswers || 0,
-      remote.correctAnswers || 0,
-      'sum'
+    // 克服した問題をマージ
+    const mergedOvercomeQuestions = this.mergeOvercomeQuestions(
+      local.overcomeQuestions || [],
+      remote.overcomeQuestions || []
     );
+    
+    // マージされたStudySessionsと克服した問題から正確な統計を計算
+    const stats = this.calculateStatsFromSessions(mergedStudySessions, mergedOvercomeQuestions);
     
     // 日付の比較でより新しい方を採用
     const lastStudyDate = new Date(local.lastStudyDate) > new Date(remote.lastStudyDate)
       ? local.lastStudyDate
       : remote.lastStudyDate;
     
-    // ストリークの計算
+    // ストリークの計算（最大値を取る）
     const currentStreak = this.mergeNumbers(
       local.currentStreak || 0,
       remote.currentStreak || 0,
@@ -242,24 +357,15 @@ export class DataMerger {
     );
     
     return {
-      totalQuestionsAnswered,
-      correctAnswers,
-      categoryProgress: this.mergeCategoryProgress(
-        local.categoryProgress || {},
-        remote.categoryProgress || {}
-      ),
-      studySessions: this.mergeStudySessions(
-        local.studySessions || [],
-        remote.studySessions || []
-      ),
+      totalQuestionsAnswered: stats.totalAnswered,
+      correctAnswers: stats.totalCorrect,
+      categoryProgress: stats.categoryProgress,
+      studySessions: mergedStudySessions,
       incorrectQuestions: this.mergeIncorrectQuestions(
         local.incorrectQuestions || [],
         remote.incorrectQuestions || []
       ),
-      overcomeQuestions: this.mergeOvercomeQuestions(
-        local.overcomeQuestions || [],
-        remote.overcomeQuestions || []
-      ),
+      overcomeQuestions: mergedOvercomeQuestions,
       currentStreak,
       bestStreak,
       lastStudyDate,
