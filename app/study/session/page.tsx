@@ -693,7 +693,7 @@ function StudySessionContent() {
         selectedText: keywords.join(' '), // Using keywords as the selected text
         beforeText: '',                  // Placeholder
         afterText: '',                   // Placeholder
-        pageNumber: 1                    // Placeholder
+        pageNumber: chosenPage || 1      // Use the actual page from RAG search
       };
 
       const navigationState = {
@@ -711,6 +711,14 @@ function StudySessionContent() {
         studyMode: studyModeParam,
         questionCount: questionCountParam
       };
+      
+      // デバッグログ：RAG検索結果と保存する内容を確認
+      console.log('[Study Session] Navigation state to save:', {
+        materialId: navigationState.materialId,
+        page: navigationState.page,
+        anchorPage: navigationState.anchor.pageNumber,
+        questionId: navigationState.questionId
+      });
       
       // LocalStorageに保存
       safeLocalStorage.setItem('materialNavigationState', navigationState);

@@ -31,11 +31,22 @@ function MaterialsContent() {
     
     const savedState = safeLocalStorage.getItem<any>('materialNavigationState');
     if (savedState) {
+      // 古いデータ形式のクリーンアップ（StudyCompanion_backup.html等）
+      if (savedState.materialId && savedState.materialId.includes('_backup.html')) {
+        console.warn('[Materials] Cleaning up old materialId format:', savedState.materialId);
+        savedState.materialId = undefined;
+      }
+      
       setNavigationState(savedState);
       if (savedState.anchor) {
         setTemporaryHighlight(savedState.anchor);
       }
-      console.log('Found navigation state:', savedState);
+      console.log('[Materials] Found navigation state:', {
+        materialId: savedState.materialId,
+        page: savedState.page,
+        anchorPage: savedState.anchor?.pageNumber,
+        questionId: savedState.questionId
+      });
       // 注意: ここではまだ削除しない（戻るボタンで使用するため）
     }
     
@@ -63,38 +74,62 @@ function MaterialsContent() {
     // 検索結果（RAG）からのページジャンプ/ハイライト
     if (savedState?.questionId) {
       const stored = safeLocalStorage.getItem<any>(`retrieveResults_${savedState.questionId}`);
+      console.log('[Materials] RAG results for question', savedState.questionId, ':', stored);
+      
       if (stored && Array.isArray(stored.passages) && stored.passages.length > 0) {
         // rerank結果があればそれを優先
         const pageFromState = typeof savedState.page === 'number' ? savedState.page : undefined;
         let top = stored.passages[0];
+        
+        // リランク結果を優先
         if (stored.best && typeof stored.best.page === 'number') {
           const bestPage = Number(stored.best.page);
           const matched = stored.passages.find((p: any) => Number(p.page) === bestPage) || stored.passages[0];
           top = { materialId: matched.materialId, page: bestPage, quote: stored.best.exactQuote || matched.quote };
+          console.log('[Materials] Using reranked result, page:', bestPage);
         }
+        
+        // navigationStateからのページ番号があればそれを使用
         if (pageFromState) {
           const matchedByState = stored.passages.find((p: any) => Number(p.page) === pageFromState);
           if (matchedByState) {
             top = { materialId: matchedByState.materialId, page: pageFromState, quote: matchedByState.quote };
+            console.log('[Materials] Using page from navigation state:', pageFromState);
           }
         }
+        
+        console.log('[Materials] Final selection:', {
+          materialId: top.materialId,
+          page: top.page,
+          hasQuote: !!top.quote
+        });
+        
         // 材料の自動切替（PDFファイル名に正確にマッチ）
         if (typeof top.materialId === 'string') {
           const mid = top.materialId;
           if (mid === 'UKFR_ED32_Study_Companion' || mid.includes('Study_Companion')) {
             setSelectedPdf('UKFR_ED32_Study_Companion.pdf');
+            console.log('[Materials] Selected PDF: UKFR_ED32_Study_Companion.pdf');
           } else if (mid === 'UKFR_ED32_Checkpoint' || mid.includes('Checkpoint')) {
             setSelectedPdf('UKFR_ED32_Checkpoint.pdf');
+            console.log('[Materials] Selected PDF: UKFR_ED32_Checkpoint.pdf');
           }
         }
-        if (typeof top.page === 'number') {
+        
+        if (typeof top.page === 'number' && top.page > 0) {
+          console.log('[Materials] Setting current page to:', top.page);
           setCurrentPage(top.page);
+        } else {
+          console.warn('[Materials] Invalid page number:', top.page);
         }
+        
         if (typeof top.quote === 'string' && top.quote.length > 0) {
           // 取り回しのため短めのスニペットを使用
           const snippet = top.quote.length > 160 ? `${top.quote.slice(0, 160)}…` : top.quote;
           setSearchTerm(snippet);
         }
+      } else {
+        console.warn('[Materials] No RAG results found for question:', savedState.questionId);
       }
     }
   }, [searchParams]);
