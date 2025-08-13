@@ -642,8 +642,17 @@ function StudySessionContent() {
           console.log('[Study Session] RAG passages:', storedPayload.passages.map((p: any) => ({
             materialId: p.materialId,
             page: p.page,
-            score: p.score
+            score: p.score,
+            snippet: p.quote ? p.quote.slice(0, 50) + '...' : ''
           })));
+          
+          // 古いmaterialIdが含まれているか検査
+          const hasOldFormat = storedPayload.passages.some((p: any) => 
+            p.materialId && p.materialId.includes('_backup')
+          );
+          if (hasOldFormat) {
+            console.warn('[Study Session] WARNING: RAG results contain old materialId format. Index rebuild required!');
+          }
           
           // 追加のリランクで最適な候補を選定
           try {
@@ -680,6 +689,17 @@ function StudySessionContent() {
               console.log('[Study Session] Using first passage - materialId:', chosenMaterialId, 'page:', chosenPage);
             }
           }
+          
+          // 古いmaterialId形式を修正
+          if (chosenMaterialId && chosenMaterialId.includes('_backup')) {
+            console.warn('[Study Session] Fixing old materialId format:', chosenMaterialId);
+            if (chosenMaterialId.includes('StudyCompanion')) {
+              chosenMaterialId = 'UKFR_ED32_Study_Companion';
+            } else if (chosenMaterialId.includes('Checkpoint')) {
+              chosenMaterialId = 'UKFR_ED32_Checkpoint';
+            }
+            console.log('[Study Session] Fixed materialId to:', chosenMaterialId);
+          }
 
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, storedPayload);
           setRagStatus('関連箇所を特定しました');
@@ -694,6 +714,17 @@ function StudySessionContent() {
             chosenMaterialId = first.materialId;
             chosenPage = first.page;
             console.log('[Study Session] Fallback - materialId:', chosenMaterialId, 'page:', chosenPage);
+            
+            // 古いmaterialId形式を修正
+            if (chosenMaterialId && chosenMaterialId.includes('_backup')) {
+              console.warn('[Study Session] Fixing old materialId format in fallback:', chosenMaterialId);
+              if (chosenMaterialId.includes('StudyCompanion')) {
+                chosenMaterialId = 'UKFR_ED32_Study_Companion';
+              } else if (chosenMaterialId.includes('Checkpoint')) {
+                chosenMaterialId = 'UKFR_ED32_Checkpoint';
+              }
+              console.log('[Study Session] Fixed materialId to:', chosenMaterialId);
+            }
           }
           
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, fallbackData);
