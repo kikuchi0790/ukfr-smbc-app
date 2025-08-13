@@ -274,7 +274,7 @@ export default function HighlightManager({ materialId, contentRef, relatedQuesti
   };
 
   return (
-    <>
+    <div className="h-full">
       {children}
       
       {showPopup && (
@@ -313,6 +313,6 @@ export default function HighlightManager({ materialId, contentRef, relatedQuesti
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
