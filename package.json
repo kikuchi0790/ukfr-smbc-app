@@ -17,7 +17,13 @@
     "build:index:text": "tsx scripts/build-material-index-from-text.ts",
     "build:index:advanced": "tsx scripts/build-material-index-advanced.ts",
     "build:index:unified": "tsx scripts/build-unified-index.ts",
-    "upload:qdrant": "tsx scripts/upload-to-qdrant.ts"
+    "upload:qdrant": "tsx scripts/upload-to-qdrant.ts",
+    "upload:qdrant:clean": "tsx scripts/upload-to-qdrant-clean.ts --reset",
+    "validate:index": "tsx scripts/validate-index.ts",
+    "qdrant:info": "tsx scripts/qdrant-admin.ts info",
+    "qdrant:analyze": "tsx scripts/qdrant-admin.ts analyze",
+    "qdrant:reset": "tsx scripts/qdrant-admin.ts reset",
+    "test:rag": "tsx scripts/test-rag-accuracy.ts"
   },
   "dependencies": {
     "@types/d3": "^7.4.3",
