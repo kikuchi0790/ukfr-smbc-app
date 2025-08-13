@@ -4,16 +4,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/contexts/AuthContext";
 import StorageCleanup from "@/components/StorageCleanup";
 import NetworkStatus from "@/components/NetworkStatus";
+import PdfWorkerInit from "@/components/PdfWorkerInit";
 import "./globals.css";
-
-// Initialize PDF.js worker once at app level
-if (typeof window !== 'undefined') {
-  import('react-pdf').then(({ pdfjs }) => {
-    if (pdfjs && !pdfjs.GlobalWorkerOptions.workerSrc) {
-      pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-    }
-  });
-}
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
+        <PdfWorkerInit />
         <AuthProvider>
           <ErrorBoundary>
             <NetworkStatus />
