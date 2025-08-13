@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useEffect, useState, useRef, Suspense, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X, Highlighter } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Book, ArrowLeft, Search, X, Highlighter, PanelLeftClose, PanelLeft, Languages, Check } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { safeLocalStorage } from '@/utils/storage-utils';
 import { HighlightAnchor } from '@/types';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import MaterialViewer from '@/components/MaterialViewer';
+import QuestionPanel from '@/components/QuestionPanel';
 
 function MaterialsContent() {
   const router = useRouter();
@@ -23,6 +24,11 @@ function MaterialsContent() {
   const [htmlContent, setHtmlContent] = useState('');
   const [textContent, setTextContent] = useState('');
   const [navigationState, setNavigationState] = useState<any>(null);
+  const [showQuestionPanel, setShowQuestionPanel] = useState(true);
+  const [questionPanelWidth, setQuestionPanelWidth] = useState(30); // パネル幅（%）
+  const [showJapanese, setShowJapanese] = useState(true);
+  const [showQuestionPanel, setShowQuestionPanel] = useState(true);
+  const [questionPanelWidth, setQuestionPanelWidth] = useState(35); // percentage
 
   useEffect(() => {
     // URLパラメータからキーワードを取得
@@ -301,6 +307,20 @@ function MaterialsContent() {
                 />
               </div>
               <div className="flex items-center gap-2">
+                {/* Toggle Question Panel Button */}
+                {navigationState?.currentQuestion && (
+                  <button 
+                    onClick={() => setShowQuestionPanel(!showQuestionPanel)} 
+                    className="p-2 text-gray-200 hover:bg-gray-700 rounded transition-colors"
+                    title={showQuestionPanel ? "問題パネルを隠す" : "問題パネルを表示"}
+                  >
+                    {showQuestionPanel ? (
+                      <PanelLeftClose className="w-5 h-5" />
+                    ) : (
+                      <PanelLeft className="w-5 h-5" />
+                    )}
+                  </button>
+                )}
                 <button onClick={() => setShowToc(!showToc)} className="p-2 text-gray-200 hover:bg-gray-700 rounded">
                   <Book className="w-5 h-5" />
                 </button>
@@ -351,23 +371,146 @@ function MaterialsContent() {
         </div>
         
         {/* Main Content */}
-        <div className="h-screen pt-12 bg-gray-600">
-          <MaterialViewer
-            materialId={selectedPdf}
-            viewMode={viewMode}
-            pdfFile={viewMode === 'pdf' ? `/materials/${selectedPdf}` : undefined}
-            currentPage={currentPage}
-            onLoadSuccess={(numPages) => setTotalPages(numPages)}
-            htmlContent={htmlContent}
-            textContent={textContent}
-            searchTerm={searchTerm}
-            temporaryHighlight={temporaryHighlight}
-            showToc={showToc}
-            onJumpToPage={(pageNumber) => {
-              setCurrentPage(pageNumber);
-              setShowToc(false);
-            }}
-          />
+        <div className="h-screen pt-12 bg-gray-600 flex">
+          {/* Question Panel */}
+          {showQuestionPanel && navigationState?.currentQuestion && (
+            <div 
+              className="flex-shrink-0 bg-gray-800 border-r border-gray-700 overflow-y-auto"
+              style={{ width: `${questionPanelWidth}%` }}
+            >
+              <div className="p-4">
+                {/* 日英切り替えボタン */}
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-lg font-bold text-gray-100">問題情報</h3>
+                  <button
+                    onClick={() => setShowJapanese(!showJapanese)}
+                    className="p-2 text-gray-200 hover:bg-gray-700 rounded transition-colors"
+                    title={showJapanese ? "英語で表示" : "日本語で表示"}
+                  >
+                    <Languages className="w-5 h-5" />
+                  </button>
+                </div>
+                
+                {/* 問題文 */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-gray-400 mb-2">問題</h4>
+                  <p className="text-gray-200">
+                    {showJapanese && navigationState.currentQuestion.questionJa 
+                      ? navigationState.currentQuestion.questionJa 
+                      : navigationState.currentQuestion.question}
+                  </p>
+                </div>
+                
+                {/* 選択肢 */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-gray-400 mb-2">選択肢</h4>
+                  <div className="space-y-2">
+                    {navigationState.currentQuestion.options?.map((option: any) => (
+                      <div 
+                        key={option.letter}
+                        className={`p-3 rounded-lg ${
+                          navigationState.showResult && option.letter === navigationState.currentQuestion.correctAnswer
+                            ? 'bg-green-900 border border-green-600'
+                            : navigationState.showResult && navigationState.selectedAnswer === option.letter
+                            ? 'bg-red-900 border border-red-600'
+                            : navigationState.selectedAnswer === option.letter
+                            ? 'bg-gray-700 border border-gray-600'
+                            : 'bg-gray-750 border border-gray-700'
+                        }`}
+                      >
+                        <div className="flex items-start gap-2">
+                          <span className="font-semibold text-gray-300">{option.letter}.</span>
+                          <span className="text-gray-200">
+                            {showJapanese && option.textJa ? option.textJa : option.text}
+                          </span>
+                          {navigationState.showResult && option.letter === navigationState.currentQuestion.correctAnswer && (
+                            <Check className="w-5 h-5 text-green-400 ml-auto flex-shrink-0" />
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* 解説 */}
+                {navigationState.showResult && (
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-400 mb-2">解説</h4>
+                    <p className="text-gray-200">
+                      {showJapanese && navigationState.currentQuestion.explanationJa
+                        ? navigationState.currentQuestion.explanationJa
+                        : navigationState.currentQuestion.explanation}
+                    </p>
+                  </div>
+                )}
+                
+                {/* 学習に戻るボタン */}
+                <button
+                  onClick={() => {
+                    if (navigationState && navigationState.from) {
+                      const params = new URLSearchParams();
+                      if (navigationState.mode) params.set('mode', navigationState.mode);
+                      if (navigationState.category) params.set('category', navigationState.category);
+                      if (navigationState.part) params.set('part', navigationState.part);
+                      if (navigationState.studyMode) params.set('studyMode', navigationState.studyMode);
+                      if (navigationState.questionCount) params.set('questionCount', navigationState.questionCount);
+                      if (navigationState.sessionId) params.set('sessionId', navigationState.sessionId);
+                      params.set('restore', 'true');
+                      router.push(`/study/session?${params.toString()}`);
+                    }
+                  }}
+                  className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                >
+                  学習に戻る
+                </button>
+              </div>
+            </div>
+          )}
+          
+          {/* Resizer */}
+          {showQuestionPanel && navigationState?.currentQuestion && (
+            <div 
+              className="w-1 bg-gray-700 hover:bg-blue-600 cursor-col-resize transition-colors"
+              onMouseDown={(e) => {
+                const startX = e.clientX;
+                const startWidth = questionPanelWidth;
+                
+                const handleMouseMove = (e: MouseEvent) => {
+                  const deltaX = e.clientX - startX;
+                  const newWidth = startWidth + (deltaX / window.innerWidth * 100);
+                  setQuestionPanelWidth(Math.max(20, Math.min(50, newWidth)));
+                };
+                
+                const handleMouseUp = () => {
+                  document.removeEventListener('mousemove', handleMouseMove);
+                  document.removeEventListener('mouseup', handleMouseUp);
+                };
+                
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('mouseup', handleMouseUp);
+              }}
+            />
+          )}
+          
+          {/* Material Viewer */}
+          <div className="flex-1 overflow-hidden">
+            <MaterialViewer
+              materialId={selectedPdf}
+              viewMode={viewMode}
+              pdfFile={viewMode === 'pdf' ? `/materials/${selectedPdf}` : undefined}
+              currentPage={currentPage}
+              onLoadSuccess={(numPages) => setTotalPages(numPages)}
+              htmlContent={htmlContent}
+              textContent={textContent}
+              searchTerm={searchTerm}
+              temporaryHighlight={temporaryHighlight}
+              showToc={showToc}
+              onJumpToPage={(pageNumber) => {
+                setCurrentPage(pageNumber);
+                setShowToc(false);
+              }}
+            />
+          </div>
         </div>
       </div>
     </ProtectedRoute>

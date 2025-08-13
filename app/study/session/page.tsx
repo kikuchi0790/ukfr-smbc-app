@@ -70,11 +70,27 @@ function StudySessionContent() {
   const [extractingKeywords, setExtractingKeywords] = useState(false);
   const [questionsToRestore, setQuestionsToRestore] = useState<string[] | null>(null);
   const [ragStatus, setRagStatus] = useState<string | null>(null); // RAG検索ステータスメッセージ
+  const [ragElapsedTime, setRagElapsedTime] = useState<number>(0); // RAG検索の経過時間（秒）
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
   const sessionPersistence = useRef<SessionPersistence | null>(null);
   const isLoadingQuestions = useRef(false);
   const hasRestoredRef = useRef(false);
+  // RAG検索結果のキャッシュ（セッション永続化）
+  const ragResultsCache = useRef<Map<string, any>>(() => {
+    // sessionStorageから復元を試みる
+    try {
+      const cached = sessionStorage.getItem('ragResultsCache');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        return new Map(parsed);
+      }
+    } catch (e) {
+      console.warn('Failed to restore RAG cache from sessionStorage:', e);
+    }
+    return new Map();
+  }());
+  const ragTimerRef = useRef<NodeJS.Timeout | null>(null); // RAG検索タイマー
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
 
   const isMockMode = mode === "mock25" || mode === "mock75";
@@ -582,8 +598,80 @@ function StudySessionContent() {
     const currentQuestion = questions[currentQuestionIndex];
     if (!currentQuestion || !session) return;
 
+    // キャッシュがある場合は即座に遷移（UI表示なし）
+    const cachedResult = ragResultsCache.current.get(currentQuestion.questionId);
+    if (cachedResult) {
+      console.log('[Study Session] Using cached RAG results for question:', currentQuestion.questionId);
+      
+      // セッションを保存（待機表示なし）
+      await saveSessionState();
+      const sessionSnapshot = {
+        mode,
+        category: categoryParam,
+        part: partParam,
+        studyMode: studyModeParam,
+        questionCount: questionCountParam,
+        session: {
+          ...session,
+          currentQuestionIndex,
+        },
+        showJapanese,
+        selectedAnswer,
+        showResult,
+        savedAt: new Date().toISOString(),
+        questions: questions,
+        currentQuestionId: currentQuestion.questionId,
+        currentQuestionIndex,
+        currentQuestion // 問題情報も保存
+      };
+      safeLocalStorage.setItem('studySessionState', sessionSnapshot);
+      
+      // ナビゲーション情報を保存
+      const navigationState = {
+        from: 'study',
+        mode,
+        category: categoryParam,
+        part: partParam,
+        studyMode: studyModeParam,
+        questionCount: questionCountParam,
+        sessionId: session.id,
+        materialId: cachedResult.materialId,
+        page: cachedResult.page,
+        anchor: cachedResult.anchor,
+        questionId: currentQuestion.questionId,
+        currentQuestion // 問題情報を含める
+      };
+      safeLocalStorage.setItem('materialNavigationState', navigationState);
+      
+      // 教材画面へ遷移
+      const queryParams = new URLSearchParams({
+        from: 'study',
+        questionId: currentQuestion.questionId,
+        keywords: cachedResult.keywords?.join(',') || '',
+        autoSearch: 'true',
+        returnMode: mode,
+        returnCategory: categoryParam || '',
+        returnPart: partParam || '',
+        returnStudyMode: studyModeParam || '',
+        returnQuestionCount: questionCountParam || ''
+      });
+      
+      router.push(`/materials?${queryParams.toString()}`);
+      return;
+    }
+
     setExtractingKeywords(true);
     setRagStatus('教材を検索中...');
+    setRagElapsedTime(0);
+    
+    // タイマー開始
+    const startTime = Date.now();
+    ragTimerRef.current = setInterval(() => {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      setRagElapsedTime(elapsed);
+      setRagStatus(`教材を検索中... (${elapsed}秒経過)`);
+    }, 1000);
+    
     let chosenMaterialId: string | undefined;
     let chosenPage: number | undefined;
     
@@ -729,6 +817,25 @@ function StudySessionContent() {
           }
 
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, storedPayload);
+          
+          // キャッシュに保存
+          const cacheData = {
+            materialId: chosenMaterialId,
+            page: chosenPage,
+            anchor: null,
+            keywords,
+            storedPayload
+          };
+          ragResultsCache.current.set(currentQuestion.questionId, cacheData);
+          
+          // sessionStorageにも保存
+          try {
+            const cacheArray = Array.from(ragResultsCache.current.entries());
+            sessionStorage.setItem('ragResultsCache', JSON.stringify(cacheArray));
+          } catch (e) {
+            console.warn('Failed to save RAG cache to sessionStorage:', e);
+          }
+          
           setRagStatus('関連箇所を特定しました');
         } else if (data.fallback && data.data?.passages) {
           // Fallback to local search was used
@@ -755,6 +862,25 @@ function StudySessionContent() {
           }
           
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, fallbackData);
+          
+          // キャッシュに保存
+          const cacheData = {
+            materialId: chosenMaterialId,
+            page: chosenPage,
+            anchor: null,
+            keywords,
+            fallbackData
+          };
+          ragResultsCache.current.set(currentQuestion.questionId, cacheData);
+          
+          // sessionStorageにも保存
+          try {
+            const cacheArray = Array.from(ragResultsCache.current.entries());
+            sessionStorage.setItem('ragResultsCache', JSON.stringify(cacheArray));
+          } catch (e) {
+            console.warn('Failed to save RAG cache to sessionStorage:', e);
+          }
+          
           setRagStatus('ローカル検索で関連箇所を特定しました');
         } else if (!ragResp.ok) {
           console.warn('RAG search error:', data.error || 'Unknown error');
@@ -795,7 +921,21 @@ function StudySessionContent() {
         category: categoryParam,
         part: partParam,
         studyMode: studyModeParam,
-        questionCount: questionCountParam
+        questionCount: questionCountParam,
+        // 問題データ全体を追加
+        currentQuestion: {
+          question: currentQuestion.question,
+          questionJa: currentQuestion.questionJa,
+          options: currentQuestion.options,
+          correctAnswer: currentQuestion.correctAnswer,
+          explanation: currentQuestion.explanation,
+          explanationJa: currentQuestion.explanationJa,
+          category: currentQuestion.category
+        },
+        // 回答状態も追加
+        selectedAnswer: selectedAnswer,
+        showResult: showResult,
+        showJapanese: showJapanese
       };
       
       // デバッグログ：RAG検索結果と保存する内容を確認
@@ -828,8 +968,18 @@ function StudySessionContent() {
       handleError(new Error('キーワード抽出に失敗しました'));
     } finally {
       setExtractingKeywords(false);
+      
+      // タイマーをクリア
+      if (ragTimerRef.current) {
+        clearInterval(ragTimerRef.current);
+        ragTimerRef.current = null;
+      }
+      
       // ステータスメッセージを3秒後にクリア
-      setTimeout(() => setRagStatus(null), 3000);
+      setTimeout(() => {
+        setRagStatus(null);
+        setRagElapsedTime(0);
+      }, 3000);
     }
   };
 
@@ -993,7 +1143,16 @@ function StudySessionContent() {
       completeSession();
     } else {
       // 次の問題へ
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      const nextIndex = currentQuestionIndex + 1;
+      const nextQuestion = questions[nextIndex];
+      
+      // 現在の問題のキャッシュのみクリア（他の問題のキャッシュは保持）
+      if (nextQuestion && currentQuestion.questionId !== nextQuestion.questionId) {
+        // 次の問題が異なる場合のみ、現在の問題のキャッシュをクリア
+        ragResultsCache.current.delete(currentQuestion.questionId);
+      }
+      
+      setCurrentQuestionIndex(nextIndex);
       setSelectedAnswer(null);
       setShowResult(false);
     }
