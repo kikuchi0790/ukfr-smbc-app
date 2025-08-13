@@ -7,9 +7,11 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 // Set workerSrc on client only (prefer jsDelivr to avoid Cloudflare Access blocks on cdnjs)
-if (typeof window !== 'undefined') {
-  const version = (pdfjs as any).version || '4.8.69';
-  (pdfjs as any).GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${version}/build/pdf.worker.min.mjs`;
+if (typeof window !== 'undefined' && pdfjs) {
+  // Use the actual version from pdfjs, not a fallback
+  const pdfjsVersion = pdfjs.version;
+  // Correct path for pdf.worker.min.js
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
 }
 
 interface PdfRendererProps {
