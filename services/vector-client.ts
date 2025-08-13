@@ -51,7 +51,7 @@ export class LocalVectorClient {
   async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
     const k = options.k ?? 6;
     const mmrLambda = options.mmrLambda ?? 0.7; // Increased default from 0.5 to 0.7 for better accuracy
-    const minScore = options.minScore ?? 0.7; // Filter out low-relevance results
+    const minScore = options.minScore ?? 0.65; // Lowered threshold for cross-lingual search
     
     // Precompute similarities
     const sims = this.records.map((r, idx) => ({ idx, score: cosineSimilarity(queryEmbedding, r.embedding) }));

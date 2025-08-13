@@ -64,11 +64,12 @@ function extractPagesFromText(content: string): PageContent[] {
   
   let currentPage: PageContent | null = null;
   let globalOffset = 0;
+  let pageCount = 0;
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
-    // Check for page marker pattern
+    // Check for page marker pattern (line of equals signs)
     if (line.match(/^={3,}/)) {
       // Look at next line for page number
       if (i + 1 < lines.length) {
@@ -80,27 +81,31 @@ function extractPagesFromText(content: string): PageContent[] {
           if (currentPage && currentPage.text.trim().length > 0) {
             pages.push(currentPage);
             globalOffset += currentPage.text.length;
+            console.log(`    Saved page ${currentPage.pageNumber} with ${currentPage.text.length} characters`);
           }
           
           // Start new page
           const pageNum = parseInt(pageNumberMatch[1], 10);
+          pageCount++;
           currentPage = {
             pageNumber: pageNum,
             text: '',
             startOffset: globalOffset
           };
+          console.log(`    Starting page ${pageNum} at line ${i+1}`);
           i++; // Skip the page number line
           continue;
         }
       }
     }
     
-    // Add content to current page
+    // Add content to current page (only if we have a current page)
     if (currentPage) {
       currentPage.text += line + '\n';
     } else if (!line.match(/^={3,}/) && line.trim()) {
-      // Handle content before first page marker
+      // Handle content before first page marker (shouldn't happen with our files)
       if (pages.length === 0 && !currentPage) {
+        console.log('    Warning: Content before first page marker, assigning to page 1');
         currentPage = {
           pageNumber: 1,
           text: line + '\n',
@@ -111,12 +116,16 @@ function extractPagesFromText(content: string): PageContent[] {
   }
   
   // Add last page
-  if (currentPage) {
+  if (currentPage && currentPage.text.trim().length > 0) {
     pages.push(currentPage);
+    console.log(`    Saved final page ${currentPage.pageNumber} with ${currentPage.text.length} characters`);
   }
+  
+  console.log(`    Total pages extracted: ${pages.length}`);
   
   // If no pages found, treat entire content as page 1
   if (pages.length === 0) {
+    console.log('    Warning: No pages found, treating entire content as page 1');
     pages.push({
       pageNumber: 1,
       text: content,
@@ -196,12 +205,12 @@ async function main() {
         const expanded = applyAliasExpansion(chunk, aliasMap);
         const normalized = normalizeText(expanded);
         
-        // Map text file ID to appropriate material ID
+        // Map text file ID to appropriate material ID that matches PDF filename
         let materialId = src.id;
         if (src.id.includes('Checkpoint')) {
-          materialId = 'Checkpoint';
+          materialId = 'UKFR_ED32_Checkpoint';
         } else if (src.id.includes('Study_Companion')) {
-          materialId = 'StudyCompanion';
+          materialId = 'UKFR_ED32_Study_Companion';
         }
         
         rawChunks.push({

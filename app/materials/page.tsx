@@ -78,12 +78,12 @@ function MaterialsContent() {
             top = { materialId: matchedByState.materialId, page: pageFromState, quote: matchedByState.quote };
           }
         }
-        // 材料の自動切替（Checkpoint/StudyCompanion）
+        // 材料の自動切替（PDFファイル名に正確にマッチ）
         if (typeof top.materialId === 'string') {
-          const mid = top.materialId.toLowerCase();
-          if (mid.includes('studycompanion')) {
+          const mid = top.materialId;
+          if (mid === 'UKFR_ED32_Study_Companion' || mid.includes('Study_Companion')) {
             setSelectedPdf('UKFR_ED32_Study_Companion.pdf');
-          } else if (mid.includes('checkpoint')) {
+          } else if (mid === 'UKFR_ED32_Checkpoint' || mid.includes('Checkpoint')) {
             setSelectedPdf('UKFR_ED32_Checkpoint.pdf');
           }
         }
