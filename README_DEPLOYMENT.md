@@ -11,8 +11,24 @@ You need to set the following environment variables in Vercel:
 ### Required Variables
 
 ```
+# Server-only
+GEMINI_API_KEY=<your-gemini-api-key>
+
+# Firebase (Client)
+NEXT_PUBLIC_FIREBASE_API_KEY=<...>
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<...>
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=<...>
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<...>
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<...>
+NEXT_PUBLIC_FIREBASE_APP_ID=<...>
+
+# Legacy/internal
 NEXT_PUBLIC_PASSCODE=<your-secure-passcode>
 ```
+
+Note:
+- Do not expose Gemini key on client. Use server-only `GEMINI_API_KEY`.
+- Configure in Vercel Project Settings → Environment Variables, then redeploy.
 
 ## 認証システムについて
 

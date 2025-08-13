@@ -326,22 +326,21 @@ interface UserProgress {
 - **公開ルート**: `/`, `/login`
 - **オフラインモード**: Firebase接続エラー時も基本機能は動作
 
-## 🛠️ v2.2.0 技術実装詳細
+## 🛠️ v2.2.0 技術実装詳細（追補）
 
 ### AI連携システム
-- **Gemini API統合**: gemini-2.0-flash-liteモデルによる高速キーワード抽出
-- **多層キャッシュ**: サーバー側メモリキャッシュ＋クライアント側LocalStorageキャッシュ
-- **レート制限**: 1分10リクエストまでの制限でAPI使用量を最適化
+- **Gemini API統合**: サーバ専用 `GEMINI_API_KEY` を使用
+- **多層キャッシュ**: サーバメモリ＋クライアントLocalStorage
+- **レート制限**: 強化キー（clientId+IP+UAのハッシュ）
 
 ### ハイライトシステム
-- **テキスト選択検出**: Range APIによる正確な位置計算
-- **オフセット管理**: startOffset/endOffsetによる永続的な位置保存
-- **リアルタイム同期**: Firestore onSnapshotによる即時更新
+- **Contextual Anchoring**: `textQuote`（exact/prefix/suffix）＋セレクタ
+- **DOM安全描画**: `Range.surroundContents` による安全なハイライト適用
 - **ローカルフォールバック**: オフライン時もLocalStorageで動作継続
 
 ### セッション永続化システム
 - **自動保存**: 30秒ごと、5問回答ごとの自動保存
-- **ブラウザイベント対応**: beforeunload、visibilitychangeイベントのハンドリング
+- **復元順序の固定**: 認証完了→スナップショット→永続化
 - **ストレージ最適化**: 問題IDのみ保存、容量監視、自動クリーンアップ
 - **保存状態表示**: リアルタイムの保存状態インジケーター
 
@@ -350,6 +349,7 @@ interface UserProgress {
 - バグ修正とセッション永続化: `/docs/BUG_FIXES_AND_SESSION_PERSISTENCE.md`
 - トラブルシューティング: `/docs/TROUBLESHOOTING.md`
 - 2024年12月修正履歴: `/docs/RECENT_FIXES_2024_12.md`
+- 2025年8月修正履歴: `/docs/RECENT_FIXES_2025_08.md`
 
 ## 📝 今後の機能追加予定
 
