@@ -610,15 +610,22 @@ function StudySessionContent() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question: `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`, questionId: currentQuestion.questionId }),
         });
-        if (ragResp.ok) {
-          const data = await ragResp.json();
-          const payload = data?.data;
-          if (payload?.passages) {
-            safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, payload);
-          }
+        
+        const data = await ragResp.json();
+        
+        if (ragResp.ok && data.success && data.data?.passages) {
+          safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, data.data);
+        } else if (data.fallback && data.data?.passages) {
+          // Fallback to local search was used
+          console.info('Using local vector search fallback');
+          safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, data.data);
+        } else if (!ragResp.ok) {
+          console.warn('RAG search error:', data.error || 'Unknown error');
         }
       } catch (e) {
-        console.warn('RAG retrieve failed, continue with keywords only');
+        console.error('[Study Session] RAG retrieve error:', e);
+        // Continue with keyword extraction only
+        console.info('継続: キーワード抽出のみで教材を表示します');
       }
       
       // 現在のセッション情報を保存

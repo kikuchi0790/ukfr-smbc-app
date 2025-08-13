@@ -1,5 +1,6 @@
 import { QdrantClient } from '@qdrant/js-client-rest';
-import { cosineSimilarity, RetrievedPassage } from './vector-client';
+import { cosineSimilarity } from './vector-client';
+import type { RetrievedPassage, VectorSearcher, VectorSearchOptions, QdrantPayload } from '@/types/rag';
 
 export interface QdrantConfig {
   url: string;
@@ -7,7 +8,7 @@ export interface QdrantConfig {
   collection: string;
 }
 
-export class QdrantVectorClient {
+export class QdrantVectorClient implements VectorSearcher {
   private client: QdrantClient;
   private collection: string;
 
@@ -16,7 +17,7 @@ export class QdrantVectorClient {
     this.collection = cfg.collection;
   }
 
-  async search(queryEmbedding: number[], options: { k?: number; mmrLambda?: number } = {}): Promise<RetrievedPassage[]> {
+  async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
     const k = options.k ?? 6;
     const mmrLambda = options.mmrLambda ?? 0.5;
     // Fetch a larger candidate pool for MMR
@@ -34,7 +35,7 @@ export class QdrantVectorClient {
       idx,
       score: typeof p.score === 'number' ? p.score : 0,
       vector: (p.vector || []) as number[],
-      payload: (p.payload || {}) as any,
+      payload: (p.payload as unknown as QdrantPayload) || ({} as unknown as QdrantPayload),
     }));
 
     const selected: number[] = [];

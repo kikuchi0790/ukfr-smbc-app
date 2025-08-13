@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import type { RetrievedPassage as RagRetrievedPassage, VectorSearcher, VectorSearchOptions } from '@/types/rag';
 
 export interface PassageRecord {
   id: string;
@@ -12,18 +13,9 @@ export interface PassageRecord {
   embedding: number[];
 }
 
-export interface RetrieveOptions {
-  k?: number;
-  mmrLambda?: number;
-}
-
-export interface RetrievedPassage {
-  materialId: string;
-  page: number;
-  quote: string;
-  score: number;
-  offset: number;
-}
+// Re-export types from rag.ts for backward compatibility
+export type RetrievedPassage = RagRetrievedPassage;
+export type RetrieveOptions = VectorSearchOptions;
 
 function dot(a: number[], b: number[]): number {
   let s = 0;
@@ -56,7 +48,7 @@ export class LocalVectorClient {
     this.records = json;
   }
 
-  search(queryEmbedding: number[], options: RetrieveOptions = {}): RetrievedPassage[] {
+  async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
     const k = options.k ?? 6;
     const mmrLambda = options.mmrLambda ?? 0.5;
     // Precompute similarities
@@ -97,7 +89,7 @@ export class LocalVectorClient {
         offset: r.offset,
       });
     }
-    return selectedResults;
+    return Promise.resolve(selectedResults);
   }
 }
 
