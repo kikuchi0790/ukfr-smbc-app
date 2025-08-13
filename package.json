@@ -23,7 +23,9 @@
     "qdrant:info": "tsx scripts/qdrant-admin.ts info",
     "qdrant:analyze": "tsx scripts/qdrant-admin.ts analyze",
     "qdrant:reset": "tsx scripts/qdrant-admin.ts reset",
-    "test:rag": "tsx scripts/test-rag-accuracy.ts"
+    "test:rag": "tsx scripts/test-rag-accuracy.ts",
+    "test:material-selection": "tsx scripts/test-material-selection.ts",
+    "test:material-selection:real": "tsx scripts/test-material-selection.ts --real"
   },
   "dependencies": {
     "@types/d3": "^7.4.3",
