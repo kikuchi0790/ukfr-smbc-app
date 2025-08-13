@@ -121,7 +121,7 @@ Focus on:
 Return JSON array of 3 search queries.`;
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-5-2025-08-07',  // Using GPT-5 for superior query expansion
+      model: process.env.OPENAI_QUERY_EXPANSION_MODEL || 'gpt-5-2025-08-07',  // Configurable model for query expansion
       messages: [{ role: 'user', content: prompt }],
       response_format: { type: 'json_object' },
       temperature: 0.2,

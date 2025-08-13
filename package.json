@@ -24,6 +24,7 @@
     "qdrant:analyze": "tsx scripts/qdrant-admin.ts analyze",
     "qdrant:reset": "tsx scripts/qdrant-admin.ts reset",
     "test:rag": "tsx scripts/test-rag-accuracy.ts",
+    "test:rag:comprehensive": "tsx scripts/test-rag-comprehensive.ts",
     "test:material-selection": "tsx scripts/test-material-selection.ts",
     "test:material-selection:real": "tsx scripts/test-material-selection.ts --real"
   },

@@ -70,7 +70,7 @@ APPLY THE CHAIN-OF-THOUGHT PROCESS:
 
 Return the required JSON.`;
     const resp = await openai.chat.completions.create({
-      model: 'gpt-5-mini-2025-08-07',  // Using GPT-5 mini for better speed/accuracy balance
+      model: process.env.OPENAI_RERANK_MODEL || 'gpt-5-mini-2025-08-07',  // Configurable model for reranking
       messages: [
         { role: 'system', content: system },
         { role: 'user', content: user }
