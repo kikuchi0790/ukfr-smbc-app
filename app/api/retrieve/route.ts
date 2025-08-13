@@ -102,7 +102,7 @@ function extractAmounts(text: string): string[] {
   return [...new Set(matches)];
 }
 
-// Expand query with GPT-4o for better search
+// Expand query with GPT-5 for better search
 async function expandQueryWithGPT(question: string, explanation?: string): Promise<string[]> {
   try {
     const { getOpenAIClient } = await import('@/lib/openai');
@@ -121,7 +121,7 @@ Focus on:
 Return JSON array of 3 search queries.`;
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-5',  // Using GPT-5 for superior query expansion
+      model: 'gpt-5-2025-08-07',  // Using GPT-5 for superior query expansion
       messages: [{ role: 'user', content: prompt }],
       response_format: { type: 'json_object' },
       temperature: 0.2,
@@ -200,7 +200,7 @@ export async function POST(req: NextRequest) {
     let embeddings: number[][] = [];
     
     if (useAdvancedSearch) {
-      // Use GPT-4o for query expansion
+      // Use GPT-5 for query expansion
       const expandedQueries = await expandQueryWithGPT(question, explanation);
       queries = expandedQueries.length > 0 ? expandedQueries : [extractKeyPhrases(question, explanation)];
       

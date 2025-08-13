@@ -70,7 +70,7 @@ APPLY THE CHAIN-OF-THOUGHT PROCESS:
 
 Return the required JSON.`;
     const resp = await openai.chat.completions.create({
-      model: 'gpt-5',  // Using GPT-5 for maximum reasoning capability
+      model: 'gpt-5-2025-08-07',  // Using GPT-5 for advanced reasoning
       messages: [
         { role: 'system', content: system },
         { role: 'user', content: user }
