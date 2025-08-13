@@ -40,7 +40,7 @@ export function cosineSimilarity(a: number[], b: number[]): number {
   return dot(a, b) / (na * nb);
 }
 
-export class LocalVectorClient {
+export class LocalVectorClient implements VectorSearcher {
   private records: PassageRecord[] = [];
   private amountIndex: Map<string, PassageRecord[]> = new Map();
   private sectionIndex: Map<string, PassageRecord[]> = new Map();
@@ -142,7 +142,7 @@ export class LocalVectorClient {
       }));
   }
 
-  async search(queryEmbedding: number[], options: VectorSearchOptions & { hybridAmounts?: string[], hybridSections?: string[] } = {}): Promise<RetrievedPassage[]> {
+  async search(queryEmbedding: number[], options: VectorSearchOptions = {}): Promise<RetrievedPassage[]> {
     // Try hybrid search first if amounts or sections are provided
     let hybridResults: RetrievedPassage[] = [];
     

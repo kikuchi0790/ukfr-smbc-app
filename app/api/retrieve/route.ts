@@ -243,11 +243,11 @@ export async function POST(req: NextRequest) {
         minScore: useAdvancedSearch ? 0.6 : 0.65  // Lower threshold for multi-query
       };
       
-      // Add hybrid search options if available
-      if (extractedAmounts.length > 0 && searcher.searchByAmount) {
+      // Add hybrid search options if available (LocalVectorClient supports these)
+      if (extractedAmounts.length > 0) {
         searchOptions.hybridAmounts = extractedAmounts;
       }
-      if (sectionKeywords.length > 0 && searcher.searchBySection) {
+      if (sectionKeywords.length > 0) {
         searchOptions.hybridSections = sectionKeywords;
       }
       

@@ -13,12 +13,19 @@ export interface VectorSearcher {
     embedding: number[],
     options?: VectorSearchOptions
   ): Promise<RetrievedPassage[]>;
+  
+  // Optional hybrid search methods
+  searchByAmount?(amount: string): Promise<RetrievedPassage[]>;
+  searchBySection?(sectionKeywords: string[]): Promise<RetrievedPassage[]>;
 }
 
 export interface VectorSearchOptions {
   k?: number;
   mmrLambda?: number;
   minScore?: number;
+  // Hybrid search options
+  hybridAmounts?: string[];
+  hybridSections?: string[];
 }
 
 export interface CacheEntry {
