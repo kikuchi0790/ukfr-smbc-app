@@ -70,14 +70,12 @@ APPLY THE CHAIN-OF-THOUGHT PROCESS:
 
 Return the required JSON.`;
     const resp = await openai.chat.completions.create({
-      model: 'gpt-5-2025-08-07',  // Using GPT-5 for advanced reasoning
+      model: 'gpt-5-mini-2025-08-07',  // Using GPT-5 mini for better speed/accuracy balance
       messages: [
         { role: 'system', content: system },
         { role: 'user', content: user }
       ],
-      response_format: { type: 'json_object' },
-      temperature: 0.0,  // Zero temperature for deterministic results
-      max_tokens: 500  // Increased for detailed reasoning
+      response_format: { type: 'json_object' }
     });
     const content = resp.choices[0]?.message?.content || '{}';
     let json: any;
