@@ -76,6 +76,17 @@ function MaterialsContent() {
       const stored = safeLocalStorage.getItem<any>(`retrieveResults_${savedState.questionId}`);
       console.log('[Materials] RAG results for question', savedState.questionId, ':', stored);
       
+      // 古いデータ形式のクリーンアップ（StudyCompanion_backup.html等）
+      if (stored && Array.isArray(stored.passages)) {
+        stored.passages = stored.passages.map((p: any) => {
+          if (p.materialId && p.materialId.includes('_backup.html')) {
+            console.warn('[Materials] Cleaning up old materialId in passage:', p.materialId);
+            return { ...p, materialId: undefined };
+          }
+          return p;
+        });
+      }
+      
       if (stored && Array.isArray(stored.passages) && stored.passages.length > 0) {
         // rerank結果があればそれを優先
         const pageFromState = typeof savedState.page === 'number' ? savedState.page : undefined;
@@ -105,7 +116,7 @@ function MaterialsContent() {
         });
         
         // 材料の自動切替（PDFファイル名に正確にマッチ）
-        if (typeof top.materialId === 'string') {
+        if (typeof top.materialId === 'string' && !top.materialId.includes('_backup')) {
           const mid = top.materialId;
           if (mid === 'UKFR_ED32_Study_Companion' || mid.includes('Study_Companion')) {
             setSelectedPdf('UKFR_ED32_Study_Companion.pdf');
@@ -113,6 +124,17 @@ function MaterialsContent() {
           } else if (mid === 'UKFR_ED32_Checkpoint' || mid.includes('Checkpoint')) {
             setSelectedPdf('UKFR_ED32_Checkpoint.pdf');
             console.log('[Materials] Selected PDF: UKFR_ED32_Checkpoint.pdf');
+          }
+        } else if (!top.materialId || top.materialId.includes('_backup')) {
+          // materialIdが無効な場合、デフォルトのPDFを選択
+          console.warn('[Materials] Invalid or old materialId, using default PDF');
+          // ページ番号からPDFを推測（Study Companionは112ページ、Checkpointは44ページ）
+          if (typeof top.page === 'number' && top.page > 44) {
+            setSelectedPdf('UKFR_ED32_Study_Companion.pdf');
+            console.log('[Materials] Guessed PDF based on page number: Study_Companion');
+          } else {
+            setSelectedPdf('UKFR_ED32_Checkpoint.pdf');
+            console.log('[Materials] Using default PDF: Checkpoint');
           }
         }
         

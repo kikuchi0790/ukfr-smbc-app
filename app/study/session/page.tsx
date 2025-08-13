@@ -630,9 +630,21 @@ function StudySessionContent() {
         
         clearTimeout(timeoutId);
         const data = await ragResp.json();
+        console.log('[Study Session] RAG response:', { 
+          ok: ragResp.ok, 
+          success: data.success, 
+          passagesCount: data.data?.passages?.length,
+          fallback: data.fallback
+        });
         
         if (ragResp.ok && data.success && data.data?.passages) {
           let storedPayload = data.data as any;
+          console.log('[Study Session] RAG passages:', storedPayload.passages.map((p: any) => ({
+            materialId: p.materialId,
+            page: p.page,
+            score: p.score
+          })));
+          
           // 追加のリランクで最適な候補を選定
           try {
             const topForRerank = Array.isArray(storedPayload.passages) ? storedPayload.passages.slice(0, 5) : [];
@@ -644,23 +656,29 @@ function StudySessionContent() {
               });
               if (rerankResp.ok) {
                 const rerankJson = await rerankResp.json();
+                console.log('[Study Session] Rerank result:', rerankJson?.data);
                 if (rerankJson?.success && rerankJson?.data) {
                   storedPayload = { ...storedPayload, best: rerankJson.data };
                   // ページはbestから、materialIdは候補から推定
                   chosenPage = Number(rerankJson.data.page);
                   const matched = topForRerank.find((p: any) => Number(p.page) === chosenPage);
                   chosenMaterialId = matched?.materialId || topForRerank[0]?.materialId;
+                  console.log('[Study Session] After rerank - materialId:', chosenMaterialId, 'page:', chosenPage);
                 }
               }
             }
           } catch (e) {
             console.warn('Rerank failed, using top passage as-is');
           }
+          
           // リランクが無い場合や失敗時は先頭を使用
           if (!chosenMaterialId || !chosenPage) {
             const first = Array.isArray(storedPayload.passages) ? storedPayload.passages[0] : undefined;
-            chosenMaterialId = first?.materialId;
-            chosenPage = first?.page;
+            if (first) {
+              chosenMaterialId = first.materialId;
+              chosenPage = first.page;
+              console.log('[Study Session] Using first passage - materialId:', chosenMaterialId, 'page:', chosenPage);
+            }
           }
 
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, storedPayload);
@@ -668,7 +686,17 @@ function StudySessionContent() {
         } else if (data.fallback && data.data?.passages) {
           // Fallback to local search was used
           console.info('Using local vector search fallback');
-          safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, data.data);
+          const fallbackData = data.data as any;
+          
+          // Fallback時も変数を設定
+          if (Array.isArray(fallbackData.passages) && fallbackData.passages.length > 0) {
+            const first = fallbackData.passages[0];
+            chosenMaterialId = first.materialId;
+            chosenPage = first.page;
+            console.log('[Study Session] Fallback - materialId:', chosenMaterialId, 'page:', chosenPage);
+          }
+          
+          safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, fallbackData);
           setRagStatus('ローカル検索で関連箇所を特定しました');
         } else if (!ragResp.ok) {
           console.warn('RAG search error:', data.error || 'Unknown error');
