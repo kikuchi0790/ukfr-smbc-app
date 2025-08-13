@@ -1,5 +1,6 @@
 import { QdrantClient } from '@qdrant/js-client-rest';
 import { cosineSimilarity } from './vector-client';
+import { normalizeMaterialId, validatePageNumber } from '@/utils/material-utils';
 import type { RetrievedPassage, VectorSearcher, VectorSearchOptions, QdrantPayload } from '@/types/rag';
 
 export interface QdrantConfig {
@@ -63,9 +64,25 @@ export class QdrantVectorClient implements VectorSearcher {
       if (bestIdx === -1) break;
       selected.push(bestIdx);
       const sel = candidates[bestIdx];
+      // Normalize materialId
+      const rawMaterialId = String(sel.payload.materialId || '');
+      const normalizedMaterialId = normalizeMaterialId(rawMaterialId);
+      
+      if (!normalizedMaterialId) {
+        console.warn('[QdrantVectorClient] Skipping result with invalid materialId:', rawMaterialId);
+        continue;
+      }
+      
+      // Validate page number
+      const pageNumber = sel.payload.pageNumber;
+      if (!validatePageNumber(normalizedMaterialId, pageNumber)) {
+        console.warn('[QdrantVectorClient] Skipping result with invalid pageNumber:', pageNumber, 'for material:', normalizedMaterialId);
+        continue;
+      }
+      
       results.push({
-        materialId: String(sel.payload.materialId || ''),
-        page: Number(sel.payload.pageNumber || 1),
+        materialId: normalizedMaterialId,
+        page: pageNumber,
         quote: String(sel.payload.plainText || ''),
         score: sel.score,
         offset: Number(sel.payload.offset || 0),

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeMaterialId, validatePageNumber } from '@/utils/material-utils';
 import type { RetrievedPassage as RagRetrievedPassage, VectorSearcher, VectorSearchOptions } from '@/types/rag';
 
 export interface PassageRecord {
@@ -211,8 +212,19 @@ export class LocalVectorClient implements VectorSearcher {
       if (bestIdx === -1) break;
       selected.push(bestIdx);
       const r = this.records[bestIdx];
+      
+      // Normalize materialId and validate page
+      const normalizedMaterialId = normalizeMaterialId(r.materialId);
+      if (!normalizedMaterialId || !validatePageNumber(normalizedMaterialId, r.pageNumber)) {
+        console.warn('[LocalVectorClient] Skipping invalid result:', { 
+          materialId: r.materialId, 
+          pageNumber: r.pageNumber 
+        });
+        continue;
+      }
+      
       selectedResults.push({
-        materialId: r.materialId,
+        materialId: normalizedMaterialId,
         page: r.pageNumber,
         quote: r.plainText,
         score: filteredSims.find(s => s.idx === bestIdx)?.score ?? 0,
