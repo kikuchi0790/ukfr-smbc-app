@@ -35,6 +35,13 @@
 - `next.config.ts` の `/materials/*.pdf` カスタムヘッダを削除（Vercel標準に委譲）
 - `tsconfig.json` で `cypress` を型チェック対象外に（CIビルド安定化）
 
+### 8. RAG導入（2025-08-13）
+- `/api/retrieve` を新設。OpenAIの `text-embedding-3-small` + コサイン類似度 + MMRで上位パッセージ返却
+- 前処理スクリプト `scripts/build-material-index.ts` でHTML教材をチャンク化・正規化・埋め込み生成
+- `services/vector-client-qdrant.ts` を追加し、`VECTOR_BACKEND=qdrant` でQdrantに切替
+- `scripts/upload-to-qdrant.ts` により、生成JSONをQdrantへ一括アップサート
+- 学習→教材連携をRAG結果ベースに更新し、対象ページ自動ジャンプ/スニペットハイライトを実装
+
 ---
 
 ## 既知事項/今後の課題（要改善）

@@ -127,11 +127,10 @@ ukfr-smbc-app/
 - **教材ビューア**: PDFとHTML教材の並列表示（v2.2.0 強化）
 - **iPadフレンドリー検索**: タッチデバイスでも快適な検索機能（v2.2.0 新機能）
 
-### 🔗 v2.2.0 AI連携学習機能
-- **問題→教材の自動連携**: AIが問題から重要キーワードを抽出し、関連教材へ自動ナビゲート
+### 🔗 v2.3.0 AI連携学習機能（RAG導入）
+- **問題→教材の自動連携（RAG）**: OpenAI埋め込み + ベクタ検索（Qdrant/ローカル）で該当箇所へ自動ジャンプ
 - **ハイライト機能**: 重要箇所を4色（黄・緑・赤・青）でマーキング
 - **ノート機能**: ハイライトにメモを追加
-- **クラウド同期**: FirebaseでハイライトをリアルタイムSync
 - **ハイライト一覧**: 保存したハイライトを一元管理
 
 ## 🚀 Vercelへのデプロイ方法
@@ -223,6 +222,8 @@ npm run dev
   "framer-motion": "^12.15.0",
   "lucide-react": "^0.511.0",
   "next": "15.3.3",
+  "openai": "^4.57.0",
+  "@qdrant/js-client-rest": "^1.10.0",
   "react": "^19.0.0",
   "react-dom": "^19.0.0",
   "recharts": "^2.15.3",
@@ -417,8 +418,23 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
-# Gemini API設定
-GEMINI_API_KEY=your_gemini_api_key
+# OpenAI Embeddings（RAG）
+OPENAI_API_KEY=your_openai_api_key
+
+# Vector backend (optional: default is local JSON)
+# VECTOR_BACKEND=qdrant
+# QDRANT_URL=...
+# QDRANT_API_KEY=...
+# QDRANT_COLLECTION=materials_passages
+```
+
+### RAG インデックス/アップロード
+```bash
+# ローカルJSONに埋め込みインデックスを生成
+npm run build:index
+
+# Qdrantへアップロード（VECTOR_BACKEND=qdrant を使用する場合）
+npm run upload:qdrant
 ```
 
 ### Vercelデプロイ

@@ -12,14 +12,15 @@
 - 間違えた箇所を教材から復習する手段がない
 
 ### 解決策
-1. AI（Gemini API）を使用した問題文からのキーワード抽出
-2. 抽出されたキーワードによる教材内自動検索
+1. AI（Gemini API）を使用した問題文からのキーワード抽出（補助）
+2. RAG（OpenAI埋め込み + ベクタ検索）により該当パッセージを特定
 3. ハイライト機能による重要箇所のマーキング
 4. 問題と教材間のシームレスなナビゲーション
 
 ## 技術スタック
 
-- **AI API**: Google Gemini API (gemini-2.5-flash-lite-preview-06-17)
+- **AI API**: Google Gemini API（キーワード抽出補助）、OpenAI Embeddings（text-embedding-3-small）
+- **Vector DB**: Qdrant（推奨、マネージド）/ ローカルJSONフォールバック
 - **フレームワーク**: Next.js 15.3.3 (App Router)
 - **データベース**: Firebase Firestore
 - **認証**: Firebase Authentication
@@ -89,7 +90,7 @@ export interface MaterialNavigationState {
 - フォールバックキーワード抽出
 - バッチ処理対応
 
-### Phase 3: 教材連携機能
+### Phase 3: 教材連携機能（RAG検索）
 
 #### 1. 問題画面の拡張 (`app/study/session/page.tsx`)
 ```typescript
@@ -106,7 +107,8 @@ export interface MaterialNavigationState {
 
 #### 2. 教材ビューアの拡張 (`app/materials/page.tsx`)
 - URLパラメータからのナビゲーション情報取得
-- 自動検索機能の実装
+- `/api/retrieve` を呼び出し、RAG結果を `localStorage(retrieveResults_*)` に保存
+- 教材画面で結果を読み取り、教材/ページへ自動ジャンプ（スニペット一致でハイライト）
 - 戻るボタンの動的制御
 
 ### Phase 4: ハイライト機能
@@ -134,10 +136,10 @@ export interface MaterialNavigationState {
 - 金融規制専門用語を優先
 - 最大2個のキーワードを抽出
 
-### 2. 自動検索
-- 教材ビューアへの遷移時に自動的に検索実行
-- 最初のキーワードで検索開始
-- 検索結果のハイライト表示
+### 2. RAG検索
+- 教材ビューアへの遷移前に `/api/retrieve` を実行
+- 上位パッセージ（materialId/page/quote/score/offset）を保存→教材画面で読み取り
+- 最上位ページへジャンプし、スニペット一致でハイライト
 
 ### 3. ハイライト機能
 - 4色のハイライト（黄、緑、赤、青）

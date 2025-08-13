@@ -1,0 +1,104 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+export interface PassageRecord {
+  id: string;
+  materialId: string;
+  pageNumber: number;
+  offset: number;
+  chunkIndex: number;
+  plainText: string;
+  normalizedText: string;
+  embedding: number[];
+}
+
+export interface RetrieveOptions {
+  k?: number;
+  mmrLambda?: number;
+}
+
+export interface RetrievedPassage {
+  materialId: string;
+  page: number;
+  quote: string;
+  score: number;
+  offset: number;
+}
+
+function dot(a: number[], b: number[]): number {
+  let s = 0;
+  const n = Math.min(a.length, b.length);
+  for (let i = 0; i < n; i++) s += a[i] * b[i];
+  return s;
+}
+
+function norm(a: number[]): number {
+  return Math.sqrt(a.reduce((s, v) => s + v * v, 0));
+}
+
+export function cosineSimilarity(a: number[], b: number[]): number {
+  const na = norm(a);
+  const nb = norm(b);
+  if (na === 0 || nb === 0) return 0;
+  return dot(a, b) / (na * nb);
+}
+
+export class LocalVectorClient {
+  private records: PassageRecord[] = [];
+
+  constructor(indexFilePath: string) {
+    const p = path.resolve(indexFilePath);
+    if (!fs.existsSync(p)) {
+      throw new Error(`Vector index not found at ${p}`);
+    }
+    const raw = fs.readFileSync(p, 'utf-8');
+    const json = JSON.parse(raw) as PassageRecord[];
+    this.records = json;
+  }
+
+  search(queryEmbedding: number[], options: RetrieveOptions = {}): RetrievedPassage[] {
+    const k = options.k ?? 6;
+    const mmrLambda = options.mmrLambda ?? 0.5;
+    // Precompute similarities
+    const sims = this.records.map((r, idx) => ({ idx, score: cosineSimilarity(queryEmbedding, r.embedding) }));
+    sims.sort((a, b) => b.score - a.score);
+    // MMR selection
+    const selected: number[] = [];
+    const selectedResults: RetrievedPassage[] = [];
+    const maxIter = Math.min(k, sims.length);
+    while (selected.length < maxIter) {
+      let bestIdx = -1;
+      let bestScore = -Infinity;
+      for (let i = 0; i < sims.length; i++) {
+        if (selected.includes(sims[i].idx)) continue;
+        const candidate = sims[i];
+        // Diversity penalty
+        let diversity = 0;
+        if (selected.length > 0) {
+          for (const s of selected) {
+            const simToSelected = cosineSimilarity(this.records[candidate.idx].embedding, this.records[s].embedding);
+            if (simToSelected > diversity) diversity = simToSelected;
+          }
+        }
+        const mmrScore = mmrLambda * candidate.score - (1 - mmrLambda) * diversity;
+        if (mmrScore > bestScore) {
+          bestScore = mmrScore;
+          bestIdx = candidate.idx;
+        }
+      }
+      if (bestIdx === -1) break;
+      selected.push(bestIdx);
+      const r = this.records[bestIdx];
+      selectedResults.push({
+        materialId: r.materialId,
+        page: r.pageNumber,
+        quote: r.plainText,
+        score: sims.find(s => s.idx === bestIdx)?.score ?? 0,
+        offset: r.offset,
+      });
+    }
+    return selectedResults;
+  }
+}
+
+

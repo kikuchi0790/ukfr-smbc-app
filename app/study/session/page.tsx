@@ -602,6 +602,24 @@ function StudySessionContent() {
       
       // キーワードを抽出
       const keywords = await extractKeywords(currentQuestion);
+
+      // RAG検索を実行し、結果を保存（7日）
+      try {
+        const ragResp = await fetch('/api/retrieve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`, questionId: currentQuestion.questionId }),
+        });
+        if (ragResp.ok) {
+          const data = await ragResp.json();
+          const payload = data?.data;
+          if (payload?.passages) {
+            safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, payload);
+          }
+        }
+      } catch (e) {
+        console.warn('RAG retrieve failed, continue with keywords only');
+      }
       
       // 現在のセッション情報を保存
       // In a real implementation, the anchor would be pre-calculated and stored with the question.

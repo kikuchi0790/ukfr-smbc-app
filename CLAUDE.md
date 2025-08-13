@@ -3,6 +3,54 @@
 ## プロジェクト概要
 英国財務報告（UKFR）学習アプリケーション。Next.js 15とTypeScriptで構築され、Firebase認証とFirestoreを使用。
 
+## 最近の重要な変更（2025-08-13）
+
+### RAG検索（OpenAI Embeddings + Qdrant）を導入
+問題→教材の該当箇所特定精度と到達速度を改善するため、RAG（ベクタ検索）を追加しました。
+
+#### 追加/変更点
+1. サーバAPI
+   - `POST /api/retrieve`（新規）: 質問文（questionId任意）→ ベクタ検索（MMR）で上位パッセージを返却
+   - `POST /api/rerank`（任意）: 上位パッセージをLLMで再ランキング/根拠整形（JSON固定出力）
+2. 前処理スクリプト
+   - `scripts/build-material-index.ts`: `public/materials/*.html` からテキスト抽出→チャンク→正規化/エイリアス展開→OpenAI埋め込み→`services/data/materials_index.json` 生成
+   - `scripts/upload-to-qdrant.ts`: 生成したJSONをQdrantへ一括アップサート（UUID化ID）
+3. ベクタバックエンド
+   - ローカル: `services/vector-client.ts`（JSONベース）
+   - Qdrant: `services/vector-client-qdrant.ts`（`@qdrant/js-client-rest`）
+   - 切替: `.env.local` の `VECTOR_BACKEND=qdrant` でQdrantを優先。未設定時はローカルJSONにフォールバック
+4. UI連携
+   - 学習画面 `app/study/session/page.tsx` で「教材で詳しく確認」時に `/api/retrieve` を実行し、結果を `localStorage(retrieveResults_*)` に保存
+   - 教材画面 `app/materials/page.tsx` が保存結果を読み取り、対象教材・ページへ自動ジャンプし、スニペットでハイライト
+
+#### 環境変数（.env.local）
+```
+# OpenAI
+OPENAI_API_KEY=...  # text-embedding-3-small を使用（1536次元）
+
+# ベクタバックエンド切替
+VECTOR_BACKEND=qdrant
+
+# Qdrant（マネージド推奨）
+QDRANT_URL=...
+QDRANT_API_KEY=...
+QDRANT_COLLECTION=materials_passages
+```
+
+#### コマンド
+```
+npm run build:index     # 埋め込みインデックス生成（ローカルJSON）
+npm run upload:qdrant   # JSONをQdrantへ一括アップサート
+```
+
+#### 実装メモ
+- チャンク: 目標 ~500±100トークン相当（実装では約2000文字/overlap 400文字）
+- 正規化: 小文字化・空白縮約・ハイフン結合、エイリアス（FCA→Financial Conduct Authority 等）
+- 検索: コサイン類似度 + MMR(λ=0.5, k=6±2)
+- フォールバック: Qdrant不可時はローカルJSON検索
+
+---
+
 ## 最近の重要な変更（2025-08-12）
 
 ### 教材ビューア＆ハイライト機能の完全リビルド

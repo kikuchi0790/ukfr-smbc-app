@@ -13,6 +13,13 @@ You need to set the following environment variables in Vercel:
 ```
 # Server-only
 GEMINI_API_KEY=<your-gemini-api-key>
+OPENAI_API_KEY=<your-openai-api-key>
+
+# Vector backend (optional)
+VECTOR_BACKEND=qdrant
+QDRANT_URL=<your-qdrant-url>
+QDRANT_API_KEY=<your-qdrant-api-key>
+QDRANT_COLLECTION=materials_passages
 
 # Firebase (Client)
 NEXT_PUBLIC_FIREBASE_API_KEY=<...>
@@ -37,6 +44,13 @@ Note:
 - ユーザーはパスコードとニックネームでログイン
 - 各ユーザーの進捗はニックネームごとに分けて保存
 - パスコードは環境変数で管理
+
+## RAG Indexing in CI/CD
+
+1. Build material index (only when materials updated)
+   - `npm run build:index`
+2. If using Qdrant, upload
+   - `npm run upload:qdrant`
 
 ## Vercel Deployment
 

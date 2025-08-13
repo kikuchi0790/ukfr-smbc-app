@@ -59,6 +59,31 @@ function MaterialsContent() {
         setTemporaryHighlight(anchor);
       }
     }
+
+    // 検索結果（RAG）からのページジャンプ/ハイライト
+    if (savedState?.questionId) {
+      const stored = safeLocalStorage.getItem<any>(`retrieveResults_${savedState.questionId}`);
+      if (stored && Array.isArray(stored.passages) && stored.passages.length > 0) {
+        const top = stored.passages[0];
+        // 材料の自動切替（Checkpoint/StudyCompanion）
+        if (typeof top.materialId === 'string') {
+          const mid = top.materialId.toLowerCase();
+          if (mid.includes('studycompanion')) {
+            setSelectedPdf('UKFR_ED32_Study_Companion.pdf');
+          } else if (mid.includes('checkpoint')) {
+            setSelectedPdf('UKFR_ED32_Checkpoint.pdf');
+          }
+        }
+        if (typeof top.page === 'number') {
+          setCurrentPage(top.page);
+        }
+        if (typeof top.quote === 'string' && top.quote.length > 0) {
+          // 取り回しのため短めのスニペットを使用
+          const snippet = top.quote.length > 160 ? `${top.quote.slice(0, 160)}…` : top.quote;
+          setSearchTerm(snippet);
+        }
+      }
+    }
   }, [searchParams]);
 
   const handleViewModeChange = async (mode: string) => {
