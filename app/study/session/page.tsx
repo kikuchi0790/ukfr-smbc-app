@@ -584,6 +584,8 @@ function StudySessionContent() {
 
     setExtractingKeywords(true);
     setRagStatus('教材を検索中...');
+    let chosenMaterialId: string | undefined;
+    let chosenPage: number | undefined;
     
     try {
       // セッションを保存（完了を待ってから遷移）
@@ -614,6 +616,7 @@ function StudySessionContent() {
 
       // RAG検索を実行し、結果を保存（7日）
       try {
+        // 選定された材料ID/ページ（見つからない場合はundefinedのまま）
         // タイムアウト設定（10秒）
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
@@ -630,8 +633,6 @@ function StudySessionContent() {
         
         if (ragResp.ok && data.success && data.data?.passages) {
           let storedPayload = data.data as any;
-          let chosenMaterialId: string | undefined;
-          let chosenPage: number | undefined;
           // 追加のリランクで最適な候補を選定
           try {
             const topForRerank = Array.isArray(storedPayload.passages) ? storedPayload.passages.slice(0, 5) : [];
