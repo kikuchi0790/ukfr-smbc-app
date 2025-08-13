@@ -51,6 +51,8 @@ function StudySessionContent() {
   const partParam = searchParams.get("part");
   const studyModeParam = searchParams.get("studyMode") as "random" | "sequential" | null;
   const questionCountParam = searchParams.get("questionCount");
+  const restoreParam = searchParams.get("restore") === "true";
+  const sessionIdParam = searchParams.get("sessionId");
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -67,6 +69,7 @@ function StudySessionContent() {
   const [showCompleteConfirm, setShowCompleteConfirm] = useState(false);
   const [extractingKeywords, setExtractingKeywords] = useState(false);
   const [questionsToRestore, setQuestionsToRestore] = useState<string[] | null>(null);
+  const [ragStatus, setRagStatus] = useState<string | null>(null); // RAG検索ステータスメッセージ
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
   const sessionPersistence = useRef<SessionPersistence | null>(null);
@@ -170,6 +173,33 @@ function StudySessionContent() {
   // セッション復元処理（認証の準備完了を待ってから実行）
   useEffect(() => {
     if (authLoading) return; // 認証未確定なら待機
+    
+    // restoreパラメータがある場合は優先的に復元
+    if (restoreParam) {
+      const savedSessionState = safeLocalStorage.getItem<any>('studySessionState');
+      const navigationState = safeLocalStorage.getItem<any>('materialNavigationState');
+      
+      if (savedSessionState) {
+        // セッションを復元
+        setSession(savedSessionState.session);
+        setCurrentQuestionIndex(savedSessionState.session.currentQuestionIndex || savedSessionState.currentQuestionIndex || 0);
+        setShowJapanese(savedSessionState.showJapanese);
+        setSelectedAnswer(savedSessionState.selectedAnswer);
+        setShowResult(savedSessionState.showResult);
+        
+        if (savedSessionState.mockAnswers) {
+          setMockAnswers(new Map(savedSessionState.mockAnswers));
+        }
+        
+        // 問題の復元が必要
+        setQuestionsToRestore(savedSessionState.questions);
+        
+        console.log('[Session] Restored from materials view with restore flag');
+        // 注意: ここではデータを削除しない（再度教材に移動する可能性があるため）
+        return;
+      }
+    }
+    
     // まず永続化システムからセッションを読み込む
     const persistence = sessionPersistence.current || SessionPersistence.getInstance();
     const savedSession = persistence.loadSession(user?.nickname);
@@ -202,8 +232,11 @@ function StudySessionContent() {
       console.log(`[Session] Restored session from ${minutesSince} minutes ago`);
       
       // 教材から戻った場合の処理も統合
-      safeLocalStorage.removeItem('studySessionState');
-      safeLocalStorage.removeItem('materialNavigationState');
+      // 注意: restoreフラグがない場合のみ削除
+      if (!restoreParam) {
+        safeLocalStorage.removeItem('studySessionState');
+        safeLocalStorage.removeItem('materialNavigationState');
+      }
       return;
     }
     
@@ -233,15 +266,18 @@ function StudySessionContent() {
           }
           
           // セッション状態をクリア
-          safeLocalStorage.removeItem('studySessionState');
-          safeLocalStorage.removeItem('materialNavigationState');
+          // 注意: restoreフラグがない場合のみ削除
+          if (!restoreParam) {
+            safeLocalStorage.removeItem('studySessionState');
+            safeLocalStorage.removeItem('materialNavigationState');
+          }
           
           // 問題の復元が必要
           setQuestionsToRestore(savedSessionState.questions);
         }
       }
     }
-  }, [mode, categoryParam, partParam, user?.nickname, authLoading]);
+  }, [mode, categoryParam, partParam, user?.nickname, authLoading, restoreParam]);
 
   const loadQuestionsCore = async () => {
     // 既に読み込み中の場合はスキップ
@@ -577,6 +613,7 @@ function StudySessionContent() {
     if (!currentQuestion || !session) return;
 
     setExtractingKeywords(true);
+    setRagStatus('教材を検索中...');
     
     try {
       // セッションを保存（完了を待ってから遷移）
@@ -605,27 +642,40 @@ function StudySessionContent() {
 
       // RAG検索を実行し、結果を保存（7日）
       try {
+        // タイムアウト設定（10秒）
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        
         const ragResp = await fetch('/api/retrieve', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question: `${currentQuestion.question} \nOptions: ${currentQuestion.options.map(o=>`${o.letter}. ${o.text}`).join(' ')}`, questionId: currentQuestion.questionId }),
+          signal: controller.signal
         });
         
+        clearTimeout(timeoutId);
         const data = await ragResp.json();
         
         if (ragResp.ok && data.success && data.data?.passages) {
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, data.data);
+          setRagStatus('関連箇所を特定しました');
         } else if (data.fallback && data.data?.passages) {
           // Fallback to local search was used
           console.info('Using local vector search fallback');
           safeLocalStorage.setItem(`retrieveResults_${currentQuestion.questionId}`, data.data);
+          setRagStatus('ローカル検索で関連箇所を特定しました');
         } else if (!ragResp.ok) {
           console.warn('RAG search error:', data.error || 'Unknown error');
+          setRagStatus('検索に失敗しました。キーワードのみで表示します');
         }
       } catch (e) {
         console.error('[Study Session] RAG retrieve error:', e);
         // Continue with keyword extraction only
-        console.info('継続: キーワード抽出のみで教材を表示します');
+        if (e instanceof Error && e.name === 'AbortError') {
+          setRagStatus('検索がタイムアウトしました。キーワードのみで表示します');
+        } else {
+          setRagStatus('検索エラーが発生しました。キーワードのみで表示します');
+        }
       }
       
       // 現在のセッション情報を保存
@@ -676,6 +726,8 @@ function StudySessionContent() {
       handleError(new Error('キーワード抽出に失敗しました'));
     } finally {
       setExtractingKeywords(false);
+      // ステータスメッセージを3秒後にクリア
+      setTimeout(() => setRagStatus(null), 3000);
     }
   };
 
@@ -1508,6 +1560,12 @@ function StudySessionContent() {
                     <BookOpen className="w-5 h-5" />
                     {extractingKeywords ? 'キーワードを抽出中...' : '教材で詳しく確認'}
                   </button>
+                  {/* RAG検索ステータス表示 */}
+                  {ragStatus && (
+                    <div className="mt-2 p-2 bg-gray-700 rounded text-sm text-center text-gray-300">
+                      {ragStatus}
+                    </div>
+                  )}
                 </div>
               )}
 

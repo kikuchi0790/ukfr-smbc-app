@@ -130,13 +130,16 @@ function MaterialsContent() {
                 onClick={() => {
                   // 学習セッションから来た場合は元のセッションに戻る
                   if (navigationState && navigationState.from) {
-                    safeLocalStorage.removeItem('materialNavigationState');
+                    // navigationStateは削除しない（復元時に必要）
                     const params = new URLSearchParams();
                     if (navigationState.mode) params.set('mode', navigationState.mode);
                     if (navigationState.category) params.set('category', navigationState.category);
                     if (navigationState.part) params.set('part', navigationState.part);
                     if (navigationState.studyMode) params.set('studyMode', navigationState.studyMode);
                     if (navigationState.questionCount) params.set('questionCount', navigationState.questionCount);
+                    // セッションIDとrestore フラグを追加
+                    if (navigationState.sessionId) params.set('sessionId', navigationState.sessionId);
+                    params.set('restore', 'true');
                     router.push(`/study/session?${params.toString()}`);
                     return;
                   }
