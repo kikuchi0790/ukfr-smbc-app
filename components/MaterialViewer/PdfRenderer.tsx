@@ -6,13 +6,7 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-// Set workerSrc on client only (prefer jsDelivr to avoid Cloudflare Access blocks on cdnjs)
-if (typeof window !== 'undefined' && pdfjs) {
-  // Use the actual version from pdfjs, not a fallback
-  const pdfjsVersion = pdfjs.version;
-  // Correct path for pdf.worker.min.mjs (note: .mjs extension, not .js)
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.mjs`;
-}
+// Worker is now initialized in app/layout.tsx to prevent multiple initialization issues
 
 interface PdfRendererProps {
   file: string;
@@ -39,6 +33,13 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
   const listRef = useRef<List>(null);
   const visibleRangeRef = useRef<{ startIndex: number; stopIndex: number }>({ startIndex: 0, stopIndex: 0 });
   const observerRef = useRef<MutationObserver | null>(null);
+
+  // Reset state when file changes
+  useEffect(() => {
+    setNumPages(0);
+    setError(null);
+    setLoading(true);
+  }, [file]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -217,6 +218,7 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
   return (
     <div ref={containerRef} className="w-full h-full">
       <Document 
+        key={file} 
         file={file} 
         onLoadSuccess={onDocumentLoadSuccess}
         onLoadError={onDocumentLoadError}

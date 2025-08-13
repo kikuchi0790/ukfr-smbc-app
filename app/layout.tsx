@@ -6,6 +6,15 @@ import StorageCleanup from "@/components/StorageCleanup";
 import NetworkStatus from "@/components/NetworkStatus";
 import "./globals.css";
 
+// Initialize PDF.js worker once at app level
+if (typeof window !== 'undefined') {
+  import('react-pdf').then(({ pdfjs }) => {
+    if (pdfjs && !pdfjs.GlobalWorkerOptions.workerSrc) {
+      pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+    }
+  });
+}
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
