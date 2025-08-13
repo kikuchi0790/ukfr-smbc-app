@@ -99,8 +99,8 @@ export default function MaterialViewer({
         </div>
       )}
       
-      <div className="flex-1 overflow-y-auto">
-        <div className="min-h-full">
+      <div className="flex-1 overflow-hidden">
+        <div className="h-full">
           <ErrorBoundary>
             <HighlightManager materialId={materialId} contentRef={contentRef} relatedQuestionId={relatedQuestionId}>
               {renderContent()}

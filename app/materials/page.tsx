@@ -368,7 +368,7 @@ function MaterialsContent() {
         </div>
         
         {/* Main Content */}
-        <div className="h-screen pt-12 bg-gray-600 flex">
+        <div className="h-[calc(100vh-3rem)] bg-gray-600 flex">
           {/* Question Panel */}
           {showQuestionPanel && navigationState?.currentQuestion && (
             <div 

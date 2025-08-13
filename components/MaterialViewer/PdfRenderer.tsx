@@ -194,8 +194,13 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
   
   // Get container height
   const getContainerHeight = () => {
+    if (containerRef.current) {
+      // Use actual container height
+      return containerRef.current.offsetHeight || window.innerHeight - 100;
+    }
     if (typeof window !== 'undefined') {
-      return window.innerHeight - 200; // Subtract header and padding
+      // Fallback: subtract header height (48px) + some padding
+      return window.innerHeight - 100;
     }
     return 600; // Default height
   };
@@ -216,7 +221,7 @@ function PdfRenderer({ file, currentPage, onLoadSuccess, searchTerm }: PdfRender
   }
   
   return (
-    <div ref={containerRef} className="w-full h-full">
+    <div ref={containerRef} className="w-full h-full flex flex-col">
       <Document 
         key={file} 
         file={file} 
