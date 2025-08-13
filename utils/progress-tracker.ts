@@ -61,7 +61,7 @@ export function calculateActualStats(progress: UserProgress): ProgressStats {
   if (progress.studySessions) {
     // セッションを日付順にソート（古い順）
     const sortedSessions = [...progress.studySessions].sort((a, b) => 
-      new Date(a.date).getTime() - new Date(b.date).getTime()
+      new Date(a.startedAt).getTime() - new Date(b.startedAt).getTime()
     );
     
     sortedSessions.forEach(session => {
