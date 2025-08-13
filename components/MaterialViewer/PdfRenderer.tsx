@@ -10,8 +10,8 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 if (typeof window !== 'undefined' && pdfjs) {
   // Use the actual version from pdfjs, not a fallback
   const pdfjsVersion = pdfjs.version;
-  // Correct path for pdf.worker.min.js
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
+  // Correct path for pdf.worker.min.mjs (note: .mjs extension, not .js)
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.mjs`;
 }
 
 interface PdfRendererProps {
