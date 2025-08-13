@@ -5,10 +5,10 @@
 
 ## 最近の重要な変更（2025-08-13）
 
-### RAG検索（OpenAI Embeddings + Qdrant）を導入
-問題→教材の該当箇所特定精度と到達速度を改善するため、RAG（ベクタ検索）を追加しました。
+### RAG検索（OpenAI Embeddings + Qdrant）を導入・改善
+問題→教材の該当箇所特定精度と到達速度を改善するため、RAG（ベクタ検索）を追加し、大幅な改善を実施しました。
 
-#### 追加/変更点
+#### 初期実装
 1. サーバAPI
    - `POST /api/retrieve`（新規）: 質問文（questionId任意）→ ベクタ検索（MMR）で上位パッセージを返却
    - `POST /api/rerank`（任意）: 上位パッセージをLLMで再ランキング/根拠整形（JSON固定出力）
@@ -23,13 +23,38 @@
    - 学習画面 `app/study/session/page.tsx` で「教材で詳しく確認」時に `/api/retrieve` を実行し、結果を `localStorage(retrieveResults_*)` に保存
    - 教材画面 `app/materials/page.tsx` が保存結果を読み取り、対象教材・ページへ自動ジャンプし、スニペットでハイライト
 
+#### 本日の大幅改善（精度向上）
+1. **インデックス再構築**
+   - HTMLファイルではなくテキストファイル（`_ja_fixed.txt`）から構築に変更
+   - 新スクリプト: `scripts/build-material-index-from-text.ts`
+   - チャンクサイズ: 2000文字→350文字に縮小（overlap: 400→100文字）
+   - 正確なページ番号抽出（Checkpoint: 44ページ、StudyCompanion: 112ページ）
+   - チャンク数: 165→699個（4.2倍増加）
+
+2. **検索アルゴリズム改善**
+   - クエリ最適化: 問題文全体ではなくキーフレーズ（200文字以内）を抽出
+   - MMRλ: 0.5→0.7（精度重視）
+   - スコア閾値: 0.7未満の低関連度結果を自動除外
+   - キャッシュTTL: 7日→24時間に短縮
+   - エイリアスマップ: 5→15項目に拡張
+
+3. **GPT-4リランキング強化**
+   - 日英クロスリンガル対応を明示的にプロンプトに追加
+   - 金融規制用語への注意喚起
+   - パッセージの番号付けで選択を明確化
+   - temperature: 0→0.1、max_tokens: 200→300
+
+4. **デバッグ機能**
+   - 詳細なRAGデバッグログを追加
+   - 検索結果のスコアと内容をサーバーログに出力
+
 #### 環境変数（.env.local）
 ```
 # OpenAI
 OPENAI_API_KEY=...  # text-embedding-3-small を使用（1536次元）
 
 # ベクタバックエンド切替
-VECTOR_BACKEND=qdrant
+VECTOR_BACKEND=qdrant  # または削除してローカルJSON使用
 
 # Qdrant（マネージド推奨）
 QDRANT_URL=...
@@ -39,14 +64,15 @@ QDRANT_COLLECTION=materials_passages
 
 #### コマンド
 ```
-npm run build:index     # 埋め込みインデックス生成（ローカルJSON）
-npm run upload:qdrant   # JSONをQdrantへ一括アップサート
+npm run build:index          # HTMLからインデックス生成（旧）
+npm run build:index:text     # テキストファイルからインデックス生成（新・推奨）
+npm run upload:qdrant        # JSONをQdrantへ一括アップサート
 ```
 
 #### 実装メモ
-- チャンク: 目標 ~500±100トークン相当（実装では約2000文字/overlap 400文字）
-- 正規化: 小文字化・空白縮約・ハイフン結合、エイリアス（FCA→Financial Conduct Authority 等）
-- 検索: コサイン類似度 + MMR(λ=0.5, k=6±2)
+- チャンク: 350文字（overlap 100文字）
+- 正規化: 小文字化・空白縮約・ハイフン結合、15種類のエイリアス展開
+- 検索: コサイン類似度 + MMR(λ=0.7, k=6) + スコア閾値0.7
 - フォールバック: Qdrant不可時はローカルJSON検索
 
 ---
