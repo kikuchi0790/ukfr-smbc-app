@@ -182,17 +182,37 @@ function StudySessionContent() {
       if (savedSessionState) {
         // セッションを復元
         setSession(savedSessionState.session);
-        setCurrentQuestionIndex(savedSessionState.session.currentQuestionIndex || savedSessionState.currentQuestionIndex || 0);
+        const savedIndex = savedSessionState.currentQuestionIndex || savedSessionState.session.currentQuestionIndex || 0;
+        setCurrentQuestionIndex(savedIndex);
         setShowJapanese(savedSessionState.showJapanese);
-        setSelectedAnswer(savedSessionState.selectedAnswer);
-        setShowResult(savedSessionState.showResult);
+        
+        // 問題リストを直接復元（IDリストではなく完全なオブジェクト配列）
+        if (Array.isArray(savedSessionState.questions) && savedSessionState.questions.length > 0) {
+          // 問題がオブジェクト配列か、ID配列かを判定
+          if (typeof savedSessionState.questions[0] === 'string') {
+            // 古い形式（ID配列）の場合は復元が必要
+            setQuestionsToRestore(savedSessionState.questions);
+          } else {
+            // 新しい形式（問題オブジェクト配列）の場合は直接設定
+            setQuestions(savedSessionState.questions);
+            
+            // 回答状態は現在の問題とIDが一致する場合のみ復元
+            const currentQuestion = savedSessionState.questions[savedIndex];
+            if (currentQuestion && currentQuestion.questionId === savedSessionState.currentQuestionId) {
+              setSelectedAnswer(savedSessionState.selectedAnswer);
+              setShowResult(savedSessionState.showResult);
+            } else {
+              // IDが一致しない場合は回答状態をクリア
+              console.warn('[Session] Question ID mismatch, clearing answer state');
+              setSelectedAnswer(null);
+              setShowResult(false);
+            }
+          }
+        }
         
         if (savedSessionState.mockAnswers) {
           setMockAnswers(new Map(savedSessionState.mockAnswers));
         }
-        
-        // 問題の復元が必要
-        setQuestionsToRestore(savedSessionState.questions);
         
         console.log('[Session] Restored from materials view with restore flag');
         // 注意: ここではデータを削除しない（再度教材に移動する可能性があるため）
@@ -213,7 +233,7 @@ function StudySessionContent() {
       setSession(savedSession.session);
       setCurrentQuestionIndex(savedSession.currentQuestionIndex);
       setShowJapanese(savedSession.showJapanese);
-      setQuestionsToRestore(savedSession.questionIds);
+      setQuestionsToRestore(savedSession.questionIds || null);
       
       if (savedSession.mockAnswers) {
         setMockAnswers(new Map(savedSession.mockAnswers));
@@ -258,11 +278,30 @@ function StudySessionContent() {
         if (timeDiff < 30 * 60 * 1000) { // 30分以内
           // セッションを復元
           setSession(savedSessionState.session);
-          setCurrentQuestionIndex(savedSessionState.session.currentQuestionIndex);
+          const savedIndex = savedSessionState.currentQuestionIndex || savedSessionState.session.currentQuestionIndex || 0;
+          setCurrentQuestionIndex(savedIndex);
           setShowJapanese(savedSessionState.showJapanese);
           
           if (savedSessionState.mockAnswers) {
             setMockAnswers(new Map(savedSessionState.mockAnswers));
+          }
+          
+          // 問題リストの復元
+          if (Array.isArray(savedSessionState.questions) && savedSessionState.questions.length > 0) {
+            if (typeof savedSessionState.questions[0] === 'string') {
+              // 古い形式（ID配列）
+              setQuestionsToRestore(savedSessionState.questions);
+            } else {
+              // 新しい形式（問題オブジェクト配列）
+              setQuestions(savedSessionState.questions);
+              
+              // 回答状態の検証
+              const currentQuestion = savedSessionState.questions[savedIndex];
+              if (currentQuestion && currentQuestion.questionId === savedSessionState.currentQuestionId) {
+                setSelectedAnswer(savedSessionState.selectedAnswer);
+                setShowResult(savedSessionState.showResult);
+              }
+            }
           }
           
           // セッション状態をクリア
@@ -271,9 +310,6 @@ function StudySessionContent() {
             safeLocalStorage.removeItem('studySessionState');
             safeLocalStorage.removeItem('materialNavigationState');
           }
-          
-          // 問題の復元が必要
-          setQuestionsToRestore(savedSessionState.questions);
         }
       }
     }
@@ -633,7 +669,9 @@ function StudySessionContent() {
         selectedAnswer,
         showResult,
         savedAt: new Date().toISOString(),
-        questions: questions.map(q => q.questionId)
+        questions: questions, // 問題リスト全体を保存（IDだけでなく）
+        currentQuestionId: currentQuestion.questionId, // 現在の問題IDを保存
+        currentQuestionIndex // インデックスも明示的に保存
       };
       safeLocalStorage.setItem('studySessionState', sessionSnapshot);
       

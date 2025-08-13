@@ -8,7 +8,9 @@ export interface SessionState {
   studyMode?: string;
   questionCount?: string;
   session: StudySession;
-  questionIds: string[]; // IDのみ保存してストレージを節約
+  questionIds?: string[]; // 後方互換性のため残す
+  questions?: Question[]; // v2: 完全な質問オブジェクトを保存
+  currentQuestionId?: string; // v2: 現在の質問IDを保存して検証用
   mockAnswers?: Array<[string, string]>;
   showJapanese: boolean;
   currentQuestionIndex: number;
@@ -18,7 +20,7 @@ export interface SessionState {
   version: number; // データ形式のバージョン管理
 }
 
-const CURRENT_VERSION = 1;
+const CURRENT_VERSION = 2;
 const SESSION_KEY = 'activeStudySession';
 const AUTOSAVE_INTERVAL = 30000; // 30秒
 const ANSWER_THRESHOLD = 5; // 5問ごとに自動保存
@@ -88,7 +90,8 @@ export class SessionPersistence {
           ...session,
           questions: [] // questionsは除外
         },
-        questionIds: questions.map(q => q.questionId),
+        questions: questions, // v2: 完全な質問オブジェクトを保存
+        currentQuestionId: questions[currentQuestionIndex]?.questionId, // v2: 現在の質問IDを保存
         mockAnswers: mockAnswers ? Array.from(mockAnswers.entries()) : undefined,
         showJapanese,
         currentQuestionIndex,
@@ -136,9 +139,9 @@ export class SessionPersistence {
         return null;
       }
 
-      // バージョンチェック
-      if (sessionState.version !== CURRENT_VERSION) {
-        console.warn('[SessionPersistence] Session version mismatch');
+      // バージョンチェック - v1もサポート（後方互換性）
+      if (sessionState.version !== CURRENT_VERSION && sessionState.version !== 1) {
+        console.warn('[SessionPersistence] Unsupported session version');
         return null;
       }
 
