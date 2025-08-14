@@ -1865,7 +1865,7 @@ function StudySessionContent() {
                   if (window.confirm(confirmMessage)) {
                     // セッションを即座に保存
                     if (sessionPersistence.current) {
-                      sessionPersistence.current.saveImmediately(saveSession);
+                      sessionPersistence.current.saveImmediately(saveSessionState);
                     }
                     
                     if (isMockMode) {
