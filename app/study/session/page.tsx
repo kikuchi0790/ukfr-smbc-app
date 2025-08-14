@@ -1308,21 +1308,62 @@ function StudySessionContent() {
     console.log('answers length:', answers.length);
     console.log('incorrect questions count:', incorrectQuestions.length);
     
-    // Mock試験の間違えた問題をUserProgressに保存（統合データ構造を使用）
-    if (incorrectQuestions.length > 0) {
-      try {
-        const userProgressKey = getUserKey('userProgress', user.nickname);
-        const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+    // Mock試験の進捗と間違えた問題を保存
+    try {
+      const userProgressKey = getUserKey('userProgress', user.nickname);
+      const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+      
+      if (progress) {
+        // Mock番号を取得（例: "Regulations: Mock 1" -> 1）
+        const mockNumber = session.category?.match(/Mock (\d+)/)?.[1];
+        const mockNum = mockNumber ? parseInt(mockNumber) : 0;
         
-        if (progress) {
+        // Mock試験の進捗を更新（mockCategoryProgress）
+        if (!progress.mockCategoryProgress) {
+          progress.mockCategoryProgress = {};
+        }
+        
+        const categoryName = session.category as Category;
+        const correctCount = answers.filter(a => a.isCorrect).length;
+        const totalCount = answers.length;
+        const score = Math.round((correctCount / totalCount) * 100);
+        
+        if (!progress.mockCategoryProgress[categoryName]) {
+          // 初回受験
+          progress.mockCategoryProgress[categoryName] = {
+            totalQuestions: totalCount,
+            attemptsCount: 1,
+            bestScore: score,
+            latestScore: score,
+            averageScore: score,
+            passedCount: score >= 70 ? 1 : 0,
+            lastAttemptDate: new Date().toISOString()
+          };
+        } else {
+          // 2回目以降の受験
+          const existing = progress.mockCategoryProgress[categoryName];
+          existing.attemptsCount++;
+          existing.latestScore = score;
+          existing.bestScore = Math.max(existing.bestScore, score);
+          existing.averageScore = Math.round(
+            ((existing.averageScore * (existing.attemptsCount - 1)) + score) / existing.attemptsCount
+          );
+          if (score >= 70) existing.passedCount++;
+          existing.lastAttemptDate = new Date().toISOString();
+        }
+        
+        console.log('Mock progress updated:', {
+          category: categoryName,
+          score,
+          attempts: progress.mockCategoryProgress[categoryName].attemptsCount
+        });
+        
+        // 間違えた問題の処理
+        if (incorrectQuestions.length > 0) {
           // incorrectQuestionsを初期化
           if (!progress.incorrectQuestions) {
             progress.incorrectQuestions = [];
           }
-          
-          // Mock番号を取得（例: "Regulations: Mock 1" -> 1）
-          const mockNumber = session.category?.match(/Mock (\d+)/)?.[1];
-          const mockNum = mockNumber ? parseInt(mockNumber) : 0;
           
           // 間違えた問題を追加または更新
           incorrectQuestions.forEach(questionId => {
@@ -1370,14 +1411,15 @@ function StudySessionContent() {
               mockNumber: q.mockNumber || 0
             }));
           
-          // 保存
-          safeLocalStorage.setItem(userProgressKey, progress);
-          console.log('Mock incorrect questions saved:', progress.incorrectQuestions?.filter(q => q.source === 'mock').length);
         }
-      } catch (error) {
-        console.error('Failed to save mock incorrect questions:', error);
-        // エラーがあっても処理を続行
+        
+        // 保存
+        safeLocalStorage.setItem(userProgressKey, progress);
+        console.log('Mock incorrect questions saved:', progress.incorrectQuestions?.filter(q => q.source === 'mock').length);
       }
+    } catch (error) {
+      console.error('Failed to save mock progress and incorrect questions:', error);
+      // エラーがあっても処理を続行
     }
     
     // Mock試験の結果を一時的に保存（questionsは別に保存）
@@ -1818,6 +1860,22 @@ function StudySessionContent() {
                 <span className="inline-block px-3 py-1 bg-indigo-900/50 text-indigo-300 rounded-full text-sm border border-indigo-700">
                   {currentQuestion.category}
                   {session?.mockPart && ` - Part ${session.mockPart}`}
+                  {/* Mock試験復習時の追加情報 */}
+                  {mode === 'review' && (() => {
+                    // UserProgressを取得
+                    const userProgressKey = getUserKey('userProgress', user?.nickname);
+                    const userProgress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
+                    const incorrectQuestion = userProgress?.incorrectQuestions?.find(
+                      q => q.questionId === currentQuestion.questionId
+                    );
+                    if (incorrectQuestion?.source === 'mock' && incorrectQuestion?.mockNumber) {
+                      // グローバルIDから問題番号を抽出（例: REG-M1-015 → 15）
+                      const match = currentQuestion.questionId.match(/M(\d+)-(\d+)$/);
+                      const questionNum = match ? parseInt(match[2]) : null;
+                      return ` - Mock ${incorrectQuestion.mockNumber}${questionNum ? ` 問題${questionNum}` : ''}`;
+                    }
+                    return '';
+                  })()}
                 </span>
               </div>
 

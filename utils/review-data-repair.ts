@@ -3,7 +3,7 @@
  * Mock試験とカテゴリ学習の間違えた問題データを統合形式に移行
  */
 
-import { UserProgress, IncorrectQuestion } from '@/types';
+import { UserProgress, IncorrectQuestion, Category, MockCategoryProgress } from '@/types';
 import { safeLocalStorage, getUserKey } from './storage-utils';
 
 export class ReviewDataRepairTool {
@@ -123,6 +123,57 @@ export class ReviewDataRepairTool {
 
         if (overcomeCount > 0) {
           changes.push(`Mock試験の克服問題${overcomeCount}問を統合しました`);
+        }
+      }
+
+      // Mock試験履歴からmockCategoryProgressを再構築
+      const mockHistoryKey = `mockExamHistory_${nickname}`;
+      const mockHistory = safeLocalStorage.getItem<any[]>(mockHistoryKey);
+      
+      if (mockHistory && mockHistory.length > 0) {
+        if (!progress.mockCategoryProgress) {
+          progress.mockCategoryProgress = {};
+        }
+        
+        let progressRebuilt = false;
+        
+        mockHistory.forEach(exam => {
+          if (exam.category && exam.score !== undefined) {
+            const categoryName = exam.category as Category;
+            const score = exam.score;
+            const totalQuestions = exam.totalQuestions || 75;
+            
+            if (!progress.mockCategoryProgress![categoryName]) {
+              // 初回データ作成
+              progress.mockCategoryProgress![categoryName] = {
+                totalQuestions,
+                attemptsCount: 1,
+                bestScore: score,
+                latestScore: score,
+                averageScore: score,
+                passedCount: score >= 70 ? 1 : 0,
+                lastAttemptDate: exam.completedAt || new Date().toISOString()
+              };
+              progressRebuilt = true;
+            } else {
+              // 既存データ更新（より良いスコアがあれば）
+              const existing = progress.mockCategoryProgress![categoryName];
+              if (score > existing.bestScore) {
+                existing.bestScore = score;
+                progressRebuilt = true;
+              }
+              // 受験日が新しければ最新スコアを更新
+              if (exam.completedAt && new Date(exam.completedAt) > new Date(existing.lastAttemptDate)) {
+                existing.latestScore = score;
+                existing.lastAttemptDate = exam.completedAt;
+                progressRebuilt = true;
+              }
+            }
+          }
+        });
+        
+        if (progressRebuilt) {
+          changes.push(`Mock試験履歴から進捗データを再構築しました`);
         }
       }
 

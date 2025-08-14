@@ -127,25 +127,28 @@ export class DataMerger {
    * Mock試験カテゴリプログレスをマージする
    */
   static mergeMockCategoryProgress(
-    local: Record<string, MockCategoryProgress>,
-    remote: Record<string, MockCategoryProgress>
-  ): Record<string, MockCategoryProgress> {
-    const merged: Record<string, MockCategoryProgress> = { ...local };
+    local: Partial<Record<string, MockCategoryProgress>>,
+    remote: Partial<Record<string, MockCategoryProgress>>
+  ): Partial<Record<string, MockCategoryProgress>> {
+    const merged: Partial<Record<string, MockCategoryProgress>> = { ...local };
     
     for (const [category, remoteProgress] of Object.entries(remote)) {
-      if (merged[category]) {
+      if (!remoteProgress) continue; // undefinedの場合はスキップ
+      
+      const existing = merged[category];
+      if (existing) {
         // 既存のカテゴリがある場合は最適な値を選択
         merged[category] = {
-          totalQuestions: Math.max(merged[category].totalQuestions, remoteProgress.totalQuestions),
-          attemptsCount: Math.max(merged[category].attemptsCount, remoteProgress.attemptsCount),
-          bestScore: Math.max(merged[category].bestScore, remoteProgress.bestScore),
-          latestScore: new Date(merged[category].lastAttemptDate) > new Date(remoteProgress.lastAttemptDate)
-            ? merged[category].latestScore
+          totalQuestions: Math.max(existing.totalQuestions, remoteProgress.totalQuestions),
+          attemptsCount: Math.max(existing.attemptsCount, remoteProgress.attemptsCount),
+          bestScore: Math.max(existing.bestScore, remoteProgress.bestScore),
+          latestScore: new Date(existing.lastAttemptDate) > new Date(remoteProgress.lastAttemptDate)
+            ? existing.latestScore
             : remoteProgress.latestScore,
-          averageScore: (merged[category].averageScore + remoteProgress.averageScore) / 2,
-          passedCount: Math.max(merged[category].passedCount, remoteProgress.passedCount),
-          lastAttemptDate: new Date(merged[category].lastAttemptDate) > new Date(remoteProgress.lastAttemptDate)
-            ? merged[category].lastAttemptDate
+          averageScore: (existing.averageScore + remoteProgress.averageScore) / 2,
+          passedCount: Math.max(existing.passedCount, remoteProgress.passedCount),
+          lastAttemptDate: new Date(existing.lastAttemptDate) > new Date(remoteProgress.lastAttemptDate)
+            ? existing.lastAttemptDate
             : remoteProgress.lastAttemptDate
         };
       } else {

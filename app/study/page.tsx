@@ -14,7 +14,11 @@ import {
   RotateCcw,
   FileText,
   Timer,
-  RefreshCw
+  RefreshCw,
+  Trophy,
+  BarChart3,
+  CircleDot,
+  CheckCircle2
 } from "lucide-react";
 import { Category, UserProgress, CategoryStudyMode } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
@@ -264,6 +268,21 @@ function StudyModeContent() {
     if (selectedMockMode === "mock75") {
       setSelectedPart(null);
     }
+  };
+
+  // Mock試験の受験状態を取得
+  const getMockStatus = (category: Category) => {
+    if (!progress?.mockCategoryProgress) return null;
+    const mockProgress = progress.mockCategoryProgress[category];
+    if (!mockProgress) return null;
+    
+    return {
+      attempts: mockProgress.attemptsCount,
+      bestScore: mockProgress.bestScore,
+      latestScore: mockProgress.latestScore,
+      isPassed: mockProgress.bestScore >= 70,
+      lastAttempt: mockProgress.lastAttemptDate
+    };
   };
 
   const handleReset = () => {
@@ -572,26 +591,64 @@ function StudyModeContent() {
             <>
               {/* Mock Category Selection */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                {mockCategories.map((category) => (
-                  <button
-                    key={category.name}
-                    onClick={() => handleMockCategorySelect(category.name)}
-                    className={`bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all border-2 ${
-                      selectedMockCategory === category.name
-                        ? 'border-emerald-500 bg-emerald-900/30'
-                        : 'border-gray-700 hover:border-emerald-700'
-                    }`}
-                  >
-                    <h3 className="font-bold mb-2 text-gray-100">{category.name}</h3>
-                    <p className="text-gray-400 text-sm mb-3">
-                      {selectedMockMode === "mock25" ? "3パート各25問" : "75問一括"}
-                    </p>
-                    <div className="flex items-center gap-2 text-sm text-emerald-400">
-                      <FileText className="w-4 h-4" />
-                      <span>試験形式で実施</span>
-                    </div>
-                  </button>
-                ))}
+                {mockCategories.map((category) => {
+                  const mockStatus = getMockStatus(category.name);
+                  return (
+                    <button
+                      key={category.name}
+                      onClick={() => handleMockCategorySelect(category.name)}
+                      className={`bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all border-2 relative ${
+                        selectedMockCategory === category.name
+                          ? 'border-emerald-500 bg-emerald-900/30'
+                          : 'border-gray-700 hover:border-emerald-700'
+                      }`}
+                    >
+                      {/* Status Icon */}
+                      {mockStatus && (
+                        <div className="absolute top-4 right-4">
+                          {mockStatus.isPassed ? (
+                            <div className="flex items-center gap-1 text-green-400" title={`合格済み (最高: ${mockStatus.bestScore}%)`}>
+                              <Trophy className="w-5 h-5" />
+                              <span className="text-xs font-bold">{mockStatus.bestScore}%</span>
+                            </div>
+                          ) : mockStatus.attempts > 0 ? (
+                            <div className="flex items-center gap-1 text-yellow-400" title={`受験済み (最高: ${mockStatus.bestScore}%)`}>
+                              <BarChart3 className="w-5 h-5" />
+                              <span className="text-xs font-bold">{mockStatus.bestScore}%</span>
+                            </div>
+                          ) : null}
+                        </div>
+                      )}
+                      
+                      <h3 className="font-bold mb-2 text-gray-100">{category.name}</h3>
+                      <p className="text-gray-400 text-sm mb-3">
+                        {selectedMockMode === "mock25" ? "3パート各25問" : "75問一括"}
+                      </p>
+                      
+                      {/* Status Info */}
+                      {mockStatus ? (
+                        <div className="space-y-1 mb-2">
+                          <div className="flex items-center gap-2 text-xs text-gray-400">
+                            <span>受験回数: {mockStatus.attempts}回</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-gray-400">
+                            <span>最新: {mockStatus.latestScore}%</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 text-sm text-blue-400 mb-2">
+                          <CircleDot className="w-4 h-4" />
+                          <span>未受験</span>
+                        </div>
+                      )}
+                      
+                      <div className="flex items-center gap-2 text-sm text-emerald-400">
+                        <FileText className="w-4 h-4" />
+                        <span>試験形式で実施</span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Part Selection for 25-question mode */}
