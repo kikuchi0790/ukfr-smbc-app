@@ -246,9 +246,17 @@ Mock試験の結果が見つかりませんでした。
       setTotalScore(score);
       setPassed(score >= 70);
 
-      // Mock試験の場合は専用の進捗更新を使用
+      // Mock試験の場合は専用の進捗更新を使用（Part情報も渡す）
       if (session.category && isMockCategory(session.category)) {
-        updateMockExamProgress(session.category, score, questions.length);
+        const part = session.mockPart; // Part情報（1-3 または undefined）
+        updateMockExamProgress(
+          session.category, 
+          score, 
+          questions.length,
+          undefined, // userNickname（デフォルト使用）
+          part,
+          totalCorrect // 正解数も渡す
+        );
       }
       
       // Mock試験も通常学習も同じようにuserProgressを更新（studySessionsに追加）

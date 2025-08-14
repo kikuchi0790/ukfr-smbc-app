@@ -120,6 +120,16 @@ export interface MockCategoryProgress {
   averageScore: number;        // 平均得点
   passedCount: number;         // 合格回数 (≥70%)
   lastAttemptDate: string;     // 最終受験日
+  // Part別の進捗（25問モード用）
+  partProgress?: {
+    [part: number]: {
+      attempted: boolean;
+      score: number;
+      questionCount: number;
+      date: string;
+      correctAnswers: number;
+    }
+  };
 }
 
 export interface UserPreferences {

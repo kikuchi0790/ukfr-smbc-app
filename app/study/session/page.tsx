@@ -3,6 +3,8 @@
 import { useEffect, useLayoutEffect, useState, Suspense, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
+import KeyboardHelpModal from '@/components/KeyboardHelpModal';
 import { 
   ArrowLeft,
   ChevronLeft,
@@ -75,7 +77,11 @@ function StudySessionContent() {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
   const [isSaving, setIsSaving] = useState(false); // 保存中インジケーター
+  const [showKeyboardHelp, setShowKeyboardHelp] = useState(false); // キーボードヘルプ
+  const [keyboardSelectedOption, setKeyboardSelectedOption] = useState<string | null>(null); // キーボード選択
+  const [screenReaderMessage, setScreenReaderMessage] = useState<string>(''); // スクリーンリーダー用メッセージ
   const sessionPersistence = useRef<SessionPersistence | null>(null);
+  const mainContentRef = useRef<HTMLDivElement>(null); // フォーカス管理用
   const isLoadingQuestions = useRef(false);
   const hasRestoredRef = useRef(false);
   // RAG検索結果のキャッシュ（セッション永続化）
@@ -94,6 +100,13 @@ function StudySessionContent() {
   })());
   const ragTimerRef = useRef<NodeJS.Timeout | null>(null); // RAG検索タイマー
   const { error, isError, clearError, handleError, withErrorHandling } = useErrorHandler();
+
+  // スクリーンリーダー用アナウンス関数
+  const announceToScreenReader = (message: string) => {
+    setScreenReaderMessage(message);
+    // 短時間後にメッセージをクリア（次のアナウンスのため）
+    setTimeout(() => setScreenReaderMessage(''), 100);
+  };
 
   const isMockMode = mode === "mock25" || mode === "mock75";
 
@@ -552,9 +565,193 @@ function StudySessionContent() {
   const handleAnswerSelect = (answer: string) => {
     if (!showResult) {
       setSelectedAnswer(answer);
+      setKeyboardSelectedOption(null); // キーボード選択をクリア
       setHasUnsavedChanges(true);
     }
   };
+
+  // キーボードショートカットの設定
+  useKeyboardNavigation({
+    shortcuts: [
+      // 選択肢選択
+      {
+        key: ['1', 'a', 'A'],
+        handler: () => {
+          const currentQuestion = questions[currentQuestionIndex];
+          if (currentQuestion && currentQuestion.options.length > 0 && !showResult) {
+            const option = currentQuestion.options[0].letter;
+            setKeyboardSelectedOption(option);
+            setSelectedAnswer(option);
+            setHasUnsavedChanges(true);
+            // スクリーンリーダーアナウンス
+            const optionText = currentQuestion.options[0].text;
+            announceToScreenReader(`選択肢 ${option} を選択しました: ${optionText}`);
+          }
+        },
+        description: '選択肢Aを選択',
+        enabled: !showResult && !loading
+      },
+      {
+        key: ['2', 'b', 'B'],
+        handler: () => {
+          const currentQuestion = questions[currentQuestionIndex];
+          if (currentQuestion && currentQuestion.options.length > 1 && !showResult) {
+            const option = currentQuestion.options[1].letter;
+            setKeyboardSelectedOption(option);
+            setSelectedAnswer(option);
+            setHasUnsavedChanges(true);
+            // スクリーンリーダーアナウンス
+            const optionText = currentQuestion.options[1].text;
+            announceToScreenReader(`選択肢 ${option} を選択しました: ${optionText}`);
+          }
+        },
+        description: '選択肢Bを選択',
+        enabled: !showResult && !loading
+      },
+      {
+        key: ['3', 'c', 'C'],
+        handler: () => {
+          const currentQuestion = questions[currentQuestionIndex];
+          if (currentQuestion && currentQuestion.options.length > 2 && !showResult) {
+            const option = currentQuestion.options[2].letter;
+            setKeyboardSelectedOption(option);
+            setSelectedAnswer(option);
+            setHasUnsavedChanges(true);
+            // スクリーンリーダーアナウンス
+            const optionText = currentQuestion.options[2].text;
+            announceToScreenReader(`選択肢 ${option} を選択しました: ${optionText}`);
+          }
+        },
+        description: '選択肢Cを選択',
+        enabled: !showResult && !loading
+      },
+      {
+        key: ['4', 'd', 'D'],
+        handler: () => {
+          const currentQuestion = questions[currentQuestionIndex];
+          if (currentQuestion && currentQuestion.options.length > 3 && !showResult) {
+            const option = currentQuestion.options[3].letter;
+            setKeyboardSelectedOption(option);
+            setSelectedAnswer(option);
+            setHasUnsavedChanges(true);
+            // スクリーンリーダーアナウンス
+            const optionText = currentQuestion.options[3].text;
+            announceToScreenReader(`選択肢 ${option} を選択しました: ${optionText}`);
+          }
+        },
+        description: '選択肢Dを選択',
+        enabled: !showResult && !loading
+      },
+      // アクション
+      {
+        key: ['Enter', ' '],
+        handler: () => {
+          if (!showResult && selectedAnswer) {
+            handleSubmitAnswer();
+          } else if (showResult) {
+            handleNextQuestion();
+          }
+        },
+        description: '回答を送信 / 次の問題へ',
+        enabled: !loading
+      },
+      {
+        key: ['ArrowLeft', 'p', 'P'],
+        handler: () => {
+          if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
+          }
+        },
+        description: '前の問題へ',
+        enabled: currentQuestionIndex > 0 && !loading
+      },
+      {
+        key: ['ArrowRight', 'n', 'N'],
+        handler: () => {
+          if (showResult) {
+            handleNextQuestion();
+          } else if (isMockMode && selectedAnswer) {
+            handleSubmitAnswer();
+          }
+        },
+        description: '次の問題へ',
+        enabled: !loading
+      },
+      // 機能
+      {
+        key: ['j', 'J'],
+        handler: () => {
+          toggleJapanese();
+          announceToScreenReader(`日本語表示を${!showJapanese ? '有効' : '無効'}にしました`);
+        },
+        description: '日本語表示のON/OFF',
+        enabled: true
+      },
+      {
+        key: ['m', 'M'],
+        handler: () => {
+          if (showResult) {
+            handleCheckInMaterials();
+          }
+        },
+        description: '教材で詳しく確認',
+        enabled: showResult && !extractingKeywords
+      },
+      {
+        key: ['Escape'],
+        handler: () => {
+          if (!showKeyboardHelp) {
+            // 確認ダイアログを表示
+            if (session?.answers && session.answers.length > 0) {
+              const confirmMessage = isMockMode
+                ? 'Mock試験を終了しますか？\n進捗は保存されます。'
+                : `学習セッションを終了しますか？\n${session.answers.length}問回答済み（自動保存済み）`;
+              
+              if (window.confirm(confirmMessage)) {
+                if (sessionPersistence.current) {
+                  sessionPersistence.current.saveImmediately(saveSessionState);
+                }
+                
+                if (isMockMode) {
+                  setShowExitConfirm(true);
+                } else {
+                  router.push('/study');
+                }
+              }
+            } else {
+              router.push('/study');
+            }
+          }
+        },
+        description: '学習セッションを終了',
+        enabled: !showKeyboardHelp
+      },
+      {
+        key: ['?', '/'],
+        shift: true,
+        handler: () => {
+          setShowKeyboardHelp(true);
+          announceToScreenReader('キーボードヘルプを開きました');
+        },
+        description: 'キーボードヘルプを表示',
+        enabled: true
+      }
+    ],
+    enabled: !loading && !showExitConfirm && !showCompleteConfirm
+  });
+
+  // キーボード選択をクリア（問題変更時）とフォーカス管理
+  useEffect(() => {
+    setKeyboardSelectedOption(null);
+    // 新しい問題に移動したときにフォーカスを設定
+    if (mainContentRef.current) {
+      mainContentRef.current.focus();
+    }
+    // 問題変更をアナウンス
+    if (questions[currentQuestionIndex]) {
+      announceToScreenReader(`問題 ${currentQuestionIndex + 1} / ${questions.length}`);
+    }
+  }, [currentQuestionIndex]);
 
   // Mock試験で前の問題に戻った時に前回の回答を復元
   useEffect(() => {
@@ -574,6 +771,9 @@ function StudySessionContent() {
 
     const currentQuestion = questions[currentQuestionIndex];
     const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+    
+    // スクリーンリーダーアナウンス
+    announceToScreenReader(isCorrect ? '正解です！' : '不正解です。解説を確認してください。');
     const isMockMode = mode === "mock25" || mode === "mock75";
     
     // Record answer
@@ -1182,6 +1382,13 @@ function StudySessionContent() {
     
     console.log('handleNextQuestion:', { currentQuestionIndex, isLastQuestion, is10thQuestion, mode });
     
+    // スクリーンリーダーアナウンス
+    if (!isLastQuestion) {
+      announceToScreenReader(`次の問題に移動しました。問題 ${currentQuestionIndex + 2} / ${questions.length}`);
+    } else {
+      announceToScreenReader('最後の問題です。結果を表示します。');
+    }
+    
     if (mode === "category" && (is10thQuestion || isLastQuestion)) {
       // カテゴリ学習：10問ごとに結果表示
       completeSession();
@@ -1758,6 +1965,15 @@ function StudySessionContent() {
 
   return (
     <div className="min-h-screen bg-gray-900">
+      {/* Screen Reader Announcer (非表示) */}
+      <div
+        className="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {screenReaderMessage}
+      </div>
       {/* Error Alert */}
       {isError && (
         <div className="fixed top-4 right-4 z-50 max-w-md">
@@ -1850,7 +2066,7 @@ function StudySessionContent() {
       )}
       
       {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 sticky top-0 z-10">
+      <header className="bg-gray-800 border-b border-gray-700 sticky top-0 z-10" role="banner">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <button
@@ -1879,9 +2095,10 @@ function StudySessionContent() {
                   router.push('/study');
                 }
               }}
-              className="text-gray-400 hover:text-gray-100 flex items-center gap-2"
+              className="text-gray-400 hover:text-gray-100 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              aria-label="学習画面に戻る"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-5 h-5" aria-hidden="true" />
               {isMockMode ? '保存して終了' : '学習モードに戻る'}
             </button>
             <div className="flex items-center gap-4">
@@ -1902,9 +2119,11 @@ function StudySessionContent() {
               
               <button
                 onClick={toggleJapanese}
-                className="flex items-center gap-2 px-3 py-1 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors text-gray-100"
+                className="flex items-center gap-2 px-3 py-1 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                aria-label={`日本語表示を${showJapanese ? '無効' : '有効'}にする`}
+                aria-pressed={showJapanese}
               >
-                <Languages className="w-4 h-4" />
+                <Languages className="w-4 h-4" aria-hidden="true" />
                 {showJapanese ? "日本語ON" : "日本語OFF"}
               </button>
               <span className="text-sm text-gray-300">
@@ -1920,7 +2139,14 @@ function StudySessionContent() {
           </div>
           
           {/* Progress Bar */}
-          <div className="mt-4 w-full bg-gray-700 rounded-full h-2">
+          <div 
+            className="mt-4 w-full bg-gray-700 rounded-full h-2" 
+            role="progressbar" 
+            aria-valuenow={Math.round(progress)} 
+            aria-valuemin={0} 
+            aria-valuemax={100} 
+            aria-label="学習進捗"
+          >
             <div 
               className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
@@ -1929,11 +2155,11 @@ function StudySessionContent() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <main className="container mx-auto px-4 py-8 max-w-4xl" role="main">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Content */}
-          <div className="lg:col-span-3">
-            <div className="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700">
+          <section className="lg:col-span-3" aria-label="問題エリア">
+            <div className="bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-700" ref={mainContentRef} tabIndex={-1}>
               {/* Category Badge */}
               <div className="mb-4">
                 <span className="inline-block px-3 py-1 bg-indigo-900/50 text-indigo-300 rounded-full text-sm border border-indigo-700">
@@ -1960,7 +2186,7 @@ function StudySessionContent() {
 
               {/* Question */}
               <div className="mb-6">
-                <h2 className="text-xl font-bold mb-2 text-gray-100">
+                <h2 className="text-xl font-bold mb-2 text-gray-100" id="question-text" tabIndex={-1}>
                   {currentQuestion.question}
                 </h2>
                 {showJapanese && currentQuestion.questionJa && (
@@ -1971,9 +2197,10 @@ function StudySessionContent() {
               </div>
 
               {/* Options */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6" role="radiogroup" aria-labelledby="question-text" aria-required="true">
                 {currentQuestion.options.map((option) => {
                   const isSelected = selectedAnswer === option.letter;
+                  const isKeyboardSelected = keyboardSelectedOption === option.letter;
                   const isCorrect = option.letter === currentQuestion.correctAnswer;
                   const showCorrect = showResult && isCorrect;
                   const showIncorrect = showResult && isSelected && !isCorrect;
@@ -1984,13 +2211,19 @@ function StudySessionContent() {
                       data-cy={`option-${option.letter}`}
                       onClick={() => handleAnswerSelect(option.letter)}
                       disabled={showResult}
-                      className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
+                      role="radio"
+                      aria-checked={isSelected}
+                      aria-label={`選択肢 ${option.letter}: ${option.text}`}
+                      tabIndex={showResult ? -1 : 0}
+                      className={`w-full p-4 rounded-lg border-2 text-left transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                         showCorrect
                           ? 'border-green-500 bg-green-900/30'
                           : showIncorrect
                           ? 'border-red-500 bg-red-900/30'
                           : isSelected
                           ? 'border-indigo-500 bg-indigo-900/30'
+                          : isKeyboardSelected
+                          ? 'border-blue-500 bg-blue-900/30 ring-2 ring-blue-400 ring-opacity-50'
                           : 'border-gray-600 hover:border-gray-500 bg-gray-700/50'
                       }`}
                     >
@@ -2008,8 +2241,8 @@ function StudySessionContent() {
                             </p>
                           )}
                         </div>
-                        {showCorrect && <Check className="w-5 h-5 text-green-400 mt-0.5" />}
-                        {showIncorrect && <X className="w-5 h-5 text-red-400 mt-0.5" />}
+                        {showCorrect && <Check className="w-5 h-5 text-green-400 mt-0.5" aria-hidden="true" />}
+                        {showIncorrect && <X className="w-5 h-5 text-red-400 mt-0.5" aria-hidden="true" />}
                       </div>
                     </button>
                   );
@@ -2019,11 +2252,11 @@ function StudySessionContent() {
               {/* Explanation (shown after answer) */}
               {showResult && (
                 <div className="mb-6">
-                  <div className="p-4 bg-blue-900/30 rounded-lg border border-blue-700">
+                  <div className="p-4 bg-blue-900/30 rounded-lg border border-blue-700" role="region" aria-label="解説">
                     <div className="flex items-start gap-2">
-                      <AlertCircle className="w-5 h-5 text-blue-400 mt-0.5" />
+                      <AlertCircle className="w-5 h-5 text-blue-400 mt-0.5" aria-hidden="true" />
                       <div className="flex-1">
-                        <p className="font-medium text-blue-300 mb-1">解説</p>
+                        <h3 className="font-medium text-blue-300 mb-1">解説</h3>
                         <p className="text-blue-100">{currentQuestion.explanation}</p>
                         {showJapanese && currentQuestion.explanationJa && (
                           <p className="text-blue-200 text-sm mt-2">
@@ -2038,13 +2271,14 @@ function StudySessionContent() {
                   <button
                     onClick={handleCheckInMaterials}
                     disabled={extractingKeywords}
-                    className={`mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
+                    aria-label="教材で詳しく確認する"
+                    className={`mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                       extractingKeywords
                         ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
                         : 'bg-purple-600 text-white hover:bg-purple-700'
                     }`}
                   >
-                    <BookOpen className="w-5 h-5" />
+                    <BookOpen className="w-5 h-5" aria-hidden="true" />
                     {extractingKeywords ? 'キーワードを抽出中...' : '教材で詳しく確認'}
                   </button>
                   {/* RAG検索ステータス表示 */}
@@ -2061,13 +2295,14 @@ function StudySessionContent() {
                 <button
                   onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))}
                   disabled={currentQuestionIndex === 0}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
+                  aria-label="前の問題に戻る"
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                     currentQuestionIndex === 0
                       ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
                       : 'bg-gray-700 text-gray-100 hover:bg-gray-600'
                   }`}
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-5 h-5" aria-hidden="true" />
                   前の問題
                 </button>
 
@@ -2075,7 +2310,8 @@ function StudySessionContent() {
                   <button
                     onClick={handleSubmitAnswer}
                     disabled={!selectedAnswer}
-                    className={`px-6 py-2 rounded-lg font-medium ${
+                    aria-label={isMockMode ? '回答を記録する' : '回答を送信する'}
+                    className={`px-6 py-2 rounded-lg font-medium flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                       selectedAnswer
                         ? 'bg-indigo-600 text-white hover:bg-indigo-700'
                         : 'bg-gray-700 text-gray-500 cursor-not-allowed'
@@ -2087,22 +2323,24 @@ function StudySessionContent() {
                         : '回答を記録'
                       : '回答する'
                     }
+                    <kbd className="text-xs px-1.5 py-0.5 bg-black/20 rounded border border-white/20">Enter</kbd>
                   </button>
                 ) : (
                   <button
                     onClick={handleNextQuestion}
-                    className="flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium"
+                    aria-label={currentQuestionIndex === questions.length - 1 ? '結果を表示する' : '次の問題へ進む'}
+                    className="flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     {currentQuestionIndex === questions.length - 1 ? '結果を見る' : '次の問題'}
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-5 h-5" aria-hidden="true" />
                   </button>
                 )}
               </div>
             </div>
-          </div>
+          </section>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <aside className="lg:col-span-1" aria-label="学習情報">
             {/* Timer for Mock exams */}
             {isMockMode && session?.timeLimit && (
               <div className="mb-6 flex items-center justify-between">
@@ -2119,7 +2357,7 @@ function StudySessionContent() {
 
             {/* Mock試験の問題ナビゲーション */}
             {isMockMode && (
-              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+              <nav className="bg-gray-800 rounded-lg p-4 border border-gray-700" aria-label="問題一覧">
                 <h3 className="text-sm font-medium text-gray-300 mb-3">問題一覧</h3>
                 <div className="grid grid-cols-5 gap-2">
                   {questions.map((question, index) => {
@@ -2130,8 +2368,10 @@ function StudySessionContent() {
                       <button
                         key={question.questionId}
                         onClick={() => setCurrentQuestionIndex(index)}
+                        aria-label={`問題 ${index + 1}${isAnswered ? ' (回答済み)' : ''}${isCurrent ? ' (現在の問題)' : ''}`}
+                        aria-current={isCurrent ? 'page' : undefined}
                         className={`
-                          p-2 text-sm rounded-lg font-medium transition-all
+                          p-2 text-sm rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500
                           ${
                             isCurrent
                               ? 'bg-indigo-600 text-white'
@@ -2162,12 +2402,29 @@ function StudySessionContent() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </nav>
             )}
 
+          </aside>
+        </div>
+      </main>
+      
+      {/* キーボードヘルプモーダル */}
+      <KeyboardHelpModal 
+        isOpen={showKeyboardHelp}
+        onClose={() => setShowKeyboardHelp(false)}
+        isMockMode={isMockMode}
+      />
+      
+      {/* キーボードショートカットヒント（画面右下） */}
+      {!showKeyboardHelp && (
+        <div className="fixed bottom-4 right-4 p-3 bg-gray-800 rounded-lg shadow-lg border border-gray-700 text-xs text-gray-400" role="complementary" aria-label="キーボードショートカット">
+          <div className="flex items-center gap-2">
+            <span>キーボードヘルプ:</span>
+            <kbd className="px-2 py-1 bg-gray-900 border border-gray-600 rounded text-gray-200" aria-label="問題符キー">?</kbd>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -388,33 +388,73 @@ export function getAnsweredQuestionIds(category: string, userNickname?: string):
   }
 }
 
-// Mock試験の結果を進捗に反映（通常学習とは分離）
-export function updateMockExamProgress(category: Category, score: number, totalQuestions: number, userNickname?: string) {
+// Mock試験の結果を進捗に反映（Part情報対応版）
+export function updateMockExamProgress(
+  category: Category, 
+  score: number, 
+  totalQuestions: number, 
+  userNickname?: string,
+  part?: number, // Part情報を追加（1-3 または undefined）
+  correctAnswers?: number // 正解数も追加
+) {
   try {
     const userProgressKey = getUserKey('userProgress', userNickname);
     let progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) return;
 
-    // mockCategoryProgressが未定義の場合は初期化
+    // mockCategoryProgressが未定義の場合は初期化（Partial型として）
     if (!progress.mockCategoryProgress) {
-      const initialMockProgress: Record<Category, MockCategoryProgress> = {} as Record<Category, MockCategoryProgress>;
-      categories.forEach(category => {
-        initialMockProgress[category.name] = {
-          totalQuestions: category.totalQuestions,
-          attemptsCount: 0,
-          bestScore: 0,
-          latestScore: 0,
-          averageScore: 0,
-          passedCount: 0,
-          lastAttemptDate: new Date().toISOString()
-        };
-      });
-      progress.mockCategoryProgress = initialMockProgress;
+      progress.mockCategoryProgress = {};
     }
 
-    const currentProgress = progress.mockCategoryProgress[category];
+    // 該当カテゴリのみ初期化（全カテゴリ初期化は不要）
+    if (!progress.mockCategoryProgress[category]) {
+      const categoryData = categories.find(c => c.name === category);
+      progress.mockCategoryProgress[category] = {
+        totalQuestions: categoryData?.totalQuestions || 75,
+        attemptsCount: 0,
+        bestScore: 0,
+        latestScore: 0,
+        averageScore: 0,
+        passedCount: 0,
+        lastAttemptDate: new Date().toISOString(),
+        partProgress: {}
+      };
+    }
+
+    const currentProgress = progress.mockCategoryProgress[category]!;
     const passed = score >= 70;
     const currentDate = new Date().toISOString();
+
+    // Part情報がある場合（25問モード）、Part別の進捗を記録
+    if (part !== undefined && part >= 1 && part <= 3) {
+      if (!currentProgress.partProgress) {
+        currentProgress.partProgress = {};
+      }
+      currentProgress.partProgress[part] = {
+        attempted: true,
+        score,
+        questionCount: totalQuestions,
+        date: currentDate,
+        correctAnswers: correctAnswers || Math.round((score / 100) * totalQuestions)
+      };
+
+      // 全Partの進捗から総合スコアを計算
+      let totalScore = 0;
+      let totalQuestionsAnswered = 0;
+      for (let p = 1; p <= 3; p++) {
+        const partData = currentProgress.partProgress[p];
+        if (partData) {
+          totalScore += partData.correctAnswers;
+          totalQuestionsAnswered += partData.questionCount;
+        }
+      }
+      
+      // 全体のスコアを更新（受験済みPartのみから計算）
+      if (totalQuestionsAnswered > 0) {
+        score = Math.round((totalScore / totalQuestionsAnswered) * 100);
+      }
+    }
 
     if (currentProgress) {
       // 既存の進捗を更新
@@ -428,6 +468,7 @@ export function updateMockExamProgress(category: Category, score: number, totalQ
       );
 
       progress.mockCategoryProgress[category] = {
+        ...currentProgress, // 既存のpartProgressを保持
         totalQuestions,
         attemptsCount: newAttemptsCount,
         bestScore: newBestScore,

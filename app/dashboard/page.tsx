@@ -26,7 +26,7 @@ import {
   Book,
   Highlighter
 } from "lucide-react";
-import { UserProgress, Category } from "@/types";
+import { UserProgress, Category, MockCategoryProgress } from "@/types";
 import { safeLocalStorage, getUserKey } from "@/utils/storage-utils";
 import FirebaseStatusNotice from "@/components/FirebaseStatusNotice";
 import ErrorAlert from "@/components/ErrorAlert";
@@ -186,11 +186,18 @@ function DashboardContent() {
   const calculateOverallMockAccuracy = () => {
     if (!progress?.mockCategoryProgress) return 0;
     
-    const mockResults = Object.values(progress.mockCategoryProgress);
+    // Partial型なのでfilterでundefinedを除外
+    const mockResults = Object.values(progress.mockCategoryProgress).filter(
+      (result): result is MockCategoryProgress => result !== undefined && result !== null
+    );
     if (mockResults.length === 0) return 0;
     
-    const totalScore = mockResults.reduce((sum, result) => sum + result.latestScore, 0);
-    return Math.round(totalScore / mockResults.length);
+    // 受験済みのMock試験のみを対象にする
+    const attemptedResults = mockResults.filter(result => result.attemptsCount > 0);
+    if (attemptedResults.length === 0) return 0;
+    
+    const totalScore = attemptedResults.reduce((sum, result) => sum + result.latestScore, 0);
+    return Math.round(totalScore / attemptedResults.length);
   };
 
   const calculatePassProbability = () => {
@@ -613,6 +620,37 @@ function DashboardContent() {
                           <span className="text-gray-400">平均得点:</span>
                           <span className="text-gray-300">{mockProgress.averageScore}%</span>
                         </div>
+                        
+                        {/* Part別進捗（25問モードの場合） */}
+                        {mockProgress.partProgress && Object.keys(mockProgress.partProgress).length > 0 && (
+                          <div className="mt-2 pt-2 border-t border-gray-600">
+                            <span className="text-xs text-gray-400 block mb-1">Part別進捗:</span>
+                            <div className="flex gap-2">
+                              {[1, 2, 3].map(part => {
+                                const partData = mockProgress.partProgress?.[part];
+                                return (
+                                  <div 
+                                    key={part} 
+                                    className={`flex-1 text-center py-1 rounded text-xs ${
+                                      partData 
+                                        ? partData.score >= 70 
+                                          ? 'bg-green-900/50 text-green-400' 
+                                          : 'bg-orange-900/50 text-orange-400'
+                                        : 'bg-gray-700 text-gray-500'
+                                    }`}
+                                  >
+                                    <div className="font-bold">P{part}</div>
+                                    {partData ? (
+                                      <div>{partData.score}%</div>
+                                    ) : (
+                                      <div>-</div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
                         
                         {/* 進捗インジケーター */}
                         <div className="mt-3 pt-2 border-t border-gray-600">
