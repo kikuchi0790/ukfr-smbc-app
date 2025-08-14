@@ -15,7 +15,7 @@ import {
   Languages,
   Timer
 } from "lucide-react";
-import { Question, StudySession, Answer, UserProgress, StudyMode, Category, CategoryProgress, HighlightAnchor } from "@/types";
+import { Question, StudySession, Answer, UserProgress, StudyMode, Category, CategoryProgress, HighlightAnchor, IncorrectQuestion } from "@/types";
 import StudyTimer from "@/components/StudyTimer";
 import ErrorAlert from "@/components/ErrorAlert";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
