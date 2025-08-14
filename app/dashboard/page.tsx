@@ -35,7 +35,7 @@ import WireframeBuildings from "@/components/WireframeBuildings";
 import dynamic from 'next/dynamic';
 import { categories } from "@/utils/category-utils";
 import { validateAndFixProgress, getDisplayCorrectCount, cleanupAllProgressData } from "@/utils/progress-tracker";
-import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
+import { isMockCategory } from "@/utils/study-utils";
 import { formatPercentage } from "@/utils/formatters";
 import { checkDataIntegrity } from "@/utils/data-backup";
 import { AnsweredQuestionsTracker } from "@/utils/answered-questions-tracker";
@@ -573,7 +573,8 @@ function DashboardContent() {
             <h2 className="text-xl font-bold mb-4 text-gray-100">Mock試験進捗</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {mockCategories.map((category) => {
-                const mockProgress = getMockCategoryProgress(category.name);
+                // progressオブジェクトから直接Mock試験進捗を取得
+                const mockProgress = progress?.mockCategoryProgress?.[category.name];
                 
                 return (
                   <div key={category.name} className="border border-gray-700 bg-gray-700/90 backdrop-blur-sm rounded-lg p-4">

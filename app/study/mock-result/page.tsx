@@ -253,7 +253,7 @@ Mock試験の結果が見つかりませんでした。
           session.category, 
           score, 
           questions.length,
-          undefined, // userNickname（デフォルト使用）
+          result.userNickname || user?.nickname, // ユーザーのニックネームを明示的に渡す
           part,
           totalCorrect // 正解数も渡す
         );
@@ -261,10 +261,10 @@ Mock試験の結果が見つかりませんでした。
       
       // Mock試験も通常学習も同じようにuserProgressを更新（studySessionsに追加）
       // これによりMock試験結果もFirestoreに同期される
-      updateUserProgress(session, questions);
+      updateUserProgress(session, questions, result.userNickname || user?.nickname);
       
       // Mock試験履歴を保存
-      saveMockExamHistory(result, score);
+      saveMockExamHistory(result, score, result.userNickname || user?.nickname);
 
       setMockResult(result);
       setLoading(false);
@@ -275,10 +275,19 @@ Mock試験の結果が見つかりませんでした。
     }
   };
 
-  const updateUserProgress = (session: StudySession, questions: Question[]) => {
-    const userProgressKey = getUserKey('userProgress');
+  const updateUserProgress = (session: StudySession, questions: Question[], userNickname?: string) => {
+    const userProgressKey = getUserKey('userProgress', userNickname);
     const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
     if (!progress) return;
+
+    // Mock試験かどうか判定
+    const isMock = session.category && isMockCategory(session.category);
+    let mockNumber: number | undefined;
+    if (isMock && session.category) {
+      // カテゴリ名からMock番号を抽出（例: "Regulations: Mock 1" → 1）
+      const match = session.category.match(/Mock (\d+)/);
+      mockNumber = match ? parseInt(match[1]) : undefined;
+    }
 
     // 正解・不正解の更新
     session.answers.forEach((answer, index) => {
@@ -305,8 +314,14 @@ Mock試験の結果が見つかりませんでした。
       if (answer.isCorrect) {
         progress.correctAnswers++;
       } else {
-        // 間違えた問題を記録
-        saveIncorrectQuestion(question.questionId, question.category);
+        // 間違えた問題を記録（Mock試験の場合はsourceとmockNumberも渡す）
+        saveIncorrectQuestion(
+          question.questionId, 
+          question.category,
+          userNickname,
+          isMock ? 'mock' : 'category',
+          mockNumber
+        );
       }
     });
 
@@ -328,8 +343,8 @@ Mock試験の結果が見つかりませんでした。
     safeLocalStorage.setItem(userProgressKey, progress);
   };
 
-  const saveMockExamHistory = (result: MockResult, score: number) => {
-    const historyKey = getUserKey('mockExamHistory');
+  const saveMockExamHistory = (result: MockResult, score: number, userNickname?: string) => {
+    const historyKey = getUserKey('mockExamHistory', userNickname);
     const history = safeLocalStorage.getItem<any[]>(historyKey) || [];
     
     // セッションデータを軽量化
@@ -359,7 +374,7 @@ Mock試験の結果が見つかりませんでした。
     safeLocalStorage.setItem(historyKey, history);
     
     // 最新のMock試験の詳細を復習用に保存（問題データは含めない）
-    const latestMockKey = getUserKey('latestMockExam');
+    const latestMockKey = getUserKey('latestMockExam', userNickname);
     safeLocalStorage.setItem(latestMockKey, {
       session: lightSession,
       questions: result.questions, // 復習画面用に一時的に保存
@@ -529,7 +544,7 @@ Mock試験の結果が見つかりませんでした。
           <button
             onClick={() => {
               // 最新のMock試験の詳細を保存してから遷移
-              saveMockExamHistory(mockResult, totalScore);
+              saveMockExamHistory(mockResult, totalScore, user?.nickname);
               router.push('/study/mock-review');
             }}
             className="flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium"
