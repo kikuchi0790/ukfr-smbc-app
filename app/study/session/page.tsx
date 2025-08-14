@@ -1682,15 +1682,20 @@ function StudySessionContent() {
       // ユーザー情報も保存しておく（フォールバック用）
       userId: user.id,
       userNickname: user.nickname,
-      // デバッグ用の追加情報
+      // cleanupOldData関数用のタイムスタンプ
       savedAt: new Date().toISOString(),
+      // デバッグ用の追加情報
       category: session.category,
       mode: session.mode
     };
     
     // 問題データは別のキーに保存（結果表示用）
     const questionsKey = `tempMockQuestions_${user.nickname}`;
-    safeLocalStorage.setItem(questionsKey, questions);
+    const questionsData = {
+      questions,
+      savedAt: new Date().toISOString() // タイムスタンプを追加
+    };
+    safeLocalStorage.setItem(questionsKey, questionsData);
     
     // LocalStorageに一時保存（複数のキーで保存して確実性を高める）
     const tempKey = `tempMockResult_${user.nickname}`;
@@ -1721,9 +1726,9 @@ function StudySessionContent() {
         { key: tempKey, data: mockResult, description: 'Main result' },
         { key: tempKeyById, data: mockResult, description: 'Backup result by ID' },
         { key: globalKey, data: mockResult, description: 'Global result' },
-        { key: questionsKey, data: questions, description: 'Main questions' },
-        { key: `tempMockQuestions_${user.id}`, data: questions, description: 'Backup questions by ID' },
-        { key: 'tempMockQuestions_latest', data: questions, description: 'Global questions' }
+        { key: questionsKey, data: questionsData, description: 'Main questions' },
+        { key: `tempMockQuestions_${user.id}`, data: questionsData, description: 'Backup questions by ID' },
+        { key: 'tempMockQuestions_latest', data: questionsData, description: 'Global questions' }
       ];
       
       const finalStorageCheck = safeLocalStorage.getStorageInfo();
@@ -1771,7 +1776,18 @@ function StudySessionContent() {
       
       // 確認のため再度読み込んでみる
       const savedResult = safeLocalStorage.getItem(tempKey);
-      const savedQuestions = safeLocalStorage.getItem(questionsKey);
+      const savedQuestionsData = safeLocalStorage.getItem<any>(questionsKey);
+      
+      // 新形式と旧形式の両方に対応した確認
+      let savedQuestions = null;
+      if (savedQuestionsData) {
+        if (Array.isArray(savedQuestionsData)) {
+          savedQuestions = savedQuestionsData;
+        } else if (savedQuestionsData.questions) {
+          savedQuestions = savedQuestionsData.questions;
+        }
+      }
+      
       console.log('Verification - saved result:', !!savedResult);
       console.log('Verification - saved questions:', !!savedQuestions, `(${savedQuestions?.length || 0} items)`);
       

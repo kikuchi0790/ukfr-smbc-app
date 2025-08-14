@@ -73,7 +73,20 @@ function MockResultContent() {
     console.log('User:', user.nickname);
     console.log('Looking for key:', tempKey);
     const tempResult = safeLocalStorage.getItem<any>(tempKey);
-    const tempQuestions = safeLocalStorage.getItem<Question[]>(questionsKey);
+    const tempQuestionsData = safeLocalStorage.getItem<any>(questionsKey);
+    
+    // 新形式（オブジェクト）と旧形式（配列）の両方に対応
+    let tempQuestions: Question[] | null = null;
+    if (tempQuestionsData) {
+      if (Array.isArray(tempQuestionsData)) {
+        // 旧形式：配列
+        tempQuestions = tempQuestionsData;
+      } else if (tempQuestionsData.questions) {
+        // 新形式：オブジェクト with questions field
+        tempQuestions = tempQuestionsData.questions;
+      }
+    }
+    
     console.log('Found result:', tempResult);
     console.log('Found questions:', tempQuestions?.length);
     
@@ -88,7 +101,17 @@ function MockResultContent() {
       const fallbackKey = `tempMockResult_${user.id}`;
       const fallbackQuestionsKey = `tempMockQuestions_${user.id}`;
       const fallbackResult = safeLocalStorage.getItem<any>(fallbackKey);
-      const fallbackQuestions = safeLocalStorage.getItem<Question[]>(fallbackQuestionsKey);
+      const fallbackQuestionsData = safeLocalStorage.getItem<any>(fallbackQuestionsKey);
+      
+      // 新形式と旧形式の両方に対応
+      let fallbackQuestions: Question[] | null = null;
+      if (fallbackQuestionsData) {
+        if (Array.isArray(fallbackQuestionsData)) {
+          fallbackQuestions = fallbackQuestionsData;
+        } else if (fallbackQuestionsData.questions) {
+          fallbackQuestions = fallbackQuestionsData.questions;
+        }
+      }
       if (fallbackResult && (fallbackQuestions || fallbackResult.questions)) {
         console.log('Found result with fallback key:', fallbackKey);
         // Part情報をログ出力
@@ -106,7 +129,17 @@ function MockResultContent() {
       const globalKey = 'tempMockResult_latest';
       const globalQuestionsKey = 'tempMockQuestions_latest';
       const globalResult = safeLocalStorage.getItem<any>(globalKey);
-      const globalQuestions = safeLocalStorage.getItem<Question[]>(globalQuestionsKey);
+      const globalQuestionsData = safeLocalStorage.getItem<any>(globalQuestionsKey);
+      
+      // 新形式と旧形式の両方に対応
+      let globalQuestions: Question[] | null = null;
+      if (globalQuestionsData) {
+        if (Array.isArray(globalQuestionsData)) {
+          globalQuestions = globalQuestionsData;
+        } else if (globalQuestionsData.questions) {
+          globalQuestions = globalQuestionsData.questions;
+        }
+      }
       if (globalResult) {
         console.log('Found result with global key:', globalKey);
         // ユーザー情報が一致するか確認

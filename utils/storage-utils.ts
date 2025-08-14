@@ -44,7 +44,37 @@ function cleanupOldData() {
       
       // 一時的なMock試験結果（1時間以上前）を削除
       if (key.startsWith('tempMockResult_') || key.startsWith('tempMockQuestions_')) {
-        keysToDelete.push(key);
+        try {
+          const item = localStorage.getItem(key);
+          if (item) {
+            const parsed = safeJsonParse(item, null) as any;
+            if (parsed) {
+              // タイムスタンプをチェック（複数の形式に対応）
+              const timestamp = parsed.savedAt || 
+                              parsed.session?.completedAt || 
+                              parsed.session?.startedAt ||
+                              parsed.completedAt ||
+                              parsed.startedAt;
+              
+              if (timestamp) {
+                const itemTime = new Date(timestamp).getTime();
+                // 1時間以上前のデータのみ削除
+                if (itemTime < oneHourAgo) {
+                  keysToDelete.push(key);
+                  console.log(`Scheduling deletion of old temp data: ${key} (age: ${Math.round((Date.now() - itemTime) / 1000 / 60)} minutes)`);
+                }
+              } else {
+                // タイムスタンプがない古い形式のデータは削除
+                keysToDelete.push(key);
+                console.log(`Scheduling deletion of temp data without timestamp: ${key}`);
+              }
+            }
+          }
+        } catch (error) {
+          // パースできない壊れたデータは削除
+          keysToDelete.push(key);
+          console.log(`Scheduling deletion of corrupted temp data: ${key}`);
+        }
       }
       
       // Mock試験の進捗（1日以上前）を削除
