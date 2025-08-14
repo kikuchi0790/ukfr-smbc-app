@@ -3,6 +3,38 @@
 ## プロジェクト概要
 英国財務報告（UKFR）学習アプリケーション。Next.js 15とTypeScriptで構築され、Firebase認証とFirestoreを使用。
 
+## 最近の重要な変更（2025-08-14）
+
+### Mock試験復習モード問題の修正
+Mock試験で間違えた問題が復習モードで表示されない問題を修正しました。
+
+#### 問題の原因
+- `saveIncorrectQuestion`関数が既存問題更新時に`source`フィールドを更新していなかった
+- カテゴリ学習→Mock試験の順で間違えた問題が、Mock復習モードで表示されない
+
+#### 実施した修正
+1. **saveIncorrectQuestion関数の修正**
+   - 既存問題更新時も`source`フィールドを更新するように変更
+   - Mock試験の間違いを優先する（より本番に近いため）
+
+2. **データ修復ツールの実装**
+   - `utils/incorrect-questions-repair.ts`を新規作成
+   - 既存ユーザーのデータを修復可能
+
+#### 新しいコマンド（ブラウザコンソール）
+```javascript
+// 自分の間違い問題を修復
+repairMyIncorrectQuestions()
+
+// 現在の状態を確認
+checkIncorrectQuestionsStatus()
+
+// すべてのユーザーを修復（管理者用）
+repairAllIncorrectQuestions()
+```
+
+詳細は `/docs/INCORRECT_QUESTIONS_FIX_2025_08_14.md` を参照。
+
 ## 最近の重要な変更（2025-08-13 - Part 4）
 
 ### データ重複カウント問題の根本的解決

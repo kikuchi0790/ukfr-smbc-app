@@ -12,6 +12,7 @@ import { resetAllUserProgress } from '@/utils/reset-all-data';
 import { migrateOldData, checkAndRunMigration } from '@/utils/data-migration';
 import { validateAndFixProgress } from '@/utils/progress-tracker';
 import { ProgressRepairTool } from '@/utils/progress-repair';
+import '@/utils/incorrect-questions-repair';
 
 interface User {
   id: string;

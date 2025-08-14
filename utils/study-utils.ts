@@ -69,6 +69,13 @@ export function saveIncorrectQuestion(
       // 既に存在する場合は更新
       progress.incorrectQuestions[existingIndex].incorrectCount++;
       progress.incorrectQuestions[existingIndex].lastIncorrectDate = new Date().toISOString();
+      
+      // sourceフィールドも更新（Mock試験が優先）
+      // Mock試験で間違えた場合、または既存がMock以外の場合は更新
+      if (source === 'mock' || progress.incorrectQuestions[existingIndex].source !== 'mock') {
+        progress.incorrectQuestions[existingIndex].source = source;
+        progress.incorrectQuestions[existingIndex].mockNumber = mockNumber;
+      }
     } else {
       // 新規追加
       const newIncorrect: IncorrectQuestion = {

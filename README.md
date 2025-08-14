@@ -1,416 +1,299 @@
-# 🎓 UK Financial Regulation 学習支援アプリ v2.0
+# 🎓 UKFR Learning App - 英国金融規制試験対策アプリケーション
 
-日本人銀行員向けのCISI UK Financial Regulation (ED31) 試験対策アプリケーション
+<div align="center">
+  
+[![Next.js](https://img.shields.io/badge/Next.js-15.3-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-11.8-orange?logo=firebase)](https://firebase.google.com/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--5-green?logo=openai)](https://openai.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deploy-black?logo=vercel)](https://vercel.com/)
 
-## 📋 プロジェクト概要
+**CISI UK Financial Regulation (ED31) 試験対策のための包括的学習プラットフォーム**
 
-このドキュメントは、他のAIや開発者がプロジェクトの構造と実装を理解できるように、詳細な技術情報を含んでいます。
+日本人銀行員向けに最適化された、英国金融規制試験の合格を支援する最先端の学習アプリケーション
 
-## 🏗️ プロジェクト構造
+</div>
 
-```
-ukfr-smbc-app/
-├── app/                          # Next.js App Router
-│   ├── ... (same as before)
-│
-├── components/
-│   ├── MaterialViewer/          # Refactored material viewer components
-│   │   ├── PdfRenderer.tsx
-│   │   ├── HtmlRenderer.tsx
-│   │   ├── TableOfContents.tsx
-│   │   ├── HighlightLayer.tsx
-│   │   └── NoteEditor.tsx
-│   └── ... (other components)
-│
-├── services/
-│   ├── data/                    # New data abstraction layer
-│   │   └── highlight.service.ts
-│   └── ... (other services)
-│
-├── utils/
-│   ├── device-utils.ts          # New utility for getting device ID
-│   └── ... (other utils)
-│
-├── cypress/
-│   ├── e2e/
-│   │   └── study-flow.cy.ts     # New E2E test for the study flow
-│   └── ... (other cypress files)
-│
-├── vitest.config.ts             # Vitest configuration
-├── vitest.setup.ts              # Vitest setup file
-├── HIGHLIGHT_DATA_MODEL.md      # Documentation for the new highlight data model
-├── CONFLICT_RESOLUTION_STRATEGY.md # Documentation for the data sync strategy
-└── ... (other files)
-```
+---
 
-## 🏛️ 新しいアーキテクチャ (v2.0)
+## 📋 目次
 
-このプロジェクトは、保守性と拡張性を向上させるために、v2.0で大幅なリファクタリングが行われました。
+- [✨ 主要機能](#-主要機能)
+- [🚀 クイックスタート](#-クイックスタート)
+- [📱 使い方](#-使い方)
+- [🏗️ アーキテクチャ](#️-アーキテクチャ)
+- [🛠️ 技術スタック](#️-技術スタック)
+- [⌨️ キーボードショートカット](#️-キーボードショートカット)
+- [🔧 環境変数](#-環境変数)
+- [📊 データ管理](#-データ管理)
+- [🚢 デプロイ](#-デプロイ)
+- [📝 最近の改善](#-最近の改善2025年8月)
+- [🐛 トラブルシューティング](#-トラブルシューティング)
+- [🗺️ ロードマップ](#️-ロードマップ)
+- [🤝 コントリビューション](#-コントリビューション)
 
-### データ永続化層の抽象化
+---
 
-*   **`services/data`**: データ操作ロジックをコンポーネントから分離するための新しいディレクトリです。
-*   **`HighlightService`**: ハイライトに関するすべてのCRUD操作（作成、読み取り、更新、削除）を担当します。このサービスは、FirestoreとLocalStorageの両方への書き込みを抽象化し、オフラインファーストの体験を提供します。
+## ✨ 主要機能
 
-### 新しいデータモデル
+### 🎯 学習システム
 
-*   **`HIGHLIGHT_DATA_MODEL.md`**: ハイライトの新しいデータモデルに関する詳細なドキュメントです。不安定なオフセットベースのハイライトを廃止し、CSSセレクタとテキストコンテキストを組み合わせた、より堅牢なアンカーモデルを導入しました。
-*   **`CONFLICT_RESOLUTION_STRATEGY.md`**: 複数のデバイス間でのデータ同期と競合解決のための新しい戦略に関するドキュメントです。
+#### **カテゴリ別学習**
+- 11カテゴリ・836問の充実したコンテンツ
+- 各カテゴリから10問をランダムまたは順番に出題
+- 過去の間違いを自動的に混入（最大3問）
+- 日本語翻訳付きで英語が苦手でも安心
 
-### コンポーネントの再設計
+#### **Mock試験モード**
+- **75問モード**: 本番形式（90分制限）
+- **25問モード**: Part別学習（各30分）
+  - Part 1: 問題 1-25
+  - Part 2: 問題 26-50  
+  - Part 3: 問題 51-75
+- Part別進捗管理機能（2025年8月実装）
+- タイマー付きリアルタイム進捗表示
+- 日本語表示ON/OFF切り替え可能
 
-*   **`components/MaterialViewer`**: 教材ビューアに関連するすべてのコンポーネントを格納する新しいディレクトリです。
-*   **`PdfRenderer`**: `react-pdf`と`react-window`を使用して、PDFのレンダリングと仮想化を担当します。
-*   **`HtmlRenderer`**: Shadow DOMを使用して、HTMLコンテンツを安全にレンダリングします。
-*   **`TableOfContents`**: 教材のメタデータをフェッチして、目次を表示します。
-*   **`HighlightLayer`**: 新しいアンカーモデルを使用して、ハイライトをコンテンツの上にレンダリングします。
-*   **`NoteEditor`**: ハイライトにノートを追加・編集するためのUIを提供します。
+#### **復習モード**
+- 間違えた問題を自動的に記録・管理
+- カテゴリ学習とMock試験の間違いを分離管理
+- 間違えた回数が多い問題を優先的に出題
+- 正解した問題は「克服」フォルダへ自動移動
 
-### テスト
+### 🤖 AI連携機能（RAG）
 
-*   **`vitest`**: ユニットテストとコンポーネントテストのために導入されました。
-*   **`@testing-library/react`**: コンポーネントのテストに使用されます。
-*   **`cypress`**: E2Eテストに使用されます。
+#### **GPT-5搭載RAGシステム**（2025年8月大幅改善）
+- OpenAI Embeddings（text-embedding-3-small）によるベクトル検索
+- Qdrant/ローカルJSON切り替え可能
+- 699チャンクの高精度インデックス（350文字/チャンク）
+- MMR（Maximal Marginal Relevance）による多様性確保
+- GPT-5によるChain-of-Thought推論とリランキング
 
+#### **教材連携**
+- 問題から関連教材へワンクリックでジャンプ
+- 該当ページ・該当箇所を自動的にハイライト
+- キーワード自動抽出と検索
+- 24時間キャッシュによる高速レスポンス
 
+### 📚 教材機能
 
-### ダークモード実装
-アプリ全体でダークモードを採用しており、以下の配色を使用：
+#### **マルチフォーマットビューア**
+- PDF表示（react-pdf使用）
+- HTML表示（DOMPurify使用でXSS対策）
+- ページネーション・ズーム機能
+- Shadow DOM実装による安全な描画
 
-- **背景色**: 
-  - メイン: `bg-gray-900`
-  - カード: `bg-gray-800`
-  - ホバー: `bg-gray-700`
-- **テキスト色**:
-  - 主要: `text-gray-100`
-  - 補助: `text-gray-400`
-  - 無効: `text-gray-500`
-- **ボーダー**: `border-gray-700`
-- **アクセント色**:
-  - プライマリ: `bg-indigo-600`, `text-indigo-500`
-  - 成功: `bg-green-600`, `text-green-400`
-  - エラー: `bg-red-600`, `text-red-400`
+#### **ハイライト機能**
+- 4色マーカー（黄・緑・赤・青）
+- ノート追加機能
+- LocalStorage永続化
+- ハイライト一覧ページで統合管理
+- Contextual Anchoringによる堅牢な位置記憶
 
-### Wire Art 3D背景
-`BackgroundBuildings`コンポーネントで実装された3D背景：
-- **建物の色**: `#FFD4A3` (温かい街灯色)
-- **透明度**: 全体50% × 建物70% = 実効35%
-- **表示レベル**: 25%完成度（level0のみ）
-- **アニメーション**: Y軸回転（0.003ラジアン/フレーム）
-- **ライティング**: 夜景をイメージした暖色系
+### 📊 進捗管理
 
-## 🚀 主な特徴
+#### **ダッシュボード**
+- カテゴリ別・Mock試験別の進捗を一覧表示
+- 3D Wire Art建物による視覚的進捗表示
+- リアルタイム正答率・合格可能性診断
+- 連続学習日数（ストリーク）管理
+- Firebase/ローカル同期ステータス表示
 
-### 📱 新しい学習システム
-- **カテゴリ別学習**: 各カテゴリから10問ランダム出題
-- **Mock試験モード**: 25問(30分)または75問(90分)の実践形式
-- **間違えた問題の自動管理**: 復習モードで重点的に学習
-- **日英対訳表示**: 英語が苦手でも安心の日本語翻訳付き
-- **AI連携教材確認**: 問題から関連教材へ直接アクセス（v2.2.0 新機能）
-- **ハイライト機能**: 教材の重要箇所をマーキング（v2.2.0 新機能）
+#### **データ同期**
+- Firebase Firestoreによるクラウド同期
+- オフライン時は自動的にローカルストレージ使用
+- Single Source of Truth実装（2025年8月）
+- 自動データ修復ツール
 
-### 📊 11カテゴリ・836問の充実コンテンツ
-1. **The Regulatory Environment** (42問)
-2. **The Financial Services and Markets Act 2000 and Financial Services Act 2012** (99問)
-3. **Associated Legislation and Regulation** (100問)
-4. **The FCA Conduct of Business Sourcebook/Client Assets** (125問)
-5. **Complaints and Redress** (32問)
-6. **Regulations: Mock 1-5** (各75問)
-7. **Regulations: Final Study Questions** (62問)
+### ♿ アクセシビリティ（2025年8月実装）
 
-### 🎯 効果的な学習機能
-- **10問単位の学習**: 集中力を保ちながら効率的に学習
-- **間違えた問題の自動混入**: 新しい問題と過去の間違いを組み合わせて出題
-- **Mock試験タイマー**: 本番同様の時間制限で実力をチェック
-- **Mock 25問試験のパート分割**: 25問試験を3つのパート（Part 1, 2, 3）に分割して受験可能
-- **日本語ON/OFF切り替え**: 学習段階に応じて表示を調整
-- **教材ビューア**: PDFとHTML教材の並列表示（v2.2.0 強化）
-- **iPadフレンドリー検索**: タッチデバイスでも快適な検索機能（v2.2.0 新機能）
+#### **キーボードナビゲーション**
+- **選択肢選択**: 1-4, A-D キー
+- **アクション**: Enter（送信）, Space（選択）
+- **ナビゲーション**: 矢印キー, P/N（前後）
+- **機能**: J（日本語切替）, M（教材確認）, ?（ヘルプ）
+- **終了**: Escape
 
-### 🔗 v2.3.0 AI連携学習機能（RAG導入）
-- **問題→教材の自動連携（RAG）**: OpenAI埋め込み + ベクタ検索（Qdrant/ローカル）で該当箇所へ自動ジャンプ
-- **ハイライト機能**: 重要箇所を4色（黄・緑・赤・青）でマーキング
-- **ノート機能**: ハイライトにメモを追加
-- **ハイライト一覧**: 保存したハイライトを一元管理
+#### **スクリーンリーダー対応**
+- 完全なARIA属性実装
+- 状態変更の音声アナウンス
+- セマンティックHTML（main, section, nav等）
+- 進捗バーのアクセシビリティ属性
 
-## 🚀 Vercelへのデプロイ方法
+---
 
-### 方法1: Vercel CLIを使用
+## 🚀 クイックスタート
+
+### 前提条件
+- Node.js 18以上
+- npm または yarn
+- （オプション）Firebase プロジェクト
+- （オプション）OpenAI API キー
+
+### インストール
 
 ```bash
-# Vercel CLIをインストール（未インストールの場合）
-npm i -g vercel
+# リポジトリのクローン
+git clone https://github.com/your-username/ukfr-smbc-app.git
+cd ukfr-smbc-app
 
-# プロジェクトディレクトリで実行
-vercel
-```
-
-### 方法2: GitHubリポジトリから
-
-1. このプロジェクトをGitHubにプッシュ
-2. [Vercel](https://vercel.com)でアカウントを作成
-3. "New Project"をクリック
-4. GitHubリポジトリをインポート
-5. 環境変数は自動的に設定されます（vercel.jsonに記載済み）
-
-## 🛠 ローカル開発
-
-```bash
 # 依存関係のインストール
 npm install
+
+# 環境変数の設定（.env.localファイルを作成）
+cp .env.example .env.local
+# .env.localを編集して必要なAPIキーを設定
 
 # 開発サーバーの起動
 npm run dev
 ```
 
-ブラウザで [http://localhost:3000](http://localhost:3000) を開いてください。
+ブラウザで http://localhost:3000 を開いてアクセス
+
+---
 
 ## 📱 使い方
 
-### 1. カテゴリ別学習
-- 学習したいカテゴリを選択
-- 10問がランダムに出題（過去の間違いも混入）
-- 日本語翻訳を見ながら学習
-- 10問終了後に結果を確認
+### 1. ログイン
+- Firebase認証（Google/メール）
+- ニックネーム設定で進捗を分離管理
 
-### 2. Mock試験
-- 25問または75問モードを選択
-- Mock 1-5から選んで実施
-- 25問モードでは3つのパート（Part 1, 2, 3）から選択可能
-  - Part 1: 問題1〜25
-  - Part 2: 問題26〜50
-  - Part 3: 問題51〜75
-- タイマー付きの本番形式（25問30分、75問90分）
-- 日本語表示はON/OFF可能
+### 2. 学習モード選択
+- **カテゴリ学習**: 特定分野を集中学習
+- **Mock試験**: 本番形式で実力確認
+- **復習モード**: 弱点克服
 
-### 3. 復習モード
-- 過去に間違えた問題から10問出題
-- 間違えた回数が多い問題を優先
-- 弱点を集中的に克服
+### 3. 問題演習
+- 選択肢をクリックまたはキーボードで選択
+- 回答後に詳細な解説を表示
+- 「教材で詳しく確認」で関連箇所へジャンプ
 
-## 🧠 学習効果を高める工夫
+### 4. 進捗確認
+- ダッシュボードで全体進捗を確認
+- カテゴリ別・Mock試験別の詳細統計
+- 3D Wire Art建物で視覚的に把握
 
-### スマート出題システム
-- カテゴリ学習では、新規問題7問 + 過去の間違い最大3問を混ぜて出題
-- 間違えた問題は自動的に記録され、復習時に優先出題
-- 学習履歴に基づいて最適な問題を選択
+---
 
-### 日本語サポート
-- 問題文・選択肢・解説すべてに日本語翻訳
-- 学習モードでは常時表示、Mock試験では選択可能
-- 専門用語の理解を助ける丁寧な翻訳
+## 🏗️ アーキテクチャ
 
-## 🛠 技術スタック
+### ディレクトリ構造
 
-### フレームワーク・ライブラリ
-- **Next.js 14**: App Router使用、SSR対応
-- **React 18**: クライアントコンポーネント中心
-- **TypeScript**: 厳密な型定義
-- **Tailwind CSS**: レスポンシブデザイン、ダークモード
-- **Three.js + @react-three/fiber**: 3Dグラフィックス
-- **パスコード認証**: シンプルな内部利用向け認証
-- **Lucide React**: アイコンライブラリ
+```
+ukfr-smbc-app/
+├── app/                     # Next.js App Router
+│   ├── api/                # APIルート
+│   │   ├── retrieve/       # RAG検索エンドポイント
+│   │   ├── rerank/         # GPT-5リランキング
+│   │   └── extract-keywords/ # キーワード抽出
+│   ├── dashboard/          # ダッシュボード
+│   ├── study/              # 学習セッション
+│   │   ├── session/        # 問題演習画面
+│   │   ├── mock-result/    # Mock試験結果
+│   │   └── complete/       # 完了画面
+│   └── materials/          # 教材ビューア
+├── components/             # Reactコンポーネント
+│   ├── MaterialViewer/     # 教材表示コンポーネント群
+│   ├── WireframeBuildings3D/ # 3D進捗表示
+│   └── KeyboardHelpModal/  # キーボードヘルプ
+├── services/               # サービス層
+│   ├── data/              # データアクセス層
+│   ├── vector-client/      # ベクトル検索クライアント
+│   └── firebase-sync/      # Firebase同期
+├── utils/                  # ユーティリティ関数
+│   ├── study-utils/        # 学習関連ユーティリティ
+│   ├── progress-tracker/   # 進捗管理
+│   └── session-persistence/ # セッション永続化
+├── hooks/                  # カスタムフック
+│   ├── useKeyboardNavigation/ # キーボード操作
+│   └── useErrorHandler/    # エラーハンドリング
+├── scripts/                # ビルド・管理スクリプト
+│   ├── build-material-index/ # RAGインデックス構築
+│   └── upload-to-qdrant/   # Qdrantアップロード
+└── docs/                   # ドキュメント
+```
 
-### 主要な依存関係
+### データフロー
+
+```
+[ユーザー入力]
+    ↓
+[Next.js Frontend]
+    ↓
+[API Routes / Server Actions]
+    ↓
+[Services層]
+    ├→ [Firebase Firestore] (認証済みユーザー)
+    ├→ [LocalStorage] (オフライン/未認証)
+    └→ [RAG System]
+        ├→ [OpenAI Embeddings]
+        └→ [Qdrant/Local Vector DB]
+```
+
+---
+
+## 🛠️ 技術スタック
+
+### フロントエンド
+- **Next.js 15.3** - App Router, Server Components
+- **React 19** - 最新のReact機能
+- **TypeScript 5** - 型安全性
+- **Tailwind CSS 4** - ユーティリティファーストCSS
+- **Three.js** - 3Dグラフィックス
+
+### バックエンド・インフラ
+- **Firebase 11.8**
+  - Authentication（Google/メール認証）
+  - Firestore（データ永続化）
+- **Vercel** - ホスティング・自動デプロイ
+
+### AI・機械学習
+- **OpenAI GPT-5** - リランキング・推論
+- **OpenAI Embeddings** - text-embedding-3-small
+- **Qdrant** - ベクトルデータベース（オプション）
+
+### 主要ライブラリ
 ```json
 {
-  "@types/d3": "^7.4.3",
-  "@types/three": "^0.176.0",
-  "d3": "^7.9.0",
-  "date-fns": "^4.1.0",
-  "firebase": "^11.8.1",
-  "framer-motion": "^12.15.0",
-  "lucide-react": "^0.511.0",
-  "next": "15.3.3",
-  "openai": "^4.57.0",
-  "@qdrant/js-client-rest": "^1.10.0",
-  "react": "^19.0.0",
-  "react-dom": "^19.0.0",
-  "recharts": "^2.15.3",
-  "three": "^0.177.0"
+  "react-pdf": "^9.2.1",        // PDF表示
+  "react-window": "^1.8.11",    // 仮想スクロール
+  "framer-motion": "^12.15.0",  // アニメーション
+  "lucide-react": "^0.511.0",   // アイコン
+  "recharts": "^2.15.3",        // グラフ表示
+  "isomorphic-dompurify": "^2.25.0", // XSS対策
+  "@qdrant/js-client-rest": "^1.10.0" // ベクトルDB
 }
 ```
 
-## 📊 進捗管理
+---
 
-- **ダッシュボード**: カテゴリ別・Mock別の進捗を一覧表示
-- **正答率追跡**: リアルタイムで合格可能性を診断
-- **連続学習日数**: モチベーション維持のためのストリーク機能
-- **間違えた問題数**: 復習が必要な問題数を常に表示
+## ⌨️ キーボードショートカット
 
-## 📊 データ構造
+### 選択肢選択
+- `1` or `A` - 選択肢A
+- `2` or `B` - 選択肢B
+- `3` or `C` - 選択肢C
+- `4` or `D` - 選択肢D
 
-### 主要な型定義（types/index.ts）
+### アクション
+- `Enter` or `Space` - 回答送信/次へ
+- `←` or `P` - 前の問題
+- `→` or `N` - 次の問題
 
-```typescript
-// カテゴリ定義
-type Category = 
-  | "The Regulatory Environment"
-  | "The Financial Services and Markets Act 2000 and Financial Services Act 2012"
-  | "Associated Legislation and Regulation"
-  | "The FCA Conduct of Business Sourcebook/Client Assets"
-  | "Complaints and Redress"
-  | "Regulations: Final Study Questions";
+### 機能
+- `J` - 日本語表示切替
+- `M` - 教材で確認（解説表示時）
+- `?` - キーボードヘルプ
+- `Esc` - 学習セッション終了
 
-// 問題データ
-interface Question {
-  id: string;
-  questionId: string;
-  category: Category;
-  question: string;
-  questionJa?: string;
-  options: {
-    letter: string;
-    text: string;
-    textJa?: string;
-  }[];
-  correctAnswer: string;
-  explanation: string;
-  explanationJa?: string;
-}
+---
 
-// ユーザー進捗
-interface UserProgress {
-  studySessions: StudySession[];
-  categoryProgress: Record<Category, CategoryProgress>;
-  incorrectQuestions: IncorrectQuestion[];
-  overcomeQuestions: OvercomeQuestion[];
-  totalStudyTime: number;
-  lastStudyDate: string;
-  studyStreak: number;
-}
-```
+## 🔧 環境変数
 
-## 🔒 データ管理
+`.env.local`ファイルに以下を設定：
 
-### LocalStorage構造
-- `userProgress`: ユーザーの学習進捗
-- `userPreferences`: ユーザー設定（言語表示など）
-- `lastSelectedMock`: 最後に選択したMock試験
-
-### データ検証
-`progress-validator.ts`で進捗データの整合性を保証：
-- 不正なデータの自動修正
-- カテゴリ間の整合性チェック
-- 古いデータ形式の移行
-
-## 🏗️ Wire Art進捗表示システム
-
-### 建物と対応カテゴリ
-1. 🕰️ **Big Ben** → The Regulatory Environment
-2. 🗼 **Eiffel Tower** → Financial Services Acts
-3. 🏛️ **Colosseum** → Associated Legislation
-4. ⛪ **Sagrada Família** → FCA Conduct/Client Assets
-5. 🌬️ **Dutch Windmill** → Complaints and Redress
-6. 🚪 **Brandenburg Gate** → Final Study Questions
-
-### 実装詳細
-- **2D版** (`WireframeBuildings.tsx`): SVGベース、軽量
-- **3D版** (`WireframeBuildings3D.tsx`): Three.js、インタラクティブ
-- **背景版** (`BackgroundBuildings.tsx`): 装飾的な背景表示
-
-各建物は5段階（level0〜level4）で構成され、学習進捗に応じて表示レベルが変化：
-- 0%: 建物非表示
-- 1-25%: level0のみ（基礎部分）
-- 26-50%: level0-1
-- 51-75%: level0-2
-- 76-99%: level0-3
-- 100%: 全レベル表示 + 輝きエフェクト
-
-## 🔐 認証とルーティング
-
-### 認証システム
-- **Firebase Authentication**: Googleログインまたはメール/パスワード
-- **ニックネーム管理**: ユーザーごとの進捗を分けて保存
-- **ログイン後**: `/dashboard`へリダイレクト
-- **保護されたルート**: `/dashboard`, `/study/*`, `/questions`, `/materials`
-- **公開ルート**: `/`, `/login`
-- **オフラインモード**: Firebase接続エラー時も基本機能は動作
-
-## 🛠️ v2.2.0 技術実装詳細（追補）
-
-### AI連携システム
-- **Gemini API統合**: サーバ専用 `GEMINI_API_KEY` を使用
-- **多層キャッシュ**: サーバメモリ＋クライアントLocalStorage
-- **レート制限**: 強化キー（clientId+IP+UAのハッシュ）
-
-### ハイライトシステム
-- **Contextual Anchoring**: `textQuote`（exact/prefix/suffix）＋セレクタ
-- **DOM安全描画**: `Range.surroundContents` による安全なハイライト適用
-- **ローカルフォールバック**: オフライン時もLocalStorageで動作継続
-
-### セッション永続化システム
-- **自動保存**: 30秒ごと、5問回答ごとの自動保存
-- **復元順序の固定**: 認証完了→スナップショット→永続化
-- **ストレージ最適化**: 問題IDのみ保存、容量監視、自動クリーンアップ
-- **保存状態表示**: リアルタイムの保存状態インジケーター
-
-詳細な実装ドキュメント:
-- AI連携機能: `/docs/FEATURE_MATERIAL_INTEGRATION.md`
-- バグ修正とセッション永続化: `/docs/BUG_FIXES_AND_SESSION_PERSISTENCE.md`
-- トラブルシューティング: `/docs/TROUBLESHOOTING.md`
-- 2024年12月修正履歴: `/docs/RECENT_FIXES_2024_12.md`
-- 2025年8月修正履歴: `/docs/RECENT_FIXES_2025_08.md`
-
-## 📝 今後の機能追加予定
-
-- [x] AI連携教材確認機能（v2.2.0で実装済み）
-- [x] ハイライト機能（v2.2.0で実装済み）
-- [ ] 完全な日本語翻訳（現在は一部のみ）
-- [ ] 学習履歴のエクスポート機能
-- [ ] より詳細な弱点分析レポート
-- [ ] 音声読み上げ機能
-- [ ] PWA対応（オフライン学習）
-- [ ] 学習リマインダー通知
-- [ ] ハイライトの共有機能
-- [ ] AI学習提案機能
-
-## 🌐 既知の問題と対処法
-
-### Firebase権限エラー
-教材ビューでハイライト機能使用時に発生する場合があります。
-- エラー時は自動的にローカルストレージにフォールバック
-- 機能は継続して使用可能
-- 詳細は`/docs/TROUBLESHOOTING.md`参照
-
-### ネットワーク接続問題
-- 広告ブロッカーがFirebaseをブロックする場合があります
-- ネットワーク状態インジケーターで接続状態を確認可能
-
-## 🤝 コントリビューション
-
-改善提案やバグ報告は大歓迎です！
-特に以下の点でご協力いただけると嬉しいです：
-
-- 日本語翻訳の改善
-- UI/UXの向上提案
-- 新機能のアイデア
-- Firebaseセキュリティルールの改善
-
-## 📄 ライセンス
-
-MIT
-
-## 🚀 環境構築とデプロイ
-
-### ローカル開発
 ```bash
-# 依存関係インストール
-npm install
-
-# 開発サーバー起動
-npm run dev
-
-# ビルド
-npm run build
-
-# 本番サーバー起動
-npm start
-```
-
-### 環境変数（.env.local）
-```env
-# Firebase設定
+# Firebase設定（必須）
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
@@ -418,52 +301,238 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
-# OpenAI Embeddings（RAG）
+# OpenAI設定（RAG機能に必須）
 OPENAI_API_KEY=your_openai_api_key
 
-# Vector backend (optional: default is local JSON)
-# VECTOR_BACKEND=qdrant
-# QDRANT_URL=...
-# QDRANT_API_KEY=...
-# QDRANT_COLLECTION=materials_passages
+# Qdrant設定（オプション - 未設定時はローカルJSON使用）
+VECTOR_BACKEND=qdrant
+QDRANT_URL=your_qdrant_url
+QDRANT_API_KEY=your_qdrant_api_key
+QDRANT_COLLECTION=materials_passages
 ```
-
-### RAG インデックス/アップロード
-```bash
-# ローカルJSONに埋め込みインデックスを生成
-npm run build:index
-
-# Qdrantへアップロード（VECTOR_BACKEND=qdrant を使用する場合）
-npm run upload:qdrant
-```
-
-### Vercelデプロイ
-1. GitHubリポジトリにプッシュ
-2. Vercelでプロジェクトインポート
-3. 環境変数設定（Firebase、Gemini API）
-4. デプロイ実行
-
-注意：
-- Firebase設定がない場合も基本機能は動作します
-- ハイライト機能はFirebaseが利用できない場合、ローカルストレージを使用します
-
-## 📝 重要な実装詳細
-
-### エラーハンドリング
-- `useErrorHandler`フック: 統一的なエラー処理
-- `ErrorBoundary`: Reactコンポーネントエラーのキャッチ
-- `safeLocalStorage`: LocalStorageアクセスの安全なラッパー
-
-### パフォーマンス最適化
-- Dynamic Import: 3Dコンポーネントの遅延読み込み
-- SSR無効化: Three.jsコンポーネントはクライアントのみ
-- 画像最適化: Next.js Image使用
-
-### アクセシビリティ
-- キーボードナビゲーション対応
-- ARIAラベル適切に設定
-- コントラスト比WCAG AA準拠
 
 ---
 
-**TOEICアプリのような使いやすさで、確実な合格を目指しましょう！** 🎓✨
+## 📊 データ管理
+
+### RAGインデックス構築
+
+```bash
+# テキストファイルからインデックス生成（推奨）
+npm run build:index:text
+
+# Qdrantへアップロード（VECTOR_BACKEND=qdrant使用時）
+npm run upload:qdrant
+
+# インデックス検証
+npm run validate:index
+
+# RAG精度テスト
+npm run test:rag:comprehensive
+```
+
+### データ修復・管理
+
+```bash
+# ブラウザコンソールで実行
+repairMyProgress()        # 自分の進捗を修復
+repairAllProgress()       # 全ユーザーの進捗を修復
+progressReport()          # 進捗レポート表示
+storageCleanup()         # 不要データ削除
+```
+
+### バックアップ
+
+LocalStorageデータは自動的にバックアップされます：
+- セッション開始時
+- 重要な操作前
+- 手動実行: `createBackup()`（コンソール）
+
+---
+
+## 🚢 デプロイ
+
+### Vercel（推奨）
+
+1. GitHubリポジトリをフォーク/クローン
+2. [Vercel](https://vercel.com)でプロジェクト作成
+3. GitHubリポジトリを接続
+4. 環境変数を設定
+5. デプロイ実行
+
+```bash
+# Vercel CLIを使用
+npm i -g vercel
+vercel
+```
+
+### その他のプラットフォーム
+
+```bash
+# プロダクションビルド
+npm run build
+
+# プロダクションサーバー起動
+npm start
+```
+
+Docker対応：
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+---
+
+## 📝 最近の改善（2025年8月）
+
+### RAGシステムの全面改善
+- **GPT-5導入**: 最高レベルの推論能力
+- **インデックス再構築**: 699チャンク（4.2倍増加）
+- **Chain-of-Thought推論**: 段階的な関連性評価
+- **ハイブリッド検索**: ベクトル＋キーワード検索
+- **精度向上**: 日英クロスリンガル対応強化
+
+### データ管理の改善
+- **Single Source of Truth実装**: StudySessionsを唯一の真実の源に
+- **重複カウント問題解決**: 進捗データの整合性確保
+- **自動修復ツール**: データ不整合を自動検出・修正
+- **Part別進捗管理**: Mock試験25問モードの詳細管理
+
+### UX/アクセシビリティ
+- **完全キーボード操作**: すべての機能をキーボードで操作可能
+- **スクリーンリーダー対応**: ARIA属性完全実装
+- **視覚的フィードバック**: 選択状態の明確な表示
+- **セッション永続化強化**: 10秒ごとの自動保存
+
+詳細は以下のドキュメント参照：
+- `/docs/RECENT_FIXES_2025_08_13.md`
+- `/docs/rag-improvements-2025-08-13.md`
+- `/CLAUDE.md`
+
+---
+
+## 🐛 トラブルシューティング
+
+### よくある問題
+
+#### Firebase権限エラー
+```
+Error: Missing or insufficient permissions
+```
+**解決策**: 自動的にLocalStorageにフォールバック。機能は継続使用可能。
+
+#### PDF表示エラー
+```
+Error: No "GlobalWorkerOptions.workerSrc" specified
+```
+**解決策**: ページをリロード。自動的にWorkerが初期化されます。
+
+#### RAG検索が遅い
+**解決策**: 
+- 初回は時間がかかります（キャッシュ構築）
+- 2回目以降は高速化（24時間キャッシュ）
+- Qdrant使用を検討
+
+#### 進捗データ不整合
+**解決策**: コンソールで`repairMyProgress()`実行
+
+### デバッグモード
+
+URLに`?debug=true`を追加してアクセス：
+- 詳細なログ出力
+- データ整合性レポート表示
+- ストレージ使用状況確認
+
+---
+
+## 🗺️ ロードマップ
+
+### 実装済み ✅
+- [x] RAG検索機能（GPT-5対応）
+- [x] ハイライト・ノート機能
+- [x] キーボードナビゲーション
+- [x] スクリーンリーダー対応
+- [x] Part別Mock試験進捗
+- [x] セッション永続化
+
+### 開発中 🚧
+- [ ] PWA対応（オフライン完全対応）
+- [ ] 音声読み上げ機能
+- [ ] 学習履歴エクスポート（CSV/PDF）
+- [ ] AI学習提案機能
+
+### 計画中 📋
+- [ ] モバイルアプリ（React Native）
+- [ ] 複数言語対応（中国語・韓国語）
+- [ ] コラボレーション機能（ハイライト共有）
+- [ ] AIチューター機能
+- [ ] 模擬面接練習
+
+---
+
+## 🤝 コントリビューション
+
+貢献を歓迎します！
+
+### 開発参加方法
+
+1. このリポジトリをフォーク
+2. フィーチャーブランチを作成 (`git checkout -b feature/AmazingFeature`)
+3. 変更をコミット (`git commit -m 'Add some AmazingFeature'`)
+4. ブランチにプッシュ (`git push origin feature/AmazingFeature`)
+5. プルリクエストを作成
+
+### 開発ガイドライン
+
+- TypeScriptの型定義を厳密に
+- テストを書く（Vitest/Cypress）
+- コミットメッセージは[Conventional Commits](https://www.conventionalcommits.org/)に従う
+- PRテンプレートに従って記載
+
+### 特に歓迎する貢献
+
+- 🇯🇵 日本語翻訳の改善
+- 🎨 UI/UXの向上
+- 🐛 バグ修正
+- 📝 ドキュメントの改善
+- ♿ アクセシビリティの向上
+
+---
+
+## 📄 ライセンス
+
+MIT License - 詳細は[LICENSE](LICENSE)ファイルを参照
+
+---
+
+## 🙏 謝辞
+
+- CISI様 - 教材提供
+- OpenAI様 - AI技術提供
+- Vercel様 - ホスティング提供
+- すべてのコントリビューター
+
+---
+
+## 📞 サポート
+
+- 📧 Email: support@ukfr-app.com
+- 🐛 Issues: [GitHub Issues](https://github.com/your-username/ukfr-smbc-app/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/your-username/ukfr-smbc-app/discussions)
+
+---
+
+<div align="center">
+
+**Made with ❤️ for Japanese Bankers**
+
+**確実な合格を目指して、一緒に頑張りましょう！** 🎓✨
+
+</div>
