@@ -22,8 +22,8 @@ export interface SessionState {
 
 const CURRENT_VERSION = 2;
 const SESSION_KEY = 'activeStudySession';
-const AUTOSAVE_INTERVAL = 30000; // 30秒
-const ANSWER_THRESHOLD = 5; // 5問ごとに自動保存
+const AUTOSAVE_INTERVAL = 10000; // 10秒（短縮）
+const ANSWER_THRESHOLD = 1; // 1問ごとに自動保存（即時保存）
 
 export class SessionPersistence {
   private static instance: SessionPersistence;
@@ -190,14 +190,21 @@ export class SessionPersistence {
     }
   }
 
-  // 回答カウントをインクリメント
+  // 回答カウントをインクリメント（即時保存対応）
   incrementAnswerCount(saveCallback: () => void | Promise<unknown>): void {
     this.answerCount++;
+    // 閾値を1に設定したので、毎回保存される
     if (this.answerCount >= ANSWER_THRESHOLD) {
-      console.log('[SessionPersistence] Answer threshold reached, autosaving...');
+      console.log('[SessionPersistence] Saving after answer...');
       saveCallback();
       this.answerCount = 0;
     }
+  }
+  
+  // 即時保存メソッド（明示的に呼び出す用）
+  saveImmediately(saveCallback: () => void | Promise<unknown>): void {
+    console.log('[SessionPersistence] Immediate save triggered');
+    saveCallback();
   }
 
   // ブラウザを閉じる前の処理

@@ -74,6 +74,7 @@ function StudySessionContent() {
   const [ragElapsedTime, setRagElapsedTime] = useState<number>(0); // RAG検索の経過時間（秒）
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastSaveTime, setLastSaveTime] = useState<Date | undefined>();
+  const [isSaving, setIsSaving] = useState(false); // 保存中インジケーター
   const sessionPersistence = useRef<SessionPersistence | null>(null);
   const isLoadingQuestions = useRef(false);
   const hasRestoredRef = useRef(false);
@@ -100,6 +101,7 @@ function StudySessionContent() {
   const saveSessionState = useCallback(async () => {
     if (!session || !questions.length) return false;
 
+    setIsSaving(true); // 保存開始を表示
     const persistence = sessionPersistence.current || SessionPersistence.getInstance();
     const saved = await persistence.saveSession(
       session,
@@ -120,6 +122,9 @@ function StudySessionContent() {
       setHasUnsavedChanges(false);
       setLastSaveTime(new Date());
     }
+    
+    // 保存完了後、インジケーターを非表示にする
+    setTimeout(() => setIsSaving(false), 1000); // 1秒後に非表示
     return saved;
   }, [session, questions, currentQuestionIndex, mockAnswers, showJapanese,
       selectedAnswer, showResult, mode, categoryParam, partParam,
@@ -248,20 +253,53 @@ function StudySessionContent() {
     // 1) Prefer unified persistence
     const persistence = sessionPersistence.current || SessionPersistence.getInstance();
     const savedSession = persistence.loadSession(user?.nickname);
-    if (savedSession && savedSession.mode === mode && savedSession.category === categoryParam && savedSession.part === partParam) {
-      applyRestoration(savedSession, 'persistence');
-      return;
+    if (savedSession) {
+      // モード、カテゴリ、パートが一致するか確認
+      const isMatchingSession = savedSession.mode === mode && 
+                                savedSession.category === categoryParam && 
+                                (!partParam || savedSession.part === partParam);
+      
+      if (isMatchingSession) {
+        console.log('[Session Restore] Found matching session from persistence');
+        applyRestoration(savedSession, 'persistence');
+        
+        // 復元成功メッセージを表示
+        const answersCount = savedSession.session?.answers?.length || 0;
+        if (answersCount > 0) {
+          const timeSince = Date.now() - new Date(savedSession.savedAt).getTime();
+          const minutesSince = Math.floor(timeSince / 60000);
+          const message = minutesSince < 1 
+            ? `前回のセッションを復元しました（${answersCount}問回答済み）`
+            : `前回のセッションを復元しました（${minutesSince}分前・${answersCount}問回答済み）`;
+          
+          // 一時的なトースト表示（3秒後に自動で消える）
+          const toast = document.createElement('div');
+          toast.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-opacity duration-500';
+          toast.textContent = message;
+          document.body.appendChild(toast);
+          setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => document.body.removeChild(toast), 500);
+          }, 3000);
+        }
+        return;
+      } else {
+        console.log('[Session Restore] Session found but not matching current mode/category');
+      }
     }
 
     // 2) Fallback: manual snapshot (used for materials navigation)
     const savedLegacy = safeLocalStorage.getItem<any>('studySessionState');
     if (savedLegacy && savedLegacy.mode === mode && savedLegacy.category === categoryParam && savedLegacy.part === partParam) {
-      // Validate within 30 minutes
+      // Validate within 60 minutes (extended from 30)
       const savedTime = new Date(savedLegacy.savedAt).getTime();
       const currentTime = Date.now();
-      if (currentTime - savedTime < 30 * 60 * 1000) {
+      if (currentTime - savedTime < 60 * 60 * 1000) {
+        console.log('[Session Restore] Found matching session from legacy storage');
         applyRestoration(savedLegacy, 'legacy');
         return;
+      } else {
+        console.log('[Session Restore] Legacy session expired');
       }
     }
   }, [mode, categoryParam, partParam, user?.nickname, authLoading, restoreParam]);
@@ -553,9 +591,11 @@ function StudySessionContent() {
     setSession(updatedSession);
     setHasUnsavedChanges(true);
     
-    // 回答カウントを増やし、闾値に達したら自動保存
+    // 回答後即座に保存（誤操作による進捗喪失を防ぐ）
     if (sessionPersistence.current) {
       sessionPersistence.current.incrementAnswerCount(saveSessionState);
+      // 追加: 即座に保存を実行
+      sessionPersistence.current.saveImmediately(saveSessionState);
     }
     
     // Mock試験モードでは採点を保留
@@ -1427,12 +1467,18 @@ function StudySessionContent() {
       session: {
         ...session,
         answers,
-        completedAt: new Date().toISOString()
+        completedAt: new Date().toISOString(),
+        // Part情報を確実に保存
+        mockPart: session.mockPart
       },
       questionIds: questions.map(q => q.questionId),
       // ユーザー情報も保存しておく（フォールバック用）
       userId: user.id,
-      userNickname: user.nickname
+      userNickname: user.nickname,
+      // デバッグ用の追加情報
+      savedAt: new Date().toISOString(),
+      category: session.category,
+      mode: session.mode
     };
     
     // 問題データは別のキーに保存（結果表示用）
@@ -1809,9 +1855,27 @@ function StudySessionContent() {
           <div className="flex justify-between items-center">
             <button
               onClick={() => {
-                if (isMockMode) {
-                  setShowExitConfirm(true);
+                // すべてのモードで確認ダイアログを表示（誤操作防止）
+                if (session?.answers && session.answers.length > 0) {
+                  // 回答済みの問題がある場合は確認
+                  const confirmMessage = isMockMode
+                    ? 'Mock試験を終了しますか？\n進捗は保存されます。'
+                    : `学習セッションを終了しますか？\n${session.answers.length}問回答済み（自動保存済み）`;
+                  
+                  if (window.confirm(confirmMessage)) {
+                    // セッションを即座に保存
+                    if (sessionPersistence.current) {
+                      sessionPersistence.current.saveImmediately(saveSession);
+                    }
+                    
+                    if (isMockMode) {
+                      setShowExitConfirm(true);
+                    } else {
+                      router.push('/study');
+                    }
+                  }
                 } else {
+                  // まだ回答していない場合はそのまま戻る
                   router.push('/study');
                 }
               }}
@@ -1821,6 +1885,21 @@ function StudySessionContent() {
               {isMockMode ? '保存して終了' : '学習モードに戻る'}
             </button>
             <div className="flex items-center gap-4">
+              {/* 保存中インジケーター */}
+              {isSaving && (
+                <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-blue-600 text-white animate-pulse">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span className="text-sm">保存中...</span>
+                </div>
+              )}
+              
+              {/* 最終保存時刻 */}
+              {!isSaving && lastSaveTime && (
+                <span className="text-xs text-gray-400">
+                  最終保存: {new Date(lastSaveTime).toLocaleTimeString()}
+                </span>
+              )}
+              
               <button
                 onClick={toggleJapanese}
                 className="flex items-center gap-2 px-3 py-1 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors text-gray-100"

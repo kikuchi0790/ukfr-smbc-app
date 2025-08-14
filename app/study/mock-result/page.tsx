@@ -80,7 +80,9 @@ function MockResultContent() {
     if (!tempResult) {
       console.error('No mock result found in localStorage with key:', tempKey);
       // デバッグ：すべてのキーを確認
-      console.log('All localStorage keys:', Object.keys(localStorage));
+      const allKeys = Object.keys(localStorage);
+      console.log('All localStorage keys:', allKeys);
+      console.log('Mock-related keys:', allKeys.filter(k => k.includes('Mock') || k.includes('mock')));
       
       // フォールバック1：userIdを使ったキーも試す
       const fallbackKey = `tempMockResult_${user.id}`;
@@ -89,6 +91,8 @@ function MockResultContent() {
       const fallbackQuestions = safeLocalStorage.getItem<Question[]>(fallbackQuestionsKey);
       if (fallbackResult && (fallbackQuestions || fallbackResult.questions)) {
         console.log('Found result with fallback key:', fallbackKey);
+        // Part情報をログ出力
+        console.log('Mock Part:', fallbackResult.session?.mockPart);
         processResults({
           ...fallbackResult,
           questions: fallbackQuestions || fallbackResult.questions
@@ -145,7 +149,25 @@ function MockResultContent() {
       }
       
       console.error('No recent mock exam data found for recovery');
-      alert('Mock試験の結果が見つかりませんでした。\n\n保存に失敗した可能性があります。\nStorageCleanupでデータを整理してから再度お試しください。');
+      // より詳細なエラーメッセージ
+      const debugInfo = `
+Mock試験の結果が見つかりませんでした。
+
+【デバッグ情報】
+- ユーザー: ${user.nickname} (ID: ${user.id})
+- 検索したキー: 
+  1. tempMockResult_${user.nickname}
+  2. tempMockResult_${user.id}
+  3. tempMockResult_latest
+- Mock関連キー: ${allKeys.filter(k => k.includes('Mock') || k.includes('mock')).join(', ') || 'なし'}
+
+【対処法】
+1. ブラウザの戻るボタンで試験画面に戻る
+2. StorageCleanupでデータを整理
+3. Mock試験を再度受験
+
+この問題が続く場合は、管理者にお問い合わせください。`;
+      alert(debugInfo);
       router.push('/study');
       return;
     }
