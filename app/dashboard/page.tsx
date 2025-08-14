@@ -39,6 +39,7 @@ import { isMockCategory, getMockCategoryProgress } from "@/utils/study-utils";
 import { formatPercentage } from "@/utils/formatters";
 import { checkDataIntegrity } from "@/utils/data-backup";
 import { AnsweredQuestionsTracker } from "@/utils/answered-questions-tracker";
+import { ReviewDataRepairTool } from "@/utils/review-data-repair";
 
 // Dynamic import for 3D components to avoid SSR issues
 const WireframeBuildings3D = dynamic(
@@ -94,6 +95,15 @@ function DashboardContent() {
   useEffect(() => {
     // Clean up progress data on first load
     cleanupAllProgressData();
+    
+    // 復習データの修復を実行
+    if (user?.nickname) {
+      const repairResult = ReviewDataRepairTool.repairUserReviewData(user.nickname);
+      if (repairResult.success && repairResult.changes && repairResult.changes.length > 0) {
+        console.log('復習データを修復しました:', repairResult.changes);
+      }
+    }
+    
     loadUserProgress();
     loadMockExamHistory();
   }, [user]);
@@ -199,7 +209,37 @@ function DashboardContent() {
   };
 
   const getIncorrectQuestionsCount = () => {
-    return progress?.incorrectQuestions?.length || 0;
+    // 統合データ構造からすべての間違えた問題をカウント
+    let count = progress?.incorrectQuestions?.length || 0;
+    
+    // 互換性のため、古いmockIncorrectQuestionsも確認
+    if (progress?.mockIncorrectQuestions) {
+      // 重複を避けるため、既存のincorrectQuestionsにないものだけカウント
+      const existingIds = new Set(progress.incorrectQuestions?.map(q => q.questionId) || []);
+      const uniqueMockCount = progress.mockIncorrectQuestions.filter(
+        mq => !existingIds.has(mq.questionId)
+      ).length;
+      count += uniqueMockCount;
+    }
+    
+    return count;
+  };
+  
+  const getCategoryIncorrectCount = () => {
+    // カテゴリ学習の間違いのみカウント
+    return progress?.incorrectQuestions?.filter(q => q.source !== 'mock').length || 0;
+  };
+  
+  const getMockIncorrectCount = () => {
+    // Mock試験の間違いのみカウント
+    const fromIncorrect = progress?.incorrectQuestions?.filter(q => q.source === 'mock').length || 0;
+    
+    // 互換性のため、古いmockIncorrectQuestionsも確認
+    if (progress?.mockIncorrectQuestions && fromIncorrect === 0) {
+      return progress.mockIncorrectQuestions.length;
+    }
+    
+    return fromIncorrect;
   };
 
   const getOvercomeQuestionsCount = () => {
@@ -234,9 +274,22 @@ function DashboardContent() {
     },
     {
       title: "間違えた問題を復習",
-      description: `${getIncorrectQuestionsCount()}問の復習が可能`,
+      description: (() => {
+        const total = getIncorrectQuestionsCount();
+        const category = getCategoryIncorrectCount();
+        const mock = getMockIncorrectCount();
+        
+        if (total === 0) return "復習する問題がありません";
+        if (category > 0 && mock > 0) {
+          return `計${total}問（カテゴリ: ${category}問、Mock: ${mock}問）`;
+        } else if (category > 0) {
+          return `カテゴリ学習: ${category}問の復習が可能`;
+        } else {
+          return `Mock試験: ${mock}問の復習が可能`;
+        }
+      })(),
       icon: <AlertCircle className="w-6 h-6" />,
-      href: "/study/session?mode=review",
+      href: "/study/session?mode=review&reviewType=all",
       color: "bg-orange-500",
       disabled: getIncorrectQuestionsCount() === 0
     },

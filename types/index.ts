@@ -67,6 +67,8 @@ export interface IncorrectQuestion {
   incorrectCount: number;
   lastIncorrectDate: string;
   reviewCount: number;
+  source?: 'category' | 'mock';  // 問題の出所（新規追加）
+  mockNumber?: number;  // Mock試験番号（Mock由来の場合）
 }
 
 // Mock試験の間違えた問題用の型

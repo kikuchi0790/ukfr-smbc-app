@@ -1308,16 +1308,16 @@ function StudySessionContent() {
     console.log('answers length:', answers.length);
     console.log('incorrect questions count:', incorrectQuestions.length);
     
-    // Mock試験の間違えた問題をUserProgressに保存
+    // Mock試験の間違えた問題をUserProgressに保存（統合データ構造を使用）
     if (incorrectQuestions.length > 0) {
       try {
         const userProgressKey = getUserKey('userProgress', user.nickname);
         const progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
         
         if (progress) {
-          // mockIncorrectQuestionsを初期化または更新
-          if (!progress.mockIncorrectQuestions) {
-            progress.mockIncorrectQuestions = [];
+          // incorrectQuestionsを初期化
+          if (!progress.incorrectQuestions) {
+            progress.incorrectQuestions = [];
           }
           
           // Mock番号を取得（例: "Regulations: Mock 1" -> 1）
@@ -1326,33 +1326,53 @@ function StudySessionContent() {
           
           // 間違えた問題を追加または更新
           incorrectQuestions.forEach(questionId => {
-            const existingIndex = progress.mockIncorrectQuestions!.findIndex(
+            const existingIndex = progress.incorrectQuestions!.findIndex(
               q => q.questionId === questionId
             );
             
             if (existingIndex >= 0) {
               // 既存の問題の場合は間違い回数を増やす
-              progress.mockIncorrectQuestions![existingIndex].incorrectCount++;
-              progress.mockIncorrectQuestions![existingIndex].lastIncorrectDate = new Date().toISOString();
+              progress.incorrectQuestions![existingIndex].incorrectCount++;
+              progress.incorrectQuestions![existingIndex].lastIncorrectDate = new Date().toISOString();
+              // Mock試験由来の場合、ソースとMock番号を更新
+              progress.incorrectQuestions![existingIndex].source = 'mock';
+              progress.incorrectQuestions![existingIndex].mockNumber = mockNum;
             } else {
               // 新規の間違い問題
               const question = questions.find(q => q.questionId === questionId);
               if (question) {
-                progress.mockIncorrectQuestions!.push({
+                const newIncorrect: IncorrectQuestion = {
                   questionId: questionId,
                   category: question.category,
                   incorrectCount: 1,
                   lastIncorrectDate: new Date().toISOString(),
                   reviewCount: 0,
+                  source: 'mock',
                   mockNumber: mockNum
-                });
+                };
+                progress.incorrectQuestions!.push(newIncorrect);
               }
             }
           });
           
+          // 互換性のため、mockIncorrectQuestionsも更新（段階的移行）
+          if (!progress.mockIncorrectQuestions) {
+            progress.mockIncorrectQuestions = [];
+          }
+          progress.mockIncorrectQuestions = progress.incorrectQuestions
+            .filter(q => q.source === 'mock')
+            .map(q => ({
+              questionId: q.questionId,
+              category: q.category,
+              incorrectCount: q.incorrectCount,
+              lastIncorrectDate: q.lastIncorrectDate,
+              reviewCount: q.reviewCount,
+              mockNumber: q.mockNumber || 0
+            }));
+          
           // 保存
           safeLocalStorage.setItem(userProgressKey, progress);
-          console.log('Mock incorrect questions saved:', progress.mockIncorrectQuestions?.length);
+          console.log('Mock incorrect questions saved:', progress.incorrectQuestions?.filter(q => q.source === 'mock').length);
         }
       } catch (error) {
         console.error('Failed to save mock incorrect questions:', error);

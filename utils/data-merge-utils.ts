@@ -1,4 +1,4 @@
-import { UserProgress, CategoryProgress, StudySession, IncorrectQuestion, Category, OvercomeQuestion } from '@/types';
+import { UserProgress, CategoryProgress, StudySession, IncorrectQuestion, Category, OvercomeQuestion, MockCategoryProgress } from '@/types';
 
 // 日付を持つアイテムのインターフェース
 export interface DateItem {
@@ -113,6 +113,40 @@ export class DataMerger {
           // 回答済み問題数と正解数は最大値を取る（同期時の重複を防ぐ）
           answeredQuestions: Math.max(merged[category].answeredQuestions, remoteProgress.answeredQuestions),
           correctAnswers: Math.max(merged[category].correctAnswers, remoteProgress.correctAnswers)
+        };
+      } else {
+        // 新しいカテゴリの場合はそのまま追加
+        merged[category] = remoteProgress;
+      }
+    }
+    
+    return merged;
+  }
+
+  /**
+   * Mock試験カテゴリプログレスをマージする
+   */
+  static mergeMockCategoryProgress(
+    local: Record<string, MockCategoryProgress>,
+    remote: Record<string, MockCategoryProgress>
+  ): Record<string, MockCategoryProgress> {
+    const merged: Record<string, MockCategoryProgress> = { ...local };
+    
+    for (const [category, remoteProgress] of Object.entries(remote)) {
+      if (merged[category]) {
+        // 既存のカテゴリがある場合は最適な値を選択
+        merged[category] = {
+          totalQuestions: Math.max(merged[category].totalQuestions, remoteProgress.totalQuestions),
+          attemptsCount: Math.max(merged[category].attemptsCount, remoteProgress.attemptsCount),
+          bestScore: Math.max(merged[category].bestScore, remoteProgress.bestScore),
+          latestScore: new Date(merged[category].lastAttemptDate) > new Date(remoteProgress.lastAttemptDate)
+            ? merged[category].latestScore
+            : remoteProgress.latestScore,
+          averageScore: (merged[category].averageScore + remoteProgress.averageScore) / 2,
+          passedCount: Math.max(merged[category].passedCount, remoteProgress.passedCount),
+          lastAttemptDate: new Date(merged[category].lastAttemptDate) > new Date(remoteProgress.lastAttemptDate)
+            ? merged[category].lastAttemptDate
+            : remoteProgress.lastAttemptDate
         };
       } else {
         // 新しいカテゴリの場合はそのまま追加
@@ -329,14 +363,79 @@ export class DataMerger {
       remote.studySessions || []
     );
     
-    // 克服した問題をマージ
+    // 克服した問題をマージ（カテゴリとMock両方）
     const mergedOvercomeQuestions = this.mergeOvercomeQuestions(
       local.overcomeQuestions || [],
       remote.overcomeQuestions || []
     );
     
+    // Mock克服問題もマージ（互換性のため）
+    const mergedMockOvercomeQuestions = local.mockOvercomeQuestions || remote.mockOvercomeQuestions
+      ? this.mergeOvercomeQuestions(
+          local.mockOvercomeQuestions || [],
+          remote.mockOvercomeQuestions || []
+        )
+      : undefined;
+    
     // マージされたStudySessionsと克服した問題から正確な統計を計算
     const stats = this.calculateStatsFromSessions(mergedStudySessions, mergedOvercomeQuestions);
+    
+    // 間違えた問題をマージ（統合データ構造）
+    let mergedIncorrectQuestions = this.mergeIncorrectQuestions(
+      local.incorrectQuestions || [],
+      remote.incorrectQuestions || []
+    );
+    
+    // 古いmockIncorrectQuestionsからも統合（互換性のため）
+    if (local.mockIncorrectQuestions || remote.mockIncorrectQuestions) {
+      const allMockIncorrect: IncorrectQuestion[] = [];
+      
+      // ローカルのMock間違いを変換
+      if (local.mockIncorrectQuestions) {
+        local.mockIncorrectQuestions.forEach(mq => {
+          allMockIncorrect.push({
+            questionId: mq.questionId,
+            category: mq.category,
+            incorrectCount: mq.incorrectCount,
+            lastIncorrectDate: mq.lastIncorrectDate,
+            reviewCount: mq.reviewCount,
+            source: 'mock',
+            mockNumber: mq.mockNumber
+          });
+        });
+      }
+      
+      // リモートのMock間違いを変換
+      if (remote.mockIncorrectQuestions) {
+        remote.mockIncorrectQuestions.forEach(mq => {
+          allMockIncorrect.push({
+            questionId: mq.questionId,
+            category: mq.category,
+            incorrectCount: mq.incorrectCount,
+            lastIncorrectDate: mq.lastIncorrectDate,
+            reviewCount: mq.reviewCount,
+            source: 'mock',
+            mockNumber: mq.mockNumber
+          });
+        });
+      }
+      
+      // 既存のmergedIncorrectQuestionsと統合
+      const existingIds = new Set(mergedIncorrectQuestions.map(q => q.questionId));
+      allMockIncorrect.forEach(mq => {
+        if (!existingIds.has(mq.questionId)) {
+          mergedIncorrectQuestions.push(mq);
+        }
+      });
+    }
+    
+    // mockCategoryProgressもマージ（存在する場合）
+    const mergedMockCategoryProgress = (local.mockCategoryProgress || remote.mockCategoryProgress)
+      ? this.mergeMockCategoryProgress(
+          local.mockCategoryProgress || {},
+          remote.mockCategoryProgress || {}
+        )
+      : undefined;
     
     // 日付の比較でより新しい方を採用
     const lastStudyDate = new Date(local.lastStudyDate) > new Date(remote.lastStudyDate)
@@ -360,12 +459,21 @@ export class DataMerger {
       totalQuestionsAnswered: stats.totalAnswered,
       correctAnswers: stats.totalCorrect,
       categoryProgress: stats.categoryProgress,
+      mockCategoryProgress: mergedMockCategoryProgress,
       studySessions: mergedStudySessions,
-      incorrectQuestions: this.mergeIncorrectQuestions(
-        local.incorrectQuestions || [],
-        remote.incorrectQuestions || []
-      ),
+      incorrectQuestions: mergedIncorrectQuestions,
+      mockIncorrectQuestions: mergedIncorrectQuestions
+        .filter(q => q.source === 'mock')
+        .map(q => ({
+          questionId: q.questionId,
+          category: q.category,
+          incorrectCount: q.incorrectCount,
+          lastIncorrectDate: q.lastIncorrectDate,
+          reviewCount: q.reviewCount,
+          mockNumber: q.mockNumber || 0
+        })),
       overcomeQuestions: mergedOvercomeQuestions,
+      mockOvercomeQuestions: mergedMockOvercomeQuestions,
       currentStreak,
       bestStreak,
       lastStudyDate,

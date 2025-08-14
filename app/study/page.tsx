@@ -243,8 +243,15 @@ function StudyModeContent() {
   };
   
   const handleReviewMockIncorrect = () => {
-    // Mock試験の間違いがあるかチェック
-    if (!progress?.mockIncorrectQuestions || progress.mockIncorrectQuestions.length === 0) {
+    // Mock試験の間違いがあるかチェック（統合データ構造）
+    const mockIncorrectCount = progress?.incorrectQuestions?.filter(q => q.source === 'mock').length || 0;
+    
+    // 互換性のため、古いmockIncorrectQuestionsも確認
+    const legacyMockCount = (!mockIncorrectCount && progress?.mockIncorrectQuestions) 
+      ? progress.mockIncorrectQuestions.length 
+      : 0;
+    
+    if (mockIncorrectCount === 0 && legacyMockCount === 0) {
       alert("Mock試験で間違えた問題がありません。まずはMock試験を受けてください。");
       return;
     }
@@ -652,7 +659,7 @@ function StudyModeContent() {
                 <h3 className="font-bold mb-2 text-gray-100 group-hover:text-white">カテゴリ別復習</h3>
                 <p className="text-gray-400 text-sm mb-2">カテゴリ学習で間違えた問題を復習</p>
                 <div className="text-xs text-gray-500">
-                  {progress?.incorrectQuestions?.length || 0}問の間違い
+                  {progress?.incorrectQuestions?.filter(q => q.source !== 'mock').length || 0}問の間違い
                 </div>
               </div>
             </button>
@@ -669,7 +676,13 @@ function StudyModeContent() {
                 <h3 className="font-bold mb-2 text-gray-100 group-hover:text-white">Mock試験復習</h3>
                 <p className="text-gray-400 text-sm mb-2">Mock試験で間違えた問題を復習</p>
                 <div className="text-xs text-gray-500">
-                  {progress?.mockIncorrectQuestions?.length || 0}問の間違い
+                  {(() => {
+                    const mockCount = progress?.incorrectQuestions?.filter(q => q.source === 'mock').length || 0;
+                    const legacyCount = (!mockCount && progress?.mockIncorrectQuestions) 
+                      ? progress.mockIncorrectQuestions.length 
+                      : 0;
+                    return mockCount || legacyCount;
+                  })()}問の間違い
                 </div>
               </div>
             </button>

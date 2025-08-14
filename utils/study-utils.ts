@@ -4,7 +4,13 @@ import { categories } from './category-utils';
 import { filterByIncorrect, selectRandom, excludeAnswered, sortByGlobalId } from './question-filters';
 
 // 間違えた問題を保存
-export function saveIncorrectQuestion(questionId: string, category: string, userNickname?: string) {
+export function saveIncorrectQuestion(
+  questionId: string, 
+  category: string, 
+  userNickname?: string,
+  source: 'category' | 'mock' = 'category',
+  mockNumber?: number
+) {
   try {
     const userProgressKey = getUserKey('userProgress', userNickname);
     let progress = safeLocalStorage.getItem<UserProgress>(userProgressKey);
@@ -70,7 +76,9 @@ export function saveIncorrectQuestion(questionId: string, category: string, user
         category: category as any,
         incorrectCount: 1,
         lastIncorrectDate: new Date().toISOString(),
-        reviewCount: 0
+        reviewCount: 0,
+        source,
+        mockNumber
       };
       progress.incorrectQuestions.push(newIncorrect);
     }
@@ -87,7 +95,7 @@ export function getReviewQuestions(
   allQuestions: Question[], 
   count: number = 10, 
   userNickname?: string,
-  reviewType: 'category' | 'mock' = 'category'
+  reviewType: 'category' | 'mock' | 'all' = 'all'
 ): Question[] {
   try {
     const userProgressKey = getUserKey('userProgress', userNickname);
@@ -96,21 +104,59 @@ export function getReviewQuestions(
 
     let incorrectQuestions: IncorrectQuestion[] = [];
     
+    // incorrectQuestionsからフィルタリング（統合データ使用）
     if (reviewType === 'category') {
-      // カテゴリ別問題の間違い
-      if (!progress.incorrectQuestions) return [];
-      incorrectQuestions = progress.incorrectQuestions;
+      // カテゴリ学習の間違いのみ
+      incorrectQuestions = (progress.incorrectQuestions || []).filter(
+        q => q.source !== 'mock'
+      );
+    } else if (reviewType === 'mock') {
+      // Mock試験の間違いのみ
+      incorrectQuestions = (progress.incorrectQuestions || []).filter(
+        q => q.source === 'mock'
+      );
+      
+      // 互換性のため、古いmockIncorrectQuestionsからも取得
+      if (progress.mockIncorrectQuestions && progress.mockIncorrectQuestions.length > 0) {
+        const mockIncorrect = progress.mockIncorrectQuestions.map(mq => ({
+          questionId: mq.questionId,
+          category: mq.category,
+          incorrectCount: mq.incorrectCount,
+          lastIncorrectDate: mq.lastIncorrectDate,
+          reviewCount: mq.reviewCount,
+          source: 'mock' as const,
+          mockNumber: mq.mockNumber
+        }));
+        // 重複を避けるため、IDでフィルタリング
+        const existingIds = new Set(incorrectQuestions.map(q => q.questionId));
+        mockIncorrect.forEach(q => {
+          if (!existingIds.has(q.questionId)) {
+            incorrectQuestions.push(q);
+          }
+        });
+      }
     } else {
-      // Mock試験の間違いをIncorrectQuestion形式に変換
-      if (!progress.mockIncorrectQuestions) return [];
-      const mockIncorrect = progress.mockIncorrectQuestions;
-      incorrectQuestions = mockIncorrect.map(mq => ({
-        questionId: mq.questionId,
-        category: mq.category,
-        incorrectCount: mq.incorrectCount,
-        lastIncorrectDate: mq.lastIncorrectDate,
-        reviewCount: mq.reviewCount
-      }));
+      // すべての間違えた問題
+      incorrectQuestions = progress.incorrectQuestions || [];
+      
+      // 互換性のため、古いmockIncorrectQuestionsからも統合
+      if (progress.mockIncorrectQuestions && progress.mockIncorrectQuestions.length > 0) {
+        const mockIncorrect = progress.mockIncorrectQuestions.map(mq => ({
+          questionId: mq.questionId,
+          category: mq.category,
+          incorrectCount: mq.incorrectCount,
+          lastIncorrectDate: mq.lastIncorrectDate,
+          reviewCount: mq.reviewCount,
+          source: 'mock' as const,
+          mockNumber: mq.mockNumber
+        }));
+        const existingIds = new Set(incorrectQuestions.map(q => q.questionId));
+        mockIncorrect.forEach(q => {
+          if (!existingIds.has(q.questionId)) {
+            incorrectQuestions.push(q);
+          }
+        });
+      }
     }
 
     if (incorrectQuestions.length === 0) return [];
@@ -226,7 +272,7 @@ export function updateReviewCount(questionId: string, userNickname?: string) {
   }
 }
 
-// 復習モードで正解した問題を克服フォルダに移動
+// 復習モードで正解した問題を克服フォルダに移動（Mock/カテゴリ両対応）
 export function moveToOvercomeQuestions(questionId: string, mode: string, userNickname?: string) {
   try {
     const userProgressKey = getUserKey('userProgress', userNickname);
@@ -243,7 +289,7 @@ export function moveToOvercomeQuestions(questionId: string, mode: string, userNi
     // 復習モードでない場合は何もしない
     if (mode !== 'review') return false;
     
-    // incorrectQuestionsから該当の問題を探す
+    // incorrectQuestionsから該当の問題を探す（統合データ構造）
     const incorrectIndex = progress.incorrectQuestions?.findIndex(q => q.questionId === questionId) ?? -1;
     if (incorrectIndex === -1) return false;
     
@@ -269,11 +315,28 @@ export function moveToOvercomeQuestions(questionId: string, mode: string, userNi
     // incorrectQuestionsから削除
     progress.incorrectQuestions.splice(incorrectIndex, 1);
     
+    // Mock試験由来の問題の場合、mockOvercomeQuestionsにも追加（互換性のため）
+    if (incorrectQuestion.source === 'mock') {
+      if (!progress.mockOvercomeQuestions) {
+        progress.mockOvercomeQuestions = [];
+      }
+      progress.mockOvercomeQuestions.push(overcomeQuestion);
+      
+      // mockIncorrectQuestionsからも削除（互換性のため）
+      if (progress.mockIncorrectQuestions) {
+        const mockIndex = progress.mockIncorrectQuestions.findIndex(q => q.questionId === questionId);
+        if (mockIndex >= 0) {
+          progress.mockIncorrectQuestions.splice(mockIndex, 1);
+        }
+      }
+    }
+    
     // 保存
     safeLocalStorage.setItem(userProgressKey, progress);
     
     console.log('✅ Question overcome successfully:', {
       questionId,
+      source: incorrectQuestion.source,
       newIncorrectCount: progress.incorrectQuestions.length,
       newOvercomeCount: progress.overcomeQuestions.length
     });
